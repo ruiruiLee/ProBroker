@@ -175,6 +175,10 @@
             {
                 MyTeamsVC *vc = [[MyTeamsVC alloc] initWithNibName:nil bundle:nil];
                 vc.hidesBottomBarWhenPushed = YES;
+                vc.userid = [UserInfoModel shareUserInfoModel].userId;
+                vc.title = @"我的团队";
+                vc.toptitle = @"我的队员";
+                vc.name = @"我";
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;

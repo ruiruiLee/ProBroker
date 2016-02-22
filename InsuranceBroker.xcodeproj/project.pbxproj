@@ -77,6 +77,7 @@
 		8625B0571C41020D00312B98 /* NetWorkHandler+saveOrUpdateUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625B0561C41020D00312B98 /* NetWorkHandler+saveOrUpdateUser.m */; };
 		862CD3411C5C8CFE0056D2EA /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 862CD33E1C5C8CFE0056D2EA /* ProgressHUD.bundle */; };
 		862CD3421C5C8CFE0056D2EA /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 862CD3401C5C8CFE0056D2EA /* ProgressHUD.m */; };
+		86493FFC1C745E1300121BD1 /* SJAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 86493FFB1C745E1300121BD1 /* SJAvatarBrowser.m */; };
 		865065821C1E6BC800429EAE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 865065811C1E6BC800429EAE /* main.m */; };
 		865065851C1E6BC800429EAE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 865065841C1E6BC800429EAE /* AppDelegate.m */; };
 		8650658D1C1E6BC800429EAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8650658C1C1E6BC800429EAE /* Assets.xcassets */; };
@@ -346,6 +347,16 @@
 		86C3BCC71C2E933600F98E80 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BCBB1C2E933600F98E80 /* IQKeyboardManager.bundle */; };
 		86C3BCCB1C2E999300F98E80 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BCC91C2E999300F98E80 /* loginViewController.m */; };
 		86C3BCCC1C2E999300F98E80 /* loginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BCCA1C2E999300F98E80 /* loginViewController.xib */; };
+		86F2DA7E1C75F25B0088B783 /* UserDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA7C1C75F25B0088B783 /* UserDetailVC.m */; };
+		86F2DA7F1C75F25B0088B783 /* UserDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F2DA7D1C75F25B0088B783 /* UserDetailVC.xib */; };
+		86F2DA831C7704400088B783 /* CommissionSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA811C7704400088B783 /* CommissionSetTableViewCell.m */; };
+		86F2DA841C7704400088B783 /* CommissionSetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F2DA821C7704400088B783 /* CommissionSetTableViewCell.xib */; };
+		86F2DA871C7715360088B783 /* NetWorkHandler+querySpecialtyUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA861C7715360088B783 /* NetWorkHandler+querySpecialtyUserInfo.m */; };
+		86F2DA8A1C7715550088B783 /* NetWorkHandler+setSpecialtyUserProductRatio.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA891C7715550088B783 /* NetWorkHandler+setSpecialtyUserProductRatio.m */; };
+		86F2DA8D1C7719D10088B783 /* ProductInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA8C1C7719D10088B783 /* ProductInfoModel.m */; };
+		86F2DA901C79889F0088B783 /* PickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA8F1C79889F0088B783 /* PickView.m */; };
+		86FC492A1C756ECA0031B435 /* SetTeamLeaderPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */; };
+		86FC492E1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */; };
 		CF608EE71C589C2900DC10CA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EE61C589C2900DC10CA /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CF608EEC1C58A12E00DC10CA /* CMNavBarNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EEB1C58A12E00DC10CA /* CMNavBarNotificationView.m */; };
 		CF608EEF1C58A13900DC10CA /* OBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EEE1C58A13900DC10CA /* OBGradientView.m */; };
@@ -503,6 +514,8 @@
 		862CD33E1C5C8CFE0056D2EA /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		862CD33F1C5C8CFE0056D2EA /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		862CD3401C5C8CFE0056D2EA /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
+		86493FFA1C745E1300121BD1 /* SJAvatarBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJAvatarBrowser.h; sourceTree = "<group>"; };
+		86493FFB1C745E1300121BD1 /* SJAvatarBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJAvatarBrowser.m; sourceTree = "<group>"; };
 		8650657D1C1E6BC800429EAE /* InsuranceBroker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsuranceBroker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		865065811C1E6BC800429EAE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		865065831C1E6BC800429EAE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1006,6 +1019,23 @@
 		86C3BCC81C2E999300F98E80 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
 		86C3BCC91C2E999300F98E80 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		86C3BCCA1C2E999300F98E80 /* loginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = loginViewController.xib; sourceTree = "<group>"; };
+		86F2DA7B1C75F25B0088B783 /* UserDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailVC.h; sourceTree = "<group>"; };
+		86F2DA7C1C75F25B0088B783 /* UserDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailVC.m; sourceTree = "<group>"; };
+		86F2DA7D1C75F25B0088B783 /* UserDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailVC.xib; sourceTree = "<group>"; };
+		86F2DA801C7704400088B783 /* CommissionSetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommissionSetTableViewCell.h; sourceTree = "<group>"; };
+		86F2DA811C7704400088B783 /* CommissionSetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommissionSetTableViewCell.m; sourceTree = "<group>"; };
+		86F2DA821C7704400088B783 /* CommissionSetTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommissionSetTableViewCell.xib; sourceTree = "<group>"; };
+		86F2DA851C7715360088B783 /* NetWorkHandler+querySpecialtyUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+querySpecialtyUserInfo.h"; sourceTree = "<group>"; };
+		86F2DA861C7715360088B783 /* NetWorkHandler+querySpecialtyUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+querySpecialtyUserInfo.m"; sourceTree = "<group>"; };
+		86F2DA881C7715550088B783 /* NetWorkHandler+setSpecialtyUserProductRatio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+setSpecialtyUserProductRatio.h"; sourceTree = "<group>"; };
+		86F2DA891C7715550088B783 /* NetWorkHandler+setSpecialtyUserProductRatio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+setSpecialtyUserProductRatio.m"; sourceTree = "<group>"; };
+		86F2DA8B1C7719D10088B783 /* ProductInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductInfoModel.h; sourceTree = "<group>"; };
+		86F2DA8C1C7719D10088B783 /* ProductInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductInfoModel.m; sourceTree = "<group>"; };
+		86F2DA8E1C79889F0088B783 /* PickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickView.h; sourceTree = "<group>"; };
+		86F2DA8F1C79889F0088B783 /* PickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickView.m; sourceTree = "<group>"; };
+		86FC49281C756ECA0031B435 /* SetTeamLeaderPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTeamLeaderPhoneView.h; sourceTree = "<group>"; };
+		86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTeamLeaderPhoneView.m; sourceTree = "<group>"; };
+		86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetTeamLeaderPhoneView.xib; sourceTree = "<group>"; };
 		CF608EE51C589C2900DC10CA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
 		CF608EE61C589C2900DC10CA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		CF608EEA1C58A12E00DC10CA /* CMNavBarNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMNavBarNotificationView.h; path = pushNotificationView/CMNavBarNotificationView/CMNavBarNotificationView.h; sourceTree = "<group>"; };
@@ -1225,6 +1255,9 @@
 				8625AFF91C3A19ED00312B98 /* WXLoginVC.h */,
 				8625AFFA1C3A19ED00312B98 /* WXLoginVC.m */,
 				8625AFFB1C3A19ED00312B98 /* WXLoginVC.xib */,
+				86FC49281C756ECA0031B435 /* SetTeamLeaderPhoneView.h */,
+				86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */,
+				86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -1460,6 +1493,10 @@
 				86A504D41C51CE7B0032A901 /* NetWorkHandler+queryUserBillPageList.m */,
 				86A504DC1C51E9710032A901 /* NetWorkHandler+queryUserNowAdvanceMoney.h */,
 				86A504DD1C51E9710032A901 /* NetWorkHandler+queryUserNowAdvanceMoney.m */,
+				86F2DA851C7715360088B783 /* NetWorkHandler+querySpecialtyUserInfo.h */,
+				86F2DA861C7715360088B783 /* NetWorkHandler+querySpecialtyUserInfo.m */,
+				86F2DA881C7715550088B783 /* NetWorkHandler+setSpecialtyUserProductRatio.h */,
+				86F2DA891C7715550088B783 /* NetWorkHandler+setSpecialtyUserProductRatio.m */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -1743,6 +1780,8 @@
 				86A26ED01C47D6840073FFFC /* InsurCompanySelectTableViewCell.m */,
 				86C3BB251C22C42D00F98E80 /* AnimationButton.h */,
 				86C3BB261C22C42D00F98E80 /* AnimationButton.m */,
+				86493FFA1C745E1300121BD1 /* SJAvatarBrowser.h */,
+				86493FFB1C745E1300121BD1 /* SJAvatarBrowser.m */,
 				86C3BB271C22C42D00F98E80 /* HeadlineCell.xib */,
 				86C3BB281C22C42D00F98E80 /* HeadlineView.h */,
 				86C3BB291C22C42D00F98E80 /* HeadlineView.m */,
@@ -1769,6 +1808,8 @@
 				86A5048C1C4F52320032A901 /* BackGroundView.xib */,
 				86A504DF1C520E6B0032A901 /* LCPickView.h */,
 				86A504E01C520E6B0032A901 /* LCPickView.m */,
+				86F2DA8E1C79889F0088B783 /* PickView.h */,
+				86F2DA8F1C79889F0088B783 /* PickView.m */,
 				86A5050A1C5285D60032A901 /* NJKWebViewProgress.h */,
 				86A5050B1C5285D60032A901 /* NJKWebViewProgressView.m */,
 				86A5050D1C5285EE0032A901 /* NJKWebViewProgress.m */,
@@ -1903,6 +1944,9 @@
 				8625AFD61C34F4DB00312B98 /* IncomeStatisticsVC.xib */,
 				8625AFD91C351EFF00312B98 /* MyTeamsVC.h */,
 				8625AFDA1C351EFF00312B98 /* MyTeamsVC.m */,
+				86F2DA7B1C75F25B0088B783 /* UserDetailVC.h */,
+				86F2DA7C1C75F25B0088B783 /* UserDetailVC.m */,
+				86F2DA7D1C75F25B0088B783 /* UserDetailVC.xib */,
 				8625AFDC1C37713000312B98 /* PotentialPlayersVC.h */,
 				8625AFDD1C37713000312B98 /* PotentialPlayersVC.m */,
 				86A26E621C44DFEF0073FFFC /* DetailAccountVC.h */,
@@ -2006,6 +2050,8 @@
 				86A504DA1C51D3250032A901 /* CurveModel.m */,
 				86A504D61C51D0720032A901 /* BillInfoModel.h */,
 				86A504D71C51D0720032A901 /* BillInfoModel.m */,
+				86F2DA8B1C7719D10088B783 /* ProductInfoModel.h */,
+				86F2DA8C1C7719D10088B783 /* ProductInfoModel.m */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -2095,6 +2141,9 @@
 				86A26E6A1C44E2CE0073FFFC /* DetailAccountTableViewCell.h */,
 				86A26E6B1C44E2CE0073FFFC /* DetailAccountTableViewCell.m */,
 				86A26E6C1C44E2CE0073FFFC /* DetailAccountTableViewCell.xib */,
+				86F2DA801C7704400088B783 /* CommissionSetTableViewCell.h */,
+				86F2DA811C7704400088B783 /* CommissionSetTableViewCell.m */,
+				86F2DA821C7704400088B783 /* CommissionSetTableViewCell.xib */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -2447,6 +2496,7 @@
 				86A504921C4F62830032A901 /* NewCustomerVC.xib in Resources */,
 				86A26E541C43A8FF0073FFFC /* Localizable.strings in Resources */,
 				86C3BB891C279C8200F98E80 /* CustomerTableViewCell.xib in Resources */,
+				86FC492E1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib in Resources */,
 				8650658D1C1E6BC800429EAE /* Assets.xcassets in Resources */,
 				86A5043B1C4E37E30032A901 /* ShareSDK.bundle in Resources */,
 				86A504371C4E37E30032A901 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -2457,6 +2507,7 @@
 				86A26E761C44F7BB0073FFFC /* AgentStrategyTableViewCell.xib in Resources */,
 				8625AFD81C34F4DB00312B98 /* IncomeStatisticsVC.xib in Resources */,
 				86C3BB3B1C23AE9A00F98E80 /* InfoTipsCell.xib in Resources */,
+				86F2DA841C7704400088B783 /* CommissionSetTableViewCell.xib in Resources */,
 				86C3BB1B1C228D6F00F98E80 /* whiteArrow.png in Resources */,
 				86A504F81C5257440032A901 /* easyjs-inject.js in Resources */,
 				86C3BBAF1C29073900F98E80 /* MyLuckyMoneyVC.xib in Resources */,
@@ -2469,6 +2520,7 @@
 				8625AFC81C34094A00312B98 /* NoticeDetailTableViewCell.xib in Resources */,
 				86A26F181C4B5E900073FFFC /* SalesStatisticsVC.xib in Resources */,
 				86C3BC201C2CE1B700F98E80 /* CustomerFollowUpTableCell.xib in Resources */,
+				86F2DA7F1C75F25B0088B783 /* UserDetailVC.xib in Resources */,
 				86A26EE11C48F1F20073FFFC /* ModifyPhoneNumVC.xib in Resources */,
 				8625AFA11C32A59600312B98 /* NoticeListTableViewCell.xib in Resources */,
 				86A504EC1C524E9F0032A901 /* OrderDetailWebVC.xib in Resources */,
@@ -2634,6 +2686,7 @@
 				8625AFA51C32B15000312B98 /* RealNameAuthenticationVC.m in Sources */,
 				86C3BC291C2D389D00F98E80 /* AddFollowUpVC.m in Sources */,
 				8625AFE21C37B4D300312B98 /* OfferDetailsVC.m in Sources */,
+				86F2DA831C7704400088B783 /* CommissionSetTableViewCell.m in Sources */,
 				8625B0181C3BCA1D00312B98 /* NetWorkHandler+saveOrUpdateCustomerLabel.m in Sources */,
 				86A504FA1C5257440032A901 /* EasyJSWebView.m in Sources */,
 				8625B01B1C3BF27900312B98 /* NetWorkHandler+queryCustomerBaseInfo.m in Sources */,
@@ -2664,6 +2717,7 @@
 				86C3BCC61C2E933600F98E80 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				8625B02A1C3D1F6100312B98 /* CarInfoModel.m in Sources */,
 				8654CD801C312CE100411C54 /* SBJsonStreamParser.m in Sources */,
+				86FC492A1C756ECA0031B435 /* SetTeamLeaderPhoneView.m in Sources */,
 				865065BD1C1EB1ED00429EAE /* UINavigationBar+Awesome.m in Sources */,
 				86A26E851C4528A40073FFFC /* NetWorkHandler+announcement.m in Sources */,
 				86A26E881C452A5B0073FFFC /* AnnouncementModel.m in Sources */,
@@ -2685,6 +2739,7 @@
 				86A26EB41C47C18F0073FFFC /* PhotoBrowserView.m in Sources */,
 				8625B0511C3F8E7A00312B98 /* ObjectButton.m in Sources */,
 				86A504221C4D04970032A901 /* OffersModel.m in Sources */,
+				86F2DA901C79889F0088B783 /* PickView.m in Sources */,
 				86A26ED51C47DC200073FFFC /* CarAddInfoTableCell.m in Sources */,
 				86C3BBD81C2A97F200F98E80 /* ContactSelectVC.m in Sources */,
 				865065821C1E6BC800429EAE /* main.m in Sources */,
@@ -2710,6 +2765,7 @@
 				86C3BC241C2CE6BA00F98E80 /* InsuranceTableViewCell.m in Sources */,
 				86A26F1C1C4B60D70073FFFC /* CustomerCallStatisticsVC.m in Sources */,
 				86A26F021C4A29CB0073FFFC /* InfoView.m in Sources */,
+				86F2DA7E1C75F25B0088B783 /* UserDetailVC.m in Sources */,
 				8625B0301C3E1EF800312B98 /* FooterView.m in Sources */,
 				86C3BB141C228D6F00F98E80 /* PullTableView.m in Sources */,
 				8625B03F1C3E548500312B98 /* DictModel.m in Sources */,
@@ -2732,15 +2788,18 @@
 				86A504D51C51CE7B0032A901 /* NetWorkHandler+queryUserBillPageList.m in Sources */,
 				8654CD8C1C31350D00411C54 /* ProjectDefine.m in Sources */,
 				86A504BA1C4FCA060032A901 /* RedPackModel.m in Sources */,
+				86F2DA871C7715360088B783 /* NetWorkHandler+querySpecialtyUserInfo.m in Sources */,
 				8625B0331C3E31A800312B98 /* NetWorkHandler+queryForCustomerVisitsPageList.m in Sources */,
 				8625B0361C3E351400312B98 /* VisitInfoModel.m in Sources */,
 				86C3BB131C228D6F00F98E80 /* MessageInterceptor.m in Sources */,
 				86A504E41C5216340032A901 /* RedPackInfoTips.m in Sources */,
+				86F2DA8A1C7715550088B783 /* NetWorkHandler+setSpecialtyUserProductRatio.m in Sources */,
 				86A26E641C44DFEF0073FFFC /* DetailAccountVC.m in Sources */,
 				86A5048B1C4F517A0032A901 /* BackGroundView.m in Sources */,
 				8654CA521C30CFEB00411C54 /* BindPhoneNumVC.m in Sources */,
 				86A26E711C44F5E10073FFFC /* AgentStrategyViewController.m in Sources */,
 				86A504BD1C50820B0032A901 /* NetWorkHandler+getRedPack.m in Sources */,
+				86F2DA8D1C7719D10088B783 /* ProductInfoModel.m in Sources */,
 				86C3BB321C22C45E00F98E80 /* InfoTipsView.m in Sources */,
 				86A26E751C44F7BB0073FFFC /* AgentStrategyTableViewCell.m in Sources */,
 				86A26F171C4B5E900073FFFC /* SalesStatisticsVC.m in Sources */,
@@ -2787,6 +2846,7 @@
 				86A26EEA1C4905210073FFFC /* CustomerTagTableCell.m in Sources */,
 				86C3BC1B1C2CE0EB00F98E80 /* CustomerFollowUpInfoView.m in Sources */,
 				86A26EA01C4666850073FFFC /* InsurOffersInfoModel.m in Sources */,
+				86493FFC1C745E1300121BD1 /* SJAvatarBrowser.m in Sources */,
 				86A5041F1C4CDCB30032A901 /* GMDCircleLoader.m in Sources */,
 				8654CA5A1C31243B00411C54 /* NSString+MD5.m in Sources */,
 				86C3BBAE1C29073900F98E80 /* MyLuckyMoneyVC.m in Sources */,

@@ -73,13 +73,6 @@
                        _COLOR(0xfc, 0xc1, 0x38),
                        _COLOR(0x3d, 0xbe, 0xff),nil];
     
-//    NSMutableArray *array = [[NSMutableArray alloc] init];
-//    for(int i = 0; i < 4; i ++)
-//    {
-//        [array addObject:[NSNumber numberWithInt:rand()%60+20]];
-//    }
-//    self.slices = array;
-    
     [self.piechat reloadData];
     
     [self loadData];
@@ -128,14 +121,14 @@
 
     [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInInsurance]];
     [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInTeam]];
-    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInRedPack]];
-    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInLeader]];
+//    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInRedPack]];
+//    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInLeader]];
     self.slices = array;
 
     self.lbSaleStr.text = [Util getDecimalStyle:self.statmodel.monthInInsurance];
     self.lbTeamStr.text = [Util getDecimalStyle:self.statmodel.monthInTeam];
-    self.lbRedStr.text = [Util getDecimalStyle:self.statmodel.monthInRedPack];
-    self.lbManStr.text = [Util getDecimalStyle:self.statmodel.monthInLeader];
+//    self.lbRedStr.text = [Util getDecimalStyle:self.statmodel.monthInRedPack];
+//    self.lbManStr.text = [Util getDecimalStyle:self.statmodel.monthInLeader];
     
     self.piechat.lbAmount.text = [Util getDecimalStyle:self.statmodel.monthTotalIn];
     

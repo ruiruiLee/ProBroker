@@ -24,4 +24,18 @@
                  smCode:(NSString *)smCode
              Completion:(Completion)completion;
 
++ (void) loginWithPhone:(NSString *)phone
+                 openId:(NSString *)openId
+                    sex:(NSInteger) sex
+               nickname:(NSString *)nickname
+              privilege:(NSArray *)privilege
+                unionid:(NSString*)unionid
+               province:(NSString*)province
+               language:(NSString*)language
+             headimgurl:(NSString *)headimgurl
+                   city:(NSString *)city
+                country:(NSString *)country
+                 smCode:(NSString *)smCode
+            parentPhone:(NSString *)parentPhone
+             Completion:(Completion)completion;
 @end

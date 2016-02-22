@@ -18,6 +18,7 @@
 #import "WebViewController.h"
 #import "SelectCustomerVC.h"
 #import "AppDelegate.h"
+#import "MyTeamsVC.h"
 
 @interface HomeVC ()
 {
@@ -64,7 +65,7 @@
     self.btnAutoInsu.titleLabel.font = _FONT_B(18);
     self.btnAutoInsu.lbExplain.text = @"快速下单，掌握便捷比价";
 //    [self.btnInvit setImage:ThemeImage(@"share") forState:UIControlStateNormal];
-    [self.btnInvit setTitle:@"邀请好友" forState:UIControlStateNormal];
+    [self.btnInvit setTitle:@"团队管理" forState:UIControlStateNormal];
     self.btnInvit.titleLabel.font = _FONT_B(18);
     self.btnInvit.lbExplain.text = @"车险直销坐享多重收益";
     
@@ -201,8 +202,15 @@
 - (IBAction)doBtnInvite:(id)sender
 {
     if([self login]){
-        InviteFriendsVC *vc = [[InviteFriendsVC alloc] initWithNibName:nil bundle:nil];
+//        InviteFriendsVC *vc = [[InviteFriendsVC alloc] initWithNibName:nil bundle:nil];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+        MyTeamsVC *vc = [[MyTeamsVC alloc] initWithNibName:nil bundle:nil];
         vc.hidesBottomBarWhenPushed = YES;
+        vc.userid = [UserInfoModel shareUserInfoModel].userId;
+        vc.title = @"我的团队";
+        vc.toptitle = @"我的队员";
+        vc.name = @"我";
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

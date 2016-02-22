@@ -47,8 +47,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
-    UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-    self.imgQR.image = [QRCodeGenerator qrImageForString:model.qrcodeAddr imageSize:self.imgQR.bounds.size.width];
+    self.imgQR.image = [QRCodeGenerator qrImageForString:QR_ADDRESS imageSize:self.imgQR.bounds.size.width];
 }
 
 @end

@@ -40,6 +40,8 @@
 #define _COLOR(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
 #define _COLORa(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
+#define Subhead_Color _COLOR(0x75, 0x75, 0x75)
+
 //Font
 #define _FONT(s) [UIFont fontWithName:@"Helvetica Neue" size:(s)]
 #define _FONT_B(s) [UIFont boldSystemFontOfSize:(s)]
@@ -69,5 +71,7 @@
 #define Notify_Add_NewCustomer  @"Notify_Add_NewCustomer"
 #define Notify_Add_BankCard @"Notify_Add_BankCard"
 #define Notify_Insert_Customer @"Notify_Insert_Customer"
+
+#define QR_ADDRESS nil
 
 #endif /* define_h */

@@ -10,4 +10,8 @@
 
 @interface MyTeamsVC : BasePullTableVC
 
+@property (nonatomic, strong) NSString *userid;
+@property (nonatomic, strong) NSString *toptitle;
+@property (nonatomic, strong) NSString *name;
+
 @end

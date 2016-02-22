@@ -41,6 +41,10 @@
     self.lbRedLogo.layer.cornerRadius = 4;
     self.redFlagConstraint.constant = -((ScreenWidth - 320)/2 + 50);
     
+    self.lbOrderEarn.textColor = Subhead_Color;
+    self.lbTotalOrderSuccessNums.textColor = Subhead_Color;
+    self.lbUserInvite.textColor = Subhead_Color;
+    self.lbTeamTotal.textColor = Subhead_Color;
     
     self.headHConstraint.constant = ScreenWidth;
     
@@ -154,15 +158,10 @@
 //我的红包
 - (IBAction)redPachet:(id)sender
 {
-    MyLuckyMoneyVC *vc = [IBUIFactory CreateMyLuckyMoneyViewController];
-    vc.hidesBottomBarWhenPushed = YES;
-    vc.title = @"我的红包";
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-//收益提现
-- (IBAction)withdraw:(id)sender
-{
+//    MyLuckyMoneyVC *vc = [IBUIFactory CreateMyLuckyMoneyViewController];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    vc.title = @"我的红包";
+//    [self.navigationController pushViewController:vc animated:YES];
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     if(model.cardVerifiy == 3){
         IncomeWithdrawVC *vc = [IBUIFactory CreateIncomeWithdrawViewController];
@@ -171,6 +170,21 @@
     }else{
         [Util showAlertMessage:@"为保护您的资金安全，只有实名认证后才能收益提取"];
     }
+}
+
+//收益提现
+- (IBAction)withdraw:(id)sender
+{
+//    UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+//    if(model.cardVerifiy == 3){
+//        IncomeWithdrawVC *vc = [IBUIFactory CreateIncomeWithdrawViewController];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }else{
+//        [Util showAlertMessage:@"为保护您的资金安全，只有实名认证后才能收益提取"];
+//    }
+    DetailAccountVC *vc = [[DetailAccountVC alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //我的邀请

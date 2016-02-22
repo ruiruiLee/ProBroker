@@ -67,5 +67,6 @@
 + (UserInfoModel *) shareUserInfoModel;
 - (void) setContentWithDictionary:(NSDictionary *) dic;//isLogin单独修改
 - (void) queryUserInfo;//获取经纪人信息详情
+- (void) setDetailContentWithDictionary1:(NSDictionary *) dic;
 
 @end

@@ -11,8 +11,9 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import <AVOSCloudSNS/AVOSCloudSNS.h>
 #import "NetWorkHandler+login.h"
+#import "SetTeamLeaderPhoneView.h"
 
-@interface loginViewController ()
+@interface loginViewController ()<SetTeamLeaderPhoneViewDelegate>
 
 
 @end
@@ -23,7 +24,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"快速登录";
-    [self setLeftBarButtonWithImage:ThemeImage(@"shut")];
+    [self setLeftBarButtonWithNil];
+//    [self setBackBarButton];
     self.lbAgreement.attributedText = [Util getAttributeString:@"点击“登录”，即表示您同意用户协议" substr:@"用户协议"];
 }
 
@@ -48,9 +50,14 @@
     [NetWorkHandler loginWithPhone:phone openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:[dic objectForKey:@"nickname"] privilege:[dic objectForKey:@"privilege"] unionid:@"" province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:smCode Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 505){
-            BindPhoneNumVC *vc = [IBUIFactory CreateBindPhoneNumViewController];
-            [self.navigationController pushViewController:vc animated:YES];
-            vc.wxDic = dic;
+//            BindPhoneNumVC *vc = [IBUIFactory CreateBindPhoneNumViewController];
+//            [self.navigationController pushViewController:vc animated:YES];
+//            vc.wxDic = dic;
+            SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            
+            view.delegate = self;
+            [[UIApplication sharedApplication].keyWindow addSubview:view];
+            
         }else if (code == 200){
             NSDictionary *data = [content objectForKey:@"data"];
             UserInfoModel *userinfo = [UserInfoModel shareUserInfoModel];
@@ -96,6 +103,35 @@
     [self.navigationController pushViewController:web animated:YES];
     NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", User_Agreement];
     [web loadHtmlFromUrl:url];
+}
+
+- (void) NotifyToSetTeamLeaderPhone:(NSString*) phoneNum
+{
+    NSDictionary *dic = self.wxDic;
+    [NetWorkHandler loginWithPhone:self.tfMobile.text openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:[dic objectForKey:@"nickname"] privilege:[dic objectForKey:@"privilege"] unionid:[dic objectForKey:@"unionid"] province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:nil parentPhone:(NSString *)phoneNum Completion:^(int code, id content) {
+        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+        if(code == 505){
+            //            BindPhoneNumVC *vc = [IBUIFactory CreateBindPhoneNumViewController];
+            //            [self.navigationController pushViewController:vc animated:YES];
+            //            vc.wxDic = dic;
+            SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+            
+            view.delegate = self;
+            [[UIApplication sharedApplication].keyWindow addSubview:view];
+        }else if (code == 200){
+            NSDictionary *data = [content objectForKey:@"data"];
+            UserInfoModel *userinfo = [UserInfoModel shareUserInfoModel];
+            userinfo.isLogin = YES;
+            [userinfo setContentWithDictionary:data];
+            [userinfo queryUserInfo];
+            [self handleLeftBarButtonClicked:nil];
+            
+            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+            [currentInstallation addUniqueObject:@"ykbbrokerLoginUser" forKey:@"channels"];
+            [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
+            [currentInstallation saveInBackground];
+        }
+    }];
 }
 
 @end

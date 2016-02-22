@@ -108,6 +108,16 @@
         return NO;
 }
 
++ (BOOL)isMobilePhoeNumber:(NSString *)mobileNum
+{
+    
+//手机号以13， 15，18开头，八个 \d 数字字符  14,17
+    NSString *phoneRegex = @"^((13[0-9])|(15[^4,\\D])|(18[0,0-9])|(17[0,0-9])|(14[0,0-9]))\\d{8}$";
+    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex];
+    NSLog(@"phoneTest is %@",phoneTest);
+    return [phoneTest evaluateWithObject:mobileNum];
+}
+
 + (void)showAlertMessage:(NSString*)msg
 {
     UIAlertView * mAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定"  otherButtonTitles:nil, nil];

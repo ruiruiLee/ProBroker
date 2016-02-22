@@ -170,4 +170,9 @@
     return customer;
 }
 
++ (UserDetailVC *) CreateUserDetailVC
+{
+    UserDetailVC *customer = [[UserDetailVC alloc] initWithNibName:@"UserDetailVC" bundle:nil];
+    return customer;
+}
 @end
