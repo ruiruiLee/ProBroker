@@ -102,6 +102,7 @@
     
     for (int i = 0; i < [viewArray count]; i++) {
         TagButton *btn = [viewArray objectAtIndex:i];
+        btn.tag = 100 + i;
         NSString *title = btn.titleLabel.text;
         CGSize size = [title sizeWithFont:btn.titleLabel.font constrainedToSize:CGSizeMake(INT_MAX, 26)];
         
@@ -144,12 +145,10 @@
         [sender removeFromSuperview];
         TagObjectModel *model = [dataArray objectAtIndex:sender.tag - 100];
         [modelArray removeObject:model];
-        
         if(delegate && [delegate respondsToSelector:@selector(NotifyOwnerTagSelectedChanged:)]){
             [delegate NotifyOwnerTagSelectedChanged:modelArray];
         }
     }
-    
     [self resetSubViews];
 }
 
@@ -164,7 +163,7 @@
     for (int i = 0; i < [viewArray count]; i++) {
         TagButton *btn = [viewArray objectAtIndex:i];
         CGSize size = btn.frame.size;
-        
+        btn.tag = 100 + i;
         CGFloat nx = ox + size.width;
         if(nx > frame.size.width){
             oy += 36;

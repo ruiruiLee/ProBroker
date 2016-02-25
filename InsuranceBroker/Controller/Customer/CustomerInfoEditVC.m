@@ -154,7 +154,6 @@
     }else{
         [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
     }
-    
     return back;
 }
 
@@ -322,6 +321,7 @@
                                                           self.data.customerPhone = mobile;
                                                           
                                                           [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Reload_CustomerDetail object:nil];
+                                                          [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Refrush_TagList object:nil];
                                                       }
                                                       [self.navigationController popViewControllerAnimated:YES];
                                                   }

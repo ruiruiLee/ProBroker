@@ -17,6 +17,7 @@
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:pramas value:userId key:@"userId"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:4] key:@"appType"];
     
     [handle postWithMethod:@"/api/news/announcement" BaseUrl:SERVER_ADDRESS Params:pramas Completion:completion];
 }

@@ -61,17 +61,18 @@
 #define FormatImage_1(imageUrl,imageWidth,imageHeight) [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", imageUrl,imageWidth,imageHeight]
 
 //ids
-#define ABOUT_US @"569da3c8df0eea00545d6044"//关于我们
-#define User_Agreement @"569da3dad342d30053b4d0f0"//用户协议
-#define ABOUT_TEAM @"569da3f78ac2470054d81d22"//关于团队
-#define INCOME_LOW @"569da4068ac2470054d81d99"//收益太低
-#define Withdrawal_Instructions @"569da42979bc440059c9e839"//提现说明
+#define ABOUT_US @"56ce5b0fc24aa800545a216d"//关于我们
+#define User_Agreement @"56ce5b3e71cfe40054072829"//用户协议
+#define ABOUT_TEAM @"56ce5b81128fe142471e1432"//关于团队
+#define INCOME_LOW @"56ce5c10efa631df62c08493"//收益太低
+#define Withdrawal_Instructions @"56ce5c29c24aa800520e1b82"//提现说明
 
 #define Notify_Reload_CustomerDetail @"Notify_Reload_CustomerDetail"
 #define Notify_Add_NewCustomer  @"Notify_Add_NewCustomer"
 #define Notify_Add_BankCard @"Notify_Add_BankCard"
 #define Notify_Insert_Customer @"Notify_Insert_Customer"
+#define Notify_Refrush_TagList @"Notify_Refrush_TagList"
 
-#define QR_ADDRESS nil
+#define QR_ADDRESS @"http://ukb.weixin.car517.com/app_download/specialty_agent_app_download.html"
 
 #endif /* define_h */

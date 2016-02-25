@@ -186,7 +186,6 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
         _lbAmount.textColor = _COLOR(0x21, 0x21, 0x21);
         _lbAmount.font = _FONT(20);
         _lbAmount.textAlignment = NSTextAlignmentCenter;
-        _lbAmount.text = @"2,752.06";
         
         _lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 44, 50, 16)];
         [_centerView addSubview:_lbTitle];

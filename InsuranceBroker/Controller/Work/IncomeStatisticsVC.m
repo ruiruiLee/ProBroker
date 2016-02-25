@@ -44,8 +44,8 @@
     [self.btnMore addTarget:self action:@selector(doBtnMore:) forControlEvents:UIControlEventTouchUpInside];
     
     self.chatview.yMin = 0;
-    self.chatview.yMax = 6;
-    self.chatview.ySteps = @[@"0",@"200", @"400", @"600", @"800", @"2000000"];
+    self.chatview.yMax = 5;
+    self.chatview.ySteps = @[@"0",@"500", @"1000", @"1500", @"2000", @"2500"];
     self.chatview.backgroundColor = [UIColor clearColor];
     
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
@@ -115,6 +115,7 @@
     self.lbEarningsCount.text = [NSString stringWithFormat:@"累计收益：%@元", [Util getDecimalStyle:self.statmodel.totalIn]];
     self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.monthTotalIn]];
     self.lbEarnings.text = [NSString stringWithFormat:@"你的收益已打败了%d%@的经纪人", (int)self.statmodel.monthTotalRatio, @"%"];
+    
     [self initDataWithArray:self.curveArray];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -144,6 +145,27 @@
 
 - (void)initDataWithArray:(NSArray*)array
 {
+    CGFloat max = 0;
+    for (int i = 0; i < [array count]; i++) {
+        CurveModel *model = [array objectAtIndex:i];
+        int o = (int)model.totalIn;
+        if(o > max)
+            max = o;
+    }
+    
+    if(max > 0){
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        int i = 0;
+        while ([array count] < 6) {
+            [array addObject:[NSString stringWithFormat:@"%d", i]];
+            i += max / 5 + 1;
+        }
+        
+        self.chatview.ySteps = array;
+    }else{
+        self.chatview.ySteps = @[@"0",@"500", @"1000", @"1500", @"2000", @"2500"];
+    }
+
     LineChartData *d1x = [LineChartData new];
     {
         LineChartData *d1 = d1x;
@@ -178,7 +200,7 @@
         d1.getData = ^(NSUInteger item) {
             float x = [arr[item] floatValue];
             float y = [arr2[item] floatValue];
-            y = y / 200.0 * 5;
+            y = y / (max / 5 + 1) ;
             NSString *label1 = arr3[item];
             NSString *label2 = arr4[item];
             NSString *label3 = arr5[item];

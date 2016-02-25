@@ -27,9 +27,12 @@
     ProductInfoModel *model = [[ProductInfoModel alloc] init];
     
     model.productRatio = [[dictionary objectForKey:@"productRatio"] floatValue];
+    model.productRatioStr = [dictionary objectForKey:@"productRatio"];
     model.productMinRatio = [[dictionary objectForKey:@"productMinRatio"] floatValue];
+    model.productMinRatioStr = [dictionary objectForKey:@"productMinRatio"];
     model.productLogo = [dictionary objectForKey:@"productLogo"];
     model.productMaxRatio = [[dictionary objectForKey:@"productMaxRatio"] floatValue];
+    model.productMaxRatioStr = [dictionary objectForKey:@"productMaxRatio"];
     model.productName = [dictionary objectForKey:@"productName"];
     model.productId = [dictionary objectForKey:@"productId"];
     

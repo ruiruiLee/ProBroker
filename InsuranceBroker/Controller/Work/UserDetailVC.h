@@ -26,5 +26,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbOrderEarn;//总订单收益;
 @property (nonatomic, strong) IBOutlet UITableView *tableview;
 @property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *userHeadImg;
 
 @end

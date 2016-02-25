@@ -37,6 +37,16 @@
 
 @implementation MyTeamsVC
 
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if(self){
+        self.need = enumNotNeedIndicator;
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -210,7 +220,12 @@
     if(!cell){
         cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
     }
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if(self.need == enumNotNeedIndicator){
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    else
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
     
@@ -236,7 +251,7 @@
         cell.logoImage.hidden = YES;
     cell.lbTimr.hidden = YES;
     cell.lbName.text = model.userName;
-    cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderTotalSuccessNums];
+    cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];
     cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
     cell.lbStatus.font = _FONT(12);
     cell.width.constant = 16;
@@ -248,11 +263,17 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    UserDetailVC *vc = [IBUIFactory CreateUserDetailVC];
-    BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
-    vc.userId = model.userId;
-    vc.title = [NSString stringWithFormat:@"%@的队员", self.name];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    if(self.need == enumNotNeedIndicator){
+    }
+    else{
+        UserDetailVC *vc = [IBUIFactory CreateUserDetailVC];
+        BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
+        vc.userId = model.userId;
+        vc.userHeadImg = model.headerImg;
+        vc.title = [NSString stringWithFormat:@"%@的队员", self.name];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void) doBtnShare:(UIButton *)sender

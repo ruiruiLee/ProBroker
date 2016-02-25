@@ -211,6 +211,7 @@
         vc.title = @"我的团队";
         vc.toptitle = @"我的队员";
         vc.name = @"我";
+        vc.need = enumNeedIndicator;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

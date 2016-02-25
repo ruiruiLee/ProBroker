@@ -44,7 +44,7 @@
         self.sex = 1;
         self.leader = 0;
         self.cardVerifiy = 1;
-        self.userType = 1;
+        self.userType = 4;
     }
     
     return self;

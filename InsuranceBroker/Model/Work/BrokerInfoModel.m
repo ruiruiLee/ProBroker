@@ -36,7 +36,7 @@
     model.userName = [dictionary objectForKey:@"userName"];
     model.monthOrderEarn = [dictionary objectForKey:@"monthOrderEarn"];
     model.userSex = [[dictionary objectForKey:@"userSex"] integerValue];
-    model.orderTotalSuccessNums = [[dictionary objectForKey:@"orderTotalSuccessNums"] integerValue];
+    model.orderSuccessNums = [[dictionary objectForKey:@"orderSuccessNums"] integerValue];
     
     return model;
 }

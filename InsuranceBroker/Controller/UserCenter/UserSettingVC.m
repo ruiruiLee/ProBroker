@@ -262,11 +262,12 @@
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     model.isLogin = NO;
     [[AppContext sharedAppContext] removeData];
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    RootViewController *root = delegate.root;
-    root.selectedIndex = 0;
-    root.selectVC = root.homevc;
-    [self.navigationController popViewControllerAnimated:NO];
+//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//    RootViewController *root = delegate.root;
+//    root.selectedIndex = 0;
+//    root.selectVC = root.homevc;
+//    [self.navigationController popViewControllerAnimated:NO];
+    [self login];
     
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
     [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];

@@ -36,6 +36,8 @@
     // Do any additional setup after loading the view from its nib.
     
     self.userinfo =  [[UserInfoModel alloc] init];
+    UIImage *placeholderImage = ThemeImage(@"head_male");
+    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.userHeadImg] placeholderImage:placeholderImage];
     
     self.scHConstraint.constant = ScreenWidth;
     self.photo.layer.cornerRadius = 27.5;
@@ -59,10 +61,15 @@
 
 - (void) resetViews
 {
-    self.lbName.text = self.userinfo.realName;
+    self.lbName.text = self.userinfo.nickname;
     self.lbMobile.text = self.userinfo.phone;
-    self.lbSubNum.text = [NSString stringWithFormat:@"%d人", self.userinfo.lowerNum];
-    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.userinfo.headerImg] placeholderImage:Normal_Image];
+    self.lbSubNum.text = [NSString stringWithFormat:@"%d人", self.userinfo.userTeamInviteNums];
+//    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.userinfo.headerImg] placeholderImage:Normal_Image];
+    
+    UIImage *placeholderImage = ThemeImage(@"head_male");
+    if(self.userinfo.sex == 2)
+        placeholderImage = ThemeImage(@"head_famale");
+    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.userHeadImg] placeholderImage:placeholderImage];
     
     UserInfoModel *model = self.userinfo;
     
@@ -120,7 +127,13 @@
     ProductInfoModel *model = [self.productList objectAtIndex:indexPath.row];
     [cell.logo sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:Normal_Image];
     cell.lbAccount.text = model.productName;
-    cell.lbDetail.text = [NSString stringWithFormat:@"%.2f%@", model.productRatio, @"%"];
+//    cell.lbDetail.text = [NSString stringWithFormat:@"%.2f%@", model.productRatio, @"%"];
+    if (model.productRatioStr == nil ){
+        cell.lbDetail.text = @"未设置";
+    }
+    else{
+        cell.lbDetail.text = [NSString stringWithFormat:@"%.2f%@", model.productRatio, @"%"];
+    }
     cell.btnEdit.tag = indexPath.row;
     [cell.btnEdit addTarget:self action:@selector(doBtnModifyRatio:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -209,8 +222,8 @@
     ProductInfoModel *model = [self.productList objectAtIndex:sender.tag];
 
     
-    if(model.productMinRatio == 0 && (int)model.productMaxRatio == 0){
-        [Util showAlertMessage:@"该产品还未设置折扣率，请联系你的上级！"];
+    if(model.productMinRatioStr == nil || model.productMaxRatioStr == nil){
+        [Util showAlertMessage:@"该产品还未设置折扣率，请联系你的上级设置！"];
         return;
     }
     NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -226,7 +239,10 @@
     //    }
     [_datePicker show];
     _datePicker.tag = sender.tag;
-    [_datePicker setCurrentSelectIdx:model.productRatio - model.productMinRatio];
+    if(model.productRatio - model.productMinRatio < 0)
+        [_datePicker setCurrentSelectIdx:0];
+    else
+        [_datePicker setCurrentSelectIdx:model.productRatio - model.productMinRatio];
     
     [UIView animateWithDuration:0.25 animations:^{
         CGFloat y = self.tableview.frame.origin.y + 50;//包含picker toolbar的50像素
@@ -244,6 +260,7 @@
     ProductInfoModel *model = [self.productList objectAtIndex:pickView.tag];
     [self submitRadio:model.productId productRatio:[resultString floatValue]];
     model.productRatio = [resultString floatValue];
+    model.productRatioStr = [NSString stringWithFormat:@"%d", (int)model.productRatio];
     [self.tableview reloadData];
 }
 

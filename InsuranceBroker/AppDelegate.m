@@ -144,16 +144,16 @@
     }
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
     if(!user.isLogin){
-        if([WXApi isWXAppInstalled]){
-            WXLoginVC *vc  = [IBUIFactory CreateWXLoginViewController];
-            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
-            [root presentViewController:naVC animated:YES completion:nil];
-        }
-        else{
+//        if([WXApi isWXAppInstalled]){
+//            WXLoginVC *vc  = [IBUIFactory CreateWXLoginViewController];
+//            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+//            [root presentViewController:naVC animated:YES completion:nil];
+//        }
+//        else{
             loginViewController *vc = [IBUIFactory CreateLoginViewController];
             UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
             [root presentViewController:naVC animated:NO completion:nil];
-        }
+//        }
     }
     return YES;
 }
@@ -187,7 +187,7 @@
     [UserInfoModel shareUserInfoModel].userId = nil;
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation addUniqueObject:@"ykbbrokerAllUser" forKey:@"channels"];
+    [currentInstallation addUniqueObject:@"ykbbrokerAllUser4" forKey:@"channels"];
     [currentInstallation saveInBackground];
 }
 
