@@ -101,6 +101,14 @@
     }
     
     NewsModel *model = [self.data objectAtIndex:indexPath.row];
+    
+    if(model.isRedirect){
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    }else
+    {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
     [cell.photoImgV sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:Normal_Image];
     cell.lbTitle.text = model.title;
     cell.lbContent.text = model.content;

@@ -113,9 +113,13 @@
         NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"NoticeDetailTableViewCell" owner:nil options:nil];
         cell = [nibs lastObject];
     }
-    
-     NewsModel *model = [[_newsArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    
+
+    NewsModel *model = [[_newsArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    if(model.isRedirect){
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    }else{
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
     cell.lbTitle.text = model.title;
     cell.lbContent.text = model.content;
     NSString *path = FormatImage_1(model.imgUrl,(int) ScreenWidth - 40, 97);
