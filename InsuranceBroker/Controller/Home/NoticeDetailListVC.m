@@ -84,6 +84,12 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if([_newsArray count] == 0){
+        [self showNoDatasImage:ThemeImage(@"no_data")];
+    }
+    else{
+        [self hidNoDatasImage];
+    }
     return [_newsArray count];
 }
 

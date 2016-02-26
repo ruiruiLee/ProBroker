@@ -123,7 +123,7 @@
     AnnouncementModel *model = [self.data objectAtIndex:indexPath.row];
     [cell.photoLogo sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:Normal_Image];
     cell.lbTitle.text = model.title;
-    cell.lbContent.text = model.lastNewsContent;
+    cell.lbContent.text = model.lastNewsTitle;
     cell.lbTime.text = [Util getShowingTime:model.lastNewsDt];
     AppContext *context = [AppContext sharedAppContext];
     switch (indexPath.row) {
