@@ -72,6 +72,8 @@
 #define Notify_Add_BankCard @"Notify_Add_BankCard"
 #define Notify_Insert_Customer @"Notify_Insert_Customer"
 #define Notify_Refrush_TagList @"Notify_Refrush_TagList"
+#define Notify_Logout @"Notify_Logout"
+#define Notify_Login @"Notify_Login"
 
 #define QR_ADDRESS @"http://ukb.weixin.car517.com/app_download/specialty_agent_app_download.html"
 #define ServicePhone @"4000803939"
