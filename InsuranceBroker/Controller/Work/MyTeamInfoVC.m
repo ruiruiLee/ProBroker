@@ -145,7 +145,7 @@
         UIView *header = self.pulltable.tableHeaderView;
         if(!selected){
             self.headerTableVConstraint.constant = [self.productList count] * 60;
-            self.footTableVConstraint.constant = 4;
+            self.footTableVConstraint.constant = 2;
             sender.selected = YES;
             iconview.image = ThemeImage(@"shouqi");
         }else{
@@ -199,7 +199,9 @@
         NSString *deq = @"productcell";
         ProductSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
         if(!cell){
-            cell = [[ProductSettingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+//            cell = [[ProductSettingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+            NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"ProductSettingTableViewCell" owner:nil options:nil];
+            cell = [nibs lastObject];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -220,7 +222,9 @@
             NSString *deq = @"cell1";
             CustomerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
             if(!cell){
-                cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+//                cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+                NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"CustomerTableViewCell" owner:nil options:nil];
+                cell = [nibs lastObject];
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             UIButton *btnRing = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
@@ -329,7 +333,7 @@
     [view addSubview:lbTitle];
     lbTitle.text = self.toptitle;
     
-    UILabel *lbAmount = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0xcc, 0xcc, 0xcc)];
+    UILabel *lbAmount = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
     [view addSubview:lbAmount];
     lbAmount.textAlignment = NSTextAlignmentRight;
     if(section == 0){

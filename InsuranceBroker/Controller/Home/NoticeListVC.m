@@ -115,7 +115,9 @@
     NSString *deq = @"cell";
     NoticeListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
-        cell = [[NoticeListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+//        cell = [[NoticeListTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"NoticeListTableViewCell" owner:nil options:nil];
+        cell = [nibs lastObject];
     }
     
     AnnouncementModel *model = [self.data objectAtIndex:indexPath.row];

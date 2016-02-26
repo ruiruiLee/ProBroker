@@ -80,7 +80,7 @@
     [footview addSubview:lbTitle];
     lbTitle.text = self.toptitle;
     
-    lbAmount = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0xcc, 0xcc, 0xcc)];
+    lbAmount = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
     [footview addSubview:lbAmount];
     lbAmount.textAlignment = NSTextAlignmentRight;
     
@@ -172,7 +172,9 @@
     NSString *deq = @"cell";
     CustomerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
-        cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+//        cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"CustomerTableViewCell" owner:nil options:nil];
+        cell = [nibs lastObject];
     }
 
     cell.accessoryType = UITableViewCellAccessoryNone;

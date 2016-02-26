@@ -111,7 +111,9 @@
     NSString *deq = @"cell";
     TagListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
-        cell = [[TagListViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+//        cell = [[TagListViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"TagListViewCell" owner:nil options:nil];
+        cell = [nibs lastObject];
     }
     if(indexPath.section == 0){
         TagObjectModel *model = [self.serviceArray objectAtIndex:indexPath.row];

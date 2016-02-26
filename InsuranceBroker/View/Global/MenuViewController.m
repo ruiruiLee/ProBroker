@@ -159,7 +159,9 @@
     MenuCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         
-        cell = [[MenuCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//        cell = [[MenuCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"MenuCell" owner:nil options:nil];
+        cell = [nibs lastObject];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
     }
