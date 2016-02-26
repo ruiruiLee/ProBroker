@@ -35,6 +35,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
 }
 
 - (void) initHeaderView
@@ -215,13 +216,13 @@
         return cell;
     }
     else{
-        NSString *deq = @"cell";
-        CustomerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
-        if(!cell){
-            cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
-        }
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         if(indexPath.section == 0){
+            NSString *deq = @"cell1";
+            CustomerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+            if(!cell){
+                cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+            }
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             UIButton *btnRing = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
             [btnRing setImage:ThemeImage(@"call") forState:UIControlStateNormal];
             cell.accessoryView = btnRing;
@@ -249,8 +250,17 @@
             cell.lbStatus.font = _FONT(12);
             cell.width.constant = 16;
             cell.height.constant = 16;
+            
+            return cell;
         }
         else{
+            NSString *deq = @"cell";
+            CustomerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+            if(!cell){
+                cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+            }
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
             BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
             
             cell.timerWidth.constant = 0;
@@ -270,9 +280,9 @@
             cell.lbStatus.font = _FONT(12);
             cell.width.constant = 16;
             cell.height.constant = 16;
+            
+            return cell;
         }
-        
-        return cell;
     }
 }
 
