@@ -95,7 +95,9 @@
     NSString *deq = @"cell";
      AgentStrategyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
-        cell = [[AgentStrategyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+//        cell = [[AgentStrategyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"AgentStrategyTableViewCell" owner:nil options:nil];
+        cell = [nibs lastObject];
     }
     
     NewsModel *model = [self.data objectAtIndex:indexPath.row];
