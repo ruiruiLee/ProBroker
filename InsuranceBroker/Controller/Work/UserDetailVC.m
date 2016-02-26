@@ -132,6 +132,10 @@
 {
     NSString *deq = @"cell";
     CommissionSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+    if(!cell){
+        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"CommissionSetTableViewCell" owner:nil options:nil];
+        cell = [nibs lastObject];
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     ProductInfoModel *model = [self.productList objectAtIndex:indexPath.row];
