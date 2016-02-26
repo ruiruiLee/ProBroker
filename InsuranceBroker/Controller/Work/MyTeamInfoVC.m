@@ -227,7 +227,8 @@
                 cell = [nibs lastObject];
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            UIButton *btnRing = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            UIButton *btnRing = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
             [btnRing setImage:ThemeImage(@"call") forState:UIControlStateNormal];
             cell.accessoryView = btnRing;
             [btnRing addTarget:self action:@selector(doBtnRing:) forControlEvents:UIControlEventTouchUpInside];
@@ -264,6 +265,7 @@
                 cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.selectionStyle = UITableViewCellSelectionStyleDefault;
             
             BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
             

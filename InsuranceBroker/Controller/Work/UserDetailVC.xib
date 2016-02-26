@@ -63,6 +63,10 @@
                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hk-yG-DfV">
                                             <rect key="frame" x="539" y="72" width="24" height="24"/>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="KiG-nb-WHP"/>
+                                                <constraint firstAttribute="height" constant="40" id="ngl-KC-Xw0"/>
+                                            </constraints>
                                             <state key="normal" image="user_message1"/>
                                             <connections>
                                                 <action selector="doBtnEmail:" destination="-1" eventType="touchUpInside" id="82t-I7-HEQ"/>
@@ -71,6 +75,10 @@
                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ll-hr-zJD">
                                             <rect key="frame" x="463" y="72" width="24" height="24"/>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="dgg-Y5-m0H"/>
+                                                <constraint firstAttribute="height" constant="40" id="lvu-TQ-Z1f"/>
+                                            </constraints>
                                             <state key="normal" image="user_call"/>
                                             <connections>
                                                 <action selector="doBtnRing:" destination="-1" eventType="touchUpInside" id="5YS-nZ-HGk"/>
@@ -92,7 +100,7 @@
                                         <constraint firstItem="5Ll-hr-zJD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wlv-g8-Xh0" secondAttribute="trailing" constant="10" id="YgV-H7-Iu2"/>
                                         <constraint firstItem="8hk-yG-DfV" firstAttribute="centerY" secondItem="wlv-g8-Xh0" secondAttribute="centerY" id="bvg-3W-5GK"/>
                                         <constraint firstAttribute="trailing" secondItem="8hk-yG-DfV" secondAttribute="trailing" constant="20" id="eCD-Lp-Sj7"/>
-                                        <constraint firstItem="8hk-yG-DfV" firstAttribute="leading" secondItem="5Ll-hr-zJD" secondAttribute="trailing" constant="20" id="uBq-sX-Grv"/>
+                                        <constraint firstItem="8hk-yG-DfV" firstAttribute="leading" secondItem="5Ll-hr-zJD" secondAttribute="trailing" constant="10" id="uBq-sX-Grv"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kjf-a7-haE">

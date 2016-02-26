@@ -53,7 +53,7 @@
     self.adView = [[AdScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, [Util getHeightByWidth:750 height:330 nwidth:ScreenWidth])];
     self.adView.parentController=self;
     self.adView.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
-    [self.view addSubview:self.adView];
+    [self.scrollview addSubview:self.adView];
     self.adView.PageControlShowStyle = UIPageControlShowStyleRight;
     self.adView.parentController = self;
     
