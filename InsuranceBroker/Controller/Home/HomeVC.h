@@ -12,15 +12,11 @@
 #import "LeftImgButton.h"
 #import "AdScrollView.h"
 #import "NewUserModel.h"
+#import "EGORefreshTableHeaderView.h"
 
-@interface HomeVC : BaseViewController<HeadlineViewDelegate>
+@interface HomeVC : BaseViewController<HeadlineViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate>
 {
-//    NSArray *data;
-    
-//    LeftImgButton *_btnRaider;//攻略
-//    LeftImgButton *_btnService;//客服
-//    LeftImgButton *_btnMessage;//消息
-    
+    EGORefreshTableHeaderView *refreshView;
     //ad
     NSArray *_adArray;
     //headline
@@ -32,7 +28,7 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollview;
 
 @property (nonatomic, strong) IBOutlet HeadlineView *headline;
-@property (nonatomic, strong) IBOutlet AdScrollView *adView;
+@property (nonatomic, strong) AdScrollView *adView;
 
 @property (nonatomic, strong) IBOutlet MainFunctionButton *btnAutoInsu;//车险
 @property (nonatomic, strong) IBOutlet MainFunctionButton *btnInvit;//邀请

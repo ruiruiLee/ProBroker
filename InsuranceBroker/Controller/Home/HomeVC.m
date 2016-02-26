@@ -50,6 +50,10 @@
     self.navigationItem.titleView = logoView;
     [self setLeftBarButtonWithImage:nil];
     
+    self.adView = [[AdScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, [Util getHeightByWidth:750 height:330 nwidth:ScreenWidth])];
+    self.adView.parentController=self;
+    self.adView.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
+    [self.view addSubview:self.adView];
     self.adView.PageControlShowStyle = UIPageControlShowStyleRight;
     self.adView.parentController = self;
     
@@ -93,13 +97,22 @@
     self.scVConstraint.constant = self.headVConstraint.constant + self.adVConstraint.constant + 30 + ScreenWidth/2 + self.additionBgVConstraint.constant + self.userNewVConstraint.constant;
     
     self._btnMessage.imageView.clipsToBounds = NO;
+//    [self config];
     
     [self loadDatas];
+}
 
-//    SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//    
-//    view.delegate = self;
-//    [[UIApplication sharedApplication].keyWindow addSubview:view];
+# pragma mark - Custom view configuration
+
+- (void) config
+{
+    self.scrollview.delegate = self;
+    /* Refresh View */
+    refreshView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, -self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
+    refreshView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
+    refreshView.delegate = self;
+    [self.scrollview addSubview:refreshView];
+    
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -116,6 +129,7 @@
 - (void) loadDatas
 {
     [NetWorkHandler requestToIndex:^(int code, id content) {
+        [refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.scrollview];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             NSDictionary *d = [content objectForKey:@"data"];
@@ -141,7 +155,7 @@
 - (void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    
+//    self.adView.PageControlShowStyle = UIPageControlShowStyleRight;
     CGRect frame1 = self.lbsepline1.frame;
     self.lbsepline1.frame = CGRectMake(frame1.origin.x, frame1.origin.y, 0.5, frame1.size.height);
     CGRect frame2 = self.lbsepline2.frame;
@@ -269,6 +283,42 @@
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+#pragma mark - EGORefreshTableHeaderDelegate
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
+{
+//    [pullDelegate pullTableViewDidTriggerRefresh:self];
+    [self loadDatas];
+}
+
+//- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view {
+//    return self.pullLastRefreshDate;
+//}
+
+#pragma mark - UIScrollViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+    [refreshView egoRefreshScrollViewDidScroll:scrollView];
+    
+    // Also forward the message to the real delegate
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    
+    [refreshView egoRefreshScrollViewDidEndDragging:scrollView];
+    
+    // Also forward the message to the real delegate
+}
+
+- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [refreshView egoRefreshScrollViewWillBeginDragging:scrollView];
+    
+    // Also forward the message to the real delegate
 }
 
 @end
