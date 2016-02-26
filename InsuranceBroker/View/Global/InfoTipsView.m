@@ -131,7 +131,9 @@
     NSString *deq = @"cell";
     InfoTipsCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
-        cell = [[InfoTipsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+//        cell = [[InfoTipsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"InfoTipsCell" owner:nil options:nil];
+        cell = [nibs lastObject];
     }
     
     return cell;
