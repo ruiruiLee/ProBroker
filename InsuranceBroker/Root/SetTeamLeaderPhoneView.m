@@ -38,6 +38,8 @@
         self.btnSubmit.enabled =  NO;
         [self.btnSubmit addTarget:self action:@selector(doBtnSubmit:) forControlEvents:UIControlEventTouchUpInside];
         self.rootview = view;
+        self.btnCancel = [view viewWithTag:106];
+        [self.btnCancel addTarget:self action:@selector(doBtnCancel:) forControlEvents:UIControlEventTouchUpInside];
         
         NSDictionary *views = NSDictionaryOfVariableBindings(view);
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|" options:0 metrics:nil views:views]];
@@ -90,6 +92,11 @@
         [self.delegate NotifyToSetTeamLeaderPhone:self.tfPhone.text];
     }
     
+    [self removeFromSuperview];
+}
+
+- (IBAction)doBtnCancel:(id)sender
+{
     [self removeFromSuperview];
 }
 

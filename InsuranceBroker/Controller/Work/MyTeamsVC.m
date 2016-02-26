@@ -41,7 +41,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
-        self.need = enumNotNeedIndicator;
+//        self.need = enumNotNeedIndicator;
     }
     
     return self;
@@ -51,83 +51,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    
-//    UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-//     CGFloat h = [Util getHeightByWidth:3 height:1 nwidth:ScreenWidth];
-    UIView *headerview = nil;
-    UIImageView *footview = nil;
-
-        headerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
-        footview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
-        [headerview addSubview:footview];
-        footview.image = ThemeImage(@"shadow");
-        footview.userInteractionEnabled = YES;
-//    }
-    
-    UILabel *lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
-    [footview addSubview:lbTitle];
-    lbTitle.text = self.toptitle;
-    
-    lbAmount = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0xcc, 0xcc, 0xcc)];
-    [footview addSubview:lbAmount];
-    lbAmount.textAlignment = NSTextAlignmentRight;
-//    lbAmount.text = @"共3人";
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbAmount);
-    [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]->=10-[lbAmount]-20-|" options:0 metrics:nil views:views]];
-    [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbTitle]-0-|" options:0 metrics:nil views:views]];
-    [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbAmount]-0-|" options:0 metrics:nil views:views]];
-    
-    
-    self.pulltable.tableHeaderView = headerview;
     [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.pulltable.backgroundColor = [UIColor clearColor];
     self.pulltable.tableFooterView = [[UIView alloc] init];
-}
-
-- (void) doBtnInviteFriend:(UIButton *)sender
-{
-    if([self login]){
-        InviteFriendsVC *vc = [[InviteFriendsVC alloc] initWithNibName:nil bundle:nil];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
-
-- (void) addTasksWithBg:(UIView *)bgview title:(NSString *) title content:(NSString *) content rect: (CGRect) rect idx:(NSInteger) idx
-{
-    UILabel *lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0xff, 0xff, 0xff)];
-    [bgview addSubview:lbTitle];
-    lbTitle.text = title;
-    lbTitle.translatesAutoresizingMaskIntoConstraints = YES;
-    lbTitle.frame = CGRectMake(20, rect.origin.y, 140, rect.size.height);
     
-    UIButton *btn = [[UIButton alloc] init];
-    [bgview addSubview:btn];
-    btn.layer.cornerRadius = 3;
-    btn.frame = CGRectMake(ScreenWidth - 95, rect.origin.y, 75, rect.size.height);
-    btn.backgroundColor = [UIColor whiteColor];
-    btn.titleLabel.font = _FONT(12);
-    btn.hidden = YES;
-    
-    UILabel *lbContent = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0xff, 0xff, 0xff)];
-    [bgview addSubview:lbContent];
-    lbContent.textAlignment = NSTextAlignmentRight;
-    lbContent.text = content;
-    lbContent.translatesAutoresizingMaskIntoConstraints = YES;
-    lbContent.frame = CGRectMake(ScreenWidth - 95 - 90, rect.origin.y, 70, rect.size.height-10);
-    if(idx == 0){
-        lbTasks1 = lbContent;
-        btnTasks1 = btn;
-        lbtask1Title = lbTitle;
-        [btn addTarget:self action:@selector(doBtnShare:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    else{
-        lbTasks2 = lbContent;
-        btnTasks2 = btn;
-        lbtask2Title = lbTitle;
-        [btn addTarget:self action:@selector(doBtnOrdered:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    [self initHeaderView];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -136,6 +64,34 @@
     [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
+- (void) initHeaderView
+{
+    UIView *headerview = nil;
+    UIImageView *footview = nil;
+    
+    headerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    footview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    footview.backgroundColor = _COLOR(0xf5, 0xf5, 0xf5);
+    [headerview addSubview:footview];
+//    footview.image = ThemeImage(@"shadow");
+    footview.userInteractionEnabled = YES;
+    
+    UILabel *lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
+    [footview addSubview:lbTitle];
+    lbTitle.text = self.toptitle;
+    
+    lbAmount = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0xcc, 0xcc, 0xcc)];
+    [footview addSubview:lbAmount];
+    lbAmount.textAlignment = NSTextAlignmentRight;
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbAmount);
+    [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]->=10-[lbAmount]-20-|" options:0 metrics:nil views:views]];
+    [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbTitle]-0-|" options:0 metrics:nil views:views]];
+    [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbAmount]-0-|" options:0 metrics:nil views:views]];
+    
+    
+    self.pulltable.tableHeaderView = headerview;
+}
 
 - (NSMutableAttributedString *) attstringWithString:(NSString *) string substr:(NSString *) substr font:(UIFont *) font color:(UIColor *)color
 {
@@ -164,8 +120,6 @@
     NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
     NSMutableArray *rules = [[NSMutableArray alloc] init];
-//    UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-//    [rules addObject:[self getRulesByField:@"userId" op:@"eq" data:user.userId]];
     [rules addObject:[self getRulesByField:@"parentUserId" op:@"eq" data:self.userid]];
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     
@@ -220,12 +174,9 @@
     if(!cell){
         cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
     }
-    if(self.need == enumNotNeedIndicator){
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    else
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+    cell.accessoryType = UITableViewCellAccessoryNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
     
@@ -236,19 +187,9 @@
     {
         image = ThemeImage(@"list_user_famale");
     }
-//    if(model.sex == 2)
-//        image = ThemeImage(@"list_user_famale");
-//    cell.photoImage.image = image;
+
     [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:image];
-//    cell.logoImage.hidden = NO;
-//    if(indexPath.row == 0)
-//        cell.logoImage.image = ThemeImage(@"award_1");
-//    else if(indexPath.row == 1)
-//        cell.logoImage.image = ThemeImage(@"award_02");
-//    else if (indexPath.row == 2)
-//        cell.logoImage.image = ThemeImage(@"award_03");
-//    else
-        cell.logoImage.hidden = YES;
+    cell.logoImage.hidden = YES;
     cell.lbTimr.hidden = YES;
     cell.lbName.text = model.userName;
     cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];
@@ -264,15 +205,26 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    if(self.need == enumNotNeedIndicator){
+//    if(self.need == enumNotNeedIndicator){
+//    }
+//    else{
+//        UserDetailVC *vc = [IBUIFactory CreateUserDetailVC];
+//        BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
+//        vc.userId = model.userId;
+//        vc.userHeadImg = model.headerImg;
+//        vc.title = [NSString stringWithFormat:@"%@的队员", self.name];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, 16, 0, 16);
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:insets];
     }
-    else{
-        UserDetailVC *vc = [IBUIFactory CreateUserDetailVC];
-        BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
-        vc.userId = model.userId;
-        vc.userHeadImg = model.headerImg;
-        vc.title = [NSString stringWithFormat:@"%@的队员", self.name];
-        [self.navigationController pushViewController:vc animated:YES];
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:insets];
     }
 }
 
@@ -289,18 +241,5 @@
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-//- (void) showNoDatasImage:(UIImage *) image
-//{
-//    if(!self.explainBgView){
-//        self.explainBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 80)];
-//        self.imgWithNoData = [[UIImageView alloc] initWithImage:image];
-//        [self.explainBgView addSubview:self.imgWithNoData];
-//        [self.pulltable addSubview:self.explainBgView];
-//        self.explainBgView.center = CGPointMake(ScreenWidth/2, self.pulltable.frame.size.height*5/7);
-//    }else{
-//        self.explainBgView.center = CGPointMake(ScreenWidth/2, self.pulltable.frame.size.height*5/7);
-//    }
-//}
 
 @end

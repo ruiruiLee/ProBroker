@@ -18,7 +18,8 @@
 #import "WebViewController.h"
 #import "SelectCustomerVC.h"
 #import "AppDelegate.h"
-#import "MyTeamsVC.h"
+#import "MyTeamInfoVC.h"
+//#import "SetTeamLeaderPhoneView.h"
 
 @interface HomeVC ()
 {
@@ -95,6 +96,10 @@
     
     [self loadDatas];
 
+//    SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    
+//    view.delegate = self;
+//    [[UIApplication sharedApplication].keyWindow addSubview:view];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -205,13 +210,13 @@
 //        InviteFriendsVC *vc = [[InviteFriendsVC alloc] initWithNibName:nil bundle:nil];
 //        vc.hidesBottomBarWhenPushed = YES;
 //        [self.navigationController pushViewController:vc animated:YES];
-        MyTeamsVC *vc = [[MyTeamsVC alloc] initWithNibName:nil bundle:nil];
+        MyTeamInfoVC *vc = [[MyTeamInfoVC alloc] initWithNibName:nil bundle:nil];
         vc.hidesBottomBarWhenPushed = YES;
         vc.userid = [UserInfoModel shareUserInfoModel].userId;
         vc.title = @"我的团队";
         vc.toptitle = @"我的队员";
         vc.name = @"我";
-        vc.need = enumNeedIndicator;
+//        vc.need = enumNeedIndicator;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

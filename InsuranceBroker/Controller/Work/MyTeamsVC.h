@@ -8,17 +8,14 @@
 
 #import "BasePullTableVC.h"
 
-typedef enum : NSUInteger {
-    enumNotNeedIndicator,
-    enumNeedIndicator,
-} needIndicator;
-
 @interface MyTeamsVC : BasePullTableVC
 
 @property (nonatomic, strong) NSString *userid;
 @property (nonatomic, strong) NSString *toptitle;
 @property (nonatomic, strong) NSString *name;
 
-@property (nonatomic, assign) needIndicator need;
+- (NSDictionary *) getRulesByField:(NSString *) field op:(NSString *) op data:(NSString *) data;
+
+- (void) initHeaderView;
 
 @end

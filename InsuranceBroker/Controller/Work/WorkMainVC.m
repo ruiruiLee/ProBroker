@@ -10,7 +10,7 @@
 #import "define.h"
 #import "DeatilTextTableviewCell.h"
 #import "OrderManagerVC.h"
-#import "MyTeamsVC.h"
+#import "MyTeamInfoVC.h"
 #import "SelectCustomerVC.h"
 #import "UIButton+WebCache.h"
 
@@ -173,13 +173,13 @@
         switch (indexPath.row) {
             case 0:
             {
-                MyTeamsVC *vc = [[MyTeamsVC alloc] initWithNibName:nil bundle:nil];
+                MyTeamInfoVC *vc = [[MyTeamInfoVC alloc] initWithNibName:nil bundle:nil];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.userid = [UserInfoModel shareUserInfoModel].userId;
                 vc.title = @"我的团队";
                 vc.toptitle = @"我的队员";
                 vc.name = @"我";
-                vc.need = enumNeedIndicator;
+//                vc.need = enumNeedIndicator;
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;

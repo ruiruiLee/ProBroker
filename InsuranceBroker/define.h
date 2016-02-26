@@ -74,5 +74,6 @@
 #define Notify_Refrush_TagList @"Notify_Refrush_TagList"
 
 #define QR_ADDRESS @"http://ukb.weixin.car517.com/app_download/specialty_agent_app_download.html"
+#define ServicePhone @"4000803939"
 
 #endif /* define_h */

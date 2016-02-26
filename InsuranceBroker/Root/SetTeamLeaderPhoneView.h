@@ -20,7 +20,8 @@
 @property (nonatomic, strong) UIView *bgview;
 @property (nonatomic, strong) UITextField *tfPhone;
 @property (nonatomic, strong) UILabel *lbShow;
-@property (nonatomic, strong) UIButton  *btnSubmit;   
+@property (nonatomic, strong) UIButton  *btnSubmit;
+@property (nonatomic, strong) UIButton *btnCancel;
 
 @property (nonatomic, weak) id<SetTeamLeaderPhoneViewDelegate> delegate;
 

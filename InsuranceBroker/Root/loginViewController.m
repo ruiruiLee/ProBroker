@@ -13,7 +13,7 @@
 #import "NetWorkHandler+login.h"
 #import "SetTeamLeaderPhoneView.h"
 
-#define SETTING @"请联系您的上级设置产品的折扣!"
+#define SETTING @"请联系您的上级为您设置产品折扣!"
 
 
 @interface loginViewController ()<SetTeamLeaderPhoneViewDelegate>
@@ -29,6 +29,7 @@
     self.title = @"快速登录";
     [self setLeftBarButtonWithNil];
 //    [self setBackBarButton];
+    [self setRightBarButtonWithImage:ThemeImage(@"call_login_page")];
     self.lbAgreement.attributedText = [Util getAttributeString:@"点击“登录”，即表示您同意用户协议" substr:@"用户协议"];
 }
 
@@ -40,6 +41,13 @@
 - (void) handleLeftBarButtonClicked:(id)sender
 {
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void) handleRightBarButtonClicked:(id)sender
+{
+    NSString *num = [[NSString alloc] initWithFormat:@"tel://%@",ServicePhone]; //而这个方法则打电话前先弹框  是否打电话 然后打完电话之后回到程序中 
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:num]];
 }
 
 - (void) loginWithDictionary:(NSDictionary *)pramas

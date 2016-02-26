@@ -31,6 +31,8 @@
 - (void) refreshTable;
 - (void) loadMoreDataToTable;
 
+- (void) refresh2Loaddata;
+
 - (void) showNoDatasImage:(UIImage *) image;
 - (void) hidNoDatasImage;
 

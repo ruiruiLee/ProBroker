@@ -46,6 +46,15 @@
     self.tableview.scrollEnabled = NO;
     [self  loadData];
     [self loadCommissionInfo];
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, 16, 0, 16);
+    self.tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.tableview.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+    if ([self.tableview respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableview setSeparatorInset:insets];
+    }
+    if ([self.tableview respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableview setLayoutMargins:insets];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,6 +132,7 @@
 {
     NSString *deq = @"cell";
     CommissionSetTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     ProductInfoModel *model = [self.productList objectAtIndex:indexPath.row];
     [cell.logo sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:Normal_Image];
@@ -132,7 +142,7 @@
         cell.lbDetail.text = @"未设置";
     }
     else{
-        cell.lbDetail.text = [NSString stringWithFormat:@"%.2f%@", model.productRatio, @"%"];
+        cell.lbDetail.text = [NSString stringWithFormat:@"%.1f%@", model.productRatio, @"%"];
     }
     cell.btnEdit.tag = indexPath.row;
     [cell.btnEdit addTarget:self action:@selector(doBtnModifyRatio:) forControlEvents:UIControlEventTouchUpInside];
