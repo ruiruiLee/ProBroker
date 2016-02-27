@@ -91,6 +91,7 @@
     if(model.isRedirect){
         WebViewController *web = [IBUIFactory CreateWebViewController];
         web.title = model.title;
+        web.type = enumShareTypeShare;
         [self.navigationController pushViewController:web animated:YES];
         if(model.url){
             [web loadHtmlFromUrl:model.url];
@@ -238,7 +239,6 @@
                 break;
         }
     }
-
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -265,7 +265,8 @@
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 15)];
-    view.image = ThemeImage(@"shadow");
+//    view.image = ThemeImage(@"shadow");
+    view.backgroundColor = _COLOR(0xf5, 0xf5, 0xf5);
     return view;
 }
 

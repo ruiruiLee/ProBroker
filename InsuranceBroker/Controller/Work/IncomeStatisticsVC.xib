@@ -100,7 +100,7 @@
                                             <animations/>
                                             <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.10196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="60" id="Dje-gi-cu9"/>
+                                                <constraint firstAttribute="width" constant="76" id="Dje-gi-cu9"/>
                                                 <constraint firstAttribute="height" constant="24" id="I8l-xw-i4n"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>

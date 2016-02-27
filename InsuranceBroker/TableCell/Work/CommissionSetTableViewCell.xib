@@ -63,9 +63,8 @@
                 </subviews>
                 <animations/>
                 <constraints>
-                    <constraint firstItem="0HJ-hz-WYs" firstAttribute="centerY" secondItem="r1z-iL-fuU" secondAttribute="centerY" id="4rn-aY-rJI"/>
-                    <constraint firstItem="ij3-po-Qfh" firstAttribute="centerY" secondItem="r1z-iL-fuU" secondAttribute="centerY" id="4vq-28-sKg"/>
                     <constraint firstItem="X7e-YC-fXH" firstAttribute="leading" secondItem="r1z-iL-fuU" secondAttribute="trailing" constant="10" id="DOB-Ul-nRK"/>
+                    <constraint firstItem="0HJ-hz-WYs" firstAttribute="baseline" secondItem="X7e-YC-fXH" secondAttribute="baseline" id="FKW-Ek-n0h"/>
                     <constraint firstItem="pW7-qi-Lz9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0HJ-hz-WYs" secondAttribute="trailing" constant="10" id="IlL-q7-1gN"/>
                     <constraint firstAttribute="trailingMargin" secondItem="pW7-qi-Lz9" secondAttribute="trailing" constant="6" id="PO0-Bk-a4j"/>
                     <constraint firstItem="ij3-po-Qfh" firstAttribute="leading" secondItem="X7e-YC-fXH" secondAttribute="trailing" constant="40" id="S7l-xV-F9n"/>
@@ -73,6 +72,7 @@
                     <constraint firstItem="r1z-iL-fuU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="dNW-Ok-Bmi"/>
                     <constraint firstItem="r1z-iL-fuU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eQq-g9-Y2i"/>
                     <constraint firstItem="0HJ-hz-WYs" firstAttribute="leading" secondItem="X7e-YC-fXH" secondAttribute="trailing" constant="10" id="iu1-dA-Cce"/>
+                    <constraint firstItem="ij3-po-Qfh" firstAttribute="baseline" secondItem="X7e-YC-fXH" secondAttribute="baseline" id="k4g-TT-ild"/>
                     <constraint firstItem="pW7-qi-Lz9" firstAttribute="centerY" secondItem="r1z-iL-fuU" secondAttribute="centerY" id="qSb-DU-eZx"/>
                 </constraints>
             </tableViewCellContentView>

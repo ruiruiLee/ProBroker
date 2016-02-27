@@ -35,7 +35,7 @@
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="68" id="eXK-I5-aOv"/>
+                            <constraint firstAttribute="width" constant="76" id="eXK-I5-aOv"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
@@ -55,11 +55,11 @@
                     <constraint firstItem="IFx-ev-dbP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="CQx-Yr-KhC"/>
                     <constraint firstItem="SAw-wN-A4W" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZjB-JF-Cqv" secondAttribute="trailing" constant="10" id="F6k-sW-udE"/>
                     <constraint firstItem="IFx-ev-dbP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FGo-n1-RXs"/>
-                    <constraint firstItem="jeo-iE-hKO" firstAttribute="centerY" secondItem="IFx-ev-dbP" secondAttribute="centerY" id="Ykn-up-FKg"/>
+                    <constraint firstItem="jeo-iE-hKO" firstAttribute="baseline" secondItem="ZjB-JF-Cqv" secondAttribute="baseline" id="HkP-ga-5Cf"/>
+                    <constraint firstItem="ZjB-JF-Cqv" firstAttribute="centerY" secondItem="IFx-ev-dbP" secondAttribute="centerY" id="Jpf-Oo-VNY"/>
+                    <constraint firstItem="SAw-wN-A4W" firstAttribute="baseline" secondItem="ZjB-JF-Cqv" secondAttribute="baseline" id="RJp-B0-JEU"/>
                     <constraint firstItem="ZjB-JF-Cqv" firstAttribute="leading" secondItem="IFx-ev-dbP" secondAttribute="trailing" constant="10" id="cM7-GF-8mt"/>
-                    <constraint firstItem="ZjB-JF-Cqv" firstAttribute="centerY" secondItem="IFx-ev-dbP" secondAttribute="centerY" id="fEA-lb-7mZ"/>
                     <constraint firstItem="jeo-iE-hKO" firstAttribute="leading" secondItem="SAw-wN-A4W" secondAttribute="trailing" id="jLL-2P-XJU"/>
-                    <constraint firstItem="SAw-wN-A4W" firstAttribute="centerY" secondItem="IFx-ev-dbP" secondAttribute="centerY" id="wyG-hC-cGY"/>
                 </constraints>
                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
             </tableViewCellContentView>
