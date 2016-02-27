@@ -190,6 +190,8 @@
         image = ThemeImage(@"list_user_famale");
     }
 
+    cell.photoImage.clipsToBounds = YES;
+    cell.photoImage.layer.cornerRadius = 20;
     [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:image];
     cell.logoImage.hidden = YES;
     cell.lbTimr.hidden = YES;

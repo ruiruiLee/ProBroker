@@ -20,8 +20,6 @@
     self.btnApply.backgroundColor = _COLOR(0x29, 0xcc, 0x5f);
     self.btnApply.layer.cornerRadius = 3;
     self.btnApply.hidden = YES;
-    self.photoImage.clipsToBounds = YES;
-    self.photoImage.layer.cornerRadius = 20;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
