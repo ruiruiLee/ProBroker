@@ -50,6 +50,16 @@
 @synthesize btnQuote;
 @synthesize lbAttribute;
 
+- (void) dealloc
+{
+    if(_datePicker){
+        [_datePicker remove];
+    }
+    if(_datePicker1){
+        [_datePicker1 remove];
+    }
+}
+
 - (void) handleLeftBarButtonClicked:(id)sender
 {
     [self.tfNo resignFirstResponder];

@@ -23,6 +23,16 @@
     self.pulltable.tableHeaderView = header;
     self.pulltable.backgroundColor = [UIColor clearColor];
     [self.pulltable registerNib:[UINib nibWithNibName:@"DetailAccountTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, 10, 0, 10);
+    self.pulltable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    self.pulltable.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+    if ([self.pulltable respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.pulltable setSeparatorInset:insets];
+    }
+    if ([self.pulltable respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.pulltable setLayoutMargins:insets];
+    }
 }
 
 - (void) loadDataInPages:(NSInteger)page
@@ -114,6 +124,17 @@
     cell.lbTime.text = [self gettime:model.createdAt];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, 10, 0, 10);
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:insets];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:insets];
+    }
 }
 
 - (NSString *) getdate:(NSDate *) date

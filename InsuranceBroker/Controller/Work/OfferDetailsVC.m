@@ -26,6 +26,11 @@
 
 @implementation OfferDetailsVC
 
+- (void) dealloc
+{
+    [_datePicker remove];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -123,7 +128,6 @@
     NSString *deq = @"cell";
     OfferDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
-//        cell = [[OfferDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
         NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"OfferDetailTableViewCell" owner:nil options:nil];
         cell = [nibs lastObject];
     }
@@ -338,8 +342,8 @@
     CGFloat planUkbPrice = model.businessPrice * (100 - planUkbRatio) / 100.0 + model.jqxCcsPrice;
     CGFloat planAbonusPrice = model.businessPrice * (model.productMaxRatio - planUkbRatio) / 100.0 + model.businessPrice * model.allotBonusRatio * model.levelRatio/10000;
     
-    model.planUserAllot = planAbonusPrice;
-    model.planUkbPrice = planUkbPrice;
+    model.planUserAllot = (int)planAbonusPrice;
+    model.planUkbPrice = (int)planUkbPrice;
     model.planUkbRatio = planUkbRatio;
     
     [self.tableview reloadData];

@@ -56,8 +56,8 @@
                                             <rect key="frame" x="544" y="26" width="24" height="24"/>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="32" id="eno-nj-6NC"/>
-                                                <constraint firstAttribute="width" constant="32" id="o5p-hD-kyK"/>
+                                                <constraint firstAttribute="height" constant="48" id="eno-nj-6NC"/>
+                                                <constraint firstAttribute="width" constant="48" id="o5p-hD-kyK"/>
                                             </constraints>
                                             <state key="normal" image="setting"/>
                                             <connections>
@@ -95,13 +95,13 @@
                                         <constraint firstItem="ggM-nS-vmh" firstAttribute="top" secondItem="LXV-Wz-yex" secondAttribute="top" constant="270" id="Ady-ft-d7p"/>
                                         <constraint firstItem="T2v-PH-1Ge" firstAttribute="leading" secondItem="LXV-Wz-yex" secondAttribute="leading" id="DaV-Tz-Nml"/>
                                         <constraint firstItem="6W8-QF-hW6" firstAttribute="leading" secondItem="ggM-nS-vmh" secondAttribute="leading" id="Erx-4D-FqX"/>
-                                        <constraint firstItem="KM3-fg-Gjp" firstAttribute="top" secondItem="LXV-Wz-yex" secondAttribute="top" constant="230" id="N3M-62-Tm5"/>
+                                        <constraint firstItem="KM3-fg-Gjp" firstAttribute="top" secondItem="LXV-Wz-yex" secondAttribute="top" constant="222" id="N3M-62-Tm5"/>
                                         <constraint firstItem="T2v-PH-1Ge" firstAttribute="centerX" secondItem="ggM-nS-vmh" secondAttribute="centerX" id="Nel-kb-K42"/>
                                         <constraint firstItem="Rsn-QE-tbL" firstAttribute="leading" secondItem="oRq-rh-239" secondAttribute="trailing" constant="6" id="O2S-xC-avn"/>
                                         <constraint firstItem="ggM-nS-vmh" firstAttribute="top" secondItem="LXV-Wz-yex" secondAttribute="top" constant="270" id="PxW-t5-lwa"/>
                                         <constraint firstItem="Rsn-QE-tbL" firstAttribute="centerY" secondItem="oRq-rh-239" secondAttribute="centerY" id="QvT-ex-GAj"/>
                                         <constraint firstAttribute="height" constant="425" id="Szf-BU-CPh"/>
-                                        <constraint firstAttribute="trailing" secondItem="KM3-fg-Gjp" secondAttribute="trailing" constant="15" id="Wac-B8-iZY"/>
+                                        <constraint firstAttribute="trailing" secondItem="KM3-fg-Gjp" secondAttribute="trailing" constant="7" id="Wac-B8-iZY"/>
                                         <constraint firstItem="oRq-rh-239" firstAttribute="bottom" secondItem="ggM-nS-vmh" secondAttribute="bottom" constant="-10" id="YHV-f3-fcv"/>
                                         <constraint firstItem="T2v-PH-1Ge" firstAttribute="top" secondItem="ggM-nS-vmh" secondAttribute="bottom" constant="10" id="eNq-hg-xb3"/>
                                         <constraint firstItem="oRq-rh-239" firstAttribute="trailing" secondItem="ggM-nS-vmh" secondAttribute="trailing" constant="-4" id="jfY-Px-gkC"/>

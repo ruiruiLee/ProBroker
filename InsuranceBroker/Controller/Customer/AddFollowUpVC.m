@@ -34,6 +34,13 @@
 
 @implementation AddFollowUpVC
 
+- (void) dealloc
+{
+    if(_datePicker){
+        [_datePicker remove];
+    }
+}
+
 - (void) handleLeftBarButtonClicked:(id)sender
 {
     [self.tfAdd resignFirstResponder];
