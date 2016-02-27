@@ -12,6 +12,7 @@
 #import "NetWorkHandler+getBacks.h"
 #import "BankInfoModel.h"
 #import "BankSelectVC.h"
+#import "ProgressHUD.h"
 
 @interface BindBankCardVC ()<MenuDelegate>
 {
@@ -115,7 +116,9 @@
 
 - (void) loadData
 {
+    [ProgressHUD show:nil];
     [NetWorkHandler requestTogetBanks:^(int code, id content) {
+        [ProgressHUD dismiss];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             self.data = [BankInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];

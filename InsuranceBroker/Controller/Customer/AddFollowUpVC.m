@@ -13,6 +13,7 @@
 #import "DictModel.h"
 #import "ZHPickView.h"
 #import "NetWorkHandler+saveOrUpdateCustomerVisits.h"
+#import "ProgressHUD.h"
 
 @interface AddFollowUpVC () <MenuDelegate, ZHPickViewDelegate, UITextViewDelegate>
 {
@@ -218,12 +219,14 @@
 
 - (void) loadVisitDictionary
 {
+    [ProgressHUD show:nil];
     NSArray *array = @[@"visitType", @"visitProgress"];
     NSString *method = @"/web/common/getDictCustom.xhtml?dictType=['visitType','visitProgress']";
     method = [NSString stringWithFormat:method, [NetWorkHandler objectToJson:array]];
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
     __weak AddFollowUpVC *weakself = self;
     [handle getWithMethod:method BaseUrl:Base_Uri Params:nil Completion:^(int code, id content) {
+        [ProgressHUD dismiss];
         [weakself handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             NSArray *array = [DictModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];

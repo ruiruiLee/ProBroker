@@ -21,6 +21,7 @@
 #import "UIImageView+WebCache.h"
 #import "OrderWebVC.h"
 #import "SJAvatarBrowser.h"
+#import "ProgressHUD.h"
 
 @interface AutoInsuranceInfoEditVC ()<MenuDelegate, ZHPickViewDelegate, UITextFieldDelegate>
 {
@@ -741,7 +742,9 @@
 
 - (void) loadInsurCompany
 {
+    [ProgressHUD show:nil];
     [NetWorkHandler requestToQueryForInsuranceCompanyList:nil insuranceType:@"1" Completion:^(int code, id content) {
+        [ProgressHUD dismiss];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             _insurCompanyArray = [InsuranceCompanyModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
