@@ -271,7 +271,7 @@
     [self login];
     
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
-    [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
+    [currentInstallation removeObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
     [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
     [currentInstallation saveInBackground];
     [AVUser logOut];  //清除缓存用户对象

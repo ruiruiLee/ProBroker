@@ -145,7 +145,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Login object:nil];
             
             AVInstallation *currentInstallation = [AVInstallation currentInstallation];
-            [currentInstallation addUniqueObject:@"ykbbrokerLoginUser" forKey:@"channels"];
+            [currentInstallation addUniqueObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
             [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
             [currentInstallation saveInBackground];
             
