@@ -342,8 +342,11 @@
     CGFloat planUkbPrice = model.businessPrice * (100 - planUkbRatio) / 100.0 + model.jqxCcsPrice;
     CGFloat planAbonusPrice = model.businessPrice * (model.productMaxRatio - planUkbRatio) / 100.0 + model.businessPrice * model.allotBonusRatio * model.levelRatio/10000;
     
-    model.planUserAllot = (int)planAbonusPrice;
-    model.planUkbPrice = (int)planUkbPrice;
+    model.planUkbPrice = (int)planUkbPrice;//客户价
+    CGFloat last = planUkbPrice - model.planUkbPrice;
+    model.planUserAllot = planAbonusPrice - last;//经纪人收益
+    if(model.planUserAllot < 0)
+        model.planUserAllot = 0;
     model.planUkbRatio = planUkbRatio;
     
     [self.tableview reloadData];
