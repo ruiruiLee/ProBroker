@@ -92,6 +92,8 @@
         WebViewController *web = [IBUIFactory CreateWebViewController];
         web.title = model.title;
         web.type = enumShareTypeShare;
+        web.shareTitle = model.title;
+        web.shareContent = model.content;
         [self.navigationController pushViewController:web animated:YES];
         if(model.url){
             [web loadHtmlFromUrl:model.url];
@@ -266,7 +268,7 @@
 {
     UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 15)];
 //    view.image = ThemeImage(@"shadow");
-    view.backgroundColor = _COLOR(0xf5, 0xf5, 0xf5);
+    view.backgroundColor = SepLine_color;
     return view;
 }
 

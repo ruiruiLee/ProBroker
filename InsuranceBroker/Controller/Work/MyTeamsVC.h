@@ -18,4 +18,6 @@
 
 - (void) initHeaderView;
 
+- (NSAttributedString *) getOrderDetailString:(NSInteger) orderCount;
+
 @end

@@ -41,6 +41,7 @@
 #define _COLORa(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 #define Subhead_Color _COLOR(0x75, 0x75, 0x75)
+#define SepLine_color _COLOR(0xf5, 0xf5, 0xf5)
 
 //Font
 #define _FONT(s) [UIFont fontWithName:@"Helvetica Neue" size:(s)]

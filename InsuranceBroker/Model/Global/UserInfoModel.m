@@ -131,48 +131,7 @@
 - (void) setDetailContentWithDictionary:(NSDictionary *) dic
 {
 //    self.userId = [dic objectForKey:@"userId"];
-    self.realName = [dic objectForKey:@"realName"];
-    self.headerImg = [dic objectForKey:@"headerImg"];
-    self.phone = [dic objectForKey:@"phone"];
-    self.nickname = [dic objectForKey:@"userName"];
-    self.liveProvinceId = [dic objectForKey:@"liveProvinceId"];
-    self.liveProvince = [dic objectForKey:@"liveProvince"];
-    self.liveCity = [dic objectForKey:@"liveCity"];
-    self.liveCityId = [dic objectForKey:@"liveCityId"];
-    self.leader = [[dic objectForKey:@"leader"] integerValue];
-    self.cardVerifiy = [[dic objectForKey:@"cardVerifiy"] integerValue];
-    self.userType = [[dic objectForKey:@"userType"] integerValue];
-    self.sex = [[dic objectForKey:@"userSex"] integerValue];
-    
-    self.cardNumber = [dic objectForKey:@"cardNumber"];
-    self.cardNumberImg1 = [dic objectForKey:@"cardNumberImg1"];
-    self.cardNumberImg2 = [dic objectForKey:@"cardNumberImg2"];
-    self.verifiyTime = [UserInfoModel dateFromString:[dic objectForKey:@"verifiyTime"]];
-    self.status = [[dic objectForKey:@"status"] integerValue];
-    self.cardProvinceId = [dic objectForKey:@"cardProvinceId"];
-    self.cardCityId = [dic objectForKey:@"cardCityId"];
-    self.cardAreaId = [dic objectForKey:@"cardAreaId"];
-    self.isSupport = [[dic objectForKey:@"isSupport"] integerValue];
-    self.maxCustomer = [[dic objectForKey:@"maxCustomer"] integerValue];
-    self.layerNum = [[dic objectForKey:@"layerNum"] integerValue];
-    self.lowerNum = [[dic objectForKey:@"lowerNum"] integerValue];
-    self.brokerEarnings = [[dic objectForKey:@"brokerEarnings"] floatValue];
-    self.redbagEarnings = [[dic objectForKey:@"redbagEarnings"] floatValue];
-    self.orderNums = [[dic objectForKey:@"orderNums"] integerValue];
-    self.liveAreaId = [dic objectForKey:@"liveAreaId"];
-    self.liveAddr = [dic objectForKey:@"liveAddr"];
-    self.createdAt = [UserInfoModel dateFromString:[dic objectForKey:@"createdAt"]];
-    
-    self.qrcodeAddr = [dic objectForKey:@"qrcodeAddr"];
-    self.monthOrderSuccessNums = [[dic objectForKey:@"monthOrderSuccessNums"] integerValue];
-    self.orderSuccessNums = [[dic objectForKey:@"orderSuccessNums"] integerValue];
-    self.monthOrderEarn = [[dic objectForKey:@"monthOrderEarn"] floatValue];
-    self.orderEarn = [[dic objectForKey:@"orderEarn"] floatValue];
-    self.redBagId = [dic objectForKey:@"redBagId"];
-    self.userInviteNums = [[dic objectForKey:@"userInviteNums"] integerValue];
-    self.userTeamInviteNums = [[dic objectForKey:@"userTeamInviteNums"] integerValue];
-    
-    self.cardVerifiyMsg = [dic objectForKey:@"cardVerifiyMsg"];
+    [self setDetailContentWithDictionary1:dic];
     
     NSMutableDictionary *dictionary = [self dictionaryWithObject:self];
     AppContext *context = [AppContext sharedAppContext];
@@ -229,6 +188,7 @@
     self.userTeamInviteNums = [[dic objectForKey:@"userTeamInviteNums"] integerValue];
     
     self.cardVerifiyMsg = [dic objectForKey:@"cardVerifiyMsg"];
+    self.nowMonthOrderSuccessNums = [[dic objectForKey:@"nowMonthOrderSuccessNums"] integerValue];
 }
 
 - (void) queryUserInfo
@@ -239,6 +199,19 @@
         if(code == 200){
             [self setDetailContentWithDictionary:[content objectForKey:@"data"]];
         }
+    }];
+}
+
+- (void) loadDetail:(Completion) completion
+{
+    if(self.userId == nil || [self.userId length] == 0)
+        return;
+    [NetWorkHandler requestToQueryUserInfo:self.userId Completion:^(int code, id content) {
+        if(code == 200){
+            [self setDetailContentWithDictionary:[content objectForKey:@"data"]];
+        }
+        if(completion)
+            completion(code, content);
     }];
 }
 

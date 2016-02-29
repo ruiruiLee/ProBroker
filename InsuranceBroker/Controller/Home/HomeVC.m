@@ -19,7 +19,7 @@
 #import "SelectCustomerVC.h"
 #import "AppDelegate.h"
 #import "MyTeamInfoVC.h"
-//#import "SetTeamLeaderPhoneView.h"
+#import "SetTeamLeaderPhoneView.h"
 
 @interface HomeVC ()
 {
@@ -100,6 +100,10 @@
 //    [self config];
     
     [self loadDatas];
+    
+//    SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    
+//    [[UIApplication sharedApplication].keyWindow addSubview:view];
 }
 
 # pragma mark - Custom view configuration
@@ -266,6 +270,7 @@
         if(_newUserModel.imgUrl != nil)
             web.shareImgArray = [NSArray arrayWithObject:_newUserModel.imgUrl];
         web.shareTitle = _newUserModel.title;
+        web.shareContent = _newUserModel.content;
         [self.navigationController pushViewController:web animated:YES];
         
         if(_newUserModel.url == nil){

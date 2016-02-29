@@ -41,7 +41,7 @@
 - (void) initHeaderView
 {
     CGFloat bannerHeight = [Util getHeightByWidth:375 height:60 nwidth:ScreenWidth];
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, bannerHeight + 4)];
+    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, bannerHeight)];
     UIImageView *banner = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, bannerHeight)];
     banner.image  = ThemeImage(@"refund_banner");
     banner.userInteractionEnabled = YES;
@@ -67,7 +67,7 @@
     self.productTable.delegate = self;
     self.productTable.dataSource = self;
     
-    UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 4)];
+    UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 2)];
     foot.backgroundColor = _COLOR(0xff, 0xaa, 0x7f);
     foot.translatesAutoresizingMaskIntoConstraints = NO;
     [header addSubview:foot];
@@ -296,9 +296,10 @@
                 cell.logoImage.hidden = YES;
             cell.lbTimr.hidden = YES;
             cell.lbName.text = model.userName;
-            cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];
+//            cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbStatus.font = _FONT(12);
+            cell.lbStatus.attributedText = [self getOrderDetailString:model.nowMonthOrderSuccessNums];
             cell.width.constant = 16;
             cell.height.constant = 16;
             

@@ -20,6 +20,7 @@
 @property (nonatomic, strong) NSString *monthOrderEarn;
 @property (nonatomic, assign) NSInteger userSex;
 @property (nonatomic, assign) NSInteger orderSuccessNums;
+@property (nonatomic, assign) NSInteger nowMonthOrderSuccessNums;
 @property (nonatomic, strong) NSString *userId;
 
 @end

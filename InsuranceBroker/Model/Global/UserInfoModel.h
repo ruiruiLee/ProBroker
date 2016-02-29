@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "BaseModel.h"
+#import "NetWorkHandler.h"
 
 @interface UserInfoModel : BaseModel
 
@@ -63,10 +64,12 @@
 @property (nonatomic, assign) NSInteger userTeamInviteNums;//":0//团队总人数
 
 @property (nonatomic, strong) NSString *cardVerifiyMsg;//认证失败信息
+@property (nonatomic, assign) NSInteger nowMonthOrderSuccessNums;
 
 + (UserInfoModel *) shareUserInfoModel;
 - (void) setContentWithDictionary:(NSDictionary *) dic;//isLogin单独修改
 - (void) queryUserInfo;//获取经纪人信息详情
+- (void) loadDetail:(Completion) completion;
 - (void) setDetailContentWithDictionary1:(NSDictionary *) dic;
 
 @end
