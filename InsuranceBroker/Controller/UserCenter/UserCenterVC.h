@@ -43,6 +43,7 @@
 //约束
 //@property (nonatomic, strong) IBOutlet NSLayoutConstraint *headVConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *headHConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *footVConstraint;
 
 //修改用户资料
 - (IBAction)EditUserInfo:(id)sender;

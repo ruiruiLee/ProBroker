@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserCenterVC">
             <connections>
                 <outlet property="btNameEdit" destination="T2v-PH-1Ge" id="fnM-zn-6F7"/>
+                <outlet property="footVConstraint" destination="zew-4s-KEG" id="Kvj-p8-1SC"/>
                 <outlet property="gradientView" destination="LXV-Wz-yex" id="kzt-6D-seR"/>
                 <outlet property="headHConstraint" destination="wpG-Ns-3bo" id="Da9-52-cO2"/>
                 <outlet property="headerView" destination="LXV-Wz-yex" id="STB-1h-7eZ"/>
@@ -436,13 +437,24 @@
                                 <constraint firstAttribute="width" constant="600" id="wpG-Ns-3bo"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SBj-2S-cF3">
+                            <rect key="frame" x="0.0" y="540" width="600" height="200"/>
+                            <animations/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="200" id="zew-4s-KEG"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <animations/>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="SBj-2S-cF3" secondAttribute="bottom" id="0qd-Pw-bU1"/>
                         <constraint firstItem="nsy-DC-aPN" firstAttribute="leading" secondItem="jIL-dO-Hik" secondAttribute="leading" id="7tB-gz-kcJ"/>
-                        <constraint firstAttribute="bottom" secondItem="nsy-DC-aPN" secondAttribute="bottom" constant="15" id="WoO-Fy-mcu"/>
+                        <constraint firstItem="SBj-2S-cF3" firstAttribute="leading" secondItem="jIL-dO-Hik" secondAttribute="leading" id="J4D-TA-9Xd"/>
                         <constraint firstItem="nsy-DC-aPN" firstAttribute="top" secondItem="jIL-dO-Hik" secondAttribute="top" id="Xp4-4W-GVG"/>
+                        <constraint firstAttribute="trailing" secondItem="SBj-2S-cF3" secondAttribute="trailing" id="btC-eo-GVd"/>
                         <constraint firstAttribute="trailing" secondItem="nsy-DC-aPN" secondAttribute="trailing" id="ghu-CK-6PF"/>
+                        <constraint firstItem="SBj-2S-cF3" firstAttribute="top" secondItem="nsy-DC-aPN" secondAttribute="bottom" id="o9Y-qp-l4A"/>
                     </constraints>
                     <connections>
                         <outlet property="delegate" destination="-1" id="jFs-t6-7Xn"/>
