@@ -193,7 +193,15 @@
     cell.photoImage.clipsToBounds = YES;
     cell.photoImage.layer.cornerRadius = 20;
     [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:image];
-    cell.logoImage.hidden = YES;
+    cell.logoImage.hidden = NO;
+    if(indexPath.row == 0)
+        cell.logoImage.image = ThemeImage(@"award_1");
+    else if(indexPath.row == 1)
+        cell.logoImage.image = ThemeImage(@"award_02");
+    else if (indexPath.row == 2)
+        cell.logoImage.image = ThemeImage(@"award_03");
+    else
+        cell.logoImage.hidden = YES;
     cell.lbTimr.hidden = YES;
     cell.lbName.text = model.userName;
     cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];

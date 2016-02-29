@@ -146,7 +146,7 @@
         cell.lbDetail.text = @"未设置";
     }
     else{
-        cell.lbDetail.text = [NSString stringWithFormat:@"%.1f%@", model.productRatio, @"%"];
+        cell.lbDetail.text = [NSString stringWithFormat:@"%d%@", (int)model.productRatio, @"%"];
     }
     cell.btnEdit.tag = indexPath.row;
     [cell.btnEdit addTarget:self action:@selector(doBtnModifyRatio:) forControlEvents:UIControlEventTouchUpInside];
