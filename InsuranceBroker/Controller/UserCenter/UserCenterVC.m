@@ -23,6 +23,7 @@
     [model removeObserver:self forKeyPath:@"cardVerifiy"];
     [model removeObserver:self forKeyPath:@"sex"];
     [model removeObserver:self forKeyPath:@"nickname"];
+    [model removeObserver:self forKeyPath:@"nowMonthOrderSuccessNums"];
     AppContext *context = [AppContext sharedAppContext];
     [context removeObserver:self forKeyPath:@"isRedPack"];
 }
@@ -56,6 +57,7 @@
     [model addObserver:self forKeyPath:@"sex" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [model addObserver:self forKeyPath:@"nickname" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [context addObserver:self forKeyPath:@"isRedPack" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [model addObserver:self forKeyPath:@"nowMonthOrderSuccessNums" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
     [self config];
     
