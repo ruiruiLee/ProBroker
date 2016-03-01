@@ -202,6 +202,7 @@
 //        [Util showAlertMessage:@"为保护您的资金安全，只有实名认证后才能收益提取"];
 //    }
     DetailAccountVC *vc = [[DetailAccountVC alloc] initWithNibName:nil bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -217,6 +218,7 @@
 - (IBAction)scale:(id)sender
 {
     DetailAccountVC *vc = [[DetailAccountVC alloc] initWithNibName:nil bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
