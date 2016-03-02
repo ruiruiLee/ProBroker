@@ -489,6 +489,9 @@
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
                 [self.customerinfoModel.detailModel.insurArray removeObject:model];
+                self.customerinfoModel.detailModel.insurTotal --;
+                if(self.customerinfoModel.detailModel.insurTotal < 0)
+                    self.customerinfoModel.detailModel.insurTotal = 0;
                 [_policyListView.tableview reloadData];
             }
         }];

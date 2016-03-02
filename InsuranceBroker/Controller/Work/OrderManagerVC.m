@@ -269,6 +269,8 @@
                 [self initData];
                 [self.pulltable reloadData];
                 self.total--;
+                if(self.total <0)
+                    self.total = 0;
             }
         }];
     }
