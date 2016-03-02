@@ -3061,7 +3061,7 @@
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/ShareSDK/libraries/extends/WeChatSDK",
 					"$(PROJECT_DIR)/InsuranceBroker/View/Global/QRCode/ZBarSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.broker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
@@ -3091,7 +3091,7 @@
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/ShareSDK/libraries/extends/WeChatSDK",
 					"$(PROJECT_DIR)/InsuranceBroker/View/Global/QRCode/ZBarSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.broker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
