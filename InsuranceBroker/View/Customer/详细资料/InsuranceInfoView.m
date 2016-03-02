@@ -54,10 +54,14 @@
     btnAdd = [[UIButton alloc] initWithFrame:CGRectZero];
     [self addSubview:btnAdd];
     btnAdd.translatesAutoresizingMaskIntoConstraints = NO;
-    btnAdd.backgroundColor = _COLOR(0xff, 0x66, 0x19);
+//    btnAdd.backgroundColor = _COLOR(0xff, 0x66, 0x19);
+//    [btnAdd setImage:[Util imageWithColor:_COLOR(0xff, 0x66, 0x19) size:<#(CGSize)#>] forState:UIControlStateNormal];
+    [btnAdd setBackgroundImage:[Util imageWithColor:_COLOR(0xff, 0x66, 0x19) size:CGSizeMake(10, 10)] forState:UIControlStateNormal];
     [btnAdd setTitle:@"立即添加" forState:UIControlStateNormal];
     [btnAdd setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     btnAdd.titleLabel.font = _FONT(15);
+    btnAdd.layer.cornerRadius = 3;
+    btnAdd.clipsToBounds = YES;
     [btnAdd addTarget:self action:@selector(handleAddButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     lbExplain = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x75, 0x75, 0x75)];
