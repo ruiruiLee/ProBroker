@@ -75,6 +75,7 @@
 #define Notify_Refrush_TagList @"Notify_Refrush_TagList"
 #define Notify_Logout @"Notify_Logout"
 #define Notify_Login @"Notify_Login"
+#define Notify_Refresh_OrderList @"Notify_Refresh_OrderList"
 
 #define QR_ADDRESS @"http://ukb.weixin.car517.com/app_download/specialty_agent_app_download.html"
 #define ServicePhone @"4000803939"

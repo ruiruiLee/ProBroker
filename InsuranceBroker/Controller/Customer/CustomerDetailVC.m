@@ -38,11 +38,17 @@
     [self loadDetailWithCustomerId:self.data.customerId];
 }
 
+- (void) refreshOrderList:(NSNotification *) notify
+{
+    [self loadInsurPageList:0];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCustomerDetail:) name:Notify_Reload_CustomerDetail object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshOrderList:) name:Notify_Refresh_OrderList object:nil];
     
     self.title = @"详细资料";
     
@@ -490,8 +496,10 @@
             if(code == 200){
                 [self.customerinfoModel.detailModel.insurArray removeObject:model];
                 self.customerinfoModel.detailModel.insurTotal --;
-                if(self.customerinfoModel.detailModel.insurTotal < 0)
+                if(self.customerinfoModel.detailModel.insurTotal < 0){
                     self.customerinfoModel.detailModel.insurTotal = 0;
+                }
+                [self resetContetHeight:_selectedView];
                 [_policyListView.tableview reloadData];
             }
         }];
