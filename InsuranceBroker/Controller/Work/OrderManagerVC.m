@@ -13,6 +13,7 @@
 #import "InsurInfoModel.h"
 #import "WebViewController.h"
 #import "UIImageView+WebCache.h"
+#import "NetWorkHandler+deleteInsuranceOrder.h"
 
 @interface OrderManagerVC () <UISearchBarDelegate>
 {
@@ -251,6 +252,49 @@
     return view;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"commitEditingStyle");
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        NSArray *array = [insurArray objectAtIndex:indexPath.section];
+        InsurInfoModel *model = [array objectAtIndex:indexPath.row];
+        [self deleteItemWithOrderId:model.insuranceOrderUuid Completion:^(int code, id content) {
+            [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+            if(code == 200){
+                [self.data removeObject:model];
+                [self initData];
+                [self.pulltable reloadData];
+                self.total--;
+            }
+        }];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    }
+}
+
+//编辑删除按钮的文字
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
+//这个方法用来告诉表格 某一行是否可以移动
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete; //每行左边会出现红的删除按钮
+}
+
+
 - (void) initData
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
@@ -407,6 +451,11 @@
     filterString = @"";
     self.pageNum = 0;
     [self loadDataInPages:self.pageNum];
+}
+
+- (void) deleteItemWithOrderId:(NSString *) orderId Completion:(Completion)completion
+{
+    [NetWorkHandler requestToDeleteInsuranceOrder:orderId userId:[UserInfoModel shareUserInfoModel].userId Completion:completion];
 }
 
 @end

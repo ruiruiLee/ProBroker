@@ -483,7 +483,16 @@
 
 - (void) NotifyHandleItemDelegateClicked:(BaseInsuranceInfo *)sender model:(id) model
 {
-    if(sender == _policyListView){}
+    if(sender == _policyListView){
+        InsurInfoModel *policy = (InsurInfoModel*) model;
+        [_policyListView deleteItemWithOrderId:policy.insuranceOrderUuid Completion:^(int code, id content) {
+            [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+            if(code == 200){
+                [self.customerinfoModel.detailModel.insurArray removeObject:model];
+                [_policyListView.tableview reloadData];
+            }
+        }];
+    }
     else if (sender == _insuranceDetailView){}
     else{
         VisitInfoModel *visit = (VisitInfoModel *) model;

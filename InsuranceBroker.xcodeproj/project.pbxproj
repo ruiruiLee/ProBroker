@@ -352,6 +352,7 @@
 		86F0142A1C8682E400A3C68E /* BillDetailInfoFromOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014291C8682E400A3C68E /* BillDetailInfoFromOrderVC.m */; };
 		86F0142D1C86831800A3C68E /* BillDetailInfoFromLuckyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F0142C1C86831800A3C68E /* BillDetailInfoFromLuckyVC.m */; };
 		86F014301C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F0142F1C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.m */; };
+		86F014331C86CB9B00A3C68E /* NetWorkHandler+deleteInsuranceOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014321C86CB9B00A3C68E /* NetWorkHandler+deleteInsuranceOrder.m */; };
 		86F2DA7E1C75F25B0088B783 /* UserDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA7C1C75F25B0088B783 /* UserDetailVC.m */; };
 		86F2DA7F1C75F25B0088B783 /* UserDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F2DA7D1C75F25B0088B783 /* UserDetailVC.xib */; };
 		86F2DA831C7704400088B783 /* CommissionSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA811C7704400088B783 /* CommissionSetTableViewCell.m */; };
@@ -1042,6 +1043,8 @@
 		86F0142C1C86831800A3C68E /* BillDetailInfoFromLuckyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailInfoFromLuckyVC.m; sourceTree = "<group>"; };
 		86F0142E1C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+queryUserBillDetail.h"; sourceTree = "<group>"; };
 		86F0142F1C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryUserBillDetail.m"; sourceTree = "<group>"; };
+		86F014311C86CB9B00A3C68E /* NetWorkHandler+deleteInsuranceOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+deleteInsuranceOrder.h"; sourceTree = "<group>"; };
+		86F014321C86CB9B00A3C68E /* NetWorkHandler+deleteInsuranceOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+deleteInsuranceOrder.m"; sourceTree = "<group>"; };
 		86F2DA7B1C75F25B0088B783 /* UserDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailVC.h; sourceTree = "<group>"; };
 		86F2DA7C1C75F25B0088B783 /* UserDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailVC.m; sourceTree = "<group>"; };
 		86F2DA7D1C75F25B0088B783 /* UserDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailVC.xib; sourceTree = "<group>"; };
@@ -1538,6 +1541,8 @@
 				86F2DA921C7EDF6A0088B783 /* NetWorkHandler+queryUserTeamInfo.m */,
 				86F0142E1C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.h */,
 				86F0142F1C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.m */,
+				86F014311C86CB9B00A3C68E /* NetWorkHandler+deleteInsuranceOrder.h */,
+				86F014321C86CB9B00A3C68E /* NetWorkHandler+deleteInsuranceOrder.m */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -2852,6 +2857,7 @@
 				86A504D21C51CC4F0032A901 /* StatisticsModel.m in Sources */,
 				8654CA5D1C31256A00411C54 /* NetWorkHandler.m in Sources */,
 				86A504CC1C51C7B00032A901 /* NetWorkHandler+applyForEarn.m in Sources */,
+				86F014331C86CB9B00A3C68E /* NetWorkHandler+deleteInsuranceOrder.m in Sources */,
 				86C3BB741C242E3E00F98E80 /* CustomerMainVC.m in Sources */,
 				865066241C21550500429EAE /* IBUIFactory.m in Sources */,
 				86A504D51C51CE7B0032A901 /* NetWorkHandler+queryUserBillPageList.m in Sources */,
