@@ -347,6 +347,11 @@
 		86C3BCC71C2E933600F98E80 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BCBB1C2E933600F98E80 /* IQKeyboardManager.bundle */; };
 		86C3BCCB1C2E999300F98E80 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BCC91C2E999300F98E80 /* loginViewController.m */; };
 		86C3BCCC1C2E999300F98E80 /* loginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BCCA1C2E999300F98E80 /* loginViewController.xib */; };
+		86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */; };
+		86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */; };
+		86F0142A1C8682E400A3C68E /* BillDetailInfoFromOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014291C8682E400A3C68E /* BillDetailInfoFromOrderVC.m */; };
+		86F0142D1C86831800A3C68E /* BillDetailInfoFromLuckyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F0142C1C86831800A3C68E /* BillDetailInfoFromLuckyVC.m */; };
+		86F014301C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F0142F1C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.m */; };
 		86F2DA7E1C75F25B0088B783 /* UserDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA7C1C75F25B0088B783 /* UserDetailVC.m */; };
 		86F2DA7F1C75F25B0088B783 /* UserDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F2DA7D1C75F25B0088B783 /* UserDetailVC.xib */; };
 		86F2DA831C7704400088B783 /* CommissionSetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA811C7704400088B783 /* CommissionSetTableViewCell.m */; };
@@ -360,6 +365,9 @@
 		86F2DA991C7EF6030088B783 /* ParentInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA981C7EF6030088B783 /* ParentInfoModel.m */; };
 		86F2DA9D1C7FE81D0088B783 /* ProductSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DA9B1C7FE81D0088B783 /* ProductSettingTableViewCell.m */; };
 		86F2DA9E1C7FE81D0088B783 /* ProductSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F2DA9C1C7FE81D0088B783 /* ProductSettingTableViewCell.xib */; };
+		86F2DAA11C858BC40088B783 /* BillDetailInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DAA01C858BC40088B783 /* BillDetailInfoVC.m */; };
+		86F2DAA51C8595C40088B783 /* BIllDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2DAA31C8595C40088B783 /* BIllDetailTableViewCell.m */; };
+		86F2DAA61C8595C40088B783 /* BIllDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F2DAA41C8595C40088B783 /* BIllDetailTableViewCell.xib */; };
 		86FC492A1C756ECA0031B435 /* SetTeamLeaderPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */; };
 		86FC492E1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */; };
 		CF608EE71C589C2900DC10CA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EE61C589C2900DC10CA /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -1024,6 +1032,16 @@
 		86C3BCC81C2E999300F98E80 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
 		86C3BCC91C2E999300F98E80 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		86C3BCCA1C2E999300F98E80 /* loginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = loginViewController.xib; sourceTree = "<group>"; };
+		86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromSubVC.h; sourceTree = "<group>"; };
+		86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailInfoFromSubVC.m; sourceTree = "<group>"; };
+		86F014251C8682A000A3C68E /* BillDetailInfoWithdrawVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoWithdrawVC.h; sourceTree = "<group>"; };
+		86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailInfoWithdrawVC.m; sourceTree = "<group>"; };
+		86F014281C8682E400A3C68E /* BillDetailInfoFromOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromOrderVC.h; sourceTree = "<group>"; };
+		86F014291C8682E400A3C68E /* BillDetailInfoFromOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailInfoFromOrderVC.m; sourceTree = "<group>"; };
+		86F0142B1C86831800A3C68E /* BillDetailInfoFromLuckyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromLuckyVC.h; sourceTree = "<group>"; };
+		86F0142C1C86831800A3C68E /* BillDetailInfoFromLuckyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailInfoFromLuckyVC.m; sourceTree = "<group>"; };
+		86F0142E1C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+queryUserBillDetail.h"; sourceTree = "<group>"; };
+		86F0142F1C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryUserBillDetail.m"; sourceTree = "<group>"; };
 		86F2DA7B1C75F25B0088B783 /* UserDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailVC.h; sourceTree = "<group>"; };
 		86F2DA7C1C75F25B0088B783 /* UserDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailVC.m; sourceTree = "<group>"; };
 		86F2DA7D1C75F25B0088B783 /* UserDetailVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailVC.xib; sourceTree = "<group>"; };
@@ -1047,6 +1065,11 @@
 		86F2DA9A1C7FE81D0088B783 /* ProductSettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductSettingTableViewCell.h; sourceTree = "<group>"; };
 		86F2DA9B1C7FE81D0088B783 /* ProductSettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductSettingTableViewCell.m; sourceTree = "<group>"; };
 		86F2DA9C1C7FE81D0088B783 /* ProductSettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductSettingTableViewCell.xib; sourceTree = "<group>"; };
+		86F2DA9F1C858BC40088B783 /* BillDetailInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoVC.h; sourceTree = "<group>"; };
+		86F2DAA01C858BC40088B783 /* BillDetailInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailInfoVC.m; sourceTree = "<group>"; };
+		86F2DAA21C8595C40088B783 /* BIllDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIllDetailTableViewCell.h; sourceTree = "<group>"; };
+		86F2DAA31C8595C40088B783 /* BIllDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIllDetailTableViewCell.m; sourceTree = "<group>"; };
+		86F2DAA41C8595C40088B783 /* BIllDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIllDetailTableViewCell.xib; sourceTree = "<group>"; };
 		86FC49281C756ECA0031B435 /* SetTeamLeaderPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTeamLeaderPhoneView.h; sourceTree = "<group>"; };
 		86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTeamLeaderPhoneView.m; sourceTree = "<group>"; };
 		86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetTeamLeaderPhoneView.xib; sourceTree = "<group>"; };
@@ -1513,6 +1536,8 @@
 				86F2DA891C7715550088B783 /* NetWorkHandler+setSpecialtyUserProductRatio.m */,
 				86F2DA911C7EDF6A0088B783 /* NetWorkHandler+queryUserTeamInfo.h */,
 				86F2DA921C7EDF6A0088B783 /* NetWorkHandler+queryUserTeamInfo.m */,
+				86F0142E1C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.h */,
+				86F0142F1C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.m */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -1969,6 +1994,16 @@
 				8625AFDD1C37713000312B98 /* PotentialPlayersVC.m */,
 				86A26E621C44DFEF0073FFFC /* DetailAccountVC.h */,
 				86A26E631C44DFEF0073FFFC /* DetailAccountVC.m */,
+				86F2DA9F1C858BC40088B783 /* BillDetailInfoVC.h */,
+				86F2DAA01C858BC40088B783 /* BillDetailInfoVC.m */,
+				86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */,
+				86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */,
+				86F014251C8682A000A3C68E /* BillDetailInfoWithdrawVC.h */,
+				86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */,
+				86F014281C8682E400A3C68E /* BillDetailInfoFromOrderVC.h */,
+				86F014291C8682E400A3C68E /* BillDetailInfoFromOrderVC.m */,
+				86F0142B1C86831800A3C68E /* BillDetailInfoFromLuckyVC.h */,
+				86F0142C1C86831800A3C68E /* BillDetailInfoFromLuckyVC.m */,
 				86A26F141C4B5E900073FFFC /* SalesStatisticsVC.h */,
 				86A26F151C4B5E900073FFFC /* SalesStatisticsVC.m */,
 				86A26F161C4B5E900073FFFC /* SalesStatisticsVC.xib */,
@@ -2167,6 +2202,9 @@
 				86F2DA9A1C7FE81D0088B783 /* ProductSettingTableViewCell.h */,
 				86F2DA9B1C7FE81D0088B783 /* ProductSettingTableViewCell.m */,
 				86F2DA9C1C7FE81D0088B783 /* ProductSettingTableViewCell.xib */,
+				86F2DAA21C8595C40088B783 /* BIllDetailTableViewCell.h */,
+				86F2DAA31C8595C40088B783 /* BIllDetailTableViewCell.m */,
+				86F2DAA41C8595C40088B783 /* BIllDetailTableViewCell.xib */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -2508,6 +2546,7 @@
 				8625AF911C32761A00312B98 /* UserEditTableViewCell.xib in Resources */,
 				86C3BB181C228D6F00F98E80 /* blueArrow@2x.png in Resources */,
 				86C3BCCC1C2E999300F98E80 /* loginViewController.xib in Resources */,
+				86F2DAA61C8595C40088B783 /* BIllDetailTableViewCell.xib in Resources */,
 				86C3BBFB1C2C13A800F98E80 /* InsuranceInfoView.xib in Resources */,
 				86C3BBD01C2A602000F98E80 /* TagListViewController.xib in Resources */,
 				86F2DA9E1C7FE81D0088B783 /* ProductSettingTableViewCell.xib in Resources */,
@@ -2635,6 +2674,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86F2DAA11C858BC40088B783 /* BillDetailInfoVC.m in Sources */,
 				86A26EDF1C48F1E20073FFFC /* ModifyPhoneNumVC.m in Sources */,
 				8625AFC31C33FDB400312B98 /* GradientView.m in Sources */,
 				86A26EB31C47C18F0073FFFC /* PhotoBrowserScrollView.m in Sources */,
@@ -2659,6 +2699,7 @@
 				86C3BB4A1C24017E00F98E80 /* LeftImgButton.m in Sources */,
 				86C3BB881C279C8200F98E80 /* CustomerTableViewCell.m in Sources */,
 				8625AFD71C34F4DB00312B98 /* IncomeStatisticsVC.m in Sources */,
+				86F014301C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.m in Sources */,
 				86C3BC1F1C2CE1B700F98E80 /* CustomerFollowUpTableCell.m in Sources */,
 				86A505271C58D92D0032A901 /* LeftMargenButton.m in Sources */,
 				86A5047C1C4F27950032A901 /* QRCodeGenerator.m in Sources */,
@@ -2679,6 +2720,7 @@
 				86C3BBF91C2C133C00F98E80 /* InsuranceInfoView.m in Sources */,
 				8625B0241C3D0BF700312B98 /* NetWorkHandler+queryUserInfo.m in Sources */,
 				86A5049F1C4FA3670032A901 /* NetWorkHandler+queryForWechatUserPageList.m in Sources */,
+				86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */,
 				86A5050F1C5285EE0032A901 /* NJKWebViewProgress.m in Sources */,
 				86C3BB9B1C27F94800F98E80 /* CustomDetailHeaderView.m in Sources */,
 				8625AF891C3256E500312B98 /* GridView.m in Sources */,
@@ -2739,11 +2781,13 @@
 				86C3BCC01C2E933600F98E80 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				86A26ED11C47D6840073FFFC /* InsurCompanySelectTableViewCell.m in Sources */,
 				86C3BCC61C2E933600F98E80 /* IQUIView+IQKeyboardToolbar.m in Sources */,
+				86F0142D1C86831800A3C68E /* BillDetailInfoFromLuckyVC.m in Sources */,
 				8625B02A1C3D1F6100312B98 /* CarInfoModel.m in Sources */,
 				8654CD801C312CE100411C54 /* SBJsonStreamParser.m in Sources */,
 				86FC492A1C756ECA0031B435 /* SetTeamLeaderPhoneView.m in Sources */,
 				865065BD1C1EB1ED00429EAE /* UINavigationBar+Awesome.m in Sources */,
 				86A26E851C4528A40073FFFC /* NetWorkHandler+announcement.m in Sources */,
+				86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */,
 				86A26E881C452A5B0073FFFC /* AnnouncementModel.m in Sources */,
 				86C3BB2C1C22C42D00F98E80 /* AnimationButton.m in Sources */,
 				862CD3421C5C8CFE0056D2EA /* ProgressHUD.m in Sources */,
@@ -2775,6 +2819,7 @@
 				86C3BC3C1C2D73E100F98E80 /* MenuCell.m in Sources */,
 				86C3BB941C27E9A800F98E80 /* CustomerDetailVC.m in Sources */,
 				86A26F061C4A29CB0073FFFC /* NSArray+FPAdditions.m in Sources */,
+				86F0142A1C8682E400A3C68E /* BillDetailInfoFromOrderVC.m in Sources */,
 				8625B0061C3B802900312B98 /* CustomerInfoModel.m in Sources */,
 				86A504FE1C5258730032A901 /* OrderWebVC.m in Sources */,
 				86A504D81C51D0720032A901 /* BillInfoModel.m in Sources */,
@@ -2817,6 +2862,7 @@
 				8625B0361C3E351400312B98 /* VisitInfoModel.m in Sources */,
 				86C3BB131C228D6F00F98E80 /* MessageInterceptor.m in Sources */,
 				86A504E41C5216340032A901 /* RedPackInfoTips.m in Sources */,
+				86F2DAA51C8595C40088B783 /* BIllDetailTableViewCell.m in Sources */,
 				86F2DA8A1C7715550088B783 /* NetWorkHandler+setSpecialtyUserProductRatio.m in Sources */,
 				86A26E641C44DFEF0073FFFC /* DetailAccountVC.m in Sources */,
 				86A5048B1C4F517A0032A901 /* BackGroundView.m in Sources */,

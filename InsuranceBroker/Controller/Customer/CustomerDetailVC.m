@@ -231,12 +231,11 @@
 }
 
 //获取保单信息列表
-- (void) loadInsurPageList
+- (void) loadInsurPageList:(NSInteger) offset
 {
     if(self.data.carInfo == nil)
         return;
     
-    NSInteger offset = [self.data.insurArray count];
     NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
     NSMutableArray *rules = [[NSMutableArray alloc] init];
@@ -256,6 +255,9 @@
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             NSArray *array = [[content objectForKey:@"data"] objectForKey:@"rows"];
+            if(offset == 0){
+                [self.data.insurArray removeAllObjects];
+            }
             [self.data.insurArray addObjectsFromArray:[InsurInfoModel modelArrayFromArray:array]];
             self.data.insurTotal = [[[content objectForKey:@"data"] objectForKey:@"total"] integerValue];
             self.data.isLoadInsur = YES;
@@ -310,9 +312,10 @@
     sender.selected = YES;
     
     _policyListView.hidden = YES;
+    _insuranceView.btnAdd.hidden = NO;
+    [_insuranceView.btnAdd setTitle:@"立即添加" forState:UIControlStateNormal];
     _followUpView.hidden = YES;
     _insuranceDetailView.hidden = YES;
-    
     _insuranceView.hidden = YES;
     
     CGRect frame = self.lbFocusLine.frame;
@@ -338,12 +341,14 @@
             [self focusLineMovieTo:CGRectMake(frame.size.width * 2, frame.origin.y, ScreenWidth /3, 3)];
             _insuranceView.lbTitle.text = @"客户保单信息";
             _insuranceView.lbExplain.text = @"暂无保单信息";
-            _insuranceView.btnAdd.hidden = NO;
+            [_insuranceView.btnAdd setTitle:@"刷新" forState:UIControlStateNormal];
             _insuranceView.type = enumInsuranceInfoViewTypePolicy;
+            if(self.data.carInfo == nil)
+                _insuranceView.btnAdd.hidden = YES;
             _policyListView.hidden = NO;
             [self resetContetHeight:_policyListView];
             if(!self.data.isLoadInsur){
-                [self loadInsurPageList];
+                [self loadInsurPageList:0];
             }
         }
             break;
@@ -470,7 +475,8 @@
 - (void) NotifyToLoadMorePloicy:(BaseInsuranceInfo *)sender
 {
     if(sender == _policyListView){
-        [self loadInsurPageList];
+        NSInteger offset = [self.data.insurArray count];
+        [self loadInsurPageList:offset];
         
     }
 }
@@ -507,8 +513,15 @@
     }
     else if(type == enumInsuranceInfoViewTypeInsurance){
         [self addAutoInsuranceInfo];
+    }else{
+        [self loadInsurPageList:0];
     }
     
+}
+
+- (void) NotifyToRefresh:(BaseInsuranceInfo *)sender;//刷新保单列表
+{
+    [self loadInsurPageList:0];
 }
 
 - (void) addFollowUp

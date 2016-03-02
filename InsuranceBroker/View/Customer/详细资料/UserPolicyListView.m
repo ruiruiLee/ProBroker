@@ -23,7 +23,7 @@
         [self.tableview registerNib:[UINib nibWithNibName:@"PolicyInfoTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
         self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.lbTitle.text = @"客户保单信息";
-        self.btnEdit.hidden = YES;
+        [self.btnEdit setImage:ThemeImage(@"refresh") forState:UIControlStateNormal];
         
         footer = [[FooterView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
         self.tableview.tableFooterView = footer;
@@ -31,6 +31,13 @@
     }
     
     return self;
+}
+
+- (void) doEditButtonClicked:(UIButton *)sender
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToRefresh:)]){
+        [self.delegate NotifyToRefresh:self];
+    }
 }
 
 #pragma UITableViewDataSource UITableViewDelegate
