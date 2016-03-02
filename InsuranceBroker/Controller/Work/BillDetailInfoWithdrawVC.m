@@ -7,6 +7,7 @@
 //
 
 #import "BillDetailInfoWithdrawVC.h"
+#import "define.h"
 
 @implementation BillDetailInfoWithdrawVC
 
@@ -19,6 +20,12 @@
 {
     [self setDataForWithdraw];
     self.lbTotalAmount.text = [NSString stringWithFormat:@"%@",self.billInfo.billMoney];
+}
+
+- (void) viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    [self.headView setGradientColor:_COLOR(64, 183, 245) end:_COLOR(64, 149, 245)];
 }
 
 @end
