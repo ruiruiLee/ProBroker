@@ -302,6 +302,6 @@
         </view>
     </objects>
     <resources>
-        <image name="shadow" width="1" height="15"/>
+        <image name="shadow" width="1" height="1"/>
     </resources>
 </document>

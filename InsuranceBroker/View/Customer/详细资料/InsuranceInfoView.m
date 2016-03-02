@@ -99,10 +99,10 @@
 - (void) setType:(InsuranceInfoViewType)type
 {
     _type = type;
-    if(type == enumInsuranceInfoViewTypePolicy)
-        self.btnAdd.hidden = YES;
-    else
-        self.btnAdd.hidden = NO;
+//    if(type == enumInsuranceInfoViewTypePolicy)
+//        self.btnAdd.hidden = YES;
+//    else
+//        self.btnAdd.hidden = NO;
 }
 
 @end
