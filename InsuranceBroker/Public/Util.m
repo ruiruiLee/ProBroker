@@ -510,7 +510,8 @@
 + (NSString *) getDecimalStyle:(CGFloat) num
 {
     NSNumberFormatter *numFormatter = [[NSNumberFormatter alloc] init];
-    [numFormatter setNumberStyle:kCFNumberFormatterDecimalStyle];
+//    [numFormatter setNumberStyle:kCFNumberFormatterDecimalStyle];
+    [numFormatter setPositiveFormat:@"###,##0.00;"];
     return [numFormatter stringFromNumber:[NSNumber numberWithFloat:num]];
 }
 
