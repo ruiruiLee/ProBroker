@@ -97,7 +97,7 @@ static AppContext *context = nil;
     [dic setObject:[NSNumber numberWithBool:self.isHasNewPolicy] forKey:@"isHasNewPolicy"];
     [dic setObject:[NSNumber numberWithBool:self.isHasTradingMsg] forKey:@"isHasTradingMsg"];
     [dic setObject:[NSNumber numberWithBool:self.isHasIncentivePolicy] forKey:@"isHasIncentivePolicy"];
-    [dic setObject:[NSNumber numberWithInt:self.pushCustomerNum] forKey:@"pushCustomerNum"];
+    [dic setObject:[NSNumber numberWithInteger:self.pushCustomerNum] forKey:@"pushCustomerNum"];
     [dic setObject:[NSNumber numberWithBool:self.isNewMessage ] forKey:@"isNewMessage"];
     
     [dic writeToFile:file atomically:YES];
@@ -116,7 +116,7 @@ static AppContext *context = nil;
     [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isHasTradingMsg"];
     [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isHasIncentivePolicy"];
     [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isNewMessage"];
-    [dic setObject:[NSNumber numberWithInt:self.pushCustomerNum] forKey:@"pushCustomerNum"];
+    [dic setObject:[NSNumber numberWithInteger:self.pushCustomerNum] forKey:@"pushCustomerNum"];
     
     [dic writeToFile:file atomically:YES];
 }
