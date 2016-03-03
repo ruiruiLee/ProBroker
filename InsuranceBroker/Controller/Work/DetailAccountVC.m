@@ -23,7 +23,7 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"账单明细";
+    self.title = @"我的账单";
     
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 15)];
     self.pulltable.tableHeaderView = header;

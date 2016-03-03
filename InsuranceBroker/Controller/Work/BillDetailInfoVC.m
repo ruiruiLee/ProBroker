@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"我的账单";
+    self.title = @"账单详情";
     
     [self initHeaderView];
     self.tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
