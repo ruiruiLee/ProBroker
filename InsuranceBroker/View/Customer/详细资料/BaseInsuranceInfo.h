@@ -37,4 +37,8 @@
 
 - (void) doEditButtonClicked:(UIButton *)sender;
 
+- (void) startAnimation;
+
+- (void) endAnimation;
+
 @end

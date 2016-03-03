@@ -309,11 +309,12 @@
 {
     NSString *carOwnerName = self.tfName.text;
     NSString *carOwnerCard = self.tfCert.text;
-//        flag = [self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
-//        if(flag){
-//            [self.tfCert becomeFirstResponder];
-//            return;
-//        }
+    BOOL flag = [Util validateIdentityCard:carOwnerCard];//[self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
+    if(!flag){
+        [Util showAlertMessage:@"车主身份证号不正确"];
+        [self.tfCert becomeFirstResponder];
+        return;
+    }
     NSString *carRegTime = self.tfDate.text;
 //        flag = [self showMessage:@"登记日期不能为空" string:carRegTime];
 //        if(flag){
@@ -321,7 +322,7 @@
 //            return;
 //        }
     NSString *carEngineNo = self.tfMotorCode.text;
-    BOOL flag = [self showMessage:@"发动机号不能为空" string:carEngineNo];
+    flag = [self showMessage:@"发动机号不能为空" string:carEngineNo];
     if(flag){
         [self.tfMotorCode becomeFirstResponder];
         return;
@@ -374,8 +375,9 @@
         carInsurStatus1 = @"1";
         carInsurCompId1 = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).insuranceCompanyId;
     }
-    
+    [ProgressHUD show:nil];
     [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:travelCard1 carRegTime:carRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
+        [ProgressHUD dismiss];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             
@@ -419,9 +421,16 @@
 
 - (void) submitWithLicense:(Completion) completion
 {
-    [ProgressHUD show:nil];
     NSString *customerCarId = nil;
     NSString *customerId = self.customerId;
+    
+    NSString *carOwnerCard = self.tfCert.text;
+    BOOL flag = [Util validateIdentityCard:carOwnerCard];
+    if(!flag){
+        [Util showAlertMessage:@"车主身份证号不正确"];
+        [self.tfCert becomeFirstResponder];
+        return;
+    }
     
     NSString *carTradeStatus = @"0";
     NSString *carTradeTime = nil;
@@ -439,10 +448,10 @@
         carInsurStatus1 = @"1";
         carInsurCompId1 = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).insuranceCompanyId;
     }
-    
+    [ProgressHUD show:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSString *filePahe = [self fileupMothed];
-        [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:nil carShelfNo:nil carEngineNo:nil carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe carRegTime:nil newCarNoStatus:nil carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
+        [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:nil carShelfNo:nil carEngineNo:nil carOwnerName:nil carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe carRegTime:nil newCarNoStatus:nil carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
             [ProgressHUD dismiss];
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){

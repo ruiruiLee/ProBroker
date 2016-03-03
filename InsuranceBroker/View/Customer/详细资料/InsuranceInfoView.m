@@ -16,6 +16,7 @@
 @synthesize lbSepLine;
 @synthesize lbTitle;
 @synthesize btnAdd;
+@synthesize indicatorView;
 
 //+ (id) loadFromNib
 //{
@@ -64,6 +65,12 @@
     btnAdd.clipsToBounds = YES;
     [btnAdd addTarget:self action:@selector(handleAddButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+    indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    indicatorView.hidesWhenStopped = YES;
+    indicatorView.translatesAutoresizingMaskIntoConstraints = NO;
+    [btnAdd addSubview:indicatorView];
+    indicatorView.hidden = YES;
+    
     lbExplain = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x75, 0x75, 0x75)];
     [self addSubview:lbExplain];
     lbExplain.textAlignment = NSTextAlignmentCenter;
@@ -75,13 +82,15 @@
     [self addSubview:lbSepLine];
     lbSepLine.backgroundColor = _COLOR(0xe6, 0xe6, 0xe6);
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(addCarInfo, btnAdd, lbExplain, lbSepLine, lbTitle);
+    NSDictionary *views = NSDictionaryOfVariableBindings(addCarInfo, btnAdd, lbExplain, lbSepLine, lbTitle, indicatorView);
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]-20-|" options:0 metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbSepLine]-20-|" options:0 metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbExplain]-20-|" options:0 metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90-[btnAdd]-90-|" options:0 metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[lbTitle]-10-[lbSepLine(1)]-40-[lbExplain]-20-[btnAdd(40)]->=10-|" options:0 metrics:nil views:views]];
+    [btnAdd addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[indicatorView(20)]->=0-|" options:0 metrics:nil views:views]];
+    [btnAdd addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[indicatorView(20)]-10-|" options:0 metrics:nil views:views]];
 }
 
 - (void) awakeFromNib
@@ -107,6 +116,16 @@
 //        self.btnAdd.hidden = YES;
 //    else
 //        self.btnAdd.hidden = NO;
+}
+
+- (void) startAnimation
+{
+    [indicatorView startAnimating];
+}
+
+- (void) endAnimation
+{
+    [indicatorView stopAnimating];
 }
 
 @end
