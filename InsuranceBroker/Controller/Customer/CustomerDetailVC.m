@@ -40,6 +40,7 @@
 
 - (void) refreshOrderList:(NSNotification *) notify
 {
+    [self startRefresh];
     [self loadInsurPageList:0];
 }
 
@@ -258,6 +259,8 @@
                                                       sord:@"desc"
                                                    filters:filters
                                                 Completion:^(int code, id content) {
+        [_policyListView endAnimation];
+        [_insuranceView endAnimation];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             NSArray *array = [[content objectForKey:@"data"] objectForKey:@"rows"];
@@ -340,6 +343,7 @@
             self.scrollOffsetConstraint.constant = 0;
             [self resetContetHeight:_insuranceDetailView];
             btnQuote.hidden = NO;
+            _insuranceView.indicatorView.hidden = YES;
         }
             break;
         case 102:
@@ -348,12 +352,18 @@
             _insuranceView.lbTitle.text = @"客户保单信息";
             _insuranceView.lbExplain.text = @"暂无保单信息";
             [_insuranceView.btnAdd setTitle:@"刷新" forState:UIControlStateNormal];
+            if(_insuranceView.indicatorView.isAnimating){
+                _insuranceView.indicatorView.hidden = NO;
+            }else{
+                _insuranceView.indicatorView.hidden = YES;
+            }
             _insuranceView.type = enumInsuranceInfoViewTypePolicy;
             if(self.data.carInfo == nil)
                 _insuranceView.btnAdd.hidden = YES;
             _policyListView.hidden = NO;
             [self resetContetHeight:_policyListView];
             if(!self.data.isLoadInsur){
+                [self startRefresh];
                 [self loadInsurPageList:0];
             }
         }
@@ -367,6 +377,7 @@
             _followUpView.hidden = NO;
             _insuranceView.type = enumInsuranceInfoViewTypeFollowUp;
             [self resetContetHeight:_followUpView];
+            _insuranceView.indicatorView.hidden = YES;
             
             if(!self.data.isLoadVisit){
                 [self loadVisitList];
@@ -534,13 +545,21 @@
     else if(type == enumInsuranceInfoViewTypeInsurance){
         [self addAutoInsuranceInfo];
     }else{
+        [self startRefresh];
         [self loadInsurPageList:0];
     }
     
 }
 
+- (void) startRefresh
+{
+    _insuranceView.indicatorView.hidden = NO;
+    [_insuranceView startAnimation];
+}
+
 - (void) NotifyToRefresh:(BaseInsuranceInfo *)sender;//刷新保单列表
 {
+    [self startRefresh];
     [self loadInsurPageList:0];
 }
 

@@ -110,11 +110,24 @@
     }];
 }
 
+- (NSMutableAttributedString *)getAttbuteString:(NSString *)string sub:(NSString *) sub
+{
+    NSMutableAttributedString *attstr = [[NSMutableAttributedString alloc] initWithString:string];
+    NSRange range = [string rangeOfString:sub];
+    
+    [attstr addAttribute:NSFontAttributeName value:_FONT(18) range:range];
+    [attstr addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0xee, 0x00) range:range];
+    //    [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:NSMakeRange([string length] - 3, 3)];
+    
+    return attstr;
+}
+
 - (void) initData
 {
     self.lbEarningsCount.text = [NSString stringWithFormat:@"累计收益：%@元", [Util getDecimalStyle:self.statmodel.totalIn]];
     self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.monthTotalIn]];
-    self.lbEarnings.text = [NSString stringWithFormat:@"你的收益已打败了%d%@的经纪人", (int)self.statmodel.monthTotalRatio, @"%"];
+//    self.lbEarnings.text = [NSString stringWithFormat:@"你的收益已打败了%d%@的经纪人", (int)self.statmodel.monthTotalRatio, @"%"];
+    self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的收益已打败了 %d%@ 的经纪人", (int)self.statmodel.monthTotalRatio, @"%"] sub:[NSString stringWithFormat:@"%d%@", (int)self.statmodel.monthTotalRatio, @"%"]];
     
     [self initDataWithArray:self.curveArray];
     

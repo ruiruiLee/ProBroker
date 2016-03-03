@@ -49,7 +49,7 @@
 + (NSString *) getAddrWithProvience:(NSString *)province city:(NSString *)city;
 
 //身份证号
-+ (BOOL) validateIdentityCard: (NSString *)identityCard;
++ (BOOL) validateIdentityCard: (NSString *)value;
 
 //昵称
 + (BOOL) validateNickname:(NSString *)nickname;

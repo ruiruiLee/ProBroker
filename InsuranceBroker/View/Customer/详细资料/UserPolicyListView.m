@@ -37,6 +37,7 @@
 - (void) doEditButtonClicked:(UIButton *)sender
 {
     if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToRefresh:)]){
+        [self startAnimation];
         [self.delegate NotifyToRefresh:self];
     }
 }
