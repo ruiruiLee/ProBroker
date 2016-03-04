@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="466" height="137"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="466" height="137"/>
+                <rect key="frame" x="0.0" y="0.0" width="466" height="136.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3i-Dk-REq">
@@ -44,6 +44,9 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DT7-Fl-oy1">
                         <rect key="frame" x="154" y="36" width="118" height="21"/>
                         <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" id="tm8-Ho-OBk"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -55,7 +58,7 @@
                         <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAx-1E-3t6">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAx-1E-3t6">
                         <rect key="frame" x="349" y="36" width="109" height="21"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -69,7 +72,7 @@
                     <constraint firstItem="H3i-Dk-REq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="19E-VT-8el"/>
                     <constraint firstItem="mBd-r5-TdG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="1E9-p6-8ap"/>
                     <constraint firstItem="hfl-CL-b7o" firstAttribute="leading" secondItem="DT7-Fl-oy1" secondAttribute="leading" id="CWO-A3-7ZS"/>
-                    <constraint firstItem="qAx-1E-3t6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DT7-Fl-oy1" secondAttribute="trailing" constant="20" id="Ejj-pQ-zMJ"/>
+                    <constraint firstItem="qAx-1E-3t6" firstAttribute="leading" secondItem="DT7-Fl-oy1" secondAttribute="trailing" id="Ejj-pQ-zMJ"/>
                     <constraint firstItem="mBd-r5-TdG" firstAttribute="top" secondItem="H3i-Dk-REq" secondAttribute="top" id="KTD-m2-jLK"/>
                     <constraint firstItem="DT7-Fl-oy1" firstAttribute="leading" secondItem="mBd-r5-TdG" secondAttribute="trailing" constant="6" id="ME0-aP-JX7"/>
                     <constraint firstAttribute="trailingMargin" secondItem="hfl-CL-b7o" secondAttribute="trailing" id="MMJ-rf-2h6"/>
