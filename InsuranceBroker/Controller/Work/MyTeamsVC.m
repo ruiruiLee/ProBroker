@@ -123,7 +123,7 @@
     [rules addObject:[self getRulesByField:@"parentUserId" op:@"eq" data:self.userid]];
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     
-    [NetWorkHandler requestUserQueryForPageList:page limit:LIMIT sord:@"desc" sidx:@"U_UserDataStatistics.orderTotalSuccessNums" filters:filters Completion:^(int code, id content) {
+    [NetWorkHandler requestUserQueryForPageList:page limit:LIMIT sord:@"desc" sidx:@"U_UserDataStatisticsNow.nowMonthOrderSuccessNums" filters:filters Completion:^(int code, id content) {
         [self refreshTable];
         [self loadMoreDataToTable];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];

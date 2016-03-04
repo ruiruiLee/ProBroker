@@ -230,6 +230,24 @@
     [self showMessageView:array title:@"" body:@""];
 }
 
+- (IBAction) doBtnIncomeStatistics:(id)sender
+{
+    IncomeStatisticsVC *vc = [IBUIFactory CreateIncomeStatisticsViewController];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.userId = self.userId;
+    vc.title = [NSString stringWithFormat:@"%@的收益统计", self.userinfo.nickname];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)doBtnSaleStatistics:(id)sender
+{
+    SalesStatisticsVC *vc = [IBUIFactory CreateSalesStatisticsViewController];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.userId = self.userId;
+    vc.title = [NSString stringWithFormat:@"%@的销售统计", self.userinfo.nickname];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void) doBtnModifyRatio:(UIButton *)sender
 {
     

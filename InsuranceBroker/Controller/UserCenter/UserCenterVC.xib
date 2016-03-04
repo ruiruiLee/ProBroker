@@ -34,7 +34,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsy-DC-aPN">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="540"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="490"/>
                             <subviews>
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LXV-Wz-yex" customClass="GradientView">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="227"/>
@@ -238,7 +238,7 @@
                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QFG-Ug-yu1">
                                             <rect key="frame" x="0.0" y="0.0" width="296" height="89"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="上月完成（单）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPA-Y3-WkX">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="本月完成（单）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPA-Y3-WkX">
                                                     <rect key="frame" x="23" y="8" width="135" height="21"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -292,7 +292,7 @@
                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d7E-rh-rXJ">
                                             <rect key="frame" x="310" y="0.0" width="290" height="89"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="上月收益（元）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCo-up-LQN">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="本月收益（元）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCo-up-LQN">
                                                     <rect key="frame" x="16" y="8" width="120" height="21"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -356,7 +356,7 @@
                                         <constraint firstItem="QFG-Ug-yu1" firstAttribute="top" secondItem="71g-TU-snt" secondAttribute="top" id="quu-RM-aYb"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rhh-WN-Crh">
+                                <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rhh-WN-Crh">
                                     <rect key="frame" x="0.0" y="222" width="600" height="46"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7op-Cv-LvE">
@@ -367,7 +367,7 @@
                                                 <constraint firstAttribute="height" constant="1" id="sEv-0N-mkU"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="本月已完成订单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Drc-U3-BZs">
@@ -397,7 +397,7 @@
                                     <constraints>
                                         <constraint firstItem="7op-Cv-LvE" firstAttribute="leading" secondItem="Rhh-WN-Crh" secondAttribute="leading" id="8pD-Dj-aQm"/>
                                         <constraint firstItem="Drc-U3-BZs" firstAttribute="centerY" secondItem="Rhh-WN-Crh" secondAttribute="centerY" id="Ahe-f1-y1Z"/>
-                                        <constraint firstAttribute="height" constant="50" id="Ccb-bS-4eH"/>
+                                        <constraint firstAttribute="height" id="Ccb-bS-4eH"/>
                                         <constraint firstAttribute="bottom" secondItem="7op-Cv-LvE" secondAttribute="bottom" id="FQr-m6-dRM"/>
                                         <constraint firstItem="Ga3-rR-J0s" firstAttribute="baseline" secondItem="3xT-fT-YIK" secondAttribute="baseline" id="MQJ-d9-JwX"/>
                                         <constraint firstItem="Ga3-rR-J0s" firstAttribute="centerY" secondItem="Drc-U3-BZs" secondAttribute="centerY" id="fQI-Nb-a1s"/>
@@ -419,7 +419,7 @@
                                 <constraint firstItem="LXV-Wz-yex" firstAttribute="leading" secondItem="nsy-DC-aPN" secondAttribute="leading" id="BZe-6u-ETs"/>
                                 <constraint firstAttribute="trailing" secondItem="yhp-dP-tUo" secondAttribute="trailing" id="BnA-Vj-DpW"/>
                                 <constraint firstItem="CzG-1L-pOk" firstAttribute="top" secondItem="LXV-Wz-yex" secondAttribute="bottom" constant="50" id="C4x-cA-V6Z"/>
-                                <constraint firstItem="71g-TU-snt" firstAttribute="top" secondItem="CzG-1L-pOk" secondAttribute="bottom" constant="50" id="GBt-Ql-6fe"/>
+                                <constraint firstItem="71g-TU-snt" firstAttribute="top" secondItem="CzG-1L-pOk" secondAttribute="bottom" id="GBt-Ql-6fe"/>
                                 <constraint firstItem="CzG-1L-pOk" firstAttribute="leading" secondItem="nsy-DC-aPN" secondAttribute="leading" id="GY4-Kc-46D"/>
                                 <constraint firstItem="8Ao-1E-9ZF" firstAttribute="top" secondItem="nsy-DC-aPN" secondAttribute="top" constant="225" id="ImP-6b-Zsx"/>
                                 <constraint firstAttribute="bottom" secondItem="Nf6-Zs-G3O" secondAttribute="bottom" constant="15" id="Kep-xV-0cO"/>
@@ -438,7 +438,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SBj-2S-cF3">
-                            <rect key="frame" x="0.0" y="540" width="600" height="200"/>
+                            <rect key="frame" x="0.0" y="490" width="600" height="200"/>
                             <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>

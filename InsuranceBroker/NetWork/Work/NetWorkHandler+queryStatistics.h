@@ -11,5 +11,6 @@
 @interface NetWorkHandler (queryStatistics)
 
 + (void) requestToQueryStatistics:(NSString *)userId Completion:(Completion)completion;
++ (void) requestToQueryStatistics:(NSString *)userId staticsType:(NSString *) staticsType Completion:(Completion)completion;
 
 @end

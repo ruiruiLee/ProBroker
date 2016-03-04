@@ -192,7 +192,7 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
         _lbTitle.textColor = _COLOR(0x75, 0x75, 0x75);
         _lbTitle.font = _FONT(12);
         _lbTitle.textAlignment = NSTextAlignmentCenter;
-        _lbTitle.text = @"上月收益";
+        _lbTitle.text = @"本月收益";
 
         _selectedSliceIndex = -1;
         _animations = [[NSMutableArray alloc] init];

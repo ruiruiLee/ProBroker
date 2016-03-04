@@ -1,16 +1,16 @@
 //
-//  CurveModel.h
+//  SalesModel.h
 //  InsuranceBroker
 //
-//  Created by LiuZach on 16/1/22.
+//  Created by LiuZach on 16/3/4.
 //  Copyright © 2016年 LiuZach. All rights reserved.
 //
 
 #import "BaseModel.h"
 
-@interface CurveModel : BaseModel
+@interface SalesModel : BaseModel
 
 @property (nonatomic, strong) NSString *month;
-@property (nonatomic, assign) CGFloat totalIn;
+@property (nonatomic, assign) NSInteger totalIn;
 
 @end

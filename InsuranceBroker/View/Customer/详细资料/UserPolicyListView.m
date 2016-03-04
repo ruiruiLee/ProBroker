@@ -180,7 +180,7 @@
     }
     else if (orderOfferStatus == 8){
         title = @"交易成功";
-        image = ThemeImage(@"Order_done");
+        image = ThemeImage(@"order_done");
     }
     else if (orderOfferStatus == 9){
         title = @"保单过期";

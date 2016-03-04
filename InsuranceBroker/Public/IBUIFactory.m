@@ -175,4 +175,11 @@
     UserDetailVC *customer = [[UserDetailVC alloc] initWithNibName:@"UserDetailVC" bundle:nil];
     return customer;
 }
+
+//下线的
++ (TeamMateIncomeStatisticsVC *) CreateTeamMateIncomeStatisticsVC
+{
+    TeamMateIncomeStatisticsVC *income = [[TeamMateIncomeStatisticsVC alloc] initWithNibName:@"TeamMateIncomeStatisticsVC" bundle:nil];
+    return income;
+}
 @end

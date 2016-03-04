@@ -31,6 +31,7 @@
 #import "NewCustomerVC.h"
 #import "OrderDetailWebVC.h"
 #import "UserDetailVC.h"
+#import "TeamMateIncomeStatisticsVC.h"
 
 @interface IBUIFactory : NSObject
 
@@ -81,5 +82,7 @@
 + (OrderDetailWebVC *) CreateOrderDetailWebVC;
 
 + (UserDetailVC *) CreateUserDetailVC;
+
++ (TeamMateIncomeStatisticsVC *) CreateTeamMateIncomeStatisticsVC;
 
 @end

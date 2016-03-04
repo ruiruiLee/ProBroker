@@ -189,6 +189,7 @@
     
     self.cardVerifiyMsg = [dic objectForKey:@"cardVerifiyMsg"];
     self.nowMonthOrderSuccessNums = [[dic objectForKey:@"nowMonthOrderSuccessNums"] integerValue];
+    self.nowMonthOrderSuccessEarn = [[dic objectForKey:@"nowMonthOrderSuccessEarn"] floatValue];
 }
 
 - (void) queryUserInfo

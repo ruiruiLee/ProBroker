@@ -65,6 +65,7 @@
 
 @property (nonatomic, strong) NSString *cardVerifiyMsg;//认证失败信息
 @property (nonatomic, assign) NSInteger nowMonthOrderSuccessNums;
+@property (nonatomic, assign) CGFloat nowMonthOrderSuccessEarn;
 
 + (UserInfoModel *) shareUserInfoModel;
 - (void) setContentWithDictionary:(NSDictionary *) dic;//isLogin单独修改

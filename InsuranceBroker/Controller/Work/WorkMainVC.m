@@ -219,6 +219,7 @@
             {
                 IncomeStatisticsVC *vc = [IBUIFactory CreateIncomeStatisticsViewController];
                 vc.hidesBottomBarWhenPushed = YES;
+                vc.userId = [UserInfoModel shareUserInfoModel].userId;
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
@@ -226,6 +227,7 @@
             {
                 SalesStatisticsVC *vc = [IBUIFactory CreateSalesStatisticsViewController];
                 vc.hidesBottomBarWhenPushed = YES;
+                vc.userId = [UserInfoModel shareUserInfoModel].userId;
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
