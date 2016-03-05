@@ -279,9 +279,9 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-    //[self performSelector:@selector(openlocation) withObject:nil afterDelay:1.0f];
+    [self performSelector:@selector(openlocation) withObject:nil afterDelay:1.0f];
     [[UserInfoModel shareUserInfoModel] queryUserInfo];
-      [LcationInstance startUpdateLocation];
+
 }
 - (void)openlocation{
     [LcationInstance startUpdateLocation];
