@@ -257,7 +257,7 @@
 
 - (NSAttributedString *) getOrderDetailString:(NSInteger) orderCount
 {
-    NSString *string = [NSString stringWithFormat:@"本月已完成 %d 单", orderCount];
+    NSString *string = [NSString stringWithFormat:@"本月销量 %d 单", orderCount];
     NSMutableAttributedString *mstring = [[NSMutableAttributedString alloc] initWithString:string];
     
     NSRange range = [string rangeOfString:[NSString stringWithFormat:@"%d", orderCount]];
