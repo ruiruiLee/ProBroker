@@ -152,6 +152,7 @@
             self.tfAmount.text = @"";
             [self.tfAmount resignFirstResponder];
             [self.tableview reloadData];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }
