@@ -122,7 +122,7 @@
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     
     if(self.shareImgArray == nil || [self.shareImgArray count] == 0)
-        self.shareImgArray = @[@"icon.png"];
+        self.shareImgArray = @[Share_Icon];
     
     
     if (self.shareImgArray) {
