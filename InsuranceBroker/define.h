@@ -20,19 +20,20 @@
 #import "AppContext.h"
 #import "LocationManagerObserver.h"
 
+#define AVOSCloudAppID  @"0PyuKjNlBECHhEf3HxDB7NYX-gzGzoHsz"
+#define AVOSCloudAppKey @"mOmncwQfyeroy2jcDj0ch1Q1"
+
 /*
  服务器地址信息
  */
-#define AVOSCloudAppID  @"0PyuKjNlBECHhEf3HxDB7NYX-gzGzoHsz"
-#define AVOSCloudAppKey @"mOmncwQfyeroy2jcDj0ch1Q1"
 //#define SERVER_ADDRESS @"http://dev.ibroker.avosapps.com"
-#define SERVER_ADDRESS @"http://dev.ibroker.leanapp.cn"
-#define Base_Uri @"http://118.123.249.87:8783/UKB.AgentNew"
+//#define SERVER_ADDRESS @"http://dev.ibroker.leanapp.cn"
+//#define Base_Uri @"http://118.123.249.87:8783/UKB.AgentNew"
 //#define Base_Uri @"http://shuaidehen.imwork.net/UKB.AgentNew/"
 
 //正式服地址
-//#define SERVER_ADDRESS @"http://ibroker.leanapp.cn"
-//#define Base_Uri @"http://broker.ukuaibao.com/UKB.AgentNew"
+#define SERVER_ADDRESS @"http://ibroker.leanapp.cn"
+#define Base_Uri @"http://broker.ukuaibao.com/"
 
 //location
 #define LcationInstance [LocationManagerObserver sharedInstance]
