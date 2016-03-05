@@ -105,7 +105,7 @@
     self.tfAdd.delegate = self;
     
     self.tfTIme.text = [Util getTimeString:[NSDate date]];
-    self.tfAdd.text = @"请填写跟进记录内容请填写跟进记录内容";//LcationInstance.currentDetailAdrress;
+    self.tfAdd.text = LcationInstance.currentDetailAdrress;
     
     [self textViewDidChange:self.tfAdd];
     
