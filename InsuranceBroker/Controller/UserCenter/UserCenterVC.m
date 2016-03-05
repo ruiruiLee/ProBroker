@@ -48,7 +48,7 @@
     self.lbTeamTotal.textColor = Subhead_Color;
     
     self.headHConstraint.constant = ScreenWidth;
-    self.footVConstraint.constant = SCREEN_HEIGHT - 525 - 44 + 1;
+    self.footVConstraint.constant = SCREEN_HEIGHT - 525 - 44 + 1 + 50;
     
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     AppContext *context = [AppContext sharedAppContext];

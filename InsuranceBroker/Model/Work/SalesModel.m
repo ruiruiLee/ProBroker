@@ -27,7 +27,8 @@
     SalesModel *model = [[SalesModel alloc] init];
     
     model.month = [dictionary objectForKey:@"month"];
-    model.totalIn = [[dictionary objectForKey:@"totalIn"] integerValue];
+//    model.totalIn = [[dictionary objectForKey:@"totalIn"] integerValue];
+    model.totalInNums = [[dictionary objectForKey:@"totalInNums"] integerValue];
     
     return model;
 }

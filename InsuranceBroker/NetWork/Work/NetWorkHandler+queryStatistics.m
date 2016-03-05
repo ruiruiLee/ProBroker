@@ -27,7 +27,7 @@
     
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:pramas value:userId key:@"userId"];
-    [Util setValueForKeyWithDic:pramas value:staticsType key:@"staticsType"];
+    [Util setValueForKeyWithDic:pramas value:staticsType key:@"statisticsType"];
     
     [handle postWithMethod:@"/web/statistics/queryStatistics.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }

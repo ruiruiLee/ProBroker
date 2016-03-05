@@ -60,8 +60,8 @@
 
 - (void) initData
 {
-    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计销量：%d单", self.statmodel.totalIn];
-    self.lbIncome.text = [NSString stringWithFormat:@"%d", self.statmodel.monthTotalIn];
+    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计销量：%d单", self.statmodel.totalInNums];
+    self.lbIncome.text = [NSString stringWithFormat:@"%d", self.statmodel.monthTotalInNums];
     if([[UserInfoModel shareUserInfoModel].userId isEqualToString:self.userId])
         self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的销量已打败了 %d%@ 的经纪人", self.statmodel.monthTotalRatio, @"%"] sub:[NSString stringWithFormat:@"%d%@", self.statmodel.monthTotalRatio, @"%"]];
     else
@@ -75,7 +75,7 @@
     CGFloat max = 0;
     for (int i = 0; i < [array count]; i++) {
         SalesModel *model = [array objectAtIndex:i];
-        int o = (int)model.totalIn;
+        int o = (int)model.totalInNums;
         if(o > max)
             max = o;
     }
@@ -117,7 +117,7 @@
         for(int i = 0; i < [array count]; i++){
             SalesModel *model = [array objectAtIndex:i];
             [arr addObject:@(j)];
-            NSString *lp = [NSString stringWithFormat:@"%d", (int)model.totalIn];
+            NSString *lp = [NSString stringWithFormat:@"%d", (int)model.totalInNums];
             [arr2 addObject:lp];
             [arr3 addObject:[NSString stringWithFormat:@"%@月", model.month]];
             
