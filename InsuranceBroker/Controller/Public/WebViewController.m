@@ -25,7 +25,7 @@
     if(self){
         self.type = enumShareTypeNo;
         self.shareType = enumNeedInitShareInfoNo;
-        self.shareImgArray = @[@"icon.png"];
+        self.shareImgArray = @[@"http://ac-0PyuKjNl.clouddn.com/98a1afd0785edea3b252.png"];
     }
     
     return self;
@@ -231,7 +231,7 @@
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     
     if(self.shareImgArray == nil || [self.shareImgArray count] == 0)
-        self.shareImgArray = @[@"icon.png"];
+        self.shareImgArray = @[@"http://ac-0PyuKjNl.clouddn.com/98a1afd0785edea3b252.png"];
         
     
     if (self.shareImgArray) {
