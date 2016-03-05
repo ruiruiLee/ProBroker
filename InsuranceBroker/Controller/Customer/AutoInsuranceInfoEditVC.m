@@ -154,6 +154,12 @@
     self.tfName.delegate = self;
     self.tfNo.delegate = self;
     
+    self.tfMotorCode.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.tfIdenCode.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.tfModel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.tfNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.tfCert.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    
     _lbProvience = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 16, 36)];
     _lbProvience.backgroundColor = [UIColor clearColor];
     _lbProvience.font = _FONT(15);
@@ -347,11 +353,17 @@
         newCarNoStatus = @"0";
     }
     else{
-        if(carNo == nil || [carNo length] != 7)
-        {
+//        if(carNo == nil || [carNo length] != 7)
+//        {
+//            [Util showAlertMessage:@"车牌号不正确"];
+//            [_tfNo becomeFirstResponder];
+//            return;
+//        }
+        if(![Util validateCarNo:carNo]){
             [Util showAlertMessage:@"车牌号不正确"];
             [_tfNo becomeFirstResponder];
             return;
+
         }
     }
     
@@ -421,7 +433,7 @@
 
 - (void) submitWithLicense:(Completion) completion
 {
-    NSString *customerCarId = nil;
+    NSString *customerCarId = self.customerModel.carInfo.customerCarId;
     NSString *customerId = self.customerId;
     
     NSString *carOwnerCard = self.tfCert.text;
@@ -431,6 +443,49 @@
         [self.tfCert becomeFirstResponder];
         return;
     }
+    
+    NSString *carOwnerName = self.tfName.text;
+
+    NSString *carRegTime = self.tfDate.text;
+//        flag = [self showMessage:@"登记日期不能为空" string:carRegTime];
+//        if(flag){
+//            [self.tfDate becomeFirstResponder];
+//            return;
+//        }
+    NSString *carEngineNo = self.tfMotorCode.text;
+    flag = [self showMessage:@"发动机号不能为空" string:carEngineNo];
+    if(flag){
+        [self.tfMotorCode becomeFirstResponder];
+        return;
+    }
+    NSString *carShelfNo = self.tfIdenCode.text;
+    flag = [self showMessage:@"车辆识别代号不能为空" string:carShelfNo];
+    if(flag){
+        [self.tfIdenCode becomeFirstResponder];
+        return;
+    }
+    NSString *carTypeNo = self.tfModel.text;
+    flag = [self showMessage:@"品牌型号不能为空" string:carTypeNo];
+    if(flag){
+        [self.tfModel becomeFirstResponder];
+        return;
+    }
+    NSString *carNo = [self getCarCertString];//self.tfNo.text;
+    
+    NSString *newCarNoStatus = @"1";
+    if(self.btnNoNo.selected){
+        carNo = nil;
+        newCarNoStatus = @"0";
+    }
+    else{
+        if(![Util validateCarNo:carNo]){
+            [Util showAlertMessage:@"车牌号不正确"];
+            [_tfNo becomeFirstResponder];
+            return;
+            
+        }
+    }
+
     
     NSString *carTradeStatus = @"0";
     NSString *carTradeTime = nil;
@@ -451,7 +506,8 @@
     [ProgressHUD show:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSString *filePahe = [self fileupMothed];
-        [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:nil carShelfNo:nil carEngineNo:nil carOwnerName:nil carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe carRegTime:nil newCarNoStatus:nil carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
+        
+        [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe carRegTime:carRegTime newCarNoStatus:nil carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
             [ProgressHUD dismiss];
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
@@ -462,6 +518,13 @@
                 }
                 model.customerCarId = [content objectForKey:@"data"];
                 model.customerId = customerId;
+                model.carOwnerName = carOwnerName;
+                model.carOwnerCard = carOwnerCard;
+                model.carRegTime = _signDate;
+                model.carEngineNo = carEngineNo;
+                model.carShelfNo = carShelfNo;
+                model.carTypeNo = carTypeNo;
+                model.carNo = carNo;
 
                 if(completion){
                     completion(code, content);
@@ -617,6 +680,7 @@
         isCertModify = YES;
         self.imgLicense.image = image;
         [self.btnReSubmit setTitle:@"重新上传" forState:UIControlStateNormal];
+        [self isModify];
     }];
     
 }

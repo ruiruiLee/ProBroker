@@ -59,6 +59,7 @@
             _urlPath = [[content objectForKey:@"data"] objectForKey:@"url"];
             self.shareContent = [[content objectForKey:@"data"] objectForKey:@"content"];
             self.shareTitle = [[content objectForKey:@"data"] objectForKey:@"title"];
+            self.phone = [[content objectForKey:@"data"] objectForKey:@"phone"];
             if([[content objectForKey:@"data"] objectForKey:@"imgUrl"])
                 self.shareImgArray = [NSArray arrayWithObject:[[content objectForKey:@"data"] objectForKey:@"imgUrl"]];
             if(tagNum >= 0)
@@ -131,8 +132,8 @@
             SBJsonParser *_parser = [[SBJsonParser alloc] init];
             NSDictionary *dic = [_parser objectWithString:jsonstr];
             NSArray *array = nil;
-            if([dic objectForKey:@"agentPhone"])
-                array = [NSArray arrayWithObject:[dic objectForKey:@"agentPhone"]];
+            if(self.phone)
+                array = [NSArray arrayWithObject:self.phone];
             NSString *content = [dic objectForKey:@"sms"];
             if(content == nil)
                 content = @"";
