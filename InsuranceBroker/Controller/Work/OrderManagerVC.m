@@ -173,7 +173,7 @@
     cell.lbContent.text = model.planTypeName;//[Util getStringByPlanType:model.planType];
     [cell.phoneNum setTitle:model.customerPhone forState:UIControlStateNormal];
     cell.lbStatus.attributedText = [self getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg];
-    [self setPolicyStatusWithCell:cell orderOfferStatus:model.orderOfferStatus orderOfferStatusStr:model.orderOfferStatusStr];
+    [self setPolicyStatusWithCell:cell orderOfferStatus:model.orderOfferStatus orderOfferStatusStr:model.orderOfferStatusStr orderOfferPrintStatus:model.orderOfferPrintStatus];
     [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];
     
     return cell;
@@ -328,7 +328,7 @@
     [self.pulltable reloadData];
 }
 
-- (void) setPolicyStatusWithCell:(OrderManagerTableViewCell *) cell orderOfferStatus:(NSInteger) orderOfferStatus orderOfferStatusStr:(NSString *) orderOfferStatusStr
+- (void) setPolicyStatusWithCell:(OrderManagerTableViewCell *) cell orderOfferStatus:(NSInteger) orderOfferStatus orderOfferStatusStr:(NSString *) orderOfferStatusStr orderOfferPrintStatus:(NSInteger) orderOfferPrintStatus
 {
     LeftImgButton *btn = cell.btnStatus;
     NSString *title = @"";
@@ -346,16 +346,26 @@
         image = ThemeImage(@"price_done");
     }
     else if (orderOfferStatus == 4){
-        title = @"出单配送";
-        image = ThemeImage(@"deliver");
+        if(orderOfferPrintStatus == 2){
+            title = @"出单配送";
+            image = ThemeImage(@"deliver");
+        }else{
+            title = @"等待出单";
+            image = ThemeImage(@"Issuing");
+        }
     }
     else if (orderOfferStatus == 5){
         title = @"出单配送";
         image = ThemeImage(@"deliver");
     }
     else if (orderOfferStatus == 6){
-        title = @"出单配送";
-        image = ThemeImage(@"deliver");
+        if(orderOfferPrintStatus == 2){
+            title = @"出单配送";
+            image = ThemeImage(@"deliver");
+        }else{
+            title = @"等待出单";
+            image = ThemeImage(@"Issuing");
+        }
     }
     else if (orderOfferStatus == 7){
         title = @"付款失败";
