@@ -44,22 +44,34 @@
 
 - (void) handleLeftBarButtonClicked:(id)sender
 {
+    [self.tfAdd resignFirstResponder];
+    [self.tfStatus resignFirstResponder];
+    [self.tfTIme resignFirstResponder];
+    [self.tfview resignFirstResponder];
+    [self.tfWay resignFirstResponder];
+    
+    if(_datePicker){
+        [_datePicker remove];
+    }
+    
     BOOL flag = [self isHasModify];
     if(flag){
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"确认放弃保存填写资料吗？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
-        [alert show];
-       // [alert performSelector:@selector(show) withObject:nil afterDelay:0.2];
+        if([self getIOSVersion] < 8.0){
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"确认放弃保存填写资料吗？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+            [alert show];
+        }
+        else{
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"警告" message:@"确认放弃保存填写资料吗？" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+            [alertController addAction:okAction];
+            [alertController addAction:cancelAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
     }
     else{
-        [self.tfAdd resignFirstResponder];
-        [self.tfStatus resignFirstResponder];
-        [self.tfTIme resignFirstResponder];
-        [self.tfview resignFirstResponder];
-        [self.tfWay resignFirstResponder];
-        
-        if(_datePicker){
-            [_datePicker remove];
-        }
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -67,15 +79,6 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0){
-        [self.tfAdd resignFirstResponder];
-        [self.tfStatus resignFirstResponder];
-        [self.tfTIme resignFirstResponder];
-        [self.tfview resignFirstResponder];
-        [self.tfWay resignFirstResponder];
-        
-        if(_datePicker){
-            [_datePicker remove];
-        }
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -102,7 +105,7 @@
     self.tfAdd.delegate = self;
     
     self.tfTIme.text = [Util getTimeString:[NSDate date]];
-    self.tfAdd.text = LcationInstance.currentDetailAdrress;
+    self.tfAdd.text = @"请填写跟进记录内容请填写跟进记录内容";//LcationInstance.currentDetailAdrress;
     
     [self textViewDidChange:self.tfAdd];
     
@@ -326,7 +329,7 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     if(self.tfAdd == textView){
-        CGSize size = [textView.text sizeWithFont:textView.font constrainedToSize:CGSizeMake(ScreenWidth - 148, INT_MAX)];
+        CGSize size = [textView.text sizeWithFont:textView.font constrainedToSize:CGSizeMake(ScreenWidth - 158, INT_MAX)];
         if(size.height > 36)
             size.height = 36;
         if(size.height < 10)
