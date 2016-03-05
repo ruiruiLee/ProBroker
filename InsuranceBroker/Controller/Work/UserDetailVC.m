@@ -37,7 +37,7 @@
     
     self.userinfo =  [[UserInfoModel alloc] init];
     UIImage *placeholderImage = ThemeImage(@"head_male");
-    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.userHeadImg] placeholderImage:placeholderImage];
+    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.brokerInfo.headerImg] placeholderImage:placeholderImage];
     
     self.scHConstraint.constant = ScreenWidth;
     self.photo.layer.cornerRadius = 27.5;
@@ -78,7 +78,7 @@
     UIImage *placeholderImage = ThemeImage(@"head_male");
     if(self.userinfo.sex == 2)
         placeholderImage = ThemeImage(@"head_famale");
-    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.userHeadImg] placeholderImage:placeholderImage];
+    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.brokerInfo.headerImg] placeholderImage:placeholderImage];
     
     UserInfoModel *model = self.userinfo;
     
@@ -90,7 +90,7 @@
 
 - (void) loadData
 {
-    [NetWorkHandler requestToQueryUserInfo:self.userId Completion:^(int code, id content) {
+    [NetWorkHandler requestToQueryUserInfo:self.brokerInfo.userId Completion:^(int code, id content) {
         [self  handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             [self.userinfo setDetailContentWithDictionary1:[content objectForKey:@"data"]];
@@ -101,7 +101,7 @@
 
 - (void) loadCommissionInfo
 {
-    [NetWorkHandler requestToQuerySpecialtyUserInfo:self.userId Completion:^(int code, id content) {
+    [NetWorkHandler requestToQuerySpecialtyUserInfo:self.brokerInfo.userId Completion:^(int code, id content) {
         [self  handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             self.productList = [ProductInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"ratioMaps"]];
@@ -204,10 +204,10 @@
 {
     MyTeamsVC *vc = [[MyTeamsVC alloc] initWithNibName:nil bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
-    vc.userid = self.userId;
-    vc.title = [NSString stringWithFormat:@"%@的团队", self.userinfo.realName];
+    vc.userid = self.brokerInfo.userId;
+    vc.title = [NSString stringWithFormat:@"%@的团队", self.brokerInfo.userName];
     vc.toptitle = @"他的队员";
-    vc.name = self.userinfo.realName;
+    vc.name = self.brokerInfo.userName;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -234,8 +234,8 @@
 {
     IncomeStatisticsVC *vc = [IBUIFactory CreateIncomeStatisticsViewController];
     vc.hidesBottomBarWhenPushed = YES;
-    vc.userId = self.userId;
-    vc.title = [NSString stringWithFormat:@"%@的收益统计", self.userinfo.nickname];
+    vc.userId = self.brokerInfo.userId;
+    vc.title = [NSString stringWithFormat:@"%@的收益统计", self.brokerInfo.userName];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -243,8 +243,8 @@
 {
     SalesStatisticsVC *vc = [IBUIFactory CreateSalesStatisticsViewController];
     vc.hidesBottomBarWhenPushed = YES;
-    vc.userId = self.userId;
-    vc.title = [NSString stringWithFormat:@"%@的销售统计", self.userinfo.nickname];
+    vc.userId = self.brokerInfo.userId;
+    vc.title = [NSString stringWithFormat:@"%@的销售统计", self.brokerInfo.userName];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -305,7 +305,7 @@
 
 - (void) submitRadio:(NSString *) productId productRatio:(CGFloat) productRatio
 {
-    [NetWorkHandler requestToSetSpecialtyUserProductRatio:self.userId productId:productId productRatio:productRatio Completion:^(int code, id content) {
+    [NetWorkHandler requestToSetSpecialtyUserProductRatio:self.brokerInfo.userId productId:productId productRatio:productRatio Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
     }];
 }

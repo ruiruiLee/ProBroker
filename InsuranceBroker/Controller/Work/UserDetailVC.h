@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 #import "GradientView.h"
 #import "PickView.h"
+#import "BrokerInfoModel.h"
 
 @interface UserDetailVC : BaseViewController<UITableViewDataSource, UITableViewDelegate>
 
@@ -25,7 +26,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbMonthOrderEarn;//总订单收益;
 @property (nonatomic, strong) IBOutlet UILabel *lbOrderEarn;//总订单收益;
 @property (nonatomic, strong) IBOutlet UITableView *tableview;
-@property (nonatomic, strong) NSString *userId;
-@property (nonatomic, strong) NSString *userHeadImg;
+
+@property (nonatomic, strong) BrokerInfoModel *brokerInfo;
 
 @end

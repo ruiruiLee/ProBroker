@@ -158,7 +158,7 @@
 //    self.lbRedStr.text = [Util getDecimalStyle:self.statmodel.monthInRedPack];
 //    self.lbManStr.text = [Util getDecimalStyle:self.statmodel.monthInLeader];
     
-    self.piechat.lbAmount.text = [Util getDecimalStyle:self.statmodel.monthTotalIn];
+    self.piechat.lbAmount.text = [Util getDecimalStyle:self.statmodel.monthInInsurance + self.statmodel.monthInTeam];
     
     [self.piechat reloadData];
     

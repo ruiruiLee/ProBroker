@@ -316,8 +316,9 @@
         if(indexPath.section == 1){
             UserDetailVC *vc = [IBUIFactory CreateUserDetailVC];
             BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
-            vc.userId = model.userId;
-            vc.userHeadImg = model.headerImg;
+//            vc.userId = model.userId;
+//            vc.userHeadImg = model.headerImg;
+            vc.brokerInfo = model;
             vc.title = [NSString stringWithFormat:@"%@的队员", self.name];
             [self.navigationController pushViewController:vc animated:YES];
         }
