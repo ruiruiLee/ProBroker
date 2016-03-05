@@ -96,10 +96,10 @@
         web.shareContent = model.content;
         [self.navigationController pushViewController:web animated:YES];
         if(model.url){
-            [web loadHtmlFromUrl:model.url];
+            [web loadHtmlFromUrl:[NSString stringWithFormat:@"%@?userId=%@&appShare=1", model.url, [UserInfoModel shareUserInfoModel].userId]];
         }else{
             NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid];
-            [web loadHtmlFromUrl:url];
+            [web loadHtmlFromUrl:[NSString stringWithFormat:@"%@?userId=%@&appShare=1",url, [UserInfoModel shareUserInfoModel].userId]];
         }
     }
 }

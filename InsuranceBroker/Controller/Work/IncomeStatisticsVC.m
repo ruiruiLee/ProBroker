@@ -37,12 +37,13 @@
     
     if([[UserInfoModel shareUserInfoModel].userId isEqualToString:self.userId]){
         UIButton *btnDetail = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 24)];
-        [btnDetail setTitle:@"账单明细" forState:UIControlStateNormal];
+        [btnDetail setTitle:@"我的账单" forState:UIControlStateNormal];
         btnDetail.layer.cornerRadius = 12;
         btnDetail.layer.borderWidth = 0.5;
         btnDetail.layer.borderColor = _COLOR(0xff, 0x66, 0x19).CGColor;
-        [btnDetail setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
+        [btnDetail setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         btnDetail.titleLabel.font = _FONT(10);
+        btnDetail.backgroundColor = _COLOR(0xff, 0x66, 0x1a);
         [self setRightBarButtonWithButton:btnDetail];
         [btnDetail addTarget:self action:@selector(doBtnDetailAccount:) forControlEvents:UIControlEventTouchUpInside];
     }else{
