@@ -334,55 +334,55 @@
     NSString *title = @"";
     UIImage *image = nil;
     if(orderOfferStatus == 1){
-        title = @"报价中";
+//        title = @"报价中";
         image = ThemeImage(@"price_loading");
     }
     else if(orderOfferStatus == 2){
-        title = @"报价失败";
+//        title = @"报价失败";
         image = ThemeImage(@"error");
     }
     else if (orderOfferStatus == 3){
-        title = @"报价完成";
+//        title = @"报价完成";
         image = ThemeImage(@"price_done");
     }
     else if (orderOfferStatus == 4){
         if(orderOfferPrintStatus == 2){
-            title = @"出单配送";
+//            title = @"出单配送";
             image = ThemeImage(@"deliver");
         }else{
-            title = @"等待出单";
+//            title = @"等待出单";
             image = ThemeImage(@"Issuing");
         }
     }
     else if (orderOfferStatus == 5){
-        title = @"出单配送";
+//        title = @"出单配送";
         image = ThemeImage(@"deliver");
     }
     else if (orderOfferStatus == 6){
         if(orderOfferPrintStatus == 2){
-            title = @"出单配送";
+//            title = @"出单配送";
             image = ThemeImage(@"deliver");
         }else{
-            title = @"等待出单";
+//            title = @"等待出单";
             image = ThemeImage(@"Issuing");
         }
     }
     else if (orderOfferStatus == 7){
-        title = @"付款失败";
+//        title = @"付款失败";
         image = ThemeImage(@"error");
     }
     else if (orderOfferStatus == 8){
-        title = @"交易成功";
+//        title = @"交易成功";
         image = ThemeImage(@"order_done");
     }
     else if (orderOfferStatus == 9){
-        title = @"保单过期";
+//        title = @"保单过期";
         image = ThemeImage(@"error");
     }else{
-        title = orderOfferStatusStr;
         image = ThemeImage(@"error");
     }
     
+    title = orderOfferStatusStr;
     [btn setImage:image forState:UIControlStateNormal];
     [btn setTitle:title forState:UIControlStateNormal];
 }
