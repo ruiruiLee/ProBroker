@@ -82,9 +82,9 @@
     
     UserInfoModel *model = self.userinfo;
     
-    self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%d", model.monthOrderSuccessNums];
+    self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%d", model.nowMonthOrderSuccessNums];
     self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计订单：%d单", model.orderSuccessNums];
-    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.monthOrderEarn];
+    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSuccessEarn];
     self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderEarn];
 }
 

@@ -66,6 +66,8 @@ static NetWorkHandler *networkmanager;
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
+    self.manager.requestSerializer.timeoutInterval = 20;
+    
 //    self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 //    self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
     
@@ -173,8 +175,8 @@ static NetWorkHandler *networkmanager;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
 
-   NSMutableURLRequest *request = [self.manager.requestSerializer requestWithMethod:@"POST" URLString:path parameters:params error:nil];
-    
+    NSMutableURLRequest *request = [self.manager.requestSerializer requestWithMethod:@"POST" URLString:path parameters:params error:nil];
+    self.manager.requestSerializer.timeoutInterval = 20;
      //[self.manager POST:path parameters:params   self.manager HTTPRequestOperationWithRequest
     [self.manager POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [ProjectDefine removeRequestTag:Tag];
