@@ -44,22 +44,22 @@
 
 - (void) handleLeftBarButtonClicked:(id)sender
 {
-    [self.tfAdd resignFirstResponder];
-    [self.tfStatus resignFirstResponder];
-    [self.tfTIme resignFirstResponder];
-    [self.tfview resignFirstResponder];
-    [self.tfWay resignFirstResponder];
-    
-    if(_datePicker){
-        [_datePicker remove];
-    }
-    
     BOOL flag = [self isHasModify];
     if(flag){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"确认放弃保存填写资料吗？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
         [alert show];
+       // [alert performSelector:@selector(show) withObject:nil afterDelay:0.2];
     }
     else{
+        [self.tfAdd resignFirstResponder];
+        [self.tfStatus resignFirstResponder];
+        [self.tfTIme resignFirstResponder];
+        [self.tfview resignFirstResponder];
+        [self.tfWay resignFirstResponder];
+        
+        if(_datePicker){
+            [_datePicker remove];
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -67,6 +67,15 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if(buttonIndex == 0){
+        [self.tfAdd resignFirstResponder];
+        [self.tfStatus resignFirstResponder];
+        [self.tfTIme resignFirstResponder];
+        [self.tfview resignFirstResponder];
+        [self.tfWay resignFirstResponder];
+        
+        if(_datePicker){
+            [_datePicker remove];
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
@@ -317,7 +326,7 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     if(self.tfAdd == textView){
-        CGSize size = [textView.text sizeWithFont:textView.font constrainedToSize:CGSizeMake(textView.frame.size.width, INT_MAX)];
+        CGSize size = [textView.text sizeWithFont:textView.font constrainedToSize:CGSizeMake(ScreenWidth - 148, INT_MAX)];
         if(size.height > 36)
             size.height = 36;
         if(size.height < 10)
