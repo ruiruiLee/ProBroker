@@ -74,8 +74,6 @@
     //设置AVOSCloud
     [AVOSCloud setApplicationId:AVOSCloudAppID
                       clientKey:AVOSCloudAppKey];
-    //统计应用启动情况
-    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
@@ -101,18 +99,6 @@
         
     }
     
-    //判断程序是不是由推送服务完成的
-    if (launchOptions)
-    {
-        NSDictionary* notificationPayload = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-        if (notificationPayload)
-        {
-            [self remoteNotificationDistributionCenter:notificationPayload];
-            [self performSelector:@selector(pushDetailPage:) withObject:notificationPayload afterDelay:1.0];
-            [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-        }
-    }
-    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
     //create root view controller
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -155,6 +141,20 @@
             [root presentViewController:naVC animated:NO completion:nil];
 //        }
     }
+    //判断程序是不是由推送服务完成的
+    if (launchOptions)
+    {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+        NSDictionary* notificationPayload = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        if (notificationPayload)
+        {
+            [self remoteNotificationDistributionCenter:notificationPayload];
+            [self performSelector:@selector(pushDetailPage:) withObject:notificationPayload afterDelay:1.0];
+            [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+        }
+    }
+
+
     return YES;
 }
 
@@ -201,7 +201,7 @@
     //可选 通过统计功能追踪通过提醒打开应用的行为
     //这儿你可以加入自己的代码 根据推送的数据进行相应处理
     
-    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+     [UIApplication sharedApplication].applicationIconBadgeNumber=0;
      [self remoteNotificationDistributionCenter:userInfo];
     // 程序在运行中接收到推送
     if (application.applicationState == UIApplicationStateActive)
