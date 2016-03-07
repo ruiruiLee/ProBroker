@@ -231,7 +231,7 @@
     }
 
     NSString *mobile = self.tfMobile.text;
-    if(![Util isMobileNumber:mobile]){
+    if(![Util isMobilePhoeNumber:mobile] && ![Util checkPhoneNumInput:mobile]){
         [Util showAlertMessage:@"客户联系电话格式不正确"];
         return;
     }

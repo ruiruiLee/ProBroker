@@ -51,6 +51,12 @@
     self.tfMobile.placeholder = @"请输入手机号";
     self.tfCaptcha.keyboardType = UIKeyboardTypeNumberPad;
     self.tfMobile.keyboardType = UIKeyboardTypeNumberPad;
+    self.tfMobile.delegate = self;
+    
+    self.btnGetCaptcha.enabled = NO;
+    self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
+    self.btnSubmit.enabled = NO;
+    self.btnSubmit.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,10 +78,6 @@
 {
     
     if (textField == _tfMobile) {
-        NSInteger strLength = textField.text.length - range.length + string.length;
-        if (strLength > 11){
-            return NO;
-        }
         NSString *text = nil;
         NSString *textfront = nil;
         NSString *textend=nil;
@@ -88,20 +90,17 @@
         }else{
             text = [textField.text substringToIndex:range.location];
         }
-        if ([Util isMobileNumber:text]) {
+        if ([Util isMobilePhoeNumber:text]) {
             self.btnGetCaptcha.enabled = YES;
             self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
             self.btnSubmit.enabled = YES;
             self.btnSubmit.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
-            
-            
         }else{
             
             self.btnGetCaptcha.enabled = NO;
             self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
             self.btnSubmit.enabled = NO;
             self.btnSubmit.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
-            
         }
     }
     return YES;

@@ -29,6 +29,8 @@
 //判断一字符串是否电话
 + (BOOL)isMobileNumber:(NSString *)mobileNum;
 + (BOOL)isMobilePhoeNumber:(NSString *)mobileNum;
++ (NSString *)formatPhoneNum:(NSString *)phone;
++(BOOL) checkPhoneNumInput:(NSString *)phone;//判断固定电话
 
 + (void)showAlertMessage:(NSString*)msg;
 

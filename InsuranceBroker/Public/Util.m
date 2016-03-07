@@ -110,12 +110,51 @@
 
 + (BOOL)isMobilePhoeNumber:(NSString *)mobileNum
 {
-    
 //手机号以13， 15，18开头，八个 \d 数字字符  14,17
+    mobileNum = [Util formatPhoneNum:mobileNum];
     NSString *phoneRegex = @"^((13[0-9])|(15[^4,\\D])|(18[0,0-9])|(17[0,0-9])|(14[0,0-9]))\\d{8}$";
     NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex];
     NSLog(@"phoneTest is %@",phoneTest);
-    return [phoneTest evaluateWithObject:mobileNum];
+    bool result = [phoneTest evaluateWithObject:mobileNum];
+    return result;
+}
+
++(BOOL) checkPhoneNumInput:(NSString *)phone {
+    phone = [Util formatPhoneNum:phone];
+    NSString * PHS = @"^0(10|2[0-5789]|\\d{3})\\d{7,8}$";
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", PHS];
+    BOOL res1 = [regextestmobile evaluateWithObject:phone];
+    
+    if (res1 )
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
++ (NSString *)formatPhoneNum:(NSString *)phone
+{
+    phone = [phone stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if ([phone hasPrefix:@"86"]) {
+        NSString *formatStr = [phone substringWithRange:NSMakeRange(2, [phone length]-2)];
+        return formatStr;
+    }
+    else if ([phone hasPrefix:@"+86"])
+    {
+        if ([phone hasPrefix:@"+86·"]) {
+            NSString *formatStr = [phone substringWithRange:NSMakeRange(4, [phone length]-4)];
+            return formatStr;
+        }
+        else
+        {
+            NSString *formatStr = [phone substringWithRange:NSMakeRange(3, [phone length]-3)];
+            return formatStr;
+        }
+    }
+    return phone;
 }
 
 + (void)showAlertMessage:(NSString*)msg
