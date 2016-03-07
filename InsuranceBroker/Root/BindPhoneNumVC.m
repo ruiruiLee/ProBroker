@@ -118,7 +118,7 @@
     NSString *phone = _tfMobile.text;
     [AVOSCloud requestSmsCodeWithPhoneNumber:phone callback:^(BOOL succeeded, NSError *error) {
         if(succeeded){
-            [self TimerOutTimer];
+            [self timerOutTimer];
             [KGStatusBar showSuccessWithStatus:@"验证码已发送!"];
         }else{
 //            [KGStatusBar showErrorWithStatus:@"无法连接网络，请稍后再试！"];
@@ -143,18 +143,17 @@
 }
 
 #pragma timer
-- (void)TimerOutTimer
+- (void)timerOutTimer
 {
     [_timerOutTimer invalidate];
     _count = 60;
-    _timerOutTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(TimerObserver) userInfo:nil repeats:YES];
+    _timerOutTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerObserver) userInfo:nil repeats:YES];
 }
 
-- (void)TimerObserver
+- (void)timerObserver
 {
     _count --;
-    NSString *title = [NSString stringWithFormat:@"%d秒", _count];
-    [_btnGetCaptcha setTitle:title forState:UIControlStateNormal];
+    [_btnGetCaptcha setTitle:[NSString stringWithFormat:@"%d秒", _count] forState:UIControlStateNormal];
     if(_count == 0){
         [_timerOutTimer invalidate];
         [_btnGetCaptcha setTitle:@"重取验证码" forState:UIControlStateNormal];

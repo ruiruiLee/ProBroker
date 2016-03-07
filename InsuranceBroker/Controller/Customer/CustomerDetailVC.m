@@ -417,6 +417,8 @@
         view.hidden = YES;
         _insuranceView.hidden = NO;
     }
+    
+    [self.view setNeedsLayout];
 }
 
 #pragma BaseInsuranceInfoDelegate

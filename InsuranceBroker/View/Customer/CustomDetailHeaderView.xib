@@ -70,7 +70,7 @@
                         <constraint firstAttribute="height" constant="40" id="N9O-A8-7Oq"/>
                         <constraint firstAttribute="width" constant="40" id="qzx-gz-Tcz"/>
                     </constraints>
-                    <state key="normal" title="Button" image="call"/>
+                    <state key="normal" image="call"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" tag="1006" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmE-3G-oiI">
                     <rect key="frame" x="19" y="212" width="560" height="0.0"/>
@@ -108,7 +108,7 @@
                 </button>
             </subviews>
             <animations/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="q7V-Wm-0JR" firstAttribute="top" secondItem="84v-q2-Sg8" secondAttribute="top" id="0ep-HT-uVn"/>
                 <constraint firstAttribute="trailing" secondItem="wvZ-Kn-9Rb" secondAttribute="trailing" constant="14" id="20J-Wt-Mug"/>
@@ -130,6 +130,7 @@
                 <constraint firstItem="wvZ-Kn-9Rb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="q7V-Wm-0JR" secondAttribute="trailing" constant="10" id="bSc-a4-k1T"/>
                 <constraint firstItem="sqT-7d-EkQ" firstAttribute="top" secondItem="mmE-3G-oiI" secondAttribute="bottom" constant="20" id="cQn-s3-Dwg"/>
                 <constraint firstItem="wvZ-Kn-9Rb" firstAttribute="trailing" secondItem="0zm-5y-Uki" secondAttribute="trailing" id="f3U-pj-znc"/>
+                <constraint firstAttribute="bottom" secondItem="sqT-7d-EkQ" secondAttribute="bottom" constant="20" id="gbm-6a-MQT"/>
                 <constraint firstItem="mmE-3G-oiI" firstAttribute="leading" secondItem="84v-q2-Sg8" secondAttribute="leading" id="iKI-BY-RJ4"/>
                 <constraint firstAttribute="trailing" secondItem="7tD-fA-FnH" secondAttribute="trailing" constant="30" id="imA-kw-8eH"/>
                 <constraint firstItem="6oE-oD-kXc" firstAttribute="top" secondItem="0zm-5y-Uki" secondAttribute="bottom" constant="20" id="jDc-aF-CT5"/>
