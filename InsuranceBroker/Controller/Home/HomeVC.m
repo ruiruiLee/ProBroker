@@ -37,6 +37,16 @@
     AppContext *context = [AppContext sharedAppContext];
     [context removeObserver:self forKeyPath:@"isNewMessage"];
 }
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    AppContext *con= [AppContext sharedAppContext];
+    if(con.isNewMessage)
+    {
+        self._btnMessage.imageView.badgeView.badgeValue = 1;
+    }else{
+        self._btnMessage.imageView.badgeView.badgeValue = 0;
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -116,16 +126,7 @@
     
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    AppContext *con= [AppContext sharedAppContext];
-    if(con.isNewMessage)
-    {
-        self._btnMessage.imageView.badgeView.badgeValue = 1;
-    }else{
-        self._btnMessage.imageView.badgeView.badgeValue = 0;
-    }
-}
+
 
 - (void) loadDatas
 {
@@ -208,15 +209,13 @@
 - (IBAction) doBtnNoticeList:(id) sender
 {
 //    BOOL result = [self login];
-    if(1){
-        self._btnMessage.imageView.badgeView.badgeValue = 0;
-        AppContext *context = [AppContext sharedAppContext];
-        context.isNewMessage = NO;
-        [context saveData];
+       // self._btnMessage.imageView.badgeView.badgeValue = 0;
+//        AppContext *context = [AppContext sharedAppContext];
+//        context.isNewMessage = NO;
+       // [context saveData];
         NoticeListVC *vc = [[NoticeListVC alloc] initWithNibName:nil bundle:nil];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
-    }
 }
 
 - (IBAction)doBtnInvite:(id)sender

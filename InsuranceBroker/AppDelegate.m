@@ -130,16 +130,10 @@
     }
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
     if(!user.isLogin){
-//        if([WXApi isWXAppInstalled]){
-//            WXLoginVC *vc  = [IBUIFactory CreateWXLoginViewController];
-//            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
-//            [root presentViewController:naVC animated:YES completion:nil];
-//        }
-//        else{
+
             loginViewController *vc = [IBUIFactory CreateLoginViewController];
             UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
             [root presentViewController:naVC animated:NO completion:nil];
-//        }
     }
     //判断程序是不是由推送服务完成的
     if (launchOptions)
@@ -148,9 +142,11 @@
         NSDictionary* notificationPayload = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         if (notificationPayload)
         {
-            [self remoteNotificationDistributionCenter:notificationPayload];
+            [self NotificationRedDisplay:notificationPayload];
+            
             [self performSelector:@selector(pushDetailPage:) withObject:notificationPayload afterDelay:1.0];
             [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+             [UIApplication sharedApplication].applicationIconBadgeNumber=0;
         }
     }
 
@@ -198,65 +194,74 @@
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-    //可选 通过统计功能追踪通过提醒打开应用的行为
-    //这儿你可以加入自己的代码 根据推送的数据进行相应处理
+    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
     
-     [UIApplication sharedApplication].applicationIconBadgeNumber=0;
-     [self remoteNotificationDistributionCenter:userInfo];
     // 程序在运行中接收到推送
     if (application.applicationState == UIApplicationStateActive)
     {
+        [self NotificationRedDisplay:userInfo];
         [root pushActivetoController:userInfo];
     }
     else  //程序在后台中接收到推送
     {
         // The application was just brought from the background to the foreground,
         // so we consider the app as having been "opened by a push notification."
+       //可选 通过统计功能追踪通过提醒打开应用的行为
         [AVAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
         [root pushtoController:userInfo];
     }
 }
 
-//推送消息提示原点
-- (void) remoteNotificationDistributionCenter:(NSDictionary *) userInfo
-{
-    AppContext *context = [AppContext sharedAppContext];
-    int mt = [[userInfo objectForKey:@"mt"] intValue];
-    NSInteger ct = [[userInfo objectForKey:@"ct"] integerValue];
+//推送消息提示小红点
+- (void) NotificationRedDisplay:(NSDictionary *) userInfo{
+      NSInteger mt = [[userInfo objectForKey:@"mt"] integerValue];
+      NSInteger ct = [[userInfo objectForKey:@"ct"] integerValue];
+      AppContext *context = [AppContext sharedAppContext];
+    // mt == 3 表示推送客户
     if(mt == 1){
-        context.isNewMessage = YES;
-        switch (ct) {
-            case 10:
-            {
-                context.isHasNotice = YES;
-            }
-                break;
-            case 11:
-            {
-                context.isHasNewPolicy = YES;
-            }
-                break;
-            case 12:
-            {
-                context.isHasTradingMsg = YES;
-            }
-                break;
-            case 13:
-            {
-                context.isHasIncentivePolicy = YES;
-            }
-                break;
-            default:
-                break;
-        }
+      [context changeNewsTip:ct display:YES];
     }
-    else if (mt == 3){
-        context.pushCustomerNum = [AppContext sharedAppContext].pushCustomerNum;
-    }else if (mt == 4){
-        
-    }
-    [context saveData];
-    }
+    
+ }
+//- (void) remoteNotificationDistributionCenter:(NSDictionary *) userInfo
+//{
+//    AppContext *context = [AppContext sharedAppContext];
+//    int mt = [[userInfo objectForKey:@"mt"] intValue];
+//    NSInteger ct = [[userInfo objectForKey:@"ct"] integerValue];
+//    if(mt == 1){
+//        context.isNewMessage = YES;
+//        switch (ct) {
+//            case 10:
+//            {
+//                context.isHasNotice = YES;
+//            }
+//                break;
+//            case 11:
+//            {
+//                context.isHasNewPolicy = YES;
+//            }
+//                break;
+//            case 12:
+//            {
+//                context.isHasTradingMsg = YES;
+//            }
+//                break;
+//            case 13:
+//            {
+//                context.isHasIncentivePolicy = YES;
+//            }
+//                break;
+//            default:
+//                break;
+//        }
+//    }
+//    else if (mt == 3){
+//        context.pushCustomerNum = [AppContext sharedAppContext].pushCustomerNum;
+//    }else if (mt == 4){
+//        
+//    }
+//    [context saveData];
+//    }
 //category：10|12, //消息类别 10代表为“通知消息”12代表为”交易消息”，
 //title: "消息标题"，如体现通知、收益通知等
 //content: "消息内容"，如“您申请体现的￥300，已转入到你的帐号，请查收”
@@ -277,14 +282,24 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-    [self performSelector:@selector(openlocation) withObject:nil afterDelay:1.0f];
-    [[UserInfoModel shareUserInfoModel] queryUserInfo];
+   // [self performSelector:@selector(openlocation) withObject:nil afterDelay:1.0f];
+    //[[UserInfoModel shareUserInfoModel] queryUserInfo];
 
-}
-- (void)openlocation{
-    [LcationInstance startUpdateLocation];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+         [LcationInstance startUpdateLocation];
+         [[UserInfoModel shareUserInfoModel] queryUserInfo];
+    [[UserInfoModel shareUserInfoModel] queryLastNewsTip:^(int code, id content) {
+        if(code == 200){
+            AppContext *context = [AppContext sharedAppContext];
+            [context SaveNewsTip:[NSArray arrayWithArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
+         }
+    
+    
+    }];
+        
+    });
+
 }
 
 @end
