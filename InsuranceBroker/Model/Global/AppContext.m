@@ -93,13 +93,15 @@ static AppContext *context = nil;
          }
      i++;
     }
-    self.isNewMessage = NO;
+   
+     BOOL displayMsg =NO;
     for (NSDictionary *dic in _arrayNewsTip) {
        if ([[dic objectForKey:@"isNew"] boolValue]) {
-            self.isNewMessage = YES;
+            displayMsg = YES;
            break;
        }
    }
+    self.isNewMessage = displayMsg;
     [self saveData];
 }
 // 存储类别显示红点信息
@@ -109,7 +111,7 @@ static AppContext *context = nil;
         [self saveData];
         return;
     }
-    self.isNewMessage = NO;
+    BOOL displayMsg =NO;
     int i=0;
     NSMutableArray * changArray = [NSMutableArray arrayWithArray:arrayNew];
     for (NSDictionary *dicNew in arrayNew) {
@@ -126,7 +128,7 @@ static AppContext *context = nil;
                 
                  [dic setValue: [NSNumber numberWithBool:true]   forKey:@"isNew"];
                  [dic setValue: [NSNumber numberWithLong:datenew]   forKey:@"lastNewsDt"];
-                self.isNewMessage = YES;
+                displayMsg = YES;
                 }
                else{ //没有消息更新
                    [dic setValue: [dicOld objectForKey:@"isNew"]  forKey:@"isNew"];
@@ -139,6 +141,7 @@ static AppContext *context = nil;
         }
         i++;
     }
+    self.isNewMessage = displayMsg;
     [_arrayNewsTip removeAllObjects];
     self.arrayNewsTip =  [NSMutableArray arrayWithArray: changArray];
     [self saveData];
