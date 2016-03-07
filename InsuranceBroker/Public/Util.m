@@ -102,7 +102,7 @@
 //    NSPredicate *phoneTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",phoneRegex];
     //    NSLog(@"phoneTest is %@",phoneTest);
 //    return [phoneTest evaluateWithObject:mobileNum];
-    if([mobileNum length] > 0)
+    if([mobileNum length] > 9 && [mobileNum length] < 13)
         return YES;
     else
         return NO;

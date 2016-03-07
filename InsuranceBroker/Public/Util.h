@@ -27,7 +27,7 @@
 + (void) setValueForKeyWithDic:(NSMutableDictionary *) mDic value:(id) value key:(NSString *) key;
 
 //判断一字符串是否电话
-+ (BOOL)isMobileNumber:(NSString *)mobileNum;
++ (BOOL)isMobileNumber:(NSString *)mobileNum;//判断固定电话
 + (BOOL)isMobilePhoeNumber:(NSString *)mobileNum;
 + (NSString *)formatPhoneNum:(NSString *)phone;
 +(BOOL) checkPhoneNumInput:(NSString *)phone;//判断固定电话

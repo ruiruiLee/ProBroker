@@ -231,6 +231,7 @@
     }
 
     NSString *mobile = self.tfMobile.text;
+    mobile = [self formatPhoneNum:mobile];
     if(![Util isMobilePhoeNumber:mobile] && ![Util checkPhoneNumInput:mobile]){
         [Util showAlertMessage:@"客户联系电话格式不正确"];
         return;
@@ -342,6 +343,17 @@
 
 - (void) textChangeAction:(id) sender {
     [self isHasModify];
+}
+
+- (NSString *) formatPhoneNum:(NSString *) phoneNum
+{
+    NSString *mobile = [phoneNum stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    mobile = [mobile stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    mobile = [mobile stringByReplacingOccurrencesOfString:@")" withString:@""];
+    mobile = [mobile stringByReplacingOccurrencesOfString:@" " withString:@""];
+    mobile = [Util formatPhoneNum:mobile];
+    
+    return mobile;
 }
 
 @end

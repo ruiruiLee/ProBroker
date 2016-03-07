@@ -58,7 +58,7 @@
 
     [AVOSCloud requestSmsCodeWithPhoneNumber:phone callback:^(BOOL succeeded, NSError *error) {
         if(succeeded){
-            [self TimerOutTimer];
+            [self timerOutTimer];
 //            [Util showAlertMessage:@"验证码已发送!" ];
             [KGStatusBar showSuccessWithStatus:@"验证码已发送!"];
         }else{

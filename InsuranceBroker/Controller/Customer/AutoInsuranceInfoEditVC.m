@@ -172,13 +172,13 @@
     self.tfNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     self.tfCert.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
-    _lbProvience = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 16, 36)];
-    _lbProvience.backgroundColor = [UIColor clearColor];
-    _lbProvience.font = _FONT(15);
-    _lbProvience.textColor = _COLOR(0x21, 0x21, 0x21);
-    _lbProvience.text = @"川";
-    self.tfNo.leftView = _lbProvience;
-    self.tfNo.leftViewMode = UITextFieldViewModeAlways;
+//    _lbProvience = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 16, 36)];
+//    _lbProvience.backgroundColor = [UIColor clearColor];
+//    _lbProvience.font = _FONT(15);
+//    _lbProvience.textColor = _COLOR(0x21, 0x21, 0x21);
+//    _lbProvience.text = @"川";
+//    self.tfNo.leftView = _lbProvience;
+//    self.tfNo.leftViewMode = UITextFieldViewModeAlways;
     
     [self.tableview registerNib:[UINib nibWithNibName:@"CarAddInfoTableCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
@@ -1057,14 +1057,15 @@
 
 - (NSString *) getCarCertNum:(NSString *) cert
 {
-    return [cert substringFromIndex:1];
+//    return [cert substringFromIndex:1];
+    return cert;
 }
 
 - (NSString *) getCarCertString
 {
-    NSString *location = _lbProvience.text;
+//    NSString *location = _lbProvience.text;
     NSString *num = _tfNo.text;
-    return [NSString stringWithFormat:@"%@%@", location, num];
+    return [NSString stringWithFormat:@"%@%@", @"", num];
 }
 
 - (IBAction)showLargerImage:(id)sender
