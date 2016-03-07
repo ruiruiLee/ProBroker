@@ -279,7 +279,7 @@
     [[UserInfoModel shareUserInfoModel] queryLastNewsTip:^(int code, id content) {
         if(code == 200){
             AppContext *context = [AppContext sharedAppContext];
-            [context SaveNewsTip:[NSMutableArray arrayWithArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
+            [context SaveNewsTip:[NSArray arrayWithArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
          }
     
     

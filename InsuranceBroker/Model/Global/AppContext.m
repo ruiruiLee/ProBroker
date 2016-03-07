@@ -83,10 +83,13 @@ static AppContext *context = nil;
 // 点击后，以后就不显示呢
 - (void)changeNewsTip:(NSInteger)category{
     int i=0;
-    for (NSDictionary *dicOld in self.arrayNewsTip){
+
+    for (NSMutableDictionary *dicOld in self.arrayNewsTip){
+        
         if (category==[[dicOld objectForKey:@"category"] integerValue]){
-            [dicOld setValue:[NSNumber numberWithBool:false] forKey:@"isNew"];
-            [self.arrayNewsTip replaceObjectAtIndex: i withObject:dicOld];
+            NSMutableDictionary *dic= [NSMutableDictionary dictionaryWithDictionary:dicOld];
+            [dic setValue:[NSNumber numberWithBool:false] forKey:@"isNew"];
+            [self.arrayNewsTip replaceObjectAtIndex: i withObject:dic];
             [self saveData];
             return;
          }
@@ -94,39 +97,45 @@ static AppContext *context = nil;
     }
 }
 // 存储类别显示红点信息
-- (void)SaveNewsTip:(NSMutableArray*) arrayNew{
+- (void)SaveNewsTip:(NSArray*) arrayNew{
     if (self.arrayNewsTip.count==0) {
-        self.arrayNewsTip = [arrayNew copy];
+        
+        self.arrayNewsTip = [NSMutableArray arrayWithArray: arrayNew];
         [self saveData];
         return;
     }
     self.isNewMessage = NO;
     int i=0;
+    NSMutableArray * changArray = [NSMutableArray arrayWithArray:arrayNew];
     for (NSDictionary *dicNew in arrayNew) {
-      
+          NSMutableDictionary *dic= [NSMutableDictionary dictionaryWithDictionary:dicNew];
         for (NSDictionary *dicOld in self.arrayNewsTip) {
-            if ([[dicNew objectForKey:@"category"] integerValue]==
+
+            if ([[dicNew objectForKey:@"category"] integerValue]>
                  [[dicOld objectForKey:@"category"] integerValue])
+                // 有消息更新
             {
                long datenew = [[dicNew objectForKey:@"lastNewsDt"] longLongValue];
                long dateold = [[dicOld objectForKey:@"lastNewsDt"] longLongValue];
                if (datenew>dateold) {
-                  [dicNew setValue:[NSNumber numberWithBool:true] forKey:@"isNew"];
-                   [arrayNew replaceObjectAtIndex: i withObject:dicNew];
+                
+                 [dic setValue: [NSNumber numberWithBool:true]   forKey:@"isNew"];
+                   
                     self.isNewMessage = YES;
                 }
-               else{
-                   [dicNew setValue:[dicOld objectForKey:@"isNew"] forKey:@"isNew"];
-                   [arrayNew replaceObjectAtIndex: i withObject:dicNew];
+               else{ //没有消息更新
+                   [dic setValue: [dicOld objectForKey:@"isNew"]  forKey:@"isNew"];
   
                }
+                [changArray replaceObjectAtIndex: i withObject:dic];
+                
                 
             }
         }
         i++;
     }
-    [self.arrayNewsTip removeAllObjects];
-    self.arrayNewsTip = [arrayNew copy];
+    [_arrayNewsTip removeAllObjects];
+    self.arrayNewsTip =  [NSMutableArray arrayWithArray: changArray];
     [self saveData];
 }
 
