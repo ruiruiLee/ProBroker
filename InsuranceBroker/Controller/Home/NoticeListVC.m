@@ -20,23 +20,18 @@
 
 @implementation NoticeListVC
 
-- (void) dealloc
-{
-    AppContext *context = [AppContext sharedAppContext];
-    [context removeObserver:self forKeyPath:@"arrayNewsTip"];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"消息公告";
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.tableview reloadData];
+}
 - (void) initSubViews
 {
-    AppContext *context = [AppContext sharedAppContext];
-     [context addObserver:self forKeyPath:@"arrayNewsTip" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-    
+
     self.tableview = [[UITableView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:self.tableview];
     UITableView *tableview = self.tableview;
@@ -82,10 +77,7 @@
     }];
 }
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    [self.tableview reloadData];
-}
+
 
 #pragma UITableViewDataSource UITableViewDelegate
 

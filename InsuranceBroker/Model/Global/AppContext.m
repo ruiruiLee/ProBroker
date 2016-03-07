@@ -90,11 +90,20 @@ static AppContext *context = nil;
             NSMutableDictionary *dic= [NSMutableDictionary dictionaryWithDictionary:dicOld];
             [dic setValue:[NSNumber numberWithBool:false] forKey:@"isNew"];
             [self.arrayNewsTip replaceObjectAtIndex: i withObject:dic];
-            [self saveData];
-            return;
+            
+            
+            break;
          }
      i++;
     }
+    self.isNewMessage = NO;
+   for (NSDictionary *dic in _arrayNewsTip) {
+       if ([[dic objectForKey:@"isNew"] boolValue]) {
+            self.isNewMessage = YES;
+           break;
+       }
+   }
+    [self saveData];
 }
 // 存储类别显示红点信息
 - (void)SaveNewsTip:(NSArray*) arrayNew{
