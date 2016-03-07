@@ -123,7 +123,7 @@
     
     AnnouncementModel *model = [self.data objectAtIndex:indexPath.row];
     AppContext *context = [AppContext sharedAppContext];
-    [context changeNewsTip:[model.category integerValue]];
+    [context changeNewsTip:[model.category integerValue] display:NO];
     NoticeDetailListVC *vc = [[NoticeDetailListVC alloc] initWithNibName:nil bundle:nil];
     vc.title = model.title;
     vc.category = model.category;

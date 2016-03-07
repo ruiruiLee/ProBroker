@@ -142,9 +142,11 @@
         NSDictionary* notificationPayload = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         if (notificationPayload)
         {
-            //[self remoteNotificationDistributionCenter:notificationPayload];
+            [self NotificationRedDisplay:notificationPayload];
+            
             [self performSelector:@selector(pushDetailPage:) withObject:notificationPayload afterDelay:1.0];
             [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+             [UIApplication sharedApplication].applicationIconBadgeNumber=0;
         }
     }
 
@@ -192,11 +194,12 @@
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-         [UIApplication sharedApplication].applicationIconBadgeNumber=0;
-     //[self remoteNotificationDistributionCenter:userInfo];
+    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+    
     // 程序在运行中接收到推送
     if (application.applicationState == UIApplicationStateActive)
     {
+        [self NotificationRedDisplay:userInfo];
         [root pushActivetoController:userInfo];
     }
     else  //程序在后台中接收到推送
@@ -210,6 +213,16 @@
 }
 
 //推送消息提示小红点
+- (void) NotificationRedDisplay:(NSDictionary *) userInfo{
+      NSInteger mt = [[userInfo objectForKey:@"mt"] integerValue];
+      NSInteger ct = [[userInfo objectForKey:@"ct"] integerValue];
+      AppContext *context = [AppContext sharedAppContext];
+    // mt == 3 表示推送客户
+    if(mt == 1){
+      [context changeNewsTip:ct display:YES];
+    }
+    
+ }
 //- (void) remoteNotificationDistributionCenter:(NSDictionary *) userInfo
 //{
 //    AppContext *context = [AppContext sharedAppContext];

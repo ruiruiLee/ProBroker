@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InsuranceBroker/AppDelegate.m"
-            timestampString = "479010018.974468"
+            timestampString = "479021495.048683"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "-application:didReceiveRemoteNotification:"
             landmarkType = "5">
          </BreakpointContent>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InsuranceBroker/NetWork/Main/NetWorkHandler+announcement.m"
-            timestampString = "479010186.251001"
+            filePath = "InsuranceBroker/Model/Global/AppContext.m"
+            timestampString = "479021884.114188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "+requestToAnnouncementNum:completion:"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "-SaveNewsTip:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InsuranceBroker/AppDelegate.m"
-            timestampString = "479016841.946041"
+            filePath = "InsuranceBroker/Model/Global/AppContext.m"
+            timestampString = "479022601.339428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
-            landmarkName = "-applicationDidBecomeActive:"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "-SaveNewsTip:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

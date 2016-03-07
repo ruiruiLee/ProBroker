@@ -80,24 +80,21 @@ static AppContext *context = nil;
     return false;
 }
 
-// 点击后，以后就不显示呢
-- (void)changeNewsTip:(NSInteger)category{
-    int i=0;
 
-    for (NSMutableDictionary *dicOld in self.arrayNewsTip){
+- (void)changeNewsTip:(NSInteger)category display:(BOOL)display{
+    int i=0;
+    for (NSMutableDictionary *dicOld in _arrayNewsTip){
         
         if (category==[[dicOld objectForKey:@"category"] integerValue]){
             NSMutableDictionary *dic= [NSMutableDictionary dictionaryWithDictionary:dicOld];
-            [dic setValue:[NSNumber numberWithBool:false] forKey:@"isNew"];
-            [self.arrayNewsTip replaceObjectAtIndex: i withObject:dic];
-            
-            
+            [dic setValue:[NSNumber numberWithBool:display] forKey:@"isNew"];
+            [_arrayNewsTip replaceObjectAtIndex: i withObject:dic];
             break;
          }
      i++;
     }
     self.isNewMessage = NO;
-   for (NSDictionary *dic in _arrayNewsTip) {
+    for (NSDictionary *dic in _arrayNewsTip) {
        if ([[dic objectForKey:@"isNew"] boolValue]) {
             self.isNewMessage = YES;
            break;
@@ -107,9 +104,8 @@ static AppContext *context = nil;
 }
 // 存储类别显示红点信息
 - (void)SaveNewsTip:(NSArray*) arrayNew{
-    if (self.arrayNewsTip.count==0) {
-        
-        self.arrayNewsTip = [NSMutableArray arrayWithArray: arrayNew];
+    if (_arrayNewsTip.count==0) {
+        _arrayNewsTip= [NSMutableArray arrayWithArray: arrayNew];
         [self saveData];
         return;
     }
@@ -118,9 +114,9 @@ static AppContext *context = nil;
     NSMutableArray * changArray = [NSMutableArray arrayWithArray:arrayNew];
     for (NSDictionary *dicNew in arrayNew) {
           NSMutableDictionary *dic= [NSMutableDictionary dictionaryWithDictionary:dicNew];
-        for (NSDictionary *dicOld in self.arrayNewsTip) {
+        for (NSDictionary *dicOld in _arrayNewsTip) {
 
-            if ([[dicNew objectForKey:@"category"] integerValue]>
+            if ([[dicNew objectForKey:@"category"] integerValue]==
                  [[dicOld objectForKey:@"category"] integerValue])
                 // 有消息更新
             {
@@ -129,8 +125,8 @@ static AppContext *context = nil;
                if (datenew>dateold) {
                 
                  [dic setValue: [NSNumber numberWithBool:true]   forKey:@"isNew"];
-                   
-                    self.isNewMessage = YES;
+                 [dic setValue: [NSNumber numberWithLong:datenew]   forKey:@"lastNewsDt"];
+                self.isNewMessage = YES;
                 }
                else{ //没有消息更新
                    [dic setValue: [dicOld objectForKey:@"isNew"]  forKey:@"isNew"];

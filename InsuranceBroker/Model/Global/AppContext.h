@@ -44,6 +44,6 @@
 - (void)removeData;
 - (BOOL)judgeDisplay:(NSInteger)category;  // 判断是否有新的消息 好显示红点
 - (void)SaveNewsTip:(NSArray*) arrayNew; // 存储类别显示红点信息
-- (void)changeNewsTip:(NSInteger)category; // 点击后取消红点 
+- (void)changeNewsTip:(NSInteger)category display:(BOOL)display; // 点击后显示或者取消红点
 
 @end
