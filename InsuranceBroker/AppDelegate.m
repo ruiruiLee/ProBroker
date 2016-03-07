@@ -294,10 +294,7 @@
             AppContext *context = [AppContext sharedAppContext];
             [context SaveNewsTip:[NSArray arrayWithArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
          }
-    
-    
     }];
-        
     });
 
 }

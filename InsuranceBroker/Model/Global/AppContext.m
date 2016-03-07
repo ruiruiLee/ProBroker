@@ -108,27 +108,36 @@ static AppContext *context = nil;
 - (void)SaveNewsTip:(NSArray*) arrayNew{
     if (_arrayNewsTip.count==0) {
         _arrayNewsTip= [NSMutableArray arrayWithArray: arrayNew];
+        BOOL displayMsg =NO;
+        for (NSDictionary *dic in _arrayNewsTip) {
+            if ([[dic objectForKey:@"isNew"] boolValue]) {
+                displayMsg = YES;
+                break;
+            }
+        }
+        self.isNewMessage = displayMsg;
         [self saveData];
         return;
     }
-    BOOL displayMsg =NO;
+    BOOL displayMsg = self.isNewMessage;
     int i=0;
     NSMutableArray * changArray = [NSMutableArray arrayWithArray:arrayNew];
     for (NSDictionary *dicNew in arrayNew) {
-          NSMutableDictionary *dic= [NSMutableDictionary dictionaryWithDictionary:dicNew];
+        NSMutableDictionary *dic= [NSMutableDictionary dictionaryWithDictionary:dicNew];
         for (NSDictionary *dicOld in _arrayNewsTip) {
 
             if ([[dicNew objectForKey:@"category"] integerValue]==
                  [[dicOld objectForKey:@"category"] integerValue])
                 // 有消息更新
             {
-               long datenew = [[dicNew objectForKey:@"lastNewsDt"] longLongValue];
-               long dateold = [[dicOld objectForKey:@"lastNewsDt"] longLongValue];
+               long long datenew = [[dicNew objectForKey:@"lastNewsDt"] longLongValue];
+               long long dateold = [[dicOld objectForKey:@"lastNewsDt"] longLongValue];
                if (datenew>dateold) {
                 
-                 [dic setValue: [NSNumber numberWithBool:true]   forKey:@"isNew"];
-                 [dic setValue: [NSNumber numberWithLong:datenew]   forKey:@"lastNewsDt"];
-                displayMsg = YES;
+                   [dic setValue: [NSNumber numberWithBool:true]   forKey:@"isNew"];
+//                   [dic setValue: [NSNumber numberWithLong:datenew]   forKey:@"lastNewsDt"];
+                   [dic setValue:[NSNumber numberWithLongLong:datenew] forKey:@"lastNewsDt"];
+                   displayMsg = YES;
                 }
                else{ //没有消息更新
                    [dic setValue: [dicOld objectForKey:@"isNew"]  forKey:@"isNew"];

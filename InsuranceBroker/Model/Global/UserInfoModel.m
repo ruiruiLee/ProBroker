@@ -213,6 +213,18 @@
     }];
 
 }
+
+- (void) loadLastNewsTip
+{
+    [self queryLastNewsTip:^(int code, id content) {
+        if(code == 200){
+            AppContext *context = [AppContext sharedAppContext];
+            [context SaveNewsTip:[NSArray arrayWithArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
+        }
+    }];
+
+}
+
 - (void) loadDetail:(Completion) completion
 {
     if(self.userId == nil || [self.userId length] == 0)
@@ -230,6 +242,7 @@
 {
     if([keyPath isEqualToString:@"userId"]){
         [self performSelector:@selector(queryUserInfo) withObject:nil afterDelay:0.1];
+        [self performSelector:@selector(loadLastNewsTip) withObject:nil afterDelay:0.1];
     }
 }
 
