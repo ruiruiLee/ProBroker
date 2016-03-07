@@ -12,5 +12,6 @@
 
 + (void) requestToAnnouncement:(NSString *)userId
                     completion:(Completion)completion;
-
++ (void) requestToAnnouncementNum:(NSString *)userId
+                       completion:(Completion)completion;
 @end

@@ -9,7 +9,7 @@
 #import "UserInfoModel.h"
 #import "define.h"
 #import "NetWorkHandler+queryUserInfo.h"
-
+#import "NetWorkHandler+announcement.h"
 @implementation UserInfoModel
 
 + (UserInfoModel *) shareUserInfoModel
@@ -116,14 +116,14 @@
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithBool:self.webFlag] key:@"webFlag"];
     [Util setValueForKeyWithDic:mDic value:self.phone key:@"phone"];
     [Util setValueForKeyWithDic:mDic value:self.nickname key:@"userName"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInt:self.sex] key:@"sex"];
+    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.sex] key:@"sex"];
     [Util setValueForKeyWithDic:mDic value:self.liveProvinceId key:@"liveProvinceId"];
     [Util setValueForKeyWithDic:mDic value:self.liveCityId key:@"liveCityId"];
     [Util setValueForKeyWithDic:mDic value:self.liveProvince key:@"liveProvince"];
     [Util setValueForKeyWithDic:mDic value:self.liveCity key:@"liveCity"];
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInt:self.leader] key:@"leader"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInt:self.cardVerifiy] key:@"cardVerifiy"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInt:self.userType] key:@"userType"];
+    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.cardVerifiy] key:@"cardVerifiy"];
+    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.userType] key:@"userType"];
     
     return mDic;
 }
@@ -203,6 +203,16 @@
     }];
 }
 
+-(void)queryLastNewsTip:(Completion) completion
+{
+    if(self.userId == nil || [self.userId length] == 0)
+        return;
+
+    [NetWorkHandler requestToAnnouncementNum:self.userId completion:^(int code, id content) {
+         completion(code, content);
+    }];
+
+}
 - (void) loadDetail:(Completion) completion
 {
     if(self.userId == nil || [self.userId length] == 0)
