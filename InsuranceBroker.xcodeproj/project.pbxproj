@@ -3137,7 +3137,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c367b2e3-5df2-49de-b7fb-c532b455921d";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 			};
 			name = Debug;
@@ -3167,7 +3167,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c367b2e3-5df2-49de-b7fb-c532b455921d";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 			};
 			name = Release;
