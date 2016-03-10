@@ -34,6 +34,8 @@
     [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg1] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert")];
     [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg2] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert")];
     
+    self.tfCertNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    
     if(model.cardNumberImg1 != nil || ![model.cardNumberImg1 isKindOfClass:[NSNull class]]){
         [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg1] forState:UIControlStateSelected placeholderImage:ThemeImage(@"add_cert")];
         self.btnCert1.selected = YES;

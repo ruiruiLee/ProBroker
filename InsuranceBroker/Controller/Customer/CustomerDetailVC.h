@@ -27,7 +27,7 @@
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollview;
 @property (nonatomic, strong) IBOutlet CustomDetailHeaderView *headerView;
-@property (nonatomic, strong) IBOutlet UIButton *btnInfo;//投保资料
+@property (nonatomic, strong) IBOutlet UIButton *btnInfo;//投保资
 @property (nonatomic, strong) IBOutlet UIButton *btnSituation;//客户跟进
 @property (nonatomic, strong) IBOutlet UIButton *btnOrderInfo;//订单信息
 @property (nonatomic, strong) IBOutlet UILabel *lbFocusLine;//状态条
@@ -35,9 +35,9 @@
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *headerVConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *headerHConstraint;
-
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewVConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *detailVConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *xfxocusxxLineOffsizeConstraint;
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *scrollOffsetConstraint;//scrollview离底部的距离
 

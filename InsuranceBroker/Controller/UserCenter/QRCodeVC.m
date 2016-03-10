@@ -24,6 +24,8 @@
     self.title = @"二维码名片";
     self.viewHConstraint.constant = ScreenWidth;
     self.photoImg.layer.cornerRadius = 25;
+    self.photoImg.layer.borderWidth = 0.5;
+    self.photoImg.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
     self.photoImg.clipsToBounds = YES;
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     UIImage *placeHolderImage = ThemeImage(@"head_male_edit");

@@ -348,7 +348,7 @@
             break;
         case 102:
         {
-            [self focusLineMovieTo:CGRectMake(frame.size.width * 2, frame.origin.y, ScreenWidth /3, 3)];
+            [self focusLineMovieTo:CGRectMake(ScreenWidth /3 * 2, frame.origin.y, ScreenWidth /3, 3)];
             _insuranceView.lbTitle.text = @"客户保单信息";
             _insuranceView.lbExplain.text = @"暂无保单信息";
             [_insuranceView.btnAdd setTitle:@"刷新" forState:UIControlStateNormal];
@@ -370,7 +370,7 @@
             break;
         case 103:
         {
-            [self focusLineMovieTo:CGRectMake(frame.size.width, frame.origin.y, ScreenWidth /3, 3)];
+            [self focusLineMovieTo:CGRectMake(ScreenWidth /3, frame.origin.y, ScreenWidth /3, 3)];
             _insuranceView.lbTitle.text = @"客户跟进信息";
             _insuranceView.lbExplain.text = @"暂无新的跟进信息，请添加";
             _insuranceView.btnAdd.hidden = NO;
@@ -392,7 +392,9 @@
 - (void) focusLineMovieTo:(CGRect) rect
 {
     [UIView animateWithDuration:0.25 animations:^{
-        self.lbFocusLine.frame = rect;
+//        self.lbFocusLine.frame = rect;
+        self.xfxocusxxLineOffsizeConstraint.constant = rect.origin.x;
+        [self.view setNeedsLayout];
     }];
 }
 

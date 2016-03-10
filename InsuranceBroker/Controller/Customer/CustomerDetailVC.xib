@@ -20,6 +20,7 @@
                 <outlet property="scrollview" destination="DIj-C0-IHx" id="urq-2y-hJQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewVConstraint" destination="c5g-zg-7BU" id="psu-8U-j87"/>
+                <outlet property="xfxocusxxLineOffsizeConstraint" destination="yeJ-2c-cSZ" id="mOI-0O-dtA"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -76,7 +77,7 @@
                                                 <color key="titleColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53c-M0-oat" userLabel="focusLine">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="53c-M0-oat" userLabel="focusLine">
                                             <rect key="frame" x="0.0" y="59" width="42" height="21"/>
                                             <animations/>
                                             <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
@@ -116,6 +117,7 @@
                                         <constraint firstAttribute="height" constant="60" id="gS1-71-0Jm"/>
                                         <constraint firstAttribute="trailing" secondItem="6pt-XZ-pQ5" secondAttribute="trailing" id="lfe-Sx-laI"/>
                                         <constraint firstItem="6pt-XZ-pQ5" firstAttribute="width" secondItem="Btg-Ka-w3d" secondAttribute="width" id="mdC-RY-fdf"/>
+                                        <constraint firstItem="53c-M0-oat" firstAttribute="leading" secondItem="Lgn-aa-ATy" secondAttribute="leading" id="yeJ-2c-cSZ"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fzg-tc-CWj">
