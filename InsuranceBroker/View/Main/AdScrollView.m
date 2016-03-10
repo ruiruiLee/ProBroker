@@ -70,7 +70,7 @@ static CGFloat const chageImageTime = 5.0;
 - (void) layoutSubviews
 {
     [super layoutSubviews];
-    [self setPageControlShowStyle:_PageControlShowStyle];
+//    [self setPageControlShowStyle:_PageControlShowStyle];
 }
 
 #pragma mark - 设置广告所使用的图片(名字)
@@ -113,6 +113,7 @@ static CGFloat const chageImageTime = 5.0;
 //        [self performSelector:@selector(switchFocusImageItems) withObject:nil afterDelay:chageImageTime];
         }
     }
+    
 }
 
 - (void) clickPageImage:(UIButton*)sender
@@ -186,7 +187,7 @@ static CGFloat const chageImageTime = 5.0;
     {
         _pageControl.frame = CGRectMake( UISCREENWIDTH - 20*_pageControl.numberOfPages, HIGHT+UISCREENHEIGHT - 20, 20*_pageControl.numberOfPages, 20);
     }
-    
+    _pageControl.currentPage = 0;
     _pageControl.enabled = NO;
     
     [self performSelector:@selector(addPageControl) withObject:nil afterDelay:0.1f];

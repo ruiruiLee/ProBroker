@@ -213,7 +213,7 @@
             cell.lbDetail.text = @"未设置";
         }
         else{
-            cell.lbDetail.text = [NSString stringWithFormat:@"%d%@-%d%@", (int)model.productMinRatio,@"%", (int)model.productMaxRatio, @"%"];
+            cell.lbDetail.text = [NSString stringWithFormat:@"%d%@", (int)model.productMaxRatio, @"%"];
         }
         return cell;
     }
