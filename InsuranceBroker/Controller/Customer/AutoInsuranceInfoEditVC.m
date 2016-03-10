@@ -152,7 +152,7 @@
     lbAttribute.translatesAutoresizingMaskIntoConstraints = NO;
     lbAttribute.backgroundColor = [UIColor clearColor];
     lbAttribute.font = _FONT(11);
-    lbAttribute.textColor = _COLOR(0xcc, 0xcc, 0xcc);
+    lbAttribute.textColor = _COLOR(0x75, 0x75, 0x75);
     [self.contenView addSubview:lbAttribute];
     lbAttribute.numberOfLines = 2;
     lbAttribute.attributedText = [self getAttbuteString];
@@ -276,7 +276,7 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self fillTheData];
+//    [self fillTheData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -293,6 +293,7 @@
     [string addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [string length])];
     
     [string addAttribute:NSForegroundColorAttributeName value:_COLOR(0x46, 0xa6, 0xeb) range:NSMakeRange(12,5)];
+    [string addAttribute:NSFontAttributeName value:_FONT_B(11) range:NSMakeRange(12,5)];
     
     return string;
 }
@@ -321,6 +322,96 @@
     [self.tfNo resignFirstResponder];
     
     return flag;
+}
+
+- (BOOL) isRenewingCoverage
+{
+    BOOL result = YES;
+    
+    if(_perInsurCompany < 0){
+        return NO;
+    }
+    
+    NSString *carNo = [self getCarCertString];//self.tfNo.text;
+    if(![Util validateCarNo:carNo] && self.imgLicense.image == nil){
+        return NO;
+    }
+    
+    return result;
+}
+
+//
+- (void) submitWithRenewingCoverage:(Completion) completion
+{
+    NSString *carOwnerName = self.tfName.text;
+    NSString *carOwnerCard = self.tfCert.text;
+//    BOOL flag = [Util validateIdentityCard:carOwnerCard];//[self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
+//    if(!flag){
+//        [Util showAlertMessage:@"车主身份证号不正确"];
+//        [self.tfCert becomeFirstResponder];
+//        return;
+//    }
+    NSString *carRegTime = self.tfDate.text;
+    NSString *carEngineNo = self.tfMotorCode.text;
+    NSString *carShelfNo = self.tfIdenCode.text;
+    NSString *carTypeNo = self.tfModel.text;
+    NSString *carNo = [self getCarCertString];//self.tfNo.text;
+    
+    NSString *newCarNoStatus = @"1";
+    if(![Util validateCarNo:carNo]){
+        [Util showAlertMessage:@"车牌号不正确"];
+        [_tfNo becomeFirstResponder];
+        return;
+        
+    }
+    
+    NSString *customerCarId = self.customerModel.carInfo.customerCarId;
+    NSString *customerId = self.customerId;
+    NSString *travelCard1 = nil;
+    
+    NSString *carTradeStatus = @"0";
+    NSString *carTradeTime = nil;
+    if(_changeNameIdx == 0){
+        carTradeStatus = @"1";
+    }
+    else if (_changeNameIdx == 1){
+        carTradeStatus = @"2";
+        carTradeTime = [Util getDayString:_changNameDate];
+    }
+    
+    NSString *carInsurStatus1 = nil;
+    NSString *carInsurCompId1 = nil;
+    if(_perInsurCompany>=0){
+        carInsurStatus1 = @"1";
+        carInsurCompId1 = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).insuranceCompanyId;
+    }
+    [ProgressHUD show:nil];
+    [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:travelCard1 carRegTime:carRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
+        [ProgressHUD dismiss];
+        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+        if(code == 200){
+            
+            CarInfoModel *model = self.customerModel.carInfo;
+            if(model == nil){
+                model = [[CarInfoModel alloc] init];
+                self.customerModel.carInfo = model;
+            }
+            model.customerCarId = [content objectForKey:@"data"];
+            model.customerId = customerId;
+            model.carOwnerName = carOwnerName;
+            model.carOwnerCard = carOwnerCard;
+            model.carRegTime = _signDate;
+            model.carEngineNo = carEngineNo;
+            model.carShelfNo = carShelfNo;
+            model.carTypeNo = carTypeNo;
+            model.carNo = carNo;
+            
+            if(completion){
+                completion(code, content);
+            }
+        }
+    }];
+
 }
 
 - (void) submitWithBlock:(Completion) completion
@@ -432,14 +523,21 @@
 {
     [self resignFirstResponder];
     
-    if(self.imgLicense.image == nil){
-        [self submitWithBlock:^(int code, id content) {
+    if([self isRenewingCoverage]){
+        [self submitWithRenewingCoverage:^(int code, id content) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
-    }else{
-        [self submitWithLicense:^(int code, id content) {
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
+    }
+    else{
+        if(self.imgLicense.image == nil){
+            [self submitWithBlock:^(int code, id content) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }else{
+            [self submitWithLicense:^(int code, id content) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }
     }
 }
 
@@ -459,30 +557,10 @@
     NSString *carOwnerName = self.tfName.text;
 
     NSString *carRegTime = self.tfDate.text;
-//        flag = [self showMessage:@"登记日期不能为空" string:carRegTime];
-//        if(flag){
-//            [self.tfDate becomeFirstResponder];
-//            return;
-//        }
     NSString *carEngineNo = self.tfMotorCode.text;
-    flag = [self showMessage:@"发动机号不能为空" string:carEngineNo];
-    if(flag){
-        [self.tfMotorCode becomeFirstResponder];
-        return;
-    }
     NSString *carShelfNo = self.tfIdenCode.text;
-    flag = [self showMessage:@"车辆识别代号不能为空" string:carShelfNo];
-    if(flag){
-        [self.tfIdenCode becomeFirstResponder];
-        return;
-    }
     NSString *carTypeNo = self.tfModel.text;
-    flag = [self showMessage:@"品牌型号不能为空" string:carTypeNo];
-    if(flag){
-        [self.tfModel becomeFirstResponder];
-        return;
-    }
-    NSString *carNo = [self getCarCertString];//self.tfNo.text;
+    NSString *carNo = [self getCarCertString];
     
     NSString *newCarNoStatus = @"1";
     if(self.btnNoNo.selected){
@@ -490,12 +568,6 @@
         newCarNoStatus = @"0";
     }
     else{
-        if(![Util validateCarNo:carNo]){
-            [Util showAlertMessage:@"车牌号不正确"];
-            [_tfNo becomeFirstResponder];
-            return;
-            
-        }
     }
 
     
@@ -790,16 +862,21 @@
     
     [self resignFirstResponder];
     
-    if(self.imgLicense.image == nil){
-        [self submitWithBlock:^(int code, id content) {
+    if([self isRenewingCoverage]){
+        [self submitWithRenewingCoverage:^(int code, id content) {
             [self car_insur_plan:[content objectForKey:@"data"]];
         }];
     }else{
-        [self submitWithLicense:^(int code, id content) {
-            [self car_insur_plan:[content objectForKey:@"data"]];
-        }];
+        if(self.imgLicense.image == nil){
+            [self submitWithBlock:^(int code, id content) {
+                [self car_insur_plan:[content objectForKey:@"data"]];
+            }];
+        }else{
+            [self submitWithLicense:^(int code, id content) {
+                [self car_insur_plan:[content objectForKey:@"data"]];
+            }];
+        }
     }
-
 }
 
 - (void) car_insur_plan:(NSString *) customerCarId

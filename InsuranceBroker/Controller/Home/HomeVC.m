@@ -64,8 +64,6 @@
     self.adView.parentController=self;
     self.adView.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
     [self.scrollview addSubview:self.adView];
-    self.adView.PageControlShowStyle = UIPageControlShowStyleRight;
-    self.adView.parentController = self;
     
     self.headline.delegate = self;
     self.headline.imgTitle.image = ThemeImage(@"Hot");
@@ -150,6 +148,7 @@
 - (void) initData
 {
     self.adView.NewsmodelArray = _adArray;
+    self.adView.PageControlShowStyle = UIPageControlShowStyleRight;
     [self.headline reloadData];
     [self.btnNewUser sd_setBackgroundImageWithURL:[NSURL URLWithString:_newUserModel.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
 }

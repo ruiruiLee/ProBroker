@@ -137,6 +137,11 @@
 //拨打电话
 - (IBAction) doBtnRing:(UIButton *)sender
 {
+    if(![Util isMobilePhoeNumber:self.data.customerPhone] && ![Util checkPhoneNumInput:self.data.customerPhone]){
+        [Util showAlertMessage:@"没有设置客户电话或电话格式不正确"];
+        return;
+    }
+    
     NSString *num = [[NSString alloc] initWithFormat:@"tel://%@",self.data.customerPhone]; //而这个方法则打电话前先弹框  是否打电话 然后打完电话之后回到程序中 网上说这个方法可能不合法 无法通过审核
     
     UIWebView*callWebview =[[UIWebView alloc] init];
@@ -149,6 +154,10 @@
 
 - (IBAction) doBtnEmail:(UIButton *)sender
 {
+    if(![Util isMobilePhoeNumber:self.data.customerPhone] ){
+        [Util showAlertMessage:@"没有设置客户手机或手机号码格式不正确"];
+        return;
+    }
     NSArray *array = [NSArray arrayWithObject:self.data.customerPhone];
     [self showMessageView:array title:@"" body:@""];
 }
@@ -240,8 +249,11 @@
 //获取保单信息列表
 - (void) loadInsurPageList:(NSInteger) offset
 {
-    if(self.data.carInfo == nil)
+    if(self.data.carInfo == nil){
+        [_policyListView endAnimation];
+        [_insuranceView endAnimation];
         return;
+    }
     
     NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
@@ -362,7 +374,7 @@
                 _insuranceView.btnAdd.hidden = YES;
             _policyListView.hidden = NO;
             [self resetContetHeight:_policyListView];
-            if(!self.data.isLoadInsur){
+            if(!self.data.isLoadInsur ){
                 [self startRefresh];
                 [self loadInsurPageList:0];
             }
