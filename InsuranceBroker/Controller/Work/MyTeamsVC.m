@@ -203,7 +203,7 @@
     else
         cell.logoImage.hidden = YES;
     cell.lbTimr.hidden = YES;
-    cell.lbName.text = model.userName;
+    cell.lbName.text = [Util getUserNameWithModel:model];//model.userName;
 //    cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];
     cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
     cell.lbStatus.font = _FONT(12);

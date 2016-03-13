@@ -70,7 +70,7 @@
 
 - (void) resetViews
 {
-    self.lbName.text = self.userinfo.nickname;
+    self.lbName.text = [Util getUserName:self.userinfo];//self.userinfo.nickname;
     self.lbMobile.text = self.userinfo.phone;
     self.lbSubNum.text = [NSString stringWithFormat:@"%d人", self.userinfo.userTeamInviteNums];
 //    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.userinfo.headerImg] placeholderImage:Normal_Image];

@@ -253,7 +253,7 @@
             cell.logoImage.hidden = NO;
             cell.logoImage.image = ThemeImage(@"leader");
             cell.lbTimr.hidden = YES;
-            cell.lbName.text = model.parentUserName;
+            cell.lbName.text = [Util getUserNameWithPresentModel:model];//model.parentUserName;
             cell.lbStatus.text = model.parentPhone;
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbStatus.font = _FONT(12);
@@ -295,7 +295,7 @@
             else
                 cell.logoImage.hidden = YES;
             cell.lbTimr.hidden = YES;
-            cell.lbName.text = model.userName;
+            cell.lbName.text = [Util getUserNameWithModel:model];//model.userName;
 //            cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbStatus.font = _FONT(12);

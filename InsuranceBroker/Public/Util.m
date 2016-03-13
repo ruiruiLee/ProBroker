@@ -572,6 +572,34 @@
     return attString;
 }
 
-//图像等比例压缩 .充满空隙
+//获取用户名称
++ (NSString *) getUserName:(UserInfoModel*) model
+{
+    NSString *userName = model.realName;
+    if(userName == nil || [userName length] == 0)
+        userName = model.nickname;
+    
+    return userName;
+}
+
+
++ (NSString *) getUserNameWithModel:(BrokerInfoModel*) model
+{
+    NSString *userName = model.realName;
+    if(userName == nil || [userName length] == 0)
+        userName = model.userName;
+    
+    return userName;
+}
+
++ (NSString *) getUserNameWithPresentModel:(ParentInfoModel*) model
+{
+    NSString *userName = model.parentRealName;
+    if(userName == nil || [userName length] == 0)
+        userName = model.parentUserName;
+    
+    return userName;
+}
+
 
 @end

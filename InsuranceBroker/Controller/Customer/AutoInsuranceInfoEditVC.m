@@ -726,7 +726,7 @@
     BOOL selected = sender.selected;
     if(selected){
         self.tfNo.enabled = YES;
-        self.lbDateTitle.text = @"登记日期";
+        self.lbDateTitle.text = @"注册日期";
     }else{
         self.tfNo.enabled = NO;
         self.tfNo.text = @"";
@@ -803,7 +803,7 @@
         }else{
             self.btnNoNo.selected = NO;
             self.tfNo.enabled = YES;
-            self.lbDateTitle.text = @"登记日期";
+            self.lbDateTitle.text = @"注册日期";
         }
         self.tfMotorCode.text = model.carEngineNo;
         self.tfModel.text = model.carTypeNo;

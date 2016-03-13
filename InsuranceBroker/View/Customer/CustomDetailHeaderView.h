@@ -28,6 +28,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnEditUser;
 @property (nonatomic, strong) IBOutlet UIButton *btnPhone;
 @property (nonatomic, strong) IBOutlet UIButton *btnMsg;
+@property (nonatomic, strong) IBOutlet UIButton *btnTageEdit;
 
 @property (nonatomic, weak) id<CustomDetailHeaderViewDelegate> delegate;
 

@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BrokerInfoModel.h"
+#import "ParentInfoModel.h"
+#import "UserInfoModel.h"
 
 @interface Util : NSObject
 
@@ -70,5 +73,9 @@
 + (NSMutableAttributedString *)getWarningString:(NSString*) string;
 + (NSMutableAttributedString *)getAttributeString:(NSString*) string substr:(NSString *)substr;
 
+//获取用户名称
++ (NSString *) getUserName:(UserInfoModel*) model;
++ (NSString *) getUserNameWithModel:(BrokerInfoModel*) model;
++ (NSString *) getUserNameWithPresentModel:(ParentInfoModel*) model;
 
 @end
