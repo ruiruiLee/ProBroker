@@ -22,5 +22,6 @@
 @property (nonatomic, assign) NSInteger orderSuccessNums;
 @property (nonatomic, assign) NSInteger nowMonthOrderSuccessNums;
 @property (nonatomic, strong) NSString *userId;
+@property (nonatomic, assign) CGFloat nowMonthOrderSellEarn;
 
 @end

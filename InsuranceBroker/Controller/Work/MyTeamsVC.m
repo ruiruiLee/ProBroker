@@ -207,7 +207,7 @@
 //    cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];
     cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
     cell.lbStatus.font = _FONT(12);
-    cell.lbStatus.attributedText = [self getOrderDetailString:model.orderSuccessNums];
+    cell.lbStatus.attributedText = [self getOrderDetailString:model.orderSuccessNums orderValue:model.nowMonthOrderSellEarn];
     cell.width.constant = 16;
     cell.height.constant = 16;
     
@@ -255,12 +255,15 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (NSAttributedString *) getOrderDetailString:(NSInteger) orderCount
+- (NSAttributedString *) getOrderDetailString:(NSInteger) orderCount orderValue:(CGFloat) orderValue
 {
-    NSString *string = [NSString stringWithFormat:@"本月销量 %d 单", orderCount];
+    NSString *string = [NSString stringWithFormat:@"本月销量 %ld 单, 本月销售额 %@ 元", (long)orderCount, [Util getDecimalStyle:orderValue]];
     NSMutableAttributedString *mstring = [[NSMutableAttributedString alloc] initWithString:string];
     
-    NSRange range = [string rangeOfString:[NSString stringWithFormat:@"%d", orderCount]];
+    NSRange range = [string rangeOfString:[NSString stringWithFormat:@"%ld", (long)orderCount]];
+    [mstring addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
+    [mstring addAttribute:NSFontAttributeName value:_FONT(16) range:range];
+    range = [string rangeOfString:[NSString stringWithFormat:@"%@", [Util getDecimalStyle:orderValue]]];
     [mstring addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
     [mstring addAttribute:NSFontAttributeName value:_FONT(16) range:range];
     
