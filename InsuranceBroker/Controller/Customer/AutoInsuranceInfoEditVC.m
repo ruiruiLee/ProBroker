@@ -172,14 +172,6 @@
     self.tfNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     self.tfCert.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
-//    _lbProvience = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 16, 36)];
-//    _lbProvience.backgroundColor = [UIColor clearColor];
-//    _lbProvience.font = _FONT(15);
-//    _lbProvience.textColor = _COLOR(0x21, 0x21, 0x21);
-//    _lbProvience.text = @"川";
-//    self.tfNo.leftView = _lbProvience;
-//    self.tfNo.leftViewMode = UITextFieldViewModeAlways;
-    
     [self.tableview registerNib:[UINib nibWithNibName:@"CarAddInfoTableCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
     [self.btnReSubmit setTitle:@"上传照片" forState:UIControlStateNormal];
@@ -726,7 +718,7 @@
     BOOL selected = sender.selected;
     if(selected){
         self.tfNo.enabled = YES;
-        self.lbDateTitle.text = @"登记日期";
+        self.lbDateTitle.text = @"注册日期";
     }else{
         self.tfNo.enabled = NO;
         self.tfNo.text = @"";
@@ -803,7 +795,7 @@
         }else{
             self.btnNoNo.selected = NO;
             self.tfNo.enabled = YES;
-            self.lbDateTitle.text = @"登记日期";
+            self.lbDateTitle.text = @"注册日期";
         }
         self.tfMotorCode.text = model.carEngineNo;
         self.tfModel.text = model.carTypeNo;
@@ -1140,7 +1132,6 @@
 
 - (NSString *) getCarCertString
 {
-//    NSString *location = _lbProvience.text;
     NSString *num = _tfNo.text;
     return [NSString stringWithFormat:@"%@%@", @"", num];
 }

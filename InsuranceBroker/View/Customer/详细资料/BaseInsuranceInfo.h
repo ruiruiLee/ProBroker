@@ -30,7 +30,7 @@
 @property (nonatomic, strong)  UILabel *lbTitle;
 @property (nonatomic, strong)  UILabel *lbSepLine;
 @property (nonatomic, strong)  UIButton *btnEdit;
-
+@property (nonatomic, strong)  UIButton *btnClicked;
 @property (nonatomic, weak) id<BaseInsuranceInfoDelegate> delegate;
 
 - (CGFloat) resetSubviewsFrame;

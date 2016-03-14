@@ -27,8 +27,10 @@
             self.btnEditUser = [self.contentView viewWithTag:1007];
             self.btnPhone = [self.contentView viewWithTag:1008];
             self.btnMsg = [self.contentView viewWithTag:1009];
+            self.btnTageEdit = [self.contentView viewWithTag:1010];
             
             [self.btnEditUser addTarget:self action:@selector(EditUserInfo:) forControlEvents:UIControlEventTouchUpInside];
+            [self.btnTageEdit addTarget:self action:@selector(EditUserInfo:) forControlEvents:UIControlEventTouchUpInside];
             [self.btnPhone addTarget:self action:@selector(PhoneUser:) forControlEvents:UIControlEventTouchUpInside];
             [self.btnMsg addTarget:self action:@selector(SendMsgToUser:) forControlEvents:UIControlEventTouchUpInside];
             

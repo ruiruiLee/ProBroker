@@ -15,6 +15,7 @@
 @synthesize lbSepLine;
 @synthesize lbTitle;
 @synthesize btnEdit;
+@synthesize btnClicked;
 
 - (id) initWithFrame:(CGRect)frame
 {
@@ -27,6 +28,11 @@
         [self addSubview:btnEdit];
         btnEdit.translatesAutoresizingMaskIntoConstraints = NO;
         [btnEdit addTarget:self action:@selector(doEditButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        btnClicked = [[UIButton alloc] initWithFrame:CGRectZero];
+        [self addSubview:btnClicked];
+        btnClicked.translatesAutoresizingMaskIntoConstraints = NO;
+        [btnClicked addTarget:self action:@selector(doEditButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         self.lbSepLine = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:nil];
         [self addSubview:self.lbSepLine];
@@ -49,15 +55,18 @@
             [self.tableview setLayoutMargins:insets];
         }
         
-        NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbSepLine, tableview, btnEdit);
+        NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbSepLine, tableview, btnEdit, btnClicked);
         
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[lbTitle]-10-[lbSepLine(1)]-0-[tableview]-10-|" options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]->=10-[btnEdit(40)]-20-|" options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbSepLine]-20-|" options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tableview]-0-|" options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnEdit(40)]->=0-|" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnClicked(40)]->=0-|" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnClicked]-20-|" options:0 metrics:nil views:views]];
         
         [self addConstraint:[NSLayoutConstraint constraintWithItem:btnEdit attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+                [self addConstraint:[NSLayoutConstraint constraintWithItem:btnClicked attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
         
     }
     
