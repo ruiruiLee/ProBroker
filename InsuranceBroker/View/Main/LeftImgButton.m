@@ -43,6 +43,9 @@
     CGRect frame = self.frame;
     
     CGFloat w = (frame.size.width - 6 - imgvframe.size.width - titleframe.size.width)/2;
+    if(titleframe.size.width == 0){
+        w = (frame.size.width - imgvframe.size.width )/2;
+    }
     
     imgv.frame = CGRectMake(w, imgvframe.origin.y, imgvframe.size.width, imgvframe.size.height);
     titlelabel.frame = CGRectMake(w + 6 + imgvframe.size.width, titleframe.origin.y, titleframe.size.width, titleframe.size.height);

@@ -33,6 +33,7 @@
 
 //
 @property (nonatomic, strong) NSString *travelCard1;//行驶证
+@property (nonatomic, strong) NSString *travelCard2;//行驶证
 @property (nonatomic, strong) NSString *carInsurCompId1;//上年投保的话，需要传投保保险公司ID
 @property (nonatomic, assign) NSInteger newCarNoStatus;//新车未上牌状态；0是新车未上牌，1不是
 @property (nonatomic, assign) NSInteger carTradeStatus; //车辆过户状态；0未知，1未过户，2过户

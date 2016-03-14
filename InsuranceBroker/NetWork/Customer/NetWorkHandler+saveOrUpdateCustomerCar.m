@@ -29,6 +29,7 @@
                               carOwnerTel:(NSString *) carOwnerTel
                              carOwnerAddr:(NSString *) carOwnerAddr
                               travelCard1:(NSString *) travelCard1
+                                travelCard2:(NSString *) travelCard2
                                carRegTime:(NSString *) carRegTime
                            newCarNoStatus:(NSString *) newCarNoStatus
                            carTradeStatus:(NSString *) carTradeStatus
@@ -56,6 +57,7 @@
     [Util setValueForKeyWithDic:pramas value:carOwnerTel key:@"carOwnerTel"];
     [Util setValueForKeyWithDic:pramas value:carOwnerAddr key:@"carOwnerAddr"];
     [Util setValueForKeyWithDic:pramas value:travelCard1 key:@"travelCard1"];
+    [Util setValueForKeyWithDic:pramas value:travelCard2 key:@"travelCard2"];
     [Util setValueForKeyWithDic:pramas value:carRegTime key:@"carRegTime"];
     [Util setValueForKeyWithDic:pramas value:newCarNoStatus key:@"newCarNoStatus"];
     [Util setValueForKeyWithDic:pramas value:carTradeStatus key:@"carTradeStatus"];

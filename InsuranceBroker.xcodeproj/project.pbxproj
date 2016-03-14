@@ -117,6 +117,12 @@
 		8654CD8C1C31350D00411C54 /* ProjectDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CD8B1C31350D00411C54 /* ProjectDefine.m */; };
 		8654CD941C314E1900411C54 /* WorkMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8654CD931C314E1900411C54 /* WorkMainVC.xib */; };
 		868C7CA91C92CFAD00B7617A /* SepLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CA81C92CFAD00B7617A /* SepLineLabel.m */; };
+		868C7CB41C96546700B7617A /* BaseLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CB31C96546700B7617A /* BaseLineView.m */; };
+		868C7CC21C969AC600B7617A /* HBImageScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CB71C969AC600B7617A /* HBImageScroller.m */; };
+		868C7CC31C969AC600B7617A /* HBImageViewList.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CB91C969AC600B7617A /* HBImageViewList.m */; };
+		868C7CC41C969AC600B7617A /* ImageLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CBB1C969AC600B7617A /* ImageLayoutView.m */; };
+		868C7CC51C969AC600B7617A /* NSImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CBD1C969AC600B7617A /* NSImageUtil.m */; };
+		868C7CC71C969AC600B7617A /* ObjImageDataInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CC11C969AC600B7617A /* ObjImageDataInfo.m */; };
 		86A26E351C4355220073FFFC /* NetWorkHandler+getProvinces.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26E341C4355220073FFFC /* NetWorkHandler+getProvinces.m */; };
 		86A26E381C4356540073FFFC /* ProviendeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26E371C4356540073FFFC /* ProviendeModel.m */; };
 		86A26E3B1C4356620073FFFC /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26E3A1C4356620073FFFC /* CityModel.m */; };
@@ -614,6 +620,18 @@
 		8654CD931C314E1900411C54 /* WorkMainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkMainVC.xib; sourceTree = "<group>"; };
 		868C7CA71C92CFAD00B7617A /* SepLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SepLineLabel.h; sourceTree = "<group>"; };
 		868C7CA81C92CFAD00B7617A /* SepLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SepLineLabel.m; sourceTree = "<group>"; };
+		868C7CB21C96546700B7617A /* BaseLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLineView.h; sourceTree = "<group>"; };
+		868C7CB31C96546700B7617A /* BaseLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseLineView.m; sourceTree = "<group>"; };
+		868C7CB61C969AC600B7617A /* HBImageScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBImageScroller.h; sourceTree = "<group>"; };
+		868C7CB71C969AC600B7617A /* HBImageScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBImageScroller.m; sourceTree = "<group>"; };
+		868C7CB81C969AC600B7617A /* HBImageViewList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBImageViewList.h; sourceTree = "<group>"; };
+		868C7CB91C969AC600B7617A /* HBImageViewList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HBImageViewList.m; sourceTree = "<group>"; };
+		868C7CBA1C969AC600B7617A /* ImageLayoutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLayoutView.h; sourceTree = "<group>"; };
+		868C7CBB1C969AC600B7617A /* ImageLayoutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLayoutView.m; sourceTree = "<group>"; };
+		868C7CBC1C969AC600B7617A /* NSImageUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSImageUtil.h; sourceTree = "<group>"; };
+		868C7CBD1C969AC600B7617A /* NSImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSImageUtil.m; sourceTree = "<group>"; };
+		868C7CC01C969AC600B7617A /* ObjImageDataInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjImageDataInfo.h; sourceTree = "<group>"; };
+		868C7CC11C969AC600B7617A /* ObjImageDataInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjImageDataInfo.m; sourceTree = "<group>"; };
 		86A26E331C4355220073FFFC /* NetWorkHandler+getProvinces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+getProvinces.h"; sourceTree = "<group>"; };
 		86A26E341C4355220073FFFC /* NetWorkHandler+getProvinces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+getProvinces.m"; sourceTree = "<group>"; };
 		86A26E361C4356540073FFFC /* ProviendeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviendeModel.h; sourceTree = "<group>"; };
@@ -1561,6 +1579,23 @@
 			path = Work;
 			sourceTree = "<group>";
 		};
+		868C7CB51C969AC600B7617A /* ImageBroswer */ = {
+			isa = PBXGroup;
+			children = (
+				868C7CB61C969AC600B7617A /* HBImageScroller.h */,
+				868C7CB71C969AC600B7617A /* HBImageScroller.m */,
+				868C7CB81C969AC600B7617A /* HBImageViewList.h */,
+				868C7CB91C969AC600B7617A /* HBImageViewList.m */,
+				868C7CBA1C969AC600B7617A /* ImageLayoutView.h */,
+				868C7CBB1C969AC600B7617A /* ImageLayoutView.m */,
+				868C7CBC1C969AC600B7617A /* NSImageUtil.h */,
+				868C7CBD1C969AC600B7617A /* NSImageUtil.m */,
+				868C7CC01C969AC600B7617A /* ObjImageDataInfo.h */,
+				868C7CC11C969AC600B7617A /* ObjImageDataInfo.m */,
+			);
+			path = ImageBroswer;
+			sourceTree = "<group>";
+		};
 		86A26EAC1C47C18F0073FFFC /* MyPhotoScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1820,6 +1855,7 @@
 		86C3BB241C22C3FC00F98E80 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				868C7CB51C969AC600B7617A /* ImageBroswer */,
 				862CD33D1C5C8CFE0056D2EA /* ProgressHUD */,
 				CF608EFA1C58A44900DC10CA /* KGStatusBar */,
 				CF608EF41C58A16C00DC10CA /* EGOCache */,
@@ -1859,6 +1895,8 @@
 				86C3BB9F1C28E02F00F98E80 /* SubView.m */,
 				86C3BC431C2E747E00F98E80 /* BaseLineTextField.h */,
 				86C3BC441C2E747E00F98E80 /* BaseLineTextField.m */,
+				868C7CB21C96546700B7617A /* BaseLineView.h */,
+				868C7CB31C96546700B7617A /* BaseLineView.m */,
 				86A504421C4E57910032A901 /* PopView.h */,
 				86A504431C4E57910032A901 /* PopView.m */,
 				86A504451C4E5A790032A901 /* AppInfoView.h */,
@@ -2800,6 +2838,7 @@
 				8625B0091C3B9CBE00312B98 /* NetWorkHandler+saveOrUpdateCustomer.m in Sources */,
 				86A505031C5258930032A901 /* MyJSInterface.m in Sources */,
 				8625B0271C3D1E4000312B98 /* NetWorkHandler+queryForCustomerCarInfo.m in Sources */,
+				868C7CB41C96546700B7617A /* BaseLineView.m in Sources */,
 				86C3BBBA1C29364100F98E80 /* UINavigationBar+statusBarColor.m in Sources */,
 				86A26F011C4A29CB0073FFFC /* FPTuple.m in Sources */,
 				CF608EFD1C5A330F00DC10CA /* NetManager.m in Sources */,
@@ -2810,6 +2849,7 @@
 				86C3BB121C228D6F00F98E80 /* LoadMoreTableFooterView.m in Sources */,
 				86A26E9D1C4665C90073FFFC /* NetWorkHandler+queryForInsuranceOffersList.m in Sources */,
 				86A504AB1C4FB4D40032A901 /* NetWorkHandler+saveOrUpdateUserBackCard.m in Sources */,
+				868C7CC41C969AC600B7617A /* ImageLayoutView.m in Sources */,
 				86C3BB7B1C253E8C00F98E80 /* AdScrollView.m in Sources */,
 				86C3BCC01C2E933600F98E80 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				86A26ED11C47D6840073FFFC /* InsurCompanySelectTableViewCell.m in Sources */,
@@ -2839,6 +2879,7 @@
 				86C3BB4F1C24049400F98E80 /* MainFunctionButton.m in Sources */,
 				86A26EB41C47C18F0073FFFC /* PhotoBrowserView.m in Sources */,
 				8625B0511C3F8E7A00312B98 /* ObjectButton.m in Sources */,
+				868C7CC21C969AC600B7617A /* HBImageScroller.m in Sources */,
 				86A504221C4D04970032A901 /* OffersModel.m in Sources */,
 				86F2DA901C79889F0088B783 /* PickView.m in Sources */,
 				86A26ED51C47DC200073FFFC /* CarAddInfoTableCell.m in Sources */,
@@ -2901,6 +2942,7 @@
 				86A26E641C44DFEF0073FFFC /* DetailAccountVC.m in Sources */,
 				86A5048B1C4F517A0032A901 /* BackGroundView.m in Sources */,
 				8654CA521C30CFEB00411C54 /* BindPhoneNumVC.m in Sources */,
+				868C7CC31C969AC600B7617A /* HBImageViewList.m in Sources */,
 				86A26E711C44F5E10073FFFC /* AgentStrategyViewController.m in Sources */,
 				86F2DA991C7EF6030088B783 /* ParentInfoModel.m in Sources */,
 				86A504BD1C50820B0032A901 /* NetWorkHandler+getRedPack.m in Sources */,
@@ -2971,6 +3013,8 @@
 				86A26E9A1C4664610073FFFC /* NetWorkHandler+saveOrUpdateInsuranceRatio.m in Sources */,
 				86A26E381C4356540073FFFC /* ProviendeModel.m in Sources */,
 				86A26E8B1C452EF30073FFFC /* NetWorkHandler+news.m in Sources */,
+				868C7CC71C969AC600B7617A /* ObjImageDataInfo.m in Sources */,
+				868C7CC51C969AC600B7617A /* NSImageUtil.m in Sources */,
 				86A504811C4F27950032A901 /* split.c in Sources */,
 				CF608EEF1C58A13900DC10CA /* OBGradientView.m in Sources */,
 				86C3BC151C2CE05000F98E80 /* InsuranceDetailView.m in Sources */,

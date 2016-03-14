@@ -21,6 +21,7 @@
         [self.tableview registerNib:[UINib nibWithNibName:@"CustomerFollowUpTableCell" bundle:nil] forCellReuseIdentifier:@"cell"];
         self.lbTitle.text = @"客户跟进信息";
         [self.btnEdit setImage:ThemeImage(@"add_icon") forState:UIControlStateNormal];
+        self.btnHConstraint.constant = 30;
         
         footer = [[FooterView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
         self.tableview.tableFooterView = footer;

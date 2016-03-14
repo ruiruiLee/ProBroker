@@ -22,6 +22,7 @@
 #import "OrderWebVC.h"
 #import "SJAvatarBrowser.h"
 #import "ProgressHUD.h"
+#import "UIButton+WebCache.h"
 
 @interface AutoInsuranceInfoEditVC ()<MenuDelegate, ZHPickViewDelegate, UITextFieldDelegate>
 {
@@ -144,6 +145,9 @@
     model1.dictName = @"是";
     [_changeNameArray addObject:model1];
     
+    self.infoHConstraint.constant = ScreenWidth;
+    self.imageHConstraint.constant = ScreenWidth;
+    
     
     self.title = @"车险信息";
     [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
@@ -227,7 +231,7 @@
     
     [self.btnNoNo setImage:ThemeImage(@"select") forState:UIControlStateSelected];
     
-    [self showLicenceView:NO];
+//    [self showLicenceView:YES];
 }
 
 - (void) valueChanged:(UITextField*) obj
@@ -247,22 +251,22 @@
     }];
 }
 
-- (void) showLicenceView:(BOOL) flag
-{
-    if(flag){
-        self.baseViewVConstraint.constant = 436;//驾驶证照片
-        lbAttribute.hidden = YES;
-        self.licenseView.hidden = NO;
-    }else{
-        self.baseViewVConstraint.constant = 396;//驾驶证照片
-        lbAttribute.hidden = NO;
-        self.licenseView.hidden = YES;
-    }
-}
+//- (void) showLicenceView:(BOOL) flag
+//{
+//    if(flag){
+//        self.baseViewVConstraint.constant = 436;//驾驶证照片
+//        lbAttribute.hidden = YES;
+//        self.licenseView.hidden = NO;
+//    }else{
+//        self.baseViewVConstraint.constant = 396;//驾驶证照片
+//        lbAttribute.hidden = NO;
+//        self.licenseView.hidden = YES;
+//    }
+//}
 
 - (void) doBtnShowLicenseView:(UIButton *)sender
 {
-    [self showLicenceView:YES];
+//    [self showLicenceView:YES];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -378,7 +382,7 @@
         carInsurCompId1 = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).insuranceCompanyId;
     }
     [ProgressHUD show:nil];
-    [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:travelCard1 carRegTime:carRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
+    [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:travelCard1 travelCard2:nil carRegTime:carRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
         [ProgressHUD dismiss];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
@@ -483,7 +487,7 @@
         carInsurCompId1 = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).insuranceCompanyId;
     }
     [ProgressHUD show:nil];
-    [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:travelCard1 carRegTime:carRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
+    [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:travelCard1 travelCard2:nil carRegTime:carRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
         [ProgressHUD dismiss];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
@@ -583,7 +587,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSString *filePahe = [self fileupMothed];
         
-        [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe carRegTime:carRegTime newCarNoStatus:nil carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
+        [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe travelCard2:nil carRegTime:carRegTime newCarNoStatus:nil carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
             [ProgressHUD dismiss];
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
@@ -754,8 +758,9 @@
         UIImage *image= [UIImage imageWithData:imageData];
         image = [Util fitSmallImage:image scaledToSize:imgLicenseSize];
         isCertModify = YES;
-        self.imgLicense.image = image;
-        [self.btnReSubmit setTitle:@"重新上传" forState:UIControlStateNormal];
+//        self.imgLicense.image = image;
+        [self.btnReSubmit setImage:image forState:UIControlStateNormal];
+//        [self.btnReSubmit setTitle:@"重新上传" forState:UIControlStateNormal];
         [self isModify];
     }];
     
@@ -765,8 +770,8 @@
     UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:@""
                                                     delegate:(id)self
                                            cancelButtonTitle:@"取消"
-                                      destructiveButtonTitle:@"从相册选取"
-                                           otherButtonTitles:@"拍照",nil];
+                                      destructiveButtonTitle:nil
+                                           otherButtonTitles:@"从相册选取", @"拍照",nil];
     ac.actionSheetStyle = UIBarStyleBlackTranslucent;
     [ac showInView:self.view];
     
@@ -805,9 +810,9 @@
         
         if(model.travelCard1 != nil){
             [self.imgLicense sd_setImageWithURL:[NSURL URLWithString:model.travelCard1]];
-            [self showLicenceView:YES];
+//            [self showLicenceView:YES];
         }else{
-            [self showLicenceView:NO];
+//            [self showLicenceView:NO];
         }
         
         if(model.carTradeStatus == 0){
@@ -950,6 +955,7 @@
     
     if(menu == _menuView){
         _perInsurCompany = index;
+        self.lbPName.text = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:index]).insuranceCompanyShortName;
     }else if (menu == _menu){
         _changeNameIdx = index;
         if(index == 1)

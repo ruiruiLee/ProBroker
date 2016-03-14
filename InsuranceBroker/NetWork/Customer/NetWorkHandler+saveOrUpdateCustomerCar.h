@@ -55,6 +55,7 @@
                               carOwnerTel:(NSString *) carOwnerTel
                              carOwnerAddr:(NSString *) carOwnerAddr
                               travelCard1:(NSString *) travelCard1
+                                travelCard2:(NSString *) travelCard2
                                carRegTime:(NSString *) carRegTime
                            newCarNoStatus:(NSString *) newCarNoStatus
                            carTradeStatus:(NSString *) carTradeStatus

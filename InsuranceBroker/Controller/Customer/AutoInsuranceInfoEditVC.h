@@ -18,6 +18,9 @@
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *baseViewVConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *tableVConstraint;
 
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *infoHConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *imageHConstraint;
+
 @property (nonatomic, strong) IBOutlet UITableView *tableview;
 @property (nonatomic, strong) IBOutlet BaseLineTextField *tfName;//车主姓名
 @property (nonatomic, strong) IBOutlet BaseLineTextField *tfCert;//身份证号码
@@ -31,6 +34,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView *imgLicense;//照片
 @property (nonatomic, strong) IBOutlet UIButton *btnReSubmit;//重新上传
 @property (nonatomic, strong) IBOutlet UIView *contenView;//基本信息
+@property (nonatomic, strong) IBOutlet UILabel *lbPName;//上年度保险厂家
 
 @property (nonatomic, strong) IBOutlet LeftImgButton *btnNoNo;//新车未上牌
 

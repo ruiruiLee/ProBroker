@@ -248,6 +248,8 @@
 
 - (void) updateInsuranceRatio:(NSString *) orderId planOfferId:(NSString *)planOfferId model:(OffersModel *) model
 {
+    [_datePicker remove];
+    
     if(model.isRatioSubmit){
         OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
         web.type = enumShareTypeToCustomer;
