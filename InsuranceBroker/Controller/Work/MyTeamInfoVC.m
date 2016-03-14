@@ -299,7 +299,7 @@
 //            cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbStatus.font = _FONT(12);
-            cell.lbStatus.attributedText = [self getOrderDetailString:model.nowMonthOrderSuccessNums];
+            cell.lbStatus.attributedText = [self getOrderDetailString:model.nowMonthOrderSuccessNums orderValue:model.nowMonthOrderSellEarn];
             cell.width.constant = 16;
             cell.height.constant = 16;
             
