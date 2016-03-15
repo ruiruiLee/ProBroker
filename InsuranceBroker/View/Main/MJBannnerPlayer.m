@@ -61,7 +61,8 @@
     new.timeInterval = interval;
     new.delegate = delegate;
     [view addSubview:new];
-     [new initMXPageController:urlArray.count];
+     [new setImage:urlArray];
+     //[new initMXPageController:urlArray.count];
     [new initTimer];
     
 
@@ -261,7 +262,7 @@
 
     if (self.timer == nil) {
         
-        self.timer = [[NSTimer alloc]initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:0]
+        self.timer = [[NSTimer alloc]initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:self.timeInterval]
                                              interval:self.timeInterval
                                                target:self
                                              selector:@selector(timerActive:)
@@ -307,39 +308,66 @@
     
     self.index = 0;
 
-    for (id obj in tempArray) {
-        
-        if (![obj isKindOfClass:[UIImage class]]) {
-            
-            [tempArray removeObject:obj];
-
-        }
-        
-    }
+//    for (id obj in tempArray) {
+//        
+//        if (![obj isKindOfClass:[UIImage class]]) {
+//            
+//            [tempArray removeObject:obj];
+//        }
+//        
+//    }
     
     if (tempArray.count > 0) {
         
         if (sourceList.count == 1){
-            
-            [tempArray addObject:[tempArray objectAtIndex:0]];
-            [tempArray addObject:[tempArray objectAtIndex:0]];
-            indexViewOne.image = [tempArray objectAtIndex:0];
-            indexViewTwo.image = [tempArray objectAtIndex:0];
-            indexViewThree.image = [tempArray objectAtIndex:0];
+             id obj =[tempArray objectAtIndex:0];
+            [tempArray addObject:obj];
+            [tempArray addObject:obj];
+           
+             if ([obj isKindOfClass:[UIImage class]]) {
+                 indexViewOne.image = obj;
+                 indexViewTwo.image = obj;
+                 indexViewThree.image = obj;
+
+             }
+             else{
+                  [indexViewOne sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:Normal_Image];
+                  [indexViewTwo sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:Normal_Image];
+                  [indexViewThree sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:Normal_Image];
+             }
             
         }else if (sourceList.count == 2){
             
-            [tempArray addObject:[tempArray objectAtIndex:0]];
-            indexViewOne.image = [tempArray objectAtIndex:1];
-            indexViewTwo.image = [tempArray objectAtIndex:0];
-            indexViewThree.image = [tempArray objectAtIndex:1];
+            id obj =[tempArray objectAtIndex:0];
+            [tempArray addObject:obj];
+            
+            if ([obj isKindOfClass:[UIImage class]]) {
+                indexViewOne.image = [tempArray objectAtIndex:1];
+                indexViewTwo.image = obj;
+                indexViewThree.image = [tempArray objectAtIndex:1];
+                
+            }
+            else{
+                [indexViewOne sd_setImageWithURL:[NSURL URLWithString:[tempArray objectAtIndex:1]] placeholderImage:Normal_Image];
+                [indexViewTwo sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:Normal_Image];
+                [indexViewThree sd_setImageWithURL:[NSURL URLWithString:[tempArray objectAtIndex:1]] placeholderImage:Normal_Image];
+            }
+
             
         }else{
-            
-            indexViewOne.image = [tempArray objectAtIndex:tempArray.count - 1];
-            indexViewTwo.image = [tempArray objectAtIndex:0];
-            indexViewThree.image = [tempArray objectAtIndex:1];
-            
+            id obj =[tempArray objectAtIndex:0];
+            if ([obj isKindOfClass:[UIImage class]]) {
+               indexViewOne.image = [tempArray objectAtIndex:tempArray.count - 1];
+                indexViewTwo.image = obj;
+                indexViewThree.image = [tempArray objectAtIndex:1];
+                
+            }
+            else{
+                [indexViewOne sd_setImageWithURL:[NSURL URLWithString:[tempArray objectAtIndex:tempArray.count - 1]] placeholderImage:Normal_Image];
+                [indexViewTwo sd_setImageWithURL:[NSURL URLWithString:obj] placeholderImage:Normal_Image];
+                [indexViewThree sd_setImageWithURL:[NSURL URLWithString:[tempArray objectAtIndex:1]] placeholderImage:Normal_Image];
+            }
+
         }
         
         self.sourceArray = tempArray;
