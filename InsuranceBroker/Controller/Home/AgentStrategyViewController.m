@@ -8,7 +8,6 @@
 
 #import "AgentStrategyViewController.h"
 #import "AgentStrategyTableViewCell.h"
-#import "AdScrollView.h"
 #import "define.h"
 #import "NetWorkHandler+strategy.h"
 #import "AnnouncementModel.h"

@@ -10,7 +10,7 @@
 #import "HeadlineView.h"
 #import "MainFunctionButton.h"
 #import "LeftImgButton.h"
-#import "AdScrollView.h"
+#import "MJBannnerPlayer.h"
 #import "NewUserModel.h"
 #import "EGORefreshTableHeaderView.h"
 
@@ -28,7 +28,7 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollview;
 
 @property (nonatomic, strong) IBOutlet HeadlineView *headline;
-@property (nonatomic, strong) AdScrollView *adView;
+//@property (nonatomic, strong) UIView *adView;
 
 @property (nonatomic, strong) IBOutlet MainFunctionButton *btnAutoInsu;//车险
 @property (nonatomic, strong) IBOutlet MainFunctionButton *btnInvit;//邀请
