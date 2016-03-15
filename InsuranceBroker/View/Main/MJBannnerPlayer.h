@@ -36,7 +36,6 @@
                 withSize:(CGRect)frame
         withTimeInterval:(CGFloat)interval;
 
-//设置图片
--(void)setImage:(NSArray *)sourceList;
+
 
 @end

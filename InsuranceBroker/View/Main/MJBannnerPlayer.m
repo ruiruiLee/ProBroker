@@ -61,7 +61,6 @@
     new.timeInterval = interval;
     new.delegate = delegate;
     [view addSubview:new];
-     //[new setImage:urlArray];
      [new initMXPageController:urlArray.count];
     [new initTimer];
     
@@ -262,7 +261,7 @@
 
     if (self.timer == nil) {
         
-        self.timer = [[NSTimer alloc]initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:self.timeInterval]
+        self.timer = [[NSTimer alloc]initWithFireDate:[NSDate dateWithTimeIntervalSinceNow:0]
                                              interval:self.timeInterval
                                                target:self
                                              selector:@selector(timerActive:)
