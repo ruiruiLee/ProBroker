@@ -53,7 +53,7 @@
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lgn-aa-ATy" userLabel="View1">
                                     <rect key="frame" x="0.0" y="223" width="600" height="80"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btg-Ka-w3d">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btg-Ka-w3d">
                                             <rect key="frame" x="0.0" y="25" width="46" height="30"/>
                                             <animations/>
                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -61,7 +61,7 @@
                                                 <color key="titleColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLY-3N-Mum">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZLY-3N-Mum">
                                             <rect key="frame" x="268" y="25" width="46" height="30"/>
                                             <animations/>
                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -69,7 +69,7 @@
                                                 <color key="titleColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6pt-XZ-pQ5">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6pt-XZ-pQ5">
                                             <rect key="frame" x="554" y="25" width="46" height="30"/>
                                             <animations/>
                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -109,12 +109,13 @@
                                         <constraint firstItem="ZLY-3N-Mum" firstAttribute="leading" secondItem="Btg-Ka-w3d" secondAttribute="trailing" constant="8" id="K8D-sl-adc"/>
                                         <constraint firstAttribute="bottom" secondItem="g3V-Kv-hrx" secondAttribute="bottom" id="L1B-MB-G04"/>
                                         <constraint firstItem="Btg-Ka-w3d" firstAttribute="leading" secondItem="Lgn-aa-ATy" secondAttribute="leading" id="QvT-QZ-f43"/>
+                                        <constraint firstItem="53c-M0-oat" firstAttribute="top" secondItem="Btg-Ka-w3d" secondAttribute="bottom" constant="4" id="RU4-fJ-tjQ"/>
                                         <constraint firstItem="53c-M0-oat" firstAttribute="width" secondItem="Btg-Ka-w3d" secondAttribute="width" id="TWK-aC-zFW"/>
                                         <constraint firstItem="ZLY-3N-Mum" firstAttribute="width" secondItem="Btg-Ka-w3d" secondAttribute="width" id="V1o-Qr-fxG"/>
                                         <constraint firstItem="6pt-XZ-pQ5" firstAttribute="leading" secondItem="ZLY-3N-Mum" secondAttribute="trailing" constant="8" id="WfU-sq-Gai"/>
                                         <constraint firstItem="g3V-Kv-hrx" firstAttribute="leading" secondItem="Lgn-aa-ATy" secondAttribute="leading" id="YlN-8M-N72"/>
                                         <constraint firstAttribute="trailing" secondItem="g3V-Kv-hrx" secondAttribute="trailing" id="ZAg-Xe-MOl"/>
-                                        <constraint firstAttribute="height" constant="60" id="gS1-71-0Jm"/>
+                                        <constraint firstAttribute="height" constant="50" id="gS1-71-0Jm"/>
                                         <constraint firstAttribute="trailing" secondItem="6pt-XZ-pQ5" secondAttribute="trailing" id="lfe-Sx-laI"/>
                                         <constraint firstItem="6pt-XZ-pQ5" firstAttribute="width" secondItem="Btg-Ka-w3d" secondAttribute="width" id="mdC-RY-fdf"/>
                                         <constraint firstItem="53c-M0-oat" firstAttribute="leading" secondItem="Lgn-aa-ATy" secondAttribute="leading" id="yeJ-2c-cSZ"/>

@@ -7,6 +7,7 @@
 //
 
 #import "InsuranceInfoView.h"
+#import "LeftImgButton.h"
 
 @class BaseInsuranceInfo;
 
@@ -29,9 +30,10 @@
 @property (nonatomic, strong)  UITableView *tableview;
 @property (nonatomic, strong)  UILabel *lbTitle;
 @property (nonatomic, strong)  UILabel *lbSepLine;
-@property (nonatomic, strong)  UIButton *btnEdit;
+@property (nonatomic, strong)  LeftImgButton *btnEdit;
 @property (nonatomic, strong)  UIButton *btnClicked;
 @property (nonatomic, weak) id<BaseInsuranceInfoDelegate> delegate;
+@property (nonatomic, strong) NSLayoutConstraint *btnHConstraint;
 
 - (CGFloat) resetSubviewsFrame;
 

@@ -12,5 +12,11 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *lbTitle;
 @property (nonatomic, strong) IBOutlet UILabel *lbDetail;
+@property (nonatomic, strong) IBOutlet UILabel *lbContent;
+@property (nonatomic, strong) IBOutlet UIButton *imgV1;
+@property (nonatomic, strong) IBOutlet UIButton *imgV2;
+
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *contentVConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *spaceVConstraint;
 
 @end

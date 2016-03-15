@@ -50,6 +50,7 @@
     model.customerId = [dictionary objectForKey:@"customerId"];
     
     model.travelCard1 = [dictionary objectForKey:@"travelCard1"];
+    model.travelCard2 = [dictionary objectForKey:@"travelCard2"];
     model.carInsurCompId1 = [dictionary objectForKey:@"carInsurCompId1"];
     model.newCarNoStatus = [[dictionary objectForKey:@"newCarNoStatus"] integerValue];
     if([dictionary objectForKey:@"newCarNoStatus"] == nil)

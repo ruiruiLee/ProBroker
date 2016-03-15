@@ -81,11 +81,12 @@
     
     
     self.headerHConstraint.constant = ScreenWidth;
-    self.headerVConstraint.constant = 211;
+    self.headerVConstraint.constant = 199 - 20;
     
     _insuranceView = [[InsuranceInfoView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 180)];
     [self.detailView addSubview:_insuranceView];
     _insuranceView.delegate = self;
+    
     
     _followUpView = [[CustomerFollowUpInfoView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 2000)];
     [self.detailView addSubview:_followUpView];
@@ -101,6 +102,7 @@
     [self.detailView addSubview:_insuranceDetailView];
     _insuranceDetailView.translatesAutoresizingMaskIntoConstraints = NO;
     _insuranceDetailView.delegate = self;
+    _insuranceDetailView.pVc = self;
     
     NSDictionary *views = NSDictionaryOfVariableBindings( _followUpView, _policyListView, _insuranceDetailView);
     [self.detailView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_followUpView]-0-|" options:0 metrics:nil views:views]];
@@ -309,6 +311,7 @@
 - (void) setCarInfo
 {
     _insuranceDetailView.carInfo = self.data.carInfo;
+    _insuranceDetailView.customerInfo = self.customerinfoModel;
 }
 
 #pragma CustomDetailHeaderViewDelegate
@@ -416,7 +419,7 @@
     NSInteger num = [view tableView:view.tableview numberOfRowsInSection:0];
     if(num > 0){
         CGFloat viewheight = [view resetSubviewsFrame];
-        CGFloat constant = self.headerVConstraint.constant +75 + viewheight;
+        CGFloat constant = self.headerVConstraint.constant +65 + viewheight;
         if(![view isKindOfClass:[InsuranceDetailView class]])
             constant += 50;
         self.viewVConstraint.constant = constant;
@@ -426,7 +429,7 @@
         view.hidden = NO;
         _insuranceView.hidden = YES;
     }else{
-        self.viewVConstraint.constant = self.headerVConstraint.constant +75 + 230;
+        self.viewVConstraint.constant = self.headerVConstraint.constant +65 + 230;
         self.detailVConstraint.constant = 180;
         view.hidden = YES;
         _insuranceView.hidden = NO;
