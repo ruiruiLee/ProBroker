@@ -291,7 +291,6 @@
 		86C3BB711C242E2B00F98E80 /* WorkMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB701C242E2B00F98E80 /* WorkMainVC.m */; };
 		86C3BB741C242E3E00F98E80 /* CustomerMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB731C242E3E00F98E80 /* CustomerMainVC.m */; };
 		86C3BB781C250DF600F98E80 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BB771C250DF600F98E80 /* HomeVC.xib */; };
-		86C3BB7B1C253E8C00F98E80 /* AdScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB7A1C253E8C00F98E80 /* AdScrollView.m */; };
 		86C3BB881C279C8200F98E80 /* CustomerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB861C279C8200F98E80 /* CustomerTableViewCell.m */; };
 		86C3BB891C279C8200F98E80 /* CustomerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BB871C279C8200F98E80 /* CustomerTableViewCell.xib */; };
 		86C3BB941C27E9A800F98E80 /* CustomerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB921C27E9A800F98E80 /* CustomerDetailVC.m */; };
@@ -388,6 +387,7 @@
 		CF608EF31C58A16500DC10CA /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EF21C58A16500DC10CA /* EGOCache.m */; };
 		CF608EF91C58A43D00DC10CA /* KGStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EF81C58A43D00DC10CA /* KGStatusBar.m */; };
 		CF608EFD1C5A330F00DC10CA /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EFB1C5A330F00DC10CA /* NetManager.m */; };
+		CF677E341C97EB4D00128F1B /* MJBannnerPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF677E331C97EB4D00128F1B /* MJBannnerPlayer.m */; };
 		E9335367AF4BBFA55372CBCC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AB914CAC81E099C3474FBB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -947,8 +947,6 @@
 		86C3BB721C242E3E00F98E80 /* CustomerMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerMainVC.h; sourceTree = "<group>"; };
 		86C3BB731C242E3E00F98E80 /* CustomerMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerMainVC.m; sourceTree = "<group>"; };
 		86C3BB771C250DF600F98E80 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
-		86C3BB791C253E8C00F98E80 /* AdScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdScrollView.h; sourceTree = "<group>"; };
-		86C3BB7A1C253E8C00F98E80 /* AdScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdScrollView.m; sourceTree = "<group>"; };
 		86C3BB851C279C8200F98E80 /* CustomerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerTableViewCell.h; sourceTree = "<group>"; };
 		86C3BB861C279C8200F98E80 /* CustomerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerTableViewCell.m; sourceTree = "<group>"; };
 		86C3BB871C279C8200F98E80 /* CustomerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerTableViewCell.xib; sourceTree = "<group>"; };
@@ -1120,6 +1118,8 @@
 		CF608EF81C58A43D00DC10CA /* KGStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KGStatusBar.m; path = KGStatusBar/KGStatusBar.m; sourceTree = "<group>"; };
 		CF608EFB1C5A330F00DC10CA /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetManager.m; path = Reachability/NetManager.m; sourceTree = "<group>"; };
 		CF608EFC1C5A330F00DC10CA /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetManager.h; path = Reachability/NetManager.h; sourceTree = "<group>"; };
+		CF677E321C97EB4D00128F1B /* MJBannnerPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJBannnerPlayer.h; sourceTree = "<group>"; };
+		CF677E331C97EB4D00128F1B /* MJBannnerPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJBannnerPlayer.m; sourceTree = "<group>"; };
 		DFE808A7D7A93EC82240AE11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1923,10 +1923,10 @@
 		86C3BB3C1C23C19200F98E80 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				CF677E321C97EB4D00128F1B /* MJBannnerPlayer.h */,
+				CF677E331C97EB4D00128F1B /* MJBannnerPlayer.m */,
 				86A5040B1C4CD16D0032A901 /* CTPopOutMenu.h */,
 				86A5040C1C4CD16D0032A901 /* CTPopOutMenu.m */,
-				86C3BB791C253E8C00F98E80 /* AdScrollView.h */,
-				86C3BB7A1C253E8C00F98E80 /* AdScrollView.m */,
 				86C3BB481C24017E00F98E80 /* LeftImgButton.h */,
 				86C3BB491C24017E00F98E80 /* LeftImgButton.m */,
 				86A505071C52717A0032A901 /* LeftImgButtonLeft.h */,
@@ -2849,8 +2849,11 @@
 				86C3BB121C228D6F00F98E80 /* LoadMoreTableFooterView.m in Sources */,
 				86A26E9D1C4665C90073FFFC /* NetWorkHandler+queryForInsuranceOffersList.m in Sources */,
 				86A504AB1C4FB4D40032A901 /* NetWorkHandler+saveOrUpdateUserBackCard.m in Sources */,
+<<<<<<< HEAD
+=======
 				868C7CC41C969AC600B7617A /* ImageLayoutView.m in Sources */,
 				86C3BB7B1C253E8C00F98E80 /* AdScrollView.m in Sources */,
+>>>>>>> 222d70010378dcaac6dacbb349d1ccf9dfd430b8
 				86C3BCC01C2E933600F98E80 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				86A26ED11C47D6840073FFFC /* InsurCompanySelectTableViewCell.m in Sources */,
 				86C3BCC61C2E933600F98E80 /* IQUIView+IQKeyboardToolbar.m in Sources */,
@@ -2869,6 +2872,7 @@
 				86A504EA1C524E8F0032A901 /* OrderDetailWebVC.m in Sources */,
 				8654CD861C312CE100411C54 /* SBJsonStreamWriterState.m in Sources */,
 				86A26E7F1C45184C0073FFFC /* HaedlineModel.m in Sources */,
+				CF677E341C97EB4D00128F1B /* MJBannnerPlayer.m in Sources */,
 				8625AFD31C34DB5600312B98 /* InviteFriendsVC.m in Sources */,
 				86A504801C4F27950032A901 /* rscode.c in Sources */,
 				86C3BCBC1C2E933600F98E80 /* IQNSArray+Sort.m in Sources */,

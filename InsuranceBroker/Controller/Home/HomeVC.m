@@ -21,7 +21,7 @@
 #import "MyTeamInfoVC.h"
 //#import "SetTeamLeaderPhoneView.h"
 
-@interface HomeVC ()
+@interface HomeVC ()<MJBannnerPlayerDeledage>
 {
     AppDelegate *appdelegate;
 }
@@ -59,12 +59,7 @@
     UIImageView *logoView = [[UIImageView alloc] initWithImage:ThemeImage(@"logo")];
     self.navigationItem.titleView = logoView;
     [self setLeftBarButtonWithImage:nil];
-    
-    self.adView = [[AdScrollView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, [Util getHeightByWidth:750 height:330 nwidth:ScreenWidth])];
-    self.adView.parentController=self;
-    self.adView.pageControl.pageIndicatorTintColor = [UIColor whiteColor];
-    [self.scrollview addSubview:self.adView];
-    
+
     self.headline.delegate = self;
     self.headline.imgTitle.image = ThemeImage(@"Hot");
     
@@ -145,18 +140,53 @@
     }];
 }
 
+
 - (void) initData
 {
-    self.adView.NewsmodelArray = _adArray;
-    self.adView.PageControlShowStyle = UIPageControlShowStyleRight;
+     NSMutableArray * mArray  =  [[NSMutableArray alloc]init];
+     for (int i = 0; i < _adArray.count; i++) {
+          PosterModel *item = [_adArray objectAtIndex:i];
+          [mArray addObject:item.imgUrl];
+     }
+
+    [MJBannnerPlayer initWithUrlArray:mArray
+                                addTarget:self.scrollview
+                                 delegate:self
+                                 withSize:CGRectMake(0, 0, self.view.frame.size.width, 160)
+                         withTimeInterval:5.f];
+    
+   
     [self.headline reloadData];
     [self.btnNewUser sd_setBackgroundImageWithURL:[NSURL URLWithString:_newUserModel.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
 }
 
+# pragma mark MJBannnerPlayer delegate
+-(void)MJBannnerPlayer:(UIView *)bannerPlayer didSelectedIndex:(NSInteger)index{
+    
+   // NSLog(@"%ld",(long)index);
+    PosterModel *model = [_adArray objectAtIndex:index];
+    if(model.isRedirect == 1){
+        WebViewController *vc = [IBUIFactory CreateWebViewController];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.title = model.title;
+        vc.type = enumShareTypeShare;
+        if(model.imgUrl != nil)
+            vc.shareImgArray = [NSArray arrayWithObject:model.imgUrl];
+        vc.shareTitle = model.title;
+        [self.navigationController pushViewController:vc animated:YES];
+        if(model.url == nil){
+            [vc loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.pid]];
+        }else{
+            [vc loadHtmlFromUrlWithUserId:model.url];
+        }
+    }
+
+}
+
+
 - (void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-//    self.adView.PageControlShowStyle = UIPageControlShowStyleRight;
     CGRect frame1 = self.lbsepline1.frame;
     self.lbsepline1.frame = CGRectMake(frame1.origin.x, frame1.origin.y, 0.5, frame1.size.height);
     CGRect frame2 = self.lbsepline2.frame;
@@ -207,11 +237,7 @@
 
 - (IBAction) doBtnNoticeList:(id) sender
 {
-//    BOOL result = [self login];
-       // self._btnMessage.imageView.badgeView.badgeValue = 0;
-//        AppContext *context = [AppContext sharedAppContext];
-//        context.isNewMessage = NO;
-       // [context saveData];
+
         NoticeListVC *vc = [[NoticeListVC alloc] initWithNibName:nil bundle:nil];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
@@ -220,16 +246,13 @@
 - (IBAction)doBtnInvite:(id)sender
 {
     if([self login]){
-//        InviteFriendsVC *vc = [[InviteFriendsVC alloc] initWithNibName:nil bundle:nil];
-//        vc.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:vc animated:YES];
+
         MyTeamInfoVC *vc = [[MyTeamInfoVC alloc] initWithNibName:nil bundle:nil];
         vc.hidesBottomBarWhenPushed = YES;
         vc.userid = [UserInfoModel shareUserInfoModel].userId;
         vc.title = @"我的团队";
         vc.toptitle = @"我的队员";
         vc.name = @"我";
-//        vc.need = enumNeedIndicator;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
