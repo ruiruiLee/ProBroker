@@ -23,8 +23,9 @@
 #import "SJAvatarBrowser.h"
 #import "ProgressHUD.h"
 #import "UIButton+WebCache.h"
+#import "NetWorkHandler+saveOrUpdateCustomer.h"
 
-@interface AutoInsuranceInfoEditVC ()<MenuDelegate, ZHPickViewDelegate, UITextFieldDelegate>
+@interface AutoInsuranceInfoEditVC ()<MenuDelegate, ZHPickViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 {
     NSInteger _perInsurCompany;
     NSArray *_insurCompanyArray;
@@ -39,6 +40,9 @@
     ZHPickView *_datePicker1;
     
     BOOL isCertModify;
+    
+    UIImage *newLisence;
+    UIImage *newCert;
 }
 
 @property (nonatomic,strong) PhotoBrowserView *photoBrowserView;
@@ -48,9 +52,7 @@
 @end
 
 @implementation AutoInsuranceInfoEditVC
-@synthesize tableview;
 @synthesize btnQuote;
-@synthesize lbAttribute;
 
 - (void) dealloc
 {
@@ -114,6 +116,7 @@
     if(self){
         _perInsurCompany = -1;
         _changeNameIdx = 0;
+        self.type = enumAddPhotoTypeNone;
     }
     
     return self;
@@ -126,6 +129,7 @@
     [self loadInsurCompany];
     
     isCertModify = NO;
+    self.lbIsTransfer.text = @"否";
     
     [self.tfName addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.tfNo addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventEditingChanged];
@@ -134,8 +138,9 @@
     [self.tfIdenCode addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.tfDate addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.tfCert addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventEditingChanged];
-    
-//    _changeNameArray = @[@"否", @"是"];
+    self.btnCert.layer.borderWidth = 1;
+    self.btnCert.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
+    [self.btnCert addTarget:self action:@selector(btnPhotoPressed:) forControlEvents:UIControlEventTouchUpInside];
     _changeNameArray = [[NSMutableArray alloc] init];
     DictModel *model = [[DictModel alloc] init];
     model.dictName = @"否";
@@ -151,16 +156,7 @@
     
     self.title = @"车险信息";
     [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
-    
-    lbAttribute = [[UILabel alloc] init];
-    lbAttribute.translatesAutoresizingMaskIntoConstraints = NO;
-    lbAttribute.backgroundColor = [UIColor clearColor];
-    lbAttribute.font = _FONT(11);
-    lbAttribute.textColor = _COLOR(0x75, 0x75, 0x75);
-    [self.contenView addSubview:lbAttribute];
-    lbAttribute.numberOfLines = 2;
-    lbAttribute.attributedText = [self getAttbuteString];
-    lbAttribute.userInteractionEnabled = YES;
+
     
     self.tfDate.delegate = self;
     self.tfCert.delegate = self;
@@ -169,6 +165,9 @@
     self.tfMotorCode.delegate = self;
     self.tfName.delegate = self;
     self.tfNo.delegate = self;
+    self.lbExplain.attributedText = [self getAttbuteString];
+    self.lbExplain.hidden = YES;
+    self.scrollview.delegate = self;
     
     self.tfMotorCode.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     self.tfIdenCode.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
@@ -176,22 +175,9 @@
     self.tfNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     self.tfCert.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
-    [self.tableview registerNib:[UINib nibWithNibName:@"CarAddInfoTableCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
     [self.btnReSubmit setTitle:@"上传照片" forState:UIControlStateNormal];
     [self.btnReSubmit addTarget:self action:@selector(btnPhotoPressed:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
-    btn.translatesAutoresizingMaskIntoConstraints = NO;
-    [lbAttribute addSubview:btn];
-    btn.backgroundColor = [UIColor clearColor];
-    [btn addTarget:self action:@selector(doBtnShowLicenseView:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [lbAttribute addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-120-[btn]-80-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btn)]];
-    [lbAttribute addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btn]-10-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(btn)]];
-    
-    [self.contenView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbAttribute]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(lbAttribute)]];
-    [self.contenView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-336-[lbAttribute]->=20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(lbAttribute)]];
     
     btnQuote = [[UIButton alloc] init];
     [self.view addSubview:btnQuote];
@@ -213,25 +199,13 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(48)]-10-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views]];
     
-    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.tableview.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
-    self.tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    if ([tableview respondsToSelector:@selector(setSeparatorInset:)]) {
-        [tableview setSeparatorInset:insets];
-    }
-    if ([tableview respondsToSelector:@selector(setLayoutMargins:)]) {
-        [tableview setLayoutMargins:insets];
-    }
-    
-    self.imgLicense.layer.borderWidth = 0.5;
-    self.imgLicense.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
     self.btnReSubmit.layer.cornerRadius = 3;
     
     self.viewHConstraint.constant = ScreenWidth;
     
     [self.btnNoNo setImage:ThemeImage(@"select") forState:UIControlStateSelected];
-    
-//    [self showLicenceView:YES];
+    self.btnChange.selected = YES;
+    [self doBtnInfoChange:self.btnChange];
 }
 
 - (void) valueChanged:(UITextField*) obj
@@ -251,28 +225,9 @@
     }];
 }
 
-//- (void) showLicenceView:(BOOL) flag
-//{
-//    if(flag){
-//        self.baseViewVConstraint.constant = 436;//驾驶证照片
-//        lbAttribute.hidden = YES;
-//        self.licenseView.hidden = NO;
-//    }else{
-//        self.baseViewVConstraint.constant = 396;//驾驶证照片
-//        lbAttribute.hidden = NO;
-//        self.licenseView.hidden = YES;
-//    }
-//}
-
-- (void) doBtnShowLicenseView:(UIButton *)sender
-{
-//    [self showLicenceView:YES];
-}
-
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self fillTheData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -280,16 +235,34 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat offset = scrollView.contentOffset.x;
+    if(offset >= ScreenWidth){
+        self.lbExplain.hidden = NO;
+        self.btnHow.hidden = YES;
+        self.btnChange.selected = NO;
+    }else{
+        self.lbExplain.hidden = YES;
+        self.btnHow.hidden = NO;
+        self.btnChange.selected = YES;
+    }
+    
+    if(self.btnChange.selected){
+        self.lbInfo.textColor = _COLOR(0xff, 0x66, 0x19);
+        self.lbPhoto.textColor = _COLOR(0x21, 0x21, 0x21);
+    }else{
+        self.lbPhoto.textColor = _COLOR(0xff, 0x66, 0x19);
+        self.lbInfo.textColor = _COLOR(0x21, 0x21, 0x21);
+    }
+    self.btnChange.selected = !self.btnChange.selected;
+}
+
 - (NSMutableAttributedString *)getAttbuteString
 {
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"信息输入太频繁？您也可以上传行驶证来保存信息\n行驶证仅用于车辆投保，不作其他用途，请放心上传"];
-    NSMutableParagraphStyle *
-    style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    style.lineHeightMultiple = 1.3;//行间距是多少倍
-    [string addAttribute:NSParagraphStyleAttributeName value:style range:NSMakeRange(0, [string length])];
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"*优快保经纪人保证所有证件资料仅用于车辆报价或投保，不用做其他用途，请放心上传"];
     
-    [string addAttribute:NSForegroundColorAttributeName value:_COLOR(0x46, 0xa6, 0xeb) range:NSMakeRange(12,5)];
-    [string addAttribute:NSFontAttributeName value:_FONT_B(11) range:NSMakeRange(12,5)];
+    [string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,1)];
     
     return string;
 }
@@ -320,215 +293,87 @@
     return flag;
 }
 
+//续保用户; 上传所有材料：身份证和行驶证； 上传文字资料
 - (BOOL) isRenewingCoverage
 {
-    BOOL result = YES;
+    BOOL result = NO;
     
-    if(_perInsurCompany < 0){
-        return NO;
-    }
-    
-    NSString *carNo = [self getCarCertString];//self.tfNo.text;
-    if(![Util validateCarNo:carNo] && self.imgLicense.image == nil){
-        return NO;
+    NSString *carNo = [self getCarCertString];
+    if(([Util validateCarNo:carNo] || [self imageLisence] != nil) && _perInsurCompany >= 0){
+        return YES;
     }
     
     return result;
 }
 
-//
-- (void) submitWithRenewingCoverage:(Completion) completion
+- (BOOL) checkInfoFull
 {
-    NSString *carOwnerName = self.tfName.text;
-    NSString *carOwnerCard = self.tfCert.text;
-//    BOOL flag = [Util validateIdentityCard:carOwnerCard];//[self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
-//    if(!flag){
-//        [Util showAlertMessage:@"车主身份证号不正确"];
-//        [self.tfCert becomeFirstResponder];
-//        return;
-//    }
-    NSString *carRegTime = self.tfDate.text;
-    NSString *carEngineNo = self.tfMotorCode.text;
-    NSString *carShelfNo = self.tfIdenCode.text;
-    NSString *carTypeNo = self.tfModel.text;
-    NSString *carNo = [self getCarCertString];//self.tfNo.text;
+    BOOL result = NO;
     
-    NSString *newCarNoStatus = @"1";
-    if(![Util validateCarNo:carNo]){
-        [Util showAlertMessage:@"车牌号不正确"];
-        [_tfNo becomeFirstResponder];
-        return;
-        
+    result = [self isRenewingCoverage];
+    if(result)
+        return result;
+    
+//    UIImage *lisence = [self imageLisence];//行驶证
+//    UIImage *cert = [self imageCert];
+    NSString *carOwnerCard = self.tfCert.text;//身份证号
+    NSString *carRegTime = self.tfDate.text;//注册日期
+    NSString *carEngineNo = self.tfMotorCode.text;////发动机号
+    NSString *carShelfNo = self.tfIdenCode.text;//识别码
+    NSString *carTypeNo = self.tfModel.text;//品牌型号
+    NSString *carNo = [self getCarCertString];//车牌;
+    BOOL isCarInfo = NO;
+    if(self.btnReSubmit.selected || ([self isNilValue:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && ([self isNilValue:carNo] || self.btnNoNo.selected))){
+        isCarInfo = YES;
+    }
+    if(isCarInfo && (self.btnCert.selected && [Util validateIdentityCard:carOwnerCard])){
+        return YES;
     }
     
-    NSString *customerCarId = self.customerModel.carInfo.customerCarId;
-    NSString *customerId = self.customerId;
-    NSString *travelCard1 = nil;
-    
-    NSString *carTradeStatus = @"0";
-    NSString *carTradeTime = nil;
-    if(_changeNameIdx == 0){
-        carTradeStatus = @"1";
+    if(!self.btnCert.selected){
+        BOOL flag = [Util validateIdentityCard:carOwnerCard];//[self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
+        if(!flag){
+            [Util showAlertMessage:@"车主身份证号不正确"];
+            return result;
+        }
     }
-    else if (_changeNameIdx == 1){
-        carTradeStatus = @"2";
-        carTradeTime = [Util getDayString:_changNameDate];
-    }
-    
-    NSString *carInsurStatus1 = nil;
-    NSString *carInsurCompId1 = nil;
-    if(_perInsurCompany>=0){
-        carInsurStatus1 = @"1";
-        carInsurCompId1 = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).insuranceCompanyId;
-    }
-    [ProgressHUD show:nil];
-    [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:travelCard1 travelCard2:nil carRegTime:carRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
-        [ProgressHUD dismiss];
-        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-        if(code == 200){
-            
-            CarInfoModel *model = self.customerModel.carInfo;
-            if(model == nil){
-                model = [[CarInfoModel alloc] init];
-                self.customerModel.carInfo = model;
-            }
-            model.customerCarId = [content objectForKey:@"data"];
-            model.customerId = customerId;
-            model.carOwnerName = carOwnerName;
-            model.carOwnerCard = carOwnerCard;
-            model.carRegTime = _signDate;
-            model.carEngineNo = carEngineNo;
-            model.carShelfNo = carShelfNo;
-            model.carTypeNo = carTypeNo;
-            model.carNo = carNo;
-            
-            if(completion){
-                completion(code, content);
+    if(!self.btnReSubmit.selected){
+        if(!self.btnNoNo.selected){
+            if(![Util validateCarNo:carNo]){
+                [Util showAlertMessage:@"车牌号不正确"];
+                return result;
             }
         }
-    }];
-
-}
-
-- (void) submitWithBlock:(Completion) completion
-{
-    NSString *carOwnerName = self.tfName.text;
-    NSString *carOwnerCard = self.tfCert.text;
-    BOOL flag = [Util validateIdentityCard:carOwnerCard];//[self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
-    if(!flag){
-        [Util showAlertMessage:@"车主身份证号不正确"];
-        [self.tfCert becomeFirstResponder];
-        return;
-    }
-    NSString *carRegTime = self.tfDate.text;
-//        flag = [self showMessage:@"登记日期不能为空" string:carRegTime];
-//        if(flag){
-//            [self.tfDate becomeFirstResponder];
-//            return;
-//        }
-    NSString *carEngineNo = self.tfMotorCode.text;
-    flag = [self showMessage:@"发动机号不能为空" string:carEngineNo];
-    if(flag){
-        [self.tfMotorCode becomeFirstResponder];
-        return;
-    }
-    NSString *carShelfNo = self.tfIdenCode.text;
-    flag = [self showMessage:@"车辆识别代号不能为空" string:carShelfNo];
-    if(flag){
-        [self.tfIdenCode becomeFirstResponder];
-        return;
-    }
-    NSString *carTypeNo = self.tfModel.text;
-    flag = [self showMessage:@"品牌型号不能为空" string:carTypeNo];
-    if(flag){
-        [self.tfModel becomeFirstResponder];
-        return;
-    }
-    NSString *carNo = [self getCarCertString];//self.tfNo.text;
-    
-    NSString *newCarNoStatus = @"1";
-    if(self.btnNoNo.selected){
-        carNo = nil;
-        newCarNoStatus = @"0";
-    }
-    else{
-//        if(carNo == nil || [carNo length] != 7)
-//        {
-//            [Util showAlertMessage:@"车牌号不正确"];
-//            [_tfNo becomeFirstResponder];
-//            return;
-//        }
-        if(![Util validateCarNo:carNo]){
-            [Util showAlertMessage:@"车牌号不正确"];
-            [_tfNo becomeFirstResponder];
-            return;
-
+        BOOL flag = [self showMessage:@"发动机号不能为空" string:carEngineNo];
+        if(flag){
+            return result;
+        }
+        flag = [self showMessage:@"车辆识别代号不能为空" string:carShelfNo];
+        if(flag){
+            return result;
+        }
+        flag = [self showMessage:@"品牌型号不能为空" string:carTypeNo];
+        if(flag){
+            return result;
         }
     }
     
-    NSString *customerCarId = self.customerModel.carInfo.customerCarId;
-    NSString *customerId = self.customerId;
-    NSString *travelCard1 = nil;
-    
-    NSString *carTradeStatus = @"0";
-    NSString *carTradeTime = nil;
-    if(_changeNameIdx == 0){
-        carTradeStatus = @"1";
-    }
-    else if (_changeNameIdx == 1){
-        carTradeStatus = @"2";
-        carTradeTime = [Util getDayString:_changNameDate];
-    }
-    
-    NSString *carInsurStatus1 = nil;
-    NSString *carInsurCompId1 = nil;
-    if(_perInsurCompany>=0){
-        carInsurStatus1 = @"1";
-        carInsurCompId1 = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).insuranceCompanyId;
-    }
-    [ProgressHUD show:nil];
-    [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:travelCard1 travelCard2:nil carRegTime:carRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
-        [ProgressHUD dismiss];
-        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-        if(code == 200){
-            
-            CarInfoModel *model = self.customerModel.carInfo;
-            if(model == nil){
-                model = [[CarInfoModel alloc] init];
-                self.customerModel.carInfo = model;
-            }
-            model.customerCarId = [content objectForKey:@"data"];
-            model.customerId = customerId;
-            model.carOwnerName = carOwnerName;
-            model.carOwnerCard = carOwnerCard;
-            model.carRegTime = _signDate;
-            model.carEngineNo = carEngineNo;
-            model.carShelfNo = carShelfNo;
-            model.carTypeNo = carTypeNo;
-            model.carNo = carNo;
-            
-            if(completion){
-                completion(code, content);
-            }
-        }
-    }];
-
+    return result;
 }
 
 - (void) handleRightBarButtonClicked:(id)sender
 {
     [self resignFirstResponder];
     
-    if([self isRenewingCoverage]){
-        [self submitWithRenewingCoverage:^(int code, id content) {
-            [self.navigationController popViewControllerAnimated:YES];
-        }];
-    }
-    else{
-        if(self.imgLicense.image == nil){
-            [self submitWithBlock:^(int code, id content) {
-                [self.navigationController popViewControllerAnimated:YES];
-            }];
+    if([self checkInfoFull]){
+        if(newCert){
+//            [self saveOrUpdateCustomerCert:^(int code, id content) {
+//                if(code == 200){
+                    [self submitWithLicense:^(int code, id content) {
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }];
+//                }
+//            }];
         }else{
             [self submitWithLicense:^(int code, id content) {
                 [self.navigationController popViewControllerAnimated:YES];
@@ -541,23 +386,13 @@
 {
     NSString *customerCarId = self.customerModel.carInfo.customerCarId;
     NSString *customerId = self.customerId;
-    
     NSString *carOwnerCard = self.tfCert.text;
-    BOOL flag = [Util validateIdentityCard:carOwnerCard];
-    if(!flag){
-        [Util showAlertMessage:@"车主身份证号不正确"];
-        [self.tfCert becomeFirstResponder];
-        return;
-    }
-    
     NSString *carOwnerName = self.tfName.text;
-
     NSString *carRegTime = self.tfDate.text;
     NSString *carEngineNo = self.tfMotorCode.text;
     NSString *carShelfNo = self.tfIdenCode.text;
     NSString *carTypeNo = self.tfModel.text;
     NSString *carNo = [self getCarCertString];
-    
     NSString *newCarNoStatus = @"1";
     if(self.btnNoNo.selected){
         carNo = nil;
@@ -585,9 +420,16 @@
     }
     [ProgressHUD show:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
-        NSString *filePahe = [self fileupMothed];
+        NSString *filePahe = nil;
+        NSString *filePahe1 = nil;
+        if(newLisence != nil){
+            filePahe = [self fileupMothed:newLisence];
+        }
+        if(newCert != nil){
+            filePahe1 = [self fileupMothed:newCert];
+        }
         
-        [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe travelCard2:nil carRegTime:carRegTime newCarNoStatus:nil carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
+        [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe travelCard2:nil carOwnerCard1:filePahe1 carOwnerCard2:nil carRegTime:carRegTime newCarNoStatus:nil carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
             [ProgressHUD dismiss];
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
@@ -605,6 +447,10 @@
                 model.carShelfNo = carShelfNo;
                 model.carTypeNo = carTypeNo;
                 model.carNo = carNo;
+                if(filePahe)
+                    model.travelCard1 = filePahe;
+                if(filePahe1 != nil)
+                    self.customerModel.cardNumberImg1 = filePahe1;
 
                 if(completion){
                     completion(code, content);
@@ -614,11 +460,10 @@
     });
 }
 
--(NSString *)fileupMothed
+-(NSString *)fileupMothed:(UIImage *) image
 {
     //图片
     //添加文件名
-    UIImage *image = self.imgLicense.image;
     @autoreleasepool {
         NSData *imageData = UIImageJPEGRepresentation(image, 1.f);
         AVFile *file = [AVFile fileWithData:imageData];
@@ -630,106 +475,29 @@
     //文字内容
 }
 
-#pragma UITableViewDataSource UITableViewDelegate
-
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if(_changeNameIdx == 1){
-        self.tableVConstraint.constant = 48 * 3;
-        return 3;
-    }
-    self.tableVConstraint.constant = 48 * 2;
-    return 2;
-}
-
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 48.f;
-}
-
-- (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *deq = @"cell";
-    CarAddInfoTableCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
-    if(!cell){
-//        cell = [[CarAddInfoTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
-        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"CarAddInfoTableCell" owner:nil options:nil];
-        cell = [nibs lastObject];
-        cell.textLabel.font = _FONT(15);
-        cell.textLabel.textColor = _COLOR(0x21, 0x21, 0x21);
-    }
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    if(indexPath.row == 0){
-        cell.lbTitle.text = @"上年度保险";
-        if(_perInsurCompany != -1){
-            InsuranceCompanyModel *model = [_insurCompanyArray objectAtIndex:_perInsurCompany];
-            cell.lbDetail.text = model.insuranceCompanyShortName;
-        }else{
-            cell.lbDetail.text = @"";
-        }
-    }else if(indexPath.row == 1)
-    {
-        cell.lbTitle.text = @"是否过户";
-        if(_changeNameIdx >= 0){
-            DictModel *model = [_changeNameArray objectAtIndex:_changeNameIdx];
-            cell.lbDetail.text = model.dictName;
-        }
-    }else{
-        cell.lbTitle.text = @"过户日期";
-        
-        if(_changNameDate){
-            cell.lbDetail.text = [Util getDayString:_changNameDate];
-        }else
-            cell.lbDetail.text = @"";
-    }
-    
-    return cell;
-}
-
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if(indexPath.row == 0)
-    {
-        [self menuChange:nil];
-    }else if (indexPath.row == 1){
-        [self menuChangeName:nil];
-    }else if (indexPath.row == 2){
-        [self addDatePicker1:nil];
-    }
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 0, 0);
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:insets];
-    }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:insets];
-    }
-}
-
 - (IBAction)doButtonEditNo:(UIButton *)sender
 {
     BOOL selected = sender.selected;
     if(selected){
         self.tfNo.enabled = YES;
         self.lbDateTitle.text = @"注册日期";
+        self.pInfoView.hidden = NO;
+        self.assignedView.hidden = NO;
+        self.baseViewVConstraint.constant = 90;
+        _perInsurCompany = -1;
+        _changeNameIdx = -1;
+        _changNameDate = nil;
     }else{
         self.tfNo.enabled = NO;
         self.tfNo.text = @"";
         self.lbDateTitle.text = @"购车日期";
+        self.pInfoView.hidden = YES;
+        self.assignedView.hidden = YES;
+        self.baseViewVConstraint.constant = 50;
     }
     
     sender.selected = !selected;
+    [self cancelSelectPCompany:nil];
     [self isModify];
 }
 
@@ -745,9 +513,32 @@
     {
         [Util openCamera:self allowEdit:YES completion:^{}];
     }
-    else{
+    else if(buttonIndex == 3){
+        
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        if(self.type == enumAddPhotoTypeLisence){
+            [array addObject:[self imageLisence]];
+        }
+        else{
+            [array addObject:[self imageCert]];
+        }
+
+        _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
+//        [_imageList addImagesURL:array withSmallImage:nil];
+        [_imageList addImages:array];
+        [self.view.window addSubview:_imageList];
+        
+    }else{
         
     }
+}
+
+-(void)dismissImageAction:(UIImageView*)sender
+{
+    NSLog(@"dismissImageAction");
+    [_imageList removeFromSuperview];
+    _imageList = nil;
 }
 #pragma mark- UIImagePickerControllerDelegate
 
@@ -758,23 +549,43 @@
         UIImage *image= [UIImage imageWithData:imageData];
         image = [Util fitSmallImage:image scaledToSize:imgLicenseSize];
         isCertModify = YES;
-//        self.imgLicense.image = image;
-        [self.btnReSubmit setImage:image forState:UIControlStateNormal];
-//        [self.btnReSubmit setTitle:@"重新上传" forState:UIControlStateNormal];
+        if(self.type == enumAddPhotoTypeLisence){
+            [self.btnReSubmit setImage:image forState:UIControlStateSelected];
+            newLisence = image;
+            self.btnReSubmit.selected = YES;
+        }else{
+            [self.btnCert setImage:image forState:UIControlStateSelected];
+            newCert = image;
+            self.btnCert.selected = YES;
+        }
         [self isModify];
+        self.type = enumAddPhotoTypeNone;
     }];
     
 }
+
 #pragma ACTION
 - (void) btnPhotoPressed:(UIButton*)sender{
+    
+    UIImage *image = [self imageLisence];
+    
     UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:@""
                                                     delegate:(id)self
                                            cancelButtonTitle:@"取消"
                                       destructiveButtonTitle:nil
                                            otherButtonTitles:@"从相册选取", @"拍照",nil];
+    if(image != nil){
+        [ac addButtonWithTitle:@"查看原图"];
+    }
     ac.actionSheetStyle = UIBarStyleBlackTranslucent;
     [ac showInView:self.view];
     
+    if(sender == self.btnCert){
+        self.type = enumAddPhotoTypeCert;
+    }
+    else{
+        self.type = enumAddPhotoTypeLisence;
+    }
 }
 
 - (void) setCustomerModel:(CustomerDetailModel *)model
@@ -809,34 +620,49 @@
         self.tfCert.text = model.carOwnerCard;
         
         if(model.travelCard1 != nil){
-            [self.imgLicense sd_setImageWithURL:[NSURL URLWithString:model.travelCard1]];
-//            [self showLicenceView:YES];
+            [self.btnReSubmit sd_setImageWithURL:[NSURL URLWithString:model.travelCard1] forState:UIControlStateSelected];
+            self.btnReSubmit.selected = YES;
+        }
+        
+        if(model.carOwnerCard1 != nil){
+            [self.btnCert sd_setImageWithURL:[NSURL URLWithString:model.carOwnerCard1] forState:UIControlStateSelected];
+            self.btnCert.selected = YES;
         }else{
-//            [self showLicenceView:NO];
+            self.btnCert.selected = NO;
         }
         
         if(model.carTradeStatus == 0){
             _changNameDate = nil;
             _changeNameIdx = -1;
+            self.lbIsTransfer.text = @"否";
         }
         else if (model.carTradeStatus == 1){
             _changNameDate = nil;
             _changeNameIdx = 0;
+            self.lbIsTransfer.text = @"否";
         }
         else{
             _changNameDate = model.carTradeTime;
             _changeNameIdx = 1;
+            self.lbTransferDate.text = [Util getDayString:_changNameDate];
+            self.lbIsTransfer.text = @"是";
         }
         
         if(model.carInsurStatus1 == 1){
             _perInsurCompany = [self getSelectIdxFromArray:model.carInsurCompId1];
+            if(_perInsurCompany >= 0){
+                InsuranceCompanyModel *model = [_insurCompanyArray objectAtIndex:_perInsurCompany];
+                self.lbPName.text = model.insuranceCompanyShortName;
+            }else
+            {
+                self.lbPName.text = @"";
+            }
         }
         else{
             _perInsurCompany = -1;
+            self.lbPName.text = @"";
         }
-            
         
-        [self.tableview reloadData];
     }
     [self isModify];
 }
@@ -859,20 +685,28 @@
     
     [self resignFirstResponder];
     
-    if([self isRenewingCoverage]){
-        [self submitWithRenewingCoverage:^(int code, id content) {
-            [self car_insur_plan:[content objectForKey:@"data"]];
-        }];
-    }else{
-        if(self.imgLicense.image == nil){
-            [self submitWithBlock:^(int code, id content) {
-                [self car_insur_plan:[content objectForKey:@"data"]];
-            }];
-        }else{
-            [self submitWithLicense:^(int code, id content) {
-                [self car_insur_plan:[content objectForKey:@"data"]];
-            }];
+    if([self isModify]){
+        if([self checkInfoFull]){
+            if(newCert){
+//                [self saveOrUpdateCustomerCert:^(int code, id content) {
+//                    if(code == 200){
+                        [self submitWithLicense:^(int code, id content) {
+                            if(code == 200){
+                                [self car_insur_plan:[content objectForKey:@"data"]];
+                            }
+                        }];
+//                    }
+//                }];
+            }else{
+                [self submitWithLicense:^(int code, id content) {
+                    if(code == 200){
+                        [self car_insur_plan:[content objectForKey:@"data"]];
+                    }
+                }];
+            }
         }
+    }else{
+        [self car_insur_plan:self.customerModel.carInfo.customerCarId];
     }
 }
 
@@ -894,9 +728,16 @@
     [self.tfMotorCode resignFirstResponder];
     [self.tfName resignFirstResponder];
     [self.tfNo resignFirstResponder];
-    NSArray *urlArray = @[@"license_img"];
-    _photoBrowserView=[[PhotoBrowserView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame WithArray:urlArray andCurrentIndex:0];
-    [[UIApplication sharedApplication].keyWindow addSubview:_photoBrowserView];
+    if(self.btnNoNo.selected){
+        NSArray *urlArray = @[@"price_img"];
+        _photoBrowserView=[[PhotoBrowserView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame WithArray:urlArray andCurrentIndex:0];
+        [[UIApplication sharedApplication].keyWindow addSubview:_photoBrowserView];
+    }
+    else{
+        NSArray *urlArray = @[@"license_img"];
+        _photoBrowserView=[[PhotoBrowserView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame WithArray:urlArray andCurrentIndex:0];
+        [[UIApplication sharedApplication].keyWindow addSubview:_photoBrowserView];
+    }
 }
 
 - (void) loadInsurCompany
@@ -931,7 +772,20 @@
     _menuView.selectIdx = _perInsurCompany;
     
     [_menuView show:self.view];
-    
+    [_menuView.btnCancel addTarget:self action:@selector(cancelSelectPCompany:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void) cancelSelectPCompany:(UIButton *)sender
+{
+    _perInsurCompany = -1;
+    self.lbPName.text = @"";
+    [_menuView hide];
+    self.view5.hidden = NO;
+    self.view6.hidden = NO;
+    self.view7.hidden = NO;
+    self.view5VConstraint.constant = 30;
+    self.view6VConstraint.constant = 210;
+    self.view7VConstraint.constant = 40;
 }
 
 - (IBAction)menuChangeName:(UIButton *)sender {
@@ -953,18 +807,28 @@
 {
     [menu hide];
     
-    if(menu == _menuView){
+    if(menu == _menuView){//上年度投保
         _perInsurCompany = index;
         self.lbPName.text = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:index]).insuranceCompanyShortName;
+        self.view6.hidden = YES;
+        self.view7.hidden = YES;
+        self.view5.hidden = YES;
+        self.view5VConstraint.constant = 0;
+        self.view6VConstraint.constant = 0;
+        self.view7VConstraint.constant = 0;
     }else if (menu == _menu){
         _changeNameIdx = index;
-        if(index == 1)
+        if(index == 1){
+            self.lbIsTransfer.text = @"是";
             [self addDatePicker1:nil];
-        else
+        }
+        else{
+            self.lbIsTransfer.text = @"否";
             _changNameDate = nil;
+            self.lbTransferDate.text = @"";
+        }
     }
     
-    [self.tableview reloadData];
     [self isModify];
 }
 -(void)menuViewControllerDidCancel:(MenuViewController *)menu
@@ -1004,7 +868,7 @@
         self.tfDate.text = dateStr;
     }else{
         _changNameDate = resultDate;
-        [self.tableview reloadData];
+        self.lbTransferDate.text = [Util getDayString:resultDate];
     }
     
     [self isModify];
@@ -1012,11 +876,11 @@
 
 - (void)toobarCandelBtnHaveClick:(ZHPickView *)pickView
 {
-    if(pickView == _datePicker1){
-        _changeNameIdx = 0;
-        [self.tableview reloadData];
-    }
-}
+}//    if(pickView == _datePicker1){
+//        _changeNameIdx = 0;
+//        [self.tableview reloadData];
+//    }
+
 
 #pragma UITextFieldDelegate
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -1142,11 +1006,40 @@
     return [NSString stringWithFormat:@"%@%@", @"", num];
 }
 
-- (IBAction)showLargerImage:(id)sender
+- (UIImage *) imageLisence
 {
-    if (self.imgLicense.image != nil) {
-        [SJAvatarBrowser showImage:self.imgLicense];
+    return [self.btnReSubmit imageForState:UIControlStateSelected];
+}
+
+- (UIImage *) imageCert
+{
+    return [self.btnCert imageForState:UIControlStateSelected];
+}
+
+/*
+ 是空返回yes
+ */
+- (BOOL) isNilValue:(NSString *) value
+{
+    if(value == nil || [value length] == 0)
+        return NO;
+    else
+        return YES;
+}
+
+//btn selected 0 明细  1 照片
+- (IBAction)doBtnInfoChange:(UIButton *)sender
+{
+    if(sender.selected){
+        self.lbInfo.textColor = _COLOR(0xff, 0x66, 0x19);
+        self.lbPhoto.textColor = _COLOR(0x21, 0x21, 0x21);
+        [self.scrollview scrollRectToVisible:CGRectMake(0, 0, ScreenWidth, self.scrollview.frame.size.height) animated:YES];
+    }else{
+        self.lbPhoto.textColor = _COLOR(0xff, 0x66, 0x19);
+        self.lbInfo.textColor = _COLOR(0x21, 0x21, 0x21);
+        [self.scrollview scrollRectToVisible:CGRectMake(ScreenWidth, 0, ScreenWidth, self.scrollview.frame.size.height) animated:YES];
     }
+    sender.selected = !sender.selected;
 }
 
 @end

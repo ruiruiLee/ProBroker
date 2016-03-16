@@ -81,7 +81,7 @@
     
     
     self.headerHConstraint.constant = ScreenWidth;
-    self.headerVConstraint.constant = 199 - 20;
+    self.headerVConstraint.constant = 199 - 10;
     
     _insuranceView = [[InsuranceInfoView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 180)];
     [self.detailView addSubview:_insuranceView];
@@ -570,6 +570,11 @@
     
 }
 
+- (void) NotifyToRefreshSubviewFrames
+{
+    [self resetContetHeight:_selectedView];
+}
+
 - (void) startRefresh
 {
     _insuranceView.indicatorView.hidden = NO;
@@ -656,7 +661,6 @@
         NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.data.customerId, self.data.carInfo.customerCarId];
         [web loadHtmlFromUrl:url];
     }else{
-//        [Util showAlertMessage:@"请先填写投保资料"];
         UIAlertView * mAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请先填写投保资料" delegate:self cancelButtonTitle:@"确定"  otherButtonTitles:nil, nil];
         [mAlert show];
     }

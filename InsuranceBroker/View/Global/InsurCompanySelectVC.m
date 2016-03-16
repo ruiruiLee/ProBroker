@@ -17,6 +17,13 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth - 48, 19, 40, 30)];
+    [self.headView addSubview:self.btnCancel];
+    [self.btnCancel setTitle:@"清除" forState:UIControlStateNormal];
+    [self.btnCancel setTitleColor:_COLOR(0xff, 0x99, 0x16) forState:UIControlStateNormal];
+    self.btnCancel.titleLabel.font = _FONT(15);
+    
     self.table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.table.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 0, 0);

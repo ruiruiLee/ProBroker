@@ -115,7 +115,7 @@
     self.headView = [[UIView alloc] initWithFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height + 60)];
     [self.view addSubview:self.headView];
     self.headView.backgroundColor = [UIColor whiteColor];
-    self.headView.userInteractionEnabled = YES;
+//    self.headView.userInteractionEnabled = YES;
     
     self.lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 24, 200, 20)];
     [self.headView addSubview:self.lbTitle];

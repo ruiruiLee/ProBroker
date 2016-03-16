@@ -19,7 +19,7 @@
     self = [super initWithFrame:frame];
     if(self){
         [self.tableview registerNib:[UINib nibWithNibName:@"CustomerFollowUpTableCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-        self.lbTitle.text = @"客户跟进信息";
+        self.lbTitle.text = @"跟进信息";
         [self.btnEdit setImage:ThemeImage(@"add_icon") forState:UIControlStateNormal];
         self.btnHConstraint.constant = 30;
         

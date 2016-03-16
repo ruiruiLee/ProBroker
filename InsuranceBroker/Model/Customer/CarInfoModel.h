@@ -39,6 +39,8 @@
 @property (nonatomic, assign) NSInteger carTradeStatus; //车辆过户状态；0未知，1未过户，2过户
 @property (nonatomic, strong) NSDate *carTradeTime;//如果过户，必须过户时间
 @property (nonatomic, assign) NSInteger carInsurStatus1;////上年投保状态；0未投保，1投保，不知道就不传值
+@property (nonatomic, strong) NSString *carOwnerCard1;
+@property (nonatomic, strong) NSString *carOwnerCard2;
 
 
 @end

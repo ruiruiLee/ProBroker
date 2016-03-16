@@ -79,10 +79,12 @@
     self.lbIdenCode.text = self.data.insuranceOrderNo;
     self.lbPlan.text = [NSString stringWithFormat:@"车险方案：%@", self.data.planTypeName];
     self.lbTime.text = [NSString stringWithFormat:@"创建时间：%@", [Util getTimeString:self.data.createdAt]];
-    [self.btnName setTitle:self.data.customerName forState:UIControlStateNormal];
-    [self.btnNo setTitle:self.data.carNo forState:UIControlStateNormal];
-    self.btnNameHConstraint.constant = [self.data.customerName sizeWithFont:self.btnName.titleLabel.font].width + 6 + 16;
-    self.btnNoHConstraint.constant = [self.data.carNo sizeWithFont:self.btnNo.titleLabel.font].width + 6 + 16;
+//    [self.btnName setTitle:self.data.customerName forState:UIControlStateNormal];
+    self.lbName.text = self.data.customerName;
+//    [self.btnNo setTitle:self.data.carNo forState:UIControlStateNormal];
+    self.lbNo.text = self.data.carNo;
+//    self.btnNameHConstraint.constant = [self.data.customerName sizeWithFont:self.btnName.titleLabel.font].width + 6 + 16;
+//    self.btnNoHConstraint.constant = [self.data.carNo sizeWithFont:self.btnNo.titleLabel.font].width + 6 + 16;
     
     [self.tableview reloadData];
 }
@@ -140,11 +142,11 @@
     
     OffersModel *model = [self.data.offersVoList objectAtIndex:indexPath.row];
     
-    cell.lbGain.attributedText = [self getPlanUkbSavePriceAttbuteString:[NSString stringWithFormat:@"赚：¥%.2f", model.planUserAllot] sub:@".00"];
+    cell.lbGain.attributedText = [self getPlanUkbSavePriceAttbuteString:[NSString stringWithFormat:@"赚：%.2f", model.planUserAllot] sub:@".00"];
     cell.lbName.text = model.productName;
     cell.lbPrice.attributedText = [self getPlanInsuranceCompanyPriceAttbuteString:[NSString stringWithFormat:@"保单价：%.2f", model.planInsuranceCompanyPrice] sub:[NSString stringWithFormat:@"%.2f", model.planInsuranceCompanyPrice]];
     cell.lbRebate.text = [NSString stringWithFormat:@"%d%@", (int)model.planUkbRatio, @"%"];
-    cell.lbtruePrice.attributedText = [self getPlanUkbPriceAttbuteString:[NSString stringWithFormat:@"折后价：¥%.2f", model.planUkbPrice] sub:[NSString stringWithFormat:@"¥%.2f", model.planUkbPrice]];
+    cell.lbtruePrice.attributedText = [self getPlanUkbPriceAttbuteString:[NSString stringWithFormat:@"折后价：%.2f", model.planUkbPrice] sub:[NSString stringWithFormat:@"%.2f", model.planUkbPrice]];
     [cell.photo sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:Normal_Image];
     
     if(model.businessPrice == 0){

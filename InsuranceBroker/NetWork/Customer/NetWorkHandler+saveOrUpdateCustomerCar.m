@@ -29,7 +29,9 @@
                               carOwnerTel:(NSString *) carOwnerTel
                              carOwnerAddr:(NSString *) carOwnerAddr
                               travelCard1:(NSString *) travelCard1
-                                travelCard2:(NSString *) travelCard2
+                              travelCard2:(NSString *) travelCard2
+                            carOwnerCard1:(NSString *) carOwnerCard1
+                            carOwnerCard2:(NSString *) carOwnerCard2
                                carRegTime:(NSString *) carRegTime
                            newCarNoStatus:(NSString *) newCarNoStatus
                            carTradeStatus:(NSString *) carTradeStatus
@@ -65,6 +67,8 @@
     [Util setValueForKeyWithDic:pramas value:carInsurStatus1 key:@"carInsurStatus1"];
     [Util setValueForKeyWithDic:pramas value:carInsurCompId1 key:@"carInsurCompId1"];
     [Util setValueForKeyWithDic:pramas value:@"1" key:@"status"];
+    [Util setValueForKeyWithDic:pramas value:carOwnerCard1 key:@"carOwnerCard1"];
+    [Util setValueForKeyWithDic:pramas value:carOwnerCard2 key:@"carOwnerCard2"];
     
     [handle postWithMethod:@"/web/customer/saveOrUpdateCustomerCar.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }

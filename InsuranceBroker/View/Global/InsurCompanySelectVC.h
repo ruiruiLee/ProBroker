@@ -10,4 +10,6 @@
 
 @interface InsurCompanySelectVC : MenuViewController
 
+@property (nonatomic, strong) UIButton *btnCancel;
+
 @end

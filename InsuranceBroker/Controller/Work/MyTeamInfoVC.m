@@ -34,8 +34,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self setRightBarButtonWithImage:ThemeImage(@"inviteUser")];
+    // Do any additional setup after loading the view.inviteUser
     [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
+}
+
+- (void) handleRightBarButtonClicked:(id)sender
+{
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    NewUserModel *model = appdelegate.workBanner;
+    if(model.isRedirect){
+        WebViewController *web = [IBUIFactory CreateWebViewController];
+        web.title = model.title;
+        web.type = enumShareTypeShare;
+        web.shareTitle = model.title;
+        web.shareContent = model.content;
+        [self.navigationController pushViewController:web animated:YES];
+        if(model.url){
+            [web loadHtmlFromUrl:[NSString stringWithFormat:@"%@?userId=%@&appShare=1", model.url, [UserInfoModel shareUserInfoModel].userId]];
+        }else{
+            NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid];
+            [web loadHtmlFromUrl:[NSString stringWithFormat:@"%@?userId=%@&appShare=1",url, [UserInfoModel shareUserInfoModel].userId]];
+        }
+    }
 }
 
 - (void) initHeaderView

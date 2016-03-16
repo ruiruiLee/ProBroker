@@ -58,6 +58,8 @@
     model.carTradeStatus = [[dictionary objectForKey:@"carTradeStatus"] integerValue];
     model.carTradeTime = [BaseModel dateFromString:[dictionary objectForKey:@"carTradeTime"]] ;
     model.carInsurStatus1 = [[dictionary objectForKey:@"carInsurStatus1"] integerValue];
+    model.carOwnerCard1 = [dictionary objectForKey:@"carOwnerCard1"];
+    model.carOwnerCard2 = [dictionary objectForKey:@"carOwnerCard2"];
     
     return model;
 }

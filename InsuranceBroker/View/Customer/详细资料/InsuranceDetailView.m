@@ -28,10 +28,92 @@
         [self.btnEdit setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];
         self.btnHConstraint.constant = 54;
         
-//        self.tableview.hidden = YES;
+        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, INTMAX_MAX)];
+        _footView.backgroundColor = SepLine_color;
+        UILabel *lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x66, 0x90, 0xab)];
+        [_footView addSubview:lbTitle];
+        lbTitle.text = @"如何进行车险报价？";
+        
+        _btnShut = [[UIButton alloc] initWithFrame:CGRectZero];
+        _btnShut.translatesAutoresizingMaskIntoConstraints = NO;
+        [_footView addSubview:_btnShut];
+        _btnShut.titleLabel.font = _FONT(15);
+        [_btnShut setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
+        [_btnShut setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateSelected];
+        [_btnShut setTitle:@"展开" forState:UIControlStateSelected];
+        [_btnShut setTitle:@"关闭" forState:UIControlStateNormal];
+        
+        UIButton *btnClicked = [[UIButton alloc] initWithFrame:CGRectZero];
+        btnClicked.translatesAutoresizingMaskIntoConstraints = NO;
+        [_footView addSubview:btnClicked];
+        [btnClicked addTarget:self action:@selector(doBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _contentView = [[UIView alloc] initWithFrame:CGRectZero];
+        _contentView.translatesAutoresizingMaskIntoConstraints = NO;
+        [_footView addSubview:_contentView];
+        _contentView.backgroundColor = [UIColor whiteColor];
+        _contentView.clipsToBounds = YES;
+        
+        lb1 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
+        [_contentView addSubview:lb1];
+        lb1.attributedText = [Util getWarningString:@"*   至少需要上传客户［行驶证］和［身份证正面］清晰照片方可报价。客户确认投保后，应保监会规定需要补齐上述所有照片方可出单"];
+        lb1.preferredMaxLayoutWidth = ScreenWidth - 40;
+        lb1.numberOfLines = 0;
+        lb2 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
+        [_contentView addSubview:lb2];
+        lb2.preferredMaxLayoutWidth = ScreenWidth - 40;
+        lb2.attributedText = [Util getWarningString:@"*   优快保经纪人将保证所有资料仅用于车辆报价和投保，绝不用作其它用途，请放心上传"];
+        lb2.numberOfLines = 0;
+        
+        NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, _btnShut, _contentView, lb1, lb2, btnClicked);
+        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]->=10-[_btnShut(60)]-8-|" options:0 metrics:nil views:views]];
+        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnClicked]-20-|" options:0 metrics:nil views:views]];
+        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_contentView]-0-|" options:0 metrics:nil views:views]];
+        [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lb1]-20-|" options:0 metrics:nil views:views]];
+        [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lb2]-20-|" options:0 metrics:nil views:views]];
+        
+        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[lbTitle(20)]-10-[_contentView]-0-|" options:0 metrics:nil views:views]];
+        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnClicked(40)]->=0-|" options:0 metrics:nil views:views]];
+        
+        vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[lb1]-20-[lb2]-20-|" options:0 metrics:nil views:views];
+        [_contentView addConstraints:vConstraint];
+        [_footView addConstraint:[NSLayoutConstraint constraintWithItem:_btnShut attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+        
+        [self doBtnClicked:_btnShut];
+        
+        [_footView setNeedsLayout];
+        [_footView layoutIfNeeded];
+        CGSize size = [_footView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+        _footView.frame = CGRectMake(0, 0, ScreenWidth, size.height + 1);
+        
+        self.tableview.tableFooterView = _footView;
     }
     
     return self;
+}
+
+- (void) doBtnClicked:(UIButton *)sender
+{
+    BOOL selected = _btnShut.selected;
+    [_contentView removeConstraints:vConstraint];
+    NSDictionary *views = NSDictionaryOfVariableBindings( lb1, lb2);
+    if(!selected){
+        vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lb1(0)]-0-[lb2(0)]-0-|" options:0 metrics:nil views:views];
+    }
+    else{
+        vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[lb1]-20-[lb2]-20-|" options:0 metrics:nil views:views];
+    }
+    [_contentView addConstraints:vConstraint];
+    [_footView setNeedsLayout];
+    [_footView layoutIfNeeded];
+    CGSize size = [_footView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    _footView.frame = CGRectMake(0, 0, ScreenWidth, size.height + 1);
+    _btnShut.selected = !selected;
+    self.tableview.tableFooterView = _footView;
+    
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToRefreshSubviewFrames)]){
+        [self.delegate NotifyToRefreshSubviewFrames];
+    }
 }
 
 - (CGFloat) resetSubviewsFrame
@@ -42,7 +124,7 @@
         tableheight += [self tableView:self.tableview heightForRowAtIndexPath:[NSIndexPath indexPathForRow:num inSection:0]];
     }
     
-    return tableheight + 58 + 18;
+    return tableheight + 58 + 18 + _footView.frame.size.height;
 }
 
 - (void) doEditButtonClicked:(UIButton *)sender
@@ -102,7 +184,7 @@
         }
     }
     else if (row == 1){
-        [self setCellData:cell title:@"车主身份证" value:@"(正面／反面)" content:_carInfo.carOwnerCard img1:self.customerInfo.detailModel.cardNumberImg1 placeholderImage1:@"cert1" img2:self.customerInfo.detailModel.cardNumberImg2 placeholderImage2:@"cert2"];
+        [self setCellData:cell title:@"车主身份证" value:@"(正面／反面)" content:_carInfo.carOwnerCard img1:self.carInfo.carOwnerCard1 placeholderImage1:@"cert1" img2:self.carInfo.carOwnerCard2 placeholderImage2:@"cert2"];
         if(cert1 != nil){
             [cell.imgV1 setImage:cert1 forState:UIControlStateNormal];
         }
@@ -300,9 +382,8 @@
         NSString *filePahe1 = [self fileupMothed:travelCard1];
         NSString *filePahe2 = [self fileupMothed:travelCard2];
         
-        [NetWorkHandler requestToSaveOrUpdateCustomerCar:self.carInfo.customerCarId customerId:self.carInfo.customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:nil carShelfNo:nil carEngineNo:nil carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe1 travelCard2:filePahe2 carRegTime:nil newCarNoStatus:nil carTradeStatus:nil carTradeTime:nil carInsurStatus1:nil carInsurCompId1:nil Completion:^(int code, id content) {
+        [NetWorkHandler requestToSaveOrUpdateCustomerCar:self.carInfo.customerCarId customerId:self.carInfo.customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:nil carShelfNo:nil carEngineNo:nil carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe1 travelCard2:filePahe2 carOwnerCard1:nil carOwnerCard2:nil carRegTime:nil newCarNoStatus:nil carTradeStatus:nil carTradeTime:nil carInsurStatus1:nil carInsurCompId1:nil Completion:^(int code, id content) {
             [ProgressHUD dismiss];
-//            [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
                 CarInfoModel *model = self.carInfo;
                 if(model == nil){
@@ -323,15 +404,20 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSString *filePahe1 = [self fileupMothed:cert1];
         NSString *filePahe2 = [self fileupMothed:cert2];
-        [NetWorkHandler requestToSaveOrUpdateCustomerWithUID:[UserInfoModel shareUserInfoModel].userId isAgentCreate:self.customerInfo.isAgentCreate customerId:self.carInfo.customerId customerName:nil customerPhone:nil customerTel:nil headImg:nil cardNumber:nil cardNumberImg1:filePahe1 cardNumberImg2:filePahe2 cardProvinceId:nil cardCityId:nil cardAreaId:nil cardVerifiy:self.customerInfo.detailModel.cardVerifiy cardAddr:nil verifiyTime:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil customerStatus:self.customerInfo.detailModel.customerStatus drivingCard1:nil drivingCard2:nil customerLabel:nil customerLabelId:nil Completion:^(int code, id content) {
+        [NetWorkHandler requestToSaveOrUpdateCustomerCar:self.carInfo.customerCarId customerId:self.carInfo.customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:nil carShelfNo:nil carEngineNo:nil carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:nil travelCard2:nil carOwnerCard1:filePahe1 carOwnerCard2:filePahe2 carRegTime:nil newCarNoStatus:nil carTradeStatus:nil carTradeTime:nil carInsurStatus1:nil carInsurCompId1:nil Completion:^(int code, id content) {
             [ProgressHUD dismiss];
             if(code == 200){
-                if(filePahe1 != nil)
-                    self.customerInfo.detailModel.cardNumberImg1 = filePahe1;
-                if(filePahe2 != nil)
-                    self.customerInfo.detailModel.cardNumberImg2 = filePahe2;
+                CarInfoModel *model = self.carInfo;
+                if(model == nil){
+                    model = [[CarInfoModel alloc] init];
+                    self.customerInfo.detailModel.carInfo = model;
+                }
+                model.customerCarId = [content objectForKey:@"data"];
+                model.customerId = self.customerInfo.customerId;
+                model.carOwnerName = self.customerInfo.customerName;
             }
         }];
+
     });
 }
 

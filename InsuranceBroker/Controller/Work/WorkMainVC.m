@@ -94,6 +94,7 @@
         web.type = enumShareTypeShare;
         web.shareTitle = model.title;
         web.shareContent = model.content;
+        web.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:web animated:YES];
         if(model.url){
             [web loadHtmlFromUrl:[NSString stringWithFormat:@"%@?userId=%@&appShare=1", model.url, [UserInfoModel shareUserInfoModel].userId]];

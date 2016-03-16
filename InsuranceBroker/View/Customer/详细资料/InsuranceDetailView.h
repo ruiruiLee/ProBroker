@@ -21,6 +21,13 @@
     UIImage *cert2;
     
     HBImageViewList *_imageList;
+    
+    UIView *_footView;
+    UIButton *_btnShut;
+    UIView *_contentView;
+    NSArray *vConstraint;
+    UILabel *lb1;
+    UILabel *lb2;
 }
 
 @property (nonatomic, strong) CarInfoModel *carInfo;

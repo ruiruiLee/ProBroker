@@ -20,6 +20,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbIdenCode;//编号
 @property (nonatomic, strong) IBOutlet LeftImgButton *btnName;//姓名
 @property (nonatomic, strong) IBOutlet LeftImgButton *btnNo;//车牌号
+@property (nonatomic, strong) IBOutlet UILabel *lbName;//姓名
+@property (nonatomic, strong) IBOutlet UILabel *lbNo;//车牌号
 @property (nonatomic, strong) IBOutlet UILabel *lbPlan;//方案
 @property (nonatomic, strong) IBOutlet UILabel *lbTime;//发起时间
 @property (nonatomic, strong) IBOutlet UITableView *tableview;
