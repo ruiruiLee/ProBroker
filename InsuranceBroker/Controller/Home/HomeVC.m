@@ -193,7 +193,7 @@
     self.lbsepline2.frame = CGRectMake(frame2.origin.x, frame2.origin.y, 0.5, frame2.size.height);
 //    CGRect frame3 = self.btnInvit.frame;
 
-    self.scrollview.contentSize = CGSizeMake(ScreenWidth, self.scVConstraint.constant + 15);
+    self.scrollview.contentSize = CGSizeMake(ScreenWidth, self.scVConstraint.constant + 2);
     
 //    self.btnInvit.frame = CGRectMake(self.btnAutoInsu.frame.size.width - 0.5, frame3.origin.y, frame3.size.width, frame3.size.height);
 }
