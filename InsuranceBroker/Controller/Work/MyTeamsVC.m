@@ -50,6 +50,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self setRightBarButtonWithImage:ThemeImage(@"inviteUser")];
 
     [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.pulltable.backgroundColor = [UIColor clearColor];
@@ -62,6 +64,26 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
+- (void) handleRightBarButtonClicked:(id)sender
+{
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    NewUserModel *model = appdelegate.workBanner;
+    if(model.isRedirect){
+        WebViewController *web = [IBUIFactory CreateWebViewController];
+        web.title = model.title;
+        web.type = enumShareTypeShare;
+        web.shareTitle = model.title;
+        web.shareContent = model.content;
+        [self.navigationController pushViewController:web animated:YES];
+        if(model.url){
+            [web loadHtmlFromUrl:[NSString stringWithFormat:@"%@?userId=%@&appShare=1", model.url, [UserInfoModel shareUserInfoModel].userId]];
+        }else{
+            NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid];
+            [web loadHtmlFromUrl:[NSString stringWithFormat:@"%@?userId=%@&appShare=1",url, [UserInfoModel shareUserInfoModel].userId]];
+        }
+    }
 }
 
 - (void) initHeaderView
@@ -109,11 +131,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) handleRightBarButtonClicked:(id)sender
-{
-    PotentialPlayersVC *vc = [[PotentialPlayersVC alloc] initWithNibName:nil bundle:nil];
-    [self.navigationController pushViewController:vc animated:YES];
-}
+//- (void) handleRightBarButtonClicked:(id)sender
+//{
+//    PotentialPlayersVC *vc = [[PotentialPlayersVC alloc] initWithNibName:nil bundle:nil];
+//    [self.navigationController pushViewController:vc animated:YES];
+//}
 
 - (void) loadDataInPages:(NSInteger)page
 {
