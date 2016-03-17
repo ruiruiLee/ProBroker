@@ -7,7 +7,7 @@
 //
 
 #import "MyTeamInfoVC.h"
-#import "CustomerTableViewCell.h"
+#import "TeamListTableViewCell.h"
 #import "BrokerInfoModel.h"
 #import "ParentInfoModel.h"
 #import "ProductInfoModel.h"
@@ -35,7 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.inviteUser
-    [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
+    [self.pulltable registerNib:[UINib nibWithNibName:@"TeamListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
+    [self.pulltable registerNib:[UINib nibWithNibName:@"TeamListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 }
 
 - (void) initHeaderView
@@ -208,7 +209,6 @@
         ProductInfoModel *model = [self.productList objectAtIndex:indexPath.row];
         [cell.logo sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:Normal_Image];
         cell.lbAccount.text = model.productName;
-        //    cell.lbDetail.text = [NSString stringWithFormat:@"%.2f%@", model.productRatio, @"%"];
         if (model.productMaxRatioStr == nil ){
             cell.lbDetail.text = @"未设置";
         }
@@ -220,10 +220,10 @@
     else{
         if(indexPath.section == 0){
             NSString *deq = @"cell1";
-            CustomerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+            TeamListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
             if(!cell){
 //                cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
-                NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"CustomerTableViewCell" owner:nil options:nil];
+                NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"TeamListTableViewCell" owner:nil options:nil];
                 cell = [nibs lastObject];
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -234,7 +234,6 @@
             [btnRing addTarget:self action:@selector(doBtnRing:) forControlEvents:UIControlEventTouchUpInside];
             
             ParentInfoModel *model = self.parentModel;
-            cell.timerWidth.constant = 0;
             if(model == nil)
                 cell.accessoryView.hidden = YES;
             else
@@ -245,45 +244,33 @@
             {
                 image = ThemeImage(@"list_user_famale");
             }
-            cell.photoImage.clipsToBounds = YES;
-            cell.photoImage.layer.cornerRadius = 20;
-            cell.photoImage.layer.borderWidth = 0.5;
-            cell.photoImage.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
             [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.parentHeaderImg] placeholderImage:image];
             cell.logoImage.hidden = NO;
             cell.logoImage.image = ThemeImage(@"leader");
-            cell.lbTimr.hidden = YES;
             cell.lbName.text = [Util getUserNameWithPresentModel:model];//model.parentUserName;
             cell.lbStatus.text = model.parentPhone;
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbStatus.font = _FONT(12);
-            cell.width.constant = 16;
-            cell.height.constant = 16;
             
             return cell;
         }
         else{
             NSString *deq = @"cell";
-            CustomerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+            TeamListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
             if(!cell){
-                cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+                NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"TeamListTableViewCell" owner:nil options:nil];
+                cell = [nibs lastObject];
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleDefault;
             
             BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
             
-            cell.timerWidth.constant = 0;
-            
             UIImage *image = ThemeImage(@"list_user_head");
             if(model.userSex == 2)
             {
                 image = ThemeImage(@"list_user_famale");
             }
-            cell.photoImage.clipsToBounds = YES;
-            cell.photoImage.layer.cornerRadius = 20;
-            cell.photoImage.layer.borderWidth = 0.5;
-            cell.photoImage.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
             [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:image];
             cell.logoImage.hidden = NO;
             if(indexPath.row == 0)
@@ -294,14 +281,10 @@
                 cell.logoImage.image = ThemeImage(@"award_03");
             else
                 cell.logoImage.hidden = YES;
-            cell.lbTimr.hidden = YES;
             cell.lbName.text = [Util getUserNameWithModel:model];//model.userName;
-//            cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
-            cell.lbStatus.font = _FONT(12);
+            cell.lbStatus.font = _FONT(10);
             cell.lbStatus.attributedText = [self getOrderDetailString:model.nowMonthOrderSuccessNums orderValue:model.nowMonthOrderSellEarn];
-            cell.width.constant = 16;
-            cell.height.constant = 16;
             
             return cell;
         }

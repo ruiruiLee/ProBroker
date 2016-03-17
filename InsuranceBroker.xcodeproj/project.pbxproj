@@ -123,6 +123,8 @@
 		868C7CC41C969AC600B7617A /* ImageLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CBB1C969AC600B7617A /* ImageLayoutView.m */; };
 		868C7CC51C969AC600B7617A /* NSImageUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CBD1C969AC600B7617A /* NSImageUtil.m */; };
 		868C7CC71C969AC600B7617A /* ObjImageDataInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CC11C969AC600B7617A /* ObjImageDataInfo.m */; };
+		868C7CD31C9A4F7600B7617A /* TeamListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CD11C9A4F7600B7617A /* TeamListTableViewCell.m */; };
+		868C7CD41C9A4F7600B7617A /* TeamListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 868C7CD21C9A4F7600B7617A /* TeamListTableViewCell.xib */; };
 		86A26E351C4355220073FFFC /* NetWorkHandler+getProvinces.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26E341C4355220073FFFC /* NetWorkHandler+getProvinces.m */; };
 		86A26E381C4356540073FFFC /* ProviendeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26E371C4356540073FFFC /* ProviendeModel.m */; };
 		86A26E3B1C4356620073FFFC /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26E3A1C4356620073FFFC /* CityModel.m */; };
@@ -632,6 +634,9 @@
 		868C7CBD1C969AC600B7617A /* NSImageUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSImageUtil.m; sourceTree = "<group>"; };
 		868C7CC01C969AC600B7617A /* ObjImageDataInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjImageDataInfo.h; sourceTree = "<group>"; };
 		868C7CC11C969AC600B7617A /* ObjImageDataInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjImageDataInfo.m; sourceTree = "<group>"; };
+		868C7CD01C9A4F7600B7617A /* TeamListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamListTableViewCell.h; sourceTree = "<group>"; };
+		868C7CD11C9A4F7600B7617A /* TeamListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamListTableViewCell.m; sourceTree = "<group>"; };
+		868C7CD21C9A4F7600B7617A /* TeamListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamListTableViewCell.xib; sourceTree = "<group>"; };
 		86A26E331C4355220073FFFC /* NetWorkHandler+getProvinces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+getProvinces.h"; sourceTree = "<group>"; };
 		86A26E341C4355220073FFFC /* NetWorkHandler+getProvinces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+getProvinces.m"; sourceTree = "<group>"; };
 		86A26E361C4356540073FFFC /* ProviendeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviendeModel.h; sourceTree = "<group>"; };
@@ -2250,6 +2255,9 @@
 		86C3BB841C279C3200F98E80 /* Work */ = {
 			isa = PBXGroup;
 			children = (
+				868C7CD01C9A4F7600B7617A /* TeamListTableViewCell.h */,
+				868C7CD11C9A4F7600B7617A /* TeamListTableViewCell.m */,
+				868C7CD21C9A4F7600B7617A /* TeamListTableViewCell.xib */,
 				8625AF771C315D6600312B98 /* DeatilTextTableviewCell.h */,
 				8625AF781C315D6600312B98 /* DeatilTextTableviewCell.m */,
 				8625AF791C315D6600312B98 /* DeatilTextTableviewCell.xib */,
@@ -2607,6 +2615,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				868C7CD41C9A4F7600B7617A /* TeamListTableViewCell.xib in Resources */,
 				8625F8F11C892822001569BE /* TeamMateIncomeStatisticsVC.xib in Resources */,
 				86C3BBDD1C2AA31000F98E80 /* CustomerInfoEditVC.xib in Resources */,
 				86C3BC421C2E37A700F98E80 /* AutoInsuranceInfoEditVC.xib in Resources */,
@@ -2829,6 +2838,7 @@
 				8625AFDB1C351EFF00312B98 /* MyTeamsVC.m in Sources */,
 				8654CD811C312CE100411C54 /* SBJsonStreamParserAccumulator.m in Sources */,
 				86A505091C52717A0032A901 /* LeftImgButtonLeft.m in Sources */,
+				868C7CD31C9A4F7600B7617A /* TeamListTableViewCell.m in Sources */,
 				86C3BBA01C28E02F00F98E80 /* SubView.m in Sources */,
 				8625AFFC1C3A19ED00312B98 /* WXLoginVC.m in Sources */,
 				86C3BCC21C2E933600F98E80 /* IQTextView.m in Sources */,
@@ -2850,7 +2860,6 @@
 				86A26E9D1C4665C90073FFFC /* NetWorkHandler+queryForInsuranceOffersList.m in Sources */,
 				86A504AB1C4FB4D40032A901 /* NetWorkHandler+saveOrUpdateUserBackCard.m in Sources */,
 				868C7CC41C969AC600B7617A /* ImageLayoutView.m in Sources */,
-				86C3BB7B1C253E8C00F98E80 /* AdScrollView.m in Sources */,
 				86C3BCC01C2E933600F98E80 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				86A26ED11C47D6840073FFFC /* InsurCompanySelectTableViewCell.m in Sources */,
 				86C3BCC61C2E933600F98E80 /* IQUIView+IQKeyboardToolbar.m in Sources */,
