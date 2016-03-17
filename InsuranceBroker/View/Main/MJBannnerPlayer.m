@@ -168,7 +168,7 @@
     pageNumber.translatesAutoresizingMaskIntoConstraints = NO;
     pageNumber.layer.backgroundColor = [UIColor whiteColor].CGColor;
     pageNumber.text = @"1";
-    pageNumber.textColor = [UIColor colorWithRed:88.f / 255.f green:157.f / 255.f blue:62.f / 255.f alpha:1.f];
+    pageNumber.textColor = [UIColor colorWithRed:255.f / 255.f green:78.f / 255.f blue:0.f / 255.f alpha:1.f];
     pageNumber.textAlignment = NSTextAlignmentCenter;
     pageNumber.font = [UIFont boldSystemFontOfSize:12.f / 375 * [UIScreen mainScreen].bounds.size.width];
     pageNumber.tag = 99;
@@ -215,9 +215,9 @@
     UILabel *totalPage = [UILabel new];
     totalPage.translatesAutoresizingMaskIntoConstraints = NO;
     totalPage.textAlignment = NSTextAlignmentCenter;
-    totalPage.font = [UIFont boldSystemFontOfSize:12.f / 375 * [UIScreen mainScreen].bounds.size.width];
+    totalPage.font = [UIFont boldSystemFontOfSize:14.f / 375 * [UIScreen mainScreen].bounds.size.width];
     totalPage.textColor = [UIColor whiteColor];
-    totalPage.text = [NSString stringWithFormat:@"of %ld",totalPageNumber];
+    totalPage.text = [NSString stringWithFormat:@"／ %ld",totalPageNumber];
     totalPage.backgroundColor = [UIColor clearColor];
     [self addSubview:totalPage];
     
