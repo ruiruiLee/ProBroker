@@ -71,7 +71,7 @@
     int minute = [comps minute];
     if(day == 1 && month == 1 && year == 1900 && hour == 0 && minute == 0)
     {
-        return year;
+        return YES;
     }
     
     return NO;

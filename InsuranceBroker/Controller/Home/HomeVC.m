@@ -63,19 +63,19 @@
     self.headline.delegate = self;
     self.headline.imgTitle.image = ThemeImage(@"Hot");
     
-    self.btnAutoInsu.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
-    self.btnAutoInsu.layer.borderWidth = 0.5;
-    self.btnInvit.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
-    self.btnInvit.layer.borderWidth = 0.5;
+//    self.btnAutoInsu.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
+//    self.btnAutoInsu.layer.borderWidth = 0.5;
+//    self.btnInvit.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
+//    self.btnInvit.layer.borderWidth = 0.5;
     
 //    [self.btnAutoInsu setImage:ThemeImage(@"car") forState:UIControlStateNormal];
-    [self.btnAutoInsu setTitle:@"车险算价" forState:UIControlStateNormal];
-    self.btnAutoInsu.titleLabel.font = _FONT_B(18);
-    self.btnAutoInsu.lbExplain.text = @"快速下单，掌握便捷比价";
+//    [self.btnAutoInsu setTitle:@"车险算价" forState:UIControlStateNormal];
+//    self.btnAutoInsu.titleLabel.font = _FONT_B(18);
+//    self.btnAutoInsu.lbExplain.text = @"快速下单，掌握便捷比价";
 //    [self.btnInvit setImage:ThemeImage(@"share") forState:UIControlStateNormal];
-    [self.btnInvit setTitle:@"团队管理" forState:UIControlStateNormal];
-    self.btnInvit.titleLabel.font = _FONT_B(18);
-    self.btnInvit.lbExplain.text = @"车险直销坐享多重收益";
+//    [self.btnInvit setTitle:@"团队管理" forState:UIControlStateNormal];
+//    self.btnInvit.titleLabel.font = _FONT_B(18);
+//    self.btnInvit.lbExplain.text = @"车险直销坐享多重收益";
     
     self.lbsepline1.backgroundColor = _COLOR(233, 233, 233);
     self.lbsepline2.backgroundColor = _COLOR(233, 233, 233);
@@ -87,7 +87,7 @@
     self.headVConstraint.constant = 40;//[Util getHeightByWidth:375 height:40 nwidth:ScreenWidth];
     self.adVConstraint.constant = [Util getHeightByWidth:750 height:330 nwidth:ScreenWidth];
     //车险和邀请好友
-    self.autoBgVConstraint.constant = ScreenWidth/2;
+    self.autoBgVConstraint.constant = ScreenWidth/2 - 1;
     //销售攻略背景视图
     //iphone6下为60
 //    self.additionBgHConstraint.constant = ScreenWidth;
@@ -191,11 +191,11 @@
     self.lbsepline1.frame = CGRectMake(frame1.origin.x, frame1.origin.y, 0.5, frame1.size.height);
     CGRect frame2 = self.lbsepline2.frame;
     self.lbsepline2.frame = CGRectMake(frame2.origin.x, frame2.origin.y, 0.5, frame2.size.height);
-    CGRect frame3 = self.btnInvit.frame;
+//    CGRect frame3 = self.btnInvit.frame;
 
     self.scrollview.contentSize = CGSizeMake(ScreenWidth, self.scVConstraint.constant + 15);
     
-    self.btnInvit.frame = CGRectMake(self.btnAutoInsu.frame.size.width - 0.5, frame3.origin.y, frame3.size.width, frame3.size.height);
+//    self.btnInvit.frame = CGRectMake(self.btnAutoInsu.frame.size.width - 0.5, frame3.origin.y, frame3.size.width, frame3.size.height);
 }
 
 #pragma HeadlineViewDelegate

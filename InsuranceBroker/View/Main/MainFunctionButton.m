@@ -58,11 +58,12 @@
     UILabel *titlelabel = self.titleLabel;
     CGRect titleframe = titlelabel.frame;
     
-    CGFloat h = (frame.size.height - imgvframe.size.height - 10 - titleframe.size.height - 6 - 14)/2;
+//    CGFloat h = (frame.size.height - imgvframe.size.height - 10 - titleframe.size.height - 6 - 14)/2;
+    CGFloat h = (frame.size.height - imgvframe.size.height)/2;
     
     imgv.frame = CGRectMake((frame.size.width - imgvframe.size.width)/2, h, imgvframe.size.width, imgvframe.size.height);
-    titlelabel.frame = CGRectMake(0, h + imgvframe.size.height + 10, frame.size.width, titleframe.size.height);
-    lbExplain.frame = CGRectMake(0, h + imgvframe.size.height + 16 + titleframe.size.height, frame.size.width, 14);
+//    titlelabel.frame = CGRectMake(0, h + imgvframe.size.height + 10, frame.size.width, titleframe.size.height);
+//    lbExplain.frame = CGRectMake(0, h + imgvframe.size.height + 16 + titleframe.size.height, frame.size.width, 14);
     
 }
 

@@ -260,7 +260,9 @@
 
 - (NSMutableAttributedString *)getAttbuteString
 {
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"*优快保经纪人保证所有证件资料仅用于车辆报价或投保，不用做其他用途，请放心上传"];
+    NSString *text = @"*所有证件资料仅用于车辆报价或投保，不用做其他用途。";
+//    NSString *text = @"*优快保经纪人保证所有证件资料仅用于车辆报价或投保，不用做其他用途，请放心上传";
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:text];
     
     [string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,1)];
     
@@ -326,7 +328,7 @@
     if(self.btnReSubmit.selected || ([self isNilValue:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && ([self isNilValue:carNo] || self.btnNoNo.selected))){
         isCarInfo = YES;
     }
-    if(isCarInfo && (self.btnCert.selected && [Util validateIdentityCard:carOwnerCard])){
+    if(isCarInfo && (self.btnCert.selected || [Util validateIdentityCard:carOwnerCard])){
         return YES;
     }
     
