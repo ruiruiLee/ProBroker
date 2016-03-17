@@ -2849,11 +2849,8 @@
 				86C3BB121C228D6F00F98E80 /* LoadMoreTableFooterView.m in Sources */,
 				86A26E9D1C4665C90073FFFC /* NetWorkHandler+queryForInsuranceOffersList.m in Sources */,
 				86A504AB1C4FB4D40032A901 /* NetWorkHandler+saveOrUpdateUserBackCard.m in Sources */,
-<<<<<<< HEAD
-=======
 				868C7CC41C969AC600B7617A /* ImageLayoutView.m in Sources */,
 				86C3BB7B1C253E8C00F98E80 /* AdScrollView.m in Sources */,
->>>>>>> 222d70010378dcaac6dacbb349d1ccf9dfd430b8
 				86C3BCC01C2E933600F98E80 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				86A26ED11C47D6840073FFFC /* InsurCompanySelectTableViewCell.m in Sources */,
 				86C3BCC61C2E933600F98E80 /* IQUIView+IQKeyboardToolbar.m in Sources */,
