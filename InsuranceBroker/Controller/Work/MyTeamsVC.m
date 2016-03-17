@@ -8,7 +8,7 @@
 
 #import "MyTeamsVC.h"
 #import "define.h"
-#import "CustomerTableViewCell.h"
+#import "TeamListTableViewCell.h"
 #import "PotentialPlayersVC.h"
 #import "NetWorkHandler+queryForPageList.h"
 #import "BrokerInfoModel.h"
@@ -53,7 +53,7 @@
     
     [self setRightBarButtonWithImage:ThemeImage(@"inviteUser")];
 
-    [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    [self.pulltable registerNib:[UINib nibWithNibName:@"TeamListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.pulltable.backgroundColor = [UIColor clearColor];
     self.pulltable.tableFooterView = [[UIView alloc] init];
     
@@ -192,10 +192,10 @@
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *deq = @"cell";
-    CustomerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+    TeamListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
 //        cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
-        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"CustomerTableViewCell" owner:nil options:nil];
+        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"TeamListTableViewCell" owner:nil options:nil];
         cell = [nibs lastObject];
     }
 
@@ -204,16 +204,12 @@
     
     BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
     
-    cell.timerWidth.constant = 0;
-    
     UIImage *image = ThemeImage(@"list_user_head");
     if(model.userSex == 2)
     {
         image = ThemeImage(@"list_user_famale");
     }
 
-    cell.photoImage.clipsToBounds = YES;
-    cell.photoImage.layer.cornerRadius = 20;
     [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:image];
     cell.logoImage.hidden = NO;
     if(indexPath.row == 0)
@@ -224,14 +220,12 @@
         cell.logoImage.image = ThemeImage(@"award_03");
     else
         cell.logoImage.hidden = YES;
-    cell.lbTimr.hidden = YES;
+
     cell.lbName.text = [Util getUserNameWithModel:model];//model.userName;
 //    cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];
     cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
-    cell.lbStatus.font = _FONT(12);
+    cell.lbStatus.font = _FONT(10);
     cell.lbStatus.attributedText = [self getOrderDetailString:model.orderSuccessNums orderValue:model.nowMonthOrderSellEarn];
-    cell.width.constant = 16;
-    cell.height.constant = 16;
     
     return cell;
 }
@@ -279,15 +273,15 @@
 
 - (NSAttributedString *) getOrderDetailString:(NSInteger) orderCount orderValue:(CGFloat) orderValue
 {
-    NSString *string = [NSString stringWithFormat:@"本月销量 %ld 单, 本月销售额 %@ 元", (long)orderCount, [Util getDecimalStyle:orderValue]];
+    NSString *string = [NSString stringWithFormat:@"本月销量 %ld单, 本月销售额 %@元", (long)orderCount, [Util getDecimalStyle:orderValue]];
     NSMutableAttributedString *mstring = [[NSMutableAttributedString alloc] initWithString:string];
     
     NSRange range = [string rangeOfString:[NSString stringWithFormat:@"%ld", (long)orderCount]];
     [mstring addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
-    [mstring addAttribute:NSFontAttributeName value:_FONT(16) range:range];
+    [mstring addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     range = [string rangeOfString:[NSString stringWithFormat:@"%@", [Util getDecimalStyle:orderValue]]];
     [mstring addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
-    [mstring addAttribute:NSFontAttributeName value:_FONT(16) range:range];
+    [mstring addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     
     return mstring;
 }

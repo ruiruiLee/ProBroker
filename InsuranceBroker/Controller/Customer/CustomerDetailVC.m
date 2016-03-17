@@ -651,10 +651,43 @@
     }
 }
 
+- (BOOL) checkInfoFull:(CarInfoModel*) carInfo
+{
+    BOOL result = NO;
+    
+    NSString *carNo = carInfo.carNo;
+    if(([Util validateCarNo:carNo] ||  [self isNilValue:carInfo.travelCard1]) && carInfo.carInsurStatus1 && [self isNilValue:carInfo.carInsurCompId1]){
+        return YES;
+    }
+    
+    NSString *carOwnerCard = carInfo.carOwnerCard;//身份证号
+    NSDate *carRegTime = carInfo.carRegTime;//注册日期
+    NSString *carEngineNo = carInfo.carEngineNo;////发动机号
+    NSString *carShelfNo = carInfo.carShelfNo;//识别码
+    NSString *carTypeNo = carInfo.carTypeNo;//品牌型号
+    BOOL isCarInfo = NO;
+    if([self isNilValue:carInfo.travelCard1] || (carRegTime != nil && ![BaseModel dateIsNil:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && ([self isNilValue:carNo] || !carInfo.newCarNoStatus))){
+        isCarInfo = YES;
+    }
+    if(isCarInfo && ([self isNilValue:carInfo.carOwnerCard1] || [Util validateIdentityCard:carOwnerCard])){
+        return YES;
+    }
+    
+    return result;
+}
+
+- (BOOL) isNilValue:(NSString *) value
+{
+    if(value == nil || [value length] == 0)
+        return NO;
+    else
+        return YES;
+}
+
 //算价
 - (void) doBtnCarInsurPlan:(UIButton *) sender
 {
-    if(self.data.carInfo != nil){
+    if([self checkInfoFull:self.customerinfoModel.detailModel.carInfo]){
         OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
         web.title = @"报价";
         [self.navigationController pushViewController:web animated:YES];

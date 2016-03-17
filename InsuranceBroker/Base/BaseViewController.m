@@ -77,7 +77,7 @@
     
 //    self.navigationController.navigationBar.barStyle = UIBaselineAdjustmentNone;
     
-    self.view.backgroundColor = _COLOR(245, 245, 245);
+    self.view.backgroundColor = _COLOR(0xf5, 0xf5, 0xf5);
     
     UIColor * color = _COLOR(0x21, 0x21, 0x21);
      NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:UITextAttributeTextColor];
