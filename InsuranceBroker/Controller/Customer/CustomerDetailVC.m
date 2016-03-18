@@ -364,7 +364,7 @@
         case 102:
         {
             [self focusLineMovieTo:CGRectMake(ScreenWidth /3 * 2, frame.origin.y, ScreenWidth /3, 3)];
-            _insuranceView.lbTitle.text = @"客户保单信息";
+            _insuranceView.lbTitle.text = @"保单信息";
             _insuranceView.lbExplain.text = @"暂无保单信息";
             [_insuranceView.btnAdd setTitle:@"刷新" forState:UIControlStateNormal];
             if(_insuranceView.indicatorView.isAnimating){
@@ -386,7 +386,7 @@
         case 103:
         {
             [self focusLineMovieTo:CGRectMake(ScreenWidth /3, frame.origin.y, ScreenWidth /3, 3)];
-            _insuranceView.lbTitle.text = @"客户跟进信息";
+            _insuranceView.lbTitle.text = @"跟进信息";
             _insuranceView.lbExplain.text = @"暂无新的跟进信息，请添加";
             _insuranceView.btnAdd.hidden = NO;
             _followUpView.hidden = NO;

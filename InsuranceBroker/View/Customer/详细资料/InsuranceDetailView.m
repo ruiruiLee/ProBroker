@@ -56,13 +56,13 @@
         
         lb1 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
         [_contentView addSubview:lb1];
-        lb1.attributedText = [Util getWarningString:@"*   至少需要上传客户［行驶证］和［身份证正面］清晰照片方可报价。客户确认投保后，应保监会规定需要补齐上述所有照片方可出单"];
+        lb1.attributedText = [Util getWarningString:@"*   至少需要上传客户［行驶证正本］和［身份证正面］清晰照片方可报价，也可进入［详情］选择填写资料明细进行报价。客户确认投保后，应保监会规定需要补齐上述所有照片方可出单。"];
         lb1.preferredMaxLayoutWidth = ScreenWidth - 40;
         lb1.numberOfLines = 0;
         lb2 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
         [_contentView addSubview:lb2];
         lb2.preferredMaxLayoutWidth = ScreenWidth - 40;
-        lb2.attributedText = [Util getWarningString:@"*   优快保经纪人将保证所有资料仅用于车辆报价和投保，绝不用作其它用途，请放心上传"];
+        lb2.attributedText = [Util getWarningString:@"*   优快保经纪人将保证所有资料仅用于车辆报价和投保，绝不用作其它用途，请放心上传。"];
         lb2.numberOfLines = 0;
         
         NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, _btnShut, _contentView, lb1, lb2, btnClicked);
