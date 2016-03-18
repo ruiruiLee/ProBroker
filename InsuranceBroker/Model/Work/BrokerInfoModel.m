@@ -39,6 +39,8 @@
     model.orderSuccessNums = [[dictionary objectForKey:@"orderSuccessNums"] integerValue];
     model.nowMonthOrderSuccessNums = [[dictionary objectForKey:@"nowMonthOrderSuccessNums"] integerValue];
     model.nowMonthOrderSellEarn = [[dictionary objectForKey:@"nowMonthOrderSellEarn"] floatValue];
+    model.cardVerifiy = [[dictionary objectForKey:@"cardVerifiy"] integerValue];
+    model.dayOrderTotalSellEarn = [[dictionary objectForKey:@"dayOrderTotalSellEarn"] floatValue];
     
     return model;
 }

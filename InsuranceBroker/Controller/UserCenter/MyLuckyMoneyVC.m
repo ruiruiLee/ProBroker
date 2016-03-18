@@ -52,7 +52,7 @@
     [foot addConstraint:[NSLayoutConstraint constraintWithItem:logo attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lb attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     self.pulltable.tableFooterView = foot;
     
-    [AppContext sharedAppContext].isRedPack = NO;
+//    [AppContext sharedAppContext].isRedPack = NO;
     [[AppContext sharedAppContext] saveData];
 }
 

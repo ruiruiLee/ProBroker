@@ -21,6 +21,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbEarnings;
 @property (nonatomic, strong) IBOutlet UILabel *lbEarningsCount;
 @property (nonatomic, strong) IBOutlet LineChartView *chatview;
+
+@property (nonatomic, strong) IBOutlet LineChartView *chatview1;//近6月销售趋势
 @property (nonatomic, strong) NSString *userId;
 
 @end

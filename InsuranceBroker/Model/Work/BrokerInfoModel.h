@@ -23,5 +23,11 @@
 @property (nonatomic, assign) NSInteger nowMonthOrderSuccessNums;
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, assign) CGFloat nowMonthOrderSellEarn;
+@property (nonatomic, assign) CGFloat dayOrderTotalSellEarn;
+@property (nonatomic, assign) NSInteger cardVerifiy;
+
+
+
+
 
 @end

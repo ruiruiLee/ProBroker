@@ -10,7 +10,12 @@
 
 @interface NetWorkHandler (queryStatistics)
 
-+ (void) requestToQueryStatistics:(NSString *)userId Completion:(Completion)completion;
-+ (void) requestToQueryStatistics:(NSString *)userId staticsType:(NSString *) staticsType Completion:(Completion)completion;
+//+ (void) requestToQueryStatistics:(NSString *)userId Completion:(Completion)completion;
++ (void) requestToQueryStatistics:(NSString *)userId
+                    monthPieChart:(NSString *) monthPieChart
+                  curveEarn6Month:(NSString *) curveEarn6Month
+                   curveSell30Day:(NSString *) curveSell30Day
+                  curveSell6Month:(NSString *) curveSell6Month
+                       Completion:(Completion)completion;
 
 @end

@@ -10,8 +10,8 @@
 
 @interface SalesModel : BaseModel
 
-@property (nonatomic, strong) NSString *month;
+@property (nonatomic, strong) NSString *dayStr;
 //@property (nonatomic, assign) NSInteger totalIn;
-@property (nonatomic, assign) NSInteger totalInNums;
+@property (nonatomic, assign) CGFloat dayOrderTotalSellEarn;
 
 @end

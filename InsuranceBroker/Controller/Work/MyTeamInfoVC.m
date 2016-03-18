@@ -284,7 +284,7 @@
             cell.lbName.text = [Util getUserNameWithModel:model];//model.userName;
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbStatus.font = _FONT(10);
-            cell.lbStatus.attributedText = [self getOrderDetailString:model.nowMonthOrderSuccessNums orderValue:model.nowMonthOrderSellEarn];
+            cell.lbStatus.attributedText = [self getOrderDetailString:model.nowMonthOrderSellEarn orderValue:model.dayOrderTotalSellEarn];
             
             return cell;
         }

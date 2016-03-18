@@ -225,7 +225,7 @@
 //    cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];
     cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
     cell.lbStatus.font = _FONT(10);
-    cell.lbStatus.attributedText = [self getOrderDetailString:model.orderSuccessNums orderValue:model.nowMonthOrderSellEarn];
+    cell.lbStatus.attributedText = [self getOrderDetailString:model.nowMonthOrderSellEarn orderValue:model.dayOrderTotalSellEarn];
     
     return cell;
 }
@@ -271,19 +271,23 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (NSAttributedString *) getOrderDetailString:(NSInteger) orderCount orderValue:(CGFloat) orderValue
+- (NSAttributedString *) getOrderDetailString:(CGFloat) amount orderValue:(CGFloat) orderValue
 {
-    NSString *string = [NSString stringWithFormat:@"本月销量 %ld单, 本月销售额 %@元", (long)orderCount, [Util getDecimalStyle:orderValue]];
-    NSMutableAttributedString *mstring = [[NSMutableAttributedString alloc] initWithString:string];
+    NSString *sub1 = [NSString stringWithFormat:@"本月累计 %@元, ", [Util getDecimalStyle:amount]];
+    NSMutableAttributedString *mstring1 = [[NSMutableAttributedString alloc] initWithString:sub1];
+    NSRange range = [sub1 rangeOfString:[NSString stringWithFormat:@"%@", [Util getDecimalStyle:amount]]];
+    [mstring1 addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
+    [mstring1 addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     
-    NSRange range = [string rangeOfString:[NSString stringWithFormat:@"%ld", (long)orderCount]];
-    [mstring addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
-    [mstring addAttribute:NSFontAttributeName value:_FONT(13) range:range];
-    range = [string rangeOfString:[NSString stringWithFormat:@"%@", [Util getDecimalStyle:orderValue]]];
-    [mstring addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
-    [mstring addAttribute:NSFontAttributeName value:_FONT(13) range:range];
+    NSString *sub2 = [NSString stringWithFormat:@"今日销售 %@元", [Util getDecimalStyle:orderValue]];
+    NSMutableAttributedString *mstring2 = [[NSMutableAttributedString alloc] initWithString:sub2];
+    range = [sub2 rangeOfString:[NSString stringWithFormat:@"%@", [Util getDecimalStyle:orderValue]]];
+    [mstring2 addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
+    [mstring2 addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     
-    return mstring;
+    [mstring1 appendAttributedString:mstring2];
+    
+    return mstring1;
 }
 
 @end

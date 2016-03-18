@@ -68,12 +68,12 @@
 {
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     
-    self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%d", model.nowMonthOrderSuccessNums];
-    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计订单：%d单", model.orderSuccessNums];
+    self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSellEarn];
+    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", model.nowMonthOrderSuccessNums];
     self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSuccessEarn];
-    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderEarn];
-    self.lbUserInvite.text = [NSString stringWithFormat:@"%d人", model.userInviteNums];
-    self.lbTeamTotal.text = [NSString stringWithFormat:@"%d人", model.userTeamInviteNums];
+    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderTotalSuccessEarn];
+    self.lbUserInvite.text = [NSString stringWithFormat:@"%d人", model.teamInviteNums];
+    self.lbTeamTotal.text = [NSString stringWithFormat:@"%d人", model.teamTotalNums];
     self.lbNowMonthOrderCount.text = [NSString stringWithFormat:@"%d", model.nowMonthOrderSuccessNums];
     
     [self.btNameEdit setTitle:model.nickname forState:UIControlStateNormal];
@@ -106,11 +106,11 @@
         self.lbCertificate.text = @"未认证";
     }
     
-    if([AppContext sharedAppContext].isRedPack){
-        self.lbRedLogo.hidden = NO;
-    }else{
-        self.lbRedLogo.hidden = YES;
-    }
+//    if([AppContext sharedAppContext].isRedPack){
+//        self.lbRedLogo.hidden = NO;
+//    }else{
+//        self.lbRedLogo.hidden = YES;
+//    }
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

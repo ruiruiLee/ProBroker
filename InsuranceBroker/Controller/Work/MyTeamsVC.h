@@ -18,6 +18,6 @@
 
 - (void) initHeaderView;
 
-- (NSAttributedString *) getOrderDetailString:(NSInteger) orderCount  orderValue:(CGFloat) orderValue;
+- (NSAttributedString *) getOrderDetailString:(CGFloat) amount orderValue:(CGFloat) orderValue;
 
 @end

@@ -1,14 +1,14 @@
 //
-//  SalesModel.m
+//  CurveEarnModel.m
 //  InsuranceBroker
 //
-//  Created by LiuZach on 16/3/4.
+//  Created by LiuZach on 16/3/18.
 //  Copyright © 2016年 LiuZach. All rights reserved.
 //
 
-#import "SalesModel.h"
+#import "CurveEarnModel.h"
 
-@implementation SalesModel
+@implementation CurveEarnModel
 
 + (NSArray *) modelArrayFromArray:(NSArray *)array
 {
@@ -16,7 +16,7 @@
     
     for (int i = 0; i < [array count]; i++) {
         NSDictionary *dic = [array objectAtIndex:i];
-        [result addObject:[SalesModel modelFromDictionary:dic]];
+        [result addObject:[CurveEarnModel modelFromDictionary:dic]];
     }
     
     return result;
@@ -24,10 +24,10 @@
 
 + (BaseModel *) modelFromDictionary:(NSDictionary *)dictionary
 {
-    SalesModel *model = [[SalesModel alloc] init];
+    CurveEarnModel *model = [[CurveEarnModel alloc] init];
     
-    model.dayStr = [dictionary objectForKey:@"dayStr"];
-    model.dayOrderTotalSellEarn = [[dictionary objectForKey:@"dayOrderTotalSellEarn"] floatValue];
+    model.monthStr = [dictionary objectForKey:@"monthStr"];
+    model.monthOrderTotalSuccessEarn = [[dictionary objectForKey:@"monthOrderTotalSuccessEarn"] floatValue];
     
     return model;
 }

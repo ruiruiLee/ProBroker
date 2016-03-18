@@ -10,13 +10,13 @@
 #import "define.h"
 #import "DetailAccountVC.h"
 #import "NetWorkHandler+queryStatistics.h"
-#import "CurveModel.h"
-#import "StatisticsModel.h"
+#import "SalesStatisticsModel.h"
+#import "CurveEarnModel.h"
 
 @interface IncomeStatisticsVC ()
 
 @property (nonatomic, strong) NSArray *curveArray;
-@property (nonatomic, strong) StatisticsModel *statmodel;
+@property (nonatomic, strong) SalesStatisticsModel *statmodel;
 
 @end
 
@@ -57,7 +57,7 @@
     
     self.chatview.yMin = 0;
     self.chatview.yMax = 5;
-    self.chatview.ySteps = @[@"0",@"500", @"1000", @"1500", @"2000", @"2500"];
+//    self.chatview.ySteps = @[@"0",@"500", @"1000", @"1500", @"2000", @"2500"];
     self.chatview.backgroundColor = [UIColor clearColor];
     
 //    UserInfoModel *model = [UserInfoModel shareUserInfoModel];
@@ -112,11 +112,19 @@
 
 - (void) loadData
 {
-    [NetWorkHandler requestToQueryStatistics:self.userId Completion:^(int code, id content) {
+//    [NetWorkHandler requestToQueryStatistics:self.userId Completion:^(int code, id content) {
+//        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+//        if(code == 200){
+//            self.statmodel = (StatisticsModel*)[StatisticsModel modelFromDictionary:[[content objectForKey:@"data"] objectForKey:@"statistics"]];
+//            self.curveArray = [CurveModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"curve"]];
+//            [self initData];
+//        }
+//    }];
+    [NetWorkHandler requestToQueryStatistics:self.userId monthPieChart:@"1" curveEarn6Month:@"1" curveSell30Day:nil curveSell6Month:nil Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
-            self.statmodel = (StatisticsModel*)[StatisticsModel modelFromDictionary:[[content objectForKey:@"data"] objectForKey:@"statistics"]];
-            self.curveArray = [CurveModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"curve"]];
+            self.statmodel = (SalesStatisticsModel*)[SalesStatisticsModel modelFromDictionary:[[content objectForKey:@"data"] objectForKey:@"statistics"]];
+            self.curveArray = [CurveEarnModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"curveEarn6Month"]];
             [self initData];
         }
     }];
@@ -136,30 +144,30 @@
 
 - (void) initData
 {
-    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计收益：%@元", [Util getDecimalStyle:self.statmodel.totalIn]];
-    self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.monthTotalIn]];
+    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计收益：%@元", [Util getDecimalStyle:self.statmodel.orderTotalSuccessEarn]];
+    self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.nowMonthOrderSuccessEarn]];
 //    self.lbEarnings.text = [NSString stringWithFormat:@"你的收益已打败了%d%@的经纪人", (int)self.statmodel.monthTotalRatio, @"%"];
     if([[UserInfoModel shareUserInfoModel].userId isEqualToString:self.userId])
-        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的收益已打败了 %.2f%@ 的经纪人", self.statmodel.monthTotalRatio, @"%"] sub:[NSString stringWithFormat:@"%.2f%@", self.statmodel.monthTotalRatio, @"%"]];
+        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的收益已打败了 %.1f%@ 的经纪人", self.statmodel.totalEarnBeatRatio, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.totalEarnBeatRatio, @"%"]];
     else
-        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"他的收益已打败了 %.2f%@ 的经纪人", self.statmodel.monthTotalRatio, @"%"] sub:[NSString stringWithFormat:@"%.2f%@", self.statmodel.monthTotalRatio, @"%"]];
+        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"他的收益已打败了 %.1f%@ 的经纪人", self.statmodel.totalEarnBeatRatio, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.totalEarnBeatRatio, @"%"]];
     
     [self initDataWithArray:self.curveArray];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
 
-    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInInsurance]];
-    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInTeam]];
+    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthOrderTotalSuccessEarn]];
+    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthOrderTotalTcEarn]];
 //    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInRedPack]];
 //    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInLeader]];
     self.slices = array;
 
-    self.lbSaleStr.text = [Util getDecimalStyle:self.statmodel.monthInInsurance];
-    self.lbTeamStr.text = [Util getDecimalStyle:self.statmodel.monthInTeam];
+    self.lbSaleStr.text = [Util getDecimalStyle:self.statmodel.monthOrderTotalSuccessEarn];
+    self.lbTeamStr.text = [Util getDecimalStyle:self.statmodel.monthOrderTotalTcEarn];
 //    self.lbRedStr.text = [Util getDecimalStyle:self.statmodel.monthInRedPack];
 //    self.lbManStr.text = [Util getDecimalStyle:self.statmodel.monthInLeader];
     
-    self.piechat.lbAmount.text = [Util getDecimalStyle:self.statmodel.monthInInsurance + self.statmodel.monthInTeam];
+    self.piechat.lbAmount.text = [Util getDecimalStyle:self.statmodel.monthOrderTotalSuccessEarn + self.statmodel.monthOrderTotalTcEarn];
     
     [self.piechat reloadData];
     
@@ -175,8 +183,8 @@
 {
     CGFloat max = 0;
     for (int i = 0; i < [array count]; i++) {
-        CurveModel *model = [array objectAtIndex:i];
-        int o = (int)model.totalIn;
+        CurveEarnModel *model = [array objectAtIndex:i];
+        int o = (int)model.monthOrderTotalSuccessEarn;
         if(o > max)
             max = o;
     }
@@ -192,7 +200,7 @@
     NSMutableArray *sarray = [[NSMutableArray alloc] init];
     int i = 0;
     while ([sarray count] < 6) {
-        [sarray addObject:[NSString stringWithFormat:@"%d", i]];
+        [sarray addObject:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", i]]];
         i += ystep;
     }
     
@@ -215,11 +223,11 @@
         
         int j = 1;
         for(int i = 0; i < [array count]; i++){
-            CurveModel *model = [array objectAtIndex:i];
+            CurveEarnModel *model = [array objectAtIndex:i];
             [arr addObject:@(j)];
-            NSString *lp = [NSString stringWithFormat:@"%f", model.totalIn];
+            NSString *lp = [NSString stringWithFormat:@"%f", model.monthOrderTotalSuccessEarn];
             [arr2 addObject:lp];
-            [arr3 addObject:[NSString stringWithFormat:@"%@月", model.month]];
+            [arr3 addObject:[NSString stringWithFormat:@"%@月", model.monthStr]];
             
             NSAttributedString *attstring = [[NSAttributedString alloc] initWithString:@""];
             [arr4 addObject:attstring];

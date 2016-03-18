@@ -22,8 +22,8 @@
 @property (nonatomic, assign) BOOL isLogin;
 @property (nonatomic, assign) BOOL firstLaunch;
 
-@property (nonatomic, strong) NSString *redBagId;//最后一个红包的id
-@property (nonatomic, assign) BOOL isRedPack;//是否标红
+//@property (nonatomic, strong) NSString *redBagId;//最后一个红包的id
+//@property (nonatomic, assign) BOOL isRedPack;//是否标红
 
 //我的消息
 //@property (nonatomic, assign) BOOL isHasNotice;//通知消息

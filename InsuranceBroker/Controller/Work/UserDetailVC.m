@@ -72,7 +72,7 @@
 {
     self.lbName.text = [Util getUserName:self.userinfo];//self.userinfo.nickname;
     self.lbMobile.text = self.userinfo.phone;
-    self.lbSubNum.text = [NSString stringWithFormat:@"%d人", self.userinfo.userTeamInviteNums];
+    self.lbSubNum.text = [NSString stringWithFormat:@"%d人", self.userinfo.teamTotalNums];
 //    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.userinfo.headerImg] placeholderImage:Normal_Image];
     
     UIImage *placeholderImage = ThemeImage(@"head_male");
@@ -82,10 +82,10 @@
     
     UserInfoModel *model = self.userinfo;
     
-    self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%d", model.nowMonthOrderSuccessNums];
-    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计订单：%d单", model.orderSuccessNums];
+    self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSellEarn];
+    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", model.nowMonthOrderSuccessNums];
     self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSuccessEarn];
-    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderEarn];
+    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderTotalSuccessEarn];
 }
 
 - (void) loadData

@@ -204,12 +204,12 @@
     
     CGFloat stepWidth = 40;
     CGFloat availableWidth = self.bounds.size.width - 2 * PADDING - self.yAxisLabelsWidth;
-    if(self.data != nil && [self.data count] > 0){
-        LineChartData *data = [self.data objectAtIndex:0];
-        CGFloat width = data.itemCount * stepWidth;
-        if(width > availableWidth)
-            availableWidth = width;
-    }
+//    if(self.data != nil && [self.data count] > 0){
+//        LineChartData *data = [self.data objectAtIndex:0];
+//        CGFloat width = data.itemCount * stepWidth;
+//        if(width > availableWidth)
+//            availableWidth = width;
+//    }
 //    CGFloat availableWidth = self.bounds.size.width - 2 * PADDING - self.yAxisLabelsWidth;
     CGFloat xStart = PADDING + self.yAxisLabelsWidth;
     CGFloat yStart = PADDING;
@@ -223,12 +223,19 @@
     CGContextSaveGState(c);
     CGContextSetLineWidth(c, 0.5);
     NSUInteger yCnt = [self.ySteps count];
-    for(NSString *step in self.ySteps) {
+    for(NSAttributedString *step in self.ySteps) {
         [color set];
         CGFloat h = [self.scaleFont lineHeight];
         CGFloat y = yStart + heightPerStep * (yCnt - 1 - i);
         CGRect rect = CGRectMake(yStart, y - h / 2, self.yAxisLabelsWidth - 6, h);
-        [step drawInRect:CGRectMake(yStart, y - h / 2, self.yAxisLabelsWidth - 6, h) withFont:self.scaleFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentRight];
+        UILabel *lb = [[UILabel alloc] initWithFrame:rect];
+        [self addSubview:lb];
+        lb.backgroundColor = [UIColor clearColor];
+        lb.font = self.scaleFont;
+        lb.textColor = color;
+        lb.textAlignment = NSTextAlignmentRight;
+        lb.attributedText = step;
+//        [step drawInRect:CGRectMake(yStart, y - h / 2, self.yAxisLabelsWidth - 6, h) withFont:self.scaleFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentRight];
 
         CGContextSetLineWidth(c, 0.5);
         CGContextMoveToPoint(c, xStart, round(y) + 0.5);
@@ -497,7 +504,7 @@
 // TODO: This should really be a cached value. Invalidated iff ySteps changes.
 - (CGFloat)yAxisLabelsWidth {
     NSNumber *requiredWidth = [[self.ySteps mapWithBlock:^id(id obj) {
-        NSString *label = (NSString*)obj;
+        NSString *label = [((NSAttributedString*)obj) string];
         CGSize labelSize = [label sizeWithFont:self.scaleFont];
         return @(labelSize.width); // Literal NSNumber Conversion
     }] valueForKeyPath:@"@max.self"]; // gets biggest object. Yeah, NSKeyValueCoding. Deal with it.

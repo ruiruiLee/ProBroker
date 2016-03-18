@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="486" height="169"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="486" height="169"/>
+                <rect key="frame" x="0.0" y="0.0" width="486" height="168.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vSm-BG-UwH">
@@ -151,10 +151,8 @@
                             <constraint firstItem="Eml-hm-5Jy" firstAttribute="centerY" secondItem="dA1-MZ-AQu" secondAttribute="centerY" id="B2Y-tB-TYd"/>
                             <constraint firstItem="05o-7J-hgr" firstAttribute="leading" secondItem="mJP-P4-075" secondAttribute="trailing" constant="10" id="Exm-6i-WT4"/>
                             <constraint firstItem="RbD-eS-ZG7" firstAttribute="centerY" secondItem="dA1-MZ-AQu" secondAttribute="centerY" id="F0k-G7-PzH"/>
-                            <constraint firstItem="05o-7J-hgr" firstAttribute="top" secondItem="mJP-P4-075" secondAttribute="top" id="GdK-WB-hBD"/>
                             <constraint firstAttribute="trailing" secondItem="Dm3-QI-e7X" secondAttribute="trailing" id="JzO-QU-1JA"/>
                             <constraint firstItem="dA1-MZ-AQu" firstAttribute="top" secondItem="rVC-C4-ZFR" secondAttribute="bottom" constant="14" id="Myn-Zg-EBh"/>
-                            <constraint firstItem="68o-Wa-fVS" firstAttribute="centerY" secondItem="05o-7J-hgr" secondAttribute="centerY" id="N5R-Tp-esC"/>
                             <constraint firstItem="L8R-W2-Zcj" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="T2t-ZK-kcT" secondAttribute="trailing" constant="10" id="OlC-Fy-VH3"/>
                             <constraint firstItem="mJP-P4-075" firstAttribute="leading" secondItem="vSm-BG-UwH" secondAttribute="leading" constant="10" id="PkF-Eb-BPg"/>
                             <constraint firstAttribute="trailing" secondItem="dup-Oy-DoS" secondAttribute="trailing" id="Tqr-3V-tbc"/>
@@ -169,6 +167,8 @@
                             <constraint firstItem="Dm3-QI-e7X" firstAttribute="leading" secondItem="vSm-BG-UwH" secondAttribute="leading" id="o1R-Th-w88"/>
                             <constraint firstAttribute="trailing" secondItem="0S4-Js-IfH" secondAttribute="trailing" constant="10" id="tYC-1r-OHr"/>
                             <constraint firstItem="0S4-Js-IfH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mJP-P4-075" secondAttribute="trailing" constant="10" id="v6M-op-RqU"/>
+                            <constraint firstItem="05o-7J-hgr" firstAttribute="centerY" secondItem="mJP-P4-075" secondAttribute="centerY" id="vOS-ow-Hbf"/>
+                            <constraint firstItem="68o-Wa-fVS" firstAttribute="top" secondItem="mJP-P4-075" secondAttribute="top" constant="4" id="wtw-gx-WQE"/>
                             <constraint firstItem="T2t-ZK-kcT" firstAttribute="leading" secondItem="Eml-hm-5Jy" secondAttribute="trailing" constant="6" id="z7y-94-g8u"/>
                             <constraint firstItem="L8R-W2-Zcj" firstAttribute="centerY" secondItem="dA1-MZ-AQu" secondAttribute="centerY" id="zwE-dZ-urp"/>
                         </constraints>

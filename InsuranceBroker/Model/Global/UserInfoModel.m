@@ -137,9 +137,9 @@
     AppContext *context = [AppContext sharedAppContext];
     context.userInfoDic = dictionary;
     context.isLogin = self.isLogin;
-    if([context.redBagId longLongValue] < [self.redBagId longLongValue])
-        context.isRedPack = YES;
-    context.redBagId = self.redBagId;
+//    if([context.redBagId longLongValue] < [self.redBagId longLongValue])
+//        context.isRedPack = YES;
+//    context.redBagId = self.redBagId;
     [context saveData];
 }
 
@@ -180,16 +180,22 @@
     
     self.qrcodeAddr = [dic objectForKey:@"qrcodeAddr"];
     self.monthOrderSuccessNums = [[dic objectForKey:@"monthOrderSuccessNums"] integerValue];
-    self.orderSuccessNums = [[dic objectForKey:@"orderSuccessNums"] integerValue];
-    self.monthOrderEarn = [[dic objectForKey:@"monthOrderEarn"] floatValue];
-    self.orderEarn = [[dic objectForKey:@"orderEarn"] floatValue];
-    self.redBagId = [dic objectForKey:@"redBagId"];
-    self.userInviteNums = [[dic objectForKey:@"userInviteNums"] integerValue];
-    self.userTeamInviteNums = [[dic objectForKey:@"userTeamInviteNums"] integerValue];
+//    self.orderSuccessNums = [[dic objectForKey:@"orderSuccessNums"] integerValue];
+//    self.monthOrderEarn = [[dic objectForKey:@"monthOrderEarn"] floatValue];
+//    self.orderEarn = [[dic objectForKey:@"orderEarn"] floatValue];
+//    self.redBagId = [dic objectForKey:@"redBagId"];
+//    self.userInviteNums = [[dic objectForKey:@"userInviteNums"] integerValue];
+//    self.userTeamInviteNums = [[dic objectForKey:@"userTeamInviteNums"] integerValue];
     
     self.cardVerifiyMsg = [dic objectForKey:@"cardVerifiyMsg"];
     self.nowMonthOrderSuccessNums = [[dic objectForKey:@"nowMonthOrderSuccessNums"] integerValue];
     self.nowMonthOrderSuccessEarn = [[dic objectForKey:@"nowMonthOrderSuccessEarn"] floatValue];
+    self.orderTotalSuccessNums = [[dic objectForKey:@"orderTotalSuccessNums"] integerValue];
+    self.orderTotalSuccessEarn = [[dic objectForKey:@"orderTotalSuccessEarn"] floatValue];
+    self.orderTotalSellEarn = [[dic objectForKey:@"orderTotalSellEarn"] floatValue];
+    self.nowMonthOrderSellEarn = [[dic objectForKey:@"nowMonthOrderSellEarn"] floatValue];
+    self.teamInviteNums = [[dic objectForKey:@"teamInviteNums"] integerValue];
+    self.teamTotalNums = [[dic objectForKey:@"teamTotalNums"] integerValue];
 }
 
 - (void) queryUserInfo

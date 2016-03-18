@@ -56,16 +56,27 @@
 
 @property (nonatomic, strong) NSString *qrcodeAddr;//":""//二维码地址
 @property (nonatomic, assign) NSInteger monthOrderSuccessNums;//":0//上月成功订单
-@property (nonatomic, assign) NSInteger orderSuccessNums;//":0//总订单数总订单数
-@property (nonatomic, assign) CGFloat monthOrderEarn;//":0//上月成功订单收益
-@property (nonatomic, assign) CGFloat orderEarn;//":0//总订单收益
-@property (nonatomic, strong) NSString *redBagId;//":0//红包最新ID
-@property (nonatomic, assign) NSInteger userInviteNums;//":0//自己邀请人数
-@property (nonatomic, assign) NSInteger userTeamInviteNums;//":0//团队总人数
+//@property (nonatomic, assign) NSInteger orderSuccessNums;//":0//总订单数总订单数
+//@property (nonatomic, assign) CGFloat monthOrderEarn;//":0//上月成功订单收益
+//@property (nonatomic, assign) CGFloat orderEarn;//":0//总订单收益
+//@property (nonatomic, strong) NSString *redBagId;//":0//红包最新ID
+//@property (nonatomic, assign) NSInteger userInviteNums;//":0//自己邀请人数
+//@property (nonatomic, assign) NSInteger userTeamInviteNums;//":0//团队总人数
 
 @property (nonatomic, strong) NSString *cardVerifiyMsg;//认证失败信息
-@property (nonatomic, assign) NSInteger nowMonthOrderSuccessNums;
-@property (nonatomic, assign) CGFloat nowMonthOrderSuccessEarn;
+//@property (nonatomic, assign) NSInteger nowMonthOrderSuccessNums;
+//@property (nonatomic, assign) CGFloat nowMonthOrderSuccessEarn;
+
+@property (nonatomic, assign) NSInteger orderTotalSuccessNums;//总成功订单数
+@property (nonatomic, assign) CGFloat orderTotalSuccessEarn;//总成功订单收益
+@property (nonatomic, assign) CGFloat orderTotalSellEarn;//总成功订单销售额
+
+@property (nonatomic, assign) NSInteger nowMonthOrderSuccessNums;//月成功订单数
+@property (nonatomic, assign) CGFloat nowMonthOrderSuccessEarn;//月成功订单收益
+@property (nonatomic, assign) CGFloat nowMonthOrderSellEarn;//月成功订单销售额
+
+@property (nonatomic, assign) NSInteger teamInviteNums;//自己邀请人数
+@property (nonatomic, assign) NSInteger teamTotalNums;//团队总人数
 
 + (UserInfoModel *) shareUserInfoModel;
 - (void) setContentWithDictionary:(NSDictionary *) dic;//isLogin单独修改
