@@ -62,7 +62,7 @@
         lb2 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
         [_contentView addSubview:lb2];
         lb2.preferredMaxLayoutWidth = ScreenWidth - 40;
-        lb2.attributedText = [Util getWarningString:@"*   优快保经纪人将保证所有资料仅用于车辆报价和投保，绝不用作其它用途，请放心上传。"];
+        lb2.attributedText = [Util getWarningString:@"*   优快保经纪人将保证所有资料仅用于车辆报价或投保，绝不用作其它用途，请放心上传。"];
         lb2.numberOfLines = 0;
         
         NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, _btnShut, _contentView, lb1, lb2, btnClicked);
