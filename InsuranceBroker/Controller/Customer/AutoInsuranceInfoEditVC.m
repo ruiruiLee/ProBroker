@@ -295,35 +295,39 @@
     return flag;
 }
 
-//续保用户; 上传所有材料：身份证和行驶证； 上传文字资料
-- (BOOL) isRenewingCoverage
-{
-    BOOL result = NO;
-    
-    NSString *carNo = [self getCarCertString];
-    if(([Util validateCarNo:carNo] || [self imageLisence] != nil) && _perInsurCompany >= 0){
-        return YES;
-    }
-    
-    return result;
-}
+////续保用户; 上传所有材料：身份证和行驶证； 上传文字资料
+//- (BOOL) isRenewingCoverage
+//{
+//    BOOL result = NO;
+//    
+//    NSString *carNo = [self getCarCertString];
+//    if(([Util validateCarNo:carNo] || [self isHasLisence]) && _perInsurCompany >= 0){
+//        return YES;
+//    }
+//    
+//    return result;
+//}
 
 - (BOOL) checkInfoFull
 {
     BOOL result = NO;
     
-    result = [self isRenewingCoverage];
-    if(result)
-        return result;
-    
-//    UIImage *lisence = [self imageLisence];//行驶证
-//    UIImage *cert = [self imageCert];
     NSString *carOwnerCard = self.tfCert.text;//身份证号
     NSString *carRegTime = self.tfDate.text;//注册日期
     NSString *carEngineNo = self.tfMotorCode.text;////发动机号
     NSString *carShelfNo = self.tfIdenCode.text;//识别码
     NSString *carTypeNo = self.tfModel.text;//品牌型号
     NSString *carNo = [self getCarCertString];//车牌;
+    
+    if(_perInsurCompany >= 0){
+        if([Util validateCarNo:carNo] || [self isHasLisence]){
+            return YES;
+        }else{
+            [Util showAlertMessage:@"请填写车牌号或上传行驶证"];
+            return NO;
+        }
+    }
+    
     BOOL isCarInfo = NO;
     if(self.btnReSubmit.selected || ([self isNilValue:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && ([self isNilValue:carNo] || self.btnNoNo.selected))){
         isCarInfo = YES;
@@ -419,6 +423,9 @@
     if(_perInsurCompany>=0){
         carInsurStatus1 = @"1";
         carInsurCompId1 = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).insuranceCompanyId;
+    }else{
+        carInsurStatus1 = @"0";
+        carInsurCompId1 = @"";
     }
     [ProgressHUD show:nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
@@ -569,16 +576,26 @@
 #pragma ACTION
 - (void) btnPhotoPressed:(UIButton*)sender{
     
-    UIImage *image = [self imageLisence];
-    
     UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:@""
                                                     delegate:(id)self
                                            cancelButtonTitle:@"取消"
                                       destructiveButtonTitle:nil
                                            otherButtonTitles:@"从相册选取", @"拍照",nil];
-    if(image != nil){
-        [ac addButtonWithTitle:@"查看原图"];
+    
+    if(sender == self.btnCert){
+//        self.type = enumAddPhotoTypeCert;
+        if([self isHasCert])
+            [ac addButtonWithTitle:@"查看原图"];
     }
+    else{
+//        self.type = enumAddPhotoTypeLisence;
+        if([self isHasLisence])
+            [ac addButtonWithTitle:@"查看原图"];
+    }
+    
+//    if(image != nil){
+//        [ac addButtonWithTitle:@"查看原图"];
+//    }
     ac.actionSheetStyle = UIBarStyleBlackTranslucent;
     [ac showInView:self.view];
     
@@ -624,7 +641,8 @@
         if(model.travelCard1 != nil){
             [self.btnReSubmit sd_setImageWithURL:[NSURL URLWithString:model.travelCard1] forState:UIControlStateSelected];
             self.btnReSubmit.selected = YES;
-        }
+        }else
+            self.btnReSubmit.selected = NO;
         
         if(model.carOwnerCard1 != nil){
             [self.btnCert sd_setImageWithURL:[NSURL URLWithString:model.carOwnerCard1] forState:UIControlStateSelected];
@@ -653,18 +671,19 @@
         if(model.carInsurStatus1 == 1){
             _perInsurCompany = [self getSelectIdxFromArray:model.carInsurCompId1];
             if(_perInsurCompany >= 0){
-                InsuranceCompanyModel *model = [_insurCompanyArray objectAtIndex:_perInsurCompany];
-                self.lbPName.text = model.insuranceCompanyShortName;
+//                InsuranceCompanyModel *model = [_insurCompanyArray objectAtIndex:_perInsurCompany];
+//                self.lbPName.text = model.insuranceCompanyShortName;
+                [self menuViewController:_menuView AtIndex:_perInsurCompany];
             }else
             {
-                self.lbPName.text = @"";
+                NSInteger i = _perInsurCompany;
+                [self cancelSelectPCompany:nil];
+                _perInsurCompany = i;
             }
         }
         else{
-            _perInsurCompany = -1;
-            self.lbPName.text = @"";
+            [self cancelSelectPCompany:nil];
         }
-        
     }
     [self isModify];
 }
@@ -788,6 +807,8 @@
     self.view5VConstraint.constant = 30;
     self.view6VConstraint.constant = 210;
     self.view7VConstraint.constant = 40;
+    
+    [self isModify];
 }
 
 - (IBAction)menuChangeName:(UIButton *)sender {
@@ -940,13 +961,16 @@
     flag = [self checkValueChange:motorCode text:model.carEngineNo];
     if(flag)
         result = flag;
-    
-    //上年度保险
-    if(model.carInsurCompId1 ==nil && _perInsurCompany >= 0){
-        result = YES;
+
+    if(_perInsurCompany >= 0 && _perInsurCompany < [_insurCompanyArray count]){
+        if(![model.carInsurCompId1 isEqualToString:((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).insuranceCompanyId])
+            result = YES;
     }
-    else if(_perInsurCompany >= 0 && ![model.carInsurCompId1 isEqualToString:((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).insuranceCompanyId])
-        result = YES;
+    else{
+        if([self isNilValue:model.carInsurCompId1]){
+            result = YES;
+        }
+    }
     //是否过户
     if(model.carTradeStatus != _changeNameIdx + 1){
         result = YES;
@@ -973,14 +997,6 @@
 - (BOOL) checkValueChange:(NSString *) value text:(NSString *) text
 {
     BOOL flag = NO;
-//    if([value length] > 0){
-//        if(text == nil)
-//            flag = YES;
-//        else if(![value isEqualToString:text])
-//            flag = YES;
-//    }else{
-//        
-//    }
     if(text == nil)
         text = @"";
     if(value != nil){
@@ -1013,13 +1029,31 @@
     return [self.btnReSubmit imageForState:UIControlStateSelected];
 }
 
+//没有行驶证照片返回NO
+- (BOOL) isHasLisence
+{
+    if(newLisence == nil && ![self isNilValue:self.customerModel.carInfo.travelCard1]){
+        return NO;
+    }else
+        return YES;
+}
+
 - (UIImage *) imageCert
 {
     return [self.btnCert imageForState:UIControlStateSelected];
 }
 
+//m
+- (BOOL) isHasCert
+{
+    if(newCert == nil && ![self isNilValue:self.customerModel.carInfo.carOwnerCard1])
+        return NO;
+    else
+        return YES;
+}
+
 /*
- 是空返回yes
+ 是空返回NO
  */
 - (BOOL) isNilValue:(NSString *) value
 {

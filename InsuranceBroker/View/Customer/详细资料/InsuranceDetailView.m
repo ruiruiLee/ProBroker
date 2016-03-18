@@ -84,7 +84,7 @@
         [_footView setNeedsLayout];
         [_footView layoutIfNeeded];
         CGSize size = [_footView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-        _footView.frame = CGRectMake(0, 0, ScreenWidth, size.height + 1);
+        _footView.frame = CGRectMake(0, 0, ScreenWidth, size.height);
         
         self.tableview.tableFooterView = _footView;
     }
@@ -107,7 +107,7 @@
     [_footView setNeedsLayout];
     [_footView layoutIfNeeded];
     CGSize size = [_footView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    _footView.frame = CGRectMake(0, 0, ScreenWidth, size.height + 1);
+    _footView.frame = CGRectMake(0, 0, ScreenWidth, size.height);
     _btnShut.selected = !selected;
     self.tableview.tableFooterView = _footView;
     
@@ -236,11 +236,11 @@
             flag = NO;
     }
     else if (tag ==2 ){
-        if(self.customerInfo.detailModel.cardNumberImg1 == nil)
+        if(self.carInfo.carOwnerCard1 == nil)
             flag = NO;
     }
     else{
-        if(self.customerInfo.detailModel.cardNumberImg2 == nil)
+        if(self.carInfo.carOwnerCard2 == nil)
             flag = NO;
     }
     [self addImage:flag];
@@ -348,8 +348,8 @@
             [self addObject:self.carInfo.travelCard2 array:array];
         }
         else{
-            [self addObject:self.customerInfo.detailModel.cardNumberImg1 array:array];
-            [self addObject:self.customerInfo.detailModel.cardNumberImg2 array:array];
+            [self addObject:self.carInfo.carOwnerCard1 array:array];
+            [self addObject:self.carInfo.carOwnerCard2 array:array];
         }
         _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
         [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
@@ -385,7 +385,7 @@
         [NetWorkHandler requestToSaveOrUpdateCustomerCar:self.carInfo.customerCarId customerId:self.customerInfo.customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:nil carShelfNo:nil carEngineNo:nil carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe1 travelCard2:filePahe2 carOwnerCard1:nil carOwnerCard2:nil carRegTime:nil newCarNoStatus:nil carTradeStatus:nil carTradeTime:nil carInsurStatus1:nil carInsurCompId1:nil Completion:^(int code, id content) {
             dispatch_async(dispatch_get_main_queue(),^{
                 if(code == 200){
-                    CarInfoModel *model = self.carInfo;
+                    CarInfoModel *model = self.customerInfo.detailModel.carInfo;
                     if(model == nil){
                         model = [[CarInfoModel alloc] init];
                         self.customerInfo.detailModel.carInfo = model;
@@ -413,7 +413,7 @@
         [NetWorkHandler requestToSaveOrUpdateCustomerCar:self.carInfo.customerCarId customerId:self.customerInfo.customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:nil carShelfNo:nil carEngineNo:nil carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:nil travelCard2:nil carOwnerCard1:filePahe1 carOwnerCard2:filePahe2 carRegTime:nil newCarNoStatus:nil carTradeStatus:nil carTradeTime:nil carInsurStatus1:nil carInsurCompId1:nil Completion:^(int code, id content) {
             dispatch_async(dispatch_get_main_queue(),^{
                 if(code == 200){
-                    CarInfoModel *model = self.carInfo;
+                    CarInfoModel *model = self.customerInfo.detailModel.carInfo;
                     if(model == nil){
                         model = [[CarInfoModel alloc] init];
                         self.customerInfo.detailModel.carInfo = model;
