@@ -172,6 +172,7 @@
     
     OffersModel *model = [self.data.offersVoList objectAtIndex:indexPath.row];
     [self updateInsuranceRatio:self.data.insuranceOrderUuid planOfferId:model.planOfferId model:model];
+    [_datePicker remove];
 }
 
 - (void) doBtnAddPlanUBKRatio:(UIButton *)sender
