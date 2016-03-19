@@ -40,7 +40,7 @@
         UIView *bgview = [[UIView alloc] initWithFrame:self.bounds];
         [self addSubview:bgview];
         bgview.backgroundColor = [UIColor blackColor];
-        bgview.alpha = 0.4;
+//        bgview.alpha = 0.4;
         
         if(array.count!=0&&array!=nil)
         {

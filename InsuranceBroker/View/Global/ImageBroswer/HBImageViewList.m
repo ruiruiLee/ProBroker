@@ -17,7 +17,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        self.backgroundColor=[UIColor blackColor];
+        self.backgroundColor = [UIColor blackColor];
+        
         self.pagingEnabled=YES;
         self.delegate=self;
         _prePage=0;

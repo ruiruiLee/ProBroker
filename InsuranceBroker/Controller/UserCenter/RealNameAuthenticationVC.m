@@ -121,7 +121,7 @@
         return;
     }
     
-    [ProgressHUD show:nil];
+    [ProgressHUD show:@"正在上传"];
             //添加文件名
     @autoreleasepool {
         dispatch_group_t group = dispatch_group_create();

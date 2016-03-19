@@ -58,18 +58,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyToInsertPushCustomer:) name:Notify_Insert_Customer object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyToRemoveCustomer:) name:Notify_Logout object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyToRefreshCustomer:) name:Notify_Login object:nil];
-    
-    searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
-    searchbar.placeholder = @"搜索";
-    searchbar.showsCancelButton = YES;
-    self.pulltable.tableHeaderView = searchbar;
-    searchbar.returnKeyType = UIReturnKeySearch;
-    searchbar.delegate = self;
-    
-    [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
-    [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTagTableCell" bundle:nil] forCellReuseIdentifier:@"cell2"];
-    [self.pulltable setSeparatorColor:_COLOR(0xe6, 0xe6, 0xe6)];
-    self.pulltable.backgroundColor = [UIColor clearColor];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -109,8 +97,9 @@
     self.pulltable.pullDelegate = self;
     self.pulltable.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.pulltable.translatesAutoresizingMaskIntoConstraints = NO;
-    
+    self.pulltable.backgroundColor = [UIColor clearColor];
     self.pulltable.tableFooterView = [[UIView alloc] init];
+    self.pulltable.showsVerticalScrollIndicator = NO;
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 16, 0, 16);
     self.pulltable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -121,6 +110,13 @@
     if ([self.pulltable respondsToSelector:@selector(setLayoutMargins:)]) {
         [self.pulltable setLayoutMargins:insets];
     }
+    
+    searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    searchbar.placeholder = @"搜索";
+    searchbar.showsCancelButton = YES;
+    searchbar.returnKeyType = UIReturnKeySearch;
+    searchbar.delegate = self;
+    self.pulltable.tableHeaderView = searchbar;
     
     //弹出下拉刷新控件刷新数据
     self.pulltable.pullTableIsRefreshing = YES;
@@ -134,6 +130,10 @@
     
     self.hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[pulltable]-0-|" options:0 metrics:nil views:views];
     [self.view addConstraints:self.hConstraints];
+    
+    [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
+    [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTagTableCell" bundle:nil] forCellReuseIdentifier:@"cell2"];
+    [self.pulltable setSeparatorColor:_COLOR(0xe6, 0xe6, 0xe6)];
 }
 
 //- (void) viewDidLayoutSubviews
@@ -332,6 +332,7 @@
 {
     if(self.pageNum == 0)
         [self.data removeAllObjects];
+    
     NSError *error = nil;
     NSArray *array = [MTLJSONAdapter modelsOfClass:CustomerInfoModel.class fromJSONArray:list error:&error];
     [self.data addObjectsFromArray:array];

@@ -224,20 +224,24 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-//上月已经完成
+//本月销售额
 - (IBAction)finish:(id)sender
 {
-//    SalesStatisticsVC *vc = [IBUIFactory CreateSalesStatisticsViewController];
-//    vc.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
+    SalesStatisticsVC *vc = [IBUIFactory CreateSalesStatisticsViewController];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.userId = [UserInfoModel shareUserInfoModel].userId;
+    vc.title = [NSString stringWithFormat:@"我的销售统计"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
-//上月收益
+//本月收益
 - (IBAction)incomePrevMounth:(id)sender
 {
-//    CustomerCallStatisticsVC *vc = [IBUIFactory CreateCustomerCallStatisticsViewController];
-//    vc.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
+    IncomeStatisticsVC *vc = [IBUIFactory CreateIncomeStatisticsViewController];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.userId = [UserInfoModel shareUserInfoModel].userId;
+    vc.title = [NSString stringWithFormat:@"我的收益统计"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //认证

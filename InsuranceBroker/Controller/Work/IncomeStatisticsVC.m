@@ -90,6 +90,12 @@
     [self loadData];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
 - (void) doBtnMore:(id) sender
 {
     WebViewController *web = [IBUIFactory CreateWebViewController];

@@ -323,7 +323,6 @@
         
     }else if (buttonIndex == 1)
     {
-//        [Util openCamera:self.pVc allowEdit:YES completion:^{}];
         UIImagePickerController *pickerImage = [[UIImagePickerController alloc] init];
         //
         if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
@@ -341,16 +340,14 @@
             addImgButton = nil;
             return;
         }
-        int tag = addImgButton.tag - 100;
+//        int tag = addImgButton.tag - 100;
         NSMutableArray *array = [[NSMutableArray alloc] init];
-        if(tag / 2 == 0){
-            [self addObject:self.carInfo.travelCard1 array:array];
-            [self addObject:self.carInfo.travelCard2 array:array];
-        }
-        else{
-            [self addObject:self.carInfo.carOwnerCard1 array:array];
-            [self addObject:self.carInfo.carOwnerCard2 array:array];
-        }
+
+        [self addObject:self.carInfo.travelCard1 array:array];
+        [self addObject:self.carInfo.travelCard2 array:array];
+        [self addObject:self.carInfo.carOwnerCard1 array:array];
+        [self addObject:self.carInfo.carOwnerCard2 array:array];
+
         _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
         [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
         [_imageList addImagesURL:array withSmallImage:nil];
@@ -377,7 +374,7 @@
 
 - (void) saveOrUpdateCustomerCar:(UIImage *) travelCard1 travelCard2:(UIImage *)travelCard2
 {
-    [ProgressHUD show:nil];
+    [ProgressHUD show:@"正在上传"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSString *filePahe1 = [self fileupMothed:travelCard1];
         NSString *filePahe2 = [self fileupMothed:travelCard2];
@@ -406,7 +403,7 @@
 
 - (void) saveOrUpdateCustomer:(UIImage *) image1 cert2:(UIImage *)image2
 {
-    [ProgressHUD show:nil];
+    [ProgressHUD show:@"正在上传"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSString *filePahe1 = [self fileupMothed:image1];
         NSString *filePahe2 = [self fileupMothed:image2];

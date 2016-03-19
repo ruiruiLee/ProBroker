@@ -272,13 +272,13 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    [ProgressHUD show:@"正在上传"];
     [self dismissViewControllerAnimated:YES completion:^{
         NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerEditedImage"],0.5);
         UIImage *image= [UIImage imageWithData:imageData];
         image = [Util fitSmallImage:image scaledToSize:CGSizeMake(180, 180)];
         UserEditTableViewCell *cell = [self.tableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 //        cell.imgv.image = image;
-        [ProgressHUD show:nil];
         AVFile *file = [AVFile fileWithName:@"head.jpg" data:imageData];
         [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

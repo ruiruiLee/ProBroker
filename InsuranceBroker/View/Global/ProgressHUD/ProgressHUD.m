@@ -117,7 +117,7 @@
 	if (hud == nil)
 	{
 		hud = [[UIToolbar alloc] initWithFrame:CGRectZero];
-        hud.barTintColor = _COLORa(250, 250, 250, 1);//HUD_BACKGROUND_COLOR;
+        hud.barTintColor = _COLORa(220, 220, 220, 1);//HUD_BACKGROUND_COLOR;
 		hud.translucent = YES;
 		hud.layer.cornerRadius = 10;
 		hud.layer.masksToBounds = YES;

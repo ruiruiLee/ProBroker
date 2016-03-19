@@ -13,7 +13,7 @@
 #import "NetWorkHandler+login.h"
 #import "SetTeamLeaderPhoneView.h"
 
-#define SETTING @"请联系您的上级为您设置产品折扣!"
+#define SETTING @"请联系您的团长设置您的佣金!"
 
 
 @interface loginViewController ()<SetTeamLeaderPhoneViewDelegate>

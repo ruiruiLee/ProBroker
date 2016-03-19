@@ -427,7 +427,7 @@
         carInsurStatus1 = @"0";
         carInsurCompId1 = @"";
     }
-    [ProgressHUD show:nil];
+    [ProgressHUD show:@"正在上传"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSString *filePahe = nil;
         NSString *filePahe1 = nil;
@@ -750,14 +750,24 @@
     [self.tfName resignFirstResponder];
     [self.tfNo resignFirstResponder];
     if(self.btnNoNo.selected){
-        NSArray *urlArray = @[@"price_img"];
-        _photoBrowserView=[[PhotoBrowserView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame WithArray:urlArray andCurrentIndex:0];
-        [[UIApplication sharedApplication].keyWindow addSubview:_photoBrowserView];
+        NSArray *urlArray = @[ThemeImage(@"price_img")];
+//        _photoBrowserView=[[PhotoBrowserView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame WithArray:urlArray andCurrentIndex:0];
+//        [self.view.window addSubview:_photoBrowserView];
+        _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
+//        [_imageList addImagesURL:urlArray withSmallImage:nil];
+        [_imageList addImages:urlArray];
+        [self.view.window addSubview:_imageList];
     }
     else{
-        NSArray *urlArray = @[@"license_img"];
-        _photoBrowserView=[[PhotoBrowserView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame WithArray:urlArray andCurrentIndex:0];
-        [[UIApplication sharedApplication].keyWindow addSubview:_photoBrowserView];
+        NSArray *urlArray = @[ThemeImage(@"license_img")];
+//        _photoBrowserView=[[PhotoBrowserView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame WithArray:urlArray andCurrentIndex:0];
+//        [self.view.window addSubview:_photoBrowserView];
+        _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
+//        [_imageList addImagesURL:urlArray withSmallImage:nil];
+        [_imageList addImages:urlArray];
+        [self.view.window addSubview:_imageList];
     }
 }
 

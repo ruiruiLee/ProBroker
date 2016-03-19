@@ -42,7 +42,7 @@
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *scrollOffsetConstraint;//scrollview离底部的距离
 
 @property (nonatomic, strong) UIButton *btnQuote;//立即报价
-@property (nonatomic, strong) CustomerInfoModel *customerinfoModel;;
+@property (nonatomic, strong) CustomerInfoModel *customerinfoModel;
 
 - (void) loadDetailWithCustomerId:(NSString *)customerId;
 

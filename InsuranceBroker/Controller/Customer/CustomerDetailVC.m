@@ -28,6 +28,12 @@
 @synthesize scrollview;
 @synthesize btnQuote;
 
+- (void) setCustomerinfoModel:(CustomerInfoModel *)model
+{
+    _customerinfoModel = model;
+    self.data = _customerinfoModel.detailModel;
+}
+
 - (void) dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -83,7 +89,7 @@
     self.headerHConstraint.constant = ScreenWidth;
     self.headerVConstraint.constant = 199 - 10;
     
-    _insuranceView = [[InsuranceInfoView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 180)];
+    _insuranceView = [[InsuranceInfoView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 190)];
     [self.detailView addSubview:_insuranceView];
     _insuranceView.delegate = self;
     
@@ -207,6 +213,12 @@
                 self.customerinfoModel.detailModel = self.data;
                 self.customerinfoModel.customerName = self.data.customerName;
             }
+        }else{
+            if(self .data == nil){
+                self.data = [[CustomerDetailModel alloc] init];
+                self.data.visitAttay = [[NSMutableArray alloc] init];
+                self.data.insurArray = [[NSMutableArray alloc] init];
+            }
         }
     }];
 }
@@ -236,7 +248,8 @@
                                                          self.data.isLoadVisit = YES;
                                                          _followUpView.data = self.data.visitAttay;
                                                          [_followUpView.tableview reloadData];
-                                                         if([_selectedView isKindOfClass:[CustomerFollowUpInfoView class]]){
+                                                         if([_selectedView isKindOfClass:[CustomerFollowUpInfoView class]])
+                                                         {
                                                              [self doBtnSelectDetailInfoView:self.btnSituation];
                                                          }
                                                          [_followUpView endLoadMore];
@@ -430,7 +443,7 @@
         _insuranceView.hidden = YES;
     }else{
         self.viewVConstraint.constant = self.headerVConstraint.constant +65 + 230;
-        self.detailVConstraint.constant = 180;
+        self.detailVConstraint.constant = 190;
         view.hidden = YES;
         _insuranceView.hidden = NO;
     }
@@ -573,6 +586,7 @@
 - (void) NotifyToRefreshSubviewFrames
 {
     [self resetContetHeight:_selectedView];
+    [self.scrollview scrollRectToVisible:CGRectMake(0, self.viewVConstraint.constant - self.scrollview.frame.size.height, ScreenWidth, self.scrollview.frame.size.height) animated:YES];
 }
 
 - (void) startRefresh
