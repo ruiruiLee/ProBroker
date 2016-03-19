@@ -22,7 +22,7 @@
     if(self){
         [self.tableview registerNib:[UINib nibWithNibName:@"InsuranceTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
         self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.lbTitle.text = @"投保资料";
+        self.lbTitle.text = @"车辆信息";
         [self.btnEdit setImage:ThemeImage(@"edit_profile") forState:UIControlStateNormal];
         [self.btnEdit setTitle:@"详情" forState:UIControlStateNormal];
         [self.btnEdit setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];

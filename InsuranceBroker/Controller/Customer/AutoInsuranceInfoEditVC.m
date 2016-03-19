@@ -154,7 +154,7 @@
     self.imageHConstraint.constant = ScreenWidth;
     
     
-    self.title = @"车险信息";
+    self.title = @"车辆信息";
     [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
 
     
