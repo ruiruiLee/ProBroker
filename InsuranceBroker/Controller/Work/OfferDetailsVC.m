@@ -293,7 +293,7 @@
     NSMutableAttributedString *attstr = [[NSMutableAttributedString alloc] initWithString:string];
     NSRange range = [string rangeOfString:sub];
     
-    [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:range];
+//    [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     [attstr addAttribute:NSForegroundColorAttributeName value:_COLOR(0x21, 0x21, 0x21) range:range];
 //    [attstr addAttribute:NSFontAttributeName value:_FONT(10) range:NSMakeRange([string length] - 3, 3)];
     
@@ -309,7 +309,7 @@
     NSMutableAttributedString *attstr = [[NSMutableAttributedString alloc] initWithString:string];
     NSRange range = [string rangeOfString:sub];
     
-    [attstr addAttribute:NSFontAttributeName value:_FONT(18) range:range];
+//    [attstr addAttribute:NSFontAttributeName value:_FONT(18) range:range];
     [attstr addAttribute:NSForegroundColorAttributeName value:_COLOR(0xf4, 0x43, 0x36) range:range];
 //    [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:NSMakeRange([string length] - 3, 3)];
     
