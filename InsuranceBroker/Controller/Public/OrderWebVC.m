@@ -9,6 +9,7 @@
 #import "OrderWebVC.h"
 #import "MyJSInterface.h"
 #import "define.h"
+#import "RootViewController.h"
 
 @interface OrderWebVC ()<MyJSInterfaceDelegate, UIWebViewDelegate>
 
@@ -90,7 +91,14 @@
 - (void) NotifyCloseWindow
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Refresh_OrderList object:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self performSelector:@selector(turnToCustomerPage) withObject:nil afterDelay:0.1];
+}
+
+- (void) turnToCustomerPage
+{
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    delegate.root.selectedIndex = 1;
 }
 
 @end

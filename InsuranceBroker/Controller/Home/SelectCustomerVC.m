@@ -151,32 +151,53 @@
     [ProgressHUD show:nil];
     CustomerInfoModel *model = [self.data objectAtIndex:indexPath.row];
     [self loadCarInfo:model.customerId Completion:^(int code, id content) {
-        [ProgressHUD dismiss];
+//        [ProgressHUD dismiss];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             NSArray *array = [CarInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
             if([array count] > 0){
-//                self.popMenu = [[CTPopoutMenu alloc]initWithTitle:@"选择报价的车牌号" message:@"" items:array];
-//                self.popMenu.delegate = self;
-//                self.popMenu.menuStyle = MenuStyleList;
-//                [self.popMenu showMenuInParentViewController:self withCenter:self.view.center];
                 CarInfoModel *car = [array objectAtIndex:0];
-                OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
-                web.title = @"报价";
-                [self.navigationController pushViewController:web animated:YES];
-                NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, model.customerId, car.customerCarId];
-                [web loadHtmlFromUrl:url];
-
+                
+                if([Util checkInfoFull:car]){
+                    [ProgressHUD dismiss];
+                    OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
+                    web.title = @"报价";
+                    [self.navigationController pushViewController:web animated:YES];
+                    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, model.customerId, car.customerCarId];
+                    [web loadHtmlFromUrl:url];
+                }else{
+                    CustomerDetailVC *detail = [IBUIFactory CreateCustomerDetailViewController];
+                    [self.navigationController pushViewController:detail animated:YES];
+                    detail.customerinfoModel = model;
+                    [self performSelector:@selector(showProgressHUD) withObject:nil afterDelay:0.2];
+                    [detail performSelector:@selector(loadDetailWithCustomerId:) withObject:model.customerId afterDelay:0.2];
+                    [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.8];
+                }
             }
             else{
                 CustomerDetailVC *detail = [IBUIFactory CreateCustomerDetailViewController];
                 [self.navigationController pushViewController:detail animated:YES];
                 detail.customerinfoModel = model;
+                [self performSelector:@selector(showProgressHUD) withObject:nil afterDelay:0.2];
                 [detail performSelector:@selector(loadDetailWithCustomerId:) withObject:model.customerId afterDelay:0.2];
+                [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.8];
             }
+        }else{
+            [ProgressHUD dismiss];
         }
     }];
 }
+
+- (void) showProgressHUD
+{
+    [ProgressHUD show:@"请完善投保资料"];
+}
+
+- (void) shutProgressHUD
+{
+    [ProgressHUD dismiss];
+}
+
 
 //- (NSArray *) getItemByArray:(NSArray *) array
 //{

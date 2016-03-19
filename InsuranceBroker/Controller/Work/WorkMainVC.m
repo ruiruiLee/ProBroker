@@ -97,10 +97,10 @@
         web.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:web animated:YES];
         if(model.url){
-            [web loadHtmlFromUrl:[NSString stringWithFormat:@"%@?userId=%@&appShare=1", model.url, [UserInfoModel shareUserInfoModel].userId]];
+            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@", model.url]];
         }else{
             NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid];
-            [web loadHtmlFromUrl:[NSString stringWithFormat:@"%@?userId=%@&appShare=1",url, [UserInfoModel shareUserInfoModel].userId]];
+            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@",url]];
         }
     }
 }

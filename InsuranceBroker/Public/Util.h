@@ -10,6 +10,7 @@
 #import "BrokerInfoModel.h"
 #import "ParentInfoModel.h"
 #import "UserInfoModel.h"
+#import "CarInfoModel.h"
 
 @interface Util : NSObject
 
@@ -77,5 +78,8 @@
 + (NSString *) getUserName:(UserInfoModel*) model;
 + (NSString *) getUserNameWithModel:(BrokerInfoModel*) model;
 + (NSString *) getUserNameWithPresentModel:(ParentInfoModel*) model;
+
++ (BOOL) checkInfoFull:(CarInfoModel*) carInfo;
++ (BOOL) isNilValue:(NSString *) value;
 
 @end
