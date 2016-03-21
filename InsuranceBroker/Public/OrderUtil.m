@@ -38,6 +38,7 @@
         string = desc;
         return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0xf4, 0x43, 0x36)];
     }
+    else if (orderOfferStatus == 1){}
     else if (orderOfferStatus == 3){
         string = [NSString stringWithFormat:@"共有%d份报价", orderOfferNums];
         return [self attstringWithString:string range:NSMakeRange(2, 1) font:_FONT(15) color:_COLOR(0xff, 0x66, 0x19)];
