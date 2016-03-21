@@ -85,7 +85,8 @@
         tableheight = cellheight * num;
     }
     
-    return tableheight + 58 + 18 + 42;
+    tableheight = tableheight + 58 + 18 ;
+    return tableheight;
 }
 
 - (void) layoutSubviews
