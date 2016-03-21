@@ -13,6 +13,7 @@
 #import "InsurInfoModel.h"
 #import "UIImageView+WebCache.h"
 #import "NetWorkHandler+deleteInsuranceOrder.h"
+#import "OrderUtil.h"
 
 @implementation UserPolicyListView
 @synthesize footer;
@@ -74,8 +75,8 @@
     cell.lbPlate.text = @"";
     cell.lbContent.text = model.planTypeName;//[Util getStringByPlanType:model.planType];
     cell.lbUpdateTime.text = [Util getTimeString:model.createdAt];
-    cell.lbStatus.attributedText = [self getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:model.orderOfferStatusStr];
-    [self setPolicyStatusWithCell:cell orderOfferStatus:model.orderOfferStatus orderOfferStatusStr:model.orderOfferStatusStr orderOfferPrintStatus:model.orderOfferPrintStatus];
+    cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:model.orderOfferStatusStr];
+    [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatus:model.orderOfferStatus orderOfferStatusStr:model.orderOfferStatusStr orderOfferPrintStatus:model.orderOfferPrintStatus];
     [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];
     
     return cell;
@@ -144,125 +145,6 @@
 {
     FooterView *view = (FooterView*)self.tableview.tableFooterView;
     [view endLoading];
-}
-
-- (void) setPolicyStatusWithCell:(PolicyInfoTableViewCell *) cell orderOfferStatus:(NSInteger) orderOfferStatus orderOfferStatusStr:(NSString*) orderOfferStatusStr orderOfferPrintStatus:(NSInteger) orderOfferPrintStatus
-{
-    LeftImgButton *btn = cell.btnStatus;
-    NSString *title = @"";
-    UIImage *image = nil;
-    if(orderOfferStatus == 1){
-//        title = @"报价中";
-        image = ThemeImage(@"price_loading");
-    }
-    else if(orderOfferStatus == 2){
-//        title = @"报价失败";
-        image = ThemeImage(@"error");
-    }
-    else if (orderOfferStatus == 3){
-//        title = @"报价完成";
-        image = ThemeImage(@"price_done");
-    }
-    else if (orderOfferStatus == 4){
-        if(orderOfferPrintStatus == 2){
-//            title = @"出单配送";
-            image = ThemeImage(@"deliver");
-        }else{
-//            title = @"等待出单";
-            image = ThemeImage(@"Issuing");
-        }
-    }
-    else if (orderOfferStatus == 5){
-//        title = @"出单配送";
-        image = ThemeImage(@"deliver");
-    }
-    else if (orderOfferStatus == 6){
-        if(orderOfferPrintStatus == 2){
-//            title = @"出单配送";
-            image = ThemeImage(@"deliver");
-        }else{
-//            title = @"等待出单";
-            image = ThemeImage(@"Issuing");
-        }
-    }
-    else if (orderOfferStatus == 7){
-//        title = @"付款失败";
-        image = ThemeImage(@"error");
-    }
-    else if (orderOfferStatus == 8){
-//        title = @"交易成功";
-        image = ThemeImage(@"order_done");
-    }
-    else if (orderOfferStatus == 9){
-//        title = @"保单过期";
-        image = ThemeImage(@"error");
-    }else{
-        image = ThemeImage(@"error");
-    }
-    
-    title = orderOfferStatusStr;
-    
-    [btn setImage:image forState:UIControlStateNormal];
-    [btn setTitle:title forState:UIControlStateNormal];
-}
-
-//":"1"; //订单报价状态；1等待报价，2报价失败(读取失败原因,StatusId,StatusMsg），3报价完成，4出单配送-未付款（货到付款），5出单配送-付款中，6出单配送-已付款，7付款失败，8交易成功，9已过期，10禁止流程操作当扫表状态为1或2的时候，进行报价
-/*
- desc : statusmsg
- orderOfferNums : 几分报价
- */
-- (NSMutableAttributedString *) getAttributedString:(NSString *)desc orderOfferNums:(NSInteger) orderOfferNums orderOfferStatus:(NSInteger) orderOfferStatus orderOfferPayPrice:(float) orderOfferPayPrice orderOfferStatusStr:(NSString *) orderOfferStatusStr
-{
-    NSString *string = @"";
-    if(orderOfferStatus == 2){
-        string = desc;
-        return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0xf4, 0x43, 0x36)];
-    }
-    else if (orderOfferStatus == 3){
-        string = [NSString stringWithFormat:@"共有%d份报价", orderOfferNums];
-        return [self attstringWithString:string range:NSMakeRange(2, 1) font:_FONT(15) color:_COLOR(0xff, 0x66, 0x19)];
-    }
-    else if (orderOfferStatus == 4){
-        string = @"未付款";
-        return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0xf4, 0x43, 0x36)];
-    }
-    else if (orderOfferStatus == 5){
-        string = @"付款中";
-        return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0x75, 0x75, 0x75)];
-    }
-    else if (orderOfferStatus == 6){
-        string = @"已付款";
-        return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0x29, 0xcc, 0x5f)];
-    }
-    else if (orderOfferStatus == 7){
-        string = @"付款失败";
-        return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0xf4, 0x43, 0x36)];
-    }
-    else if (orderOfferStatus == 8){
-        string = [NSString stringWithFormat:@"实付:¥%.2f", orderOfferPayPrice];
-         return [self attstringWithString:string range:NSMakeRange(3, [string length] - 3) font:_FONT(18) color:_COLOR(0xf4, 0x43, 0x36)];
-    }
-    else if (orderOfferStatus == 9){
-        string = @"保单过期";
-         return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0xf4, 0x43, 0x36)];
-    }else{
-        string = desc;
-        if(string == nil)
-            string = @"";
-        return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0xf4, 0x43, 0x36)];
-    }
-    
-    return nil;
-}
-
-- (NSMutableAttributedString *) attstringWithString:(NSString *) string range:(NSRange) range font:(UIFont *) font color:(UIColor *)color
-{
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
-    
-    [attributedString addAttribute:NSForegroundColorAttributeName value:color range:range];
-    [attributedString addAttribute:NSFontAttributeName value:font range:range];
-    
-    return attributedString;
 }
 
 @end
