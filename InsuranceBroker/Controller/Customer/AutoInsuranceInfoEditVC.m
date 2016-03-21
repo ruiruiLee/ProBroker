@@ -523,7 +523,7 @@
     {
         [Util openCamera:self allowEdit:YES completion:^{}];
     }
-    else if(buttonIndex == 3){
+    else if(buttonIndex == 2){
         
         NSMutableArray *array = [[NSMutableArray alloc] init];
         if(self.type == enumAddPhotoTypeLisence){
@@ -577,26 +577,40 @@
 #pragma ACTION
 - (void) btnPhotoPressed:(UIButton*)sender{
     
-    UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:@""
-                                                    delegate:(id)self
-                                           cancelButtonTitle:@"取消"
-                                      destructiveButtonTitle:nil
-                                           otherButtonTitles:@"从相册选取", @"拍照",nil];
+    UIActionSheet *ac;
     
     if(sender == self.btnCert){
-//        self.type = enumAddPhotoTypeCert;
         if([self isHasCert])
-            [ac addButtonWithTitle:@"查看原图"];
+            ac = [[UIActionSheet alloc] initWithTitle:@""
+                                             delegate:(id)self
+                                    cancelButtonTitle:@"取消"
+                               destructiveButtonTitle:nil
+                                    otherButtonTitles:@"从相册选取", @"拍照", @"查看原图",nil];
+        else
+        {
+            ac = [[UIActionSheet alloc] initWithTitle:@""
+                                             delegate:(id)self
+                                    cancelButtonTitle:@"取消"
+                               destructiveButtonTitle:nil
+                                    otherButtonTitles:@"从相册选取", @"拍照",nil];        }
     }
     else{
-//        self.type = enumAddPhotoTypeLisence;
         if([self isHasLisence])
-            [ac addButtonWithTitle:@"查看原图"];
+            ac = [[UIActionSheet alloc] initWithTitle:@""
+                                             delegate:(id)self
+                                    cancelButtonTitle:@"取消"
+                               destructiveButtonTitle:nil
+                                    otherButtonTitles:@"从相册选取", @"拍照", @"查看原图",nil];
+        else{
+            ac = [[UIActionSheet alloc] initWithTitle:@""
+                                             delegate:(id)self
+                                    cancelButtonTitle:@"取消"
+                               destructiveButtonTitle:nil
+                                    otherButtonTitles:@"从相册选取", @"拍照",nil];
+        }
     }
     
-//    if(image != nil){
-//        [ac addButtonWithTitle:@"查看原图"];
-//    }
+
     ac.actionSheetStyle = UIBarStyleBlackTranslucent;
     [ac showInView:self.view];
     
