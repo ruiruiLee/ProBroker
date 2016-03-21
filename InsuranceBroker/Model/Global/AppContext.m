@@ -44,6 +44,8 @@ static AppContext *context = nil;
                 self.pushCustomerNum = [[dic objectForKey:@"pushCustomerNum"] integerValue];
                 self.isNewMessage = [[dic objectForKey:@"isNewMessage"] boolValue];
                 self.arrayNewsTip =[dic objectForKey:@"arrayNewsTip"];
+                if(self.arrayNewsTip == nil)
+                    self.arrayNewsTip = [[NSMutableArray alloc] init];
             }
             else{
                 self.userInfoDic = [[NSMutableDictionary alloc] init];
@@ -209,6 +211,8 @@ static AppContext *context = nil;
 //            self.isRedPack = [[dic objectForKey:@"isRedPack"] boolValue];
             self.isNewMessage = [[dic objectForKey:@"isNewMessage"] boolValue];
             self.arrayNewsTip =[dic objectForKey:@"arrayNewsTip"];
+            if(self.arrayNewsTip == nil)
+                self.arrayNewsTip = [[NSMutableArray alloc] init];
             self.pushCustomerNum = [[dic objectForKey:@"pushCustomerNum"] integerValue];
           }
       }

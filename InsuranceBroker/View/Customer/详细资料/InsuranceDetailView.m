@@ -374,77 +374,17 @@
 
 - (void) saveOrUpdateCustomerCar:(UIImage *) travelCard1 travelCard2:(UIImage *)travelCard2
 {
-    [ProgressHUD show:@"正在上传"];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
-        NSString *filePahe1 = [self fileupMothed:travelCard1];
-        NSString *filePahe2 = [self fileupMothed:travelCard2];
-        
-        [NetWorkHandler requestToSaveOrUpdateCustomerCar:self.carInfo.customerCarId customerId:self.customerInfo.customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:nil carShelfNo:nil carEngineNo:nil carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe1 travelCard2:filePahe2 carOwnerCard1:nil carOwnerCard2:nil carRegTime:nil newCarNoStatus:nil carTradeStatus:nil carTradeTime:nil carInsurStatus1:nil carInsurCompId1:nil Completion:^(int code, id content) {
-            dispatch_async(dispatch_get_main_queue(),^{
-                if(code == 200){
-                    CarInfoModel *model = self.customerInfo.detailModel.carInfo;
-                    if(model == nil){
-                        model = [[CarInfoModel alloc] init];
-                        self.customerInfo.detailModel.carInfo = model;
-                    }
-                    model.customerCarId = [content objectForKey:@"data"];
-                    model.customerId = self.customerInfo.customerId;
-                    model.carOwnerName = self.customerInfo.customerName;
-                    if(filePahe1 != nil)
-                        model.travelCard1 = filePahe1;
-                    if(filePahe2 != nil)
-                        model.travelCard2 = filePahe2;
-                }
-                [ProgressHUD dismiss];
-            });
-        }];
-    });
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToSubmitImage:travelCard2:image1:cert2:)]){
+        [self.delegate NotifyToSubmitImage:travelCard1 travelCard2:travelCard2 image1:nil cert2:nil];
+    }
 }
 
 - (void) saveOrUpdateCustomer:(UIImage *) image1 cert2:(UIImage *)image2
 {
-    [ProgressHUD show:@"正在上传"];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
-        NSString *filePahe1 = [self fileupMothed:image1];
-        NSString *filePahe2 = [self fileupMothed:image2];
-        [NetWorkHandler requestToSaveOrUpdateCustomerCar:self.carInfo.customerCarId customerId:self.customerInfo.customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:nil carShelfNo:nil carEngineNo:nil carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:nil travelCard2:nil carOwnerCard1:filePahe1 carOwnerCard2:filePahe2 carRegTime:nil newCarNoStatus:nil carTradeStatus:nil carTradeTime:nil carInsurStatus1:nil carInsurCompId1:nil Completion:^(int code, id content) {
-            dispatch_async(dispatch_get_main_queue(),^{
-                if(code == 200){
-                    CarInfoModel *model = self.customerInfo.detailModel.carInfo;
-                    if(model == nil){
-                        model = [[CarInfoModel alloc] init];
-                        self.customerInfo.detailModel.carInfo = model;
-                    }
-                    model.customerCarId = [content objectForKey:@"data"];
-                    model.customerId = self.customerInfo.customerId;
-                    model.carOwnerName = self.customerInfo.customerName;
-                    if(filePahe1 != nil)
-                        model.carOwnerCard1 = filePahe1;
-                    if(filePahe2 != nil)
-                        model.carOwnerCard2 = filePahe2;
-                }
-                [ProgressHUD dismiss];
-            });
-        }];
-
-    });
-}
-
--(NSString *)fileupMothed:(UIImage *) image
-{
-    if(image == nil)
-        return nil;
-    //图片
-    //添加文件名
-    @autoreleasepool {
-        NSData *imageData = UIImageJPEGRepresentation(image, 1.f);
-        AVFile *file = [AVFile fileWithData:imageData];
-        [file save];
-        
-        return file.url;
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToSubmitImage:travelCard2:image1:cert2:)]){
+        [self.delegate NotifyToSubmitImage:nil travelCard2:nil image1:image1 cert2:image2];
     }
-    
-    //文字内容
 }
+
 
 @end

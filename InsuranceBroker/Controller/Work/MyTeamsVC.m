@@ -273,7 +273,7 @@
 
 - (NSAttributedString *) getOrderDetailString:(CGFloat) amount orderValue:(CGFloat) orderValue
 {
-    NSString *sub1 = [NSString stringWithFormat:@"本月累计 %@元, ", [Util getDecimalStyle:amount]];
+    NSString *sub1 = [NSString stringWithFormat:@"本月销售 %@元, ", [Util getDecimalStyle:amount]];
     NSMutableAttributedString *mstring1 = [[NSMutableAttributedString alloc] initWithString:sub1];
     NSRange range = [sub1 rangeOfString:[NSString stringWithFormat:@"%@", [Util getDecimalStyle:amount]]];
     [mstring1 addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
