@@ -75,15 +75,12 @@
     cell.lbPlate.text = @"";
     cell.lbContent.text = model.planTypeName;//[Util getStringByPlanType:model.planType];
     cell.lbUpdateTime.text = [Util getTimeString:model.createdAt];
-    cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:model.orderOfferStatusStr];
+    cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:model.orderOfferStatusStr orderOfferGatherStatus:model.orderOfferGatherStatus];
     [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatus:model.orderOfferStatus orderOfferStatusStr:model.orderOfferStatusStr orderOfferPrintStatus:model.orderOfferPrintStatus];
     [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];
     
     return cell;
 }
-
-//orderOfferStatusMsg = "\U8bc1\U4ef6\U4fe1\U606f\U6709\U8bef";
-//orderOfferStatusStr = "\U62a5\U4ef7\U5931\U8d25";
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

@@ -17,7 +17,7 @@
 
 + (void) setPolicyStatusWithCell:(OrderManagerTableViewCell *) cell orderOfferStatus:(NSInteger) orderOfferStatus orderOfferStatusStr:(NSString *) orderOfferStatusStr orderOfferPrintStatus:(NSInteger) orderOfferPrintStatus;
 
-+ (NSMutableAttributedString *) getAttributedString:(NSString *)desc orderOfferNums:(NSInteger) orderOfferNums orderOfferStatus:(NSInteger) orderOfferStatus orderOfferPayPrice:(float) orderOfferPayPrice orderOfferStatusStr:(NSString *) orderOfferStatusStr;
++ (NSMutableAttributedString *) getAttributedString:(NSString *)desc orderOfferNums:(NSInteger) orderOfferNums orderOfferStatus:(NSInteger) orderOfferStatus orderOfferPayPrice:(float) orderOfferPayPrice orderOfferStatusStr:(NSString *) orderOfferStatusStr orderOfferGatherStatus:(BOOL) orderOfferGatherStatus;
 
 + (NSMutableAttributedString *) attstringWithString:(NSString *) string range:(NSRange) range font:(UIFont *) font color:(UIColor *)color;
 

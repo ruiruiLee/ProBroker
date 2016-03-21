@@ -45,6 +45,7 @@
     model.orderOfferStatusStr = [dictionary objectForKey:@"orderOfferStatusStr"];
     model.productLogo = [dictionary objectForKey:@"productLogo"];
     model.orderOfferPrintStatus = [[dictionary objectForKey:@"orderOfferPrintStatus"] integerValue];
+    model.orderOfferGatherStatus = [[dictionary objectForKey:@"orderOfferGatherStatus"] boolValue];
     
     return model;
 }
