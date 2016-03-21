@@ -121,7 +121,7 @@
     NSInteger num = [self tableView:self.tableview numberOfRowsInSection:0];
     CGFloat tableheight = 0;
     for (int i = 0; i < num; i++) {
-        tableheight += [self tableView:self.tableview heightForRowAtIndexPath:[NSIndexPath indexPathForRow:num inSection:0]];
+        tableheight += [self tableView:self.tableview heightForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
     }
     
     return tableheight + 58 + 18 + _footView.frame.size.height;
@@ -148,7 +148,7 @@
     if(row == 0){
         content = _carInfo.carNo;
     }
-    else{
+    else if(row == 1){
         content = _carInfo.carOwnerCard;
     }
     if(content == nil || [content length] == 0)
