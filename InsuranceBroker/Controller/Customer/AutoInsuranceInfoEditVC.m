@@ -194,6 +194,7 @@
     btnQuote.layer.shadowRadius = 1;
     [btnQuote addTarget:self action:@selector(doBtnCarInsurPlan:) forControlEvents:UIControlEventTouchUpInside];
     
+    self.scrollview.showsHorizontalScrollIndicator = NO;
     
     NSDictionary *views = NSDictionaryOfVariableBindings(btnQuote);
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(48)]-10-|" options:0 metrics:nil views:views]];
