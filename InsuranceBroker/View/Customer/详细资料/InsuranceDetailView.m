@@ -325,9 +325,9 @@
     {
         UIImagePickerController *pickerImage = [[UIImagePickerController alloc] init];
         //
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
         {
-            pickerImage.sourceType    = UIImagePickerControllerSourceTypePhotoLibrary;
+            pickerImage.sourceType    = UIImagePickerControllerSourceTypeCamera;
             pickerImage.mediaTypes =  [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
             pickerImage.delegate      = (id)self;
             pickerImage.allowsEditing = YES;
