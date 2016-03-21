@@ -37,9 +37,9 @@
         _loadbtn = [[UIButton alloc] initWithFrame:CGRectMake(10, 4, frame.size.width - 20, frame.size.height - 8)];
         [self addSubview:_loadbtn];
         [_loadbtn setTitle:@"加载更多" forState:UIControlStateNormal];
-        _loadbtn.backgroundColor = _COLOR(0xff, 0x66, 0x19);
         _loadbtn.titleLabel.font = _FONT(15);
         [_loadbtn addTarget:self action:@selector(loadbtclick) forControlEvents:UIControlEventTouchUpInside];
+        _loadbtn.backgroundColor = _COLOR(0xff, 0x66, 0x19);
     }
     
     return self;

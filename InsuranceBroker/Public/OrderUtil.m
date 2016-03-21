@@ -31,7 +31,7 @@
  desc : statusmsg
  orderOfferNums : 几分报价
  */
-+ (NSMutableAttributedString *) getAttributedString:(NSString *)desc orderOfferNums:(NSInteger) orderOfferNums orderOfferStatus:(NSInteger) orderOfferStatus orderOfferPayPrice:(float) orderOfferPayPrice orderOfferStatusStr:(NSString *) orderOfferStatusStr
++ (NSMutableAttributedString *) getAttributedString:(NSString *)desc orderOfferNums:(NSInteger) orderOfferNums orderOfferStatus:(NSInteger) orderOfferStatus orderOfferPayPrice:(float) orderOfferPayPrice orderOfferStatusStr:(NSString *) orderOfferStatusStr orderOfferGatherStatus:(BOOL) orderOfferGatherStatus
 {
     NSString *string = @"";
     if(orderOfferStatus == 2){
@@ -43,19 +43,25 @@
         return [self attstringWithString:string range:NSMakeRange(2, 1) font:_FONT(15) color:_COLOR(0xff, 0x66, 0x19)];
     }
     else if (orderOfferStatus == 4){
-        string = @"未付款";
-        return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0xf4, 0x43, 0x36)];
+        string = desc;//@"未付款";
+        if(orderOfferGatherStatus)
+            return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0x29, 0xcc, 0x5f)];
+        else
+            return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0xf4, 0x43, 0x36)];
     }
     else if (orderOfferStatus == 5){
-        string = @"付款中";
+        string = desc;//@"付款中";
         return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0x75, 0x75, 0x75)];
     }
     else if (orderOfferStatus == 6){
-        string = @"已付款";
-        return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0x29, 0xcc, 0x5f)];
+        string = desc;//@"已付款";
+        if(!orderOfferGatherStatus)
+            return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0xf4, 0x43, 0x36)];
+        else
+            return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0x29, 0xcc, 0x5f)];
     }
     else if (orderOfferStatus == 7){
-        string = @"付款失败";
+        string = desc;//@"付款失败";
         return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0xf4, 0x43, 0x36)];
     }
     else if (orderOfferStatus == 8){
@@ -63,7 +69,7 @@
         return [self attstringWithString:string range:NSMakeRange(3, [string length] - 3) font:_FONT(18) color:_COLOR(0xf4, 0x43, 0x36)];
     }
     else if (orderOfferStatus == 9){
-        string = @"保单过期";
+        string = desc;//@"保单过期";
         return [self attstringWithString:string range:NSMakeRange(0, [string length]) font:_FONT(12) color:_COLOR(0xf4, 0x43, 0x36)];
     }else{
         string = orderOfferStatusStr;

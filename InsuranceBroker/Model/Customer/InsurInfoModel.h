@@ -43,4 +43,6 @@
 
 @property (nonatomic, strong) NSString *productLogo;
 
+@property (nonatomic, assign) BOOL orderOfferGatherStatus;
+
 @end
