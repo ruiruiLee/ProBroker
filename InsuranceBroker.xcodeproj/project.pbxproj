@@ -127,6 +127,7 @@
 		868C7CD41C9A4F7600B7617A /* TeamListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 868C7CD21C9A4F7600B7617A /* TeamListTableViewCell.xib */; };
 		868C7CD71C9BE91400B7617A /* CurveSellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CD61C9BE91400B7617A /* CurveSellModel.m */; };
 		868C7CDA1C9BE9DF00B7617A /* CurveEarnModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CD91C9BE9DF00B7617A /* CurveEarnModel.m */; };
+		868C7CDD1C9F8E3800B7617A /* OrderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CDC1C9F8E3800B7617A /* OrderUtil.m */; };
 		86A26E351C4355220073FFFC /* NetWorkHandler+getProvinces.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26E341C4355220073FFFC /* NetWorkHandler+getProvinces.m */; };
 		86A26E381C4356540073FFFC /* ProviendeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26E371C4356540073FFFC /* ProviendeModel.m */; };
 		86A26E3B1C4356620073FFFC /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26E3A1C4356620073FFFC /* CityModel.m */; };
@@ -643,6 +644,8 @@
 		868C7CD61C9BE91400B7617A /* CurveSellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurveSellModel.m; sourceTree = "<group>"; };
 		868C7CD81C9BE9DF00B7617A /* CurveEarnModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurveEarnModel.h; sourceTree = "<group>"; };
 		868C7CD91C9BE9DF00B7617A /* CurveEarnModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurveEarnModel.m; sourceTree = "<group>"; };
+		868C7CDB1C9F8E3800B7617A /* OrderUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderUtil.h; sourceTree = "<group>"; };
+		868C7CDC1C9F8E3800B7617A /* OrderUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderUtil.m; sourceTree = "<group>"; };
 		86A26E331C4355220073FFFC /* NetWorkHandler+getProvinces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+getProvinces.h"; sourceTree = "<group>"; };
 		86A26E341C4355220073FFFC /* NetWorkHandler+getProvinces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+getProvinces.m"; sourceTree = "<group>"; };
 		86A26E361C4356540073FFFC /* ProviendeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviendeModel.h; sourceTree = "<group>"; };
@@ -1381,6 +1384,8 @@
 				86C3BB3E1C23C27700F98E80 /* Util.m */,
 				8625B0451C3E80E400312B98 /* LocationManagerObserver.h */,
 				8625B0461C3E80E400312B98 /* LocationManagerObserver.m */,
+				868C7CDB1C9F8E3800B7617A /* OrderUtil.h */,
+				868C7CDC1C9F8E3800B7617A /* OrderUtil.m */,
 			);
 			name = Global;
 			path = Public;
@@ -2949,6 +2954,7 @@
 				8654CA5D1C31256A00411C54 /* NetWorkHandler.m in Sources */,
 				86A504CC1C51C7B00032A901 /* NetWorkHandler+applyForEarn.m in Sources */,
 				86F014331C86CB9B00A3C68E /* NetWorkHandler+deleteInsuranceOrder.m in Sources */,
+				868C7CDD1C9F8E3800B7617A /* OrderUtil.m in Sources */,
 				86C3BB741C242E3E00F98E80 /* CustomerMainVC.m in Sources */,
 				865066241C21550500429EAE /* IBUIFactory.m in Sources */,
 				86A504D51C51CE7B0032A901 /* NetWorkHandler+queryUserBillPageList.m in Sources */,
