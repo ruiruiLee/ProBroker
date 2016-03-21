@@ -142,7 +142,7 @@
     
     OffersModel *model = [self.data.offersVoList objectAtIndex:indexPath.row];
     
-    cell.lbGain.attributedText = [self getPlanUkbSavePriceAttbuteString:[NSString stringWithFormat:@"赚：%.2f", model.planUserAllot] sub:@".00"];
+    cell.lbGain.attributedText = [self getPlanUkbSavePriceAttbuteString:[NSString stringWithFormat:@"赚：%.2f", model.planUserAllot] sub:[NSString stringWithFormat:@"%.2f", model.planUserAllot]];
     cell.lbName.text = model.productName;
     cell.lbPrice.attributedText = [self getPlanInsuranceCompanyPriceAttbuteString:[NSString stringWithFormat:@"保单价：%.2f", model.planInsuranceCompanyPrice] sub:[NSString stringWithFormat:@"%.2f", model.planInsuranceCompanyPrice]];
     cell.lbRebate.text = [NSString stringWithFormat:@"%d%@", (int)model.planUkbRatio, @"%"];
@@ -293,7 +293,7 @@
     NSMutableAttributedString *attstr = [[NSMutableAttributedString alloc] initWithString:string];
     NSRange range = [string rangeOfString:sub];
     
-//    [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:range];
+    [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     [attstr addAttribute:NSForegroundColorAttributeName value:_COLOR(0x21, 0x21, 0x21) range:range];
 //    [attstr addAttribute:NSFontAttributeName value:_FONT(10) range:NSMakeRange([string length] - 3, 3)];
     
@@ -309,7 +309,7 @@
     NSMutableAttributedString *attstr = [[NSMutableAttributedString alloc] initWithString:string];
     NSRange range = [string rangeOfString:sub];
     
-//    [attstr addAttribute:NSFontAttributeName value:_FONT(18) range:range];
+    [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     [attstr addAttribute:NSForegroundColorAttributeName value:_COLOR(0xf4, 0x43, 0x36) range:range];
 //    [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:NSMakeRange([string length] - 3, 3)];
     
@@ -320,10 +320,10 @@
 - (NSMutableAttributedString *)getPlanUkbSavePriceAttbuteString:(NSString *)string sub:(NSString *) sub
 {
     NSMutableAttributedString *attstr = [[NSMutableAttributedString alloc] initWithString:string];
-//    NSRange range = [string rangeOfString:sub];
+    NSRange range = [string rangeOfString:sub];
     
 //    NSRange range = NSMakeRange([string length] - 3, 3);
-//    [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:range];
+    [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     
     return attstr;
 }

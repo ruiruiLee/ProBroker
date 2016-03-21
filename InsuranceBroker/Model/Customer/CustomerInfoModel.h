@@ -22,6 +22,7 @@
 @property (nonatomic, assign) BOOL bindStatus;
 @property (nonatomic, strong) NSDate *updatedAt;
 
+@property (nonatomic, assign) BOOL isLoadDetail;
 @property (nonatomic, strong) CustomerDetailModel *detailModel;
 
 @end

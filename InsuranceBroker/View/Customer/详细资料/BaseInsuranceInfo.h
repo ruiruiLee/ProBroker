@@ -24,6 +24,7 @@
 - (void) NotifyToRefresh:(BaseInsuranceInfo *)sender;//刷新保单列表
 
 - (void) NotifyToRefreshSubviewFrames;
+- (void) NotifyToSubmitImage:(UIImage *) travelCard1 travelCard2:(UIImage *)travelCard2 image1:(UIImage *) image1 cert2:(UIImage *)image2;
 @end
 
 @interface BaseInsuranceInfo : UIView <UITableViewDataSource, UITableViewDelegate>

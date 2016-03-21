@@ -16,6 +16,9 @@
 #import "VisitInfoModel.h"
 #import <MessageUI/MessageUI.h>
 #import "OrderWebVC.h"
+#import "NetWorkHandler+saveOrUpdateCustomerCar.h"
+#import "NetWorkHandler+saveOrUpdateCustomer.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @interface CustomerDetailVC ()<BaseInsuranceInfoDelegate, InsuranceInfoViewDelegate, MFMessageComposeViewControllerDelegate>
 
@@ -214,11 +217,11 @@
                 self.customerinfoModel.customerName = self.data.customerName;
             }
         }else{
-            if(self .data == nil){
-                self.data = [[CustomerDetailModel alloc] init];
-                self.data.visitAttay = [[NSMutableArray alloc] init];
-                self.data.insurArray = [[NSMutableArray alloc] init];
-            }
+//            if(self .data == nil){
+//                self.data = [[CustomerDetailModel alloc] init];
+//                self.data.visitAttay = [[NSMutableArray alloc] init];
+//                self.data.insurArray = [[NSMutableArray alloc] init];
+//            }
         }
     }];
 }
@@ -581,6 +584,59 @@
         [self loadInsurPageList:0];
     }
     
+}
+
+- (void) NotifyToSubmitImage:(UIImage *) travelCard1 travelCard2:(UIImage *)travelCard2 image1:(UIImage *) image1 cert2:(UIImage *)image2
+{
+    [ProgressHUD show:@"正在上传"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
+        NSString *filePahe1 = [self fileupMothed:travelCard1];
+        NSString *filePahe2 = [self fileupMothed:travelCard2];
+        NSString *filePahe3 = [self fileupMothed:image1];
+        NSString *filePahe4 = [self fileupMothed:image2];
+        
+        [NetWorkHandler requestToSaveOrUpdateCustomerCar:self.data.carInfo.customerCarId customerId:self.data.customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:nil carShelfNo:nil carEngineNo:nil carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe1 travelCard2:filePahe2 carOwnerCard1:filePahe3 carOwnerCard2:filePahe4 carRegTime:nil newCarNoStatus:nil carTradeStatus:nil carTradeTime:nil carInsurStatus1:nil carInsurCompId1:nil Completion:^(int code, id content) {
+            [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+            dispatch_async(dispatch_get_main_queue(),^{
+                if(code == 200){
+                    CarInfoModel *model = self.data.carInfo;
+                    if(model == nil){
+                        model = [[CarInfoModel alloc] init];
+                        self.data.carInfo = model;
+                    }
+                    model.customerCarId = [content objectForKey:@"data"];
+                    model.customerId = self.data.customerId;
+                    model.carOwnerName = self.data.customerName;
+                    if(filePahe1 != nil)
+                        model.travelCard1 = filePahe1;
+                    if(filePahe2 != nil)
+                        model.travelCard2 = filePahe2;
+                    if(filePahe3 != nil)
+                        model.carOwnerCard1 = filePahe3;
+                    if(filePahe4 != nil)
+                        model.carOwnerCard2 = filePahe4;
+                }
+                [ProgressHUD dismiss];
+            });
+        }];
+    });
+}
+
+-(NSString *)fileupMothed:(UIImage *) image
+{
+    if(image == nil)
+        return nil;
+    //图片
+    //添加文件名
+    @autoreleasepool {
+        NSData *imageData = UIImageJPEGRepresentation(image, 1.f);
+        AVFile *file = [AVFile fileWithData:imageData];
+        [file save];
+        
+        return file.url;
+    }
+    
+    //文字内容
 }
 
 - (void) NotifyToRefreshSubviewFrames
