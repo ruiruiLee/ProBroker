@@ -81,11 +81,6 @@
                                             <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eVW-0B-whI">
-                                            <rect key="frame" x="474" y="9" width="124" height="22"/>
-                                            <animations/>
-                                            <state key="normal" title="Button" image="faq_car_profile"/>
-                                        </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="car_profile_additional" translatesAutoresizingMaskIntoConstraints="NO" id="PZW-gA-cW3">
                                             <rect key="frame" x="25" y="4" width="35" height="31"/>
                                             <animations/>
@@ -108,7 +103,6 @@
                                         <constraint firstItem="PZW-gA-cW3" firstAttribute="leading" secondItem="8Za-H7-mhZ" secondAttribute="leading" constant="16" id="Xi8-Y0-Prt"/>
                                         <constraint firstItem="hG3-zF-UaP" firstAttribute="leading" secondItem="8Za-H7-mhZ" secondAttribute="leading" id="haf-25-Txv"/>
                                         <constraint firstAttribute="trailing" secondItem="hG3-zF-UaP" secondAttribute="trailing" id="hm9-yU-l4k"/>
-                                        <constraint firstItem="eVW-0B-whI" firstAttribute="leading" secondItem="9NN-zS-x7n" secondAttribute="trailing" constant="20" id="lm8-Ie-zhO"/>
                                         <constraint firstItem="hG3-zF-UaP" firstAttribute="top" secondItem="8Za-H7-mhZ" secondAttribute="top" id="nDG-Es-XMV"/>
                                         <constraint firstItem="PZW-gA-cW3" firstAttribute="centerY" secondItem="hG3-zF-UaP" secondAttribute="centerY" id="q1R-R1-MjW"/>
                                         <constraint firstItem="9NN-zS-x7n" firstAttribute="centerY" secondItem="PZW-gA-cW3" secondAttribute="centerY" id="sEw-pG-fKd"/>
@@ -695,7 +689,7 @@
                                             <rect key="frame" x="470" y="17" width="42" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="switch" translatesAutoresizingMaskIntoConstraints="NO" id="3lh-3E-P8M">
@@ -717,7 +711,7 @@
                                             <rect key="frame" x="558" y="18" width="42" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
