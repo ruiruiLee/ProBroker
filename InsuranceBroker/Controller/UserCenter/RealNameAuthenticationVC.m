@@ -170,12 +170,12 @@
 {
     if(actionSheet.tag == 1001){
         if (buttonIndex == 0) {
-            [Util openPhotoLibrary:self allowEdit:YES completion:^{
+            [Util openPhotoLibrary:self allowEdit:NO completion:^{
             }];
             
         }else if (buttonIndex == 1)
         {
-            [Util openCamera:self allowEdit:YES completion:^{}];
+            [Util openCamera:self allowEdit:NO completion:^{}];
         }
         else{
             
@@ -187,7 +187,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self dismissViewControllerAnimated:YES completion:^{
-        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerEditedImage"],0.5);
+        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],0.5);
         UIImage *image= [UIImage imageWithData:imageData];
         image = [Util fitSmallImage:image scaledToSize:CGSizeMake(180, 180)];
         if(currentcertType == enumCertType1){
