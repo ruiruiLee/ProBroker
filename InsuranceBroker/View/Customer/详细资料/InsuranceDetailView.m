@@ -340,7 +340,6 @@
             addImgButton = nil;
             return;
         }
-//        int tag = addImgButton.tag - 100;
         NSMutableArray *array = [[NSMutableArray alloc] init];
 
         [self addObject:self.carInfo.travelCard1 array:array];
@@ -352,6 +351,22 @@
         [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
         [_imageList addImagesURL:array withSmallImage:nil];
         [self.window addSubview:_imageList];
+        if(addImgButton.tag == 100){}
+        else if (addImgButton.tag == 101){
+            if(self.carInfo.travelCard1 == nil)
+                [_imageList setIndex:0];
+            else
+                [_imageList setIndex: 1];
+        }
+        else if (addImgButton.tag == 102){
+            if(self.carInfo.carOwnerCard2 == nil)
+                [_imageList setIndex:[array count] - 1];
+            else
+                [_imageList setIndex: [array count] - 2];
+        }
+        else{
+            [_imageList setIndex:[array count] - 1];
+        }
         addImgButton = nil;
     }
     else{
@@ -359,10 +374,13 @@
     }
 }
 
-- (void) addObject:(NSString *) path array:(NSMutableArray *) array;
+- (BOOL) addObject:(NSString *) path array:(NSMutableArray *) array;
 {
-    if(path != nil)
+    if(path != nil){
         [array addObject:path];
+        return YES;
+    }else
+        return NO;
 }
 
 -(void)dismissImageAction:(UIImageView*)sender

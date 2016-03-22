@@ -17,7 +17,8 @@
 #import <MessageUI/MessageUI.h>
 #import "OrderWebVC.h"
 #import "NetWorkHandler+saveOrUpdateCustomerCar.h"
-#import "NetWorkHandler+saveOrUpdateCustomer.h"
+//#import "NetWorkHandler+saveOrUpdateCustomer.h"
+#import "NetWorkHandler+updateCustomerHeadImg.h"
 #import <AVOSCloud/AVOSCloud.h>
 
 @interface CustomerDetailVC ()<BaseInsuranceInfoDelegate, InsuranceInfoViewDelegate, MFMessageComposeViewControllerDelegate>
@@ -64,10 +65,12 @@
     
     [self.headerView.btnPhone addTarget:self action:@selector(doBtnRing:) forControlEvents:UIControlEventTouchUpInside];
     [self.headerView.btnMsg addTarget:self action:@selector(doBtnEmail:) forControlEvents:UIControlEventTouchUpInside];
+    [self.headerView.photoImageV sd_setImageWithURL:[NSURL URLWithString:self.data.headImg] placeholderImage:ThemeImage(@"user_head")];
     
     self.headerView.delegate = self;
     UIColor *normal = _COLOR(0x75, 0x75, 0x75);
     UIColor *select = _COLOR(0xff, 0x66, 0x19);
+    self.headerView.pvc = self;
     
     [self.btnInfo setTitleColor:normal forState:UIControlStateNormal];
     [self.btnInfo setTitleColor:select forState:UIControlStateSelected];
@@ -210,6 +213,7 @@
             self.headerView.lbName.text = self.data.customerName;
             self.headerView.lbMobile.text = self.data.customerPhone;
             self.headerView.lbTag.text = [self.data getCustomerLabelString];
+            [self.headerView.photoImageV sd_setImageWithURL:[NSURL URLWithString:self.data.headImg] placeholderImage:ThemeImage(@"user_head")];
             [self setCarInfo];
             [self doBtnSelectDetailInfoView:self.btnInfo];
             if(self.customerinfoModel){
@@ -679,6 +683,24 @@
     [self.navigationController pushViewController:vc animated:YES];
     vc.customerId = self.customerId;
     vc.customerModel = self.data;
+}
+
+- (void) NotifyToSubmitCustomerHeadImg:(UIImage *) image
+{
+    [ProgressHUD show:@"正在上传"];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
+        NSString *filePahe1 = [self fileupMothed:image];
+        [NetWorkHandler requestToUpdateCustomerHeadImg:self.data.customerId headImg:filePahe1 Completion:^(int code, id content) {
+            [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+            [ProgressHUD dismiss];
+            if(code == 200){
+                self.data.headImg = filePahe1;
+                self.customerinfoModel.headImg = filePahe1;
+                self.customerinfoModel.detailModel.headImg = filePahe1;
+            }
+        }];
+    });
+
 }
 
 #pragma MFMessageComposeViewControllerDelegate

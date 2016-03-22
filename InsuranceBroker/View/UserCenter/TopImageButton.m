@@ -40,9 +40,12 @@
     
     UIImageView *imgv = self.imageView;
     CGRect imgvframe = imgv.frame;
+    imgvframe.size.width = 40;
+    imgvframe.size.height = 40;
     
     UILabel *titlelabel = self.titleLabel;
     CGRect titleframe = titlelabel.frame;
+    titleframe.size.height = 18;
     
     CGFloat h = (frame.size.height - imgvframe.size.height - 2 - titleframe.size.height)/2;
     if(titleframe.size.height == 0){

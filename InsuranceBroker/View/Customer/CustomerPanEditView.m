@@ -10,6 +10,7 @@
 #import "define.h"
 #import "CustomerInfoModel.h"
 #import "EditButton.h"
+#import "UIButton+WebCache.h"
 
 #define Btn_width 55
 
@@ -85,6 +86,7 @@
         [btn setImage:ThemeImage(@"user_head") forState:UIControlStateNormal];
         CustomerInfoModel *model = [userArray objectAtIndex:i];
         [btn setTitle:model.customerName forState:UIControlStateNormal];
+        [btn sd_setImageWithURL:[NSURL URLWithString:model.headImg] forState:UIControlStateNormal placeholderImage:ThemeImage(@"customer_head")];
         [btn setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];
         btn.titleLabel.font = _FONT(14);
         [btn addTarget:self action:@selector(doBtnCustomerClicked:) forControlEvents:UIControlEventTouchUpInside];
