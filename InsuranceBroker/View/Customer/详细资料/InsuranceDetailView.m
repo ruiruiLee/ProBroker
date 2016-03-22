@@ -279,7 +279,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self.pVc dismissViewControllerAnimated:YES completion:^{
-        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerEditedImage"],0.5);
+        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],0.5);
         UIImage *image= [UIImage imageWithData:imageData];
         image = [Util fitSmallImage:image scaledToSize:imgLicenseSize];
 //        self.imgLicense.image = image;
@@ -316,7 +316,7 @@
             pickerImage.sourceType    = UIImagePickerControllerSourceTypePhotoLibrary;
             pickerImage.mediaTypes =  [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
             pickerImage.delegate      = (id)self;
-            pickerImage.allowsEditing = YES;
+            pickerImage.allowsEditing = NO;
             //
             [self.pVc presentViewController:pickerImage animated:YES completion:nil];
         }
@@ -330,7 +330,7 @@
             pickerImage.sourceType    = UIImagePickerControllerSourceTypeCamera;
             pickerImage.mediaTypes =  [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
             pickerImage.delegate      = (id)self;
-            pickerImage.allowsEditing = YES;
+            pickerImage.allowsEditing = NO;
             //
             [self.pVc presentViewController:pickerImage animated:YES completion:nil];
         }
