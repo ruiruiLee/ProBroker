@@ -28,6 +28,8 @@
             self.btnPhone = [self.contentView viewWithTag:1008];
             self.btnMsg = [self.contentView viewWithTag:1009];
             self.btnTageEdit = [self.contentView viewWithTag:1010];
+            UIButton *btnEdit = [self.contentView viewWithTag:1011];
+            [btnEdit addTarget:self action:@selector(btnPhotoPressed:) forControlEvents:UIControlEventTouchUpInside];
             
             [self.btnEditUser addTarget:self action:@selector(EditUserInfo:) forControlEvents:UIControlEventTouchUpInside];
             [self.btnTageEdit addTarget:self action:@selector(EditUserInfo:) forControlEvents:UIControlEventTouchUpInside];
@@ -71,6 +73,102 @@
 - (IBAction)SendMsgToUser:(id)sender
 {
     
+}
+
+#pragma mark- UIActionSheetDelegate
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        picker = [[UIImagePickerController alloc] init];
+        //
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
+        {
+            picker.delegate      =  self;
+            picker.allowsEditing = YES;
+            picker.sourceType    = UIImagePickerControllerSourceTypePhotoLibrary;
+            picker.mediaTypes =  [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+            //
+            [self.pvc presentViewController:picker animated:YES completion:nil];
+        }
+    }else if (buttonIndex == 1)
+    {
+        picker = [[UIImagePickerController alloc] init];
+        //
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+        {
+            picker.delegate      =  self;
+            picker.allowsEditing = YES;
+            picker.sourceType    = UIImagePickerControllerSourceTypeCamera;
+            picker.mediaTypes =  [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+            //
+            [self.pvc presentViewController:picker animated:YES completion:nil];
+        }
+    }
+    else if (buttonIndex == 2){
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        
+        [self addObject:((CustomerDetailVC*) self.pvc).customerinfoModel.headImg array:array];
+        
+        _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
+        [_imageList addImagesURL:array withSmallImage:nil];
+        [self.window addSubview:_imageList];
+    }
+
+}
+
+- (BOOL) addObject:(NSString *) path array:(NSMutableArray *) array;
+{
+    if(path != nil){
+        [array addObject:path];
+        return YES;
+    }else
+        return NO;
+}
+
+-(void)dismissImageAction:(UIImageView*)sender
+{
+    NSLog(@"dismissImageAction");
+    [_imageList removeFromSuperview];
+    _imageList = nil;
+}
+#pragma mark- UIImagePickerControllerDelegate
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerEditedImage"],0.5);
+    UIImage *image= [UIImage imageWithData:imageData];
+    image = [Util fitSmallImage:image scaledToSize:CGSizeMake(180, 180)];
+    self.photoImageV.image = image;
+    if(delegate && [delegate respondsToSelector:@selector(NotifyToSubmitCustomerHeadImg:)]){
+        [delegate NotifyToSubmitCustomerHeadImg:image];
+    }
+    
+    [picker dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma ACTION
+- (IBAction) btnPhotoPressed:(UIButton*)sender{
+    if(((CustomerDetailVC*) self.pvc).customerinfoModel.headImg != nil){
+        UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:@""
+                                                        delegate:(id)self
+                                               cancelButtonTitle:@"取消"
+                                          destructiveButtonTitle:nil
+                                               otherButtonTitles:@"从相册选取", @"拍照",@"查看原图",nil];
+        ac.actionSheetStyle = UIBarStyleBlackTranslucent;
+        [ac showInView:self];
+        ac.tag = 1001;
+    }else{
+        UIActionSheet *ac = [[UIActionSheet alloc] initWithTitle:@""
+                                                        delegate:(id)self
+                                               cancelButtonTitle:@"取消"
+                                          destructiveButtonTitle:nil
+                                               otherButtonTitles:@"从相册选取", @"拍照",nil];
+        ac.actionSheetStyle = UIBarStyleBlackTranslucent;
+        [ac showInView:self];
+        ac.tag = 1002;
+    }
+
 }
 
 @end

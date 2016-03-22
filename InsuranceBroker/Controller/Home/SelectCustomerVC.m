@@ -136,6 +136,8 @@
     cell.lbName.text = model.customerName;
     cell.lbStatus.text = model.visitType;
     cell.lbTimr.text = [Util getShowingTime:model.updatedAt];//@"今天 19:08";
+    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:ThemeImage(@"customer_head")];
+    cell.headImg = model.headImg;
     if(!model.isAgentCreate)
         cell.logoImage.hidden = NO;
     else

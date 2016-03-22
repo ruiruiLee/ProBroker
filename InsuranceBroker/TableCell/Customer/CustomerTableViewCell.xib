@@ -93,12 +93,21 @@
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ic-sh-FZs">
+                        <rect key="frame" x="12" y="8" width="46" height="30"/>
+                        <animations/>
+                        <connections>
+                            <action selector="doBtnShowLImage:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="oKA-bt-394"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <animations/>
                 <constraints>
                     <constraint firstItem="mKk-9c-fjY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="3yK-j5-2Ce"/>
                     <constraint firstItem="97g-E7-tR1" firstAttribute="leading" secondItem="OT2-Kc-hMz" secondAttribute="trailing" constant="16" id="8lc-sB-Eu4"/>
+                    <constraint firstItem="mKk-9c-fjY" firstAttribute="top" secondItem="8Ic-sh-FZs" secondAttribute="top" id="AYL-Fy-tbW"/>
                     <constraint firstAttribute="trailingMargin" secondItem="2IT-pt-0Nn" secondAttribute="trailing" constant="6" id="Dhn-2C-Hp2"/>
+                    <constraint firstItem="mKk-9c-fjY" firstAttribute="trailing" secondItem="8Ic-sh-FZs" secondAttribute="trailing" id="G4Y-uF-FFh"/>
                     <constraint firstItem="1hZ-KC-djp" firstAttribute="top" secondItem="2IT-pt-0Nn" secondAttribute="bottom" constant="4" id="Lw5-dr-0cY"/>
                     <constraint firstAttribute="bottomMargin" secondItem="mKk-9c-fjY" secondAttribute="bottom" constant="6" id="SeB-5I-826"/>
                     <constraint firstItem="97g-E7-tR1" firstAttribute="top" secondItem="mKk-9c-fjY" secondAttribute="top" id="V2k-vx-6FN"/>
@@ -107,8 +116,10 @@
                     <constraint firstItem="97g-E7-tR1" firstAttribute="bottom" secondItem="mKk-9c-fjY" secondAttribute="bottom" id="g4E-rN-quK"/>
                     <constraint firstItem="1hZ-KC-djp" firstAttribute="trailing" secondItem="2IT-pt-0Nn" secondAttribute="trailing" id="i0B-Gt-I7z"/>
                     <constraint firstItem="2IT-pt-0Nn" firstAttribute="top" secondItem="mKk-9c-fjY" secondAttribute="top" id="jks-da-KvC"/>
+                    <constraint firstItem="mKk-9c-fjY" firstAttribute="leading" secondItem="8Ic-sh-FZs" secondAttribute="leading" id="pHJ-66-Mvo"/>
                     <constraint firstItem="mKk-9c-fjY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="srZ-c8-cF5"/>
                     <constraint firstItem="2IT-pt-0Nn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="tp6-d8-Lic"/>
+                    <constraint firstItem="mKk-9c-fjY" firstAttribute="bottom" secondItem="8Ic-sh-FZs" secondAttribute="bottom" id="wau-pK-wZC"/>
                     <constraint firstItem="OT2-Kc-hMz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="38" id="zaG-sJ-I6x"/>
                 </constraints>
             </tableViewCellContentView>

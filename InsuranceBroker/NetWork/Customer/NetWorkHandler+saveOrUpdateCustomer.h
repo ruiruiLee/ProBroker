@@ -57,7 +57,7 @@
                                    liveCityId:(NSString *)liveCityId
                                    liveAreaId:(NSString *)liveAreaId
                                      liveAddr:(NSString *)liveAddr
-                               customerStatus:(BOOL) customerStatus
+                               customerStatus:(NSInteger) customerStatus
                                  drivingCard1:(NSString *)drivingCard1
                                  drivingCard2:(NSString *)drivingCard2
                                 customerLabel:(NSArray *) customerLabel

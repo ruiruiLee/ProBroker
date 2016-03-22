@@ -48,7 +48,8 @@
              @"customerLabelId": @"customerLabelId",
              @"bindType": @"bindType",
              @"bindStatus": @"bindStatus",
-             @"updatedAt": @"updatedAt"
+             @"updatedAt": @"updatedAt",
+             @"headImg": @"headImg"
              };
 }
 

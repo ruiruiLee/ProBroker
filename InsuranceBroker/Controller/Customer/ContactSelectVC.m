@@ -12,6 +12,7 @@
 #import "CustomerInfoModel.h"
 #import "NetWorkHandler+queryForPageList.h"
 #import "ObjectButton.h"
+#import "UIButton+WebCache.h"
 
 @interface ContactSelectVC ()
 {
@@ -200,6 +201,8 @@
     cell.lbName.text = model.customerName;
     cell.lbStatus.text = model.visitType;
     cell.lbTimr.hidden = YES;
+    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:ThemeImage(@"customer_head")];
+    cell.headImg = model.headImg;
     if(!model.isAgentCreate)
         cell.logoImage.hidden = NO;
     else
@@ -209,10 +212,13 @@
     if(rawData){
         btn.userInteractionEnabled = NO;
         [btn setImage:ThemeImage(@"select_gray") forState:UIControlStateNormal];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }else{
         btn.userInteractionEnabled = YES;
         [btn setImage:ThemeImage(@"select") forState:UIControlStateSelected];
         [btn setImage:ThemeImage(@"unselect") forState:UIControlStateNormal];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
         
         if([self isSelectedData:model]){
             btn.selected = YES;
@@ -227,9 +233,18 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    CustomerTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    ObjectButton *btn = (ObjectButton *)cell.accessoryView;
-    [self doBtnClicked:btn];
+    CustomerInfoModel *model = nil;
+    if(tableView == self.pulltable){
+        model = [self.data objectAtIndex:indexPath.row];
+    }else{
+        model = [_searchedArray objectAtIndex:indexPath.row];
+    }
+    BOOL rawData = [self isRawData:model];
+    if(!rawData){
+        CustomerTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        ObjectButton *btn = (ObjectButton *)cell.accessoryView;
+        [self doBtnClicked:btn];
+    }
 }
 
 - (void) doBtnClicked:(ObjectButton *)sender
@@ -258,7 +273,8 @@
         CustomerInfoModel *model = [self.resultData objectAtIndex:i];
         
         TopImageButton *btn = [[TopImageButton alloc] initWithFrame:CGRectMake(ox, 5, 55, 75)];
-        [btn setImage:ThemeImage(@"user_head") forState:UIControlStateNormal];
+//        [btn setImage:ThemeImage(@"user_head") forState:UIControlStateNormal];
+        [btn sd_setImageWithURL:[NSURL URLWithString:model.headImg] forState:UIControlStateNormal placeholderImage:ThemeImage(@"customer_head")];
         [btn setTitle:model.customerName forState:UIControlStateNormal];
         [btn setTitleColor:_COLOR(0x21, 0x21, 0x21) forState:UIControlStateNormal];
         btn.titleLabel.font = _FONT(14);

@@ -31,7 +31,7 @@
                                    liveCityId:(NSString *)liveCityId
                                    liveAreaId:(NSString *)liveAreaId
                                      liveAddr:(NSString *)liveAddr
-                               customerStatus:(BOOL) customerStatus
+                               customerStatus:(NSInteger) customerStatus
                                  drivingCard1:(NSString *)drivingCard1
                                  drivingCard2:(NSString *)drivingCard2
                                 customerLabel:(NSArray *) customerLabel
@@ -60,7 +60,7 @@
     [Util setValueForKeyWithDic:pramas value:liveCityId key:@"liveCityId"];
     [Util setValueForKeyWithDic:pramas value:liveAreaId key:@"liveAreaId"];
     [Util setValueForKeyWithDic:pramas value:liveAddr key:@"liveAddr"];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithBool:customerStatus] key:@"customerStatus"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:customerStatus] key:@"customerStatus"];
     [Util setValueForKeyWithDic:pramas value:drivingCard1 key:@"drivingCard1"];
     [Util setValueForKeyWithDic:pramas value:drivingCard2 key:@"drivingCard2"];
     [Util setValueForKeyWithDic:pramas value:[NetWorkHandler objectToJson:customerLabel] key:@"customerLabel"];

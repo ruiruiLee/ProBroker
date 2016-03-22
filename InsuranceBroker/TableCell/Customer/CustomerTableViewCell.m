@@ -28,4 +28,35 @@
     // Configure the view for the selected state
 }
 
+-(void)dismissImageAction:(UIImageView*)sender
+{
+    NSLog(@"dismissImageAction");
+    [_imageList removeFromSuperview];
+    _imageList = nil;
+}
+
+- (BOOL) addObject:(NSString *) path array:(NSMutableArray *) array;
+{
+    if(path != nil){
+        [array addObject:path];
+        return YES;
+    }else
+        return NO;
+}
+
+- (IBAction) doBtnShowLImage:(UIButton *) sender
+{
+    if(self.headImg){
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        
+        [self addObject:self.headImg array:array];
+        
+        _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
+        [_imageList addImagesURL:array withSmallImage:nil];
+        [self.window addSubview:_imageList];
+    }
+
+}
+
 @end

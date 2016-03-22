@@ -148,6 +148,7 @@
     CustomerInfoModel *model = [self.data objectAtIndex:indexPath.row];
     
     cell.lbName.text = model.customerName;
+    cell.headImg = model.headImg;
     
     NSMutableString *label = [[NSMutableString alloc] init];
     for (int i = 0; i < [model.customerLabel count]; i++) {
@@ -159,6 +160,7 @@
     
     cell.lbStatus.text = label;
     cell.lbTimr.text = [Util getShowingTime:model.createdAt];
+    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:ThemeImage(@"customer_head")];
 
     return cell;
 }

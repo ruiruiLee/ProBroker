@@ -14,6 +14,7 @@
 #import "NetWorkHandler+queryForPageList.h"
 #import "CustomerInfoModel.h"
 #import "BackGroundView.h"
+#import "NetWorkHandler+saveOrUpdateCustomer.h"
 
 @interface CustomerMainVC ()<BackGroundViewDelegate>
 {
@@ -202,6 +203,8 @@
         CustomerInfoModel *model = [self.data objectAtIndex:indexPath.row];
         cell.lbName.text = model.customerName;
         cell.lbStatus.text = model.visitType;
+        [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:ThemeImage(@"customer_head")];
+        cell.headImg = model.headImg;
         if(model.visitType == nil)
             cell.lbStatus.text = @"";
         cell.lbTimr.text = [Util getShowingTime:model.updatedAt];//@"今天 19:08";
@@ -284,6 +287,52 @@
 {
     return 0.01;
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section == 0)
+        return NO;
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"commitEditingStyle");
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        NSString *userId = [UserInfoModel shareUserInfoModel].userId;
+        CustomerInfoModel *model = [self.data objectAtIndex:indexPath.row];
+        [NetWorkHandler requestToSaveOrUpdateCustomerWithUID:userId isAgentCreate:model.isAgentCreate customerId:model.customerId customerName:nil customerPhone:nil customerTel:nil headImg:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil cardProvinceId:nil cardCityId:nil cardAreaId:nil cardVerifiy:model.detailModel.cardVerifiy cardAddr:nil verifiyTime:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil customerStatus:-1 drivingCard1:nil drivingCard2:nil customerLabel:nil customerLabelId:nil Completion:^(int code, id content) {
+            [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+            if(code == 200){
+                [self.data removeObject:model];
+                [self.pulltable reloadData];
+                self.total--;
+                if(self.total <0)
+                    self.total = 0;
+            }
+        }];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    }
+}
+
+//编辑删除按钮的文字
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
+//这个方法用来告诉表格 某一行是否可以移动
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete; //每行左边会出现红的删除按钮
+}
+
 
 #pragma UISearchBarDelegate
 

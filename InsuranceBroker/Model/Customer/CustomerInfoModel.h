@@ -21,6 +21,7 @@
 @property (nonatomic, assign) NSInteger bindType;
 @property (nonatomic, assign) BOOL bindStatus;
 @property (nonatomic, strong) NSDate *updatedAt;
+@property (nonatomic, strong) NSString *headImg;
 
 @property (nonatomic, assign) BOOL isLoadDetail;
 @property (nonatomic, strong) CustomerDetailModel *detailModel;
