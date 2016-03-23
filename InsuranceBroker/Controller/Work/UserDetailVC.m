@@ -84,8 +84,11 @@
     
     self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSellEarn];
     self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", model.nowMonthOrderSuccessNums];
-    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSuccessEarn];
-    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderTotalSuccessEarn];
+//    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSuccessEarn];
+//    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderTotalSuccessEarn];
+    
+    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowUserTotalMoney];
+    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.userTotalMoney];
 }
 
 - (void) loadData

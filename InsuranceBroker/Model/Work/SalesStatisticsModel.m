@@ -45,6 +45,8 @@
     model.monthOrderTotalTcEarn = [[dictionary objectForKey:@"monthOrderTotalTcEarn"] floatValue];
     model.monthRedPackTotalEarn = [[dictionary objectForKey:@"monthRedPackTotalEarn"] floatValue];
     model.monthOrderTotalGlEarn = [[dictionary objectForKey:@"monthOrderTotalGlEarn"] floatValue];
+    model.nowUserTotalMoney = [[dictionary objectForKey:@"nowUserTotalMoney"] floatValue];
+    model.userTotalMoney = [[dictionary objectForKey:@"userTotalMoney"] floatValue];
     
     return model;
 }

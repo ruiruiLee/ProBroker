@@ -38,7 +38,8 @@
 @property (nonatomic, assign) CGFloat totalSellBeatRatio;//": "0",//总成功订单击败率 - 销售额
 @property (nonatomic, assign) CGFloat totalNumsBeatRatio;//": "0",//总成功订单击败率 - 销售单数
 @property (nonatomic, assign) CGFloat totalEarnBeatRatio;//": "0",//总成功订单击败率 - 订单收益
-
+@property (nonatomic, assign) CGFloat nowUserTotalMoney;//当前月收益；+直接收益+提层+管理津贴+红包
+@property (nonatomic, assign) CGFloat userTotalMoney;//总收益；+直接收益+提层+管理津贴+红包
 //上月收益分析饼图
 @property (nonatomic, assign) CGFloat monthOrderTotalSuccessEarn;//": "0.00",//成功订单收益
 @property (nonatomic, assign) CGFloat monthOrderTotalTcEarn;//": "0.00",//提层

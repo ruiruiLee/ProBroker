@@ -196,6 +196,8 @@
     self.nowMonthOrderSellEarn = [[dic objectForKey:@"nowMonthOrderSellEarn"] floatValue];
     self.teamInviteNums = [[dic objectForKey:@"teamInviteNums"] integerValue];
     self.teamTotalNums = [[dic objectForKey:@"teamTotalNums"] integerValue];
+    self.nowUserTotalMoney = [[dic objectForKey:@"nowUserTotalMoney"] floatValue];
+    self.userTotalMoney = [[dic objectForKey:@"userTotalMoney"] floatValue];
 }
 
 - (void) queryUserInfo

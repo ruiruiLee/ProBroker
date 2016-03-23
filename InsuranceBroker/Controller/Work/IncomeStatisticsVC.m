@@ -150,8 +150,8 @@
 
 - (void) initData
 {
-    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计收益：%@元", [Util getDecimalStyle:self.statmodel.orderTotalSuccessEarn]];
-    self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.nowMonthOrderSuccessEarn]];
+    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计收益：%@元", [Util getDecimalStyle:self.statmodel.userTotalMoney]];
+    self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.nowUserTotalMoney]];
 //    self.lbEarnings.text = [NSString stringWithFormat:@"你的收益已打败了%d%@的经纪人", (int)self.statmodel.monthTotalRatio, @"%"];
     if([[UserInfoModel shareUserInfoModel].userId isEqualToString:self.userId])
         self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的收益已打败了 %.1f%@ 的经纪人", self.statmodel.totalEarnBeatRatio, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.totalEarnBeatRatio, @"%"]];

@@ -74,6 +74,9 @@
 @property (nonatomic, assign) NSInteger nowMonthOrderSuccessNums;//月成功订单数
 @property (nonatomic, assign) CGFloat nowMonthOrderSuccessEarn;//月成功订单收益
 @property (nonatomic, assign) CGFloat nowMonthOrderSellEarn;//月成功订单销售额
+@property (nonatomic, assign) CGFloat nowUserTotalMoney;//当前月收益 +直接收益+提层+管理津贴+红包
+
+@property (nonatomic, assign) CGFloat userTotalMoney;//总收益；+直接收益+提层+管理津贴+红包
 
 @property (nonatomic, assign) NSInteger teamInviteNums;//自己邀请人数
 @property (nonatomic, assign) NSInteger teamTotalNums;//团队总人数
