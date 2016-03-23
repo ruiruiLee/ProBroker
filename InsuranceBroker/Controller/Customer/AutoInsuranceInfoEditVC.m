@@ -516,28 +516,38 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        [Util openPhotoLibrary:self allowEdit:NO completion:^{
-        }];
+        if(actionSheet.tag == 1002){
+            [Util openPhotoLibrary:self allowEdit:NO completion:nil];
+        }else{
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            if(self.type == enumAddPhotoTypeLisence){
+                [array addObject:[self imageLisence]];
+            }
+            else{
+                [array addObject:[self imageCert]];
+            }
+            
+            _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
+            [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
+            //        [_imageList addImagesURL:array withSmallImage:nil];
+            [_imageList addImages:array];
+            [self.view.window addSubview:_imageList];
+        }
         
     }else if (buttonIndex == 1)
     {
-        [Util openCamera:self allowEdit:NO completion:^{}];
+        if(actionSheet.tag == 1002){
+            [Util openCamera:self allowEdit:NO completion:^{}];
+        }else{
+            [Util openPhotoLibrary:self allowEdit:NO completion:nil];
+        }
     }
     else if(buttonIndex == 2){
-        
-        NSMutableArray *array = [[NSMutableArray alloc] init];
-        if(self.type == enumAddPhotoTypeLisence){
-            [array addObject:[self imageLisence]];
+        if(actionSheet.tag == 1002){
+            
+        }else{
+            [Util openCamera:self allowEdit:NO completion:^{}];
         }
-        else{
-            [array addObject:[self imageCert]];
-        }
-
-        _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
-        [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
-//        [_imageList addImagesURL:array withSmallImage:nil];
-        [_imageList addImages:array];
-        [self.view.window addSubview:_imageList];
         
     }else{
         
@@ -580,33 +590,40 @@
     UIActionSheet *ac;
     
     if(sender == self.btnCert){
-        if([self isHasCert])
+        if([self isHasCert]){
             ac = [[UIActionSheet alloc] initWithTitle:@""
                                              delegate:(id)self
                                     cancelButtonTitle:@"取消"
                                destructiveButtonTitle:nil
-                                    otherButtonTitles:@"从相册选取", @"拍照", @"查看原图",nil];
+                                    otherButtonTitles:@"查看原图", @"从相册选取", @"拍照",nil];
+            ac.tag = 1001;
+        }
         else
         {
             ac = [[UIActionSheet alloc] initWithTitle:@""
                                              delegate:(id)self
                                     cancelButtonTitle:@"取消"
                                destructiveButtonTitle:nil
-                                    otherButtonTitles:@"从相册选取", @"拍照",nil];        }
+                                    otherButtonTitles:@"从相册选取", @"拍照",nil];
+            ac.tag = 1002;
+        }
     }
     else{
-        if([self isHasLisence])
+        if([self isHasLisence]){
             ac = [[UIActionSheet alloc] initWithTitle:@""
                                              delegate:(id)self
                                     cancelButtonTitle:@"取消"
                                destructiveButtonTitle:nil
-                                    otherButtonTitles:@"从相册选取", @"拍照", @"查看原图",nil];
+                                    otherButtonTitles:@"查看原图", @"从相册选取", @"拍照",nil];
+            ac.tag = 1001;
+        }
         else{
             ac = [[UIActionSheet alloc] initWithTitle:@""
                                              delegate:(id)self
                                     cancelButtonTitle:@"取消"
                                destructiveButtonTitle:nil
                                     otherButtonTitles:@"从相册选取", @"拍照",nil];
+            ac.tag = 1002;
         }
     }
     

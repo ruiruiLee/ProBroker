@@ -80,42 +80,34 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        picker = [[UIImagePickerController alloc] init];
-        //
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
-        {
-            picker.delegate      =  self;
-            picker.allowsEditing = YES;
-            picker.sourceType    = UIImagePickerControllerSourceTypePhotoLibrary;
-            picker.mediaTypes =  [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
-            //
-            [self.pvc presentViewController:picker animated:YES completion:nil];
+        if(actionSheet.tag == 1002){
+            [Util openPhotoLibrary:self.pvc delegate:self allowEdit:YES completion:nil];
+            return;
+        }else{
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            
+            [self addObject:((CustomerDetailVC*) self.pvc).customerinfoModel.headImg array:array];
+            
+            _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
+            [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
+            [_imageList addImagesURL:array withSmallImage:nil];
+            [self.window addSubview:_imageList];
         }
     }else if (buttonIndex == 1)
     {
-        picker = [[UIImagePickerController alloc] init];
-        //
-        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-        {
-            picker.delegate      =  self;
-            picker.allowsEditing = YES;
-            picker.sourceType    = UIImagePickerControllerSourceTypeCamera;
-            picker.mediaTypes =  [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
-            //
-            [self.pvc presentViewController:picker animated:YES completion:nil];
-        }
+        if(actionSheet.tag == 1002){
+            [Util openCamera:self.pvc delegate:self allowEdit:YES completion:nil];
+            return;
+        }else
+            [Util openPhotoLibrary:self.pvc delegate:self allowEdit:YES completion:nil];
     }
     else if (buttonIndex == 2){
-        NSMutableArray *array = [[NSMutableArray alloc] init];
-        
-        [self addObject:((CustomerDetailVC*) self.pvc).customerinfoModel.headImg array:array];
-        
-        _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
-        [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
-        [_imageList addImagesURL:array withSmallImage:nil];
-        [self.window addSubview:_imageList];
+        if(actionSheet.tag == 1002){
+            return;
+        }
+        else
+            [Util openCamera:self.pvc delegate:self allowEdit:YES completion:nil];
     }
-
 }
 
 - (BOOL) addObject:(NSString *) path array:(NSMutableArray *) array;
@@ -137,15 +129,16 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerEditedImage"],0.5);
-    UIImage *image= [UIImage imageWithData:imageData];
-    image = [Util fitSmallImage:image scaledToSize:CGSizeMake(180, 180)];
-    self.photoImageV.image = image;
-    if(delegate && [delegate respondsToSelector:@selector(NotifyToSubmitCustomerHeadImg:)]){
-        [delegate NotifyToSubmitCustomerHeadImg:image];
-    }
-    
-    [picker dismissViewControllerAnimated:YES completion:nil];
+    [self.pvc dismissViewControllerAnimated:YES completion:^{
+        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerEditedImage"],0.5);
+        UIImage *image= [UIImage imageWithData:imageData];
+        image = [Util fitSmallImage:image scaledToSize:CGSizeMake(180, 180)];
+        self.photoImageV.image = image;
+        if(delegate && [delegate respondsToSelector:@selector(NotifyToSubmitCustomerHeadImg:)]){
+            [delegate NotifyToSubmitCustomerHeadImg:image];
+        }
+    }];
+
 }
 #pragma ACTION
 - (IBAction) btnPhotoPressed:(UIButton*)sender{
@@ -154,7 +147,7 @@
                                                         delegate:(id)self
                                                cancelButtonTitle:@"取消"
                                           destructiveButtonTitle:nil
-                                               otherButtonTitles:@"从相册选取", @"拍照",@"查看原图",nil];
+                                               otherButtonTitles:@"查看原图", @"从相册选取", @"拍照",nil];
         ac.actionSheetStyle = UIBarStyleBlackTranslucent;
         [ac showInView:self];
         ac.tag = 1001;

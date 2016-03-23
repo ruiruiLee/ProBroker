@@ -46,6 +46,10 @@
 
 + (void)openCamera:(UIViewController*)currentViewController allowEdit:(BOOL)allowEdit completion:(void (^)(void))completion;
 + (void)openPhotoLibrary:(UIViewController*)currentViewController allowEdit:(BOOL)allowEdit completion:(void (^)(void))completion;
+
++ (void)openCamera:(UIViewController*)currentViewController delegate:(id) delegate allowEdit:(BOOL)allowEdit completion:(void (^)(void))completion;
++ (void)openPhotoLibrary:(UIViewController*)currentViewController delegate:(id) delegate allowEdit:(BOOL)allowEdit completion:(void (^)(void))completion;
+
 +(UIImage *)fitSmallImage:(UIImage *)image scaledToSize:(CGSize)tosize;
 
 //获取性别

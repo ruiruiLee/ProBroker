@@ -258,7 +258,7 @@
                                                         delegate:(id)self
                                                cancelButtonTitle:@"取消"
                                           destructiveButtonTitle:nil
-                                               otherButtonTitles:@"从相册选取", @"拍照",@"查看原图",nil];
+                                               otherButtonTitles:@"查看原图", @"从相册选取", @"拍照",nil];
         ac.actionSheetStyle = UIBarStyleBlackTranslucent;
         [ac showInView:self];
         ac.tag = 1001;
@@ -309,30 +309,46 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        UIImagePickerController *pickerImage = [[UIImagePickerController alloc] init];
-        //
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
-        {
-            pickerImage.sourceType    = UIImagePickerControllerSourceTypePhotoLibrary;
-            pickerImage.mediaTypes =  [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
-            pickerImage.delegate      = (id)self;
-            pickerImage.allowsEditing = NO;
-            //
-            [self.pVc presentViewController:pickerImage animated:YES completion:nil];
+        if(actionSheet.tag == 1002){
+            [Util openPhotoLibrary:self.pVc delegate:self allowEdit:NO completion:nil];
+            return;
+        }else{
+            NSMutableArray *array = [[NSMutableArray alloc] init];
+            
+            [self addObject:self.carInfo.travelCard1 array:array];
+            [self addObject:self.carInfo.travelCard2 array:array];
+            [self addObject:self.carInfo.carOwnerCard1 array:array];
+            [self addObject:self.carInfo.carOwnerCard2 array:array];
+            
+            _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
+            [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
+            [_imageList addImagesURL:array withSmallImage:nil];
+            [self.window addSubview:_imageList];
+            if(addImgButton.tag == 100){}
+            else if (addImgButton.tag == 101){
+                if(self.carInfo.travelCard1 == nil)
+                    [_imageList setIndex:0];
+                else
+                    [_imageList setIndex: 1];
+            }
+            else if (addImgButton.tag == 102){
+                if(self.carInfo.carOwnerCard2 == nil)
+                    [_imageList setIndex:[array count] - 1];
+                else
+                    [_imageList setIndex: [array count] - 2];
+            }
+            else{
+                [_imageList setIndex:[array count] - 1];
+            }
+            addImgButton = nil;
         }
         
     }else if (buttonIndex == 1)
     {
-        UIImagePickerController *pickerImage = [[UIImagePickerController alloc] init];
-        //
-        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-        {
-            pickerImage.sourceType    = UIImagePickerControllerSourceTypeCamera;
-            pickerImage.mediaTypes =  [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
-            pickerImage.delegate      = (id)self;
-            pickerImage.allowsEditing = NO;
-            //
-            [self.pVc presentViewController:pickerImage animated:YES completion:nil];
+        if(actionSheet.tag == 1002){
+            [Util openCamera:self.pVc delegate:self allowEdit:NO completion:nil];
+        }else{
+           [Util openPhotoLibrary:self.pVc delegate:self allowEdit:NO completion:nil];
         }
     }
     else if (buttonIndex == 2){
@@ -340,34 +356,9 @@
             addImgButton = nil;
             return;
         }
-        NSMutableArray *array = [[NSMutableArray alloc] init];
-
-        [self addObject:self.carInfo.travelCard1 array:array];
-        [self addObject:self.carInfo.travelCard2 array:array];
-        [self addObject:self.carInfo.carOwnerCard1 array:array];
-        [self addObject:self.carInfo.carOwnerCard2 array:array];
-
-        _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
-        [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
-        [_imageList addImagesURL:array withSmallImage:nil];
-        [self.window addSubview:_imageList];
-        if(addImgButton.tag == 100){}
-        else if (addImgButton.tag == 101){
-            if(self.carInfo.travelCard1 == nil)
-                [_imageList setIndex:0];
-            else
-                [_imageList setIndex: 1];
-        }
-        else if (addImgButton.tag == 102){
-            if(self.carInfo.carOwnerCard2 == nil)
-                [_imageList setIndex:[array count] - 1];
-            else
-                [_imageList setIndex: [array count] - 2];
-        }
         else{
-            [_imageList setIndex:[array count] - 1];
+            [Util openCamera:self.pVc delegate:self allowEdit:NO completion:nil];
         }
-        addImgButton = nil;
     }
     else{
         addImgButton = nil;

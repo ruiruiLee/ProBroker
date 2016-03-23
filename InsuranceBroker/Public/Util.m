@@ -317,6 +317,36 @@
     }
 }
 
++ (void)openCamera:(UIViewController*)currentViewController delegate:(id) delegate allowEdit:(BOOL)allowEdit completion:(void (^)(void))completion
+{
+    UIImagePickerController  *picker = [[UIImagePickerController alloc] init];
+    //
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        picker.delegate      = (id)delegate;
+        picker.allowsEditing = allowEdit;
+        picker.sourceType    = UIImagePickerControllerSourceTypeCamera;
+        picker.mediaTypes =  [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+        //
+        [currentViewController presentViewController:picker animated:YES completion:completion];
+    }
+}
+
++ (void)openPhotoLibrary:(UIViewController*)currentViewController delegate:(id) delegate allowEdit:(BOOL)allowEdit completion:(void (^)(void))completion
+{
+    UIImagePickerController *pickerImage = [[UIImagePickerController alloc] init];
+    //
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
+    {
+        pickerImage.sourceType    = UIImagePickerControllerSourceTypePhotoLibrary;
+        pickerImage.mediaTypes =  [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+        pickerImage.delegate      = (id)delegate;
+        pickerImage.allowsEditing = allowEdit;
+        //
+        [currentViewController presentViewController:pickerImage animated:YES completion:completion];
+    }
+}
+
 //图像等比例压缩 .充满空隙
 
 +(UIImage *)fitSmallImage:(UIImage *)image scaledToSize:(CGSize)tosize

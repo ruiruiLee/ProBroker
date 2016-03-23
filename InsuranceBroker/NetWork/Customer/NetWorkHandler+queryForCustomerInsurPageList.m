@@ -25,6 +25,7 @@
     [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:offset] key:@"offset"];
     [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:limit] key:@"limit"];
     [Util setValueForKeyWithDic:pramas value:[NetWorkHandler objectToJson:filters] key:@"filters"];
+    [Util setValueForKeyWithDic:pramas value:@"P_InsuranceOrders.updatedAt" key:@"sidx"];
     
     [handle postWithMethod:@"/web/insurance/queryForInsurancePageList.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }
