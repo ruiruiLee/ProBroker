@@ -23,6 +23,10 @@
     model.createdAt = [InsurInfoModel dateFromString:[dictionary objectForKey:@"createdAt"]];
     if([BaseModel dateIsNil:model.createdAt])
         model.createdAt = nil;
+    model.updatedAt = [InsurInfoModel dateFromString:[dictionary objectForKey:@"updatedAt"]];
+    if([BaseModel dateIsNil:model.updatedAt])
+        model.updatedAt = nil;
+    
     model.orderStatus = [[dictionary objectForKey:@"orderStatus"] integerValue];
     model.orderOfferStatus = [[dictionary objectForKey:@"orderOfferStatus"] integerValue];
     model.orderOfferTime = [InsurInfoModel dateFromString:[dictionary objectForKey:@"orderOfferTime"]];

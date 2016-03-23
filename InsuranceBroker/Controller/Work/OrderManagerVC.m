@@ -248,7 +248,7 @@
     lb.textColor = _COLOR(0xcc, 0xcc, 0xcc);
     lb.textAlignment = NSTextAlignmentCenter;
     InsurInfoModel *model = [[insurArray objectAtIndex:section] objectAtIndex:0];
-    lb.text = [Util getDayString:model.createdAt];
+    lb.text = [Util getDayString:model.updatedAt];
     
     return view;
 }
@@ -311,7 +311,7 @@
         }
         else{
             InsurInfoModel *model1 = [self.data objectAtIndex:i-1];
-            if([[Util getDayString:model.createdAt] isEqualToString:[Util getDayString:model1.createdAt]]){
+            if([[Util getDayString:model.updatedAt] isEqualToString:[Util getDayString:model1.updatedAt]]){
                 NSMutableArray *array = [result lastObject];
                 [array addObject:model];
             }else{

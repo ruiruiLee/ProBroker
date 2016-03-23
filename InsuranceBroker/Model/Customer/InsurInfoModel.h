@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString *planId;//":"1"; //方案ID
 @property (nonatomic, assign) NSInteger insuranceType;//":1; //1车险，。。。
 @property (nonatomic, strong) NSDate *createdAt;//":1; //创建时间
+@property (nonatomic, strong) NSDate *updatedAt;
 @property (nonatomic, assign) NSInteger orderStatus;//":"1"; //只会返回1
 
 @property (nonatomic, assign) NSInteger orderOfferStatus;//":"1"; //订单报价状态；1等待报价，2报价失败(读取失败原因,StatusId,StatusMsg），3报价完成，4出单配送-未付款（货到付款），5出单配送-付款中，6出单配送-已付款，7付款失败，8交易成功，9已过期，10禁止流程操作当扫表状态为1或2的时候，进行报价

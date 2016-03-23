@@ -26,6 +26,7 @@
     [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:limit] key:@"limit"];
     [Util setValueForKeyWithDic:pramas value:[NetWorkHandler objectToJson:filters] key:@"filters"];
     [Util setValueForKeyWithDic:pramas value:@"P_InsuranceOrders.updatedAt" key:@"sidx"];
+    [Util setValueForKeyWithDic:pramas value:sord key:@"sord"];
     
     [handle postWithMethod:@"/web/insurance/queryForInsurancePageList.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }
