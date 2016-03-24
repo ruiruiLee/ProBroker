@@ -121,9 +121,8 @@
             [self timerOutTimer];
             [KGStatusBar showSuccessWithStatus:@"验证码已发送!"];
         }else{
-//            [KGStatusBar showErrorWithStatus:@"无法连接网络，请稍后再试！"];
-            [KGStatusBar showErrorWithStatus:[error localizedDescription]];
-            //[Util showAlertMessage:@"服务器错误，稍后再试!" ];
+            if([error localizedDescription].length>0)
+               [KGStatusBar showErrorWithStatus:[error localizedDescription]];
             [_btnGetCaptcha setTitle:@"重取验证码" forState:UIControlStateNormal];
             _btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
             _btnGetCaptcha.enabled = YES;

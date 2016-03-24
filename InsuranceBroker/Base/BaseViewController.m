@@ -209,11 +209,15 @@
             [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
             [currentInstallation saveInBackground];
             [self login];
-        }else if (code == 505){}
+        }
+        else if (code == 505)
+        {}
         else if(code<0)
          [KGStatusBar showErrorWithStatus:@"无法连接网络，请稍后再试！"];
-        else
-          [KGStatusBar showErrorWithStatus:msg];
+        else{
+             if(msg.length>0)
+               [KGStatusBar showErrorWithStatus:msg];
+          }
             result = NO;
     }
     return result;
