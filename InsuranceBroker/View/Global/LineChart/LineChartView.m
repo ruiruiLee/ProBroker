@@ -305,18 +305,18 @@
         } // draw actual chart data
         if (self.drawsDataPoints) {
             float xRangeLen = data.xMax - data.xMin;
-//            for(NSUInteger i = 0; i < data.itemCount; ++i) {
-//                LineChartDataItem *datItem = data.getData(i);
-//                CGFloat xVal = xStart + round((xRangeLen == 0 ? 0.5 : ((datItem.x - data.xMin) / xRangeLen)) * availableWidth);
-//                CGFloat yVal = yStart + round((1.0 - (datItem.y - self.yMin) / yRangeLen) * availableHeight);
-//                [self.backgroundColor setFill];
-//                CGContextFillEllipseInRect(c, CGRectMake(xVal - 5.5, yVal - 5.5, 11, 11));
+            for(NSUInteger i = 0; i < data.itemCount; ++i) {
+                LineChartDataItem *datItem = data.getData(i);
+                CGFloat xVal = xStart + round((xRangeLen == 0 ? 0.5 : ((datItem.x - data.xMin) / xRangeLen)) * availableWidth);
+                CGFloat yVal = yStart + round((1.0 - (datItem.y - self.yMin) / yRangeLen) * availableHeight);
+                [self.backgroundColor setFill];
+                CGContextFillEllipseInRect(c, CGRectMake(xVal - 5.5, yVal - 5.5, 11, 11));
 //                [[UIColor whiteColor] setFill];
 //                CGContextFillEllipseInRect(c, CGRectMake(xVal - 3, yVal - 3, 6, 6));
-//                
-//                [data.color setFill];
-//                CGContextFillEllipseInRect(c, CGRectMake(xVal - 2, yVal - 2, 4, 4));
-//            } // for
+                
+                [data.color setFill];
+                CGContextFillEllipseInRect(c, CGRectMake(xVal - 2, yVal - 2, 4, 4));
+            } // for
         } // draw data points
         
         if (self.drawsDataPoints && j == 0) {
