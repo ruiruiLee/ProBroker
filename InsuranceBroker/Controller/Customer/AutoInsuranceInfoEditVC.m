@@ -25,7 +25,7 @@
 #import "UIButton+WebCache.h"
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
 
-#define explain @"* 至少需要上传客户［身份证正面］和［行驶证正本］清晰照片方可报价，也可选择填写资料明细（续保车辆只需填写车牌和选择上年保险公司）进行报价。客户确认投保后，应保监会规定需要补齐所有照片方可出单（在客户资料界面操作）。"
+#define explain @"* 至少需要上传车主［身份证正面］和［行驶证正本］清晰照片方可报价，也可选择填写资料明细（续保车辆只需填写车牌和选择上年保险公司）进行报价。客户确认投保后，应保监会规定需要补齐所有照片方可出单（在客户资料界面操作）。"
 
 @interface AutoInsuranceInfoEditVC ()<MenuDelegate, ZHPickViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 {

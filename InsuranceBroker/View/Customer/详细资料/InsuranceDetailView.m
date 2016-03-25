@@ -56,7 +56,7 @@
         
         lb1 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
         [_contentView addSubview:lb1];
-        lb1.attributedText = [Util getWarningString:@"*   至少需要上传客户［行驶证正本］和［身份证正面］清晰照片方可报价，也可进入［详情］选择填写资料明细（续保车辆只需填写车牌和选择上年保险公司）进行报价。客户确认投保后，应保监会规定需要补齐所有照片方可出单。"];
+        lb1.attributedText = [Util getWarningString:@"*   至少需要上传车主［行驶证正本］和［身份证正面］清晰照片方可报价，也可进入［详情］选择填写资料明细（续保车辆只需填写车牌和选择上年保险公司）进行报价。客户确认投保后，应保监会规定需要补齐所有照片方可出单。"];
         lb1.preferredMaxLayoutWidth = ScreenWidth - 40;
         lb1.numberOfLines = 0;
         lb2 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
