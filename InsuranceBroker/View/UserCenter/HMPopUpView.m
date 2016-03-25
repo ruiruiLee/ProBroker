@@ -85,6 +85,7 @@
         txtField.delegate = self;
         txtField.clearButtonMode = UITextFieldViewModeAlways;
         [containerView addSubview:txtField];
+        self.txtField.autocapitalizationType = UITextAutocapitalizationTypeNone;
         
         //Button view creation
         buttonView = [[UIView alloc] initWithFrame:CGRectMake(cvFrame.origin.x , cvFrame.origin.y + 130, cvFrame.size.width, cvFrame.size.height - 130)];
@@ -528,6 +529,31 @@
         
     }
     
+}
+
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == txtField) {
+        
+        [txtField resignFirstResponder];
+        
+        if ([UIScreen mainScreen].bounds.size.height < 570) {
+            
+            if (containerView.frame.origin.y < self.frame.size.height / 2 - (containerView.frame.size.height / 2)) {
+                
+                [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+                    
+                    containerView.transform = CGAffineTransformMakeTranslation(0, 0);
+                    
+                } completion:^(BOOL finished) {
+                    
+                }];
+                
+            }
+            
+        }
+        
+    }
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
