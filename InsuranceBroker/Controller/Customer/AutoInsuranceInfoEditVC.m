@@ -462,10 +462,12 @@
                 model.carShelfNo = carShelfNo;
                 model.carTypeNo = carTypeNo;
                 model.carNo = carNo;
-                if(filePahe)
+                if(filePahe){
                     model.travelCard1 = filePahe;
-                if(filePahe1 != nil)
-                    self.customerModel.cardNumberImg1 = filePahe1;
+                }
+                if(filePahe1 != nil){
+                    model.carOwnerCard1 = filePahe1;
+                }
 
                 if(completion){
                     completion(code, content);

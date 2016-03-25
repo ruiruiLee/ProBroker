@@ -332,6 +332,7 @@
 {
     _insuranceDetailView.carInfo = self.data.carInfo;
     _insuranceDetailView.customerInfo = self.customerinfoModel;
+    [_insuranceDetailView.tableview reloadData];
 }
 
 #pragma CustomDetailHeaderViewDelegate
