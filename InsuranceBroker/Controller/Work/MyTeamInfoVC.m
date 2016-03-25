@@ -444,6 +444,10 @@
     if(!accept)
         return;
     
+    if([text length] == 0){
+        return;
+    }
+    
     NSInteger idx = view.tag - 100;
     BrokerInfoModel *model = [self.data objectAtIndex:idx];
     [NetWorkHandler requestToUpdateUserRemarkName:model.userId remarkName:text Completion:^(int code, id content) {

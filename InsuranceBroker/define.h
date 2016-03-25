@@ -33,7 +33,7 @@
 
 //正式服地址
 //#define SERVER_ADDRESS @"http://ibroker.leanapp.cn"
-//#define Base_Uri @"http://broker.ukuaibao.com/"
+//#define Base_Uri @"http://broker.ukuaibao.com"
 
 //location
 #define LcationInstance [LocationManagerObserver sharedInstance]

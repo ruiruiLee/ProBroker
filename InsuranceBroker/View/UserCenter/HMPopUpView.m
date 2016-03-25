@@ -119,9 +119,27 @@
         presentDuration = DEFAULT_PRESENTATION_ANIMATION_DURATION;
         dismissDuration = DEFAULT_DISMISS_ANIMATION_DURATION;
         
+        [self.txtField addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        btnOk.enabled = NO;
+        btnOk.alpha = 0.5;
     }
     
     return self;
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ( [[change objectForKey:@"new"] length] > 0) {
+
+        btnOk.enabled = YES;
+        btnOk.alpha = 1;
+        
+    } else {
+    
+        btnOk.enabled = NO;
+        btnOk.alpha = 0.5;
+        
+    }
 }
 
 -(void)configureHMPopUpViewWithBGColor:(UIColor *)BGColor titleColor:(UIColor *)ttlColor buttonViewColor:(UIColor *)btnViewColor buttonBGColor:(UIColor *)btnBGColor buttonTextColor:(UIColor *)btnTxtColor {
@@ -543,6 +561,10 @@
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    if([newText length] > 20){
+        return NO;
+    }
+    
     if (textField == txtField && newText.length > 0) {
         
         btnOk.enabled = YES;

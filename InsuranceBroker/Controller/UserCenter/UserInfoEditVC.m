@@ -217,6 +217,11 @@
 {
     if(!accept)
         return;
+    
+    if([text length] == 0){
+        return;
+    }
+    
     UserEditTableViewCell *cell = [self.tableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
     cell.lbDetail.text = text;
     

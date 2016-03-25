@@ -19,7 +19,7 @@
     [Util setValueForKeyWithDic:pramas value:customerId key:@"customerId"];
     [Util setValueForKeyWithDic:pramas value:headImg key:@"headImg"];
     
-    [handle postWithMethod:@"web/customer/updateCustomerHeadImg.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
+    [handle postWithMethod:@"/web/customer/updateCustomerHeadImg.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }
 
 @end

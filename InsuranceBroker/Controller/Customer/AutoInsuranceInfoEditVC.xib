@@ -87,8 +87,8 @@
                                                 <constraint firstAttribute="height" constant="30" id="ESn-QO-SEH"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="如何报价？" image="faq_car_profile">
-                                                <color key="titleColor" red="1" green="0.40000000000000002" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="如何报价？" image="faq_car_profile1">
+                                                <color key="titleColor" red="0.40000000000000002" green="0.56470588235294117" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="doBtnShowWarning:" destination="-1" eventType="touchUpInside" id="6VX-hK-abb"/>
@@ -874,6 +874,7 @@
         <image name="certLogo" width="72" height="50"/>
         <image name="drivingLicenseBg" width="235" height="164"/>
         <image name="faq_car_profile" width="20" height="20"/>
+        <image name="faq_car_profile1" width="16" height="16"/>
         <image name="right_arrow" width="16" height="16"/>
         <image name="switch" width="13" height="13"/>
         <image name="unselect" width="16" height="16"/>
