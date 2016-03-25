@@ -121,6 +121,7 @@
         dismissDuration = DEFAULT_DISMISS_ANIMATION_DURATION;
         
         [self.txtField addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+        [txtField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         btnOk.enabled = NO;
         btnOk.alpha = 0.5;
     }
@@ -584,10 +585,25 @@
     
 }
 
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField.text.length > 20) {
+        textField.text = [textField.text substringToIndex:20];
+    }
+}
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    if([newText length] > 20){
+//    if([newText length] > 20){
+//        return NO;
+//    }
+    if (string.length == 0) return YES;
+    
+    NSInteger existedLength = textField.text.length;
+    NSInteger selectedLength = range.length;
+    NSInteger replaceLength = string.length;
+    if (existedLength - selectedLength + replaceLength > 20) {
         return NO;
     }
     

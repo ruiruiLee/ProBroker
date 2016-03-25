@@ -1141,8 +1141,8 @@
                                                       context:nil];
             self.topVConstraint.constant = 30 + rect.size.height + 15;
         }
-        [self.view layoutIfNeeded];
-        [self.view setNeedsLayout];
+        [self.view1 layoutIfNeeded];
+        [self.view1 setNeedsLayout];
     }];
     
     isShowWarning = !isShowWarning;

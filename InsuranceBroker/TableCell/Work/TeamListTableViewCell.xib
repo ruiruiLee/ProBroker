@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="391" height="149"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="391" height="149"/>
+                <rect key="frame" x="0.0" y="0.0" width="391" height="148.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1zo-cR-jWX">
@@ -59,7 +59,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="nLL-qw-SYM"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="（备注）">
                             <color key="titleColor" red="0.40000000000000002" green="0.56470588235294117" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
@@ -67,18 +67,18 @@
                 </subviews>
                 <animations/>
                 <constraints>
+                    <constraint firstItem="Cwy-d2-dIn" firstAttribute="baseline" secondItem="zcf-C2-K5d" secondAttribute="baseline" constant="-2" id="2pA-OT-ttq"/>
                     <constraint firstAttribute="trailingMargin" secondItem="kX8-AX-0gX" secondAttribute="trailing" constant="16" id="60C-rd-9VJ"/>
                     <constraint firstItem="Q3C-AB-snq" firstAttribute="trailing" secondItem="1zo-cR-jWX" secondAttribute="trailing" id="8LT-8S-qZn"/>
                     <constraint firstItem="1zo-cR-jWX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="EgR-Xt-0bA"/>
                     <constraint firstItem="1zo-cR-jWX" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Ewc-2l-s87"/>
                     <constraint firstItem="kX8-AX-0gX" firstAttribute="bottom" secondItem="1zo-cR-jWX" secondAttribute="bottom" id="IM0-88-buM"/>
                     <constraint firstItem="Q3C-AB-snq" firstAttribute="bottom" secondItem="1zo-cR-jWX" secondAttribute="bottom" id="YUC-8e-P9A"/>
-                    <constraint firstItem="Cwy-d2-dIn" firstAttribute="leading" secondItem="zcf-C2-K5d" secondAttribute="trailing" constant="4" id="bhm-wa-13O"/>
+                    <constraint firstItem="Cwy-d2-dIn" firstAttribute="leading" secondItem="zcf-C2-K5d" secondAttribute="trailing" id="bhm-wa-13O"/>
                     <constraint firstItem="zcf-C2-K5d" firstAttribute="leading" secondItem="1zo-cR-jWX" secondAttribute="trailing" constant="10" id="dBL-KM-zrp"/>
                     <constraint firstItem="kX8-AX-0gX" firstAttribute="leading" secondItem="zcf-C2-K5d" secondAttribute="leading" id="ftt-dZ-WZj"/>
                     <constraint firstItem="zcf-C2-K5d" firstAttribute="top" secondItem="1zo-cR-jWX" secondAttribute="top" id="gqF-dC-3yq"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="Cwy-d2-dIn" secondAttribute="trailing" constant="16" id="qnh-3H-qwB"/>
-                    <constraint firstItem="Cwy-d2-dIn" firstAttribute="centerY" secondItem="zcf-C2-K5d" secondAttribute="centerY" id="vy1-B9-MWK"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
