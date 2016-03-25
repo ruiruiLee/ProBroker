@@ -83,11 +83,11 @@
                                             <rect key="frame" x="523" y="9" width="74" height="22"/>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="110" id="Dhd-z6-cYs"/>
+                                                <constraint firstAttribute="width" constant="100" id="Dhd-z6-cYs"/>
                                                 <constraint firstAttribute="height" constant="30" id="ESn-QO-SEH"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="如何报价？" image="faq_car_profile1">
+                                            <state key="normal" title="如何报价" image="faq_car_profile1">
                                                 <color key="titleColor" red="0.40000000000000002" green="0.56470588235294117" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
@@ -782,21 +782,6 @@
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EZA-qe-f1s">
                                     <rect key="frame" x="30" y="489" width="570" height="65"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ti-VN-yr8" customClass="LeftImgButton">
-                                            <rect key="frame" x="446" y="22" width="164" height="22"/>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="22" id="aLE-K6-fO9"/>
-                                                <constraint firstAttribute="width" constant="110" id="dbx-AS-9ao"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="如何填写？" image="faq_car_profile">
-                                                <color key="titleColor" red="1" green="0.40000000000000002" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="doButtonHowToWrite:" destination="-1" eventType="touchUpInside" id="cck-kS-53N"/>
-                                            </connections>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="*优快保经纪人保证所有证件资料仅用于车辆报价或投保，不用做其他用途，请放心上传" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cn9-yH-6lk">
                                             <rect key="frame" x="264" y="22" width="42" height="21"/>
                                             <animations/>
@@ -804,6 +789,21 @@
                                             <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ti-VN-yr8" customClass="LeftImgButton">
+                                            <rect key="frame" x="446" y="22" width="164" height="22"/>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="22" id="aLE-K6-fO9"/>
+                                                <constraint firstAttribute="width" constant="100" id="dbx-AS-9ao"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <state key="normal" title="如何填写" image="faq_car_profile">
+                                                <color key="titleColor" red="1" green="0.40000000000000002" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="doButtonHowToWrite:" destination="-1" eventType="touchUpInside" id="cck-kS-53N"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -873,7 +873,7 @@
         <image name="car_profile_additional" width="18" height="18"/>
         <image name="certLogo" width="72" height="50"/>
         <image name="drivingLicenseBg" width="235" height="164"/>
-        <image name="faq_car_profile" width="20" height="20"/>
+        <image name="faq_car_profile" width="16" height="16"/>
         <image name="faq_car_profile1" width="16" height="16"/>
         <image name="right_arrow" width="16" height="16"/>
         <image name="switch" width="13" height="13"/>
