@@ -117,8 +117,7 @@
 //            [Util showAlertMessage:@"验证码已发送!" ];
             [KGStatusBar showSuccessWithStatus:@"验证码已发送!"];
         }else{
-//            [Util showAlertMessage:@"服务器错误，稍后再试!" ];
-//            [Util showAlertMessage:[error localizedDescription]];
+           if([error localizedDescription].length>0)
             [KGStatusBar showErrorWithStatus:[error localizedDescription]];
             [self.btnGetCaptcha setTitle:@"重取验证码" forState:UIControlStateNormal];
             self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);

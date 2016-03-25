@@ -59,11 +59,9 @@
     [AVOSCloud requestSmsCodeWithPhoneNumber:phone callback:^(BOOL succeeded, NSError *error) {
         if(succeeded){
             [self timerOutTimer];
-//            [Util showAlertMessage:@"验证码已发送!" ];
             [KGStatusBar showSuccessWithStatus:@"验证码已发送!"];
         }else{
-//            [Util showAlertMessage:error.localizedDescription];
-//            [Util showAlertMessage:[error localizedDescription]];
+         if([error localizedDescription].length>0)
             [KGStatusBar showErrorWithStatus:[error localizedDescription]];
             [self.btnGetCaptcha setTitle:@"重取验证码" forState:UIControlStateNormal];
             self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
