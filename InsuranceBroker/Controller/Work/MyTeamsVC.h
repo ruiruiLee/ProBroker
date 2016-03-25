@@ -7,6 +7,7 @@
 //
 
 #import "BasePullTableVC.h"
+#import "RatioMapsModel.h"
 
 @interface MyTeamsVC : BasePullTableVC
 
@@ -14,10 +15,17 @@
 @property (nonatomic, strong) NSString *toptitle;
 @property (nonatomic, strong) NSString *name;
 
+@property (nonatomic, strong) UILabel *lbMonth;
+@property (nonatomic, strong) UILabel *lbDay;
+
+@property (nonatomic, strong) RatioMapsModel *teamInfo;
+
 - (NSDictionary *) getRulesByField:(NSString *) field op:(NSString *) op data:(NSString *) data;
 
 - (void) initHeaderView;
 
 - (NSAttributedString *) getOrderDetailString:(CGFloat) amount orderValue:(CGFloat) orderValue;
+
+- (UIView *) createTeamTotalInfo;
 
 @end

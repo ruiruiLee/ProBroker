@@ -41,6 +41,7 @@
     model.nowMonthOrderSellEarn = [[dictionary objectForKey:@"nowMonthOrderSellEarn"] floatValue];
     model.cardVerifiy = [[dictionary objectForKey:@"cardVerifiy"] integerValue];
     model.dayOrderTotalSellEarn = [[dictionary objectForKey:@"dayOrderTotalSellEarn"] floatValue];
+    model.remarkName = [dictionary objectForKey:@"remarkName"];
     
     return model;
 }

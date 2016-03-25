@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		861DF93B1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF93A1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m */; };
+		861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF93D1CA4E40D00FB58B1 /* RatioMapsModel.m */; };
+		861DF9411CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF9401CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m */; };
 		8625AF7A1C315D6600312B98 /* DeatilTextTableviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625AF781C315D6600312B98 /* DeatilTextTableviewCell.m */; };
 		8625AF7B1C315D6600312B98 /* DeatilTextTableviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8625AF791C315D6600312B98 /* DeatilTextTableviewCell.xib */; };
 		8625AF7E1C3164A700312B98 /* OrderManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625AF7D1C3164A700312B98 /* OrderManagerVC.m */; };
@@ -417,6 +420,12 @@
 /* Begin PBXFileReference section */
 		03AB914CAC81E099C3474FBB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		39658BE0FF776730306DC2D4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		861DF9391CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+updateUserRemarkName.h"; sourceTree = "<group>"; };
+		861DF93A1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateUserRemarkName.m"; sourceTree = "<group>"; };
+		861DF93C1CA4E40D00FB58B1 /* RatioMapsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatioMapsModel.h; sourceTree = "<group>"; };
+		861DF93D1CA4E40D00FB58B1 /* RatioMapsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatioMapsModel.m; sourceTree = "<group>"; };
+		861DF93F1CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+queryUserTeamSellTj.h"; sourceTree = "<group>"; };
+		861DF9401CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryUserTeamSellTj.m"; sourceTree = "<group>"; };
 		8625AF771C315D6600312B98 /* DeatilTextTableviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeatilTextTableviewCell.h; sourceTree = "<group>"; };
 		8625AF781C315D6600312B98 /* DeatilTextTableviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeatilTextTableviewCell.m; sourceTree = "<group>"; };
 		8625AF791C315D6600312B98 /* DeatilTextTableviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeatilTextTableviewCell.xib; sourceTree = "<group>"; };
@@ -1596,6 +1605,10 @@
 				86F0142F1C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.m */,
 				86F014311C86CB9B00A3C68E /* NetWorkHandler+deleteInsuranceOrder.h */,
 				86F014321C86CB9B00A3C68E /* NetWorkHandler+deleteInsuranceOrder.m */,
+				861DF9391CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.h */,
+				861DF93A1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m */,
+				861DF93F1CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.h */,
+				861DF9401CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -2198,6 +2211,8 @@
 				868C7CD61C9BE91400B7617A /* CurveSellModel.m */,
 				868C7CD81C9BE9DF00B7617A /* CurveEarnModel.h */,
 				868C7CD91C9BE9DF00B7617A /* CurveEarnModel.m */,
+				861DF93C1CA4E40D00FB58B1 /* RatioMapsModel.h */,
+				861DF93D1CA4E40D00FB58B1 /* RatioMapsModel.m */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -2834,6 +2849,7 @@
 				86C3BC181C2CE0A700F98E80 /* UserPolicyListView.m in Sources */,
 				86C3BBCB1C2A5E1A00F98E80 /* BaseTableViewController.m in Sources */,
 				86A26EBE1C47CF1A0073FFFC /* InsuranceCompanyModel.m in Sources */,
+				861DF9411CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m in Sources */,
 				865066201C2154C200429EAE /* WebViewController.m in Sources */,
 				86C3BCC11C2E933600F98E80 /* IQSegmentedNextPrevious.m in Sources */,
 				8625B03C1C3E3D0F00312B98 /* NetWorkHandler+saveOrUpdateCustomerVisits.m in Sources */,
@@ -2893,6 +2909,7 @@
 				86A26E881C452A5B0073FFFC /* AnnouncementModel.m in Sources */,
 				86C3BB2C1C22C42D00F98E80 /* AnimationButton.m in Sources */,
 				862CD3421C5C8CFE0056D2EA /* ProgressHUD.m in Sources */,
+				861DF93B1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m in Sources */,
 				8625B0541C3F9B2D00312B98 /* NetWorkHandler+saveOrUpdateLabelCustomer.m in Sources */,
 				8625B04D1C3F7B0E00312B98 /* EditButton.m in Sources */,
 				86A504EA1C524E8F0032A901 /* OrderDetailWebVC.m in Sources */,
@@ -3027,6 +3044,7 @@
 				86C3BC451C2E747E00F98E80 /* BaseLineTextField.m in Sources */,
 				86A504E71C52165F0032A901 /* RedPackTasksInfoTips.m in Sources */,
 				86A26EEA1C4905210073FFFC /* CustomerTagTableCell.m in Sources */,
+				861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */,
 				86C3BC1B1C2CE0EB00F98E80 /* CustomerFollowUpInfoView.m in Sources */,
 				86A26EA01C4666850073FFFC /* InsurOffersInfoModel.m in Sources */,
 				86493FFC1C745E1300121BD1 /* SJAvatarBrowser.m in Sources */,

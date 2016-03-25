@@ -25,7 +25,7 @@
 @property (nonatomic, assign) CGFloat nowMonthOrderSellEarn;
 @property (nonatomic, assign) CGFloat dayOrderTotalSellEarn;
 @property (nonatomic, assign) NSInteger cardVerifiy;
-
+@property (nonatomic, strong) NSString *remarkName;
 
 
 

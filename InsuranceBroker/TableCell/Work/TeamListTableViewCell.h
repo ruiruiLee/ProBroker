@@ -14,5 +14,6 @@
 @property (nonatomic, strong) IBOutlet UIImageView *logoImage;
 @property (nonatomic, strong) IBOutlet UILabel *lbName;
 @property (nonatomic, strong) IBOutlet UILabel *lbStatus;
+@property (nonatomic, strong) IBOutlet UIButton *btnRemark;
 
 @end

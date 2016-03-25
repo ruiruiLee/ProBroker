@@ -12,6 +12,7 @@
 #import <AVOSCloudSNS/AVOSCloudSNS.h>
 #import "NetWorkHandler+login.h"
 #import "SetTeamLeaderPhoneView.h"
+#import "IQKeyboardManager.h"
 
 #define SETTING @"请联系您的团长设置您的佣金!"
 
@@ -31,6 +32,19 @@
 //    [self setBackBarButton];
     [self setRightBarButtonWithImage:ThemeImage(@"call_login_page")];
     self.lbAgreement.attributedText = [Util getAttributeString:@"点击“登录”，即表示您同意用户协议" substr:@"用户协议"];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+//    _wasKeyboardManagerEnabled = [[IQKeyboardManager sharedManager] isEnabled];
+    [[IQKeyboardManager sharedManager] setEnable:NO];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,8 +79,8 @@
 //            [self.navigationController pushViewController:vc animated:YES];
 //            vc.wxDic = dic;
             SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-            
             view.delegate = self;
+            view.tfNickname.text = [dic objectForKey:@"nickname"];
             [[UIApplication sharedApplication].keyWindow addSubview:view];
             
         }else if (code == 200){
@@ -122,10 +136,10 @@
     [web loadHtmlFromUrl:url];
 }
 
-- (void) NotifyToSetTeamLeaderPhone:(NSString*) phoneNum
+- (void) NotifyToSetTeamLeaderPhone:(NSString*) phoneNum remarkName:(NSString *)remarkName
 {
     NSDictionary *dic = self.wxDic;
-    [NetWorkHandler loginWithPhone:self.tfMobile.text openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:[dic objectForKey:@"nickname"] privilege:[dic objectForKey:@"privilege"] unionid:[dic objectForKey:@"unionid"] province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:nil parentPhone:(NSString *)phoneNum Completion:^(int code, id content) {
+    [NetWorkHandler loginWithPhone:self.tfMobile.text openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:remarkName privilege:[dic objectForKey:@"privilege"] unionid:[dic objectForKey:@"unionid"] province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:nil parentPhone:(NSString *)phoneNum Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 505){
             //            BindPhoneNumVC *vc = [IBUIFactory CreateBindPhoneNumViewController];

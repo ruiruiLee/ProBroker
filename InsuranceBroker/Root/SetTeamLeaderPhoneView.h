@@ -10,7 +10,7 @@
 
 @protocol SetTeamLeaderPhoneViewDelegate <NSObject>
 
-- (void) NotifyToSetTeamLeaderPhone:(NSString*) phoneNum;
+- (void) NotifyToSetTeamLeaderPhone:(NSString*) phoneNum remarkName:(NSString *) remarkName;
 
 @end
 
@@ -19,6 +19,7 @@
 @property (nonatomic, strong) UIView *rootview;
 @property (nonatomic, strong) UIView *bgview;
 @property (nonatomic, strong) UITextField *tfPhone;
+@property (nonatomic, strong) UITextField *tfNickname;
 @property (nonatomic, strong) UILabel *lbShow;
 @property (nonatomic, strong) UIButton  *btnSubmit;
 @property (nonatomic, strong) UIButton *btnCancel;

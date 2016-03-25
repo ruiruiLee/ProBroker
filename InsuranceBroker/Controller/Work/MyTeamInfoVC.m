@@ -15,8 +15,10 @@
 #import "define.h"
 #import "NetWorkHandler+queryUserTeamInfo.h"
 #import "ProductSettingTableViewCell.h"
+#import "NetWorkHandler+updateUserRemarkName.h"
+#import "HMPopUpView.h"
 
-@interface MyTeamInfoVC ()
+@interface MyTeamInfoVC () <HMPopUpViewDelegate>
 {
     UIImageView *iconview;
 }
@@ -251,6 +253,7 @@
             cell.lbStatus.text = model.parentPhone;
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbStatus.font = _FONT(12);
+            cell.btnRemark.hidden = YES;
             
             return cell;
         }
@@ -285,7 +288,12 @@
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbStatus.font = _FONT(10);
             cell.lbStatus.attributedText = [self getOrderDetailString:model.nowMonthOrderSellEarn orderValue:model.dayOrderTotalSellEarn];
+            cell.btnRemark.hidden = NO;
+            cell.btnRemark.tag = 100 + indexPath.row;
+            if(model.remarkName != nil && [model.remarkName length] > 0)
+                [cell.btnRemark setTitle:[NSString stringWithFormat:@"（%@）", model.remarkName] forState:UIControlStateNormal];
             
+            [cell.btnRemark addTarget:self action:@selector(doBtnModifyRemarkName:) forControlEvents:UIControlEventTouchUpInside];
             return cell;
         }
     }
@@ -318,8 +326,12 @@
     if(tableView == self.productTable){
         return 0.01;
     }
-    else
-        return 40.f;
+    else{
+        if(section == 0)
+            return 40.f;
+        else
+            return 98.f;
+    }
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -349,8 +361,13 @@
     
     NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbAmount);
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]->=10-[lbAmount]-20-|" options:0 metrics:nil views:views]];
-    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbTitle]-0-|" options:0 metrics:nil views:views]];
-    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbAmount]-0-|" options:0 metrics:nil views:views]];
+    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbTitle(40)]->=0-|" options:0 metrics:nil views:views]];
+    [view addConstraint:[NSLayoutConstraint constraintWithItem:lbAmount attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
+    if(section == 1){
+        UIView *teamview = [self createTeamTotalInfo];
+        [view addSubview:teamview];
+    }
     
     return view;
 }
@@ -404,6 +421,38 @@
         //记得添加到view上
         [self.view addSubview:callWebview];
     }
+}
+
+- (void) doBtnModifyRemarkName:(UIButton *) sender
+{
+    NSInteger idx = sender.tag - 100;
+    if(idx >= 0 && idx < [self.data count]){
+        BrokerInfoModel *model = [self.data objectAtIndex:idx];
+        HMPopUpView *hmPopUp = [[HMPopUpView alloc] initWithTitle:@"修改备注" okButtonTitle:@"确定" cancelButtonTitle:@"取消" delegate:self];
+        hmPopUp.transitionType = HMPopUpTransitionTypePopFromBottom;
+        hmPopUp.dismissType = HMPopUpDismissTypeFadeOutTop;
+        [hmPopUp showInView:self.view];
+        hmPopUp.txtField.text = model.remarkName;
+        hmPopUp.tag = sender.tag;
+    }
+}
+
+#pragma HMPopUpViewDelegate
+- (void) popUpView:(HMPopUpView *)view accepted:(BOOL)accept inputText:(NSString *)text
+
+{
+    if(!accept)
+        return;
+    
+    NSInteger idx = view.tag - 100;
+    BrokerInfoModel *model = [self.data objectAtIndex:idx];
+    [NetWorkHandler requestToUpdateUserRemarkName:model.userId remarkName:text Completion:^(int code, id content) {
+        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+        if(code == 200){
+            model.remarkName = text;
+            [self.pulltable reloadData];
+        }
+    }];
 }
 
 @end

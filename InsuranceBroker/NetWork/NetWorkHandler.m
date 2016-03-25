@@ -173,8 +173,6 @@ static NetWorkHandler *networkmanager;
     [ProjectDefine addRequestTag:Tag];
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    
-    NSTimeInterval begin = [[NSDate date] timeIntervalSince1970];
 
     NSMutableURLRequest *request = [self.manager.requestSerializer requestWithMethod:@"POST" URLString:path parameters:params error:nil];
 //    self.manager.requestSerializer.timeoutInterval = 20;
@@ -198,14 +196,16 @@ static NetWorkHandler *networkmanager;
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSTimeInterval end = [[NSDate date] timeIntervalSince1970];
-        NSTimeInterval result = end - begin;
         [ProjectDefine removeRequestTag:Tag];
         NSLog(@"请求URL：%@ \n请求方法:%@ \n请求参数：%@\n 请求结果：%@\n==================================", url, method, params, error);
 
         _urlstring= [self ConvertCachKeyString:[self getUrlAbsoluteString:request]];
     id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:_urlstring]];
-        [self handleResponse:cacheDatas Completion:completion];
+        if([method isEqualToString:@"/api/user/login"])
+        {
+            [self handleResponse:nil Completion:completion];
+        }else
+            [self handleResponse:cacheDatas Completion:completion];
 
 //        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
 //        [dic setObject:[NSNumber numberWithInteger:error.code] forKey:@"code"];

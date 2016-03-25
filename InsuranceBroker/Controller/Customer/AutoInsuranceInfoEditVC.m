@@ -25,6 +25,8 @@
 #import "UIButton+WebCache.h"
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
 
+#define explain @"* 至少需要上传客户［身份证正面］和［行驶证正本］清晰照片方可报价，也可选择填写资料明细（续保车辆只需填写车牌和选择上年保险公司）进行报价。客户确认投保后，应保监会规定需要补齐所有照片方可出单（在客户资料界面操作）。"
+
 @interface AutoInsuranceInfoEditVC ()<MenuDelegate, ZHPickViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 {
     NSInteger _perInsurCompany;
@@ -117,6 +119,7 @@
         _perInsurCompany = -1;
         _changeNameIdx = 0;
         self.type = enumAddPhotoTypeNone;
+        isShowWarning = NO;
     }
     
     return self;
@@ -152,6 +155,8 @@
     
     self.infoHConstraint.constant = ScreenWidth;
     self.imageHConstraint.constant = ScreenWidth;
+    
+    self.lbShow.attributedText = [Util getWarningString:explain];
     
     
     self.title = @"车辆信息";
@@ -1118,6 +1123,29 @@
         [self.scrollview scrollRectToVisible:CGRectMake(ScreenWidth, 0, ScreenWidth, self.scrollview.frame.size.height) animated:YES];
     }
     sender.selected = !sender.selected;
+}
+
+- (IBAction)doBtnShowWarning:(UIButton *)sender
+{
+    [UIView animateWithDuration:0.25 animations:^{
+        if(isShowWarning){
+            self.topVConstraint.constant = 30;
+        }
+        else{
+            CGRect rect = [explain boundingRectWithSize:CGSizeMake(ScreenWidth - 32, MAXFLOAT)
+                           
+                                                      options:NSStringDrawingUsesLineFragmentOrigin
+                           
+                                                   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
+                           
+                                                      context:nil];
+            self.topVConstraint.constant = 30 + rect.size.height + 15;
+        }
+        [self.view layoutIfNeeded];
+        [self.view setNeedsLayout];
+    }];
+    
+    isShowWarning = !isShowWarning;
 }
 
 @end

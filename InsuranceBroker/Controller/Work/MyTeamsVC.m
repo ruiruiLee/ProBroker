@@ -17,6 +17,8 @@
 #import "InviteFriendsVC.h"
 #import "SelectCustomerVC.h"
 #import "UIImageView+WebCache.h"
+#import "SepLineLabel.h"
+#import "NetWorkHandler+queryUserTeamSellTj.h"
 
 @interface MyTeamsVC ()
 {
@@ -91,7 +93,7 @@
     UIView *headerview = nil;
     UIImageView *footview = nil;
     
-    headerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    headerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 98)];
     footview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
     footview.backgroundColor = _COLOR(0xf5, 0xf5, 0xf5);
     [headerview addSubview:footview];
@@ -111,6 +113,8 @@
     [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbTitle]-0-|" options:0 metrics:nil views:views]];
     [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbAmount]-0-|" options:0 metrics:nil views:views]];
     
+    UIView *teamview = [self createTeamTotalInfo];
+    [headerview addSubview:teamview];
     
     self.pulltable.tableHeaderView = headerview;
 }
@@ -144,6 +148,8 @@
     NSMutableArray *rules = [[NSMutableArray alloc] init];
     [rules addObject:[self getRulesByField:@"parentUserId" op:@"eq" data:self.userid]];
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
+    if(page == 0)
+        [self loadUserTeamSellTj];
     
     [NetWorkHandler requestUserQueryForPageList:page limit:LIMIT sord:@"desc" sidx:@"U_UserDataStatisticsNow.nowMonthOrderSuccessNums" filters:filters Completion:^(int code, id content) {
         [self refreshTable];
@@ -156,6 +162,21 @@
             [self.data addObjectsFromArray:[BrokerInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
             self.total = [[[content objectForKey:@"data"] objectForKey:@"total"] integerValue];
             lbAmount.text = [NSString stringWithFormat:@"共%d人", self.total];
+            [self.pulltable reloadData];
+        }
+    }];
+}
+
+- (void) loadUserTeamSellTj
+{
+    [NetWorkHandler requestToQueryUserTeamSellTj:self.userid Completion:^(int code, id content) {
+        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+        if(code == 200){
+            self.teamInfo = (RatioMapsModel*)[RatioMapsModel modelFromDictionary:[content objectForKey:@"data"]];
+            
+            self.lbMonth.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员本月累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]];
+            self.lbDay.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员今日累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]];
+            
             [self.pulltable reloadData];
         }
     }];
@@ -201,6 +222,7 @@
 
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.btnRemark.hidden = YES;
     
     BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
     
@@ -288,6 +310,48 @@
     [mstring1 appendAttributedString:mstring2];
     
     return mstring1;
+}
+
+
+- (UIView *) createTeamTotalInfo
+{
+    UIView *teamView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, ScreenWidth, 58)];
+    teamView.backgroundColor = [UIColor whiteColor];
+    
+    UIImageView *logo = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 60, 60)];
+    logo.translatesAutoresizingMaskIntoConstraints = NO;
+    [teamView addSubview:logo];
+    logo.image = ThemeImage(@"totalimage");
+    
+    self.lbMonth = [ViewFactory CreateLabelViewWithFont:_FONT(13) TextColor:_COLOR(0x75, 0x75, 0x75)];
+    [teamView addSubview:self.lbMonth];
+    self.lbMonth.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员本月累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]];
+    
+    self.lbDay = [ViewFactory CreateLabelViewWithFont:_FONT(13) TextColor:_COLOR(0x75, 0x75, 0x75)];
+    [teamView addSubview:self.lbDay];
+    self.lbDay.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员今日累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]];
+    
+    SepLineLabel *lbLine = [[SepLineLabel alloc] initWithFrame:CGRectZero];
+    lbLine.translatesAutoresizingMaskIntoConstraints = NO;
+//    lbLine.backgroundColor = _COLOR(0xe6, 0xe6, 0xe6);
+    [teamView addSubview:lbLine];
+    
+    UILabel *lbMonth = self.lbMonth;
+    UILabel *lbDay = self.lbDay;
+    NSDictionary *views1 = NSDictionaryOfVariableBindings(logo, lbMonth, lbDay, lbLine);
+    
+    [teamView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-18-[logo(35)]-11-[lbMonth]-16-|" options:0 metrics:nil views:views1]];
+    [teamView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-18-[logo]-11-[lbDay]-16-|" options:0 metrics:nil views:views1]];
+    [teamView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[lbLine]-0-|" options:0 metrics:nil views:views1]];
+    [teamView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[lbLine(1)]-0-|" options:0 metrics:nil views:views1]];
+    
+    [teamView addConstraint:[NSLayoutConstraint constraintWithItem:logo attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:teamView attribute:NSLayoutAttributeCenterY multiplier:1 constant:-1]];
+    
+    [teamView addConstraint:[NSLayoutConstraint constraintWithItem:lbMonth attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:logo attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    [teamView addConstraint:[NSLayoutConstraint constraintWithItem:lbDay attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:logo attribute:NSLayoutAttributeBottom multiplier:1 constant:2]];
+    
+    
+    return teamView;
 }
 
 @end

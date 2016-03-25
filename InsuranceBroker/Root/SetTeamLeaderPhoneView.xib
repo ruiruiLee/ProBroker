@@ -32,23 +32,6 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="请联系团长确认账号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ah3-nZ-85g">
-                            <rect key="frame" x="89" y="29" width="42" height="21"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="height" id="q6V-og-bUo"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="请输入正确手机号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hR2-fO-l9m">
-                            <rect key="frame" x="8" y="107" width="42" height="21"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <button opaque="NO" tag="102" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MhT-5W-SIP">
                             <rect key="frame" x="15" y="144" width="210" height="30"/>
                             <animations/>
@@ -57,13 +40,13 @@
                             </state>
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" tag="100" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入团长手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gge-xX-jBS">
-                            <rect key="frame" x="15" y="63" width="210" height="36"/>
+                            <rect key="frame" x="15" y="30" width="210" height="32"/>
                             <animations/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="36" id="HbP-0s-CIO"/>
+                                <constraint firstAttribute="height" constant="32" id="HbP-0s-CIO"/>
                             </constraints>
                             <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         </textField>
                         <button opaque="NO" tag="106" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gL-Mw-pBV">
@@ -75,32 +58,48 @@
                             </constraints>
                             <state key="normal" image="shut"/>
                         </button>
+                        <textField opaque="NO" clipsSubviews="YES" tag="107" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="取个昵称,让团长知道是你" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WUc-is-dqM">
+                            <rect key="frame" x="15" y="74" width="210" height="32"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="xge-0c-grv"/>
+                            </constraints>
+                            <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="请输入正确手机号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hR2-fO-l9m">
+                            <rect key="frame" x="8" y="115" width="42" height="21"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="MhT-5W-SIP" firstAttribute="trailing" secondItem="Gge-xX-jBS" secondAttribute="trailing" id="4cN-A1-DAr"/>
+                        <constraint firstItem="WUc-is-dqM" firstAttribute="top" secondItem="Gge-xX-jBS" secondAttribute="bottom" constant="20" id="5IP-bz-d9A"/>
                         <constraint firstAttribute="trailing" secondItem="OjZ-Xs-aFv" secondAttribute="trailing" constant="16" id="77D-VX-fLl"/>
                         <constraint firstAttribute="bottom" secondItem="MhT-5W-SIP" secondAttribute="bottom" constant="20" id="8x3-Ll-WLY"/>
                         <constraint firstItem="t1v-VM-FSv" firstAttribute="top" secondItem="RTj-HX-SzU" secondAttribute="top" constant="50" id="AgA-Y3-ZEM"/>
                         <constraint firstItem="MhT-5W-SIP" firstAttribute="leading" secondItem="Gge-xX-jBS" secondAttribute="leading" id="AyN-4J-PDe"/>
-                        <constraint firstItem="ah3-nZ-85g" firstAttribute="top" secondItem="t1v-VM-FSv" secondAttribute="bottom" id="D0d-10-7GN"/>
+                        <constraint firstItem="WUc-is-dqM" firstAttribute="trailing" secondItem="Gge-xX-jBS" secondAttribute="trailing" id="CfM-Zx-5WP"/>
+                        <constraint firstItem="hR2-fO-l9m" firstAttribute="top" secondItem="WUc-is-dqM" secondAttribute="bottom" constant="10" id="Cnp-rK-8Ti"/>
                         <constraint firstItem="Gge-xX-jBS" firstAttribute="leading" secondItem="RTj-HX-SzU" secondAttribute="leading" constant="16" id="HP2-sT-SUV"/>
                         <constraint firstAttribute="trailing" secondItem="Gge-xX-jBS" secondAttribute="trailing" constant="16" id="M6N-5I-ECY"/>
                         <constraint firstItem="OjZ-Xs-aFv" firstAttribute="top" secondItem="RTj-HX-SzU" secondAttribute="top" constant="20" id="MRl-YS-e5n"/>
+                        <constraint firstItem="Gge-xX-jBS" firstAttribute="top" secondItem="t1v-VM-FSv" secondAttribute="bottom" constant="20" id="N2K-ZE-Izz"/>
                         <constraint firstItem="OjZ-Xs-aFv" firstAttribute="leading" secondItem="RTj-HX-SzU" secondAttribute="leading" constant="16" id="Q0d-LQ-YuC"/>
                         <constraint firstAttribute="trailing" secondItem="1gL-Mw-pBV" secondAttribute="trailing" constant="10" id="QMo-qY-Xby"/>
+                        <constraint firstItem="MhT-5W-SIP" firstAttribute="top" secondItem="hR2-fO-l9m" secondAttribute="bottom" constant="10" id="Xeo-dH-kM2"/>
                         <constraint firstItem="hR2-fO-l9m" firstAttribute="trailing" secondItem="Gge-xX-jBS" secondAttribute="trailing" id="aPD-0l-JqV"/>
                         <constraint firstAttribute="width" constant="280" id="dCO-VF-5zE"/>
-                        <constraint firstItem="Gge-xX-jBS" firstAttribute="top" secondItem="ah3-nZ-85g" secondAttribute="bottom" constant="30" id="f2O-Qi-xV9"/>
                         <constraint firstItem="t1v-VM-FSv" firstAttribute="leading" secondItem="RTj-HX-SzU" secondAttribute="leading" id="g7a-ZV-g7Q"/>
                         <constraint firstItem="MhT-5W-SIP" firstAttribute="height" secondItem="Gge-xX-jBS" secondAttribute="height" id="gvM-wz-rZa"/>
                         <constraint firstAttribute="trailing" secondItem="t1v-VM-FSv" secondAttribute="trailing" id="jD8-hB-X3X"/>
-                        <constraint firstAttribute="trailing" secondItem="ah3-nZ-85g" secondAttribute="trailing" constant="16" id="kRY-zY-tEq"/>
-                        <constraint firstItem="Gge-xX-jBS" firstAttribute="top" secondItem="ah3-nZ-85g" secondAttribute="bottom" constant="30" id="otP-Tc-6IT"/>
-                        <constraint firstItem="ah3-nZ-85g" firstAttribute="leading" secondItem="RTj-HX-SzU" secondAttribute="leading" constant="16" id="sTc-ju-lK6"/>
-                        <constraint firstItem="MhT-5W-SIP" firstAttribute="top" secondItem="hR2-fO-l9m" secondAttribute="bottom" constant="20" id="uOa-Xh-kAS"/>
-                        <constraint firstItem="hR2-fO-l9m" firstAttribute="top" secondItem="Gge-xX-jBS" secondAttribute="bottom" constant="9" id="v31-cg-bgH"/>
+                        <constraint firstItem="WUc-is-dqM" firstAttribute="leading" secondItem="Gge-xX-jBS" secondAttribute="leading" id="lon-H8-L1u"/>
                         <constraint firstItem="hR2-fO-l9m" firstAttribute="leading" secondItem="Gge-xX-jBS" secondAttribute="leading" id="xUL-hk-bFf"/>
                         <constraint firstItem="1gL-Mw-pBV" firstAttribute="centerY" secondItem="OjZ-Xs-aFv" secondAttribute="centerY" id="yql-1c-CrP"/>
                     </constraints>

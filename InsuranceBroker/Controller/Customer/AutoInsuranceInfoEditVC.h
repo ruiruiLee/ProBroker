@@ -21,6 +21,8 @@ typedef enum : NSUInteger {
 @interface AutoInsuranceInfoEditVC : BaseViewController
 {
     HBImageViewList *_imageList;
+    
+    BOOL isShowWarning;
 }
 
 
@@ -32,6 +34,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *infoHConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *imageHConstraint;
+
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *topVConstraint;
 
 @property (nonatomic, strong) IBOutlet BaseLineTextField *tfName;//车主姓名
 @property (nonatomic, strong) IBOutlet BaseLineTextField *tfCert;//身份证号码
@@ -47,6 +51,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) IBOutlet UILabel *lbPName;//上年度保险厂家
 @property (nonatomic, strong) IBOutlet UILabel *lbIsTransfer;//是否过户
 @property (nonatomic, strong) IBOutlet UILabel *lbTransferDate;//过户时间
+
+@property (nonatomic, strong) IBOutlet UILabel *lbShow;
 
 @property (nonatomic, strong) IBOutlet LeftImgButton *btnNoNo;//新车未上牌
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollview;
