@@ -727,7 +727,7 @@
                                                 <constraint firstAttribute="width" constant="110" id="dbx-AS-9ao"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <state key="normal" title="如何填写？" image="faq_car_profile">
+                                            <state key="normal" title="如何填写" image="faq_car_profile">
                                                 <color key="titleColor" red="1" green="0.40000000000000002" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
