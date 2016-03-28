@@ -19,7 +19,7 @@
     [Util setValueForKeyWithDic:pramas value:userId key:@"userId"];
     
     
-    [handle postWithMethod:@"/web/userEarn/queryUserNowAdvanceMoney.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
+    [handle postWithMethod:@"/web/userEarn/queryUserNowAdvanceMoney1.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }
 
 @end

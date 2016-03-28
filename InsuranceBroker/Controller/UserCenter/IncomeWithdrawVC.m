@@ -19,6 +19,8 @@
     NSInteger _selectbank;
     
     CGFloat _advanceMoney;//可提现余额
+    CGFloat _minLimitMoney;//
+    CGFloat _maxLimitMoney;//
 }
 
 @property (nonatomic, strong) NSMutableArray *data;
@@ -62,7 +64,7 @@
     
     self.tableview.tableFooterView = [[UIView alloc] init];
     
-    self.lbExplain.attributedText = [Util getWarningString:@"*提现金额需大于50元，两个工作日内到账"];
+//    self.lbExplain.attributedText = [Util getWarningString:@"*提现金额需大于50元，两个工作日内到账"];
     [self.btnSubmit addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -102,8 +104,11 @@
     [NetWorkHandler requestToQueryUserNowAdvanceMoney:[UserInfoModel shareUserInfoModel].userId Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
-            _advanceMoney = [[content objectForKey:@"data"] floatValue];
+            _advanceMoney = [[[content objectForKey:@"data"] objectForKey:@"advanceNowMoney"] floatValue];
+            _maxLimitMoney = [[[content objectForKey:@"data"] objectForKey:@"maxLimitMoney"] floatValue];
+            _minLimitMoney = [[[content objectForKey:@"data"] objectForKey:@"minLimitMoney"] floatValue];
 //            _lbAmmount.text = [NSString stringWithFormat:@"%@元", [Util getDecimalStyle:_advanceMoney]];
+            self.lbExplain.attributedText = [Util getWarningString:[NSString stringWithFormat:@"*提现金额需大于%.2f元，两个工作日内到账", _minLimitMoney]];
             [self.tableview reloadData];
         }
     }];
@@ -132,9 +137,9 @@
         return;
     }
     NSInteger num = [self.tfAmount.text integerValue];
-    if(num < 50)
+    if(num < _minLimitMoney)
     {
-        [Util showAlertMessage:@"提现金额必须大于50元"];
+        [Util showAlertMessage:[NSString stringWithFormat:@"提现金额必须大于%.2f元", _minLimitMoney]];
         return;
     }
     if(num > _advanceMoney){
@@ -147,11 +152,11 @@
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             _advanceMoney = [[[content objectForKey:@"data"] objectForKey:@"advanceMoneyIng"] floatValue];
-//            _lbAmmount.text = [NSString stringWithFormat:@"%@元", [Util getDecimalStyle:_advanceMoney]];
             [Util showAlertMessage:[[content objectForKey:@"data"] objectForKey:@"msg"]];
             self.tfAmount.text = @"";
             [self.tfAmount resignFirstResponder];
             [self.tableview reloadData];
+            _advanceMoney -= num;
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];
@@ -179,11 +184,13 @@
         return 1;
     }
     else{
-        self.tableVConstraint.constant = [self.data count] * 60 + 55 + 50;
+        self.tableVConstraint.constant = [self.data count] * 60 + 55 + 50 * 2;
         if(section == 0)
             return [self.data count];
-        else
+        else if(section == 1)
             return 1;
+        else
+            return 2;
     }
 }
 
@@ -277,27 +284,50 @@
             
             return cell;
         }else{
-            NSString *deq = @"cell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
-            if(!cell){
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:deq];
-                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.textLabel.font = _FONT(15);
-                cell.textLabel.textColor = _COLOR(0x21, 0x21, 0x21);
+            if(indexPath.row == 1){
+                NSString *deq = @"cell";
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+                if(!cell){
+                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:deq];
+                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.textLabel.font = _FONT(15);
+                    cell.textLabel.textColor = _COLOR(0x21, 0x21, 0x21);
+                    
+                    UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth - 100, 36)];
+                    cell.accessoryView = tf;
+                    tf.font = _FONT(15);
+                    tf.textColor = _COLOR(0x21, 0x21, 0x21);
+                    tf.keyboardType = UIKeyboardTypeNumberPad;
+                    
+                }
+                cell.textLabel.text = @"提现金额";
+                self.tfAmount = (UITextField*)cell.accessoryView;
+                self.tfAmount.placeholder = [NSString stringWithFormat:@"本次最多可提现%@元", [Util getDecimalStyle:_advanceMoney]];
                 
-                UITextField *tf = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth - 100, 36)];
-                cell.accessoryView = tf;
-                tf.font = _FONT(15);
-                tf.textColor = _COLOR(0x21, 0x21, 0x21);
-                tf.keyboardType = UIKeyboardTypeNumberPad;
-
+                return cell;
+            }else{
+                NSString *deq = @"cell2";
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+                if(!cell) {
+                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+                    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.textLabel.font = _FONT(15);
+                    cell.textLabel.textColor = _COLOR(0x21, 0x21, 0x21);
+                    
+                    UILabel *tf = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth - 160, 36)];
+                    cell.accessoryView = tf;
+                    tf.font = _FONT(15);
+                    tf.textColor = _COLOR(0xff, 0x66, 0x19);
+                    tf.textAlignment = NSTextAlignmentRight;
+                }
+                
+                cell.textLabel.text = @"帐户余额（元）";
+                UILabel *lb = (UILabel*)cell.accessoryView;
+                lb.text = [Util getDecimalStyle:_advanceMoney];
+                return cell;
             }
-            cell.textLabel.text = @"提现金额";
-            self.tfAmount = (UITextField*)cell.accessoryView;
-            self.tfAmount.placeholder = [NSString stringWithFormat:@"当前能提现的金额最大为%@元", [Util getDecimalStyle:_advanceMoney]];
-            
-            return cell;
         }
     }
 }

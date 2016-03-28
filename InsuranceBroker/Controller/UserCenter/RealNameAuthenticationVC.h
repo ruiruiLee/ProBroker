@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "HBImageViewList.h"
 
 typedef enum : NSUInteger {
     enumCertType1,//正面
@@ -16,6 +17,7 @@ typedef enum : NSUInteger {
 @interface RealNameAuthenticationVC : BaseViewController
 {
     enumCertType currentcertType;
+    HBImageViewList *_imageList;
 }
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewHConstraint;
