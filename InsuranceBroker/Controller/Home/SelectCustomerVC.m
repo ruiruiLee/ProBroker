@@ -162,10 +162,16 @@
                 
                 if([Util checkInfoFull:car]){
                     [ProgressHUD dismiss];
+                    
+                    NSString *str = @"";
+                    if(car.carInsurStatus1 && car.carInsurCompId1 != nil){
+                        str = @"&lastYearStatus=1";
+                    }
+                    
                     OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
                     web.title = @"报价";
                     [self.navigationController pushViewController:web animated:YES];
-                    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, model.customerId, car.customerCarId];
+                    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, model.customerId, car.customerCarId, str];
                     [web loadHtmlFromUrl:url];
                 }else{
                     CustomerDetailVC *detail = [IBUIFactory CreateCustomerDetailViewController];

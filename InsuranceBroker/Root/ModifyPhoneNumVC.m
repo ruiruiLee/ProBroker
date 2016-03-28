@@ -21,6 +21,11 @@
     [self setBackBarButton];
 }
 
+- (void) handleLeftBarButtonClicked:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void) loginWithDictionary:(NSDictionary *)dic phone:(NSString *) phone smCode:(NSString *)smCode
 {
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
