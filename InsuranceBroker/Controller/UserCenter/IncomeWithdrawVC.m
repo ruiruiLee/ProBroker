@@ -212,7 +212,7 @@
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([self.data count] == 0){
-        NSString *deq = @"cell1";
+        NSString *deq = @"cell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
         if(!cell){
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
@@ -228,7 +228,7 @@
     }
     else{
         if(indexPath.section == 0){
-            NSString *deq = @"cell";
+            NSString *deq = @"cell1";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
             if(!cell){
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:deq];
@@ -270,7 +270,7 @@
             return cell;
         }
         else if(indexPath.section == 1){
-            NSString *deq = @"cell1";
+            NSString *deq = @"cell2";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
             if(!cell){
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
@@ -285,7 +285,7 @@
             return cell;
         }else{
             if(indexPath.row == 1){
-                NSString *deq = @"cell";
+                NSString *deq = @"cell3";
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
                 if(!cell){
                     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:deq];
@@ -307,7 +307,7 @@
                 
                 return cell;
             }else{
-                NSString *deq = @"cell2";
+                NSString *deq = @"cell4";
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
                 if(!cell) {
                     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
