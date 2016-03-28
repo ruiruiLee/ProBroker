@@ -748,10 +748,16 @@
 - (void) doBtnCarInsurPlan:(UIButton *) sender
 {
     if([Util checkInfoFull:self.customerinfoModel.detailModel.carInfo]){
+        
+        NSString *str = @"";
+        if(self.customerinfoModel.detailModel.carInfo.carInsurStatus1 && self.customerinfoModel.detailModel.carInfo.carInsurCompId1 != nil){
+            str = @"&lastYearStatus=1";
+        }
+        
         OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
         web.title = @"报价";
         [self.navigationController pushViewController:web animated:YES];
-        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.data.customerId, self.data.carInfo.customerCarId];
+        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.data.customerId, self.data.carInfo.customerCarId, str];
         [web loadHtmlFromUrl:url];
     }else{
         [self showProgressHUD];

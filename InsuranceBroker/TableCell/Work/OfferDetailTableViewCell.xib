@@ -178,13 +178,13 @@
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jnw-n2-ydg">
                         <rect key="frame" x="447" y="5" width="25" height="144"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="BEO-b7-71M">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="right_arrow1" translatesAutoresizingMaskIntoConstraints="NO" id="BEO-b7-71M">
                                 <rect key="frame" x="8" y="8" width="9" height="128"/>
                                 <animations/>
                             </imageView>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.8784313725490196" green="0.85490196078431369" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="BEO-b7-71M" firstAttribute="centerX" secondItem="Jnw-n2-ydg" secondAttribute="centerX" id="Hoh-Li-vR2"/>
                             <constraint firstItem="BEO-b7-71M" firstAttribute="centerY" secondItem="Jnw-n2-ydg" secondAttribute="centerY" id="UbY-zH-dyG"/>
@@ -223,6 +223,6 @@
     </objects>
     <resources>
         <image name="minus" width="24" height="24"/>
-        <image name="right_arrow" width="16" height="16"/>
+        <image name="right_arrow1" width="16" height="16"/>
     </resources>
 </document>
