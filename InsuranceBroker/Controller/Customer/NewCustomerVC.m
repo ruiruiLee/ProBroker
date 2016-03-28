@@ -39,6 +39,8 @@
 
 - (void) updateOrAddLabelInfo
 {
+    [self.tfMobile resignFirstResponder];
+    [self.tfName resignFirstResponder];
     //更新标签
     NSString *name = self.tfName.text;
     if([name length] == 0){

@@ -134,6 +134,10 @@
                 <button opaque="NO" tag="1011" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgZ-80-HE5">
                     <rect key="frame" x="19" y="18" width="122" height="110"/>
                     <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="55" id="SCl-zq-4oh"/>
+                        <constraint firstAttribute="width" constant="55" id="ykn-Mp-Fje"/>
+                    </constraints>
                 </button>
             </subviews>
             <animations/>
