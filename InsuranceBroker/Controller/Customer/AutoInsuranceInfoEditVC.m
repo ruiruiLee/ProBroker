@@ -418,6 +418,7 @@
     NSString *carTradeTime = nil;
     if(_changeNameIdx == 0){
         carTradeStatus = @"1";
+        carTradeTime = @"";
     }
     else if (_changeNameIdx == 1){
         carTradeStatus = @"2";
@@ -462,6 +463,9 @@
                 model.carShelfNo = carShelfNo;
                 model.carTypeNo = carTypeNo;
                 model.carNo = carNo;
+                if(carInsurStatus1 != nil)
+                    model.carInsurStatus1 = [carInsurStatus1 boolValue];
+                model.carInsurCompId1 = carInsurCompId1;
                 if(filePahe){
                     model.travelCard1 = filePahe;
                 }
@@ -773,9 +777,15 @@
 - (void) car_insur_plan:(NSString *) customerCarId
 {
     OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
+    
+    NSString *str = @"";
+    if(self.customerModel.carInfo.carInsurStatus1 && self.customerModel.carInfo.carInsurCompId1 != nil){
+        str = @"&lastYearStatus=1";
+    }
+    
     web.title = @"报价";
     [self.navigationController pushViewController:web animated:YES];
-    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.customerModel.customerId, customerCarId];
+    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.customerModel.customerId, customerCarId, str];
     [web loadHtmlFromUrl:url];
 }
 

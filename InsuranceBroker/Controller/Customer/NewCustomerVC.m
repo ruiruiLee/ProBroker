@@ -159,6 +159,7 @@
                                                       }
                                                       [self.navigationController popViewControllerAnimated:NO];
                                                       AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
+                                                      vc.hidesBottomBarWhenPushed = YES;
                                                       [self.presentvc.navigationController pushViewController:vc animated:YES];
                                                       vc.customerModel = self.data;
                                                       vc.customerId = self.data.customerId;
