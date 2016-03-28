@@ -144,6 +144,7 @@
 
 - (void) handleRightBarButtonClicked:(id)sender
 {
+    [searchbar resignFirstResponder];
     NewCustomerVC *vc = [IBUIFactory CreateNewCustomerViewController];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

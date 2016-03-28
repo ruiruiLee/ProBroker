@@ -39,6 +39,12 @@
     [self loadData];
 }
 
+- (void) handleLeftBarButtonClicked:(id)sender
+{
+    [self.tfAmount resignFirstResponder];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -132,6 +138,8 @@
 
 - (void) submit:(UIButton *)sender
 {
+    [self.tfAmount resignFirstResponder];
+    
     if(_selectbank < 0){
         [Util showAlertMessage:@"请选择使用银行卡"];
         return;

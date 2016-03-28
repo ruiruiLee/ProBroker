@@ -125,6 +125,12 @@
 
 - (void) handleRightBarButtonClicked:(id)sender
 {
+    [self.tfview resignFirstResponder];
+    [self.tfAdd resignFirstResponder];
+    [self.tfStatus resignFirstResponder];
+    [self.tfTIme resignFirstResponder];
+    [self.tfWay resignFirstResponder];
+    
     if(_selectVisitProgressIdx == -1){
         [Util showAlertMessage:@"请选择跟进情况"];
         return;
@@ -145,11 +151,9 @@
     NSString *addr = self.tfAdd.text;
     NSString *visitTime = self.tfTIme.text;
     NSString *visitMemo = self.tfview.text;
-    
     [NetWorkHandler requestToSaveOrUpdateCustomerVisits:self.customerId userId:[UserInfoModel shareUserInfoModel].userId visitTime:visitTime visitAddr:addr visitType:visitType visitTypeId:visitTypeId visitProgress:visitProgress visitProgressId:visitProgressId visitLon:nil visitLat:nil visitStatus:1 visitMemo:visitMemo visitId:nil Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
-            [self.navigationController popViewControllerAnimated:YES];
             
             VisitInfoModel *model = [[VisitInfoModel alloc] init];
             model.visitAddr = addr;
@@ -165,6 +169,8 @@
             [self.customerModel.detailModel.visitAttay insertObject:model atIndex:0];
             self.customerModel.detailModel.visitTotal += 1;
             self.customerModel.visitType = visitProgress;
+            
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }];
 }

@@ -22,6 +22,14 @@
 
 @implementation RealNameAuthenticationVC
 
+- (void) handleLeftBarButtonClicked:(id)sender
+{
+    [self.tfCertNo resignFirstResponder];
+    [self.tfName resignFirstResponder];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -97,6 +105,9 @@
 
 - (void) doBtnSubmit:(UIButton *)sender
 {
+    [self.tfName resignFirstResponder];
+    [self.tfCertNo resignFirstResponder];
+    
     NSString *realName = self.tfName.text;
     if(realName == nil || [realName length] <= 1)
     {

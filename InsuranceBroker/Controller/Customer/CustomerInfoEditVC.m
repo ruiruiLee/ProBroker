@@ -227,6 +227,8 @@
 
 - (void) updateOrAddLabelInfo
 {
+    [self.tfName resignFirstResponder];
+    [self.tfMobile resignFirstResponder];
     //更新标签
     NSString *name = self.tfName.text;
     if([name length] == 0){

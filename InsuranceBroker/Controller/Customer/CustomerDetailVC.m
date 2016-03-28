@@ -440,7 +440,7 @@
     NSInteger num = [view tableView:view.tableview numberOfRowsInSection:0];
     if(num > 0){
         CGFloat viewheight = [view resetSubviewsFrame];
-        CGFloat constant = self.headerVConstraint.constant +65 + viewheight;
+        CGFloat constant = self.headerVConstraint.constant + 65 + viewheight;
         if(![view isKindOfClass:[InsuranceDetailView class]])
             constant += 50;
         self.viewVConstraint.constant = constant;

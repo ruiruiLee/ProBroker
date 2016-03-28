@@ -213,6 +213,8 @@
 
 - (void) doBtnSubmit:(UIButton *)sender
 {
+    [_tfName resignFirstResponder];
+    [_tfCardNum resignFirstResponder];
     if(_selectBankIdx < 0)
     {
         [Util showAlertMessage:@"请选择银行卡所属银行"];

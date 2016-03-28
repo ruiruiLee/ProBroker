@@ -23,11 +23,15 @@
 
 - (void) handleLeftBarButtonClicked:(id)sender
 {
+    [self.tfMobile resignFirstResponder];
+    [self.tfCaptcha resignFirstResponder];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) loginWithDictionary:(NSDictionary *)dic phone:(NSString *) phone smCode:(NSString *)smCode
 {
+    [self.tfMobile resignFirstResponder];
+    [self.tfCaptcha resignFirstResponder];
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
     [AVOSCloud verifySmsCode:smCode mobilePhoneNumber:phone callback:^(BOOL succeeded, NSError *error) {
         if(error == nil){
