@@ -751,7 +751,7 @@
         
         NSString *str = @"";
         if(self.customerinfoModel.detailModel.carInfo.carInsurStatus1 && self.customerinfoModel.detailModel.carInfo.carInsurCompId1 != nil){
-            str = @"&lastYearStatus=1";
+            str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", self.customerinfoModel.detailModel.carInfo.carInsurCompId1];
         }
         
         OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];

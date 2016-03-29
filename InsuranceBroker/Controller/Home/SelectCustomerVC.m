@@ -165,7 +165,7 @@
                     
                     NSString *str = @"";
                     if(car.carInsurStatus1 && car.carInsurCompId1 != nil){
-                        str = @"&lastYearStatus=1";
+                        str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", car.carInsurCompId1];
                     }
                     
                     OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];

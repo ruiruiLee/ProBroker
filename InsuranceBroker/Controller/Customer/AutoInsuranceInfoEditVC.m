@@ -766,7 +766,7 @@
     
     NSString *str = @"";
     if(self.customerModel.carInfo.carInsurStatus1 && self.customerModel.carInfo.carInsurCompId1 != nil){
-        str = @"&lastYearStatus=1";
+        str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", self.customerModel.carInfo.carInsurCompId1];
     }
     
     web.title = @"报价";
