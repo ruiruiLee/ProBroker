@@ -85,7 +85,7 @@
         tableheight = cellheight * num;
     }
     
-    tableheight = tableheight + 58 + 18;
+    tableheight = tableheight + 56 + 10 + 50;
     return tableheight;
 }
 
