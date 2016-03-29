@@ -24,10 +24,16 @@
 
 - (void) handleLeftBarButtonClicked:(id)sender
 {
-    [self.tfCertNo resignFirstResponder];
-    [self.tfName resignFirstResponder];
+    [self resignFirstResponder];
     
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (BOOL) resignFirstResponder
+{
+    [self.tfCertNo resignFirstResponder];
+    [self.tfName resignFirstResponder];
+    return [super resignFirstResponder];
 }
 
 - (void)viewDidLoad {
@@ -105,8 +111,7 @@
 
 - (void) doBtnSubmit:(UIButton *)sender
 {
-    [self.tfName resignFirstResponder];
-    [self.tfCertNo resignFirstResponder];
+    [self resignFirstResponder];
     
     NSString *realName = self.tfName.text;
     if(realName == nil || [realName length] <= 1)
@@ -260,6 +265,8 @@
 }
 #pragma ACTION
 - (void) btnPhotoPressed:(UIButton*)sender{
+    [self resignFirstResponder];
+    
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     UIActionSheet *ac = nil;
     if(sender.tag == 1002){

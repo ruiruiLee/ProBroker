@@ -21,17 +21,23 @@
     [self setBackBarButton];
 }
 
-- (void) handleLeftBarButtonClicked:(id)sender
+- (BOOL) resignFirstResponder
 {
     [self.tfMobile resignFirstResponder];
     [self.tfCaptcha resignFirstResponder];
+    return [super resignFirstResponder];
+}
+
+- (void) handleLeftBarButtonClicked:(id)sender
+{
+    [self resignFirstResponder];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) loginWithDictionary:(NSDictionary *)dic phone:(NSString *) phone smCode:(NSString *)smCode
 {
-    [self.tfMobile resignFirstResponder];
-    [self.tfCaptcha resignFirstResponder];
+    [self resignFirstResponder];
+
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
     [AVOSCloud verifySmsCode:smCode mobilePhoneNumber:phone callback:^(BOOL succeeded, NSError *error) {
         if(error == nil){
@@ -59,8 +65,8 @@
 
 - (void) btnGainVerifyCode:(id)sender
 {
-    [self.tfMobile resignFirstResponder];
-    [self.tfCaptcha resignFirstResponder];
+    [self resignFirstResponder];
+
     self.btnGetCaptcha.enabled = NO;
     self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
     NSString *phone = self.tfMobile.text;

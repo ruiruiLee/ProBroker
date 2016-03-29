@@ -56,32 +56,9 @@
 @implementation AutoInsuranceInfoEditVC
 @synthesize btnQuote;
 
-- (void) dealloc
-{
-    if(_datePicker){
-        [_datePicker remove];
-    }
-    if(_datePicker1){
-        [_datePicker1 remove];
-    }
-}
-
 - (void) handleLeftBarButtonClicked:(id)sender
 {
-    [self.tfNo resignFirstResponder];
-    [self.tfName resignFirstResponder];
-    [self.tfMotorCode resignFirstResponder];
-    [self.tfModel resignFirstResponder];
-    [self.tfIdenCode resignFirstResponder];
-    [self.tfDate resignFirstResponder];
-    [self.tfCert resignFirstResponder];
-    
-    if(_datePicker){
-        [_datePicker remove];
-    }
-    if(_datePicker1){
-        [_datePicker1 remove];
-    }
+    [self resignFirstResponder];
     
     BOOL flag = [self isModify];
     if(flag){
@@ -110,6 +87,26 @@
     if(buttonIndex == 0){
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (BOOL) resignFirstResponder
+{
+    [self.tfNo resignFirstResponder];
+    [self.tfName resignFirstResponder];
+    [self.tfMotorCode resignFirstResponder];
+    [self.tfModel resignFirstResponder];
+    [self.tfIdenCode resignFirstResponder];
+    [self.tfDate resignFirstResponder];
+    [self.tfCert resignFirstResponder];
+    
+    if(_datePicker){
+        [_datePicker remove];
+    }
+    if(_datePicker1){
+        [_datePicker1 remove];
+    }
+    
+    return [super resignFirstResponder];
 }
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -243,6 +240,8 @@
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    [self resignFirstResponder];
+    
     CGFloat offset = scrollView.contentOffset.x;
     if(offset >= ScreenWidth){
         self.lbExplain.hidden = NO;
@@ -284,21 +283,6 @@
     }
     
     return NO;
-}
-
-- (BOOL) resignFirstResponder
-{
-    BOOL flag = [super resignFirstResponder];
-    
-    [self.tfCert resignFirstResponder];
-    [self.tfDate resignFirstResponder];
-    [self.tfIdenCode resignFirstResponder];
-    [self.tfModel resignFirstResponder];
-    [self.tfMotorCode resignFirstResponder];
-    [self.tfName resignFirstResponder];
-    [self.tfNo resignFirstResponder];
-    
-    return flag;
 }
 
 ////续保用户; 上传所有材料：身份证和行驶证； 上传文字资料
@@ -379,13 +363,9 @@
     
     if([self checkInfoFull]){
         if(newCert){
-//            [self saveOrUpdateCustomerCert:^(int code, id content) {
-//                if(code == 200){
-                    [self submitWithLicense:^(int code, id content) {
-                        [self.navigationController popViewControllerAnimated:YES];
-                    }];
-//                }
-//            }];
+            [self submitWithLicense:^(int code, id content) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
         }else{
             [self submitWithLicense:^(int code, id content) {
                 [self.navigationController popViewControllerAnimated:YES];
@@ -399,6 +379,9 @@
     NSString *customerCarId = self.customerModel.carInfo.customerCarId;
     NSString *customerId = self.customerId;
     NSString *carOwnerCard = self.tfCert.text;
+    if (![Util validateIdentityCard:carOwnerCard]) {
+        carOwnerCard = nil;
+    }
     NSString *carOwnerName = self.tfName.text;
     NSString *carRegTime = self.tfDate.text;
     NSString *carEngineNo = self.tfMotorCode.text;
@@ -498,6 +481,8 @@
 
 - (IBAction)doButtonEditNo:(UIButton *)sender
 {
+    [self resignFirstResponder];
+    
     BOOL selected = sender.selected;
     if(selected){
         self.tfNo.enabled = YES;
@@ -597,6 +582,7 @@
 
 #pragma ACTION
 - (void) btnPhotoPressed:(UIButton*)sender{
+    [self resignFirstResponder];
     
     UIActionSheet *ac;
     
@@ -791,13 +777,8 @@
 
 - (IBAction)doButtonHowToWrite:(UIButton *)sender
 {
-    [self.tfCert resignFirstResponder];
-    [self.tfDate resignFirstResponder];
-    [self.tfIdenCode resignFirstResponder];
-    [self.tfModel resignFirstResponder];
-    [self.tfMotorCode resignFirstResponder];
-    [self.tfName resignFirstResponder];
-    [self.tfNo resignFirstResponder];
+    [self resignFirstResponder];
+    
     if(self.btnNoNo.selected){
         NSArray *urlArray = @[ThemeImage(@"price_img")];
 //        _photoBrowserView=[[PhotoBrowserView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame WithArray:urlArray andCurrentIndex:0];
@@ -834,6 +815,7 @@
 }
 
 - (IBAction)menuChange:(UIButton *)sender {
+    [self resignFirstResponder];
     
     if(_insurCompanyArray == nil){
         [self loadInsurCompany];
@@ -871,6 +853,7 @@
 }
 
 - (IBAction)menuChangeName:(UIButton *)sender {
+    [self resignFirstResponder];
     
     if (!_menu) {
         _menu = [[MenuViewController alloc]initWithTitles:_changeNameArray];
@@ -920,6 +903,8 @@
 
 - (IBAction) addDatePicker:(id) sender
 {
+    [self resignFirstResponder];
+    
     if(!_datePicker){
         _datePicker = [[ZHPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDate isHaveNavControler:YES];
         [_datePicker show];
@@ -931,6 +916,8 @@
 
 - (IBAction) addDatePicker1:(id) sender
 {
+    [self resignFirstResponder];
+    
     if(!_datePicker1){
         _datePicker1 = [[ZHPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDate isHaveNavControler:YES];
         [_datePicker1 show];
@@ -1125,6 +1112,8 @@
 //btn selected 0 明细  1 照片
 - (IBAction)doBtnInfoChange:(UIButton *)sender
 {
+    [self resignFirstResponder];
+    
     if(sender.selected){
         self.lbInfo.textColor = _COLOR(0xff, 0x66, 0x19);
         self.lbPhoto.textColor = _COLOR(0x21, 0x21, 0x21);
@@ -1139,6 +1128,8 @@
 
 - (IBAction)doBtnShowWarning:(UIButton *)sender
 {
+    [self resignFirstResponder];
+    
 //    [UIView animateWithDuration:0.25 animations:^{
         if(isShowWarning){
             self.topVConstraint.constant = 30;

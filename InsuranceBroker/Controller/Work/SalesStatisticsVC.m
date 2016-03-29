@@ -44,6 +44,7 @@
     self.chatview.yMax = 5;
 //    self.chatview.ySteps = @[@"0",@"1", @"2", @"3", @"4", @"5"];
     self.chatview.backgroundColor = [UIColor clearColor];
+    self.chatview.drawsDataPoints = NO;
     
     self.chatview1.yMin = 0;
     self.chatview1.yMax = 5;

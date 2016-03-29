@@ -44,6 +44,7 @@
     model.openBackName = [dictionary objectForKey:@"openBackName"];
     model.backCardNo = [dictionary objectForKey:@"backCardNo"];
     model.backLogo = [dictionary objectForKey:@"backLogo"];
+    model.backName = [dictionary objectForKey:@"backName"];
     
     return model;
 }

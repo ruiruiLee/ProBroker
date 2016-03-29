@@ -39,4 +39,20 @@
     [handle postWithMethod:@"/web/user/saveOrUpdateUserBackCard.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }
 
++ (void) requestToRemoveBackCard:(NSString *) backCardId
+                          userId:(NSString *) userId
+                      Completion:(Completion) completion
+{
+    NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
+    
+    NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
+    [Util setValueForKeyWithDic:pramas value:userId key:@"userId"];
+    [Util setValueForKeyWithDic:pramas value:backCardId key:@"backCardId"];
+    [Util setValueForKeyWithDic:pramas value:@"-1" key:@"backCardStatus"];
+
+    
+    
+    [handle postWithMethod:@"/web/user/saveOrUpdateUserBackCard.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
+}
+
 @end

@@ -16,6 +16,9 @@
 #import "NetWorkHandler+modifyUserInfo.h"
 
 @interface UserInfoEditVC ()<HMPopUpViewDelegate>
+{
+    HMPopUpView *hmPopUp;
+}
 
 @end
 
@@ -51,6 +54,18 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL) resignFirstResponder
+{
+    [hmPopUp hide];
+    return [super resignFirstResponder];
+}
+
+- (void) handleLeftBarButtonClicked:(id)sender
+{
+    [self resignFirstResponder];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma UITableViewDataSource UITableViewDelegate
@@ -160,7 +175,7 @@
             break;
         case 1:
         {
-            HMPopUpView *hmPopUp = [[HMPopUpView alloc] initWithTitle:@"修改昵称" okButtonTitle:@"确定" cancelButtonTitle:@"取消" delegate:self];
+            hmPopUp = [[HMPopUpView alloc] initWithTitle:@"修改昵称" okButtonTitle:@"确定" cancelButtonTitle:@"取消" delegate:self];
             hmPopUp.transitionType = HMPopUpTransitionTypePopFromBottom;
             hmPopUp.dismissType = HMPopUpDismissTypeFadeOutTop;
             [hmPopUp showInView:self.view];

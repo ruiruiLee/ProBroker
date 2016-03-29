@@ -135,11 +135,22 @@
     
 }
 
+- (BOOL) resignFirstResponder
+{
+    [textfield.textfield resignFirstResponder];
+    return [super resignFirstResponder];
+}
+
 - (void) doBtnClicked:(TagButton *)sender
 {
+    [self resignFirstResponder];
+    
     TagButtonType type = sender.tagType;
     if(type == enumTagButtonNormal){
         sender.tagType = enumTagButtonDel;
+        if(delegate && [delegate respondsToSelector:@selector(NotifyOwnerTagSelectedChanged:)]){
+            [delegate NotifyOwnerTagSelectedChanged:modelArray];
+        }
     }else{
         [viewArray removeObject:sender];
         [sender removeFromSuperview];

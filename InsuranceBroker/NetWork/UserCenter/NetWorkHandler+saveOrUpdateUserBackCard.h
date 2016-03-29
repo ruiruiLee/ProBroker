@@ -31,4 +31,8 @@
                               openBackName:(NSString *) openBackName
                                 Completion:(Completion) completion;
 
++ (void) requestToRemoveBackCard:(NSString *) backCardId
+                          userId:(NSString *) userId
+                      Completion:(Completion) completion;
+
 @end

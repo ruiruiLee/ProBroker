@@ -27,6 +27,7 @@
 @property (nonatomic, strong) NSString *openAreaId;//:1；//开户区
 @property (nonatomic, strong) NSString *openAddr;//:1；//开户银行所在街道地址
 @property (nonatomic, strong) NSString *openBackName;//:1；//开户银行全称
+@property (nonatomic, strong) NSString *backName;
 @property (nonatomic, strong) NSString *backLogo;
 
 @end

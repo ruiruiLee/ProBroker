@@ -21,6 +21,7 @@
 @interface MyTeamInfoVC () <HMPopUpViewDelegate>
 {
     UIImageView *iconview;
+    HMPopUpView *hmPopUp;
 }
 
 @property (nonatomic, strong) ParentInfoModel *parentModel;
@@ -131,6 +132,41 @@
     [self.view addConstraints:self.hConstraints];
 }
 
+- (BOOL) resignFirstResponder
+{
+    [hmPopUp.txtField resignFirstResponder];
+    [hmPopUp hide];
+    
+    return [super resignFirstResponder];
+}
+
+- (void) handleLeftBarButtonClicked:(id)sender
+{
+    [self resignFirstResponder];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void) handleRightBarButtonClicked:(id)sender
+{
+    [self resignFirstResponder];
+    
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    NewUserModel *model = appdelegate.workBanner;
+    if(model.isRedirect){
+        WebViewController *web = [IBUIFactory CreateWebViewController];
+        web.title = model.title;
+        web.type = enumShareTypeShare;
+        web.shareTitle = model.title;
+        web.shareContent = model.content;
+        [self.navigationController pushViewController:web animated:YES];
+        if(model.url){
+            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@", model.url]];
+        }else{
+            NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid];
+            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@",url]];
+        }
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -428,7 +464,7 @@
     NSInteger idx = sender.tag - 100;
     if(idx >= 0 && idx < [self.data count]){
         BrokerInfoModel *model = [self.data objectAtIndex:idx];
-        HMPopUpView *hmPopUp = [[HMPopUpView alloc] initWithTitle:@"修改备注" okButtonTitle:@"确定" cancelButtonTitle:@"取消" delegate:self];
+        hmPopUp = [[HMPopUpView alloc] initWithTitle:@"修改备注" okButtonTitle:@"确定" cancelButtonTitle:@"取消" delegate:self];
         hmPopUp.transitionType = HMPopUpTransitionTypePopFromBottom;
         hmPopUp.dismissType = HMPopUpDismissTypeFadeOutTop;
         [hmPopUp showInView:self.view];

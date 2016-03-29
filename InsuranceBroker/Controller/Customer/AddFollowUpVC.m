@@ -35,14 +35,7 @@
 
 @implementation AddFollowUpVC
 
-- (void) dealloc
-{
-    if(_datePicker){
-        [_datePicker remove];
-    }
-}
-
-- (void) handleLeftBarButtonClicked:(id)sender
+- (BOOL) resignFirstResponder
 {
     [self.tfAdd resignFirstResponder];
     [self.tfStatus resignFirstResponder];
@@ -53,6 +46,13 @@
     if(_datePicker){
         [_datePicker remove];
     }
+    
+    return [super resignFirstResponder];
+}
+
+- (void) handleLeftBarButtonClicked:(id)sender
+{
+    [self resignFirstResponder];
     
     BOOL flag = [self isHasModify];
     if(flag){
@@ -125,11 +125,7 @@
 
 - (void) handleRightBarButtonClicked:(id)sender
 {
-    [self.tfview resignFirstResponder];
-    [self.tfAdd resignFirstResponder];
-    [self.tfStatus resignFirstResponder];
-    [self.tfTIme resignFirstResponder];
-    [self.tfWay resignFirstResponder];
+    [self resignFirstResponder];
     
     if(_selectVisitProgressIdx == -1){
         [Util showAlertMessage:@"请选择跟进情况"];
@@ -182,6 +178,8 @@
 
 
 - (IBAction)menuChange:(UIButton *)sender {
+    [self resignFirstResponder];
+    
     if (!_menuView) {
         NSArray *titles = @[];
         _menuView = [[MenuViewController alloc]initWithTitles:titles];
@@ -206,6 +204,8 @@
 
 - (IBAction) addFollowDate:(id) sender
 {
+    [self resignFirstResponder];
+    
     if(!_datePicker){
         _datePicker = [[ZHPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:YES];
         [_datePicker show];

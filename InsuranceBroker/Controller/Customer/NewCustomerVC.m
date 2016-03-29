@@ -39,8 +39,6 @@
 
 - (void) updateOrAddLabelInfo
 {
-    [self.tfMobile resignFirstResponder];
-    [self.tfName resignFirstResponder];
     //更新标签
     NSString *name = self.tfName.text;
     if([name length] == 0){
@@ -172,6 +170,8 @@
 
 - (IBAction)doBtnAddressBook:(id)sender
 {
+    [self resignFirstResponder];
+    
     if([self getIOSVersion] >= 9.0){
         if(!self.picker){
             self.picker = [[CNContactPickerViewController alloc] init];

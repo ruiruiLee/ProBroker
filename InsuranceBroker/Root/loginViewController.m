@@ -24,6 +24,13 @@
 
 @implementation loginViewController
 
+- (BOOL) resignFirstResponder
+{
+    [self.tfMobile resignFirstResponder];
+    [self.tfCaptcha resignFirstResponder];
+    return [super resignFirstResponder];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -54,13 +61,15 @@
 
 - (void) handleLeftBarButtonClicked:(id)sender
 {
-    [self.tfMobile resignFirstResponder];
-    [self.tfCaptcha resignFirstResponder];
+    [self resignFirstResponder];
+
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) handleRightBarButtonClicked:(id)sender
 {
+    [self resignFirstResponder];
+    
     NSString *num = [[NSString alloc] initWithFormat:@"tel://%@",ServicePhone]; //而这个方法则打电话前先弹框  是否打电话 然后打完电话之后回到程序中 
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:num]];
@@ -74,8 +83,8 @@
 
 - (void) loginWithDictionary:(NSDictionary *)dic phone:(NSString *) phone smCode:(NSString *)smCode
 {
-    [self.tfMobile resignFirstResponder];
-    [self.tfCaptcha resignFirstResponder];
+    [self resignFirstResponder];
+
     [NetWorkHandler loginWithPhone:phone openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:[dic objectForKey:@"nickname"] privilege:[dic objectForKey:@"privilege"] unionid:@"" province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:smCode Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 505){
@@ -110,8 +119,8 @@
 
 - (void) btnGainVerifyCode:(id)sender
 {
-    [self.tfMobile resignFirstResponder];
-    [self.tfCaptcha resignFirstResponder];
+    [self resignFirstResponder];
+
     self.btnGetCaptcha.enabled = NO;
     self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
     NSString *phone = self.tfMobile.text;
@@ -132,6 +141,8 @@
 
 - (IBAction)doBtnAgreementInfo:(id)sender
 {
+    [self resignFirstResponder];
+    
     WebViewController *web = [IBUIFactory CreateWebViewController];
     web.title = @"用户协议";
     [self.navigationController pushViewController:web animated:YES];
@@ -141,8 +152,7 @@
 
 - (void) NotifyToSetTeamLeaderPhone:(NSString*) phoneNum remarkName:(NSString *)remarkName
 {
-    [self.tfMobile resignFirstResponder];
-    [self.tfCaptcha resignFirstResponder];
+    [self resignFirstResponder];
     
     NSDictionary *dic = self.wxDic;
     [NetWorkHandler loginWithPhone:self.tfMobile.text openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:remarkName privilege:[dic objectForKey:@"privilege"] unionid:[dic objectForKey:@"unionid"] province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:nil parentPhone:(NSString *)phoneNum Completion:^(int code, id content) {

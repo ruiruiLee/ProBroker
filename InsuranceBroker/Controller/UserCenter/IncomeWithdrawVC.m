@@ -13,6 +13,7 @@
 #import "UIImageView+WebCache.h"
 #import "NetWorkHandler+applyForEarn.h"
 #import "NetWorkHandler+queryUserNowAdvanceMoney.h"
+#import "NetWorkHandler+saveOrUpdateUserBackCard.h"
 
 @interface IncomeWithdrawVC ()
 {
@@ -41,8 +42,15 @@
 
 - (void) handleLeftBarButtonClicked:(id)sender
 {
-    [self.tfAmount resignFirstResponder];
+    [self resignFirstResponder];
+    
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (BOOL) resignFirstResponder
+{
+    [self.tfAmount resignFirstResponder];
+    return [super resignFirstResponder];
 }
 
 - (void)viewDidLoad {
@@ -128,6 +136,8 @@
 
 - (void) handleRightBarButtonClicked:(id)sender
 {
+    [self resignFirstResponder];
+    
     WebViewController *web = [IBUIFactory CreateWebViewController];
     web.title = @"提现说明";
     [self.tfAmount resignFirstResponder];
@@ -138,7 +148,7 @@
 
 - (void) submit:(UIButton *)sender
 {
-    [self.tfAmount resignFirstResponder];
+    [self resignFirstResponder];
     
     if(_selectbank < 0){
         [Util showAlertMessage:@"请选择使用银行卡"];
@@ -259,6 +269,8 @@
             
             cell.imageView.layer.cornerRadius = 20;
             cell.textLabel.text = model.openBackName;
+            if(!model.openBackName)
+                cell.textLabel.text = model.backName;
             [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.backLogo] placeholderImage:Normal_Logo completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
                 if(image != nil){
                     UIImage *newimage = [Util fitSmallImage:image scaledToSize:CGSizeMake(40, 40)];
@@ -342,6 +354,8 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self resignFirstResponder];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     if([self.data count] == 0){
@@ -386,6 +400,56 @@
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
         [cell setLayoutMargins:insets];
     }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+     if([self.data count] == 0)
+         return NO;
+     else{
+         if(indexPath.section == 0)
+             return YES;
+         return NO;
+     }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"commitEditingStyle");
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        NSString *userId = [UserInfoModel shareUserInfoModel].userId;
+        BankCardModel *model = [self.data objectAtIndex:indexPath.row];
+        
+        [NetWorkHandler requestToRemoveBackCard:model.backCardId userId:userId Completion:^(int code, id content) {
+            [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+            if(code == 200){
+                [self.data removeObject:model];
+                [self.tableview reloadData];
+
+                _selectbank = -1;
+
+            }
+        }];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+    }
+}
+
+//编辑删除按钮的文字
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
+//这个方法用来告诉表格 某一行是否可以移动
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete; //每行左边会出现红的删除按钮
 }
 
 - (void) doBankSelect:(UIButton *)sender

@@ -183,4 +183,6 @@ typedef NS_ENUM(NSInteger, HMPopUpDismissType) {
  *  @param view current ViewController's view
  */
 - (void)showInView:(UIView *)view;
+
+- (void)hide;
 @end

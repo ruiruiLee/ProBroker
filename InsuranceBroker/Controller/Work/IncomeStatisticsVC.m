@@ -59,6 +59,7 @@
     self.chatview.yMax = 5;
 //    self.chatview.ySteps = @[@"0",@"500", @"1000", @"1500", @"2000", @"2500"];
     self.chatview.backgroundColor = [UIColor clearColor];
+    self.chatview.drawsDataPoints = NO;
     
 //    UserInfoModel *model = [UserInfoModel shareUserInfoModel];
 //    self.lbIncome.text = [Util getDecimalStyle:model.monthOrderEarn];

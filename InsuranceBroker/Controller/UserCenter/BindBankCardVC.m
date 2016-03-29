@@ -126,10 +126,17 @@
     }];
 }
 
-- (void) handleLeftBarButtonClicked:(id)sender
+- (BOOL) resignFirstResponder
 {
     [_tfCardNum resignFirstResponder];
     [_tfName resignFirstResponder];
+    return [super resignFirstResponder];
+}
+
+- (void) handleLeftBarButtonClicked:(id)sender
+{
+    [self resignFirstResponder];
+    
     BOOL result = [self isModify];
     if(result){
         if([self getIOSVersion] < 8.0){
@@ -213,8 +220,8 @@
 
 - (void) doBtnSubmit:(UIButton *)sender
 {
-    [_tfName resignFirstResponder];
-    [_tfCardNum resignFirstResponder];
+    [self resignFirstResponder];
+    
     if(_selectBankIdx < 0)
     {
         [Util showAlertMessage:@"请选择银行卡所属银行"];
@@ -247,8 +254,7 @@
 
 - (void) doSelectBank:(UIButton *)sender
 {
-    [_tfName resignFirstResponder];
-    [_tfCardNum resignFirstResponder];
+    [self resignFirstResponder];
     
     if(self.data == nil){
         [self loadData];

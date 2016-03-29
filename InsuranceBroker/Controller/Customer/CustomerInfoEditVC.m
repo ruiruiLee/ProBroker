@@ -22,8 +22,7 @@
 
 - (void) handleLeftBarButtonClicked:(id)sender
 {
-    [self.tfName resignFirstResponder];
-    [self.tfMobile resignFirstResponder];
+    [self resignFirstResponder];
     
     BOOL flag = [self isHasModify];
     if(flag){
@@ -52,6 +51,16 @@
     if(buttonIndex == 0){
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (BOOL) resignFirstResponder
+{
+    [self.tfName resignFirstResponder];
+    [self.tfMobile resignFirstResponder];
+    [self.onwerTag resignFirstResponder];
+    [self.tagView resignFirstResponder];
+    
+    return [super resignFirstResponder];
 }
 
 - (void)viewDidLoad {
@@ -185,6 +194,8 @@
 
 - (void) NotifySelectTag:(NSArray *) labelArray
 {
+    [self resignFirstResponder];
+    
     [self.onwerTag setDataArray:labelArray];
 }
 
@@ -196,6 +207,8 @@
 
 - (void) NotifyOwnerTagSelectedChanged:(NSArray *) labelArray
 {
+    [self resignFirstResponder];
+    
     [self.tagView setOwnerArray:labelArray];
 }
 
@@ -221,14 +234,14 @@
 - (void) handleRightBarButtonClicked:(id)sender
 {
     //上传修改内容
+    [self resignFirstResponder];
     [self updateOrAddLabelInfo];
-    
 }
 
 - (void) updateOrAddLabelInfo
 {
-    [self.tfName resignFirstResponder];
-    [self.tfMobile resignFirstResponder];
+
+//    [self resignFirstResponder];
     //更新标签
     NSString *name = self.tfName.text;
     if([name length] == 0){
