@@ -254,11 +254,13 @@
     if(self.btnChange.selected){
         self.lbInfo.textColor = _COLOR(0xff, 0x66, 0x19);
         self.lbPhoto.textColor = _COLOR(0x21, 0x21, 0x21);
+        self.btnChange.selected = NO;
     }else{
         self.lbPhoto.textColor = _COLOR(0xff, 0x66, 0x19);
         self.lbInfo.textColor = _COLOR(0x21, 0x21, 0x21);
+        self.btnChange.selected = YES;
     }
-    self.btnChange.selected = !self.btnChange.selected;
+//    self.btnChange.selected = !self.btnChange.selected;
 }
 
 - (NSMutableAttributedString *)getAttbuteString
