@@ -602,7 +602,7 @@
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    NSLog(@"%d", [textField.text length]);
+
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
 //    if([newText length] > 20){
 //        return NO;
