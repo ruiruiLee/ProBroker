@@ -218,10 +218,10 @@
     {
         NSString *aPhone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneMulti, i);
         NSString *aLabel = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneMulti, i);
-        if([aLabel isEqualToString:@"_$!<Mobile>!$_"])
-        {
+//        if([aLabel isEqualToString:@"_$!<Mobile>!$_"])
+//        {
             [phones addObject:aPhone];
-        }
+//        }
     }
     
     self.tfName.text = name;
@@ -247,10 +247,10 @@
     {
         NSString *aPhone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneMulti, i);
         NSString *aLabel = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneMulti, i);
-        if([aLabel isEqualToString:@"_$!<Mobile>!$_"])
-        {
+//        if([aLabel isEqualToString:@"_$!<Mobile>!$_"])
+//        {
             [phones addObject:aPhone];
-        }
+//        }
     }
     
     self.tfName.text = name;
@@ -301,7 +301,7 @@
     if([phoneNumbers count] > 0){
         CNLabeledValue *value = [phoneNumbers objectAtIndex:0];
         CNPhoneNumber *number = value.value;
-        NSString *mobile = [self formatPhoneNum:number.stringValue];//[number.stringValue stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        NSString *mobile = [self formatPhoneNum:number.stringValue];
         self.tfMobile.text =  mobile;
     }
     

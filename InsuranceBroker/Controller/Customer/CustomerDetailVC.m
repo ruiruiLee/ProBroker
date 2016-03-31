@@ -620,6 +620,8 @@
                         model.carOwnerCard1 = filePahe3;
                     if(filePahe4 != nil)
                         model.carOwnerCard2 = filePahe4;
+                    
+                    [_insuranceDetailView.tableview reloadData];
                 }
                 [ProgressHUD dismiss];
             });

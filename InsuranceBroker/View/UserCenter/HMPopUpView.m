@@ -26,8 +26,13 @@
 
 @implementation HMPopUpView
 @synthesize txtField;
-
 @synthesize hmDelegate = _hmDelegate, transitionType, dismissType;
+
+- (void) dealloc
+{
+    [self.txtField removeObserver:self forKeyPath:@"text"];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -588,12 +593,16 @@
 - (void)textFieldDidChange:(UITextField *)textField
 {
     if (textField.text.length > 20) {
-        textField.text = [textField.text substringToIndex:20];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            textField.text = [textField.text substringToIndex:20];
+            
+        });
     }
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    
+
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
 //    if([newText length] > 20){
 //        return NO;
@@ -620,6 +629,5 @@
     }
     
     return YES;
-    
 }
 @end

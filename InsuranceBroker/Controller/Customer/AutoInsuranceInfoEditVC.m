@@ -240,8 +240,6 @@
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    [self resignFirstResponder];
-    
     CGFloat offset = scrollView.contentOffset.x;
     if(offset >= ScreenWidth){
         self.lbExplain.hidden = NO;
@@ -256,11 +254,13 @@
     if(self.btnChange.selected){
         self.lbInfo.textColor = _COLOR(0xff, 0x66, 0x19);
         self.lbPhoto.textColor = _COLOR(0x21, 0x21, 0x21);
+        self.btnChange.selected = NO;
     }else{
         self.lbPhoto.textColor = _COLOR(0xff, 0x66, 0x19);
         self.lbInfo.textColor = _COLOR(0x21, 0x21, 0x21);
+        self.btnChange.selected = YES;
     }
-    self.btnChange.selected = !self.btnChange.selected;
+//    self.btnChange.selected = !self.btnChange.selected;
 }
 
 - (NSMutableAttributedString *)getAttbuteString
@@ -357,20 +357,46 @@
     return result;
 }
 
+- (BOOL) checkInfoRight
+{
+    BOOL result = YES;
+    
+    NSString *carOwnerCard = self.tfCert.text;//身份证号
+    NSString *carNo = [self getCarCertString];//车牌;
+    
+
+    BOOL flag = [Util validateIdentityCard:carOwnerCard];//[self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
+    if([carOwnerCard length] > 0 && !flag){
+        [Util showAlertMessage:@"车主身份证号不正确"];
+        return NO;
+    }
+
+    if([carNo length] > 0 && ![Util validateCarNo:carNo]){
+        [Util showAlertMessage:@"车牌号不正确"];
+        return NO;
+    }
+    
+    return result;
+
+}
+
 - (void) handleRightBarButtonClicked:(id)sender
 {
     [self resignFirstResponder];
     
-    if([self checkInfoFull]){
-        if(newCert){
-            [self submitWithLicense:^(int code, id content) {
-                [self.navigationController popViewControllerAnimated:YES];
-            }];
-        }else{
-            [self submitWithLicense:^(int code, id content) {
-                [self.navigationController popViewControllerAnimated:YES];
-            }];
-        }
+    if([self checkInfoRight]){
+//        if(newCert){
+//            [self submitWithLicense:^(int code, id content) {
+//                [self.navigationController popViewControllerAnimated:YES];
+//            }];
+//        }else{
+//            [self submitWithLicense:^(int code, id content) {
+//                [self.navigationController popViewControllerAnimated:YES];
+//            }];
+//        }
+        [self submitWithLicense:^(int code, id content) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
     }
 }
 
@@ -971,12 +997,12 @@
     
     result = isCertModify;
     
-    NSString *name = self.tfName.text;
-    BOOL flag = [self checkValueChange:name text:model.carOwnerName];
-    if(flag)
-        result = flag;
+//    NSString *name = self.tfName.text;
+//    BOOL flag = [self checkValueChange:name text:model.carOwnerName];
+//    if(flag)
+//        result = flag;
     NSString *cert = self.tfCert.text;
-    flag = [self checkValueChange:cert text:model.carOwnerCard];
+    BOOL flag = [self checkValueChange:cert text:model.carOwnerCard];
     if(flag)
         result = flag;
     NSString *no = [self getCarCertString];//self.tfNo.text;
@@ -1018,7 +1044,12 @@
         }
     }
     //是否过户
-    if(model.carTradeStatus != _changeNameIdx + 1){
+    if( model != nil && (model.carTradeStatus != _changeNameIdx + 1)){
+        result = YES;
+    }
+    
+    if(model == nil && !(_changeNameIdx == -1 || _changeNameIdx == 0))
+    {
         result = YES;
     }
     //过户日起
