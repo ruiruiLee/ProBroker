@@ -319,7 +319,7 @@
             } // for
         } // draw data points
         
-        if (self.drawsDataPoints && j == 0) {
+        if (/*self.drawsDataPoints &&*/ j == 0) {
             float xRangeLen = data.xMax - data.xMin;
             for(NSUInteger i = 0; i < data.itemCount; ++i) {
                 LineChartDataItem *datItem = data.getData(i);
