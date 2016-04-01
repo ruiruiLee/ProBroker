@@ -124,7 +124,7 @@
         tableheight += [self tableView:self.tableview heightForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
     }
     
-    return tableheight + 58 + 18 + _footView.frame.size.height;
+    return tableheight + 56 + 10 + 60 + _footView.frame.size.height;
 }
 
 - (void) doEditButtonClicked:(UIButton *)sender
