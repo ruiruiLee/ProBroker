@@ -163,12 +163,12 @@
                      [KGStatusBar showSuccessWithStatus:@"分享失败"];
                      break;
                  }
-                 case SSDKResponseStateCancel:
-                 {
-                     
-                     [KGStatusBar showSuccessWithStatus:@"分享已取消"];
-                     break;
-                 }
+//                 case SSDKResponseStateCancel:
+//                 {
+//                     
+//                     [KGStatusBar showSuccessWithStatus:@"分享已取消"];
+//                     break;
+//                 }
                  default:
                      break;
              }
