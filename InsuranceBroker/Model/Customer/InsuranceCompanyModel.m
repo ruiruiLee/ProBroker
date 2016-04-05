@@ -31,6 +31,10 @@
     model.insuranceCompanyShortName = [dictionary objectForKey:@"insuranceCompanyShortName"];
     model.insuranceCompanyLogo = [dictionary objectForKey:@"insuranceCompanyLogo"];
     model.insuranceType = [dictionary objectForKey:@"insuranceType"];
+    model.productLogo = [dictionary objectForKey:@"productLogo"];
+    model.productName = [dictionary objectForKey:@"productName"];
+    model.productId = [dictionary objectForKey:@"productId"];
+    model.productBjmpType = [[dictionary objectForKey:@"productBjmpType"] boolValue];
     
     return model;
 }

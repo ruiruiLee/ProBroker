@@ -59,8 +59,8 @@
     }
     
     InsuranceCompanyModel *model = [self.titleArray objectAtIndex:indexPath.row];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.insuranceCompanyLogo] placeholderImage:Normal_Logo];
-    cell.textLabel.text = model.insuranceCompanyShortName;
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:Normal_Logo];
+    cell.textLabel.text = model.productName;
     UIButton *btn = (UIButton*)cell.accessoryView;
     if(self.selectIdx == indexPath.row)
         btn.selected = YES;

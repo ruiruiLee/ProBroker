@@ -28,6 +28,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewHConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *baseViewVConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *view2VConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *view3VConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *view5VConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *view6VConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *view7VConstraint;
