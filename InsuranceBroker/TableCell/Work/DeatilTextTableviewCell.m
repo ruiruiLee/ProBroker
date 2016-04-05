@@ -12,6 +12,7 @@
 @implementation DeatilTextTableviewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
     self.lbDetailTitle.textColor = Subhead_Color;
 }

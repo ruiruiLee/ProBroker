@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
-@interface LucyMoneyTableCell : UITableViewCell
+@interface LucyMoneyTableCell : BaseTableViewCell
 
 @property (nonatomic, strong) IBOutlet UIImageView *logoImgV;
 @property (nonatomic, strong) IBOutlet UILabel *lbTitle;

@@ -12,6 +12,8 @@
 @implementation ProductSettingTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     // Initialization code
     self.logo.layer.borderWidth = 0.5;
     self.logo.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;

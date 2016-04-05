@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
-@interface DetailAccountTableViewCell : UITableViewCell
+@interface DetailAccountTableViewCell : BaseTableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel *lbDate;
 @property (nonatomic, strong) IBOutlet UILabel *lbTime;

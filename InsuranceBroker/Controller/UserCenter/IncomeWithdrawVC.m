@@ -14,6 +14,7 @@
 #import "NetWorkHandler+applyForEarn.h"
 #import "NetWorkHandler+queryUserNowAdvanceMoney.h"
 #import "NetWorkHandler+saveOrUpdateUserBackCard.h"
+#import "BaseTableViewCell.h"
 
 @interface IncomeWithdrawVC ()
 {
@@ -231,9 +232,9 @@
 {
     if([self.data count] == 0){
         NSString *deq = @"cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+        BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
         if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+            cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
             cell.textLabel.font = _FONT(12);
             cell.textLabel.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.contentView.backgroundColor = _COLOR(245, 245, 245);
@@ -247,9 +248,9 @@
     else{
         if(indexPath.section == 0){
             NSString *deq = @"cell1";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+            BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
             if(!cell){
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:deq];
+                cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:deq];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 cell.textLabel.font = _FONT(15);
                 cell.textLabel.textColor = _COLOR(0x21, 0x21, 0x21);
@@ -291,9 +292,9 @@
         }
         else if(indexPath.section == 1){
             NSString *deq = @"cell2";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+            BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
             if(!cell){
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+                cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
                 cell.textLabel.font = _FONT(12);
                 cell.textLabel.textColor = _COLOR(0x75, 0x75, 0x75);
                 cell.contentView.backgroundColor = _COLOR(245, 245, 245);
@@ -306,9 +307,9 @@
         }else{
             if(indexPath.row == 1){
                 NSString *deq = @"cell3";
-                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+                BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
                 if(!cell){
-                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:deq];
+                    cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:deq];
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     cell.textLabel.font = _FONT(15);
@@ -328,9 +329,9 @@
                 return cell;
             }else{
                 NSString *deq = @"cell4";
-                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+                BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
                 if(!cell) {
-                    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+                    cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
                     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     cell.textLabel.font = _FONT(15);

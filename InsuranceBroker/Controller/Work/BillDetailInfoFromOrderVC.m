@@ -51,11 +51,14 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
         //        title = @"报价中";
-    WebViewController *web = [IBUIFactory CreateWebViewController];
-    web.title = @"报价详情";
-    [self.navigationController pushViewController:web animated:YES];
-    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@", Base_Uri, @"1", self.billInfo.insuranceOrderUuid];
-    [web loadHtmlFromUrl:url];
+    
+    if(indexPath.row == 0){
+        WebViewController *web = [IBUIFactory CreateWebViewController];
+        web.title = @"报价详情";
+        [self.navigationController pushViewController:web animated:YES];
+        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@", Base_Uri, @"1", self.billInfo.insuranceOrderUuid];
+        [web loadHtmlFromUrl:url];
+    }
 
 }
 

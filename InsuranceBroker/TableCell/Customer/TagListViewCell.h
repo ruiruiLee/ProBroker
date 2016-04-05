@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
-@interface TagListViewCell : UITableViewCell
+@interface TagListViewCell : BaseTableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel *lbName;
 @property (nonatomic, strong) IBOutlet UILabel *lbAmount;

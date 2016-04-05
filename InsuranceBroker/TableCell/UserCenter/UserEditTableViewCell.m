@@ -11,6 +11,8 @@
 @implementation UserEditTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     // Initialization code
     self.imgv.clipsToBounds = YES;
 }

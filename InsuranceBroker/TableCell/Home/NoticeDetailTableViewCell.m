@@ -13,6 +13,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
+    
     self.lbContent.numberOfLines = 0;
     self.lbContent.preferredMaxLayoutWidth = ScreenWidth - 60;
     self.clipsToBounds = YES;

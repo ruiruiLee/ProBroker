@@ -13,6 +13,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
     
     self.logoImgV.image = ThemeImage(@"chexian");
     self.contentBg.layer.borderWidth = 0.5;

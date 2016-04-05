@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "LeftImgButtonLeft.h"
+#import "BaseTableViewCell.h"
 
-@interface PolicyInfoTableViewCell : UITableViewCell
+@interface PolicyInfoTableViewCell : BaseTableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel *lbNo;//编号
 @property (nonatomic, strong) IBOutlet UILabel *lbUpdateTime;

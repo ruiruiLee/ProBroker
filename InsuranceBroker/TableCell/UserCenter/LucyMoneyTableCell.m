@@ -12,6 +12,8 @@
 @implementation LucyMoneyTableCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     // Initialization code
 //    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.btnReceive.layer.cornerRadius = 3;

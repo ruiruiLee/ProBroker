@@ -13,6 +13,8 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import <AVOSCloudSNS/AVOSCloudSNS.h>
 #import "EGOCache.h"
+#import "BaseTableViewCell.h"
+
 @interface UserSettingVC ()
 
 @property (nonatomic, strong) ZWIntroductionViewController *introductionView;
@@ -110,9 +112,9 @@
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *deq = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+    BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+        cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.font = _FONT(15);
         cell.textLabel.textColor = _COLOR(0x21, 0x21, 0x21);

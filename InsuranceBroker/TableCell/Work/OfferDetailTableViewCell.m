@@ -13,6 +13,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
     
     self.photo.image = ThemeImage(@"chexian");
     self.btnAdd.layer.cornerRadius = 3;

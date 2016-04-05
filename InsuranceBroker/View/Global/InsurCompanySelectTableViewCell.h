@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
-@interface InsurCompanySelectTableViewCell : UITableViewCell
+@interface InsurCompanySelectTableViewCell : BaseTableViewCell
 
 @end

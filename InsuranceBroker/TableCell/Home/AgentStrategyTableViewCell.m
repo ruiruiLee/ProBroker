@@ -12,6 +12,8 @@
 @implementation AgentStrategyTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     // Initialization code
     self.photoImgV.layer.borderWidth = 0.4;
     self.photoImgV.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
