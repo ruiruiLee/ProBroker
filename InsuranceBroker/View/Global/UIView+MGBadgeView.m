@@ -185,7 +185,7 @@ static int const kMGBadgeViewTag = 9876;
 
 - (void)mg_updateBadgeViewSize {
     //Calculate badge bounds
-    CGSize numberSize = [[NSString stringWithFormat:@"%ld", (long)_badgeValue] sizeWithAttributes:@{NSFontAttributeName: _font}];
+  //  CGSize numberSize = [[NSString stringWithFormat:@"%ld", (long)_badgeValue] sizeWithAttributes:@{NSFontAttributeName: _font}];
     
     float badgeHeight = 15;//MAX(BADGE_TOTAL_OFFSET + numberSize.height, _minDiameter);
     float badgeWidth = 15;//MAX(badgeHeight, BADGE_TOTAL_OFFSET + numberSize.width);

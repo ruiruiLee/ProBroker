@@ -89,7 +89,7 @@
 //        return NO;
 //    }
     
-    CGFloat currentWidth = [self widthForInputViewWithText:textField.text];
+    //CGFloat currentWidth = [self widthForInputViewWithText:textField.text];
     CGFloat newWidth = 0;
     NSString *newText = nil;
     
@@ -140,9 +140,9 @@
 //            {
 //                NSString *deletedTag = _tagsMade.lastObject;
 //                [self removeTag:deletedTag animated:YES];
-            if(delegate && [delegate respondsToSelector:@selector(DelPrevTag:)]){
-                BOOL flag = [delegate DelPrevTag:self];
-            }
+//            if(delegate && [delegate respondsToSelector:@selector(DelPrevTag:)]){
+//                BOOL flag = [delegate DelPrevTag:self];
+//            }
                 _readyToDelete = NO;
 //            }
         }

@@ -217,7 +217,7 @@
     for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++)
     {
         NSString *aPhone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneMulti, i);
-        NSString *aLabel = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneMulti, i);
+//        NSString *aLabel = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneMulti, i);
 //        if([aLabel isEqualToString:@"_$!<Mobile>!$_"])
 //        {
             [phones addObject:aPhone];
@@ -246,7 +246,7 @@
     for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++)
     {
         NSString *aPhone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneMulti, i);
-        NSString *aLabel = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneMulti, i);
+//        NSString *aLabel = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneMulti, i);
 //        if([aLabel isEqualToString:@"_$!<Mobile>!$_"])
 //        {
             [phones addObject:aPhone];
