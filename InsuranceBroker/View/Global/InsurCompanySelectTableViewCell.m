@@ -12,6 +12,7 @@
 @implementation InsurCompanySelectTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
     self.imageView.layer.borderWidth = 0.5;
     self.imageView.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;

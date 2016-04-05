@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
-@interface CommissionSetTableViewCell : UITableViewCell
+@interface CommissionSetTableViewCell : BaseTableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel *lbAccount;
 @property (nonatomic, strong) IBOutlet UILabel *lbDetail;

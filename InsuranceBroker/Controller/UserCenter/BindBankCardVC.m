@@ -13,6 +13,7 @@
 #import "BankInfoModel.h"
 #import "BankSelectVC.h"
 #import "ProgressHUD.h"
+#import "BaseTableViewCell.h"
 
 @interface BindBankCardVC ()<MenuDelegate>
 {
@@ -181,9 +182,9 @@
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *deq = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+    BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+        cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.font = _FONT(15);
         cell.textLabel.textColor = _COLOR(0x21, 0x21, 0x21);

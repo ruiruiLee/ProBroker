@@ -242,7 +242,7 @@
             cell.lbCount.hidden = YES;
         }
         cell.photoImage.image = image;
-        
+        UIView *select = cell.selectedBackgroundView;
         return cell;
     }
 }

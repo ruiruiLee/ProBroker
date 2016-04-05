@@ -12,6 +12,7 @@
 #import "NetWorkHandler+getCitys.h"
 #import "UserInfoEditVC.h"
 #import "NetWorkHandler+modifyUserInfo.h"
+#import "BaseTableViewCell.h"
 
 @interface CitySelectedVC ()
 {
@@ -142,9 +143,9 @@
     }
     else{
         NSString *deq = @"cell1";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+        BaseTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
         if(!cell){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+            cell = [[BaseTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
             cell.textLabel.font = _FONT(15);
             cell.textLabel.textColor = _COLOR(0x21, 0x21, 0x21);
 //            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

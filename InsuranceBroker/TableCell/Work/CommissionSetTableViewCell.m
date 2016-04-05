@@ -12,6 +12,8 @@
 @implementation CommissionSetTableViewCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     // Initialization code
     self.btnEdit.layer.cornerRadius = 3;
     self.logo.layer.borderWidth = 0.5;

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
-@interface MenuCell : UITableViewCell
+@interface MenuCell : BaseTableViewCell
 
 @property (nonatomic, strong) IBOutlet UIButton *btnSelect;
 @property (nonatomic, strong) IBOutlet UILabel *lbTitle;

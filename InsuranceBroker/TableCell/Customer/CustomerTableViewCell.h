@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "HBImageViewList.h"
+#import "BaseTableViewCell.h"
 
-@interface CustomerTableViewCell : UITableViewCell
+@interface CustomerTableViewCell : BaseTableViewCell
 {
     HBImageViewList *_imageList;
 }

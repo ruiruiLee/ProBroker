@@ -13,6 +13,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
     
     self.lbName.textColor = _COLOR(0x21, 0x21, 0x21);
     self.lbStatus.textColor = _COLOR(0x46, 0xa6, 0xeb);

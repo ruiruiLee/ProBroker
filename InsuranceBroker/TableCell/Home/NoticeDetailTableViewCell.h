@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
-@interface NoticeDetailTableViewCell : UITableViewCell
+@interface NoticeDetailTableViewCell : BaseTableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel *lbTitle;
 @property (nonatomic, strong) IBOutlet UIImageView *photoImgV;

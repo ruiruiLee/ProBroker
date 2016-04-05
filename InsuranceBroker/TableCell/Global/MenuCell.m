@@ -12,6 +12,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
     
     self.btnSelect.tintColor = [UIColor clearColor];
     self.btnSelect.userInteractionEnabled = NO;

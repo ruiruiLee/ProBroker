@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
-@interface CustomerFollowUpTableCell : UITableViewCell
+@interface CustomerFollowUpTableCell : BaseTableViewCell
 
 @property (nonatomic, strong) IBOutlet UIImageView *logoImgV;
 @property (nonatomic, strong) IBOutlet UILabel *lbSchedule;

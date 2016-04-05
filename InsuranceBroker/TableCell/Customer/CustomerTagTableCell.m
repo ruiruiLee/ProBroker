@@ -12,6 +12,7 @@
 @implementation CustomerTagTableCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
     self.lbTitle.textColor = _COLOR(0x21, 0x21, 0x21);
     self.lbCount.layer.cornerRadius = 10;

@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "LeftImgButton.h"
 #import "LeftImgButtonLeft.h"
+#import "BaseTableViewCell.h"
 
-@interface OrderManagerTableViewCell : UITableViewCell
+@interface OrderManagerTableViewCell : BaseTableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel *lbNo;//编号
 @property (nonatomic, strong) IBOutlet LeftImgButton *phoneNum;

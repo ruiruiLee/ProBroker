@@ -366,6 +366,7 @@
 		86C3BCC71C2E933600F98E80 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BCBB1C2E933600F98E80 /* IQKeyboardManager.bundle */; };
 		86C3BCCB1C2E999300F98E80 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BCC91C2E999300F98E80 /* loginViewController.m */; };
 		86C3BCCC1C2E999300F98E80 /* loginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BCCA1C2E999300F98E80 /* loginViewController.xib */; };
+		86CC8C451CB3AE3600362AD0 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C441CB3AE3600362AD0 /* BaseTableViewCell.m */; };
 		86E6347B1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */; };
 		86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */; };
 		86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */; };
@@ -1090,6 +1091,8 @@
 		86C3BCC81C2E999300F98E80 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
 		86C3BCC91C2E999300F98E80 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		86C3BCCA1C2E999300F98E80 /* loginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = loginViewController.xib; sourceTree = "<group>"; };
+		86CC8C431CB3AE3600362AD0 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		86CC8C441CB3AE3600362AD0 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		86E634791CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+updateCustomerHeadImg.h"; sourceTree = "<group>"; };
 		86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateCustomerHeadImg.m"; sourceTree = "<group>"; };
 		86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromSubVC.h; sourceTree = "<group>"; };
@@ -2259,6 +2262,8 @@
 				86C3BC391C2D73E100F98E80 /* MenuCell.h */,
 				86C3BC3A1C2D73E100F98E80 /* MenuCell.m */,
 				86C3BC3B1C2D73E100F98E80 /* MenuCell.xib */,
+				86CC8C431CB3AE3600362AD0 /* BaseTableViewCell.h */,
+				86CC8C441CB3AE3600362AD0 /* BaseTableViewCell.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -2826,6 +2831,7 @@
 				86C3BBEF1C2BA30600F98E80 /* DashBorderTextfield.m in Sources */,
 				8625B0211C3BF92B00312B98 /* BaseModel.m in Sources */,
 				86A504A81C4FAEB00032A901 /* BankCardModel.m in Sources */,
+				86CC8C451CB3AE3600362AD0 /* BaseTableViewCell.m in Sources */,
 				86A26E911C45F0970073FFFC /* NetWorkHandler+strategy.m in Sources */,
 				86A504441C4E57910032A901 /* PopView.m in Sources */,
 				86A5047E1C4F27950032A901 /* qrinput.c in Sources */,

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewCell.h"
 
-@interface CustomTagTableCell : UITableViewCell
+@interface CustomTagTableCell : BaseTableViewCell
 
 @property (nonatomic, strong) IBOutlet UIImageView *photoImage;
 @property (nonatomic, strong) IBOutlet UILabel *lbTitle;
