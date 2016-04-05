@@ -270,6 +270,7 @@
 		86A5050F1C5285EE0032A901 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A5050D1C5285EE0032A901 /* NJKWebViewProgress.m */; };
 		86A505211C57588D0032A901 /* ZWIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A505201C57588D0032A901 /* ZWIntroductionViewController.m */; };
 		86A505271C58D92D0032A901 /* LeftMargenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A505261C58D92D0032A901 /* LeftMargenButton.m */; };
+		86AD9ACB1CAE735D00389428 /* NetWorkHandler+queryForProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AD9ACA1CAE735D00389428 /* NetWorkHandler+queryForProductList.m */; };
 		86C3BB111C228D6F00F98E80 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB121C228D6F00F98E80 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB031C228D6F00F98E80 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB131C228D6F00F98E80 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB051C228D6F00F98E80 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -925,6 +926,8 @@
 		86A505201C57588D0032A901 /* ZWIntroductionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWIntroductionViewController.m; sourceTree = "<group>"; };
 		86A505251C58D92D0032A901 /* LeftMargenButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMargenButton.h; sourceTree = "<group>"; };
 		86A505261C58D92D0032A901 /* LeftMargenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMargenButton.m; sourceTree = "<group>"; };
+		86AD9AC91CAE735D00389428 /* NetWorkHandler+queryForProductList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+queryForProductList.h"; sourceTree = "<group>"; };
+		86AD9ACA1CAE735D00389428 /* NetWorkHandler+queryForProductList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryForProductList.m"; sourceTree = "<group>"; };
 		86C3BB001C228D6F00F98E80 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		86C3BB021C228D6F00F98E80 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -1523,6 +1526,8 @@
 				86A504C51C50FEDD0032A901 /* NetWorkHandler+initOrderShare.m */,
 				86E634791CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.h */,
 				86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */,
+				86AD9AC91CAE735D00389428 /* NetWorkHandler+queryForProductList.h */,
+				86AD9ACA1CAE735D00389428 /* NetWorkHandler+queryForProductList.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -2965,6 +2970,7 @@
 				86C3BCC51C2E933600F98E80 /* IQToolbar.m in Sources */,
 				86C3BBDB1C2AA1E400F98E80 /* CustomerInfoEditVC.m in Sources */,
 				8654CA561C310E7F00411C54 /* UserInfoModel.m in Sources */,
+				86AD9ACB1CAE735D00389428 /* NetWorkHandler+queryForProductList.m in Sources */,
 				8654CD7F1C312CE100411C54 /* SBJsonParser.m in Sources */,
 				8625AFDE1C37713000312B98 /* PotentialPlayersVC.m in Sources */,
 				8654CD871C312CE100411C54 /* SBJsonTokeniser.m in Sources */,
@@ -3220,8 +3226,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 志峰 刘 (H3F46WE89E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 志峰 刘 (H3F46WE89E)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3251,7 +3257,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

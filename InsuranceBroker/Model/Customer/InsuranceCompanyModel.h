@@ -16,4 +16,9 @@
 @property (nonatomic, strong) NSString *insuranceCompanyLogo;//":"XXXXXXX"; //保险公司logo
 @property (nonatomic, strong) NSString *insuranceType;//":"1"; //车险
 
+@property (nonatomic, strong) NSString *productLogo;
+@property (nonatomic, strong) NSString *productName;
+@property (nonatomic, strong) NSString *productId;
+@property (nonatomic, assign) NSInteger productBjmpType;
+
 @end

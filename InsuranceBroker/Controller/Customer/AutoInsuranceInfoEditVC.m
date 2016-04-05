@@ -24,6 +24,7 @@
 #import "ProgressHUD.h"
 #import "UIButton+WebCache.h"
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
+#import "NetWorkHandler+queryForProductList.h"
 
 #define explain @"* 续保车辆只需填写车牌和选择优快保支持的保险公司进行报价.非续保车辆至少需上传车主［身份证正面］,［行驶证正本］清晰照片 或者 选择填写资料明细进行报价。客户确认投保后，应保监会规定需要补齐所有照片方可出单（在客户资料界面可补齐照片）。"
 
@@ -438,7 +439,7 @@
     NSString *carInsurCompId1 = nil;
     if(_perInsurCompany>=0){
         carInsurStatus1 = @"1";
-        carInsurCompId1 = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).insuranceCompanyId;
+        carInsurCompId1 = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).productId;
     }else{
         carInsurStatus1 = @"0";
         carInsurCompId1 = @"";
@@ -747,7 +748,7 @@
 {
     for (int i = 0; i< [_insurCompanyArray count]; i++) {
         InsuranceCompanyModel *model = [_insurCompanyArray objectAtIndex:i];
-        if([model.insuranceCompanyId isEqualToString:comapyId])
+        if([model.productId isEqualToString:comapyId])
             return i;
     }
     
@@ -830,13 +831,23 @@
 - (void) loadInsurCompany
 {
     [ProgressHUD show:nil];
-    [NetWorkHandler requestToQueryForInsuranceCompanyList:nil insuranceType:@"1" Completion:^(int code, id content) {
+//    [NetWorkHandler requestToQueryForInsuranceCompanyList:nil insuranceType:@"1" Completion:^(int code, id content) {
+//        [ProgressHUD dismiss];
+//        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+//        if(code == 200){
+//            _insurCompanyArray = [InsuranceCompanyModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
+//            [self fillTheData];
+//        }
+//    }];
+    [NetWorkHandler requestToQueryForProductList:@"1" Completion:^(int code, id content) {
         [ProgressHUD dismiss];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+        
         if(code == 200){
             _insurCompanyArray = [InsuranceCompanyModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
             [self fillTheData];
         }
+        
     }];
 }
 
@@ -875,6 +886,11 @@
     self.view6VConstraint.constant = 210;
     self.view7VConstraint.constant = 40;
     
+    self.view2.hidden = NO;
+    self.view2VConstraint.constant = 90;
+    self.view3.hidden = NO;
+    self.view3VConstraint.constant = 30;
+    
     [self isModify];
 }
 
@@ -900,13 +916,17 @@
     
     if(menu == _menuView){//上年度投保
         _perInsurCompany = index;
-        self.lbPName.text = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:index]).insuranceCompanyShortName;
+        self.lbPName.text = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:index]).productName;
         self.view6.hidden = YES;
         self.view7.hidden = YES;
         self.view5.hidden = YES;
         self.view5VConstraint.constant = 0;
         self.view6VConstraint.constant = 0;
         self.view7VConstraint.constant = 0;
+        self.view2.hidden = YES;
+        self.view2VConstraint.constant = 0;
+        self.view3.hidden = YES;
+        self.view3VConstraint.constant = 0;
     }else if (menu == _menu){
         _changeNameIdx = index;
         if(index == 1){
@@ -1035,7 +1055,7 @@
         result = flag;
 
     if(_perInsurCompany >= 0 && _perInsurCompany < [_insurCompanyArray count]){
-        if(![model.carInsurCompId1 isEqualToString:((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).insuranceCompanyId])
+        if(![model.carInsurCompId1 isEqualToString:((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).productId])
             result = YES;
     }
     else{
