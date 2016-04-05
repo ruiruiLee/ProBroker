@@ -146,7 +146,7 @@
     cell.lbName.text = model.productName;
     cell.lbPrice.attributedText = [self getPlanInsuranceCompanyPriceAttbuteString:[NSString stringWithFormat:@"保单价：%.2f", model.planInsuranceCompanyPrice] sub:[NSString stringWithFormat:@"%.2f", model.planInsuranceCompanyPrice]];
     cell.lbRebate.text = [NSString stringWithFormat:@"%d%@", (int)model.planUkbRatio, @"%"];
-    cell.lbtruePrice.attributedText = [self getPlanUkbPriceAttbuteString:[NSString stringWithFormat:@"优惠价：%.2f", model.planUkbPrice] sub:[NSString stringWithFormat:@"%.2f", model.planUkbPrice]];
+    cell.lbtruePrice.attributedText = [self getPlanUkbPriceAttbuteString:[NSString stringWithFormat:@"支付价：%.2f", model.planUkbPrice] sub:[NSString stringWithFormat:@"%.2f", model.planUkbPrice]];
     [cell.photo sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:Normal_Image];
     
     if(model.businessPrice == 0){
