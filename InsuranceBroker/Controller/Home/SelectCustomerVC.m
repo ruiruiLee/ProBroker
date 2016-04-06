@@ -61,6 +61,8 @@
     [searchbar sizeToFit];
     searchbar.showsCancelButton = YES;
     self.pulltable.tableHeaderView = searchbar;
+    
+    self.pulltable.showsVerticalScrollIndicator = NO;
 //    searchbar.delegate = self;
     
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchbar contentsController:self];

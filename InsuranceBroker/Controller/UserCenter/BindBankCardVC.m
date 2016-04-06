@@ -14,10 +14,11 @@
 #import "BankSelectVC.h"
 #import "ProgressHUD.h"
 #import "BaseTableViewCell.h"
+#import "HighNightBgButton.h"
 
 @interface BindBankCardVC ()<MenuDelegate>
 {
-    UIButton *btnSubmit;
+    HighNightBgButton *btnSubmit;
     UITextField *_tfName;
     UITextField *_tfCardNum;
     UILabel *_lbBankName;
@@ -73,7 +74,7 @@
         [self.tableview setLayoutMargins:insets];
     }
     
-    btnSubmit = [[UIButton alloc] initWithFrame:CGRectZero];
+    btnSubmit = [[HighNightBgButton alloc] initWithFrame:CGRectZero];
     btnSubmit.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:btnSubmit];
     btnSubmit.layer.cornerRadius = 3;

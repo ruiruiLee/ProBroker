@@ -31,7 +31,7 @@
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadow" translatesAutoresizingMaskIntoConstraints="NO" id="83x-nw-pAN">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="15"/>
                                     <animations/>
-                                    <color key="backgroundColor" red="0.95686274510000002" green="0.26274509800000001" blue="0.21176470589999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="aPz-CG-q0b"/>
                                     </constraints>
@@ -114,7 +114,7 @@
                                         <constraint firstAttribute="trailing" secondItem="1kh-6d-Gtk" secondAttribute="trailing" constant="10" id="tbC-U0-gE0"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGZ-wY-jLu">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGZ-wY-jLu" customClass="HighNightBgButton">
                                     <rect key="frame" x="30" y="292" width="540" height="44"/>
                                     <animations/>
                                     <color key="backgroundColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
@@ -130,7 +130,7 @@
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadow" translatesAutoresizingMaskIntoConstraints="NO" id="emW-mL-w7w">
                                     <rect key="frame" x="0.0" y="83" width="600" height="15"/>
                                     <animations/>
-                                    <color key="backgroundColor" red="0.36799715890000001" green="1" blue="0.2620247054" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="fRc-qi-n0V"/>
                                     </constraints>

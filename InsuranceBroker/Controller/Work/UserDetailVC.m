@@ -31,6 +31,12 @@
 @implementation UserDetailVC
 @synthesize userinfo;
 
+- (void) handleLeftBarButtonClicked:(id)sender
+{
+    [_datePicker remove];
+    [super handleLeftBarButtonClicked:sender];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
