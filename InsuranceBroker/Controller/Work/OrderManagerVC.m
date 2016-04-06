@@ -50,7 +50,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"保单管理";
+    self.title = @"我的保单";
 }
 
 - (void) viewWillAppear:(BOOL)animated
