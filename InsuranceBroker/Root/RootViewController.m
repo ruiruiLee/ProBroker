@@ -97,6 +97,7 @@
     childVc.tabBarItem.image = norImage;
     selImage = [selImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     childVc.tabBarItem.selectedImage = selImage;
+    [childVc.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -2)];
     
     [self addChildViewController:nav];
 }
