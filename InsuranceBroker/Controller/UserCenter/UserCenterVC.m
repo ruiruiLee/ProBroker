@@ -246,6 +246,7 @@
 //本月销售额
 - (IBAction)finish:(id)sender
 {
+    NSLog(@"finish ===============");
     SalesStatisticsVC *vc = [IBUIFactory CreateSalesStatisticsViewController];
     vc.hidesBottomBarWhenPushed = YES;
     vc.userId = [UserInfoModel shareUserInfoModel].userId;
@@ -256,6 +257,7 @@
 //本月收益
 - (IBAction)incomePrevMounth:(id)sender
 {
+    NSLog(@"incomePrevMounth --------------");
     IncomeStatisticsVC *vc = [IBUIFactory CreateIncomeStatisticsViewController];
     vc.hidesBottomBarWhenPushed = YES;
     vc.userId = [UserInfoModel shareUserInfoModel].userId;

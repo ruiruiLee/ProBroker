@@ -509,7 +509,7 @@
         <image name="identity" width="18" height="18"/>
         <image name="my_bill" width="18" height="21"/>
         <image name="my_order" width="18" height="21"/>
-        <image name="my_team" width="25" height="18"/>
+        <image name="my_team" width="25" height="20"/>
         <image name="right_arrow" width="16" height="16"/>
         <image name="setting" width="24" height="24"/>
     </resources>

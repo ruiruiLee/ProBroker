@@ -25,17 +25,17 @@
  测试服务器地址信息
  */
 
-//#define SERVER_ADDRESS @"http://dev.ykbtest.leanapp.cn"
-//#define Base_Uri @"http://118.123.249.87:8783/UKB.AgentNew"
-//#define AVOSCloudAppID  @"dwhKbFjMcY4ppGaSVvzN4577-gzGzoHsz"
-//#define AVOSCloudAppKey @"6ygVI6sQEL0z4vTjSLeFXD3T"
+#define SERVER_ADDRESS @"http://dev.ykbtest.leanapp.cn"
+#define Base_Uri @"http://118.123.249.87:8783/UKB.AgentNew"
+#define AVOSCloudAppID  @"dwhKbFjMcY4ppGaSVvzN4577-gzGzoHsz"
+#define AVOSCloudAppKey @"6ygVI6sQEL0z4vTjSLeFXD3T"
 
 
 //正式服地址
-#define SERVER_ADDRESS @"http://ibroker.leanapp.cn"
-#define Base_Uri @"http://broker.ukuaibao.com"
-#define AVOSCloudAppID  @"0PyuKjNlBECHhEf3HxDB7NYX-gzGzoHsz"
-#define AVOSCloudAppKey @"mOmncwQfyeroy2jcDj0ch1Q1"
+//#define SERVER_ADDRESS @"http://ibroker.leanapp.cn"
+//#define Base_Uri @"http://broker.ukuaibao.com"
+//#define AVOSCloudAppID  @"0PyuKjNlBECHhEf3HxDB7NYX-gzGzoHsz"
+//#define AVOSCloudAppKey @"mOmncwQfyeroy2jcDj0ch1Q1"
 
 //location
 #define LcationInstance [LocationManagerObserver sharedInstance]
@@ -51,7 +51,7 @@
 
 #define Subhead_Color _COLOR(0x75, 0x75, 0x75)
 #define SepLine_color _COLOR(0xf5, 0xf5, 0xf5)
-#define MaskColor _COLORa(239, 239, 239, 0.3)
+#define MaskColor _COLORa(230, 230, 230, 0.3)
 
 //Font
 #define _FONT(s) [UIFont fontWithName:@"Helvetica Neue" size:(s)]

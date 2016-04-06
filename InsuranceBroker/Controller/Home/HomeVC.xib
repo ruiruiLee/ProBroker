@@ -137,7 +137,7 @@
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uf5-cj-7J9">
                                     <rect key="frame" x="0.0" y="538" width="600" height="62"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEY-Qd-xcc">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEY-Qd-xcc" customClass="HighNightBgButton">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
                                             <animations/>
                                             <connections>

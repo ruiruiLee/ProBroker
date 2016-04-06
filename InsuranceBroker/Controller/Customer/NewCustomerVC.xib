@@ -61,7 +61,7 @@
                                                 <constraint firstAttribute="height" constant="16" id="qMr-Ma-2rc"/>
                                             </constraints>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qf8-hE-zU1">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qf8-hE-zU1" customClass="HighNightBgButton">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
                                             <animations/>
                                             <connections>
@@ -354,6 +354,6 @@
     <resources>
         <image name="contacts" width="24" height="24"/>
         <image name="right_arrow" width="16" height="16"/>
-        <image name="shadow" width="1" height="15"/>
+        <image name="shadow" width="1" height="1"/>
     </resources>
 </document>
