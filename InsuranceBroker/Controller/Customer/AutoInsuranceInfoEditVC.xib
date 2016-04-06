@@ -143,7 +143,7 @@
                                         <constraint firstItem="9NN-zS-x7n" firstAttribute="leading" secondItem="PZW-gA-cW3" secondAttribute="trailing" constant="8" id="TKU-Q9-64s"/>
                                         <constraint firstAttribute="trailing" secondItem="xgm-h4-ntg" secondAttribute="trailing" id="U1j-g5-LEO"/>
                                         <constraint firstItem="PZW-gA-cW3" firstAttribute="leading" secondItem="8Za-H7-mhZ" secondAttribute="leading" constant="16" id="Xi8-Y0-Prt"/>
-                                        <constraint firstAttribute="trailing" secondItem="G8O-fE-faa" secondAttribute="trailing" id="hNh-sE-2Zf"/>
+                                        <constraint firstAttribute="trailing" secondItem="G8O-fE-faa" secondAttribute="trailing" constant="5" id="hNh-sE-2Zf"/>
                                         <constraint firstItem="xgm-h4-ntg" firstAttribute="top" secondItem="8Za-H7-mhZ" secondAttribute="top" constant="30" id="tn5-hR-s4C"/>
                                     </constraints>
                                 </view>
