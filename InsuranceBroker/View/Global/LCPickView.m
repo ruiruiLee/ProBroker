@@ -176,7 +176,7 @@
     UIBarButtonItem *leftSpace=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
     leftSpace.width = 15;
     
-    UIButton *btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
+    HighNightBgButton *btnCancel = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
 //    [btnCancel setTitle:@"取消" forState:UIControlStateNormal];
     [btnCancel setTitleColor:_COLOR(0x21, 0x21, 0x21) forState:UIControlStateNormal];
 //    [btnCancel addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
@@ -196,7 +196,7 @@
     
     UIBarButtonItem *centerrSpace=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     
-    UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
+    HighNightBgButton *btnRight = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 40, 20)];
     [btnRight setTitle:@"确定" forState:UIControlStateNormal];
     [btnRight setTitleColor:_COLOR(0x21, 0x21, 0x21) forState:UIControlStateNormal];
     [btnRight addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];

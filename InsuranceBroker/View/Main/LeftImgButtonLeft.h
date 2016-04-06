@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HighNightBgButton.h"
 
-@interface LeftImgButtonLeft : UIButton
+@interface LeftImgButtonLeft : HighNightBgButton
 
 @end

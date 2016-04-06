@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HighNightBgButton.h"
 
-@interface MainFunctionButton : UIButton
+@interface MainFunctionButton : HighNightBgButton
 
 @property (nonatomic, strong) UILabel *lbExplain;
 

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HighNightBgButton.h"
 
 @interface RedPackInfoTips : UIView
 {
@@ -20,7 +21,7 @@
 @property (nonatomic, strong) UIImageView *logo;
 @property (nonatomic, strong) UILabel *lbShowInfo;
 @property (nonatomic, strong) UILabel *lbDetail;
-@property (nonatomic, strong) UIButton *btnSubmit;
+@property (nonatomic, strong) HighNightBgButton *btnSubmit;
 
 - (void) show;
 - (void) hidden;

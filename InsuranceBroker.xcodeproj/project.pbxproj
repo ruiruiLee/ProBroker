@@ -367,6 +367,7 @@
 		86C3BCCB1C2E999300F98E80 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BCC91C2E999300F98E80 /* loginViewController.m */; };
 		86C3BCCC1C2E999300F98E80 /* loginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BCCA1C2E999300F98E80 /* loginViewController.xib */; };
 		86CC8C451CB3AE3600362AD0 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C441CB3AE3600362AD0 /* BaseTableViewCell.m */; };
+		86CC8C541CB3D04500362AD0 /* HighNightBgButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C531CB3D04500362AD0 /* HighNightBgButton.m */; };
 		86E6347B1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */; };
 		86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */; };
 		86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */; };
@@ -1093,6 +1094,8 @@
 		86C3BCCA1C2E999300F98E80 /* loginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = loginViewController.xib; sourceTree = "<group>"; };
 		86CC8C431CB3AE3600362AD0 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		86CC8C441CB3AE3600362AD0 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		86CC8C521CB3D04500362AD0 /* HighNightBgButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighNightBgButton.h; sourceTree = "<group>"; };
+		86CC8C531CB3D04500362AD0 /* HighNightBgButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighNightBgButton.m; sourceTree = "<group>"; };
 		86E634791CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+updateCustomerHeadImg.h"; sourceTree = "<group>"; };
 		86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateCustomerHeadImg.m"; sourceTree = "<group>"; };
 		86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromSubVC.h; sourceTree = "<group>"; };
@@ -1958,6 +1961,8 @@
 				86A505201C57588D0032A901 /* ZWIntroductionViewController.m */,
 				868C7CA71C92CFAD00B7617A /* SepLineLabel.h */,
 				868C7CA81C92CFAD00B7617A /* SepLineLabel.m */,
+				86CC8C521CB3D04500362AD0 /* HighNightBgButton.h */,
+				86CC8C531CB3D04500362AD0 /* HighNightBgButton.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -2826,6 +2831,7 @@
 				86A5047C1C4F27950032A901 /* QRCodeGenerator.m in Sources */,
 				8625F8F41C8976C2001569BE /* SalesModel.m in Sources */,
 				86A26EC11C47D1620073FFFC /* InsurCompanySelectVC.m in Sources */,
+				86CC8C541CB3D04500362AD0 /* HighNightBgButton.m in Sources */,
 				86C3BBBD1C294B7600F98E80 /* UserServicePushVC.m in Sources */,
 				8625B0571C41020D00312B98 /* NetWorkHandler+saveOrUpdateUser.m in Sources */,
 				86C3BBEF1C2BA30600F98E80 /* DashBorderTextfield.m in Sources */,

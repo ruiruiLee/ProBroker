@@ -7,9 +7,10 @@
 //
 
 #import "MenuViewController.h"
+#import "HighNightBgButton.h"
 
 @interface InsurCompanySelectVC : MenuViewController
 
-@property (nonatomic, strong) UIButton *btnCancel;
+@property (nonatomic, strong) HighNightBgButton *btnCancel;
 
 @end

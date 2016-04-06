@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HighNightBgButton.h"
 
-@interface UserNameEditButton : UIButton
+@interface UserNameEditButton : HighNightBgButton
 {
     UIImageView *imagv1;
     UIImageView *imagv2;

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class BackGroundView;
+#import "HighNightBgButton.h"
 
 @protocol BackGroundViewDelegate <NSObject>
 
@@ -18,7 +19,7 @@
 
 @interface BackGroundView : UIView
 
-@property (nonatomic, strong) IBOutlet UIButton *btnAdd;
+@property (nonatomic, strong) IBOutlet HighNightBgButton *btnAdd;
 @property (nonatomic, strong) IBOutlet UILabel *lbTitle;
 @property (nonatomic, assign) id<BackGroundViewDelegate> delegate;
 

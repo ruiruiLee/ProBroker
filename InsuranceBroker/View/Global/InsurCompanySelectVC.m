@@ -18,7 +18,7 @@
 {
     [super viewDidLoad];
     
-    self.btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth - 48, 19, 40, 30)];
+    self.btnCancel = [[HighNightBgButton alloc] initWithFrame:CGRectMake(ScreenWidth - 48, 19, 40, 30)];
     [self.headView addSubview:self.btnCancel];
     [self.btnCancel setTitle:@"清除" forState:UIControlStateNormal];
     [self.btnCancel setTitleColor:_COLOR(0xff, 0x99, 0x16) forState:UIControlStateNormal];

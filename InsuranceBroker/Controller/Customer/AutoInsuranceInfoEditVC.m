@@ -590,7 +590,7 @@
     [self dismissViewControllerAnimated:YES completion:^{
         NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],0.5);
         UIImage *image= [UIImage imageWithData:imageData];
-        image = [Util fitSmallImage:image scaledToSize:imgLicenseSize];
+//        image = [Util fitSmallImage:image scaledToSize:imgLicenseSize];
         isCertModify = YES;
         if(self.type == enumAddPhotoTypeLisence){
             [self.btnReSubmit setImage:image forState:UIControlStateSelected];

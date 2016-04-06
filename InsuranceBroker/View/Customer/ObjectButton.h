@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HighNightBgButton.h"
 
-@interface ObjectButton : UIButton
+@interface ObjectButton : HighNightBgButton
 
 @property (nonatomic, strong) id object;
 

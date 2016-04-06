@@ -240,10 +240,10 @@
         </view>
     </objects>
     <resources>
-        <image name="Sale" width="18" height="18"/>
+        <image name="Sale" width="20" height="20"/>
         <image name="car" width="138" height="138"/>
-        <image name="message" width="18" height="18"/>
+        <image name="message" width="20" height="17"/>
         <image name="share" width="138" height="138"/>
-        <image name="user_service" width="18" height="18"/>
+        <image name="user_service" width="25" height="20"/>
     </resources>
 </document>

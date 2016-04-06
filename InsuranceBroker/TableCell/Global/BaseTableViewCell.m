@@ -26,7 +26,7 @@
 - (void) awakeFromNib
 {
     self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.frame];
-    self.selectedBackgroundView.backgroundColor = _COLORa(239, 239, 239, 0.3);
+    self.selectedBackgroundView.backgroundColor = MaskColor;
 }
 
 @end

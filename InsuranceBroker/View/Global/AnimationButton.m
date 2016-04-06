@@ -26,14 +26,18 @@
     self = [super initWithFrame:frame];
     
     if(self){
-
-        self.clipsToBounds = YES;
-        
-        [self addTarget:self action:@selector(animationFromLarger) forControlEvents:UIControlEventTouchDown];
-        [self addTarget:self action:@selector(animationFromSmaller) forControlEvents:UIControlEventTouchUpInside];
+        [self awakeFromNib];
     }
     
     return self;
+}
+
+- (void) awakeFromNib
+{
+    self.clipsToBounds = YES;
+    
+    [self addTarget:self action:@selector(animationFromLarger) forControlEvents:UIControlEventTouchDown];
+    [self addTarget:self action:@selector(animationFromSmaller) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void) setImage:(UIImage *)image forState:(UIControlState)state

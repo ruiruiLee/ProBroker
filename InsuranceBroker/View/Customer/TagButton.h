@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HighNightBgButton.h"
 
 typedef enum : NSUInteger {
     enumTagButtonNormal,
@@ -23,7 +24,7 @@ typedef enum : NSUInteger {
 @end
 
 
-@interface TagButton : UIButton
+@interface TagButton : HighNightBgButton
 {
     UIImageView *delImag;
 }
