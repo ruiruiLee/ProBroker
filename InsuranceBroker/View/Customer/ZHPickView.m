@@ -208,13 +208,13 @@
     
     UIBarButtonItem *centerlSpace=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 20)];
-    lbTitle.textColor = _COLOR(0x66, 0x66, 0x66);
-    lbTitle.font = _FONT(14);
-    lbTitle.backgroundColor = [UIColor clearColor];
-    lbTitle.text = @"选择跟进日期";
-    lbTitle.textAlignment = NSTextAlignmentCenter;
-    UIBarButtonItem *centeritem = [[UIBarButtonItem alloc] initWithCustomView:lbTitle];
+    self.lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 20)];
+    self.lbTitle.textColor = _COLOR(0x66, 0x66, 0x66);
+    self.lbTitle.font = _FONT(14);
+    self.lbTitle.backgroundColor = [UIColor clearColor];
+//    lbTitle.text = @"选择跟进日期";
+    self.lbTitle.textAlignment = NSTextAlignmentCenter;
+    UIBarButtonItem *centeritem = [[UIBarButtonItem alloc] initWithCustomView:self.lbTitle];
     
     UIBarButtonItem *centerrSpace=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     

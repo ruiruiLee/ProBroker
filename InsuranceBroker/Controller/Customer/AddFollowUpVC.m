@@ -208,6 +208,7 @@
     
     if(!_datePicker){
         _datePicker = [[ZHPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:YES];
+        _datePicker.lbTitle.text = @"选择跟进日期";
         [_datePicker show];
         _datePicker.delegate = self;
     }else{

@@ -101,10 +101,10 @@
     [self.tfCert resignFirstResponder];
     
     if(_datePicker){
-        [_datePicker remove];
+        [_datePicker removeFromSuperview];
     }
     if(_datePicker1){
-        [_datePicker1 remove];
+        [_datePicker1 removeFromSuperview];
     }
     
     return [super resignFirstResponder];
@@ -515,6 +515,7 @@
     if(selected){
         self.tfNo.enabled = YES;
         self.lbDateTitle.text = @"注册日期";
+        self.tfDate.placeholder = @"请选择注册日期";
         self.pInfoView.hidden = NO;
         self.assignedView.hidden = NO;
         self.baseViewVConstraint.constant = 90;
@@ -525,6 +526,7 @@
         self.tfNo.enabled = NO;
         self.tfNo.text = @"";
         self.lbDateTitle.text = @"购车日期";
+        self.tfDate.placeholder = @"请选择购车日期";
         self.pInfoView.hidden = YES;
         self.assignedView.hidden = YES;
         self.baseViewVConstraint.constant = 50;
@@ -684,10 +686,12 @@
             self.btnNoNo.selected = YES;
             self.tfNo.enabled = NO;
             self.lbDateTitle.text = @"购车日期";
+            self.tfDate.placeholder = @"请选择购车日期";
         }else{
             self.btnNoNo.selected = NO;
             self.tfNo.enabled = YES;
             self.lbDateTitle.text = @"注册日期";
+            self.tfDate.placeholder = @"请选择注册日期";
         }
         self.tfMotorCode.text = model.carEngineNo;
         self.tfModel.text = model.carTypeNo;
@@ -954,9 +958,11 @@
     
     if(!_datePicker){
         _datePicker = [[ZHPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDate isHaveNavControler:YES];
+        _datePicker.lbTitle.text = [NSString stringWithFormat:@"选择%@", self.lbDateTitle.text];
         [_datePicker show];
         _datePicker.delegate = self;
     }else{
+        _datePicker.lbTitle.text = [NSString stringWithFormat:@"选择%@", self.lbDateTitle.text];
         [_datePicker show];
     }
 }
@@ -967,6 +973,7 @@
     
     if(!_datePicker1){
         _datePicker1 = [[ZHPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDate isHaveNavControler:YES];
+        _datePicker1.lbTitle.text = @"选择过户日期";
         [_datePicker1 show];
         _datePicker1.delegate = self;
     }else{
@@ -992,10 +999,13 @@
 
 - (void)toobarCandelBtnHaveClick:(ZHPickView *)pickView
 {
-}//    if(pickView == _datePicker1){
-//        _changeNameIdx = 0;
-//        [self.tableview reloadData];
-//    }
+    if(pickView == _datePicker1){
+        _changeNameIdx = 0;
+        self.lbIsTransfer.text = @"否";
+        _changNameDate = nil;
+        self.lbTransferDate.text = @"";
+    }
+}
 
 
 #pragma UITextFieldDelegate
@@ -1010,9 +1020,13 @@
         [self.tfIdenCode resignFirstResponder];
         [self.tfDate resignFirstResponder];
         [self.tfCert resignFirstResponder];
+        if(_datePicker1.superview != nil)
+            [_datePicker1 remove];
         [self isModify];
     }else{
         [_datePicker remove];
+        if(_datePicker1.superview != nil)
+            [_datePicker1 remove];
     }
     return YES;
 }

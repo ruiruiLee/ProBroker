@@ -51,7 +51,7 @@
     AppContext *context = [AppContext sharedAppContext];
     [context addObserver:self forKeyPath:@"pushCustomerNum" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
-    self.title = @"客户";
+    self.title = @"客 户";
     
     [self setLeftBarButtonWithImage:nil];
     [self setRightBarButtonWithImage:ThemeImage(@"add")];

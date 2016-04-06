@@ -20,6 +20,7 @@
 @interface ZHPickView : UIView
 
 @property(nonatomic,weak) id<ZHPickViewDelegate> delegate;
+@property (nonatomic, strong) UILabel *lbTitle;
 
 /**
  *  通过plistName添加一个pickView

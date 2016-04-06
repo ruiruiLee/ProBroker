@@ -10,6 +10,12 @@
 #import "define.h"
 #import "NoticeListVC.h"
 
+@interface RootViewController ()
+
+@property (nonatomic, copy) CustomerMainVC *customervc;
+
+@end
+
 @implementation RootViewController
 @synthesize homevc;
 @synthesize customervc;
@@ -60,19 +66,15 @@
     self.delegate = self;
     
     homevc = [[HomeVC alloc] initWithNibName:@"HomeVC" bundle:nil];
-    [self setUpChildControllerWith:homevc norImage:ThemeImage(@"home") selImage:ThemeImage(@"home_fill") title:@"首页"];
+    [self setUpChildControllerWith:homevc norImage:ThemeImage(@"home") selImage:ThemeImage(@"home_fill") title:@"经纪人"];
     homevc.tabBarItem.tag = 1001;
     
     customervc = [[CustomerMainVC alloc] initWithNibName:nil bundle:nil];
-    [self setUpChildControllerWith:customervc norImage:ThemeImage(@"people") selImage:ThemeImage(@"people_fill") title:@"客户"];
+    [self setUpChildControllerWith:customervc norImage:ThemeImage(@"people") selImage:ThemeImage(@"people_fill") title:@"客 户"];
     customervc.tabBarItem.tag = 1002;
     
-//    workvc = [[WorkMainVC alloc] initWithNibName:nil bundle:nil];
-//    [self setUpChildControllerWith:workvc norImage:ThemeImage(@"work") selImage:ThemeImage(@"work_fill") title:@"工作"];
-//    workvc.tabBarItem.tag = 1003;
-    
     usercentervc = [[UserCenterVC alloc] initWithNibName:@"UserCenterVC" bundle:nil];
-    [self setUpChildControllerWith:usercentervc norImage:ThemeImage(@"myself") selImage:ThemeImage(@"myself_fill") title:@"我的"];
+    [self setUpChildControllerWith:usercentervc norImage:ThemeImage(@"myself") selImage:ThemeImage(@"myself_fill") title:@"我 的"];
     usercentervc.tabBarItem.tag = 1004;
     
     
