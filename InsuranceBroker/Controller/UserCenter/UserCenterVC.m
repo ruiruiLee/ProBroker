@@ -13,6 +13,8 @@
 #import "UIImageView+WebCache.h"
 #import "MyTeamsVC.h"
 #import "DetailAccountVC.h"
+#import "MyTeamInfoVC.h"
+#import "OrderManagerVC.h"
 
 @implementation UserCenterVC
 
@@ -38,6 +40,8 @@
     
     self.photoImgV.clipsToBounds = YES;
     self.photoImgV.layer.cornerRadius = 45;
+    self.btnEditPhoto.layer.cornerRadius = 45;
+//    self.btnEditPhoto.clipsToBounds = YES;
     self.lbRedLogo.clipsToBounds = YES;
     self.lbRedLogo.layer.cornerRadius = 4;
     self.redFlagConstraint.constant = -((ScreenWidth - 320)/2 + 50);
@@ -48,7 +52,7 @@
     self.lbTeamTotal.textColor = Subhead_Color;
     
     self.headHConstraint.constant = ScreenWidth;
-    self.footVConstraint.constant = SCREEN_HEIGHT - 525 - 44 + 1 + 50;
+    self.footVConstraint.constant = SCREEN_HEIGHT - 585 - 44 + 1 + 50;
     
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     AppContext *context = [AppContext sharedAppContext];
@@ -214,8 +218,13 @@
 //我的邀请
 - (IBAction)invite:(id)sender
 {
-    MyTeamsVC *vc = [[MyTeamsVC alloc] initWithNibName:nil bundle:nil];
+    MyTeamInfoVC *vc = [[MyTeamInfoVC alloc] initWithNibName:nil bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
+    vc.userid = [UserInfoModel shareUserInfoModel].userId;
+    vc.title = @"我的团队";
+    vc.toptitle = @"我的队员";
+    vc.name = @"我";
+    //                vc.need = enumNeedIndicator;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -223,6 +232,13 @@
 - (IBAction)scale:(id)sender
 {
     DetailAccountVC *vc = [[DetailAccountVC alloc] initWithNibName:nil bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)managerOrder:(id)sender
+{
+    OrderManagerVC *vc = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

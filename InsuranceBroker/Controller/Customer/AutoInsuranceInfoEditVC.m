@@ -1002,7 +1002,13 @@
 {
     if(textField == self.tfDate){
         [self addDatePicker:nil];
-        [self resignFirstResponder];
+        [self.tfNo resignFirstResponder];
+        [self.tfName resignFirstResponder];
+        [self.tfMotorCode resignFirstResponder];
+        [self.tfModel resignFirstResponder];
+        [self.tfIdenCode resignFirstResponder];
+        [self.tfDate resignFirstResponder];
+        [self.tfCert resignFirstResponder];
         [self isModify];
     }else{
         [_datePicker remove];

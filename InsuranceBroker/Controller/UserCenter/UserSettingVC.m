@@ -14,6 +14,7 @@
 #import <AVOSCloudSNS/AVOSCloudSNS.h>
 #import "EGOCache.h"
 #import "BaseTableViewCell.h"
+#import "HighNightBgButton.h"
 
 @interface UserSettingVC ()
 
@@ -58,7 +59,7 @@
         [tableview setLayoutMargins:insets];
     }
     
-    UIButton *btnLogout = [[UIButton alloc] init];
+    HighNightBgButton *btnLogout = [[HighNightBgButton alloc] initWithFrame:CGRectZero];
     [self.view addSubview:btnLogout];
     btnLogout.translatesAutoresizingMaskIntoConstraints = NO;
     btnLogout.backgroundColor = _COLOR(0xf4, 0x43, 0x36);

@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserCenterVC">
             <connections>
                 <outlet property="btNameEdit" destination="T2v-PH-1Ge" id="fnM-zn-6F7"/>
+                <outlet property="btnEditPhoto" destination="6W8-QF-hW6" id="0N3-xh-YUG"/>
                 <outlet property="footVConstraint" destination="zew-4s-KEG" id="Kvj-p8-1SC"/>
                 <outlet property="gradientView" destination="LXV-Wz-yex" id="kzt-6D-seR"/>
                 <outlet property="headHConstraint" destination="wpG-Ns-3bo" id="Da9-52-cO2"/>
@@ -34,7 +35,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsy-DC-aPN">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="490"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                             <subviews>
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LXV-Wz-yex" customClass="GradientView">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="227"/>
@@ -81,7 +82,7 @@
                                                 <action selector="EditUserInfo:" destination="-1" eventType="touchUpInside" id="4ft-nx-YoH"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6W8-QF-hW6">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6W8-QF-hW6" customClass="HighNightBgButton">
                                             <rect key="frame" x="248" y="66" width="30" height="30"/>
                                             <animations/>
                                             <connections>
@@ -139,7 +140,7 @@
                                                 <constraint firstAttribute="height" constant="16" id="q1L-Vd-33Y"/>
                                             </constraints>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8if-KG-9Gd">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8if-KG-9Gd" customClass="HighNightBgButton">
                                             <rect key="frame" x="0.0" y="3" width="600" height="57"/>
                                             <animations/>
                                             <connections>
@@ -181,21 +182,9 @@
                                         <constraint firstAttribute="height" constant="15" id="RJT-YK-bYW"/>
                                     </constraints>
                                 </imageView>
-                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nf6-Zs-G3O" customClass="HSepView">
+                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nf6-Zs-G3O" customClass="GridView">
                                     <rect key="frame" x="0.0" y="410" width="600" height="154"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDg-Vc-vMY" customClass="LeftMargenButton">
-                                            <rect key="frame" x="107" y="35" width="78" height="22"/>
-                                            <animations/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <state key="normal" title="收益提现" image="cash">
-                                                <color key="titleColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="redPachet:" destination="-1" eventType="touchUpInside" id="Egr-ba-qp5"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eLR-o3-orz" customClass="LeftMargenButton">
                                             <rect key="frame" x="413" y="30" width="78" height="22"/>
                                             <animations/>
@@ -208,20 +197,63 @@
                                                 <action selector="withdraw:" destination="-1" eventType="touchUpInside" id="itt-c6-qki"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vtq-kL-0CQ" customClass="LeftMargenButton">
+                                            <rect key="frame" x="94" y="114" width="72" height="22"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal" title="我的团队" image="my_team">
+                                                <color key="titleColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="invite:" destination="-1" eventType="touchUpInside" id="sQr-zn-gqA"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fn-wQ-5XW" customClass="LeftMargenButton">
+                                            <rect key="frame" x="416" y="114" width="72" height="22"/>
+                                            <animations/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal" title="保单管理" image="my_order">
+                                                <color key="titleColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="managerOrder:" destination="-1" eventType="touchUpInside" id="YNa-NF-7S8"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDg-Vc-vMY" customClass="LeftMargenButton">
+                                            <rect key="frame" x="107" y="35" width="78" height="22"/>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <state key="normal" title="收益提现" image="cash">
+                                                <color key="titleColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="redPachet:" destination="-1" eventType="touchUpInside" id="Egr-ba-qp5"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="eLR-o3-orz" firstAttribute="top" secondItem="Nf6-Zs-G3O" secondAttribute="top" id="0lx-L6-qFB"/>
                                         <constraint firstItem="eLR-o3-orz" firstAttribute="height" secondItem="NDg-Vc-vMY" secondAttribute="height" id="5Ve-nc-cx8"/>
-                                        <constraint firstAttribute="bottom" secondItem="eLR-o3-orz" secondAttribute="bottom" id="85Y-ge-KTp"/>
-                                        <constraint firstAttribute="bottom" secondItem="NDg-Vc-vMY" secondAttribute="bottom" id="DPv-5I-xD2"/>
+                                        <constraint firstItem="9fn-wQ-5XW" firstAttribute="leading" secondItem="Vtq-kL-0CQ" secondAttribute="trailing" id="7fu-Xi-5td"/>
+                                        <constraint firstAttribute="trailing" secondItem="9fn-wQ-5XW" secondAttribute="trailing" id="E1c-IC-08t"/>
+                                        <constraint firstItem="Vtq-kL-0CQ" firstAttribute="height" secondItem="NDg-Vc-vMY" secondAttribute="height" id="EHA-Yk-TME"/>
                                         <constraint firstItem="eLR-o3-orz" firstAttribute="leading" secondItem="NDg-Vc-vMY" secondAttribute="trailing" id="Jky-lW-JFY"/>
+                                        <constraint firstItem="9fn-wQ-5XW" firstAttribute="height" secondItem="eLR-o3-orz" secondAttribute="height" id="LIJ-lv-WAB"/>
+                                        <constraint firstItem="Vtq-kL-0CQ" firstAttribute="top" secondItem="NDg-Vc-vMY" secondAttribute="bottom" id="Qxt-K6-4i5"/>
                                         <constraint firstItem="eLR-o3-orz" firstAttribute="width" secondItem="NDg-Vc-vMY" secondAttribute="width" id="To0-xo-Zhc"/>
+                                        <constraint firstAttribute="bottom" secondItem="Vtq-kL-0CQ" secondAttribute="bottom" id="V2W-eC-Gb0"/>
+                                        <constraint firstItem="9fn-wQ-5XW" firstAttribute="top" secondItem="eLR-o3-orz" secondAttribute="bottom" id="XgH-8y-E8u"/>
+                                        <constraint firstItem="Vtq-kL-0CQ" firstAttribute="leading" secondItem="Nf6-Zs-G3O" secondAttribute="leading" id="Xgu-yY-NyH"/>
+                                        <constraint firstItem="9fn-wQ-5XW" firstAttribute="leading" secondItem="Vtq-kL-0CQ" secondAttribute="trailing" id="cHt-sr-HPl"/>
                                         <constraint firstItem="NDg-Vc-vMY" firstAttribute="leading" secondItem="Nf6-Zs-G3O" secondAttribute="leading" id="eQV-2M-GOW"/>
                                         <constraint firstItem="NDg-Vc-vMY" firstAttribute="top" secondItem="Nf6-Zs-G3O" secondAttribute="top" id="hO9-mN-dBI"/>
-                                        <constraint firstAttribute="height" constant="60" id="mTq-Qd-TEj"/>
+                                        <constraint firstAttribute="height" constant="120" id="mTq-Qd-TEj"/>
+                                        <constraint firstItem="9fn-wQ-5XW" firstAttribute="width" secondItem="Vtq-kL-0CQ" secondAttribute="width" id="otG-8i-jXu"/>
                                         <constraint firstAttribute="trailing" secondItem="eLR-o3-orz" secondAttribute="trailing" id="vgu-dM-9tM"/>
+                                        <constraint firstAttribute="bottom" secondItem="9fn-wQ-5XW" secondAttribute="bottom" id="xqT-cw-14b"/>
                                     </constraints>
                                 </view>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yhp-dP-tUo">
@@ -438,7 +470,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SBj-2S-cF3">
-                            <rect key="frame" x="0.0" y="490" width="600" height="200"/>
+                            <rect key="frame" x="0.0" y="550" width="600" height="200"/>
                             <animations/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -473,9 +505,11 @@
         </view>
     </objects>
     <resources>
-        <image name="cash" width="18" height="18"/>
+        <image name="cash" width="25" height="16"/>
         <image name="identity" width="18" height="18"/>
-        <image name="my_bill" width="18" height="18"/>
+        <image name="my_bill" width="18" height="21"/>
+        <image name="my_order" width="18" height="21"/>
+        <image name="my_team" width="25" height="18"/>
         <image name="right_arrow" width="16" height="16"/>
         <image name="setting" width="24" height="24"/>
     </resources>

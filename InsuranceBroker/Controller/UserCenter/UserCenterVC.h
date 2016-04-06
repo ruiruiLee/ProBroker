@@ -45,6 +45,8 @@
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *headHConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *footVConstraint;
 
+@property (nonatomic, strong) IBOutlet UIButton *btnEditPhoto;
+
 //修改用户资料
 - (IBAction)EditUserInfo:(id)sender;
 

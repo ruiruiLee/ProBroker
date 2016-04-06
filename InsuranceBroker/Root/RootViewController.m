@@ -13,7 +13,7 @@
 @implementation RootViewController
 @synthesize homevc;
 @synthesize customervc;
-@synthesize workvc;
+//@synthesize workvc;
 @synthesize usercentervc;
 @synthesize selectVC;
 
@@ -67,9 +67,9 @@
     [self setUpChildControllerWith:customervc norImage:ThemeImage(@"people") selImage:ThemeImage(@"people_fill") title:@"客户"];
     customervc.tabBarItem.tag = 1002;
     
-    workvc = [[WorkMainVC alloc] initWithNibName:nil bundle:nil];
-    [self setUpChildControllerWith:workvc norImage:ThemeImage(@"work") selImage:ThemeImage(@"work_fill") title:@"工作"];
-    workvc.tabBarItem.tag = 1003;
+//    workvc = [[WorkMainVC alloc] initWithNibName:nil bundle:nil];
+//    [self setUpChildControllerWith:workvc norImage:ThemeImage(@"work") selImage:ThemeImage(@"work_fill") title:@"工作"];
+//    workvc.tabBarItem.tag = 1003;
     
     usercentervc = [[UserCenterVC alloc] initWithNibName:@"UserCenterVC" bundle:nil];
     [self setUpChildControllerWith:usercentervc norImage:ThemeImage(@"myself") selImage:ThemeImage(@"myself_fill") title:@"我的"];
@@ -111,9 +111,9 @@
             if(tag == 1002){
                 selectVC = customervc;
             }
-            else if (tag == 1003){
-                selectVC = workvc;
-            }
+//            else if (tag == 1003){
+//                selectVC = workvc;
+//            }
             else
             {
                 selectVC = usercentervc;

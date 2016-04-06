@@ -23,6 +23,8 @@
 
 - (void) awakeFromNib
 {
+    self.clipsToBounds = YES;
+    
     _mask = [[UIView alloc] initWithFrame:self.bounds];
     [self addSubview:_mask];
     _mask.translatesAutoresizingMaskIntoConstraints = NO;

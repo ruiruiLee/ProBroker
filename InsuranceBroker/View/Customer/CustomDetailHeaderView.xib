@@ -105,7 +105,7 @@
                     <rect key="frame" x="534" y="193" width="36" height="72"/>
                     <animations/>
                 </imageView>
-                <button opaque="NO" tag="1010" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zm8-Zt-SfA">
+                <button opaque="NO" tag="1010" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zm8-Zt-SfA" customClass="HighNightBgButton">
                     <rect key="frame" x="0.0" y="206" width="592" height="57"/>
                     <animations/>
                     <constraints>
@@ -131,7 +131,7 @@
                         <constraint firstAttribute="width" constant="18" id="znC-h4-jas"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" tag="1011" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgZ-80-HE5">
+                <button opaque="NO" tag="1011" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgZ-80-HE5" customClass="HighNightBgButton">
                     <rect key="frame" x="19" y="18" width="122" height="110"/>
                     <animations/>
                     <constraints>

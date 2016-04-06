@@ -41,9 +41,9 @@
         btnDetail.layer.cornerRadius = 12;
         btnDetail.layer.borderWidth = 0.5;
         btnDetail.layer.borderColor = _COLOR(0xff, 0x66, 0x19).CGColor;
-        [btnDetail setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btnDetail setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
         btnDetail.titleLabel.font = _FONT(10);
-        btnDetail.backgroundColor = _COLOR(0xff, 0x66, 0x1a);
+//        btnDetail.backgroundColor = _COLOR(0xff, 0x66, 0x1a);
         [self setRightBarButtonWithButton:btnDetail];
         [btnDetail addTarget:self action:@selector(doBtnDetailAccount:) forControlEvents:UIControlEventTouchUpInside];
     }else{
@@ -53,6 +53,8 @@
     self.viewHConstraint.constant = ScreenWidth;
     
     self.btnMore.layer.cornerRadius = 12;
+    self.btnMore.layer.borderWidth = 0.5;
+    self.btnMore.layer.borderColor = _COLOR(0xff, 0x66, 0x19).CGColor;
     [self.btnMore addTarget:self action:@selector(doBtnMore:) forControlEvents:UIControlEventTouchUpInside];
     
     self.chatview.yMin = 0;
