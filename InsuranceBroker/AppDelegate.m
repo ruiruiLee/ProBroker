@@ -138,7 +138,7 @@
     //判断程序是不是由推送服务完成的
     if (launchOptions)
     {
-        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+       // [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         NSDictionary* notificationPayload = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         if (notificationPayload)
         {
@@ -194,7 +194,7 @@
 }
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
-    [UIApplication sharedApplication].applicationIconBadgeNumber=0;
+    //[UIApplication sharedApplication].applicationIconBadgeNumber=0;
     
     // 程序在运行中接收到推送
     if (application.applicationState == UIApplicationStateActive)
@@ -223,45 +223,7 @@
     }
     
  }
-//- (void) remoteNotificationDistributionCenter:(NSDictionary *) userInfo
-//{
-//    AppContext *context = [AppContext sharedAppContext];
-//    int mt = [[userInfo objectForKey:@"mt"] intValue];
-//    NSInteger ct = [[userInfo objectForKey:@"ct"] integerValue];
-//    if(mt == 1){
-//        context.isNewMessage = YES;
-//        switch (ct) {
-//            case 10:
-//            {
-//                context.isHasNotice = YES;
-//            }
-//                break;
-//            case 11:
-//            {
-//                context.isHasNewPolicy = YES;
-//            }
-//                break;
-//            case 12:
-//            {
-//                context.isHasTradingMsg = YES;
-//            }
-//                break;
-//            case 13:
-//            {
-//                context.isHasIncentivePolicy = YES;
-//            }
-//                break;
-//            default:
-//                break;
-//        }
-//    }
-//    else if (mt == 3){
-//        context.pushCustomerNum = [AppContext sharedAppContext].pushCustomerNum;
-//    }else if (mt == 4){
-//        
-//    }
-//    [context saveData];
-//    }
+
 //category：10|12, //消息类别 10代表为“通知消息”12代表为”交易消息”，
 //title: "消息标题"，如体现通知、收益通知等
 //content: "消息内容"，如“您申请体现的￥300，已转入到你的帐号，请查收”

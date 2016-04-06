@@ -7,7 +7,7 @@
 //
 
 #import "AppContext.h"
-
+#import <UIKit/UIKit.h>
 static AppContext *context = nil;
 
 @implementation AppContext
@@ -104,6 +104,7 @@ static AppContext *context = nil;
        }
    }
     self.isNewMessage = displayMsg;
+    [UIApplication sharedApplication].applicationIconBadgeNumber=self.isNewMessage?1:0;
     [self saveData];
 }
 // 存储类别显示红点信息
@@ -118,6 +119,7 @@ static AppContext *context = nil;
             }
         }
         self.isNewMessage = displayMsg;
+          [UIApplication sharedApplication].applicationIconBadgeNumber=self.isNewMessage?1:0;
         [self saveData];
         return;
     }
@@ -153,6 +155,7 @@ static AppContext *context = nil;
         i++;
     }
     self.isNewMessage = displayMsg;
+      [UIApplication sharedApplication].applicationIconBadgeNumber=self.isNewMessage?1:0;
     [_arrayNewsTip removeAllObjects];
     self.arrayNewsTip =  [NSMutableArray arrayWithArray: changArray];
     [self saveData];
