@@ -25,6 +25,10 @@
 {
     self.clipsToBounds = YES;
     
+    [self addObserver:self forKeyPath:@"highlighted" options:NSKeyValueObservingOptionNew context:NULL];
+    
+//    [self setExclusiveTouch:YES];
+    
     _mask = [[UIView alloc] initWithFrame:self.bounds];
     [self addSubview:_mask];
     _mask.translatesAutoresizingMaskIntoConstraints = NO;
@@ -37,15 +41,20 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_mask]-0-|" options:0 metrics:nil views:views]];
 }
 
-- (void) setHighlighted:(BOOL)highlighted {
-    //    [super setHighlighted:highlighted];
-    
-    if (highlighted) {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+//    [self setNeedsDisplay];
+    if([[change objectForKey:@"new"] boolValue]){
         _mask.hidden = NO;
     }
-    else {
+    else{
         _mask.hidden = YES;
     }
+}
+
+- (void) dealloc
+{
+    [self removeObserver:self forKeyPath:@"highlighted"];
 }
 
 @end

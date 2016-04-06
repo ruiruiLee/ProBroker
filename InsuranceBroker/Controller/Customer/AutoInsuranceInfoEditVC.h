@@ -78,6 +78,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) IBOutlet UILabel *lbPhoto;
 @property (nonatomic, strong) IBOutlet UIButton *btnChange;
 
+@property (nonatomic, strong) IBOutlet UIButton *btnHowOrder;
+
 @property (nonatomic, strong) UIButton *btnQuote;//立即报价
 
 @property (nonatomic, strong) CustomerDetailModel *customerModel;

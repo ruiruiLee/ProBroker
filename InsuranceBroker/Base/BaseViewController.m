@@ -50,7 +50,12 @@
     }
 }
 
-
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self setExclusiveTouchForButtons:self.view];
+}
 
 // 注册网络连接状态的改变通知
 - (void)regitserSystemAsObserver{
@@ -237,6 +242,17 @@
 - (float)getIOSVersion
 {
     return [[[UIDevice currentDevice] systemVersion] floatValue];
+}
+
+-(void)setExclusiveTouchForButtons:(UIView *)myView
+{
+    for (UIView * v in [myView subviews]) {
+        if([v isKindOfClass:[UIButton class]])
+            [((UIButton *)v) setExclusiveTouch:YES];
+        else if ([v isKindOfClass:[UIView class]]){
+            [self setExclusiveTouchForButtons:v];
+        }
+    }
 }
 
 @end

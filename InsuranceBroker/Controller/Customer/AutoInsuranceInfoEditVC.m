@@ -155,6 +155,7 @@
     self.imageHConstraint.constant = ScreenWidth;
     
     self.lbShow.attributedText = [Util getWarningString:explain];
+    self.btnHowOrder.titleLabel.font = _FONT_B(13);
     
     
     self.title = @"车辆信息";

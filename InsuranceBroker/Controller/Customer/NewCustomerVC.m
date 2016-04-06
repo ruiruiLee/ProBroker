@@ -136,7 +136,7 @@
                                               liveCityId:self.data.liveCityId
                                               liveAreaId:self.data.liveAreaId
                                                 liveAddr:self.data.liveAddr
-                                          customerStatus:self.data.customerStatus
+                                          customerStatus:1
                                             drivingCard1:self.data.drivingCard1
                                             drivingCard2:self.data.drivingCard2
                                            customerLabel:customerLabel

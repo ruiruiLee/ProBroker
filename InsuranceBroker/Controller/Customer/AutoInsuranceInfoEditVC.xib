@@ -12,6 +12,7 @@
                 <outlet property="btnCert" destination="1ZS-sN-TX0" id="b2c-5w-e2f"/>
                 <outlet property="btnChange" destination="nTY-RE-p2Q" id="iUj-gd-TZ1"/>
                 <outlet property="btnHow" destination="5Ti-VN-yr8" id="HLD-RM-clR"/>
+                <outlet property="btnHowOrder" destination="G8O-fE-faa" id="YSF-hN-YBZ"/>
                 <outlet property="btnNoNo" destination="PVy-Mo-j5E" id="ZvT-uJ-Yaz"/>
                 <outlet property="btnReSubmit" destination="a1B-nY-nfe" id="6QB-zA-Sr2"/>
                 <outlet property="contenView" destination="Ht5-MD-Gr8" id="9u8-ur-huZ"/>
@@ -88,7 +89,7 @@
                                                 <constraint firstAttribute="width" constant="80" id="Dhd-z6-cYs"/>
                                                 <constraint firstAttribute="height" constant="30" id="ESn-QO-SEH"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                             <state key="normal" title="如何报价？">
                                                 <color key="titleColor" red="0.40000000000000002" green="0.56470588235294117" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
