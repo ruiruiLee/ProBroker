@@ -56,7 +56,7 @@
         
         lb1 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
         [_contentView addSubview:lb1];
-        lb1.attributedText = [self getInsuranceRules:@"＊  优快保经纪人提供以下三种报价方式\n \n  1 上传车主［行驶证正本］或者 进入（详情）填写行驶证信息可快速报价，此报价可能与真实价格存在一点偏差，成交最终以真实价格为准。\n\n  2 上传车主［行驶证正本］和［身份证正面］清晰照片 进行精准报价。\n\n  3 续保车辆 只需进入（详情）填写［车牌号］和选择［上年保险公司］，就可精准报价。"];
+        lb1.attributedText = [self getInsuranceRules:@"＊优快保经纪人提供以下三种报价方式\n \n  1 上传车主［行驶证正本］或者 进入（详情）填写行驶证信息可快速报价，此报价可能与真实价格存在一点偏差，成交最终以真实价格为准。\n\n  2 上传车主［行驶证正本］和［身份证正面］清晰照片 进行精准报价。\n\n  3 续保车辆 只需进入（详情）填写［车牌号］和选择［上年保险公司］，就可精准报价。"];
         
 
         lb1.preferredMaxLayoutWidth = ScreenWidth - 40;
@@ -64,7 +64,7 @@
         lb2 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
         [_contentView addSubview:lb2];
         lb2.preferredMaxLayoutWidth = ScreenWidth - 40;
-        lb2.attributedText = [Util getWarningString:@"＊  注：客户确认投保后，应保监会规定需要补齐以上所有证件照片方可出单。优快保经纪人将保证所有证件资料仅用于车辆报价或投保，绝不用作其它用途，请放心上传。"];
+        lb2.attributedText = [Util getWarningString:@"＊注：客户确认投保后，应保监会规定需要补齐以上所有证件照片方可出单。优快保经纪人将保证所有证件资料仅用于车辆报价或投保，绝不用作其它用途，请放心上传。"];
         lb2.numberOfLines = 0;
         
         NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, _btnShut, _contentView, lb1, lb2, btnClicked);
