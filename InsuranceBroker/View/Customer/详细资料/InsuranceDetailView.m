@@ -30,7 +30,7 @@
         
         _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, INTMAX_MAX)];
         _footView.backgroundColor = SepLine_color;
-        UILabel *lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x66, 0x90, 0xab)];
+        UILabel *lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT_B(15) TextColor:_COLOR(0x66, 0x90, 0xab)];
         [_footView addSubview:lbTitle];
         lbTitle.text = @"如何进行车险报价？";
         
@@ -56,7 +56,7 @@
         
         lb1 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
         [_contentView addSubview:lb1];
-        lb1.attributedText = [Util getWarningString:@"*  优快保经纪人提供以下三种报价方式\n \n  1 上传车主［行驶证正本］或者 进入［详情］填写行驶证信息可快速报价，此报价可能与真实价格存在一点偏差，成交最终以真实价格为准。\n\n  2 上传车主［行驶证正本］和［身份证正面］清晰照片 进行精准报价。\n\n  3 续保车辆 只需进入［详情］填写 车牌号 和 选择上年保险公司，就可精准报价。"];
+        lb1.attributedText = [self getInsuranceRules:@"*  优快保经纪人提供以下三种报价方式\n \n  1 上传车主［行驶证正本］或者 进入（详情）填写行驶证信息可快速报价，此报价可能与真实价格存在一点偏差，成交最终以真实价格为准。\n\n  2 上传车主［行驶证正本］和［身份证正面］清晰照片 进行精准报价。\n\n  3 续保车辆 只需进入（详情）填写［车牌号］和选择［上年保险公司］，就可精准报价。"];
         
 
         lb1.preferredMaxLayoutWidth = ScreenWidth - 40;
@@ -92,6 +92,48 @@
     }
     
     return self;
+}
+
+- (NSMutableAttributedString *) getInsuranceRules:(NSString *) str{
+    NSString *UnitPrice = str;
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:str];
+    NSRange range = [UnitPrice rangeOfString:@"*"];
+    [attString addAttribute:NSForegroundColorAttributeName value:_COLOR(0xf4, 0x43, 0x36) range:range];
+    [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"1"];
+    [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"2"];
+    [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"3"];
+    
+    [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"1"];
+    [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"2"];
+    [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"3"];
+    
+    [self addAttributes:attString substr:UnitPrice rootstr:@"［行驶证正本］"];
+    [self addAttributes:attString substr:UnitPrice rootstr:@"［车牌号］"];
+    [self addAttributes:attString substr:UnitPrice rootstr:@"［身份证正面］"];
+    [self addAttributesBack:attString substr:UnitPrice rootstr:@"［行驶证正本］"];
+    [self addAttributes:attString substr:UnitPrice rootstr:@"［上年保险公司］"];
+    
+    return attString;
+}
+
+- (void) setAttributes:(NSMutableAttributedString *) str attribute:(NSString *)attribute value:(id)value substr:(NSString *)substr rootstr:(NSString *) rootstr
+{
+    NSRange range = [substr rangeOfString:rootstr];
+    [str addAttribute:attribute value:value range:range];
+}
+
+- (void) addAttributesBack:(NSMutableAttributedString *) str substr:(NSString *)substr rootstr:(NSString *) rootstr
+{
+    NSRange range = [substr rangeOfString:rootstr options:NSBackwardsSearch];
+    [str addAttribute:NSFontAttributeName value:_FONT_B(12) range:range];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:range];
+}
+
+- (void) addAttributes:(NSMutableAttributedString *) str substr:(NSString *)substr rootstr:(NSString *) rootstr
+{
+    NSRange range = [substr rangeOfString:rootstr];
+    [str addAttribute:NSFontAttributeName value:_FONT_B(12) range:range];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:range];
 }
 
 - (void) doBtnClicked:(UIButton *)sender
