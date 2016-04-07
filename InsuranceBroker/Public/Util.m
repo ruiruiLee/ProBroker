@@ -648,10 +648,12 @@
     BOOL isCarInfo = NO;
     if([self isNilValue:carInfo.travelCard1] || (carRegTime != nil && ![BaseModel dateIsNil:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && ([self isNilValue:carNo] || !carInfo.newCarNoStatus))){
         isCarInfo = YES;
-    }
-    if(isCarInfo && ([self isNilValue:carInfo.carOwnerCard1] || [Util validateIdentityCard:carOwnerCard])){
+        
         return YES;
     }
+//    if(isCarInfo && ([self isNilValue:carInfo.carOwnerCard1] || [Util validateIdentityCard:carOwnerCard])){
+//        return YES;
+//    }
     
     return result;
 }
