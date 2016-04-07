@@ -75,8 +75,8 @@
     [NetWorkHandler requestToQueryForLabelPageList:1 Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
-            NSError *error = nil;
-            self.data = [MTLJSONAdapter modelsOfClass:TagObjectModel.class fromJSONArray:[[content objectForKey:@"data"] objectForKey:@"rows"] error:&error];
+//            NSError *error = nil;
+            self.data = [TagObjectModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];//[MTLJSONAdapter modelsOfClass:TagObjectModel.class fromJSONArray:[[content objectForKey:@"data"] objectForKey:@"rows"] error:&error];
             [[TagObjectModel shareTagList] removeAllObjects];
             [[TagObjectModel shareTagList] addObjectsFromArray:self.data];
             [self.tableview reloadData];

@@ -6,10 +6,11 @@
 //  Copyright © 2015年 LiuZach. All rights reserved.
 //
 
-#import "Mantle.h"
+//#import "Mantle.h"
 #import <UIKit/UIKit.h>
+#import "BaseModel.h"
 
-@interface TagObjectModel : MTLModel <MTLJSONSerializing>
+@interface TagObjectModel : BaseModel
 
 @property (nonatomic, copy) NSString *labelName;
 @property (nonatomic, copy) NSString *labelId;//没有labelId新增；有labelId进行修改
