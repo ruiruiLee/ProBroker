@@ -358,18 +358,19 @@
     BOOL isCarInfo = NO;
     if(self.btnReSubmit.selected || ([self isNilValue:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && ([self isNilValue:carNo] || self.btnNoNo.selected))){
         isCarInfo = YES;
-    }
-    if(isCarInfo && (self.btnCert.selected || [Util validateIdentityCard:carOwnerCard])){
         return YES;
     }
+//    if(isCarInfo && (self.btnCert.selected || [Util validateIdentityCard:carOwnerCard])){
+//        return YES;
+//    }
     
-    if(!self.btnCert.selected){
-        BOOL flag = [Util validateIdentityCard:carOwnerCard];//[self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
-        if(!flag){
-            [Util showAlertMessage:@"车主身份证号不正确"];
-            return result;
-        }
-    }
+//    if(!self.btnCert.selected){
+//        BOOL flag = [Util validateIdentityCard:carOwnerCard];//[self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
+//        if(!flag){
+//            [Util showAlertMessage:@"车主身份证号不正确"];
+//            return result;
+//        }
+//    }
     if(!self.btnReSubmit.selected){
         if(!self.btnNoNo.selected){
             if(![Util validateCarNo:carNo]){
@@ -824,7 +825,8 @@
             }
         }
     }else{
-        [self car_insur_plan:self.customerModel.carInfo.customerCarId];
+        if([self checkInfoFull])
+            [self car_insur_plan:self.customerModel.carInfo.customerCarId];
     }
 }
 
