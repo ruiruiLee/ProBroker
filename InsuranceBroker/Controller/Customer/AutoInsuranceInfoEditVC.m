@@ -26,7 +26,7 @@
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
 #import "NetWorkHandler+queryForProductList.h"
 
-#define explain @"＊  优快保提供以下三种报价方式\n \n   1   续保车辆 只需填写［车牌号］和 选择［上年保险公司］，就可精准报价。\n \n   2 上传车主［行驶证正本］或者 填写行驶证明细可快速报价，此报价可能与真实 价格存在一点偏差，成交最终以真实价格为准。\n \n   3  上传车主［行驶证正本］和［身份证正面］清晰照片进行精准报价。 \n \n＊ 注：客户确认投保后，应保监会规定需要补齐所有证件照片方可出单（在客户资料界面可补齐照片）。"
+#define explain @"＊  优快保提供以下三种报价方式\n \n   1 续保车辆 只需填写［车牌号］和 选择［上年保险公司］，就可精准报价。\n \n   2 上传车主［行驶证正本］或者 填写行驶证明细可快速报价，此报价可能与真实 价格存在一点偏差，成交最终以真实价格为准。\n \n   3  上传车主［行驶证正本］和［身份证正面］清晰照片进行精准报价。 \n \n＊ 注：客户确认投保后，应保监会规定需要补齐所有证件照片方可出单（在客户资料界面可补齐照片）。"
 
 @interface AutoInsuranceInfoEditVC ()<MenuDelegate, ZHPickViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 {
@@ -768,7 +768,8 @@
             if(_perInsurCompany >= 0){
 //                InsuranceCompanyModel *model = [_insurCompanyArray objectAtIndex:_perInsurCompany];
 //                self.lbPName.text = model.insuranceCompanyShortName;
-                [self menuViewController:_menuView AtIndex:_perInsurCompany];
+//                [self menuViewController:_menuView AtIndex:_perInsurCompany];
+                self.lbPName.text = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).productName;
             }else
             {
                 NSInteger i = _perInsurCompany;
@@ -1248,7 +1249,7 @@
                                                    attributes:@{NSFontAttributeName:_FONT(13)}
                            
                                                       context:nil];
-            self.topVConstraint.constant = 30 + rect.size.height + 5;
+            self.topVConstraint.constant = 30 + rect.size.height + 9;
         }
         [self.view1 layoutIfNeeded];
         [self.view1 setNeedsLayout];

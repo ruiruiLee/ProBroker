@@ -468,6 +468,7 @@
         hmPopUp.transitionType = HMPopUpTransitionTypePopFromBottom;
         hmPopUp.dismissType = HMPopUpDismissTypeFadeOutTop;
         [hmPopUp showInView:self.view];
+        hmPopUp.txtField.placeholder = @"输入备注名";
         hmPopUp.txtField.text = model.remarkName;
         hmPopUp.tag = sender.tag;
     }

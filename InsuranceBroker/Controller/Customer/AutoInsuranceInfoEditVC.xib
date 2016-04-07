@@ -97,7 +97,7 @@
                                                 <action selector="doBtnShowWarning:" destination="-1" eventType="touchUpInside" id="6VX-hK-abb"/>
                                             </connections>
                                         </button>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgm-h4-ntg">
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgm-h4-ntg">
                                             <rect key="frame" x="0.0" y="30" width="600" height="0.0"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNM-7Z-xye">
@@ -112,7 +112,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPG-xr-qMd">
-                                                    <rect key="frame" x="16" y="0.0" width="568" height="0.0"/>
+                                                    <rect key="frame" x="16" y="4" width="568" height="0.0"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -123,7 +123,7 @@
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="BPG-xr-qMd" firstAttribute="top" secondItem="xgm-h4-ntg" secondAttribute="top" id="55h-tV-Vwc"/>
+                                                <constraint firstItem="BPG-xr-qMd" firstAttribute="top" secondItem="xgm-h4-ntg" secondAttribute="top" constant="4" id="55h-tV-Vwc"/>
                                                 <constraint firstItem="gNM-7Z-xye" firstAttribute="leading" secondItem="xgm-h4-ntg" secondAttribute="leading" constant="16" id="MdJ-FA-L9g"/>
                                                 <constraint firstItem="BPG-xr-qMd" firstAttribute="leading" secondItem="xgm-h4-ntg" secondAttribute="leading" constant="16" id="d8Q-lo-ZO4"/>
                                                 <constraint firstAttribute="bottom" secondItem="BPG-xr-qMd" secondAttribute="bottom" constant="4" id="pcj-s0-qsl"/>
