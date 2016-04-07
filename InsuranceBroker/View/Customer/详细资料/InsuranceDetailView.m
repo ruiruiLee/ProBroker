@@ -56,7 +56,7 @@
         
         lb1 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
         [_contentView addSubview:lb1];
-        lb1.attributedText = [Util getWarningString:@"*  优快保经纪人提供以下三种报价方式\n \n  1 上传车主［行驶证正本］或者 进入［详情］填写行驶证信息可快速报价，此报价可能与真实价格存在一点偏差，成交最终以真实价格为准。\n\n  2 上传车主［行驶证正本］和［身份证正面］清晰照片 进行精准报价。\n\n  3 续保车辆 只需进入［详情］填写 车牌号 和 选择上年保险公司，就可精准报价。"];
+        lb1.attributedText = [Util getWarningString:@"*  优快保经纪人提供以下三种报价方式\n \n  1 上传车主［行驶证正本］或者 进入［详情］填写行驶证信息可快速报价，此报价可能与真实价格存在一点偏差，成交最终以真实价格为准。\n\n  2 上传车主［行驶证正本］和［身份证正面］清晰照片 进行精准报价。\n\n  3 续保车辆 只需进入［详情］填写[车牌号]和选择[上年保险公司]，就可精准报价。"];
         
 
         lb1.preferredMaxLayoutWidth = ScreenWidth - 40;
