@@ -145,7 +145,7 @@
     {
         [model queryUserInfo];
     }
-    
+    [self updateUserInfo];
 }
 - (void) viewDidDisappear:(BOOL)animated
 {

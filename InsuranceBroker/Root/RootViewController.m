@@ -79,7 +79,7 @@
     
     
     UIImageView *tabBarBgView = [[UIImageView alloc] initWithFrame:self.tabBar.bounds];
-    tabBarBgView.backgroundColor = _COLOR(0x22, 0x22, 0x22);
+    tabBarBgView.backgroundColor = _COLORa(0x22, 0x22, 0x22, 0.9);//_COLOR(0x22, 0x22, 0x22);
     [self.tabBar insertSubview:tabBarBgView atIndex:0];
     
     /** 设置tabar工具条 */

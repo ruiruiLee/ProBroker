@@ -105,21 +105,31 @@
 
 - (void) setDataFromSub
 {
-    NSArray *title = @[@"收益信息",@"成交时间"];
+    NSArray *title = @[@"收益信息", @"经纪人",@"成交时间", @"成交金额", @"佣金比例", @"客户优惠"];
 //    NSArray *content = @[self.billInfo.memo, [Util getTimeString:self.billInfo.createdAt]];
     NSMutableArray *content = [[NSMutableArray alloc] init];
+//    [self addObjectToArray:content object:self.billInfo.memo];
+//    [self addObjectToArray:content object:[Util getTimeString:self.billInfo.createdAt]];
+    
     [self addObjectToArray:content object:self.billInfo.memo];
+    [self addObjectToArray:content object:self.billInfo.userName];
     [self addObjectToArray:content object:[Util getTimeString:self.billInfo.createdAt]];
+    [self addObjectToArray:content object:[Util getDecimalStyle:self.billInfo.sellPrice]];
+    [self addObjectToArray:content object:[NSString stringWithFormat:@"%d%@", (int)self.billInfo.productMaxRatio, @"%"]];
+    [self addObjectToArray:content object:[NSString stringWithFormat:@"%d%@", (int)self.billInfo.planUkbRatio, @"%"]];
+    
     self.titleArray = title;
     self.contentArray = content;
 }
 
 - (void) setDataFromOrder
 {
-    NSArray *title = @[@"收益信息",@"创建时间", @"佣金比例", @"客户优惠"];
+    NSArray *title = @[@"收益信息", @"经纪人",@"成交时间", @"成交金额", @"佣金比例", @"客户优惠"];
     NSMutableArray *content = [[NSMutableArray alloc] init];
     [self addObjectToArray:content object:self.billInfo.memo];
+    [self addObjectToArray:content object:self.billInfo.userName];
     [self addObjectToArray:content object:[Util getTimeString:self.billInfo.createdAt]];
+    [self addObjectToArray:content object:[Util getDecimalStyle:self.billInfo.sellPrice]];
     [self addObjectToArray:content object:[NSString stringWithFormat:@"%d%@", (int)self.billInfo.productMaxRatio, @"%"]];
     [self addObjectToArray:content object:[NSString stringWithFormat:@"%d%@", (int)self.billInfo.planUkbRatio, @"%"]];
     self.titleArray = title;
