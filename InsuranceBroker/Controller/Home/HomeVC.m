@@ -153,7 +153,7 @@
                                 addTarget:self.scrollview
                                  delegate:self
                                  withSize:CGRectMake(0, 0, self.view.frame.size.width, [Util getHeightByWidth:375 height:160 nwidth:ScreenWidth])
-                         withTimeInterval:5.f];
+                         withTimeInterval:4.f];
     
    
     [self.headline reloadData];
