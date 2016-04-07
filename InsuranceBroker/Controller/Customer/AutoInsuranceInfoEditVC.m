@@ -170,7 +170,8 @@
     self.tfName.delegate = self;
     self.tfNo.delegate = self;
     self.lbExplain.attributedText = [Util getWarningString:@"＊所有证件资料仅用于车辆报价或投保，不用做其他用途。"];
-    self.lbExplain.hidden = YES;
+    self.lbExplain.hidden = NO;
+    self.btnHow.hidden = YES;
     self.scrollview.delegate = self;
     
     self.tfMotorCode.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
@@ -289,12 +290,12 @@
 {
     CGFloat offset = scrollView.contentOffset.x;
     if(offset >= ScreenWidth){
-        self.lbExplain.hidden = NO;
-        self.btnHow.hidden = YES;
-        self.btnChange.selected = NO;
-    }else{
         self.lbExplain.hidden = YES;
         self.btnHow.hidden = NO;
+        self.btnChange.selected = NO;
+    }else{
+        self.lbExplain.hidden = NO;
+        self.btnHow.hidden = YES;
         self.btnChange.selected = YES;
     }
     
@@ -923,11 +924,11 @@
     self.view6.hidden = NO;
     self.view7.hidden = NO;
     self.view5VConstraint.constant = 30;
-    self.view6VConstraint.constant = 210;
+    self.view6VConstraint.constant = 190;
     self.view7VConstraint.constant = 40;
     
     self.view2.hidden = NO;
-    self.view2VConstraint.constant = 90;
+    self.view2VConstraint.constant = 130;
     self.view3.hidden = NO;
     self.view3VConstraint.constant = 30;
     
