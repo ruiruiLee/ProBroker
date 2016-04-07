@@ -104,7 +104,9 @@
     self.tfview.delegate = self;
     self.tfAdd.delegate = self;
     
-    self.tfTIme.text = [Util getTimeString:[NSDate date]];
+    NSDate *date = [NSDate date];
+    self.tfTIme.text = [Util getTimeString:date];
+    _visitDate = date;
     self.tfAdd.text = LcationInstance.currentDetailAdrress;
     
     [self textViewDidChange:self.tfAdd];
@@ -318,11 +320,11 @@
     if([visitMemo length] > 0 && ![visitMemo isEqualToString:self.visitModel.visitMemo])
         result = YES;
     
-    if(_visitDate != nil)
-        result = YES;
-    NSString *address = self.tfAdd.text;
-    if([address length] > 0 && ![address isEqualToString:self.visitModel.visitAddr])
-        result = YES;
+//    if(_visitDate != nil)
+//        result = YES;
+//    NSString *address = self.tfAdd.text;
+//    if([address length] > 0 && ![address isEqualToString:self.visitModel.visitAddr])
+//        result = YES;
     
     if(result){
         [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
