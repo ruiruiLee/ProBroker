@@ -588,7 +588,7 @@
 {
     NSString *UnitPrice = string;
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
-    NSRange range = [UnitPrice rangeOfString:@"*"];
+    NSRange range = [UnitPrice rangeOfString:@"＊"];
     [attString addAttribute:NSForegroundColorAttributeName value:_COLOR(0xf4, 0x43, 0x36) range:range];
     return attString;
 }

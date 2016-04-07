@@ -46,7 +46,7 @@
     self.viewHConstraint.constant = ScreenWidth;
     [self loadData];
     
-    self.lbWarning.attributedText = [Util getWarningString:@"*客户优惠 为您实际优惠客户的点数，只针对商业险，对于只购买强制交强险的客户不能享有优惠"];
+    self.lbWarning.attributedText = [Util getWarningString:@"＊客户优惠 为您实际优惠客户的点数，只针对商业险，对于只购买强制交强险的客户不能享有优惠"];
 }
 
 - (void)didReceiveMemoryWarning {

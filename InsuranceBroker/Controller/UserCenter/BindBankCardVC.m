@@ -60,7 +60,7 @@
     [header addSubview:lb];
     lb.font = _FONT(11);
     lb.textColor = _COLOR(0x75, 0x75, 0x75);
-    lb.attributedText = [Util getWarningString:@"*请绑定您本人的银行卡"];
+    lb.attributedText = [Util getWarningString:@"＊请绑定您本人的银行卡"];
     
     self.tableview.tableFooterView = [[UIView alloc] init];
     self.tableview.tableHeaderView = header;

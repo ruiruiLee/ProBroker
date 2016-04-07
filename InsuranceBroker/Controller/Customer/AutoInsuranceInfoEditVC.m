@@ -26,7 +26,7 @@
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
 #import "NetWorkHandler+queryForProductList.h"
 
-#define explain @"* 续保车辆只需输入［车牌号］和［上年度保险］就可报价.非续保车辆至少需上传车主［身份证正面］,［行驶证正本］清晰照片 或者 输入［车辆详细信息］方可报价。客户确认投保后，应保监会规定需要补齐所有照片方可出单（在客户资料界面可补齐照片）。"
+#define explain @"＊  优快保提供以下三种报价方式\n \n   1   续保车辆 只需填写［车牌号］和 选择［上年保险公司］，就可精准报价。\n \n   2 上传车主［行驶证正本］或者 填写行驶证明细可快速报价，此报价可能与真实 价格存在一点偏差，成交最终以真实价格为准。\n \n   3  上传车主［行驶证正本］和［身份证正面］清晰照片进行精准报价。 \n \n＊ 注：客户确认投保后，应保监会规定需要补齐所有证件照片方可出单（在客户资料界面可补齐照片）。"
 
 @interface AutoInsuranceInfoEditVC ()<MenuDelegate, ZHPickViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 {
@@ -154,7 +154,7 @@
     self.infoHConstraint.constant = ScreenWidth;
     self.imageHConstraint.constant = ScreenWidth;
     
-    self.lbShow.attributedText = [Util getWarningString:explain];
+    self.lbShow.attributedText = [self getInsuranceRules:explain];
     self.btnHowOrder.titleLabel.font = _FONT_B(13);
     
     
@@ -169,7 +169,7 @@
     self.tfMotorCode.delegate = self;
     self.tfName.delegate = self;
     self.tfNo.delegate = self;
-    self.lbExplain.attributedText = [self getAttbuteString];
+    self.lbExplain.attributedText = [Util getWarningString:@"＊所有证件资料仅用于车辆报价或投保，不用做其他用途。"];
     self.lbExplain.hidden = YES;
     self.scrollview.delegate = self;
     
@@ -211,6 +211,51 @@
     [self.btnNoNo setImage:ThemeImage(@"select") forState:UIControlStateSelected];
     self.btnChange.selected = YES;
     [self doBtnInfoChange:self.btnChange];
+}
+
+- (NSMutableAttributedString *) getInsuranceRules:(NSString *) str{
+    NSString *UnitPrice = str;
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:str];
+    NSRange range = [UnitPrice rangeOfString:@"＊"];
+    [attString addAttribute:NSForegroundColorAttributeName value:_COLOR(0xf4, 0x43, 0x36) range:range];
+    range = [UnitPrice rangeOfString:@"＊" options:NSBackwardsSearch];
+    [attString addAttribute:NSForegroundColorAttributeName value:_COLOR(0xf4, 0x43, 0x36) range:range];
+    
+    [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"1"];
+    [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"2"];
+    [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"3"];
+    
+    [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"1"];
+    [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"2"];
+    [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"3"];
+    
+    [self addAttributes:attString substr:UnitPrice rootstr:@"［行驶证正本］"];
+    [self addAttributes:attString substr:UnitPrice rootstr:@"［车牌号］"];
+    [self addAttributes:attString substr:UnitPrice rootstr:@"［身份证正面］"];
+    [self addAttributesBack:attString substr:UnitPrice rootstr:@"［行驶证正本］"];
+    [self addAttributes:attString substr:UnitPrice rootstr:@"［上年保险公司］"];
+    
+    return attString;
+}
+
+- (void) setAttributes:(NSMutableAttributedString *) str attribute:(NSString *)attribute value:(id)value substr:(NSString *)substr rootstr:(NSString *) rootstr
+{
+    NSRange range = [substr rangeOfString:rootstr];
+    [str addAttribute:attribute value:value range:range];
+}
+
+- (void) addAttributesBack:(NSMutableAttributedString *) str substr:(NSString *)substr rootstr:(NSString *) rootstr
+{
+    NSRange range = [substr rangeOfString:rootstr options:NSBackwardsSearch];
+    [str addAttribute:NSFontAttributeName value:_FONT_B(12) range:range];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:range];
+}
+
+- (void) addAttributes:(NSMutableAttributedString *) str substr:(NSString *)substr rootstr:(NSString *) rootstr
+{
+    NSRange range = [substr rangeOfString:rootstr];
+    [str addAttribute:NSFontAttributeName value:_FONT_B(12) range:range];
+    [str addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:range];
 }
 
 - (void) valueChanged:(UITextField*) obj
@@ -263,17 +308,6 @@
         self.btnChange.selected = YES;
     }
 //    self.btnChange.selected = !self.btnChange.selected;
-}
-
-- (NSMutableAttributedString *)getAttbuteString
-{
-    NSString *text = @"*所有证件资料仅用于车辆报价或投保，不用做其他用途。";
-//    NSString *text = @"*优快保经纪人保证所有证件资料仅用于车辆报价或投保，不用做其他用途，请放心上传";
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:text];
-    
-    [string addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0,1)];
-    
-    return string;
 }
 
 - (BOOL) showMessage:(NSString *)msg string:(NSString *) string
@@ -1211,10 +1245,10 @@
                            
                                                       options:NSStringDrawingUsesLineFragmentOrigin
                            
-                                                   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12]}
+                                                   attributes:@{NSFontAttributeName:_FONT(13)}
                            
                                                       context:nil];
-            self.topVConstraint.constant = 30 + rect.size.height + 15;
+            self.topVConstraint.constant = 30 + rect.size.height + 5;
         }
         [self.view1 layoutIfNeeded];
         [self.view1 setNeedsLayout];

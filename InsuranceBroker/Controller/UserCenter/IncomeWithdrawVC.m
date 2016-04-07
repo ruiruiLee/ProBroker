@@ -79,7 +79,7 @@
     
     self.tableview.tableFooterView = [[UIView alloc] init];
     
-//    self.lbExplain.attributedText = [Util getWarningString:@"*提现金额需大于50元，两个工作日内到账"];
+//    self.lbExplain.attributedText = [Util getWarningString:@"＊提现金额需大于50元，两个工作日内到账"];
     [self.btnSubmit addTarget:self action:@selector(submit:) forControlEvents:UIControlEventTouchUpInside];
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -123,7 +123,7 @@
             _maxLimitMoney = [[[content objectForKey:@"data"] objectForKey:@"maxLimitMoney"] floatValue];
             _minLimitMoney = [[[content objectForKey:@"data"] objectForKey:@"minLimitMoney"] floatValue];
 //            _lbAmmount.text = [NSString stringWithFormat:@"%@元", [Util getDecimalStyle:_advanceMoney]];
-            self.lbExplain.attributedText = [Util getWarningString:[NSString stringWithFormat:@"*提现金额需大于%.2f元，两个工作日内到账", _minLimitMoney]];
+            self.lbExplain.attributedText = [Util getWarningString:[NSString stringWithFormat:@"＊提现金额需大于%.2f元，两个工作日内到账", _minLimitMoney]];
             [self.tableview reloadData];
         }
     }];

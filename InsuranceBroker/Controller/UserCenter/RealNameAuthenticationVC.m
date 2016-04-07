@@ -65,7 +65,7 @@
     self.viewHConstraint.constant = ScreenWidth;
     
     self.btnSubmit.layer.cornerRadius = 5;
-    self.lbWarning.attributedText = [Util getWarningString:@"*实名认证信息需与绑定银行卡持卡人身份一致，否则将无法提现"];
+    self.lbWarning.attributedText = [Util getWarningString:@"＊实名认证信息需与绑定银行卡持卡人身份一致，否则将无法提现"];
     [self.btnCert1 addTarget:self action:@selector(btnPhotoPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnCert2 addTarget:self action:@selector(btnPhotoPressed:) forControlEvents:UIControlEventTouchUpInside];
     self.btnCert1.tag = 1002;
