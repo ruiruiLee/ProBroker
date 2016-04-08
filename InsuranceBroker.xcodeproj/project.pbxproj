@@ -3254,8 +3254,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jin Song (XH3LJ4ST9D)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jin Song (XH3LJ4ST9D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3273,7 +3273,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "43eb3709-a487-4f44-b87f-8fdc6faf105d";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 			};
 			name = Debug;
@@ -3284,8 +3284,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jin Song (XH3LJ4ST9D)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jin Song (XH3LJ4ST9D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3303,7 +3303,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "43eb3709-a487-4f44-b87f-8fdc6faf105d";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 			};
 			name = Release;

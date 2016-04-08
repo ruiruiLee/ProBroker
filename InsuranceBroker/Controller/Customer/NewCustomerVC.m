@@ -158,12 +158,12 @@
                                                           [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Reload_CustomerDetail object:nil];
                                                       }
                                                       [self.navigationController popViewControllerAnimated:NO];
-                                                      AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
+                                                      CustomerDetailVC *vc = [IBUIFactory CreateCustomerDetailViewController];
                                                       vc.hidesBottomBarWhenPushed = YES;
                                                       [self.presentvc.navigationController pushViewController:vc animated:YES];
-                                                      vc.customerModel = self.data;
-                                                      vc.customerId = self.data.customerId;
-//                                                      [detail performSelector:@selector(loadDetailWithCustomerId:) withObject:[content objectForKey:@"data"] afterDelay:0.2];
+//                                                      vc.customerModel = self.data;
+//                                                      vc.customerId = self.data.customerId;
+                                                      [vc performSelector:@selector(loadDetailWithCustomerId:) withObject:[content objectForKey:@"data"] afterDelay:0.2];
                                                   }
                                               }];
 }
