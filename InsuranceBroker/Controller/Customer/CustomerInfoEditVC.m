@@ -222,8 +222,7 @@
     [NetWorkHandler requestToQueryForLabelPageList:1 Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
-            NSError *error = nil;
-            self.tagList = [MTLJSONAdapter modelsOfClass:TagObjectModel.class fromJSONArray:[[content objectForKey:@"data"] objectForKey:@"rows"] error:&error];
+            self.tagList = [TagObjectModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
             [[TagObjectModel shareTagList] addObjectsFromArray:self.tagList];
             [self.tagView setDataArray:self.tagList];
             [self.tagView setOwnerArray:[self tagModelArrayFromIdAndName]];
