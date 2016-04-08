@@ -8,6 +8,7 @@
 
 #import "MyTeamInfoVC.h"
 #import "TeamListTableViewCell.h"
+#import "TeamItemTableViewCell.h"
 #import "BrokerInfoModel.h"
 #import "ParentInfoModel.h"
 #import "ProductInfoModel.h"
@@ -38,7 +39,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.inviteUser
-    [self.pulltable registerNib:[UINib nibWithNibName:@"TeamListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
+    [self.pulltable registerNib:[UINib nibWithNibName:@"TeamItemTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
     [self.pulltable registerNib:[UINib nibWithNibName:@"TeamListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 }
 
@@ -85,7 +86,6 @@
     [banner addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btn]-0-|" options:0 metrics:nil views:views]];
     [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[banner]-0-[productTable]-0-[foot]-0-|" options:0 metrics:nil views:views]];
     
-//    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"" options:0 metrics:nil views:views]];
     self.headerTableVConstraint = [NSLayoutConstraint constraintWithItem:self.productTable attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
     [header addConstraint:self.headerTableVConstraint];
     self.footTableVConstraint = [NSLayoutConstraint constraintWithItem:foot attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
@@ -121,7 +121,6 @@
     
     //弹出下拉刷新控件刷新数据
     self.pulltable.pullTableIsRefreshing = YES;
-    //    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3];
     PullTableView *pulltable = self.pulltable;
     NSDictionary *views = NSDictionaryOfVariableBindings(pulltable);
     
@@ -228,8 +227,12 @@
     if(tableView == self.productTable){
         return 60.f;
     }
-    else
-        return 68.f;
+    else{
+        if(indexPath.section == 0)
+            return 68;
+        else
+            return 88;
+    }
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -258,10 +261,9 @@
     else{
         if(indexPath.section == 0){
             NSString *deq = @"cell1";
-            TeamListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+            TeamItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
             if(!cell){
-//                cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
-                NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"TeamListTableViewCell" owner:nil options:nil];
+                NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"TeamItemTableViewCell" owner:nil options:nil];
                 cell = [nibs lastObject];
             }
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -289,7 +291,6 @@
             cell.lbStatus.text = model.parentPhone;
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbStatus.font = _FONT(12);
-            cell.btnRemark.hidden = YES;
             
             return cell;
         }
@@ -324,8 +325,12 @@
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbStatus.font = _FONT(10);
             cell.lbStatus.attributedText = [self getOrderDetailString:model.nowMonthOrderSellEarn orderValue:model.dayOrderTotalSellEarn];
+            cell.lbSubStatus.textColor = _COLOR(0x75, 0x75, 0x75);
+            cell.lbSubStatus.font = _FONT(10);
+            cell.lbSubStatus.attributedText = [self getOrderAmount:model.dayOrderTotalTrtbNums offer:model.dayOrderTotalOfferNums];
             cell.btnRemark.hidden = NO;
             cell.btnRemark.tag = 100 + indexPath.row;
+            cell.lbSubStatus.hidden = NO;
             if(model.remarkName != nil && [model.remarkName length] > 0)
                 [cell.btnRemark setTitle:[NSString stringWithFormat:@"（%@）", model.remarkName] forState:UIControlStateNormal];
             
@@ -365,8 +370,12 @@
     else{
         if(section == 0)
             return 40.f;
-        else
-            return 98.f;
+        else{
+            if([self.data count] > 0)
+                return 118.f;
+            else
+                return 40;
+        }
     }
 }
 
@@ -400,7 +409,7 @@
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbTitle(40)]->=0-|" options:0 metrics:nil views:views]];
     [view addConstraint:[NSLayoutConstraint constraintWithItem:lbAmount attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     
-    if(section == 1){
+    if(section == 1 && [self.data count] > 0){
         UIView *teamview = [self createTeamTotalInfo];
         [view addSubview:teamview];
     }

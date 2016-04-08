@@ -27,6 +27,8 @@
 @property (nonatomic, assign) NSInteger cardVerifiy;
 @property (nonatomic, strong) NSString *remarkName;
 
+@property (nonatomic, assign) NSInteger dayOrderTotalOfferNums;
+@property (nonatomic, assign) NSInteger dayOrderTotalTrtbNums;
 
 
 

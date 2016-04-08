@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) UILabel *lbMonth;
 @property (nonatomic, strong) UILabel *lbDay;
+@property (nonatomic, strong) UILabel *lbUpdateTime;
 
 @property (nonatomic, strong) RatioMapsModel *teamInfo;
 
@@ -25,6 +26,8 @@
 - (void) initHeaderView;
 
 - (NSAttributedString *) getOrderDetailString:(CGFloat) amount orderValue:(CGFloat) orderValue;
+
+- (NSAttributedString *) getOrderAmount:(NSInteger) insure offer:(NSInteger) offer;
 
 - (UIView *) createTeamTotalInfo;
 

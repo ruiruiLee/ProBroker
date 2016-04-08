@@ -16,6 +16,7 @@
     
     model.nowMonthTeamSellTj = [dictionary objectForKey:@"nowMonthTeamSellTj"];
     model.nowDayTeamSellTj = [dictionary objectForKey:@"nowDayTeamSellTj"];
+    model.tjTime = [dictionary objectForKey:@"tjTime"];
     
     return model;
 }

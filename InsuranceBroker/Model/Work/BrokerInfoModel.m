@@ -43,6 +43,9 @@
     model.dayOrderTotalSellEarn = [[dictionary objectForKey:@"dayOrderTotalSellEarn"] floatValue];
     model.remarkName = [dictionary objectForKey:@"remarkName"];
     
+    model.dayOrderTotalTrtbNums = [[dictionary objectForKey:@"dayOrderTotalTrtbNums"] integerValue];
+    model.dayOrderTotalOfferNums = [[dictionary objectForKey:@"dayOrderTotalOfferNums"] integerValue];
+    
     return model;
 }
 
