@@ -339,7 +339,7 @@
 {
     BOOL result = NO;
     
-    NSString *carOwnerCard = self.tfCert.text;//身份证号
+   // NSString *carOwnerCard = self.tfCert.text;//身份证号
     NSString *carRegTime = self.tfDate.text;//注册日期
     NSString *carEngineNo = self.tfMotorCode.text;////发动机号
     NSString *carShelfNo = self.tfIdenCode.text;//识别码
@@ -350,7 +350,7 @@
         if([Util validateCarNo:carNo] || [self isHasLisence]){
             return YES;
         }else{
-            [Util showAlertMessage:@"请填写车牌号或上传行驶证"];
+            [Util showAlertMessage:@"请填写正确的车牌号或上传行驶证"];
             return NO;
         }
     }
