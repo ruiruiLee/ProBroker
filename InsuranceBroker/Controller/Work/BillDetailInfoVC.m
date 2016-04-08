@@ -114,7 +114,7 @@
     [self addObjectToArray:content object:self.billInfo.memo];
     [self addObjectToArray:content object:self.billInfo.userName];
     [self addObjectToArray:content object:[Util getTimeString:self.billInfo.createdAt]];
-    [self addObjectToArray:content object:[Util getDecimalStyle:self.billInfo.sellPrice]];
+    [self addObjectToArray:content object:[NSString stringWithFormat:@"%@元", [Util getDecimalStyle:self.billInfo.sellPrice]]];
     [self addObjectToArray:content object:[NSString stringWithFormat:@"%d%@", (int)self.billInfo.productMaxRatio, @"%"]];
     [self addObjectToArray:content object:[NSString stringWithFormat:@"%d%@", (int)self.billInfo.planUkbRatio, @"%"]];
     
@@ -129,7 +129,7 @@
     [self addObjectToArray:content object:self.billInfo.memo];
     [self addObjectToArray:content object:self.billInfo.userName];
     [self addObjectToArray:content object:[Util getTimeString:self.billInfo.createdAt]];
-    [self addObjectToArray:content object:[Util getDecimalStyle:self.billInfo.sellPrice]];
+    [self addObjectToArray:content object:[NSString stringWithFormat:@"%@元", [Util getDecimalStyle:self.billInfo.sellPrice]]];
     [self addObjectToArray:content object:[NSString stringWithFormat:@"%d%@", (int)self.billInfo.productMaxRatio, @"%"]];
     [self addObjectToArray:content object:[NSString stringWithFormat:@"%d%@", (int)self.billInfo.planUkbRatio, @"%"]];
     self.titleArray = title;
