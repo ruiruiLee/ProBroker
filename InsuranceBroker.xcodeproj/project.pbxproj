@@ -368,6 +368,8 @@
 		86C3BCCC1C2E999300F98E80 /* loginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BCCA1C2E999300F98E80 /* loginViewController.xib */; };
 		86CC8C451CB3AE3600362AD0 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C441CB3AE3600362AD0 /* BaseTableViewCell.m */; };
 		86CC8C541CB3D04500362AD0 /* HighNightBgButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C531CB3D04500362AD0 /* HighNightBgButton.m */; };
+		86CC8C5A1CB79FFF00362AD0 /* TeamItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C581CB79FFF00362AD0 /* TeamItemTableViewCell.m */; };
+		86CC8C5B1CB79FFF00362AD0 /* TeamItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86CC8C591CB79FFF00362AD0 /* TeamItemTableViewCell.xib */; };
 		86E6347B1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */; };
 		86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */; };
 		86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */; };
@@ -1096,6 +1098,9 @@
 		86CC8C441CB3AE3600362AD0 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		86CC8C521CB3D04500362AD0 /* HighNightBgButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighNightBgButton.h; sourceTree = "<group>"; };
 		86CC8C531CB3D04500362AD0 /* HighNightBgButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighNightBgButton.m; sourceTree = "<group>"; };
+		86CC8C571CB79FFF00362AD0 /* TeamItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamItemTableViewCell.h; sourceTree = "<group>"; };
+		86CC8C581CB79FFF00362AD0 /* TeamItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamItemTableViewCell.m; sourceTree = "<group>"; };
+		86CC8C591CB79FFF00362AD0 /* TeamItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamItemTableViewCell.xib; sourceTree = "<group>"; };
 		86E634791CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+updateCustomerHeadImg.h"; sourceTree = "<group>"; };
 		86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateCustomerHeadImg.m"; sourceTree = "<group>"; };
 		86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromSubVC.h; sourceTree = "<group>"; };
@@ -2308,6 +2313,9 @@
 				868C7CD01C9A4F7600B7617A /* TeamListTableViewCell.h */,
 				868C7CD11C9A4F7600B7617A /* TeamListTableViewCell.m */,
 				868C7CD21C9A4F7600B7617A /* TeamListTableViewCell.xib */,
+				86CC8C571CB79FFF00362AD0 /* TeamItemTableViewCell.h */,
+				86CC8C581CB79FFF00362AD0 /* TeamItemTableViewCell.m */,
+				86CC8C591CB79FFF00362AD0 /* TeamItemTableViewCell.xib */,
 				8625AF771C315D6600312B98 /* DeatilTextTableviewCell.h */,
 				8625AF781C315D6600312B98 /* DeatilTextTableviewCell.m */,
 				8625AF791C315D6600312B98 /* DeatilTextTableviewCell.xib */,
@@ -2707,6 +2715,7 @@
 				8625AF7B1C315D6600312B98 /* DeatilTextTableviewCell.xib in Resources */,
 				86A26F1D1C4B60D70073FFFC /* CustomerCallStatisticsVC.xib in Resources */,
 				8625AFE31C37B4D300312B98 /* OfferDetailsVC.xib in Resources */,
+				86CC8C5B1CB79FFF00362AD0 /* TeamItemTableViewCell.xib in Resources */,
 				8625AFC81C34094A00312B98 /* NoticeDetailTableViewCell.xib in Resources */,
 				86A26F181C4B5E900073FFFC /* SalesStatisticsVC.xib in Resources */,
 				86C3BC201C2CE1B700F98E80 /* CustomerFollowUpTableCell.xib in Resources */,
@@ -2960,6 +2969,7 @@
 				8654CD831C312CE100411C54 /* SBJsonStreamParserState.m in Sources */,
 				86C3BB4F1C24049400F98E80 /* MainFunctionButton.m in Sources */,
 				86A26EB41C47C18F0073FFFC /* PhotoBrowserView.m in Sources */,
+				86CC8C5A1CB79FFF00362AD0 /* TeamItemTableViewCell.m in Sources */,
 				8625B0511C3F8E7A00312B98 /* ObjectButton.m in Sources */,
 				868C7CC21C969AC600B7617A /* HBImageScroller.m in Sources */,
 				86A504221C4D04970032A901 /* OffersModel.m in Sources */,

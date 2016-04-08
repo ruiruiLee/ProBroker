@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSString *nowMonthTeamSellTj;
 @property (nonatomic, strong) NSString *nowDayTeamSellTj;
+@property (nonatomic, strong) NSString *tjTime;
 
 @end

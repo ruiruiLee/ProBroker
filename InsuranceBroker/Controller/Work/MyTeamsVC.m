@@ -59,6 +59,8 @@
     self.pulltable.backgroundColor = [UIColor clearColor];
     self.pulltable.tableFooterView = [[UIView alloc] init];
     
+    self.total = 0;
+    
     [self initHeaderView];
 }
 
@@ -93,7 +95,7 @@
     UIView *headerview = nil;
     UIImageView *footview = nil;
     
-    headerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 98)];
+    headerview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 118)];
     footview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
     footview.backgroundColor = _COLOR(0xf5, 0xf5, 0xf5);
     [headerview addSubview:footview];
@@ -113,8 +115,14 @@
     [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbTitle]-0-|" options:0 metrics:nil views:views]];
     [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbAmount]-0-|" options:0 metrics:nil views:views]];
     
-    UIView *teamview = [self createTeamTotalInfo];
-    [headerview addSubview:teamview];
+    if(self.total > 0)
+    {
+        UIView *teamview = [self createTeamTotalInfo];
+        [headerview addSubview:teamview];
+        headerview.frame = CGRectMake(0, 0, ScreenWidth, 118);
+    }else{
+        headerview.frame = CGRectMake(0, 0, ScreenWidth, 40);
+    }
     
     self.pulltable.tableHeaderView = headerview;
 }
@@ -174,8 +182,9 @@
         if(code == 200){
             self.teamInfo = (RatioMapsModel*)[RatioMapsModel modelFromDictionary:[content objectForKey:@"data"]];
             
-            self.lbMonth.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员本月累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]];
-            self.lbDay.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员今日累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]];
+//            self.lbMonth.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员本月累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]];
+//            self.lbDay.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员今日累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]];
+//            self.lbUpdateTime.text =  self.teamInfo.tjTime;
             
             [self.pulltable reloadData];
         }
@@ -207,7 +216,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 68.f;
+    return 88.f;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -248,6 +257,9 @@
     cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
     cell.lbStatus.font = _FONT(10);
     cell.lbStatus.attributedText = [self getOrderDetailString:model.nowMonthOrderSellEarn orderValue:model.dayOrderTotalSellEarn];
+    cell.lbSubStatus.textColor = _COLOR(0x75, 0x75, 0x75);
+    cell.lbSubStatus.font = _FONT(10);
+    cell.lbSubStatus.attributedText = [self getOrderAmount:model.dayOrderTotalTrtbNums offer:model.dayOrderTotalOfferNums];
     
     return cell;
 }
@@ -301,7 +313,7 @@
     [mstring1 addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
     [mstring1 addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     
-    NSString *sub2 = [NSString stringWithFormat:@"今日销售 %@元", [Util getDecimalStyle:orderValue]];
+    NSString *sub2 = [NSString stringWithFormat:@"日销售 %@元", [Util getDecimalStyle:orderValue]];
     NSMutableAttributedString *mstring2 = [[NSMutableAttributedString alloc] initWithString:sub2];
     range = [sub2 rangeOfString:[NSString stringWithFormat:@"%@", [Util getDecimalStyle:orderValue]]];
     [mstring2 addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
@@ -312,11 +324,38 @@
     return mstring1;
 }
 
+- (NSAttributedString *) getOrderAmount:(NSInteger) insure offer:(NSInteger) offer
+{
+    NSString *sub1 = [NSString stringWithFormat:@"日报价 %d 次, ", offer];
+    NSMutableAttributedString *mstring1 = [[NSMutableAttributedString alloc] initWithString:sub1];
+    NSRange range = [sub1 rangeOfString:[NSString stringWithFormat:@"%d", offer]];
+    [mstring1 addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
+    [mstring1 addAttribute:NSFontAttributeName value:_FONT(13) range:range];
+    
+    NSString *sub2 = [NSString stringWithFormat:@"投保 %d 单", insure];
+    NSMutableAttributedString *mstring2 = [[NSMutableAttributedString alloc] initWithString:sub2];
+    range = [sub2 rangeOfString:[NSString stringWithFormat:@"%d", insure]];
+    [mstring2 addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
+    [mstring2 addAttribute:NSFontAttributeName value:_FONT(13) range:range];
+    
+    [mstring1 appendAttributedString:mstring2];
+    
+    return mstring1;
+}
 
 - (UIView *) createTeamTotalInfo
 {
-    UIView *teamView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, ScreenWidth, 58)];
+    UIView *teamView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, ScreenWidth, 78)];
     teamView.backgroundColor = [UIColor whiteColor];
+    
+    UIView *total = [[UIView alloc] initWithFrame:CGRectZero];
+    [teamView addSubview:total];
+    total.translatesAutoresizingMaskIntoConstraints = NO;
+    total.backgroundColor = _COLOR(0xff, 0x66, 0x19);
+    
+    self.lbUpdateTime = [ViewFactory CreateLabelViewWithFont:_FONT_B(13) TextColor:[UIColor whiteColor]];
+    [total addSubview:self.lbUpdateTime];
+    self.lbUpdateTime.text = @"截止统计时间：";
     
     UIImageView *logo = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 60, 60)];
     logo.translatesAutoresizingMaskIntoConstraints = NO;
@@ -325,31 +364,37 @@
     
     self.lbMonth = [ViewFactory CreateLabelViewWithFont:_FONT(13) TextColor:_COLOR(0x75, 0x75, 0x75)];
     [teamView addSubview:self.lbMonth];
-    self.lbMonth.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员本月累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]];
+    self.lbMonth.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员当月累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]];
     
     self.lbDay = [ViewFactory CreateLabelViewWithFont:_FONT(13) TextColor:_COLOR(0x75, 0x75, 0x75)];
     [teamView addSubview:self.lbDay];
-    self.lbDay.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员今日累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]];
+    self.lbDay.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员日累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]];
     
     SepLineLabel *lbLine = [[SepLineLabel alloc] initWithFrame:CGRectZero];
     lbLine.translatesAutoresizingMaskIntoConstraints = NO;
-//    lbLine.backgroundColor = _COLOR(0xe6, 0xe6, 0xe6);
     [teamView addSubview:lbLine];
     
     UILabel *lbMonth = self.lbMonth;
     UILabel *lbDay = self.lbDay;
-    NSDictionary *views1 = NSDictionaryOfVariableBindings(logo, lbMonth, lbDay, lbLine);
+    UILabel *lbUpdateTime = self.lbUpdateTime;
+    NSDictionary *views1 = NSDictionaryOfVariableBindings(logo, lbMonth, lbDay, lbLine, lbUpdateTime, total);
     
+    [teamView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[total]-0-|" options:0 metrics:nil views:views1]];
     [teamView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-18-[logo(35)]-11-[lbMonth]-16-|" options:0 metrics:nil views:views1]];
     [teamView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-18-[logo]-11-[lbDay]-16-|" options:0 metrics:nil views:views1]];
     [teamView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[lbLine]-0-|" options:0 metrics:nil views:views1]];
-    [teamView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[lbLine(1)]-0-|" options:0 metrics:nil views:views1]];
-    
-    [teamView addConstraint:[NSLayoutConstraint constraintWithItem:logo attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:teamView attribute:NSLayoutAttributeCenterY multiplier:1 constant:-1]];
+    [teamView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[total(20)]-13-[logo(31)]-13-[lbLine(1)]-0-|" options:0 metrics:nil views:views1]];
     
     [teamView addConstraint:[NSLayoutConstraint constraintWithItem:lbMonth attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:logo attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
     [teamView addConstraint:[NSLayoutConstraint constraintWithItem:lbDay attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:logo attribute:NSLayoutAttributeBottom multiplier:1 constant:2]];
     
+    [teamView addConstraint:[NSLayoutConstraint constraintWithItem:lbUpdateTime attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:lbMonth attribute:NSLayoutAttributeLeft multiplier:1 constant:-1]];
+    
+    [total addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbUpdateTime]-0-|" options:0 metrics:nil views:views1]];
+    
+    self.lbMonth.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员当月累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]];
+    self.lbDay.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员日累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]];
+    self.lbUpdateTime.text =  self.teamInfo.tjTime;
     
     return teamView;
 }
