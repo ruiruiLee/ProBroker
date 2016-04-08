@@ -640,7 +640,7 @@
         return YES;
     }
     
-    NSString *carOwnerCard = carInfo.carOwnerCard;//身份证号
+//    NSString *carOwnerCard = carInfo.carOwnerCard;//身份证号
     NSDate *carRegTime = carInfo.carRegTime;//注册日期
     NSString *carEngineNo = carInfo.carEngineNo;////发动机号
     NSString *carShelfNo = carInfo.carShelfNo;//识别码

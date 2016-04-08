@@ -106,7 +106,7 @@
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kjf-a7-haE">
                                     <rect key="frame" x="0.0" y="274" width="600" height="39"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="team_team" translatesAutoresizingMaskIntoConstraints="NO" id="jYP-EK-y9N">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="my_team" translatesAutoresizingMaskIntoConstraints="NO" id="jYP-EK-y9N">
                                             <rect key="frame" x="157" y="4" width="32" height="27"/>
                                             <animations/>
                                             <constraints>
@@ -360,8 +360,8 @@
         </view>
     </objects>
     <resources>
+        <image name="my_team" width="25" height="20"/>
         <image name="right_arrow" width="16" height="16"/>
-        <image name="team_team" width="18" height="18"/>
         <image name="user_call" width="24" height="24"/>
         <image name="user_message1" width="24" height="24"/>
     </resources>

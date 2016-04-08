@@ -749,7 +749,7 @@
 //算价
 - (void) doBtnCarInsurPlan:(UIButton *) sender
 {
-    if([Util checkInfoFull:self.customerinfoModel.detailModel.carInfo]){
+    if([Util checkInfoFull:self.data.carInfo]){
         
         NSString *str = @"";
         if(self.customerinfoModel.detailModel.carInfo.carInsurStatus1 && self.customerinfoModel.detailModel.carInfo.carInsurCompId1 != nil){

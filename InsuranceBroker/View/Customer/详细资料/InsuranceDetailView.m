@@ -29,14 +29,20 @@
         self.btnHConstraint.constant = 54;
         
         _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, INTMAX_MAX)];
-        _footView.backgroundColor = SepLine_color;
+//        _footView.backgroundColor = SepLine_color;
+        
+        UIView *bgview = [[UIView alloc] initWithFrame:CGRectZero];
+        [_footView addSubview:bgview];
+        bgview.translatesAutoresizingMaskIntoConstraints = NO;
+        bgview.backgroundColor = SepLine_color;
+        
         UILabel *lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT_B(15) TextColor:_COLOR(0x66, 0x90, 0xab)];
-        [_footView addSubview:lbTitle];
+        [bgview addSubview:lbTitle];
         lbTitle.text = @"如何进行车险报价？";
         
         _btnShut = [[UIButton alloc] initWithFrame:CGRectZero];
         _btnShut.translatesAutoresizingMaskIntoConstraints = NO;
-        [_footView addSubview:_btnShut];
+        [bgview addSubview:_btnShut];
         _btnShut.titleLabel.font = _FONT(15);
         [_btnShut setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
         [_btnShut setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateSelected];
@@ -45,7 +51,7 @@
         
         UIButton *btnClicked = [[UIButton alloc] initWithFrame:CGRectZero];
         btnClicked.translatesAutoresizingMaskIntoConstraints = NO;
-        [_footView addSubview:btnClicked];
+        [bgview addSubview:btnClicked];
         [btnClicked addTarget:self action:@selector(doBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         _contentView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -67,19 +73,21 @@
         lb2.attributedText = [Util getWarningString:@"＊注：客户确认投保后，应保监会规定需要补齐以上所有证件照片方可出单。优快保经纪人将保证所有证件资料仅用于车辆报价或投保，绝不用作其它用途，请放心上传。"];
         lb2.numberOfLines = 0;
         
-        NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, _btnShut, _contentView, lb1, lb2, btnClicked);
-        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]->=10-[_btnShut(60)]-8-|" options:0 metrics:nil views:views]];
-        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnClicked]-20-|" options:0 metrics:nil views:views]];
+        NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, _btnShut, _contentView, lb1, lb2, btnClicked, bgview);
+        [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]->=10-[_btnShut(60)]-8-|" options:0 metrics:nil views:views]];
+        [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnClicked]-20-|" options:0 metrics:nil views:views]];
+        [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[lbTitle]-10-|" options:0 metrics:nil views:views]];
         [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_contentView]-0-|" options:0 metrics:nil views:views]];
+        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[bgview]-0-|" options:0 metrics:nil views:views]];
         [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lb1]-20-|" options:0 metrics:nil views:views]];
         [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lb2]-20-|" options:0 metrics:nil views:views]];
         
-        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[lbTitle(20)]-10-[_contentView]-0-|" options:0 metrics:nil views:views]];
-        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnClicked(40)]->=0-|" options:0 metrics:nil views:views]];
+        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[bgview(40)]-0-[_contentView]-0-|" options:0 metrics:nil views:views]];
+        [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnClicked(40)]-0-|" options:0 metrics:nil views:views]];
         
         vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[lb1]-20-[lb2]-20-|" options:0 metrics:nil views:views];
         [_contentView addConstraints:vConstraint];
-        [_footView addConstraint:[NSLayoutConstraint constraintWithItem:_btnShut attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+        [bgview addConstraint:[NSLayoutConstraint constraintWithItem:_btnShut attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
         
         [self doBtnClicked:_btnShut];
         
@@ -168,7 +176,7 @@
         tableheight += [self tableView:self.tableview heightForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
     }
     
-    return tableheight + 56 + 10 + 60 + _footView.frame.size.height;
+    return tableheight + 56 + 10 + 70 + _footView.frame.size.height;
 }
 
 - (void) doEditButtonClicked:(UIButton *)sender
