@@ -39,6 +39,7 @@
     pulltable.separatorStyle = UITableViewCellSeparatorStyleNone;
     pulltable.translatesAutoresizingMaskIntoConstraints = NO;
     pulltable.backgroundColor = [UIColor clearColor];
+    self.pulltable.showsVerticalScrollIndicator = NO;
     
     pulltable.tableFooterView = [[UIView alloc] init];
     
