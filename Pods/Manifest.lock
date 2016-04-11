@@ -23,6 +23,8 @@ PODS:
   - AVOSCloud (3.2.7)
   - AVOSCloudSNS (3.1.2.9):
     - AVOSCloud
+  - LeanCloudFeedback (0.1.1):
+    - AVOSCloud
   - Mantle (2.0.6):
     - Mantle/extobjc (= 2.0.6)
   - Mantle/extobjc (2.0.6)
@@ -34,6 +36,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.6.3)
   - AVOSCloud
   - AVOSCloudSNS
+  - LeanCloudFeedback
   - Mantle
   - SDWebImage
 
@@ -41,6 +44,7 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AVOSCloud: 957d1508104d7c8ed501df9d9b734d7a98c2e047
   AVOSCloudSNS: 4f9f1df8663fc7bfa76b9b38578ac535d275ee8f
+  LeanCloudFeedback: 686305ea196931c7eae49800c384e42d78408482
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
 

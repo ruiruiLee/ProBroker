@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>LeanCloudFeedback.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Mantle.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,7 +37,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>134CAC5A5EEDE5E8D632EBF429C96255</key>
+		<key>0382EAC19C38DDFA78BBBC22A1DCEE2B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,12 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AD6BA40DC1CC28BF161E13AA1C791EF7</key>
+		<key>5CDA6EA192E52CDC50FA2BF0F88F1F2B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C13699C43F739BE88B3906843D46CAAA</key>
+		<key>6489A08C85C00F97362EA8514CB8B9F6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AD6BA40DC1CC28BF161E13AA1C791EF7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
