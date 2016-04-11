@@ -370,6 +370,12 @@
 		86CC8C541CB3D04500362AD0 /* HighNightBgButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C531CB3D04500362AD0 /* HighNightBgButton.m */; };
 		86CC8C5A1CB79FFF00362AD0 /* TeamItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C581CB79FFF00362AD0 /* TeamItemTableViewCell.m */; };
 		86CC8C5B1CB79FFF00362AD0 /* TeamItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86CC8C591CB79FFF00362AD0 /* TeamItemTableViewCell.xib */; };
+		86D3D9691CBB9B6100276AC0 /* normal_logo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D3D9661CBB9B6100276AC0 /* normal_logo1.png */; };
+		86D3D96A1CBB9B6100276AC0 /* normal_logo1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D3D9671CBB9B6100276AC0 /* normal_logo1@2x.png */; };
+		86D3D96B1CBB9B6100276AC0 /* normal_logo1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D3D9681CBB9B6100276AC0 /* normal_logo1@3x.png */; };
+		86D3D96F1CBB9B6800276AC0 /* select_logo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D3D96C1CBB9B6800276AC0 /* select_logo1.png */; };
+		86D3D9701CBB9B6800276AC0 /* select_logo1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D3D96D1CBB9B6800276AC0 /* select_logo1@2x.png */; };
+		86D3D9711CBB9B6800276AC0 /* select_logo1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86D3D96E1CBB9B6800276AC0 /* select_logo1@3x.png */; };
 		86E6347B1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */; };
 		86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */; };
 		86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */; };
@@ -1101,6 +1107,12 @@
 		86CC8C571CB79FFF00362AD0 /* TeamItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamItemTableViewCell.h; sourceTree = "<group>"; };
 		86CC8C581CB79FFF00362AD0 /* TeamItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamItemTableViewCell.m; sourceTree = "<group>"; };
 		86CC8C591CB79FFF00362AD0 /* TeamItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamItemTableViewCell.xib; sourceTree = "<group>"; };
+		86D3D9661CBB9B6100276AC0 /* normal_logo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal_logo1.png; sourceTree = "<group>"; };
+		86D3D9671CBB9B6100276AC0 /* normal_logo1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal_logo1@2x.png"; sourceTree = "<group>"; };
+		86D3D9681CBB9B6100276AC0 /* normal_logo1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "normal_logo1@3x.png"; sourceTree = "<group>"; };
+		86D3D96C1CBB9B6800276AC0 /* select_logo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = select_logo1.png; sourceTree = "<group>"; };
+		86D3D96D1CBB9B6800276AC0 /* select_logo1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_logo1@2x.png"; sourceTree = "<group>"; };
+		86D3D96E1CBB9B6800276AC0 /* select_logo1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "select_logo1@3x.png"; sourceTree = "<group>"; };
 		86E634791CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+updateCustomerHeadImg.h"; sourceTree = "<group>"; };
 		86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateCustomerHeadImg.m"; sourceTree = "<group>"; };
 		86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromSubVC.h; sourceTree = "<group>"; };
@@ -2050,6 +2062,12 @@
 		86C3BB621C242A0B00F98E80 /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
+				86D3D96C1CBB9B6800276AC0 /* select_logo1.png */,
+				86D3D96D1CBB9B6800276AC0 /* select_logo1@2x.png */,
+				86D3D96E1CBB9B6800276AC0 /* select_logo1@3x.png */,
+				86D3D9661CBB9B6100276AC0 /* normal_logo1.png */,
+				86D3D9671CBB9B6100276AC0 /* normal_logo1@2x.png */,
+				86D3D9681CBB9B6100276AC0 /* normal_logo1@3x.png */,
 				86C3BB6C1C242DFC00F98E80 /* UserCenterVC.h */,
 				86C3BB6D1C242DFC00F98E80 /* UserCenterVC.m */,
 				86C3BBA11C28EDCA00F98E80 /* UserCenterVC.xib */,
@@ -2690,6 +2708,7 @@
 				8625AFE81C37C8D500312B98 /* OfferDetailTableViewCell.xib in Resources */,
 				86C3BBA21C28EDCA00F98E80 /* UserCenterVC.xib in Resources */,
 				86C3BB341C22C47400F98E80 /* InfoTipsView.xib in Resources */,
+				86D3D9701CBB9B6800276AC0 /* select_logo1@2x.png in Resources */,
 				86A26EE61C48FB010073FFFC /* CustomTagTableCell.xib in Resources */,
 				86A504921C4F62830032A901 /* NewCustomerVC.xib in Resources */,
 				86A26E541C43A8FF0073FFFC /* Localizable.strings in Resources */,
@@ -2707,11 +2726,13 @@
 				86C3BB3B1C23AE9A00F98E80 /* InfoTipsCell.xib in Resources */,
 				86F2DA841C7704400088B783 /* CommissionSetTableViewCell.xib in Resources */,
 				86C3BB1B1C228D6F00F98E80 /* whiteArrow.png in Resources */,
+				86D3D9691CBB9B6100276AC0 /* normal_logo1.png in Resources */,
 				86A504F81C5257440032A901 /* easyjs-inject.js in Resources */,
 				86C3BBAF1C29073900F98E80 /* MyLuckyMoneyVC.xib in Resources */,
 				86A504401C4E37E30032A901 /* ShareSDKUI.bundle in Resources */,
 				8625AF831C321E5B00312B98 /* OrderManagerTableViewCell.xib in Resources */,
 				86C3BB191C228D6F00F98E80 /* grayArrow.png in Resources */,
+				86D3D96F1CBB9B6800276AC0 /* select_logo1.png in Resources */,
 				8625AF7B1C315D6600312B98 /* DeatilTextTableviewCell.xib in Resources */,
 				86A26F1D1C4B60D70073FFFC /* CustomerCallStatisticsVC.xib in Resources */,
 				8625AFE31C37B4D300312B98 /* OfferDetailsVC.xib in Resources */,
@@ -2728,6 +2749,7 @@
 				86A26EEB1C4905210073FFFC /* CustomerTagTableCell.xib in Resources */,
 				86C3BBD51C2A60C500F98E80 /* TagListViewCell.xib in Resources */,
 				86A504861C4F27950032A901 /* zbar-samples.png in Resources */,
+				86D3D96A1CBB9B6100276AC0 /* normal_logo1@2x.png in Resources */,
 				86A504841C4F27950032A901 /* zbar-help.html in Resources */,
 				86C3BBAA1C28FD4600F98E80 /* UserInfoEditVC.xib in Resources */,
 				862CD3411C5C8CFE0056D2EA /* ProgressHUD.bundle in Resources */,
@@ -2744,12 +2766,14 @@
 				86C3BC2A1C2D389D00F98E80 /* AddFollowUpVC.xib in Resources */,
 				86C3BBC21C297D4900F98E80 /* EditTagVC.xib in Resources */,
 				86C3BC051C2C205D00F98E80 /* PolicyInfoTableViewCell.xib in Resources */,
+				86D3D96B1CBB9B6100276AC0 /* normal_logo1@3x.png in Resources */,
 				86A504391C4E37E30032A901 /* read_me.txt in Resources */,
 				86A26EA51C4678110073FFFC /* CustomerDetailVC.xib in Resources */,
 				86C3BB781C250DF600F98E80 /* HomeVC.xib in Resources */,
 				86C3BB161C228D6F00F98E80 /* blackArrow@2x.png in Resources */,
 				8654CD941C314E1900411C54 /* WorkMainVC.xib in Resources */,
 				86C3BBB41C291CDE00F98E80 /* LucyMoneyTableCell.xib in Resources */,
+				86D3D9711CBB9B6800276AC0 /* select_logo1@3x.png in Resources */,
 				8625AFA61C32B15000312B98 /* RealNameAuthenticationVC.xib in Resources */,
 				86C3BC251C2CE6BA00F98E80 /* InsuranceTableViewCell.xib in Resources */,
 				86A26ED61C47DC200073FFFC /* CarAddInfoTableCell.xib in Resources */,

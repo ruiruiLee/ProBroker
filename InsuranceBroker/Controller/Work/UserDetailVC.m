@@ -215,6 +215,7 @@
     vc.hidesBottomBarWhenPushed = YES;
     vc.userid = self.brokerInfo.userId;
     vc.title = [NSString stringWithFormat:@"%@的团队", self.brokerInfo.userName];
+    vc.total = self.userinfo.teamTotalNums;
     vc.toptitle = @"他的队员";
     vc.name = self.brokerInfo.userName;
     [self.navigationController pushViewController:vc animated:YES];

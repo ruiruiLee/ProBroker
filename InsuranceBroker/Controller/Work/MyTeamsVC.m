@@ -44,6 +44,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
 //        self.need = enumNotNeedIndicator;
+        self.total = 0;
     }
     
     return self;
@@ -58,8 +59,6 @@
     [self.pulltable registerNib:[UINib nibWithNibName:@"TeamListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.pulltable.backgroundColor = [UIColor clearColor];
     self.pulltable.tableFooterView = [[UIView alloc] init];
-    
-    self.total = 0;
     
     [self initHeaderView];
 }
@@ -182,9 +181,9 @@
         if(code == 200){
             self.teamInfo = (RatioMapsModel*)[RatioMapsModel modelFromDictionary:[content objectForKey:@"data"]];
             
-//            self.lbMonth.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员本月累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]];
-//            self.lbDay.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员今日累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]];
-//            self.lbUpdateTime.text =  self.teamInfo.tjTime;
+            self.lbMonth.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员本月累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowMonthTeamSellTj floatValue]]];
+            self.lbDay.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员今日累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.nowDayTeamSellTj floatValue]]];
+            self.lbUpdateTime.text =  self.teamInfo.tjTime;
             
             [self.pulltable reloadData];
         }
