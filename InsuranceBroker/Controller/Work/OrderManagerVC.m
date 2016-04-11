@@ -75,6 +75,8 @@
     self.pulltable.translatesAutoresizingMaskIntoConstraints = NO;
     [self.pulltable registerNib:[UINib nibWithNibName:@"OrderManagerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
+    self.pulltable.showsVerticalScrollIndicator = NO;
+    
     //弹出下拉刷新控件刷新数据
     self.pulltable.pullTableIsRefreshing = YES;
     [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3];

@@ -194,9 +194,9 @@
                 break;
             case 2:
             {
-                NSString *str = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=xxxxxx" ];
+                NSString *str = [NSString stringWithFormat:@"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1076806269" ];
                 if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0)){
-                    str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/idxxxxxxx"];
+                    str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id1076806269"];
                 }
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
             }
