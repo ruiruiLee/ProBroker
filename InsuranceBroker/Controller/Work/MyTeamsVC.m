@@ -388,7 +388,7 @@
     [teamView addConstraint:[NSLayoutConstraint constraintWithItem:lbMonth attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:logo attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
     [teamView addConstraint:[NSLayoutConstraint constraintWithItem:lbDay attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:logo attribute:NSLayoutAttributeBottom multiplier:1 constant:2]];
     
-    [teamView addConstraint:[NSLayoutConstraint constraintWithItem:lbUpdateTime attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:lbMonth attribute:NSLayoutAttributeLeft multiplier:1 constant:-1]];
+    [teamView addConstraint:[NSLayoutConstraint constraintWithItem:lbUpdateTime attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:teamView attribute:NSLayoutAttributeCenterX multiplier:1 constant:-1]];
     
     [total addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbUpdateTime]-0-|" options:0 metrics:nil views:views1]];
     
