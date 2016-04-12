@@ -433,7 +433,7 @@
     
     CGImageRelease(imageRef);
     
-    return returnImage;
+    return [Util fitSmallImage:returnImage scaledToSize:CGSizeMake(returnImage.size.width/2, returnImage.size.height/2)];
 }
 
 @end
