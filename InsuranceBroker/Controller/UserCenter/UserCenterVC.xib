@@ -37,7 +37,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nsy-DC-aPN">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                             <subviews>
-                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LXV-Wz-yex" customClass="GradientView">
+                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LXV-Wz-yex" customClass="UserCenterHeaderBgView">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="227"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ggM-nS-vmh">
@@ -96,15 +96,15 @@
                                         <constraint firstItem="6W8-QF-hW6" firstAttribute="bottom" secondItem="ggM-nS-vmh" secondAttribute="bottom" id="5J9-XM-obQ"/>
                                         <constraint firstItem="ggM-nS-vmh" firstAttribute="centerX" secondItem="LXV-Wz-yex" secondAttribute="centerX" id="86O-9L-FH7"/>
                                         <constraint firstItem="6W8-QF-hW6" firstAttribute="top" secondItem="ggM-nS-vmh" secondAttribute="top" id="ANm-2Z-Rok"/>
-                                        <constraint firstItem="ggM-nS-vmh" firstAttribute="top" secondItem="LXV-Wz-yex" secondAttribute="top" constant="270" id="Ady-ft-d7p"/>
+                                        <constraint firstItem="ggM-nS-vmh" firstAttribute="top" secondItem="LXV-Wz-yex" secondAttribute="top" constant="70" id="Ady-ft-d7p"/>
                                         <constraint firstItem="T2v-PH-1Ge" firstAttribute="leading" secondItem="LXV-Wz-yex" secondAttribute="leading" id="DaV-Tz-Nml"/>
                                         <constraint firstItem="6W8-QF-hW6" firstAttribute="leading" secondItem="ggM-nS-vmh" secondAttribute="leading" id="Erx-4D-FqX"/>
-                                        <constraint firstItem="KM3-fg-Gjp" firstAttribute="top" secondItem="LXV-Wz-yex" secondAttribute="top" constant="222" id="N3M-62-Tm5"/>
+                                        <constraint firstItem="KM3-fg-Gjp" firstAttribute="top" secondItem="LXV-Wz-yex" secondAttribute="top" constant="22" id="N3M-62-Tm5"/>
                                         <constraint firstItem="T2v-PH-1Ge" firstAttribute="centerX" secondItem="ggM-nS-vmh" secondAttribute="centerX" id="Nel-kb-K42"/>
                                         <constraint firstItem="Rsn-QE-tbL" firstAttribute="leading" secondItem="oRq-rh-239" secondAttribute="trailing" constant="6" id="O2S-xC-avn"/>
-                                        <constraint firstItem="ggM-nS-vmh" firstAttribute="top" secondItem="LXV-Wz-yex" secondAttribute="top" constant="270" id="PxW-t5-lwa"/>
+                                        <constraint firstItem="ggM-nS-vmh" firstAttribute="top" secondItem="LXV-Wz-yex" secondAttribute="top" constant="70" id="PxW-t5-lwa"/>
                                         <constraint firstItem="Rsn-QE-tbL" firstAttribute="centerY" secondItem="oRq-rh-239" secondAttribute="centerY" id="QvT-ex-GAj"/>
-                                        <constraint firstAttribute="height" constant="425" id="Szf-BU-CPh"/>
+                                        <constraint firstAttribute="height" constant="225" id="Szf-BU-CPh"/>
                                         <constraint firstAttribute="trailing" secondItem="KM3-fg-Gjp" secondAttribute="trailing" constant="7" id="Wac-B8-iZY"/>
                                         <constraint firstItem="oRq-rh-239" firstAttribute="bottom" secondItem="ggM-nS-vmh" secondAttribute="bottom" constant="-10" id="YHV-f3-fcv"/>
                                         <constraint firstItem="T2v-PH-1Ge" firstAttribute="top" secondItem="ggM-nS-vmh" secondAttribute="bottom" constant="10" id="eNq-hg-xb3"/>
@@ -461,7 +461,7 @@
                                 <constraint firstAttribute="trailing" secondItem="LXV-Wz-yex" secondAttribute="trailing" id="bVJ-vG-IbG"/>
                                 <constraint firstItem="Nf6-Zs-G3O" firstAttribute="leading" secondItem="nsy-DC-aPN" secondAttribute="leading" id="baM-Ty-SEO"/>
                                 <constraint firstItem="Nf6-Zs-G3O" firstAttribute="top" secondItem="71g-TU-snt" secondAttribute="bottom" constant="15" id="e7B-oF-Yfh"/>
-                                <constraint firstItem="LXV-Wz-yex" firstAttribute="top" secondItem="nsy-DC-aPN" secondAttribute="top" constant="-200" id="qiC-0j-3AJ"/>
+                                <constraint firstItem="LXV-Wz-yex" firstAttribute="top" secondItem="nsy-DC-aPN" secondAttribute="top" id="qiC-0j-3AJ"/>
                                 <constraint firstItem="71g-TU-snt" firstAttribute="leading" secondItem="nsy-DC-aPN" secondAttribute="leading" id="riy-x4-PjT"/>
                                 <constraint firstItem="yhp-dP-tUo" firstAttribute="leading" secondItem="nsy-DC-aPN" secondAttribute="leading" id="uML-Pq-Dnk"/>
                                 <constraint firstAttribute="trailing" secondItem="8Ao-1E-9ZF" secondAttribute="trailing" id="v3M-ID-ciX"/>

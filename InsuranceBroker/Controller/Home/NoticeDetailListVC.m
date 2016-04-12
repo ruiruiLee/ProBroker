@@ -199,7 +199,7 @@
         h += 100;
     }
     h += 12;
-    h += [self getHeightWithFont:_FONT(12) text:model.content];
+    h += [self getHeightWithFont:_FONT(13) text:model.content];
     h += 8;
     if(model.isRedirect || model.keyType == 1){
         h += 3;

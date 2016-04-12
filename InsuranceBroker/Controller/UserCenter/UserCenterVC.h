@@ -11,6 +11,7 @@
 #import "GradientView.h"
 #import "UserNameEditButton.h"
 #import "EGORefreshTableHeaderView.h"
+#import "UserCenterHeaderBgView.h"
 
 @interface UserCenterVC : BaseViewController <UIScrollViewDelegate, EGORefreshTableHeaderDelegate>
 {
@@ -23,7 +24,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbRole;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet UserNameEditButton *btNameEdit;
-@property (nonatomic, strong) IBOutlet GradientView *gradientView;
+@property (nonatomic, strong) IBOutlet UserCenterHeaderBgView *gradientView;
 @property (nonatomic, strong) IBOutlet UILabel *lbCertificate;
 //@property (nonatomic, strong) IBOutlet UILabel *lbName;
 //@property (nonatomic, strong) IBOutlet TopImageButton *btnUserType;

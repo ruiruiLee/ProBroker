@@ -376,6 +376,7 @@
 		86D3D99A1CBBC50200276AC0 /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D9951CBBC50200276AC0 /* DGElasticPullToRefreshLoadingViewCircle.swift */; };
 		86D3D99B1CBBC50200276AC0 /* DGElasticPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D9961CBBC50200276AC0 /* DGElasticPullToRefreshView.swift */; };
 		86D3D99F1CBC998500276AC0 /* TranslucentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D99E1CBC998500276AC0 /* TranslucentToolbar.m */; };
+		86D3D9A21CBCD7AF00276AC0 /* UserCenterHeaderBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D9A11CBCD7AF00276AC0 /* UserCenterHeaderBgView.m */; };
 		86E6347B1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */; };
 		86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */; };
 		86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */; };
@@ -1115,6 +1116,8 @@
 		86D3D9961CBBC50200276AC0 /* DGElasticPullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshView.swift; sourceTree = "<group>"; };
 		86D3D99D1CBC998500276AC0 /* TranslucentToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslucentToolbar.h; sourceTree = "<group>"; };
 		86D3D99E1CBC998500276AC0 /* TranslucentToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslucentToolbar.m; sourceTree = "<group>"; };
+		86D3D9A01CBCD7AF00276AC0 /* UserCenterHeaderBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCenterHeaderBgView.h; sourceTree = "<group>"; };
+		86D3D9A11CBCD7AF00276AC0 /* UserCenterHeaderBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterHeaderBgView.m; sourceTree = "<group>"; };
 		86E634791CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+updateCustomerHeadImg.h"; sourceTree = "<group>"; };
 		86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateCustomerHeadImg.m"; sourceTree = "<group>"; };
 		86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromSubVC.h; sourceTree = "<group>"; };
@@ -2394,6 +2397,8 @@
 				86C3BBA41C28F83100F98E80 /* TopImageButton.m */,
 				8625AF871C3256E500312B98 /* GridView.h */,
 				8625AF881C3256E500312B98 /* GridView.m */,
+				86D3D9A01CBCD7AF00276AC0 /* UserCenterHeaderBgView.h */,
+				86D3D9A11CBCD7AF00276AC0 /* UserCenterHeaderBgView.m */,
 				8625AF8A1C3256FA00312B98 /* HSepView.h */,
 				8625AF8B1C3256FA00312B98 /* HSepView.m */,
 				8625AF971C329E7D00312B98 /* DashSepView.h */,
@@ -2983,6 +2988,7 @@
 				86A26E851C4528A40073FFFC /* NetWorkHandler+announcement.m in Sources */,
 				86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */,
 				86A26E881C452A5B0073FFFC /* AnnouncementModel.m in Sources */,
+				86D3D9A21CBCD7AF00276AC0 /* UserCenterHeaderBgView.m in Sources */,
 				86C3BB2C1C22C42D00F98E80 /* AnimationButton.m in Sources */,
 				862CD3421C5C8CFE0056D2EA /* ProgressHUD.m in Sources */,
 				861DF93B1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m in Sources */,

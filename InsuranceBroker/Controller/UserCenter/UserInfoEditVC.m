@@ -296,7 +296,7 @@
     [self dismissViewControllerAnimated:YES completion:^{
         NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerEditedImage"],0.5);
         UIImage *image= [UIImage imageWithData:imageData];
-        image = [Util fitSmallImage:image scaledToSize:CGSizeMake(180, 180)];
+//        image = [Util fitSmallImage:image scaledToSize:CGSizeMake(180, 180)];
         UserEditTableViewCell *cell = [self.tableview cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 //        cell.imgv.image = image;
         AVFile *file = [AVFile fileWithName:@"head.jpg" data:imageData];
