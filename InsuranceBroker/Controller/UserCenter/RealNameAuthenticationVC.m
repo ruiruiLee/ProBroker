@@ -251,7 +251,6 @@
     [self dismissViewControllerAnimated:YES completion:^{
         NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],0.5);
         UIImage *image= [UIImage imageWithData:imageData];
-//        image = [Util fitSmallImage:image scaledToSize:CGSizeMake(180, 180)];
         if(currentcertType == enumCertType1){
             [self.btnCert1 sd_setImageWithURL:nil forState:UIControlStateSelected placeholderImage:image];
             self.btnCert1.selected = YES;

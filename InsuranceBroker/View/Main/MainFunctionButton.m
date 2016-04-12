@@ -55,8 +55,8 @@
     UIImageView *imgv = self.imageView;
     CGRect imgvframe = imgv.frame;
     
-    UILabel *titlelabel = self.titleLabel;
-    CGRect titleframe = titlelabel.frame;
+   // UILabel *titlelabel = self.titleLabel;
+    //CGRect titleframe = titlelabel.frame;
     
 //    CGFloat h = (frame.size.height - imgvframe.size.height - 10 - titleframe.size.height - 6 - 14)/2;
     CGFloat h = (frame.size.height - imgvframe.size.height)/2;
