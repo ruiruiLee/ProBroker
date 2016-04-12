@@ -23,11 +23,9 @@
 
 /*
  测试服务器地址信息
-<<<<<<< HEAD
-// */
-=======
+
  */
->>>>>>> 5a80c15063da37b3628c931070885a350b142a97
+
 //#define SERVER_ADDRESS @"http://dev.ykbtest.leanapp.cn"
 //#define Base_Uri @"http://118.123.249.87:8783/UKB.AgentNew"
 //#define AVOSCloudAppID  @"dwhKbFjMcY4ppGaSVvzN4577-gzGzoHsz"
