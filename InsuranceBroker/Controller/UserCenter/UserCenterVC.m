@@ -103,7 +103,11 @@
     if(model.sex == 2)
         placeholderImage = ThemeImage(@"head_famale");
     [self.photoImgV sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-        [self.gradientView setimage:[self blurryImage:image withBlurLevel:0.3]];
+        if(image == nil){
+            [self.gradientView setimage:[self blurryImage:ThemeImage(@"guide1") withBlurLevel:0.3]];
+        }
+        else
+            [self.gradientView setimage:[self blurryImage:image withBlurLevel:0.3]];
     }];
     
     if(model.leader == 1){
