@@ -21,6 +21,8 @@
         delFlag.backgroundColor = [UIColor clearColor];
         
         self.editType = enumEditTypeNormal;
+        
+        self.clipsToBounds = NO;
     }
     
     return self;
@@ -36,7 +38,7 @@
     imgvframe.size.height = 55;
     
     CGRect delFrame = delFlag.frame;
-    delFlag.frame = CGRectMake(imgvframe.origin.x - delFrame.size.width / 2, imgvframe.origin.y - delFrame.size.height / 2 + 2, delFrame.size.width, delFrame.size.height);
+    delFlag.frame = CGRectMake( -delFrame.size.width / 2, -delFrame.size.height / 2, delFrame.size.width, delFrame.size.height);
     
     CGRect frame = self.frame;
     

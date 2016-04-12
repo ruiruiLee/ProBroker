@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
+		<key>LeanCloudFeedback.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
 		<key>Mantle.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -67,6 +72,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0382EAC19C38DDFA78BBBC22A1DCEE2B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>134CAC5A5EEDE5E8D632EBF429C96255</key>
 		<dict>
 			<key>primary</key>
@@ -78,6 +88,16 @@
 			<true/>
 		</dict>
 		<key>426BC4549A625B5E1E4200D5261A98BF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5CDA6EA192E52CDC50FA2BF0F88F1F2B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6489A08C85C00F97362EA8514CB8B9F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

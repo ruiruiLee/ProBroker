@@ -116,8 +116,8 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if (hud == nil)
 	{
-		hud = [[UIToolbar alloc] initWithFrame:CGRectZero];
-        hud.barTintColor = _COLORa(220, 220, 220, 1);//HUD_BACKGROUND_COLOR;
+		hud = [[TranslucentToolbar alloc] initWithFrame:CGRectZero];
+//        hud.barTintColor = _COLORa(130, 130, 130, 0.2);//HUD_BACKGROUND_COLOR;
 		hud.translucent = YES;
 		hud.layer.cornerRadius = 10;
 		hud.layer.masksToBounds = YES;
@@ -128,7 +128,7 @@
 	//---------------------------------------------------------------------------------------------------------------------------------------------
 	if (spinner == nil)
 	{
-		spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+		spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 //		spinner.color = HUD_SPINNER_COLOR;
 		spinner.hidesWhenStopped = YES;
 	}
@@ -144,7 +144,7 @@
 	{
 		label = [[UILabel alloc] initWithFrame:CGRectZero];
 		label.font = HUD_STATUS_FONT;
-		label.textColor = HUD_STATUS_COLOR;
+		label.textColor = _COLOR(245, 245, 245);
 		label.backgroundColor = [UIColor clearColor];
 		label.textAlignment = NSTextAlignmentCenter;
 		label.baselineAdjustment = UIBaselineAdjustmentAlignCenters;

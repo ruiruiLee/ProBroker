@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TopImageButton.h"
+#import "EditButton.h"
 #import "enumFile.h"
 
 @class CustomerInfoModel;
@@ -26,8 +26,8 @@
 
 @interface CustomerPanEditView : UIView
 {
-    TopImageButton *btnAdd;
-    TopImageButton *btnDel;
+    EditButton *btnAdd;
+    EditButton *btnDel;
     
     NSMutableArray *userArray;
     NSMutableArray *viewArray;

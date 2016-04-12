@@ -15,6 +15,7 @@
 #import "DetailAccountVC.h"
 #import "MyTeamInfoVC.h"
 #import "OrderManagerVC.h"
+#import "InsuranceBroker-Swift.h"
 
 @implementation UserCenterVC
 
@@ -63,9 +64,22 @@
     [context addObserver:self forKeyPath:@"isRedPack" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [model addObserver:self forKeyPath:@"nowMonthOrderSuccessNums" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
-    [self config];
+//    [self config];
+    DGElasticPullToRefreshLoadingViewCircle *loadingView = [[DGElasticPullToRefreshLoadingViewCircle alloc] init];
+    loadingView.tintColor = _COLOR(78, 221, 200);
+    [self.scrollview dg_addPullToRefreshWithActionHandler:^{
+//        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:0.5];
+        [self egoRefreshTableHeaderDidTriggerRefresh:nil];
+    } loadingView:loadingView];
+    [self.scrollview dg_setPullToRefreshBackgroundColor:self.scrollview.backgroundColor];
+    [self.scrollview dg_setPullToRefreshFillColor:_COLOR(0xff, 0x66, 0x19)];
     
     [self updateUserInfo];
+}
+
+- (void) stopRefresh
+{
+    [self.scrollview dg_stopLoading];
 }
 
 - (void) updateUserInfo
@@ -280,7 +294,8 @@
     //    [pullDelegate pullTableViewDidTriggerRefresh:self];
     [[UserInfoModel shareUserInfoModel] loadDetail:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-        [refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.scrollview];
+//        [refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.scrollview];
+        [self.scrollview dg_stopLoading];
         [self updateUserInfo];
     }];
 }

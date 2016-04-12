@@ -9,7 +9,6 @@
 #import "CustomerPanEditView.h"
 #import "define.h"
 #import "CustomerInfoModel.h"
-#import "EditButton.h"
 #import "UIButton+WebCache.h"
 
 #define Btn_width 55
@@ -27,13 +26,13 @@
         
         viewArray = [[NSMutableArray alloc] init];
         
-        btnAdd = [[TopImageButton alloc] initWithFrame:CGRectZero];
+        btnAdd = [[EditButton alloc] initWithFrame:CGRectZero];
         [btnAdd setImage:ThemeImage(@"add_user") forState:UIControlStateNormal];
         btnAdd.titleLabel.font = _FONT(14);
         [self addSubview:btnAdd];
         [btnAdd addTarget:self action:@selector(doBtnAddUser:) forControlEvents:UIControlEventTouchUpInside];
         
-        btnDel = [[TopImageButton alloc] initWithFrame:CGRectZero];
+        btnDel = [[EditButton alloc] initWithFrame:CGRectZero];
         [btnDel setImage:ThemeImage(@"del_user") forState:UIControlStateNormal];
         btnDel.titleLabel.font = _FONT(14);
         [self addSubview:btnDel];
@@ -54,13 +53,13 @@
         
         [self initViews];
         
-        btnAdd = [[TopImageButton alloc] initWithFrame:CGRectZero];
+        btnAdd = [[EditButton alloc] initWithFrame:CGRectZero];
         [btnAdd setImage:ThemeImage(@"add_user") forState:UIControlStateNormal];
         btnAdd.titleLabel.font = _FONT(14);
         [self addSubview:btnAdd];
         [btnAdd addTarget:self action:@selector(doBtnAddUser:) forControlEvents:UIControlEventTouchUpInside];
         
-        btnDel = [[TopImageButton alloc] initWithFrame:CGRectZero];
+        btnDel = [[EditButton alloc] initWithFrame:CGRectZero];
         [btnDel setImage:ThemeImage(@"del_user") forState:UIControlStateNormal];
         btnDel.titleLabel.font = _FONT(14);
         [self addSubview:btnDel];

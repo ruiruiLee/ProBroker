@@ -22,6 +22,8 @@
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 //#define sheme_white
 #import <UIKit/UIKit.h>
+#import "TranslucentToolbar.h"
+
 #define sheme_black
 //-------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -57,7 +59,7 @@
 + (void)showError:(NSString *)status;
 
 @property (atomic, strong) UIWindow *window;
-@property (atomic, strong) UIToolbar *hud;
+@property (atomic, strong) TranslucentToolbar *hud;
 @property (atomic, strong) UIActivityIndicatorView *spinner;
 @property (atomic, strong) UIImageView *image;
 @property (atomic, strong) UILabel *label;
