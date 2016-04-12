@@ -26,6 +26,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbMonthOrderEarn;//总订单收益;
 @property (nonatomic, strong) IBOutlet UILabel *lbOrderEarn;//总订单收益;
 @property (nonatomic, strong) IBOutlet UITableView *tableview;
+@property (nonatomic, strong) IBOutlet UIImageView *rightArraw;
 
 @property (nonatomic, strong) BrokerInfoModel *brokerInfo;
 

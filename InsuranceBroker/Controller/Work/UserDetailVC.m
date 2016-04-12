@@ -79,6 +79,10 @@
     self.lbName.text = [Util getUserName:self.userinfo];//self.userinfo.nickname;
     self.lbMobile.text = self.userinfo.phone;
     self.lbSubNum.text = [NSString stringWithFormat:@"%d人", self.userinfo.teamTotalNums];
+    if(self.userinfo.teamTotalNums > 0)
+        self.rightArraw.hidden = NO;
+    else
+        self.rightArraw.hidden = YES;
 //    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.userinfo.headerImg] placeholderImage:Normal_Image];
     
     UIImage *placeholderImage = ThemeImage(@"head_male");
@@ -211,14 +215,16 @@
 #pragma ACTION
 - (IBAction)doBtnTeams:(id)sender
 {
-    MyTeamsVC *vc = [[MyTeamsVC alloc] initWithNibName:nil bundle:nil];
-    vc.hidesBottomBarWhenPushed = YES;
-    vc.userid = self.brokerInfo.userId;
-    vc.title = [NSString stringWithFormat:@"%@的团队", self.brokerInfo.userName];
-    vc.total = self.userinfo.teamTotalNums;
-    vc.toptitle = @"他的队员";
-    vc.name = self.brokerInfo.userName;
-    [self.navigationController pushViewController:vc animated:YES];
+    if(self.userinfo.teamTotalNums > 0){
+        MyTeamsVC *vc = [[MyTeamsVC alloc] initWithNibName:nil bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.userid = self.brokerInfo.userId;
+        vc.title = [NSString stringWithFormat:@"%@的团队", [Util getUserNameWithModel:self.brokerInfo]];
+        vc.total = self.userinfo.teamTotalNums;
+        vc.toptitle = @"他的队员";
+        vc.name = [Util getUserNameWithModel:self.brokerInfo];//self.brokerInfo.userName;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 //拨打电话
