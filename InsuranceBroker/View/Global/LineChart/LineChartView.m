@@ -202,7 +202,7 @@
     
     CGFloat availableHeight = self.bounds.size.height - 2 * PADDING - X_AXIS_SPACE;
     
-    CGFloat stepWidth = 40;
+   // CGFloat stepWidth = 40;
     CGFloat availableWidth = self.bounds.size.width - 2 * PADDING - self.yAxisLabelsWidth;
 //    if(self.data != nil && [self.data count] > 0){
 //        LineChartData *data = [self.data objectAtIndex:0];
@@ -324,7 +324,7 @@
             for(NSUInteger i = 0; i < data.itemCount; ++i) {
                 LineChartDataItem *datItem = data.getData(i);
                 CGFloat xVal = xStart + round((xRangeLen == 0 ? 0.5 : ((datItem.x - data.xMin) / xRangeLen)) * availableWidth);
-                CGFloat yVal = yStart + round((1.0 - (datItem.y - self.yMin) / yRangeLen) * availableHeight);
+               // CGFloat yVal = yStart + round((1.0 - (datItem.y - self.yMin) / yRangeLen) * availableHeight);
                 [self.backgroundColor setFill];
                 [color set];
                 CGRect rect = CGRectMake(xVal - 15, self.frame.size.height - 15 , 30, 12);

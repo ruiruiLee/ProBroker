@@ -59,6 +59,7 @@
     
     _adview = [[UIButton alloc] initWithFrame:CGRectMake(0, 50, ScreenWidth, [Util getHeightByWidth:3 height:1 nwidth:ScreenWidth])];
     [_adview addTarget:self action:@selector(doButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    _adview.clipsToBounds = YES;
     
     CGFloat width = ScreenWidth / [_strategyArray count];
     CGFloat ox = 0;
@@ -135,7 +136,8 @@
     AnnouncementModel *model = [_strategyArray objectAtIndex:sender.tag - 101];
     BaseStrategyView *view = [_contentViewArray objectAtIndex:sender.tag - 101];
     view.hidden = NO;
-    [_adview sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
+//    [_adview sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
+    [_adview sd_setBackgroundImageWithURL:[NSURL URLWithString:model.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
     if(model.imgUrl == nil){
         _adview.frame = CGRectMake(0, 50, ScreenWidth, 0);
         _line.frame = CGRectMake(0, 65 + _adview.frame.size.height, ScreenWidth, 0.5);

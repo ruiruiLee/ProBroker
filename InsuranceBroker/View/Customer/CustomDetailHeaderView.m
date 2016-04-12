@@ -132,7 +132,6 @@
     [self.pvc dismissViewControllerAnimated:YES completion:^{
         NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerEditedImage"],0.5);
         UIImage *image= [UIImage imageWithData:imageData];
-        image = [Util fitSmallImage:image scaledToSize:CGSizeMake(180, 180)];
         self.photoImageV.image = image;
         if(delegate && [delegate respondsToSelector:@selector(NotifyToSubmitCustomerHeadImg:)]){
             [delegate NotifyToSubmitCustomerHeadImg:image];

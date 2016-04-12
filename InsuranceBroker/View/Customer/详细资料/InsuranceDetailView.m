@@ -333,7 +333,6 @@
     [self.pVc dismissViewControllerAnimated:YES completion:^{
         NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],0.5);
         UIImage *image= [UIImage imageWithData:imageData];
-        image = [Util fitSmallImage:image scaledToSize:imgLicenseSize];
 //        self.imgLicense.image = image;
         [addImgButton setImage:image forState:UIControlStateNormal];
         int tag = addImgButton.tag - 100;

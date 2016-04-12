@@ -99,7 +99,7 @@
 - (void) reset
 {
     CGRect frame = self.frame;
-    CGFloat width = frame.size.width;
+   // CGFloat width = frame.size.width;
     
     CGFloat ox = 0;
     CGFloat oy = 10;
