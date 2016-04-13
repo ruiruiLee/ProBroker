@@ -88,15 +88,15 @@
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     
     self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSellEarn];
-    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", model.nowMonthOrderSuccessNums];
+    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", (int)model.nowMonthOrderSuccessNums];
 //    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSuccessEarn];
 //    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderTotalSuccessEarn];
     self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowUserTotalMoney];
     self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.userTotalMoney];
     
-    self.lbUserInvite.text = [NSString stringWithFormat:@"%d人", model.teamInviteNums];
-    self.lbTeamTotal.text = [NSString stringWithFormat:@"%d人", model.teamTotalNums];
-    self.lbNowMonthOrderCount.text = [NSString stringWithFormat:@"%d", model.nowMonthOrderSuccessNums];
+    self.lbUserInvite.text = [NSString stringWithFormat:@"%d人", (int)model.teamInviteNums];
+    self.lbTeamTotal.text = [NSString stringWithFormat:@"%d人", (int)model.teamTotalNums];
+    self.lbNowMonthOrderCount.text = [NSString stringWithFormat:@"%d", (int)model.nowMonthOrderSuccessNums];
     
     [self.btNameEdit setTitle:model.nickname forState:UIControlStateNormal];
     UIImage *placeholderImage = ThemeImage(@"head_male");
@@ -104,7 +104,7 @@
         placeholderImage = ThemeImage(@"head_famale");
     [self.photoImgV sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if(image == nil){
-            [self.gradientView setimage:[self blurryImage:ThemeImage(@"guide1") withBlurLevel:0.3]];
+            [self.gradientView setimage:[self blurryImage:placeholderImage withBlurLevel:0.3]];
         }
         else
             [self.gradientView setimage:[self blurryImage:image withBlurLevel:0.3]];
@@ -177,7 +177,7 @@
 - (void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    [self.gradientView setGradientColor:_COLOR(0xff, 0x8c, 0x19) end:_COLOR(0xff, 0x66, 0x19)];
+//    [self.gradientView setGradientColor:_COLOR(0xff, 0x8c, 0x19) end:_COLOR(0xff, 0x66, 0x19)];
 }
 
 //修改用户资料
