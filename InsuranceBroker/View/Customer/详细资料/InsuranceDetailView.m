@@ -335,7 +335,7 @@
         UIImage *image= [UIImage imageWithData:imageData];
 //        self.imgLicense.image = image;
         [addImgButton setImage:image forState:UIControlStateNormal];
-        int tag = addImgButton.tag - 100;
+         NSInteger tag = addImgButton.tag - 100;
         if(tag == 0){
             driveLisence1 = image;
             [self saveOrUpdateCustomerCar:image travelCard2:nil];
