@@ -493,14 +493,18 @@
         }
         
         [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe travelCard2:nil carOwnerCard1:filePahe1 carOwnerCard2:nil carRegTime:carRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
-            [ProgressHUD dismiss];
+            //[ProgressHUD dismiss];
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
                 CarInfoModel *model = self.customerModel.carInfo;
                 if(model == nil){
                     model = [[CarInfoModel alloc] init];
                     self.customerModel.carInfo = model;
+                    [ProgressHUD showSuccess:@"上传成功"];
+                }else{
+                    [ProgressHUD showError:@"上传失败"];
                 }
+
                 model.customerCarId = [content objectForKey:@"data"];
                 model.customerId = customerId;
                 model.carOwnerName = carOwnerName;

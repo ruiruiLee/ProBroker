@@ -130,13 +130,13 @@
     
     if(!self.btnCert1.selected)
     {
-        [Util showAlertMessage:@"请上传身份证正面照片验证"];
+        [Util showAlertMessage:@"请上传身份证正面照片"];
         return;
     }
     
     if(!self.btnCert2.selected)
     {
-        [Util showAlertMessage:@"请上传身份证背面照片验证"];
+        [Util showAlertMessage:@"请上传身份证背面照片"];
         return;
     }
     
@@ -149,34 +149,32 @@
             UIImage *image = [self.btnCert1 imageForState:UIControlStateSelected];
             AVFile *file = [AVFile fileWithName:@"cert1.jpg" data:UIImagePNGRepresentation(image)];
             [file save];
-//            [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    cert1path = file.url;
-//            }];
+            cert1path = file.url;
         });
         dispatch_group_async(group, dispatch_get_global_queue(0,0), ^{
             // cert2
             UIImage *image = [self.btnCert2 imageForState:UIControlStateSelected];
             AVFile *file = [AVFile fileWithName:@"cert2.jpg" data:UIImagePNGRepresentation(image)];
             [file save];
-//            [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//                [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    cert2path = file.url;
-//                }];
-//                
-//            }];
+
+            cert2path = file.url;
         });
         dispatch_group_notify(group, dispatch_get_global_queue(0,0), ^{
             // 汇总结果
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
             [NetWorkHandler requestToModifyuserInfo:model.userId realName:realName userName:nil phone:nil cardNumber:cardNumber cardNumberImg1:cert1path cardNumberImg2:cert2path liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:nil Completion:^(int code, id content) {
                 
-                [ProgressHUD dismiss];
+               // [ProgressHUD dismiss];
                 [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
                 if(code == 200){
-                    [Util showAlertMessage:@"资料上传成功，等客服人员处理"];
+                  //  [Util showAlertMessage:@"资料上传成功，等客服人员处理"];
                     model.cardVerifiy = 1;
                     [self.navigationController popViewControllerAnimated:YES];
+                    [ProgressHUD showSuccess:@"资料上传成功，等客服人员审核"];
+                }else{
+                    [ProgressHUD showError:@"资料上传失败，请检测网络"];
                 }
+
             }];
 
         });
