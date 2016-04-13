@@ -293,6 +293,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [ProgressHUD show:@"正在上传"];
+   
     [self dismissViewControllerAnimated:YES completion:^{
         NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerEditedImage"],0.5);
         UIImage *image= [UIImage imageWithData:imageData];
@@ -303,11 +304,14 @@
             [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 UserInfoModel *model = [UserInfoModel shareUserInfoModel];
                 [NetWorkHandler requestToModifyuserInfo:model.userId realName:nil userName:nil phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:file.url Completion:^(int code, id content) {
-                    [ProgressHUD dismiss];
+                   
                     [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
                     if(code == 200){
                         cell.imgv.image = image;
                         model.headerImg = file.url;
+                        [ProgressHUD showSuccess:@"上传成功"];
+                    }else{
+                        [ProgressHUD showError:@"保存失败"];
                     }
                 }];
             }];

@@ -625,7 +625,7 @@
                     [_insuranceDetailView.tableview reloadData];
                 }
                 else{
-                     [KGStatusBar showErrorWithStatus:@"照片上传失败，请检查网络是否连接。"];
+                     [KGStatusBar showErrorWithStatus:@"照片上传失败，请检查网络设置。"];
                 }
                 //[ProgressHUD dismiss];
                  //[KGStatusBar dismiss];
@@ -700,12 +700,16 @@
         NSString *filePahe1 = [self fileupMothed:image];
         [NetWorkHandler requestToUpdateCustomerHeadImg:self.data.customerId headImg:filePahe1 Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-            [ProgressHUD dismiss];
+            //[ProgressHUD dismiss];
             if(code == 200){
                 self.data.headImg = filePahe1;
                 self.customerinfoModel.headImg = filePahe1;
                 self.customerinfoModel.detailModel.headImg = filePahe1;
+                [ProgressHUD showSuccess:@"上传成功"];
+            }else{
+                [ProgressHUD showError:@"上传失败"];
             }
+
         }];
     });
 
