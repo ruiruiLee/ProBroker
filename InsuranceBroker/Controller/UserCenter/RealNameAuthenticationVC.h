@@ -18,6 +18,8 @@ typedef enum : NSUInteger {
 {
     enumCertType currentcertType;
     HBImageViewList *_imageList;
+    UIImage * imgCer1;
+    UIImage * imgCer2;
 }
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewHConstraint;

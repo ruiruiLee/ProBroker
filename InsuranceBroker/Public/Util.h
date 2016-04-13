@@ -51,7 +51,7 @@
 + (void)openPhotoLibrary:(UIViewController*)currentViewController delegate:(id) delegate allowEdit:(BOOL)allowEdit completion:(void (^)(void))completion;
 
 +(UIImage *)fitSmallImage:(UIImage *)image scaledToSize:(CGSize)tosize;
-
++(UIImage*)scaleToSize:(UIImage*)CGImage scaledToSize:(CGSize)size;
 //获取性别
 + (NSString *) getSexStringWithSex:(NSInteger) sex;
 
