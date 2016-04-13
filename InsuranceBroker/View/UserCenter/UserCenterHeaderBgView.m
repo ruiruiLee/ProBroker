@@ -22,6 +22,8 @@
 
 - (void) awakeFromNib
 {
+    self.clipsToBounds = YES;
+    
     imageview = [[UIImageView alloc] initWithFrame:CGRectZero];
 //    [self addSubview:imageview];
     [self insertSubview:imageview atIndex:0];
