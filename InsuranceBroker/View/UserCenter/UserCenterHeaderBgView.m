@@ -27,10 +27,12 @@
     imageview = [[UIImageView alloc] initWithFrame:CGRectZero];
     [self insertSubview:imageview atIndex:0];
     imageview.translatesAutoresizingMaskIntoConstraints = NO;
-//    imageview.contentMode = UIViewContentModeScaleAspectFit;
+    imageview.contentMode = UIViewContentModeScaleAspectFill;
     
 //    [self addConstraint:[NSLayoutConstraint constraintWithItem:imageview attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1 constant:0]];
 //    [self addConstraint:[NSLayoutConstraint constraintWithItem:imageview attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
+    
     NSDictionary *views = NSDictionaryOfVariableBindings(imageview);
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imageview]-0-|" options:0 metrics:nil views:views]];
