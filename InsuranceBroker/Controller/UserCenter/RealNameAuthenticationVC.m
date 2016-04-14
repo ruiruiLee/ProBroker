@@ -51,12 +51,14 @@
     self.tfCertNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
     if(model.cardNumberImg1 != nil && ![model.cardNumberImg1 isKindOfClass:[NSNull class]]){
-        [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg1] forState:UIControlStateSelected placeholderImage:ThemeImage(@"add_cert")];
-        self.btnCert1.selected = YES;
+        [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg1] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert")];
+      imgCer1 = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.cardNumberImg1]]];
+       // self.btnCert1.selected = YES;
     }
     if(model.cardNumberImg2 != nil && ![model.cardNumberImg2 isKindOfClass:[NSNull class]]){
-        [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg2] forState:UIControlStateSelected placeholderImage:ThemeImage(@"add_cert")];
-        self.btnCert2.selected = YES;
+        [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg2] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert")];
+       // self.btnCert2.selected = YES;
+         imgCer2 = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.cardNumberImg2]]];
     }
     
     cert1path = model.cardNumberImg1;
@@ -128,13 +130,13 @@
         return;
     }
     
-    if(!self.btnCert1.selected)
+    if(imgCer1==nil)
     {
         [Util showAlertMessage:@"请上传身份证正面照片"];
         return;
     }
     
-    if(!self.btnCert2.selected)
+    if(imgCer2==nil)
     {
         [Util showAlertMessage:@"请上传身份证背面照片"];
         return;
@@ -146,15 +148,15 @@
         dispatch_group_t group = dispatch_group_create();
         dispatch_group_async(group, dispatch_get_global_queue(0,0), ^{
             // cert1
-            UIImage *image = [self.btnCert1 imageForState:UIControlStateSelected];
-            AVFile *file = [AVFile fileWithName:@"cert1.jpg" data:UIImagePNGRepresentation(image)];
+
+            AVFile *file = [AVFile fileWithName:@"cert1.jpg" data:UIImageJPEGRepresentation(imgCer1, 0.5f)];
             [file save];
             cert1path = file.url;
         });
         dispatch_group_async(group, dispatch_get_global_queue(0,0), ^{
             // cert2
-            UIImage *image = [self.btnCert2 imageForState:UIControlStateSelected];
-            AVFile *file = [AVFile fileWithName:@"cert2.jpg" data:UIImagePNGRepresentation(image)];
+            AVFile *file = [AVFile fileWithName:@"cert2.jpg" data: UIImageJPEGRepresentation(imgCer2, 0.5f)];
+       
             [file save];
 
             cert2path = file.url;
@@ -165,12 +167,15 @@
             [NetWorkHandler requestToModifyuserInfo:model.userId realName:realName userName:nil phone:nil cardNumber:cardNumber cardNumberImg1:cert1path cardNumberImg2:cert2path liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:nil Completion:^(int code, id content) {
                 
                // [ProgressHUD dismiss];
+                imgCer1=nil;
+                imgCer2=nil;
                 [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
                 if(code == 200){
                   //  [Util showAlertMessage:@"资料上传成功，等客服人员处理"];
                     model.cardVerifiy = 1;
                     [self.navigationController popViewControllerAnimated:YES];
                     [ProgressHUD showSuccess:@"资料上传成功，等客服人员审核"];
+                   
                 }else{
                     [ProgressHUD showError:@"资料上传失败，请检测网络"];
                 }
@@ -249,13 +254,29 @@
     [self dismissViewControllerAnimated:YES completion:^{
         NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],0.5);
         UIImage *image= [UIImage imageWithData:imageData];
+        UIImageOrientation imageOrientation=image.imageOrientation;
+        if(imageOrientation!=UIImageOrientationUp)
+        {
+            // 原始图片可以根据照相时的角度来显示，但UIImage无法判定，于是出现获取的图片会向左转９０度的现象。
+            // 以下为调整图片角度的部分
+            UIGraphicsBeginImageContext(image.size);
+            [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+            image = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            // 调整图片角度完毕
+        }
         if(currentcertType == enumCertType1){
-            [self.btnCert1 sd_setImageWithURL:nil forState:UIControlStateSelected placeholderImage:image];
-            self.btnCert1.selected = YES;
+//        [self.btnCert1 sd_setImageWithURL:nil forState:UIControlStateSelected placeholderImage: [Util fitSmallImage:image scaledToSize:CGSizeMake(self.btnCert1.frame.size.width, self.btnCert1.frame.size.height)]];
+        imgCer1 = image;
+      
+        [self.btnCert1 setImage: [Util scaleToSize:image scaledToSize:CGSizeMake(self.btnCert1.frame.size.width, self.btnCert1.frame.size.height)] forState:UIControlStateNormal];
+      //  self.btnCert1.selected = YES;
+           
         }
         else{
-            [self.btnCert2 sd_setImageWithURL:nil forState:UIControlStateSelected placeholderImage:image];
-            self.btnCert2.selected = YES;
+            imgCer2 = image;
+            [self.btnCert2 setImage:[Util scaleToSize:image scaledToSize:CGSizeMake(self.btnCert1.frame.size.width, self.btnCert1.frame.size.height)]forState:UIControlStateNormal];
+            //self.btnCert2.selected = YES;
         }
     }];
     

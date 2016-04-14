@@ -375,6 +375,47 @@
     return newimg;
 }
 
+//图片等比例缩放,空隙由白色填充
++(UIImage*)scaleToSize:(UIImage*)CGImage scaledToSize:(CGSize)size
+{
+    CGFloat width = CGImage.size.width;
+    CGFloat height = CGImage.size.height;
+    
+    float verticalRadio = size.height*1.0/height;
+    float horizontalRadio = size.width*1.0/width;
+    
+    float radio = 1;
+    if(verticalRadio>1 && horizontalRadio>1)
+    {
+        radio = verticalRadio > horizontalRadio ? horizontalRadio : verticalRadio;
+    }
+    else
+    {
+        radio = verticalRadio < horizontalRadio ? verticalRadio : horizontalRadio;
+    }
+    
+    width = width*radio;
+    height = height*radio;
+    
+    int xPos = (size.width - width)/2;
+    int yPos = (size.height-height)/2;
+    
+    // 创建一个bitmap的context
+    // 并把它设置成为当前正在使用的context
+    UIGraphicsBeginImageContext(size);
+    
+    // 绘制改变大小的图片xPos,yPos
+    [CGImage drawInRect:CGRectMake(xPos, yPos, width, height)];
+    
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    
+    // 返回新的改变大小后的图片
+    return scaledImage;
+}
 
 + (NSDate*) convertDateFromString:(NSString*)string
 {
@@ -424,7 +465,7 @@
     
     value = [value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    int length =0;
+    NSInteger length =0;
     if (!value) {
         return NO;
     }else {

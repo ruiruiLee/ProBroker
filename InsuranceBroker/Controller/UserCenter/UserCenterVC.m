@@ -104,10 +104,10 @@
         placeholderImage = ThemeImage(@"head_famale");
     [self.photoImgV sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if(image == nil){
-            [self.gradientView setimage:[self blurryImage:placeholderImage withBlurLevel:0.3]];
+            [self.gradientView setimage:[self blurryImage:placeholderImage withBlurLevel:0.4]];
         }
         else
-            [self.gradientView setimage:[self blurryImage:image withBlurLevel:0.3]];
+            [self.gradientView setimage:[self blurryImage:image withBlurLevel:0.4]];
     }];
     
     if(model.leader == 1){
@@ -177,7 +177,7 @@
 - (void) viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-//    [self.gradientView setGradientColor:_COLOR(0xff, 0x8c, 0x19) end:_COLOR(0xff, 0x66, 0x19)];
+
 }
 
 //修改用户资料
@@ -433,7 +433,7 @@
     
     CGImageRelease(imageRef);
     
-   // return [Util fitSmallImage:returnImage scaledToSize:CGSizeMake(returnImage.size.width/2, returnImage.size.height/2)];
+//    return [Util fitSmallImage:returnImage scaledToSize:CGSizeMake(ScreenWidth, 300)];
     return returnImage;
 }
 

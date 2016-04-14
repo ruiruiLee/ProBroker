@@ -601,8 +601,7 @@
 
 - (void) NotifyToSubmitImage:(UIImage *) travelCard1 travelCard2:(UIImage *)travelCard2 image1:(UIImage *) image1 cert2:(UIImage *)image2
 {
-    //[ProgressHUD show:@"正在上传"];
-    [KGStatusBar showWithStatus:@"正在上传..."];
+     [ProgressHUD show:@"正在上传"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSString *filePahe1 = [self fileupMothed:travelCard1];
         NSString *filePahe2 = [self fileupMothed:travelCard2];
@@ -629,14 +628,11 @@
                         model.carOwnerCard1 = filePahe3;
                     if(filePahe4 != nil)
                         model.carOwnerCard2 = filePahe4;
-                      [KGStatusBar showSuccessWithStatus:@"照片上传成功"];
                     [_insuranceDetailView.tableview reloadData];
+                    [ProgressHUD showSuccess:@"上传成功"];
+                }else{
+                    [ProgressHUD showError:@"上传失败"];
                 }
-                else{
-                     [KGStatusBar showErrorWithStatus:@"照片上传失败，请检查网络设置。"];
-                }
-                //[ProgressHUD dismiss];
-                 //[KGStatusBar dismiss];
             });
         }];
     });
