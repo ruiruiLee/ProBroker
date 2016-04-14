@@ -63,6 +63,8 @@
     
     self.title = @"客户资料";
     
+//    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
+    
     [self.headerView.btnPhone addTarget:self action:@selector(doBtnRing:) forControlEvents:UIControlEventTouchUpInside];
     [self.headerView.btnMsg addTarget:self action:@selector(doBtnEmail:) forControlEvents:UIControlEventTouchUpInside];
     [self.headerView.photoImageV sd_setImageWithURL:[NSURL URLWithString:self.data.headImg] placeholderImage:ThemeImage(@"user_head")];
@@ -146,6 +148,12 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views1]];
     
     [self doBtnSelectDetailInfoView:self.btnInfo];
+}
+
+//
+- (void) handleRightBarButtonClicked:(id)sender
+{
+    
 }
 
 //拨打电话

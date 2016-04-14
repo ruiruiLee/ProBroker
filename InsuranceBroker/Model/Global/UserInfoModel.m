@@ -10,6 +10,14 @@
 #import "define.h"
 #import "NetWorkHandler+queryUserInfo.h"
 #import "NetWorkHandler+announcement.h"
+
+
+@interface UserInfoModel ()
+
+@property (nonatomic, strong) Completion storeCompletion;
+
+@end
+
 @implementation UserInfoModel
 
 + (UserInfoModel *) shareUserInfoModel
@@ -208,13 +216,22 @@
         if(code == 200){
             [self setDetailContentWithDictionary:[content objectForKey:@"data"]];
         }
+        
+        if(self.storeCompletion){
+            self.storeCompletion(code, content);
+            self.storeCompletion = nil;
+        }
     }];
 }
 
 -(void)queryLastNewsTip:(Completion) completion
 {
-    if(self.userId == nil || [self.userId length] == 0)
+    if(self.userId == nil || [self.userId length] == 0){
+        if(completion){
+            completion(-1, nil);
+        }
         return;
+    }
 
     [NetWorkHandler requestToAnnouncementNum:self.userId completion:^(int code, id content) {
          completion(code, content);
@@ -235,14 +252,23 @@
 
 - (void) loadDetail:(Completion) completion
 {
-    if(self.userId == nil || [self.userId length] == 0)
+    if(self.userId == nil || [self.userId length] == 0){
+        if(completion){
+            completion(-1, nil);
+        }
         return;
+    }
+    
+    self.storeCompletion = completion;
+    
     [NetWorkHandler requestToQueryUserInfo:self.userId Completion:^(int code, id content) {
         if(code == 200){
             [self setDetailContentWithDictionary:[content objectForKey:@"data"]];
         }
-        if(completion)
-            completion(code, content);
+        if(self.storeCompletion)
+            self.storeCompletion(code, content);
+        
+        self.storeCompletion = nil;
     }];
 }
 
