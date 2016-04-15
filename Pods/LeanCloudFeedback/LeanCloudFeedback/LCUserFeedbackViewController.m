@@ -205,8 +205,8 @@ static CGFloat const kSendButtonWidth = 60;
 
 #pragma mark - load data
 
-- (void)fetchRepliesWithBlock:(AVArrayResultBlock)block {
-    [LCUserFeedbackThread fetchFeedbackWithBlock:^(LCUserFeedbackThread *feedback, NSError *error) {
+- (void)fetchRepliesWithObjectId:(NSString *)ObjectId Block:(AVArrayResultBlock)block {
+    [LCUserFeedbackThread fetchFeedbackWithObjectId:ObjectId Block:^(LCUserFeedbackThread *feedback, NSError *error) {
         if (error) {
             block(nil, error);
         } else {
@@ -227,7 +227,7 @@ static CGFloat const kSendButtonWidth = 60;
     if (![_refreshControl isRefreshing]) {
         [_refreshControl beginRefreshing];
     }
-    [self fetchRepliesWithBlock:^(NSArray *objects, NSError *error) {
+    [self fetchRepliesWithObjectId:self.objectId Block:^(NSArray *objects, NSError *error) {
         [_refreshControl endRefreshing];
         if ([self filterError:error]) {
             if (objects.count > 0) {

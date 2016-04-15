@@ -12,3 +12,4 @@
 #import "LCUserFeedbackAgent.h"
 #import "LCUserFeedbackThread.h"
 #import "LCUserFeedbackViewController.h"
+#import "LCUserFeedbackImageViewController.h"

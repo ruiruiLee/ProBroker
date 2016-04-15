@@ -35,4 +35,6 @@ typedef void (^LCUserFeedbackBlock)(LCUserFeedbackThread *feedback, NSError *err
 
 -(void)fetchFeedbackRepliesInBackgroundWithBlock:(AVArrayResultBlock)block;
 
++(void)fetchFeedbackWithObjectId:(NSString *)objectId Block:(LCUserFeedbackBlock)block;
+
 @end

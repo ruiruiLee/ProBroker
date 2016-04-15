@@ -21,6 +21,9 @@
 #import "NetWorkHandler+updateCustomerHeadImg.h"
 #import <AVOSCloud/AVOSCloud.h>
 
+#import "UserFeedbackVC.h"
+#import "BaseNavigationController.h"
+
 @interface CustomerDetailVC ()<BaseInsuranceInfoDelegate, InsuranceInfoViewDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (nonatomic, strong) CustomerDetailModel *data;
@@ -63,7 +66,7 @@
     
     self.title = @"客户资料";
     
-//    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
+    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
     
     [self.headerView.btnPhone addTarget:self action:@selector(doBtnRing:) forControlEvents:UIControlEventTouchUpInside];
     [self.headerView.btnMsg addTarget:self action:@selector(doBtnEmail:) forControlEvents:UIControlEventTouchUpInside];
@@ -153,7 +156,16 @@
 //
 - (void) handleRightBarButtonClicked:(id)sender
 {
-    
+    UserFeedbackVC *feedbackViewController = [[UserFeedbackVC alloc] init];
+    feedbackViewController.feedbackTitle = nil;
+    feedbackViewController.contact = [UserInfoModel shareUserInfoModel].phone;
+    // 隐藏联系人表头
+    feedbackViewController.contactHeaderHidden = YES;
+    // 决定返回按钮和样式
+    feedbackViewController.presented = NO;
+    // 不设置导航栏样式
+    feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
+    [self.navigationController pushViewController:feedbackViewController animated:YES];
 }
 
 //拨打电话

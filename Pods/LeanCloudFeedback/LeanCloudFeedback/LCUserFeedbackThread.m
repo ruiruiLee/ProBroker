@@ -206,4 +206,29 @@ static NSString *const kLCUserFeedbackObjectId = @"LCUserFeedbackObjectId";
     }];
 }
 
+
+//自定义会话id
++(void)fetchFeedbackWithObjectId:(NSString *)objectId Block:(LCUserFeedbackBlock)block {
+    NSString *feedbackObjectId = objectId;
+    if (feedbackObjectId == nil) {
+        // do not create empty feedback
+        block(nil, nil);
+    } else {
+        LCHttpClient *client = [LCHttpClient sharedInstance];
+        [client getObject:[LCUserFeedbackThread objectPath] withParameters:@{@"objectId":feedbackObjectId} block:^(id object, NSError *error) {
+            if (error) {
+                [LCUtils callIdResultBlock:block object:nil error:error];
+            } else {
+                NSArray* results = [(NSDictionary*)object objectForKey:@"results"];
+                if (results.count == 0) {
+                    [LCUtils callIdResultBlock:block object:nil error:nil];
+                } else {
+                    LCUserFeedbackThread *feedback = [[LCUserFeedbackThread alloc] initWithDictionary:results[0]];
+                    [LCUtils callIdResultBlock:block object:feedback error:nil];
+                }
+            }
+        }];
+    }
+}
+
 @end

@@ -44,4 +44,9 @@ typedef enum : NSUInteger {
  */
 @property(nonatomic, assign) BOOL presented;
 
+/**
+ *  会话id
+ */
+@property(nonatomic, strong) NSString *objectId;
+
 @end
