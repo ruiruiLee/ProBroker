@@ -351,7 +351,7 @@
     if(head != nil){
         HeadlineModel *model = [_headlineArray objectAtIndex:indexPath.row];
         
-        head.lbDetail.text = model.title;//[dic objectForKey:@"value"];
+        head.lbDetail.text = model.title;
     }
 }
 
@@ -392,9 +392,9 @@
 - (void) doBtnNoticeList:(id) sender
 {
 
-        NoticeListVC *vc = [[NoticeListVC alloc] initWithNibName:nil bundle:nil];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+    NoticeListVC *vc = [[NoticeListVC alloc] initWithNibName:nil bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)doBtnInvite:(id)sender
@@ -521,11 +521,10 @@
     web.hidesBottomBarWhenPushed = YES;
     web.title = @"快速算价";
     web.type = enumShareTypeShare;
-    web.shareTitle = _newUserModel.title;
-    web.shareContent = _newUserModel.content;
+    web.shareTitle = @"快速算价";
     [self.navigationController pushViewController:web animated:YES];
     
-    [web loadHtmlFromUrlWithUserId:_newUserModel.url];
+    [web loadHtmlFromUrlWithUserId:_quoteUrl];
 }
 
 #pragma mark - EGORefreshTableHeaderDelegate

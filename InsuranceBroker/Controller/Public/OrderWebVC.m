@@ -96,6 +96,11 @@
     [self performSelector:@selector(turnToCustomerPage) withObject:nil afterDelay:0.1];
 }
 
+- (void) NotifyShareWindow
+{
+    [self handleRightBarButtonClicked:nil];
+}
+
 - (void) turnToCustomerPage
 {
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;

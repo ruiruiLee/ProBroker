@@ -8,11 +8,13 @@
 
 #import "WebViewController.h"
 #import "define.h"
-//#import "UIWebView+AFNetworking.h"
 #import "NetWorkHandler+initOrderShare.h"
 #import "EGOCache.h"
 #import "KGStatusBar.h"
-@interface WebViewController ()
+#import "MyJSInterface.h"
+#import "IQKeyboardManager.h"
+
+@interface WebViewController ()<MyJSInterfaceDelegate>
 
 @end
 
@@ -35,7 +37,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-//    [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
+    MyJSInterface* interface = [MyJSInterface new];
+    interface.delegate = self;
+    [self.webview addJavascriptInterfaces:interface WithName:@"appClient"];
+    
     for (UIScrollView* view in self.webview.subviews)
     {
         if ([view isKindOfClass:[UIScrollView class]])
@@ -45,6 +50,7 @@
     }
     self.webview.backgroundColor = [UIColor clearColor];
     [self.webview setOpaque:NO];
+    self.webview.delegate = self;
     
     if(self.type == enumShareTypeShare || self.type == enumShareTypeToCustomer){
         [self setRightBarButtonWithImage:ThemeImage(@"btn_share")];
@@ -66,6 +72,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) NotifyShareWindow
+{
+    [self handleRightBarButtonClicked:nil];
+}
+
+- (void) NotifyCloseWindow
+{
+    
+}
+
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -73,12 +89,13 @@
     // Remove progress view
     // because UINavigationBar is shared with other ViewControllers
     [_progressView removeFromSuperview];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [[IQKeyboardManager sharedManager] setEnable:NO];
     if(_urlpath != nil){
         
         id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:self.urlpath]];
@@ -111,6 +128,13 @@
     [self.view addSubview:_progressView];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_progressView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_progressView(2)]->=0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressView)]];
+}
+
+#pragma UIWebViewDelegate
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    self.shareUrl = webView.request.URL.absoluteString;
 }
 
 
@@ -148,7 +172,6 @@
     self.urlpath = url;
     if(self.webview)
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
-//        [self.webview]
 }
 
 - (void) handleRightBarButtonClicked:(id)sender
@@ -236,9 +259,6 @@
     
     if (self.shareImgArray) {
         
-//        UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-//        NSString *title = [NSString stringWithFormat:@"我是%@，邀请你也加入优快保自由经纪人", model.nickname];
-        
         [shareParams SSDKSetupShareParamsByText:self.shareContent
                                          images:self.shareImgArray
                                             url:[NSURL URLWithString:self.shareUrl]
@@ -261,27 +281,17 @@
                      [KGStatusBar showSuccessWithStatus:@"分享失败"];
                      break;
                  }
-//                 case SSDKResponseStateCancel:
-//                 {
-//                     
-//                     [KGStatusBar showSuccessWithStatus:@"分享已取消"];
-//                     break;
-//                 }
+                 case SSDKResponseStateCancel:
+                 {
+                     
+                     [KGStatusBar showSuccessWithStatus:@"分享已取消"];
+                     break;
+                 }
                  default:
                      break;
              }
          }];
     }
 }
-
-//- (void) initShareUrl:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId
-//{
-//    [NetWorkHandler requestToInitOrderShare:orderId insuranceType:insuranceType planOfferId:planOfferId Completion:^(int code, id content) {
-//        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-//        if(code == 200){
-//            self.shareUrl = [content objectForKey:@"data"];
-//        }
-//    }];
-//}
 
 @end

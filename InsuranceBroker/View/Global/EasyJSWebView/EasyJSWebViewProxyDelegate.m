@@ -96,9 +96,9 @@ return EasyJS.call(obj, method, Array.prototype.slice.call(arguments));\
 	[self.realDelegate webView:webView didFailLoadWithError:error];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView{
-	[self.realDelegate webViewDidFinishLoad:webView];
-}
+//- (void)webViewDidFinishLoad:(UIWebView *)webView{
+//	[self.realDelegate webViewDidFinishLoad:webView];
+//}
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
 	
@@ -174,8 +174,8 @@ return EasyJS.call(obj, method, Array.prototype.slice.call(arguments));\
 	return [self.realDelegate webView:webView shouldStartLoadWithRequest:request navigationType:navigationType];
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView{
-	[self.realDelegate webViewDidStartLoad:webView];
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+	[self.realDelegate webViewDidFinishLoad:webView];
 	
 	if (! self.javascriptInterfaces){
 		self.javascriptInterfaces = [[NSMutableDictionary alloc] init];
@@ -215,7 +215,6 @@ return EasyJS.call(obj, method, Array.prototype.slice.call(arguments));\
 	[webView stringByEvaluatingJavaScriptFromString:js];
 	//inject the function interface
 	[webView stringByEvaluatingJavaScriptFromString:injection];
-	
 }
 
 - (void)dealloc{

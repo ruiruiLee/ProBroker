@@ -12,7 +12,7 @@
 #import "MyJSInterface.h"
 #import "define.h"
 #import "KGStatusBar.h"
-@interface OrderDetailWebVC ()<MyJSInterfaceDelegate, UIWebViewDelegate>
+@interface OrderDetailWebVC ()<UIWebViewDelegate>
 
 @end
 
@@ -23,7 +23,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
         _urlPath = nil;
-//        platType = SSDKPlatformTypeUnknown;
         tagNum = -1;
     }
     
@@ -34,14 +33,9 @@
 {
     [super viewDidLoad];
     
-    MyJSInterface* interface = [MyJSInterface new];
-    interface.delegate = self;
-    [self.webview addJavascriptInterfaces:interface WithName:@"appClient"];
-}
-
-- (void) NotifyShareWindow
-{
-    [self handleRightBarButtonClicked:nil];
+//    MyJSInterface* interface = [MyJSInterface new];
+//    interface.delegate = self;
+//    [self.webview addJavascriptInterfaces:interface WithName:@"appClient"];
 }
 
 - (void) initShareUrl:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId
@@ -163,12 +157,12 @@
                      [KGStatusBar showSuccessWithStatus:@"分享失败"];
                      break;
                  }
-//                 case SSDKResponseStateCancel:
-//                 {
-//                     
-//                     [KGStatusBar showSuccessWithStatus:@"分享已取消"];
-//                     break;
-//                 }
+                 case SSDKResponseStateCancel:
+                 {
+                     
+                     [KGStatusBar showSuccessWithStatus:@"分享已取消"];
+                     break;
+                 }
                  default:
                      break;
              }
