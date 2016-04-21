@@ -9,7 +9,8 @@
 #import "BasePullTableVC.h"
 
 
-@interface AgentStrategyViewController : BaseViewController
+@interface AgentStrategyViewController : BasePullTableVC
 
+@property (nonatomic, strong) NSString *category;
 
 @end

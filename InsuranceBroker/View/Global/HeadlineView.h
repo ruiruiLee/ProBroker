@@ -13,7 +13,6 @@
 @interface HeadlineCell : UIView
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
-//@property (nonatomic, strong) IBOutlet UILabel *lbTitle;
 @property (nonatomic, strong) IBOutlet UILabel *lbDetail;
 @property (nonatomic, assign) HeadlineView *pView;
 
@@ -33,7 +32,7 @@
 
 @interface HeadlineView : UIControl
 {
-    UIView *view;
+//    UIView *view;
 }
 
 @property (nonatomic, strong) UIImageView *imgTitle;

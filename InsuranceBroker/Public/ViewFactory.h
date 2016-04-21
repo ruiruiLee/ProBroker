@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HighNightBgButton.h"
 #import "InfoTipsView.h"
 
 @interface ViewFactory : NSObject
@@ -16,5 +16,16 @@
  标准化生成UILabel
  */
 + (UILabel *) CreateLabelViewWithFont:(UIFont *) font TextColor:(UIColor *)color;
+
+/**
+ 标准化生成UIButton
+ */
++ (HighNightBgButton *) CreateButtonWithzFont:(UIFont *) font TextColor:(UIColor *)color image:(UIImage *) image;
+
+/**
+ 标准化view
+ */
+
++ (UIView *) CreateView;
 
 @end

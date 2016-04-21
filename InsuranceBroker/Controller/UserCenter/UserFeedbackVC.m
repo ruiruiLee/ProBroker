@@ -87,15 +87,16 @@
 //{
 //    [viewController.navigationController.navigationBar removeObserver:self forKeyPath:@"backItem"];
 //    
-////    UINavigationItem *back = viewController.navigationController.navigationBar.backItem;
-////    if(back){
-////        UIBarButtonItem *barButtonItemLeft=[[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStyleBordered target:self action:@selector(handleLeftBarButtonClicked:)];
-////        UIImage *image = ThemeImage(@"arrow_left");
-////        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-////        barButtonItemLeft.image = image;
+//    UINavigationItem *back = viewController.navigationController.navigationBar.backItem;
+//    if(back){
+//        UIBarButtonItem *barButtonItemLeft=[[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStyleBordered target:self action:@selector(handleLeftBarButtonClicked:)];
+//        UIImage *image = ThemeImage(@"arrow_left");
+//        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        barButtonItemLeft.image = image;
 ////        [viewController.navigationItem setLeftBarButtonItem:barButtonItemLeft];
 ////        [back setLeftBarButtonItem:barButtonItemLeft];
-////    }
+//        [back setBackBarButtonItem:barButtonItemLeft];
+//    }
 //}
 //
 //-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

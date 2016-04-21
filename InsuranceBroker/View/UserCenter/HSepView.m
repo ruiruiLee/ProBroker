@@ -17,28 +17,32 @@
 - (void)drawRect:(CGRect)rect {
     // Drawing code
     
-    CGContextRef ctx=UIGraphicsGetCurrentContext();
-    //绘图
-    //第一条线
-    CGPoint begin = CGPointMake(rect.origin.x + rect.size.width/2, rect.origin.y + 20);
-    CGContextMoveToPoint(ctx, begin.x, begin.y);
-    CGContextAddLineToPoint(ctx, begin.x, rect.size.height - 20);
-
-    //设置第一条线的状态
-    //设置线条的宽度
-    CGContextSetLineWidth(ctx, 1);
-    //设置线条的颜色
-    [_COLOR(0xe6, 0xe6, 0xe6) set];
-    //设置线条两端的样式为圆角
-    CGContextSetLineCap(ctx,kCGLineCapRound);
-    //对线条进行渲染
-    CGContextStrokePath(ctx);
-
-    //第二条线
-//    CGContextMoveToPoint(ctx, 40, 200);
-//    CGContextAddLineToPoint(ctx, 80, 100);
-    //渲染
-    CGContextStrokePath(ctx);
+//    CGContextRef ctx=UIGraphicsGetCurrentContext();
+//    //绘图
+//    //第一条线
+//    CGPoint begin = CGPointMake(rect.origin.x + rect.size.width/2, rect.origin.y + 20);
+//    CGContextMoveToPoint(ctx, begin.x, begin.y);
+//    CGContextAddLineToPoint(ctx, begin.x, rect.size.height - 20);
+//
+//    //设置第一条线的状态
+//    //设置线条的宽度
+//    CGContextSetLineWidth(ctx, 0.3);
+//    //设置线条的颜色
+//    [SepLineColor set];
+//    //设置线条两端的样式为圆角
+//    CGContextSetLineCap(ctx,kCGLineCapRound);
+//    //对线条进行渲染
+//    CGContextStrokePath(ctx);
+//
+//    //第二条线
+////    CGContextMoveToPoint(ctx, 40, 200);
+////    CGContextAddLineToPoint(ctx, 80, 100);
+//    //渲染
+//    CGContextStrokePath(ctx);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, SepLineColor.CGColor);
+    CGContextFillRect(context, CGRectMake(CGRectGetWidth(self.frame)/2, 20, 0.6, CGRectGetHeight(self.frame) - 40));
     
 }
 

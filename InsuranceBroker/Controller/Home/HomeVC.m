@@ -19,6 +19,7 @@
 #import "SelectCustomerVC.h"
 #import "AppDelegate.h"
 #import "MyTeamInfoVC.h"
+#import "ProductListVC.h"
 //#import "SetTeamLeaderPhoneView.h"
 
 @interface HomeVC ()<MJBannnerPlayerDeledage>
@@ -32,6 +33,19 @@
 
 @implementation HomeVC
 
+@synthesize scrollview;
+@synthesize headline;
+@synthesize btnBroker;
+@synthesize btnProduct;
+@synthesize btnPlan;
+@synthesize btnService;
+@synthesize btnNewUser;
+@synthesize btnDetail;
+@synthesize btnMessage;
+@synthesize imgBroker;
+@synthesize imgDetail;
+@synthesize imgService;
+
 - (void) dealloc
 {
     AppContext *context = [AppContext sharedAppContext];
@@ -42,9 +56,9 @@
     AppContext *con= [AppContext sharedAppContext];
     if(con.isNewMessage)
     {
-        self._btnMessage.imageView.badgeView.badgeValue = 1;
+        self.btnMessage.imageView.badgeView.badgeValue = 1;
     }else{
-        self._btnMessage.imageView.badgeView.badgeValue = 0;
+        self.btnMessage.imageView.badgeView.badgeValue = 0;
     }
 }
 
@@ -60,50 +74,188 @@
     self.navigationItem.titleView = logoView;
     [self setLeftBarButtonWithImage:nil];
 
+    [self initSubViews];
+    
     self.headline.delegate = self;
     self.headline.imgTitle.image = ThemeImage(@"Hot");
+    self.headline.backgroundColor = [UIColor whiteColor];//_COLOR(0xd8, 0xd8, 0xd8);
     
-//    self.btnAutoInsu.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
-//    self.btnAutoInsu.layer.borderWidth = 0.5;
-//    self.btnInvit.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
-//    self.btnInvit.layer.borderWidth = 0.5;
+    self.btnMessage = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+    [self.btnMessage setImage:ThemeImage(@"user_message1") forState:UIControlStateNormal];
+    [self setRightBarButtonWithButton:self.btnMessage];
+    [self.btnMessage addTarget:self action:@selector(doBtnNoticeList:) forControlEvents:UIControlEventTouchUpInside];
     
-//    [self.btnAutoInsu setImage:ThemeImage(@"car") forState:UIControlStateNormal];
-//    [self.btnAutoInsu setTitle:@"车险算价" forState:UIControlStateNormal];
-//    self.btnAutoInsu.titleLabel.font = _FONT_B(18);
-//    self.btnAutoInsu.lbExplain.text = @"快速下单，掌握便捷比价";
-//    [self.btnInvit setImage:ThemeImage(@"share") forState:UIControlStateNormal];
-//    [self.btnInvit setTitle:@"团队管理" forState:UIControlStateNormal];
-//    self.btnInvit.titleLabel.font = _FONT_B(18);
-//    self.btnInvit.lbExplain.text = @"车险直销坐享多重收益";
-    
-    self.lbsepline1.backgroundColor = _COLOR(233, 233, 233);
-    self.lbsepline2.backgroundColor = _COLOR(233, 233, 233);
-    
-    [self.btnNewUser setBackgroundImage:ThemeImage(@"banner") forState:UIControlStateNormal];
-    //设置屏幕宽度
-    self.scHConstraint.constant = ScreenWidth;
-    
-    self.headVConstraint.constant = 40;//[Util getHeightByWidth:375 height:40 nwidth:ScreenWidth];
-    self.adVConstraint.constant = [Util getHeightByWidth:750 height:330 nwidth:ScreenWidth];
-    //车险和邀请好友
-    self.autoBgVConstraint.constant = ScreenWidth/2 - 1;
-    //销售攻略背景视图
-    //iphone6下为60
-//    self.additionBgHConstraint.constant = ScreenWidth;
-    self.additionBgVConstraint.constant = [Util getHeightByWidth:375 height:60 nwidth:ScreenWidth];
-    //新用户福利
-    //iphone6下为72
-//    self.userNewHConstraint.constant = ScreenWidth;
-    self.userNewVConstraint.constant = [Util getHeightByWidth:375 height:90 nwidth:ScreenWidth];
-    
-    self.scVConstraint.constant = self.headVConstraint.constant + self.adVConstraint.constant + 30 + ScreenWidth/2 + self.additionBgVConstraint.constant + self.userNewVConstraint.constant;
-    
-    self._btnMessage.imageView.clipsToBounds = NO;
+    self.btnMessage.imageView.clipsToBounds = NO;
 //    [self config];
     
     [self loadDatas];
     
+}
+
+- (void) initSubViews
+{
+    //整个视图的
+    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:scroll];
+    scroll.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    //
+    UIView *bgview = [[UIView alloc] initWithFrame:CGRectZero];
+    [scroll addSubview:bgview];
+    bgview.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    //banner的bg
+    scrollview = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    [bgview addSubview:scrollview];
+    scrollview.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    UIView *titleBg = [[UIView alloc] initWithFrame:CGRectZero];
+    titleBg.translatesAutoresizingMaskIntoConstraints = NO;
+    [bgview addSubview:titleBg];
+    titleBg.backgroundColor = [UIColor whiteColor];
+    
+    //快速算价
+    HighNightBgButton *btnCalculate = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:ThemeImage(@"calculate")];
+    [titleBg addSubview:btnCalculate];
+    [btnCalculate addTarget:self action:@selector(doBtnQuote:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *sepView1 = [ViewFactory CreateView];
+    [titleBg addSubview:sepView1];
+    //我的团队
+    HighNightBgButton *btnTeams = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:ThemeImage(@"my_teams")];
+    [titleBg addSubview:btnTeams];
+    [btnTeams addTarget:self action:@selector(doBtnMyTeams:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *sepView2 = [ViewFactory CreateView];
+    [titleBg addSubview:sepView2];
+    //邀请好友
+    HighNightBgButton *btnInvite = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:ThemeImage(@"invite")];
+    [titleBg addSubview:btnInvite];
+    [btnInvite addTarget:self action:@selector(doBtnInvite:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *sepView3 = [ViewFactory CreateView];
+    [titleBg addSubview:sepView3];
+    //我的客服
+    HighNightBgButton *btnMyService = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:ThemeImage(@"service")];
+    [titleBg addSubview:btnMyService];
+    [btnMyService addTarget:self action:@selector(doBtnMyService:) forControlEvents:UIControlEventTouchUpInside];
+    
+    headline = [[HeadlineView alloc] initWithFrame:CGRectZero];
+    headline.translatesAutoresizingMaskIntoConstraints = NO;
+    [bgview addSubview:headline];
+    
+    UIView *contenBg = [[UIView alloc] initWithFrame:CGRectZero];
+    contenBg.translatesAutoresizingMaskIntoConstraints = NO;
+    [bgview addSubview:contenBg];
+    
+    btnProduct = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:ThemeImage(@"product")];
+    [contenBg addSubview:btnProduct];
+    [btnProduct addTarget:self action:@selector(doBtnProductSelect:) forControlEvents:UIControlEventTouchUpInside];
+    
+    btnPlan = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:nil];
+    [contenBg addSubview:btnPlan];
+    [btnPlan addTarget:self action:@selector(doBtnJiHuaShu:) forControlEvents:UIControlEventTouchUpInside];
+    
+    imgBroker = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imgBroker.translatesAutoresizingMaskIntoConstraints = NO;
+    [contenBg addSubview:imgBroker];
+    imgBroker.backgroundColor = SepLineColor;
+    
+    btnBroker = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:nil];
+    [contenBg addSubview:btnBroker];
+    [btnBroker addTarget:self action:@selector(doBtnAgentStrategy:) forControlEvents:UIControlEventTouchUpInside];
+    
+    imgService = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imgService.translatesAutoresizingMaskIntoConstraints = NO;
+    [contenBg addSubview:imgService];
+    imgService.backgroundColor = SepLineColor;
+    
+    btnService = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:nil];
+    [contenBg addSubview:btnService];
+    [btnService addTarget:self action:@selector(doBtnFuWuZhiCheng:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *newUserBg = [[UIView alloc] initWithFrame:CGRectZero];
+    [bgview addSubview:newUserBg];
+    newUserBg.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    btnNewUser = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:nil];
+    [newUserBg addSubview:btnNewUser];
+    [btnNewUser addTarget:self action:@selector(doBtnNewUser:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *infoBg = [[UIView alloc] initWithFrame:CGRectZero];
+    infoBg.translatesAutoresizingMaskIntoConstraints = NO;
+    [bgview addSubview:infoBg];
+    
+    imgDetail = [[UIImageView alloc] initWithFrame:CGRectZero];
+    imgDetail.translatesAutoresizingMaskIntoConstraints = NO;
+    [infoBg addSubview:imgDetail];
+    btnDetail = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:nil];
+    [infoBg addSubview:btnDetail];
+    [btnDetail addTarget:self action:@selector(doBtnDuSheBaoXian:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(scroll, bgview, scrollview, titleBg, headline, contenBg, newUserBg, infoBg, btnCalculate, btnTeams, btnInvite, btnMyService, sepView1, sepView2, sepView3, btnProduct, btnPlan, btnBroker, btnService, btnNewUser, btnDetail, imgDetail, imgBroker, imgService);
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scroll]-0-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scroll]-0-|" options:0 metrics:nil views:views]];
+    
+    [scroll addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[bgview]-0-|" options:0 metrics:nil views:views]];
+    [scroll addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[bgview]-0-|" options:0 metrics:nil views:views]];
+    [scroll addConstraint:[NSLayoutConstraint constraintWithItem:bgview attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:ScreenWidth]];
+    
+    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scrollview]-0-|" options:0 metrics:nil views:views]];
+    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[titleBg]-0-|" options:0 metrics:nil views:views]];
+    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[headline]-0-|" options:0 metrics:nil views:views]];
+    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[contenBg]-0-|" options:0 metrics:nil views:views]];
+    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[newUserBg]-0-|" options:0 metrics:nil views:views]];
+    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[infoBg]-0-|" options:0 metrics:nil views:views]];
+    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scrollview]-0-[headline(40)]-0-[titleBg(86)]-0-[contenBg]-0-[infoBg]-0-[newUserBg]-0-|" options:0 metrics:nil views:views]];
+    
+    [bgview addConstraint:[NSLayoutConstraint constraintWithItem:scrollview attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:320 nwidth:ScreenWidth]]];
+    [bgview addConstraint:[NSLayoutConstraint constraintWithItem:newUserBg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:180 nwidth:ScreenWidth]]];
+    [bgview addConstraint:[NSLayoutConstraint constraintWithItem:infoBg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:320 nwidth:ScreenWidth]]];
+    
+    [titleBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[btnCalculate]-0-[sepView1]-0-[btnTeams]-0-[sepView2]-0-[btnInvite]-0-[sepView3]-0-[btnMyService]-10-|" options:0 metrics:nil views:views]];
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:btnCalculate attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView1 attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:btnTeams attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView2 attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:btnInvite attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView3 attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:btnMyService attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView2 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:sepView1 attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView3 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:sepView1 attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    
+    [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnProduct]-0-[btnPlan]-0-|" options:0 metrics:nil views:views]];
+    [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imgBroker]-0-[imgService]-0-|" options:0 metrics:nil views:views]];
+    [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnProduct]-0-[imgBroker]-0-|" options:0 metrics:nil views:views]];
+    [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnPlan]-0-[imgService]-0-|" options:0 metrics:nil views:views]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnProduct attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnPlan attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnService attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnProduct attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:180 nwidth:ScreenWidth]]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnPlan attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:180 nwidth:ScreenWidth]]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:440 nwidth:ScreenWidth]]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:440 nwidth:ScreenWidth]]];
+    
+    
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeRight multiplier:1 constant:-0.5]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
+    
+    [newUserBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnNewUser]-0-|" options:0 metrics:nil views:views]];
+    [newUserBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnNewUser]-0-|" options:0 metrics:nil views:views]];
+    
+    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnDetail]-0-|" options:0 metrics:nil views:views]];
+    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnDetail]-0-|" options:0 metrics:nil views:views]];
+    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imgDetail]-0-|" options:0 metrics:nil views:views]];
+    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[imgDetail]-0-|" options:0 metrics:nil views:views]];
 }
 
 # pragma mark - Custom view configuration
@@ -131,6 +283,11 @@
             _adArray = [PosterModel modelArrayFromArray:[d objectForKey:@"poster"]];
             _headlineArray = [HeadlineModel modelArrayFromArray:[d objectForKey:@"headlines"]];
             _newUserModel = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"newUser"]];
+            _liPeiChuXian = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"liPeiChuXian"]];
+            _jiHuaShu = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"jiHuaShu"]];
+            _duSheBaoXian = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"duSheBaoXian"]];
+            _chengGongZhiLu = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"chengGongZhiLu"]];
+            _quoteUrl = [d objectForKey:@"quoteUrl"];
             appdelegate.customerBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"customerBanner"]];
             appdelegate.workBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"workBanner"]];
             appdelegate.inviteBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"friendBanner"]];
@@ -158,6 +315,11 @@
    
     [self.headline reloadData];
     [self.btnNewUser sd_setBackgroundImageWithURL:[NSURL URLWithString:_newUserModel.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
+    [self.btnPlan sd_setBackgroundImageWithURL:[NSURL URLWithString:_jiHuaShu.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
+    [self.btnBroker sd_setBackgroundImageWithURL:[NSURL URLWithString:_chengGongZhiLu.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
+    [self.btnService sd_setBackgroundImageWithURL:[NSURL URLWithString:_liPeiChuXian.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
+    [self.btnDetail sd_setBackgroundImageWithURL:[NSURL URLWithString:_duSheBaoXian.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
+    
 }
 
 # pragma mark MJBannnerPlayer delegate
@@ -183,28 +345,13 @@
 
 }
 
-
-- (void) viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    CGRect frame1 = self.lbsepline1.frame;
-    self.lbsepline1.frame = CGRectMake(frame1.origin.x, frame1.origin.y, 0.5, frame1.size.height);
-    CGRect frame2 = self.lbsepline2.frame;
-    self.lbsepline2.frame = CGRectMake(frame2.origin.x, frame2.origin.y, 0.5, frame2.size.height);
-//    CGRect frame3 = self.btnInvit.frame;
-
-    self.scrollview.contentSize = CGSizeMake(ScreenWidth, self.scVConstraint.constant + 2);
-    
-//    self.btnInvit.frame = CGRectMake(self.btnAutoInsu.frame.size.width - 0.5, frame3.origin.y, frame3.size.width, frame3.size.height);
-}
-
 #pragma HeadlineViewDelegate
-- (void) headline:(HeadlineCell *)headline cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void) headline:(HeadlineCell *)head cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(headline != nil){
+    if(head != nil){
         HeadlineModel *model = [_headlineArray objectAtIndex:indexPath.row];
         
-        headline.lbDetail.text = model.title;//[dic objectForKey:@"value"];
+        head.lbDetail.text = model.title;//[dic objectForKey:@"value"];
     }
 }
 
@@ -235,7 +382,14 @@
     return [_headlineArray count];
 }
 
-- (IBAction) doBtnNoticeList:(id) sender
+- (void)doBtnProductSelect:(id)sender
+{
+    ProductListVC *vc = [[ProductListVC alloc] initWithNibName:nil bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void) doBtnNoticeList:(id) sender
 {
 
         NoticeListVC *vc = [[NoticeListVC alloc] initWithNibName:nil bundle:nil];
@@ -243,10 +397,34 @@
         [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (IBAction)doBtnInvite:(id)sender
+- (void)doBtnInvite:(id)sender
 {
     if([self login]){
+        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+        NewUserModel *model = appdelegate.workBanner;
+        if(model.isRedirect){
+            WebViewController *web = [IBUIFactory CreateWebViewController];
+            web.title = model.title;
+            web.type = enumShareTypeShare;
+            web.shareTitle = model.title;
+            web.shareContent = model.content;
+            web.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:web animated:YES];
+            if(model.url){
+                [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@", model.url]];
+            }else{
+                NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid];
+                [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@",url]];
+            }
+        }
+        
+    }
+}
 
+- (void)doBtnMyTeams:(id)sender
+{
+    if([self login]){
+        
         MyTeamInfoVC *vc = [[MyTeamInfoVC alloc] initWithNibName:nil bundle:nil];
         vc.hidesBottomBarWhenPushed = YES;
         vc.userid = [UserInfoModel shareUserInfoModel].userId;
@@ -257,17 +435,46 @@
     }
 }
 
-- (IBAction) doBtnAgentStrategy:(id)sender
+- (void) doBtnAgentStrategy:(id)sender
 {
 //    BOOL result = [self login];
 //    if(result){
     AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
+    vc.category = _chengGongZhiLu.category;
+    vc.title = _chengGongZhiLu.title;
     [self.navigationController pushViewController:vc animated:YES];
 //    }
 }
 
-- (IBAction) doBtnMyService:(id)sender
+- (void) doBtnJiHuaShu:(id) sender
+{
+    AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.category = _jiHuaShu.category;
+    vc.title = _jiHuaShu.title;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void) doBtnFuWuZhiCheng:(id) sender
+{
+    AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.category = _liPeiChuXian.category;
+    vc.title = _liPeiChuXian.title;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void) doBtnDuSheBaoXian:(id) sender
+{
+    AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.category = _duSheBaoXian.category;
+    vc.title = _duSheBaoXian.title;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void) doBtnMyService:(id)sender
 {
     WebViewController *web = [IBUIFactory CreateWebViewController];
     web.hidesBottomBarWhenPushed = YES;
@@ -278,7 +485,7 @@
     [web loadHtmlFromUrl:url];
 }
 
-- (IBAction) doBtnNewUser:(id)sender
+- (void) doBtnNewUser:(id)sender
 {
     if(_newUserModel && _newUserModel.isRedirect){
         WebViewController *web = [IBUIFactory CreateWebViewController];
@@ -299,13 +506,26 @@
     }
 }
 
-- (IBAction)doBtnSelectForInsur:(id)sender
+- (void)doBtnSelectForInsur:(id)sender
 {
     if([self login]){
         SelectCustomerVC *vc = [[SelectCustomerVC alloc] initWithNibName:nil bundle:nil];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+- (void) doBtnQuote:(id) sender
+{
+    WebViewController *web = [IBUIFactory CreateWebViewController];
+    web.hidesBottomBarWhenPushed = YES;
+    web.title = @"快速算价";
+    web.type = enumShareTypeShare;
+    web.shareTitle = _newUserModel.title;
+    web.shareContent = _newUserModel.content;
+    [self.navigationController pushViewController:web animated:YES];
+    
+    [web loadHtmlFromUrlWithUserId:_newUserModel.url];
 }
 
 #pragma mark - EGORefreshTableHeaderDelegate

@@ -496,13 +496,13 @@
             //[ProgressHUD dismiss];
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
+                
+                [ProgressHUD showSuccess:@"上传成功"];
+                
                 CarInfoModel *model = self.customerModel.carInfo;
                 if(model == nil){
                     model = [[CarInfoModel alloc] init];
                     self.customerModel.carInfo = model;
-                    [ProgressHUD showSuccess:@"上传成功"];
-                }else{
-                    [ProgressHUD showError:@"上传失败"];
                 }
 
                 model.customerCarId = [content objectForKey:@"data"];
@@ -527,6 +527,9 @@
                 if(completion){
                     completion(code, content);
                 }
+            }else
+            {
+                [ProgressHUD showError:@"上传失败"];
             }
         }];
     });

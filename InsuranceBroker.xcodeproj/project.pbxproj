@@ -14,6 +14,8 @@
 		86248EE51CBF82BE00F1B493 /* UserFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EE41CBF82BE00F1B493 /* UserFeedbackVC.m */; };
 		86248EE91CC0A42E00F1B493 /* LCUserFeedbackThread+objectId.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EE81CC0A42E00F1B493 /* LCUserFeedbackThread+objectId.m */; };
 		86248EEC1CC0C9E000F1B493 /* UserFeedbackImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EEB1CC0C9E000F1B493 /* UserFeedbackImageVC.m */; };
+		86248EF21CC6220E00F1B493 /* ProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EF11CC6220E00F1B493 /* ProductListVC.m */; };
+		86248EF91CC7776000F1B493 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86248EF81CC7776000F1B493 /* HomeVC.xib */; };
 		8625AF7A1C315D6600312B98 /* DeatilTextTableviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625AF781C315D6600312B98 /* DeatilTextTableviewCell.m */; };
 		8625AF7B1C315D6600312B98 /* DeatilTextTableviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8625AF791C315D6600312B98 /* DeatilTextTableviewCell.xib */; };
 		8625AF7E1C3164A700312B98 /* OrderManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625AF7D1C3164A700312B98 /* OrderManagerVC.m */; };
@@ -303,7 +305,6 @@
 		86C3BB6E1C242DFC00F98E80 /* UserCenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB6D1C242DFC00F98E80 /* UserCenterVC.m */; };
 		86C3BB711C242E2B00F98E80 /* WorkMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB701C242E2B00F98E80 /* WorkMainVC.m */; };
 		86C3BB741C242E3E00F98E80 /* CustomerMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB731C242E3E00F98E80 /* CustomerMainVC.m */; };
-		86C3BB781C250DF600F98E80 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BB771C250DF600F98E80 /* HomeVC.xib */; };
 		86C3BB881C279C8200F98E80 /* CustomerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB861C279C8200F98E80 /* CustomerTableViewCell.m */; };
 		86C3BB891C279C8200F98E80 /* CustomerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BB871C279C8200F98E80 /* CustomerTableViewCell.xib */; };
 		86C3BB941C27E9A800F98E80 /* CustomerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB921C27E9A800F98E80 /* CustomerDetailVC.m */; };
@@ -450,6 +451,9 @@
 		86248EE81CC0A42E00F1B493 /* LCUserFeedbackThread+objectId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LCUserFeedbackThread+objectId.m"; sourceTree = "<group>"; };
 		86248EEA1CC0C9E000F1B493 /* UserFeedbackImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFeedbackImageVC.h; sourceTree = "<group>"; };
 		86248EEB1CC0C9E000F1B493 /* UserFeedbackImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFeedbackImageVC.m; sourceTree = "<group>"; };
+		86248EF01CC6220E00F1B493 /* ProductListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListVC.h; sourceTree = "<group>"; };
+		86248EF11CC6220E00F1B493 /* ProductListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListVC.m; sourceTree = "<group>"; };
+		86248EF81CC7776000F1B493 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		8625AF771C315D6600312B98 /* DeatilTextTableviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeatilTextTableviewCell.h; sourceTree = "<group>"; };
 		8625AF781C315D6600312B98 /* DeatilTextTableviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeatilTextTableviewCell.m; sourceTree = "<group>"; };
 		8625AF791C315D6600312B98 /* DeatilTextTableviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeatilTextTableviewCell.xib; sourceTree = "<group>"; };
@@ -996,7 +1000,6 @@
 		86C3BB701C242E2B00F98E80 /* WorkMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorkMainVC.m; sourceTree = "<group>"; };
 		86C3BB721C242E3E00F98E80 /* CustomerMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerMainVC.h; sourceTree = "<group>"; };
 		86C3BB731C242E3E00F98E80 /* CustomerMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerMainVC.m; sourceTree = "<group>"; };
-		86C3BB771C250DF600F98E80 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
 		86C3BB851C279C8200F98E80 /* CustomerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerTableViewCell.h; sourceTree = "<group>"; };
 		86C3BB861C279C8200F98E80 /* CustomerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerTableViewCell.m; sourceTree = "<group>"; };
 		86C3BB871C279C8200F98E80 /* CustomerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomerTableViewCell.xib; sourceTree = "<group>"; };
@@ -2078,7 +2081,7 @@
 			children = (
 				86C3BB691C242D8D00F98E80 /* HomeVC.h */,
 				86C3BB6A1C242D8D00F98E80 /* HomeVC.m */,
-				86C3BB771C250DF600F98E80 /* HomeVC.xib */,
+				86248EF81CC7776000F1B493 /* HomeVC.xib */,
 				8625AF9A1C32A36900312B98 /* NoticeListVC.h */,
 				8625AF9B1C32A36900312B98 /* NoticeListVC.m */,
 				8625AFBE1C33E29300312B98 /* NoticeDetailListVC.h */,
@@ -2089,6 +2092,8 @@
 				86A26E701C44F5E10073FFFC /* AgentStrategyViewController.m */,
 				86A504081C4CCE730032A901 /* SelectCustomerVC.h */,
 				86A504091C4CCE730032A901 /* SelectCustomerVC.m */,
+				86248EF01CC6220E00F1B493 /* ProductListVC.h */,
+				86248EF11CC6220E00F1B493 /* ProductListVC.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2737,6 +2742,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86248EF91CC7776000F1B493 /* HomeVC.xib in Resources */,
 				868C7CD41C9A4F7600B7617A /* TeamListTableViewCell.xib in Resources */,
 				8625F8F11C892822001569BE /* TeamMateIncomeStatisticsVC.xib in Resources */,
 				86C3BBDD1C2AA31000F98E80 /* CustomerInfoEditVC.xib in Resources */,
@@ -2809,7 +2815,6 @@
 				86C3BC051C2C205D00F98E80 /* PolicyInfoTableViewCell.xib in Resources */,
 				86A504391C4E37E30032A901 /* read_me.txt in Resources */,
 				86A26EA51C4678110073FFFC /* CustomerDetailVC.xib in Resources */,
-				86C3BB781C250DF600F98E80 /* HomeVC.xib in Resources */,
 				86C3BB161C228D6F00F98E80 /* blackArrow@2x.png in Resources */,
 				8654CD941C314E1900411C54 /* WorkMainVC.xib in Resources */,
 				86C3BBB41C291CDE00F98E80 /* LucyMoneyTableCell.xib in Resources */,
@@ -2979,6 +2984,7 @@
 				86F2DA831C7704400088B783 /* CommissionSetTableViewCell.m in Sources */,
 				8625B0181C3BCA1D00312B98 /* NetWorkHandler+saveOrUpdateCustomerLabel.m in Sources */,
 				86A504FA1C5257440032A901 /* EasyJSWebView.m in Sources */,
+				86248EF21CC6220E00F1B493 /* ProductListVC.m in Sources */,
 				8625B01B1C3BF27900312B98 /* NetWorkHandler+queryCustomerBaseInfo.m in Sources */,
 				8625AFDB1C351EFF00312B98 /* MyTeamsVC.m in Sources */,
 				8654CD811C312CE100411C54 /* SBJsonStreamParserAccumulator.m in Sources */,
@@ -3341,11 +3347,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/ShareSDK/libraries",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/ShareSDK/libraries/extends/QQSDK",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/AVOSCloudCrashReporting",
 				);
 				INFOPLIST_FILE = InsuranceBroker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -3374,11 +3382,13 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/ShareSDK/libraries",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/ShareSDK/libraries/extends/QQSDK",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/AVOSCloudCrashReporting",
 				);
 				INFOPLIST_FILE = InsuranceBroker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

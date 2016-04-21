@@ -18,9 +18,9 @@
     // Drawing code
     
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, _COLOR(0xe6, 0xe6, 0xe6).CGColor);
-    CGContextFillRect(context, CGRectMake(0, CGRectGetHeight(self.frame) / 2, CGRectGetWidth(self.frame), 1));
-    CGContextFillRect(context, CGRectMake(CGRectGetWidth(self.frame)/2, 10, 1, CGRectGetHeight(self.frame) - 20));
+    CGContextSetFillColorWithColor(context, SepLineColor.CGColor);
+    CGContextFillRect(context, CGRectMake(0, CGRectGetHeight(self.frame) / 2, CGRectGetWidth(self.frame), 0.6));
+    CGContextFillRect(context, CGRectMake(CGRectGetWidth(self.frame)/2, 10, 0.6, CGRectGetHeight(self.frame) - 20));
 }
 
 

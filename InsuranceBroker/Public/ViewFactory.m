@@ -25,4 +25,23 @@
     return lb;
 }
 
++ (HighNightBgButton *) CreateButtonWithzFont:(UIFont *) font TextColor:(UIColor *)color image:(UIImage *) image
+{
+    HighNightBgButton *btn = [[HighNightBgButton alloc] initWithFrame:CGRectZero];
+    btn.backgroundColor = [UIColor whiteColor];
+    [btn setBackgroundImage:image forState:UIControlStateNormal];
+    [btn setTitleColor:color forState:UIControlStateNormal];
+    btn.titleLabel.font = font;
+    btn.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    return btn;
+}
+
++ (UIView *) CreateView
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    return view;
+}
+
 @end
