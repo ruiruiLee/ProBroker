@@ -11,6 +11,7 @@
 
 //实际cell 视图的数量
 #define default_Item_count 2
+#define Text_Color _COLOR(0x48, 0x48, 0x48)
 
 @interface HeadlineCell ()
 
@@ -28,6 +29,13 @@
     UIView *tmpView = [nib objectAtIndex:0];
     
     return tmpView;
+}
+
+- (void) awakeFromNib
+{
+    self.lbDetail.backgroundColor = [UIColor clearColor];
+    self.lbDetail.textColor = Text_Color;
+    self.backgroundColor = [UIColor clearColor];
 }
 
 - (IBAction) doBtnButtonClicked:(UIButton *)sender
@@ -52,6 +60,8 @@
 
 @property (nonatomic, assign) CGFloat offset;
 
+@property (nonatomic, strong) UILabel *baseLine;
+
 @end
 
 @implementation HeadlineView
@@ -61,6 +71,7 @@
 @synthesize delegate;
 @synthesize imgTitle;
 @synthesize lbSepLine;
+@synthesize baseLine;
 
 - (void) dealloc
 {
@@ -80,15 +91,16 @@
         scrollview = [[UIScrollView alloc] initWithFrame:self.bounds];
         [self addSubview:scrollview];
         
-        lbSepLine = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:[UIColor clearColor]];
-        lbSepLine.backgroundColor = _COLOR(0xe6, 0xe6, 0xe6);
+        lbSepLine = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:SepLineColor];
+        lbSepLine.backgroundColor = SepLineColor;
         [self addSubview:lbSepLine];
         
         imgTitle = [[UIImageView alloc] initWithImage:ThemeImage(@"hot")];
         [self addSubview:imgTitle];
         
-//        view = [[UIView alloc] initWithFrame:CGRectZero];
-//        [self addSubview:view];
+        baseLine = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:SepLineColor];
+        baseLine.backgroundColor = SepLineColor;
+        [self addSubview:baseLine];
         
         scrollview.pagingEnabled = YES;
         scrollview.scrollEnabled = NO;
@@ -121,15 +133,16 @@
         scrollview.showsHorizontalScrollIndicator = NO;
         scrollview.showsVerticalScrollIndicator = NO;
         
-        lbSepLine = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:[UIColor clearColor]];
-        lbSepLine.backgroundColor = _COLOR(0xe6, 0xe6, 0xe6);
+        lbSepLine = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:SepLineColor];
+        lbSepLine.backgroundColor = SepLineColor;
         [self addSubview:lbSepLine];
+        
+        baseLine = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:SepLineColor];
+        baseLine.backgroundColor = SepLineColor;
+        [self addSubview:baseLine];
         
         imgTitle = [[UIImageView alloc] initWithImage:ThemeImage(@"hot")];
         [self addSubview:imgTitle];
-        
-        view = [[UIView alloc] initWithFrame:CGRectZero];
-        [self addSubview:view];
     }
     
     return self;
@@ -142,10 +155,10 @@
     CGRect frame = self.frame;
     CGSize imgSize = imgTitle.image.size;
     
-    view.frame = self.bounds;
-    imgTitle.frame = CGRectMake(10, (frame.size.height - imgSize.height)/2, imgSize.width, imgSize.height);
-    lbSepLine.frame = CGRectMake(20 + imgSize.width, 6, 0.7, frame.size.height - 12);
-    scrollview.frame = CGRectMake(30 + imgSize.width, 0, self.frame.size.width - 30 - imgSize.width, self.frame.size.height);
+    imgTitle.frame = CGRectMake(16, (frame.size.height - imgSize.height)/2, imgSize.width, imgSize.height);
+    lbSepLine.frame = CGRectMake(30 + imgSize.width, 13, 0.7, frame.size.height - 26);
+    baseLine.frame = CGRectMake(0, frame.size.height - 0.6, frame.size.width, 0.6);
+    scrollview.frame = CGRectMake(44 + imgSize.width, 0, self.frame.size.width - 48 - imgSize.width, self.frame.size.height);
     [self reset];
 }
 

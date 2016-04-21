@@ -13,6 +13,7 @@
 #import "MJBannnerPlayer.h"
 #import "NewUserModel.h"
 #import "EGORefreshTableHeaderView.h"
+#import "AnnouncementModel.h"
 
 @interface HomeVC : BaseViewController<HeadlineViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate>
 {
@@ -23,47 +24,39 @@
     NSArray *_headlineArray;
     //newuser
     NewUserModel *_newUserModel;
+    AnnouncementModel *_liPeiChuXian;
+    AnnouncementModel *_jiHuaShu;
+    AnnouncementModel *_duSheBaoXian;
+    AnnouncementModel *_chengGongZhiLu;
+    
+    NSString *_quoteUrl;
 }
 
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollview;
+@property (nonatomic, strong) UIScrollView *scrollview;
 
-@property (nonatomic, strong) IBOutlet HeadlineView *headline;
+@property (nonatomic, strong) HeadlineView *headline;
 //@property (nonatomic, strong) UIView *adView;
 
-@property (nonatomic, strong) IBOutlet MainFunctionButton *btnAutoInsu;//车险
-@property (nonatomic, strong) IBOutlet MainFunctionButton *btnInvit;//邀请
+@property (nonatomic, strong) HighNightBgButton *btnProduct;//产品目录
+@property (nonatomic, strong) HighNightBgButton *btnPlan;//计划书
+@property (nonatomic, strong) HighNightBgButton *btnBroker;//经纪人成长之路
+@property (nonatomic, strong) HighNightBgButton *btnService;//服务支撑
 
-//间隔线宽
-@property (nonatomic, strong) IBOutlet UILabel *lbsepline1;
-@property (nonatomic, strong) IBOutlet UILabel *lbsepline2;//
 
 //底部图片跳转页面
-@property (nonatomic, strong) IBOutlet UIButton *btnNewUser;
+@property (nonatomic, strong) HighNightBgButton *btnNewUser;
+@property (nonatomic, strong) HighNightBgButton *btnDetail;
 
-//NSLayoutConstraint
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *scHConstraint;
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *scVConstraint;
-//广告
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *adVConstraint;
-//@property (nonatomic, strong) IBOutlet NSLayoutConstraint *adHConstraint;
-//头条
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *headVConstraint;
-//@property (nonatomic, strong) IBOutlet NSLayoutConstraint *headHConstraint;
-//车险
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *autoBgVConstraint;
-//@property (nonatomic, strong) IBOutlet NSLayoutConstraint *autoBgHConstraint;//
-//销售攻略背景
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *additionBgVConstraint;
-//@property (nonatomic, strong) IBOutlet NSLayoutConstraint *additionBgHConstraint;//
-//新用户
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *userNewVConstraint;
-//@property (nonatomic, strong) IBOutlet NSLayoutConstraint *userNewHConstraint;//
+@property (nonatomic, strong) HighNightBgButton *btnMessage;
 
-@property (nonatomic, strong) IBOutlet LeftImgButton *_btnMessage;//消息
+@property (nonatomic, strong) UIImageView *imgBroker;
+@property (nonatomic, strong) UIImageView *imgService;
+@property (nonatomic, strong) UIImageView *imgDetail;
+
 
 //我的消息
-- (IBAction) doBtnNoticeList:(id) sender;
-- (IBAction) doBtnAgentStrategy:(id)sender;
-- (IBAction) doBtnMyService:(id)sender;
+- (void) doBtnNoticeList:(id) sender;
+- (void) doBtnAgentStrategy:(id)sender;
+- (void) doBtnMyService:(id)sender;
 
 @end

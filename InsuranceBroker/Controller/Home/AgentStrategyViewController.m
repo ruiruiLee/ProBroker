@@ -9,24 +9,10 @@
 #import "AgentStrategyViewController.h"
 #import "AgentStrategyTableViewCell.h"
 #import "define.h"
-#import "NetWorkHandler+strategy.h"
-#import "AnnouncementModel.h"
-#import "UIButton+WebCache.h"
-#import "BaseStrategyView.h"
+#import "NetWorkHandler+news.h"
+#import "NewsModel.h"
 
 @interface AgentStrategyViewController ()
-{
-    NSArray *_strategyArray;
-    NSMutableArray *_btnArray;
-    NSMutableArray *_contentViewArray;
-    
-    UIButton *_adview;
-    UILabel *_line;
-    
-    UILabel *lbSelectline;
-    
-    AnnouncementModel *_selectModel;
-}
 
 @end
 
@@ -35,77 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"经纪人攻略";
-    _btnArray = [[NSMutableArray alloc] init];
-    _contentViewArray = [[NSMutableArray alloc] init];
-    [self loadData];
-}
-
-- (void) reInitSubViews
-{
-    UIView *tabBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
-    tabBgView.backgroundColor = [UIColor whiteColor];
-    
-    for (int i = 0; i < [_btnArray count]; i++) {
-        UIButton *btn = [_btnArray objectAtIndex:i];
-        [btn removeFromSuperview];
-        
-        UIView *view = [_contentViewArray objectAtIndex:i];
-        [view removeFromSuperview];
-    }
-    
-    [_btnArray removeAllObjects];
-    [_contentViewArray removeAllObjects];
-    
-    _adview = [[UIButton alloc] initWithFrame:CGRectMake(0, 50, ScreenWidth, [Util getHeightByWidth:3 height:1 nwidth:ScreenWidth])];
-    [_adview addTarget:self action:@selector(doButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    _adview.clipsToBounds = YES;
-    
-    CGFloat width = ScreenWidth / [_strategyArray count];
-    CGFloat ox = 0;
-    
-    for (int i = 0; i < [_strategyArray count]; i++) {
-        AnnouncementModel *model = [_strategyArray objectAtIndex:i];
-        UIButton *btn = [self createButtonWithTitle:model.title frame:CGRectMake(ox, 0, width, 50)];
-        [tabBgView addSubview:btn];
-        btn.tag = 101 + i;
-        ox += width;
-        
-        [_btnArray addObject:btn];
-        
-        BaseStrategyView *view = [[BaseStrategyView alloc] initWithFrame:CGRectMake(0, 66 + [Util getHeightByWidth:3 height:1 nwidth:ScreenWidth], ScreenWidth, self.view.frame.size.height - 66 - _adview.frame.size.height) Strategy:model.category];
-        [self.view addSubview:view];
-        view.parentvc = self;
-        [_contentViewArray addObject:view];
-    }
-    
-    [self.view addSubview:_adview];
-    
-    lbSelectline = [[UILabel alloc] initWithFrame:CGRectMake(0, 48, width, 2)];
-    lbSelectline.backgroundColor = _COLOR(0xff, 0x66, 0x19);
-    [tabBgView addSubview:lbSelectline];
-    
-    [self.view addSubview:tabBgView];
-    
-    _line = [[UILabel alloc] initWithFrame:CGRectMake(0, 65 + _adview.frame.size.height, ScreenWidth, 0.5)];
-    [self.view addSubview:_line];
-    _line.backgroundColor = _COLOR(0xe6, 0xe6, 0xe6);
-    
-    if([_btnArray count] > 0)
-        [self doTabButtonClicked:[_btnArray objectAtIndex:0]];
-}
-
-- (UIButton *) createButtonWithTitle:(NSString *) title frame:(CGRect) frame
-{
-    UIButton *btn = [[UIButton alloc] initWithFrame:frame];
-    btn.backgroundColor = [UIColor clearColor];
-    [btn setTitle:title forState:UIControlStateNormal];
-    [btn setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];
-    [btn setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateSelected];
-    btn.titleLabel.font = _FONT(15);
-    [btn addTarget:self action:@selector(doTabButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    return btn;
+    [self.pulltable registerNib:[UINib nibWithNibName:@"AgentStrategyTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,79 +29,101 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) doTabButtonClicked:(UIButton *)sender
-{
-    if(sender.selected == YES)
-        return;
-    
-    CGFloat ox = 0;
-    ox = (sender.tag - 101)*ScreenWidth/[_strategyArray count];
-    for (int i = 0; i < [_btnArray count]; i++) {
-        UIButton *btn = [_btnArray objectAtIndex:i];
-        btn.selected = NO;
-    }
-    for (int i = 0; i < [_contentViewArray count]; i++) {
-        UIView *view = [_contentViewArray objectAtIndex:i];
-        view.hidden = YES;
-    }
-    
-    _adview.tag = sender.tag;
-    
-    sender.selected = YES;
-    
-    AnnouncementModel *model = [_strategyArray objectAtIndex:sender.tag - 101];
-    BaseStrategyView *view = [_contentViewArray objectAtIndex:sender.tag - 101];
-    view.hidden = NO;
-//    [_adview sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
-    [_adview sd_setBackgroundImageWithURL:[NSURL URLWithString:model.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
-    if(model.imgUrl == nil){
-        _adview.frame = CGRectMake(0, 50, ScreenWidth, 0);
-        _line.frame = CGRectMake(0, 65 + _adview.frame.size.height, ScreenWidth, 0.5);
-        view.frame = CGRectMake(0, 66 + _adview.frame.size.height, ScreenWidth, self.view.frame.size.height - 66 - _adview.frame.size.height);
-    }
-    else{
-        _adview.frame = CGRectMake(0, 50, ScreenWidth, [Util getHeightByWidth:3 height:1 nwidth:ScreenWidth]);
-        _line.frame = CGRectMake(0, 65 + _adview.frame.size.height, ScreenWidth, 0.5);
-        view.frame = CGRectMake(0, 66 + _adview.frame.size.height, ScreenWidth, self.view.frame.size.height - 66 - _adview.frame.size.height);
-    }
-    
-    if(model.isRedirect){
-        _adview.userInteractionEnabled = YES;
-    }else{
-        _adview.userInteractionEnabled = NO;
-    }
-    
-    [UIView animateWithDuration:0.25 animations:^{
-        lbSelectline.frame = CGRectMake(ox, 48, ScreenWidth/[_strategyArray count], 2);
-    }];
-    
-}
 
-- (void) loadData
+/**
+ 重载此函数获取数据
+ */
+- (void) loadDataInPages:(NSInteger)page
 {
-    [NetWorkHandler requestToStrategy:^(int code, id content) {
+    [NetWorkHandler requestToNews:self.category userId:[UserInfoModel shareUserInfoModel].userId offset:page limit:LIMIT completion:^(int code, id content) {
+        [self refreshTable];
+        [self loadMoreDataToTable];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
-            _strategyArray = [AnnouncementModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
-            if(self.view)
-                [self reInitSubViews];
+            if(page == 0)
+                [self.data removeAllObjects];
+            
+            [self.data addObjectsFromArray:[NewsModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
+            self.total = [[[content objectForKey:@"data"] objectForKey:@"total"] integerValue];
+            [self.pulltable reloadData];
         }
     }];
 }
 
-- (void) doButtonClicked:(UIButton *)sender
+#pragma UITableViewDataSource UITableViewDelegate
+
+//- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+//{
+//    return 1;
+//}
+//
+//- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+//{
+//    return [self.data count];
+//}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger idx = (sender.tag - 101);
-    AnnouncementModel *model = [_strategyArray objectAtIndex:idx];
+    return 94.f;
+}
+
+- (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *deq = @"cell";
+    AgentStrategyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+    if(!cell){
+        //        cell = [[AgentStrategyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
+        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"AgentStrategyTableViewCell" owner:nil options:nil];
+        cell = [nibs lastObject];
+    }
+    
+    NewsModel *model = [self.data objectAtIndex:indexPath.row];
+    
+    if(model.isRedirect){
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    }else
+    {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
+    [cell.photoImgV sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:Normal_Image];
+    cell.lbTitle.text = model.title;
+    cell.lbContent.text = model.content;
+    cell.lbTime.text = [Util getShowingTime:model.createdAt];
+    
+    return cell;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    NewsModel *model = [self.data objectAtIndex:indexPath.row];
     if(model.isRedirect){
         WebViewController *web = [IBUIFactory CreateWebViewController];
         web.title = model.title;
         web.type = enumShareTypeShare;
-        web.shareTitle = model.title;
-        if(model.imgUrl != nil)
+        if(model.imgUrl)
             web.shareImgArray = [NSArray arrayWithObject:model.imgUrl];
+        web.shareTitle = model.title;
+        web.shareContent = model.content;
         [self.navigationController pushViewController:web animated:YES];
-        [web loadHtmlFromUrlWithUserId:model.url];
+        //        [web loadHtmlFromUrl:model.url];
+        if(model.url == nil){
+            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid]];
+        }else{
+            [web loadHtmlFromUrlWithUserId:model.url];
+        }
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIEdgeInsets insets = UIEdgeInsetsMake(0, 16, 0, 16);
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:insets];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:insets];
     }
 }
 
