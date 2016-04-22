@@ -34,7 +34,7 @@
     [self.tableview registerNib:[UINib nibWithNibName:@"UserEditTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.tableview.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+    self.tableview.separatorColor = SepLineColor;
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     if ([tableview respondsToSelector:@selector(setSeparatorInset:)]) {
         [tableview setSeparatorInset:insets];

@@ -186,12 +186,12 @@
                   moduleName = "InsuranceBroker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/liuzf/Desktop/PROJECT/Pods/AFNetworking/AFNetworking/AFURLRequestSerialization.m"
-                  timestampString = "482923533.578537"
+                  timestampString = "483001262.403942"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "685"
                   endingLineNumber = "685"
-                  offsetFromSymbolStart = "6">
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -201,12 +201,12 @@
                   moduleName = "InsuranceBroker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/liuzf/Desktop/PROJECT/Pods/AFNetworking/AFNetworking/AFURLRequestSerialization.m"
-                  timestampString = "482923533.57903"
+                  timestampString = "483001262.404262"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
-                  offsetFromSymbolStart = "36">
+                  offsetFromSymbolStart = "34">
                </Location>
             </Locations>
          </BreakpointContent>

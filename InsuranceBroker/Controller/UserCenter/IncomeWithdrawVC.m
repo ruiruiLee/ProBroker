@@ -75,7 +75,7 @@
     
     self.btnSubmit.layer.cornerRadius = 3;
     self.viewHConstraint.constant = ScreenWidth;
-    self.tableview.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+    self.tableview.separatorColor = SepLineColor;
     
     self.tableview.tableFooterView = [[UIView alloc] init];
     

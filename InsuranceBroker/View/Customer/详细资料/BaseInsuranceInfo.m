@@ -35,9 +35,10 @@
         btnClicked.translatesAutoresizingMaskIntoConstraints = NO;
         [btnClicked addTarget:self action:@selector(doEditButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
-        self.lbSepLine = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:nil];
-        [self addSubview:self.lbSepLine];
-        lbSepLine.backgroundColor = _COLOR(0xe6, 0xe6, 0xe6);
+        self.lbSepLine = [[SepLineLabel alloc] initWithFrame:CGRectZero];//[ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
+        lbSepLine.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:lbSepLine];
+        lbSepLine.backgroundColor = [UIColor clearColor];
         
         tableview = [[UITableView alloc] initWithFrame:CGRectZero];
         [self addSubview:tableview];
@@ -48,7 +49,7 @@
         
         UIEdgeInsets insets = UIEdgeInsetsMake(0, 20, 0, 20);
         self.tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        self.tableview.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+        self.tableview.separatorColor = SepLineColor;
         if ([self.tableview respondsToSelector:@selector(setSeparatorInset:)]) {
             [self.tableview setSeparatorInset:insets];
         }

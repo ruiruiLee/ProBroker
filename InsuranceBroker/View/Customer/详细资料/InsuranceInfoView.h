@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SepLineLabel.h"
 
 typedef enum : NSUInteger {
     enumInsuranceInfoViewTypeInsurance,
@@ -27,7 +28,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) IBOutlet UIButton *btnAdd;
 @property (nonatomic, strong) IBOutlet UILabel *lbExplain;
 @property (nonatomic, strong) IBOutlet UILabel *lbTitle;
-@property (nonatomic, strong) IBOutlet UILabel *lbSepLine;
+@property (nonatomic, strong) IBOutlet SepLineLabel *lbSepLine;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *indicatorView;
 
 @property (nonatomic, weak) id<InsuranceInfoViewDelegate> delegate;

@@ -26,7 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.pulltable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.pulltable.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+    self.pulltable.separatorColor = SepLineColor;
     [self.pulltable registerNib:[UINib nibWithNibName:@"LucyMoneyTableCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
     UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 60)];

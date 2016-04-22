@@ -43,7 +43,6 @@
 @synthesize btnDetail;
 @synthesize btnMessage;
 @synthesize imgBroker;
-@synthesize imgDetail;
 @synthesize imgService;
 
 - (void) dealloc
@@ -81,7 +80,7 @@
     self.headline.backgroundColor = [UIColor whiteColor];//_COLOR(0xd8, 0xd8, 0xd8);
     
     self.btnMessage = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
-    [self.btnMessage setImage:ThemeImage(@"user_message1") forState:UIControlStateNormal];
+    [self.btnMessage setImage:ThemeImage(@"user_message2") forState:UIControlStateNormal];
     [self setRightBarButtonWithButton:self.btnMessage];
     [self.btnMessage addTarget:self action:@selector(doBtnNoticeList:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -94,6 +93,8 @@
 
 - (void) initSubViews
 {
+    UIImage *imgNormal = nil;
+    
     //整个视图的
     UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:scroll];
@@ -135,6 +136,7 @@
     
     UIView *sepView3 = [ViewFactory CreateView];
     [titleBg addSubview:sepView3];
+    sepView3.backgroundColor = SepLineColor;
     //我的客服
     HighNightBgButton *btnMyService = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:ThemeImage(@"service")];
     [titleBg addSubview:btnMyService];
@@ -148,12 +150,14 @@
     contenBg.translatesAutoresizingMaskIntoConstraints = NO;
     [bgview addSubview:contenBg];
     
-    btnProduct = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:ThemeImage(@"product")];
+    btnProduct = [ViewFactory CreateButtonWithImage:ThemeImage(@"product")];
     [contenBg addSubview:btnProduct];
+    [btnProduct setSepLineType:NO right:NO top:YES bottom:NO];
     [btnProduct addTarget:self action:@selector(doBtnProductSelect:) forControlEvents:UIControlEventTouchUpInside];
     
-    btnPlan = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:nil];
+    btnPlan = [ViewFactory CreateButtonWithImage:imgNormal];
     [contenBg addSubview:btnPlan];
+    [btnPlan setSepLineType:NO right:NO top:YES bottom:NO];
     [btnPlan addTarget:self action:@selector(doBtnJiHuaShu:) forControlEvents:UIControlEventTouchUpInside];
     
     imgBroker = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -161,8 +165,9 @@
     [contenBg addSubview:imgBroker];
     imgBroker.backgroundColor = SepLineColor;
     
-    btnBroker = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:nil];
+    btnBroker = [ViewFactory CreateButtonWithImage:imgNormal];
     [contenBg addSubview:btnBroker];
+    [btnBroker setSepLineType:NO right:NO top:YES bottom:NO];
     [btnBroker addTarget:self action:@selector(doBtnAgentStrategy:) forControlEvents:UIControlEventTouchUpInside];
     
     imgService = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -170,31 +175,32 @@
     [contenBg addSubview:imgService];
     imgService.backgroundColor = SepLineColor;
     
-    btnService = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:nil];
+    btnService = [ViewFactory CreateButtonWithImage:imgNormal];
     [contenBg addSubview:btnService];
+    [btnService setSepLineType:NO right:NO top:YES bottom:NO];
     [btnService addTarget:self action:@selector(doBtnFuWuZhiCheng:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *newUserBg = [[UIView alloc] initWithFrame:CGRectZero];
     [bgview addSubview:newUserBg];
     newUserBg.translatesAutoresizingMaskIntoConstraints = NO;
     
-    btnNewUser = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:nil];
+    btnNewUser = [ViewFactory CreateButtonWithImage:imgNormal];
     [newUserBg addSubview:btnNewUser];
+    [btnNewUser setSepLineType:NO right:NO top:YES bottom:NO];
     [btnNewUser addTarget:self action:@selector(doBtnNewUser:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *infoBg = [[UIView alloc] initWithFrame:CGRectZero];
     infoBg.translatesAutoresizingMaskIntoConstraints = NO;
     [bgview addSubview:infoBg];
+    infoBg.backgroundColor = SepLineColor;
     
-    imgDetail = [[UIImageView alloc] initWithFrame:CGRectZero];
-    imgDetail.translatesAutoresizingMaskIntoConstraints = NO;
-    [infoBg addSubview:imgDetail];
-    btnDetail = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:nil];
+    btnDetail = [ViewFactory CreateButtonWithImage:imgNormal];
     [infoBg addSubview:btnDetail];
+    [btnDetail setSepLineType:NO right:NO top:YES bottom:NO];
     [btnDetail addTarget:self action:@selector(doBtnDuSheBaoXian:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(scroll, bgview, scrollview, titleBg, headline, contenBg, newUserBg, infoBg, btnCalculate, btnTeams, btnInvite, btnMyService, sepView1, sepView2, sepView3, btnProduct, btnPlan, btnBroker, btnService, btnNewUser, btnDetail, imgDetail, imgBroker, imgService);
+    NSDictionary *views = NSDictionaryOfVariableBindings(scroll, bgview, scrollview, titleBg, headline, contenBg, newUserBg, infoBg, btnCalculate, btnTeams, btnInvite, btnMyService, sepView1, sepView2, sepView3, btnProduct, btnPlan, btnBroker, btnService, btnNewUser, btnDetail, imgBroker, imgService);
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scroll]-0-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scroll]-0-|" options:0 metrics:nil views:views]];
@@ -254,8 +260,6 @@
     
     [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnDetail]-0-|" options:0 metrics:nil views:views]];
     [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnDetail]-0-|" options:0 metrics:nil views:views]];
-    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imgDetail]-0-|" options:0 metrics:nil views:views]];
-    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[imgDetail]-0-|" options:0 metrics:nil views:views]];
 }
 
 # pragma mark - Custom view configuration

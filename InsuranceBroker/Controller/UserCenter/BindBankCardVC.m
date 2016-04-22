@@ -51,7 +51,7 @@
     self.tableview.translatesAutoresizingMaskIntoConstraints = NO;
     self.tableview.backgroundColor = [UIColor clearColor];//_COLOR(242, 242, 242);//TableBackGroundColor;
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableview.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+    self.tableview.separatorColor = SepLineColor;
     self.tableview.scrollEnabled = NO;
     
     UIImageView *header = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];

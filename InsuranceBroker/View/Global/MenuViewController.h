@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SepLineLabel.h"
 
 //声明协议
 @protocol MenuDelegate;
@@ -16,7 +17,7 @@
 {
     UIView *backView;
     UIView *parentView;
-    UILabel *line;
+    SepLineLabel *line;
 }
 @property (nonatomic, assign)id<MenuDelegate> menuDelegate;//代理
 @property (nonatomic, strong) NSArray *titleArray;//标题内容

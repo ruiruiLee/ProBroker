@@ -111,7 +111,7 @@
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 20, 0, 20);
     self.pulltable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.pulltable.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+    self.pulltable.separatorColor = SepLineColor;
     if ([self.pulltable respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.pulltable setSeparatorInset:insets];
     }

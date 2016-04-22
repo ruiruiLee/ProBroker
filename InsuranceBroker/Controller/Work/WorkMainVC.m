@@ -31,7 +31,7 @@
     self.title = @"工作";
     [self setLeftBarButtonWithImage:nil];
     
-    self.tableview.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+    self.tableview.separatorColor = SepLineColor;
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableview registerNib:[UINib nibWithNibName:@"DeatilTextTableviewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     

@@ -78,9 +78,10 @@
     lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
     [self addSubview:lbTitle];
     
-    lbSepLine = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
+    lbSepLine = [[SepLineLabel alloc] initWithFrame:CGRectZero];//[ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
+    lbSepLine.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:lbSepLine];
-    lbSepLine.backgroundColor = _COLOR(0xe6, 0xe6, 0xe6);
+    lbSepLine.backgroundColor = [UIColor clearColor];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(addCarInfo, btnAdd, lbExplain, lbSepLine, lbTitle, indicatorView);
     

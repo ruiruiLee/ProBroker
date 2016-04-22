@@ -14,7 +14,7 @@
 - (void) drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, _COLOR(0xe6, 0xe6, 0xe6).CGColor);
+    CGContextSetFillColorWithColor(context, SepLineColor.CGColor);
     CGContextFillRect(context, CGRectMake(0, CGRectGetHeight(self.frame) / 2, CGRectGetWidth(self.frame), 0.5));
     CGContextFillRect(context, CGRectMake(CGRectGetWidth(self.frame)/2, 0, 0.5, CGRectGetHeight(self.frame)));
 }

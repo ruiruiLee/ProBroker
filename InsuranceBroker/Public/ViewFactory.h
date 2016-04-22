@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HighNightBgButton.h"
 #import "InfoTipsView.h"
+#import "SepLineButton.h"
 
 @interface ViewFactory : NSObject
 
@@ -21,6 +22,8 @@
  标准化生成UIButton
  */
 + (HighNightBgButton *) CreateButtonWithzFont:(UIFont *) font TextColor:(UIColor *)color image:(UIImage *) image;
+
++ (SepLineButton *) CreateButtonWithImage:(UIImage *) image;
 
 /**
  标准化view

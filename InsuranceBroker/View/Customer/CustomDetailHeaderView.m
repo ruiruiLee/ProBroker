@@ -36,8 +36,8 @@
             [self.btnPhone addTarget:self action:@selector(PhoneUser:) forControlEvents:UIControlEventTouchUpInside];
             [self.btnMsg addTarget:self action:@selector(SendMsgToUser:) forControlEvents:UIControlEventTouchUpInside];
             
-            self.lbSepLine1.backgroundColor = _COLOR(222, 222, 222);
-            self.lbSepLine2.backgroundColor = _COLOR(222, 222, 222);
+//            self.lbSepLine1.backgroundColor = _COLOR(222, 222, 222);
+//            self.lbSepLine2.backgroundColor = _COLOR(222, 222, 222);
         }
     }
     return self;

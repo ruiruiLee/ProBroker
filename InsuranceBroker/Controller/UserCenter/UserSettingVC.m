@@ -47,7 +47,7 @@
     tableview.translatesAutoresizingMaskIntoConstraints = NO;
     tableview.backgroundColor = [UIColor clearColor];//_COLOR(242, 242, 242);//TableBackGroundColor;
     tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    tableview.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+    tableview.separatorColor = SepLineColor;
     tableview.scrollEnabled = NO;
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 0, 0);

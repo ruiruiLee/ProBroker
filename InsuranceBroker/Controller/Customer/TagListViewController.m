@@ -37,7 +37,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refrushTagList:) name:Notify_Refrush_TagList object:nil];
     
     [self.tableview registerNib:[UINib nibWithNibName:@"TagListViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    [self.tableview setSeparatorColor:_COLOR(0xe6, 0xe6, 0xe6)];
+    [self.tableview setSeparatorColor:SepLineColor];
     self.tableview.backgroundColor = [UIColor clearColor];
 //    if([[TagObjectModel shareTagList] count] == 0){
         [self loadData];

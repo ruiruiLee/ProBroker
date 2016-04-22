@@ -14,6 +14,7 @@
 #import "NewUserModel.h"
 #import "EGORefreshTableHeaderView.h"
 #import "AnnouncementModel.h"
+#import "SepLineButton.h"
 
 @interface HomeVC : BaseViewController<HeadlineViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate>
 {
@@ -37,21 +38,20 @@
 @property (nonatomic, strong) HeadlineView *headline;
 //@property (nonatomic, strong) UIView *adView;
 
-@property (nonatomic, strong) HighNightBgButton *btnProduct;//产品目录
-@property (nonatomic, strong) HighNightBgButton *btnPlan;//计划书
-@property (nonatomic, strong) HighNightBgButton *btnBroker;//经纪人成长之路
-@property (nonatomic, strong) HighNightBgButton *btnService;//服务支撑
+@property (nonatomic, strong) SepLineButton *btnProduct;//产品目录
+@property (nonatomic, strong) SepLineButton *btnPlan;//计划书
+@property (nonatomic, strong) SepLineButton *btnBroker;//经纪人成长之路
+@property (nonatomic, strong) SepLineButton *btnService;//服务支撑
 
 
 //底部图片跳转页面
-@property (nonatomic, strong) HighNightBgButton *btnNewUser;
-@property (nonatomic, strong) HighNightBgButton *btnDetail;
+@property (nonatomic, strong) SepLineButton *btnNewUser;
+@property (nonatomic, strong) SepLineButton *btnDetail;
 
 @property (nonatomic, strong) HighNightBgButton *btnMessage;
 
 @property (nonatomic, strong) UIImageView *imgBroker;
 @property (nonatomic, strong) UIImageView *imgService;
-@property (nonatomic, strong) UIImageView *imgDetail;
 
 
 //我的消息

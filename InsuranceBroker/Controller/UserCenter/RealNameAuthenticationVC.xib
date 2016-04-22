@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -34,6 +34,7 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="真实姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTY-M9-s4t">
                                     <rect key="frame" x="39" y="37" width="127" height="43"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="75" id="4UZ-0b-H5z"/>
                                     </constraints>
@@ -43,6 +44,7 @@
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="身份证号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIf-K0-TX3">
                                     <rect key="frame" x="39" y="105" width="154" height="21"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="75" id="664-BT-wCw"/>
                                     </constraints>
@@ -52,6 +54,7 @@
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="身份证照片" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xy7-SC-4NN">
                                     <rect key="frame" x="39" y="173" width="75" height="21"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="75" id="szc-5T-vfG"/>
                                     </constraints>
@@ -61,6 +64,7 @@
                                 </label>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HFJ-vA-0qg" customClass="BaseLineTextField">
                                     <rect key="frame" x="174" y="44" width="391" height="30"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="YeE-qR-Ssv"/>
                                     </constraints>
@@ -70,6 +74,7 @@
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Z9-nl-6hr" customClass="BaseLineTextField">
                                     <rect key="frame" x="174" y="101" width="391" height="30"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="SCQ-GF-Y9f"/>
                                     </constraints>
@@ -79,21 +84,14 @@
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="（请上传身份证正面及背面照片）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fHb-wp-mqf">
                                     <rect key="frame" x="174" y="173" width="345" height="21"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XB9-9d-uu5" customClass="HighNightBgButton">
-                                    <rect key="frame" x="169" y="218" width="254" height="120"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="200" id="ROy-yz-Iux"/>
-                                        <constraint firstAttribute="height" constant="120" id="bqY-ZA-xXp"/>
-                                        <constraint firstAttribute="width" secondItem="XB9-9d-uu5" secondAttribute="height" multiplier="5:3" id="tEb-BT-xdj"/>
-                                    </constraints>
-                                    <state key="normal" image="add_cert"/>
-                                </button>
                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFT-5n-TFl" customClass="HighNightBgButton">
                                     <rect key="frame" x="39" y="502" width="526" height="30"/>
+                                    <animations/>
                                     <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="42" id="pOX-B5-Sh6"/>
@@ -105,6 +103,7 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnL-JK-NQv" customClass="HighNightBgButton">
                                     <rect key="frame" x="169" y="347" width="254" height="120"/>
+                                    <animations/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="1HL-Wz-D8f"/>
                                         <constraint firstAttribute="height" constant="120" id="IXz-Jx-u51"/>
@@ -114,17 +113,30 @@
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fY2-2z-h0E">
                                     <rect key="frame" x="39" y="551" width="526" height="21"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTs-3f-Grx">
                                     <rect key="frame" x="288" y="475" width="42" height="21"/>
+                                    <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XB9-9d-uu5" customClass="HighNightBgButton">
+                                    <rect key="frame" x="169" y="219" width="254" height="120"/>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="200" id="ROy-yz-Iux"/>
+                                        <constraint firstAttribute="height" constant="120" id="bqY-ZA-xXp"/>
+                                        <constraint firstAttribute="width" secondItem="XB9-9d-uu5" secondAttribute="height" multiplier="5:3" id="tEb-BT-xdj"/>
+                                    </constraints>
+                                    <state key="normal" image="add_cert"/>
+                                </button>
                             </subviews>
+                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="xTY-M9-s4t" firstAttribute="leading" secondItem="DFz-0h-QBy" secondAttribute="leading" constant="16" id="0RA-dg-wHS"/>
@@ -161,6 +173,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <animations/>
                     <constraints>
                         <constraint firstItem="DFz-0h-QBy" firstAttribute="leading" secondItem="PqD-wE-VVc" secondAttribute="leading" id="F5T-XR-tVr"/>
                         <constraint firstAttribute="trailing" secondItem="DFz-0h-QBy" secondAttribute="trailing" id="LY6-8i-GTZ"/>
@@ -169,6 +182,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="PqD-wE-VVc" secondAttribute="bottom" id="Ihm-Mx-2mk"/>

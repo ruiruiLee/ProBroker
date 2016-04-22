@@ -45,20 +45,26 @@
     
     self.tfName.text = model.realName;
     self.tfCertNo.text = model.cardNumber;
-    [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg1] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert")];
-    [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg2] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert")];
     
     self.tfCertNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
     if(model.cardNumberImg1 != nil && ![model.cardNumberImg1 isKindOfClass:[NSNull class]]){
-        [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg1] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert")];
-      imgCer1 = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.cardNumberImg1]]];
-       // self.btnCert1.selected = YES;
+//        [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg1] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert")];
+//      imgCer1 = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.cardNumberImg1]]];
+        [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg1] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            imgCer1 = image;
+        }];
+    }else{
+        
     }
     if(model.cardNumberImg2 != nil && ![model.cardNumberImg2 isKindOfClass:[NSNull class]]){
-        [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg2] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert")];
-       // self.btnCert2.selected = YES;
-         imgCer2 = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.cardNumberImg2]]];
+//        [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg2] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert")];
+//         imgCer2 = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.cardNumberImg2]]];
+        [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg2] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            imgCer2 = image;
+        }];
+    }else{
+        
     }
     
     cert1path = model.cardNumberImg1;
@@ -167,8 +173,8 @@
             [NetWorkHandler requestToModifyuserInfo:model.userId realName:realName userName:nil phone:nil cardNumber:cardNumber cardNumberImg1:cert1path cardNumberImg2:cert2path liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:nil Completion:^(int code, id content) {
                 
                // [ProgressHUD dismiss];
-                imgCer1=nil;
-                imgCer2=nil;
+//                imgCer1=nil;
+//                imgCer2=nil;
                 [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
                 if(code == 200){
                   //  [Util showAlertMessage:@"资料上传成功，等客服人员处理"];

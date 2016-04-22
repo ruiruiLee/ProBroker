@@ -40,7 +40,7 @@
     tableview.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     tableview.translatesAutoresizingMaskIntoConstraints = NO;
     tableview.backgroundColor = [UIColor clearColor];
-    tableview.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+    tableview.separatorColor = SepLineColor;
     [tableview registerNib:[UINib nibWithNibName:@"NoticeListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 0, 0);

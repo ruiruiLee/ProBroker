@@ -104,7 +104,7 @@
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 16, 0, 16);
     self.pulltable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.pulltable.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+    self.pulltable.separatorColor = SepLineColor;
     if ([self.pulltable respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.pulltable setSeparatorInset:insets];
     }
@@ -134,7 +134,6 @@
     
     [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
     [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTagTableCell" bundle:nil] forCellReuseIdentifier:@"cell2"];
-    [self.pulltable setSeparatorColor:_COLOR(0xe6, 0xe6, 0xe6)];
 }
 
 //- (void) viewDidLayoutSubviews

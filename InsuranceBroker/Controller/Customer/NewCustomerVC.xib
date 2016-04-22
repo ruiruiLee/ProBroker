@@ -25,44 +25,44 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ze1-YZ-oWR">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qhU-FE-qr1">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhU-FE-qr1">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="435"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="shadow" translatesAutoresizingMaskIntoConstraints="NO" id="EsV-CA-Iqc">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="21"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadow" translatesAutoresizingMaskIntoConstraints="NO" id="EsV-CA-Iqc">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="15"/>
                                     <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="Dtl-Qq-ajS"/>
                                     </constraints>
                                 </imageView>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PB8-sE-Ghw">
-                                    <rect key="frame" x="0.0" y="21" width="600" height="55"/>
+                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PB8-sE-Ghw">
+                                    <rect key="frame" x="0.0" y="15" width="600" height="50"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="contacts" translatesAutoresizingMaskIntoConstraints="NO" id="s11-yZ-faa">
-                                            <rect key="frame" x="27" y="5" width="53" height="46"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contacts" translatesAutoresizingMaskIntoConstraints="NO" id="s11-yZ-faa">
+                                            <rect key="frame" x="20" y="13" width="24" height="24"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="cHW-EY-Hco"/>
                                                 <constraint firstAttribute="width" constant="24" id="qMA-Ad-QE8"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="从手机通讯录添加" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZS-ze-HER">
-                                            <rect key="frame" x="96" y="17" width="263" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="从手机通讯录添加" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZS-ze-HER">
+                                            <rect key="frame" x="54" y="16" width="120" height="18"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="uTy-Sj-8Yk">
-                                            <rect key="frame" x="558" y="5" width="29" height="41"/>
+                                            <rect key="frame" x="578" y="18" width="16" height="16"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="16" id="Ao2-Sh-R8a"/>
                                                 <constraint firstAttribute="height" constant="16" id="qMr-Ma-2rc"/>
                                             </constraints>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qf8-hE-zU1" customClass="HighNightBgButton">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="62"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qf8-hE-zU1" customClass="HighNightBgButton">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                                             <animations/>
                                             <connections>
                                                 <action selector="doBtnAddressBook:" destination="-1" eventType="touchUpInside" id="7kn-m2-ggD"/>
@@ -86,18 +86,18 @@
                                         <constraint firstAttribute="trailing" secondItem="uTy-Sj-8Yk" secondAttribute="trailing" constant="6" id="vnf-7W-RnD"/>
                                     </constraints>
                                 </view>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="shadow" translatesAutoresizingMaskIntoConstraints="NO" id="bHO-Jh-mYq">
-                                    <rect key="frame" x="0.0" y="77" width="600" height="21"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadow" translatesAutoresizingMaskIntoConstraints="NO" id="bHO-Jh-mYq">
+                                    <rect key="frame" x="0.0" y="65" width="600" height="15"/>
                                     <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="OWj-Ch-cRe"/>
                                     </constraints>
                                 </imageView>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x81-HX-rYB" userLabel="View1">
-                                    <rect key="frame" x="0.0" y="98" width="600" height="61"/>
+                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x81-HX-rYB" userLabel="View1">
+                                    <rect key="frame" x="0.0" y="80" width="600" height="56"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xW9-hb-Edh">
-                                            <rect key="frame" x="34" y="30" width="99" height="25"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xW9-hb-Edh">
+                                            <rect key="frame" x="20" y="19" width="60" height="18"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="syt-Fc-onH"/>
@@ -106,8 +106,8 @@
                                             <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hjg-mP-40I">
-                                            <rect key="frame" x="134" y="26" width="448" height="30"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hjg-mP-40I">
+                                            <rect key="frame" x="90" y="13" width="492" height="30"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="Grc-Sz-o4n"/>
@@ -117,10 +117,10 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NYx-qb-vMg">
-                                            <rect key="frame" x="99" y="139" width="600" height="121"/>
+                                            <rect key="frame" x="-20" y="-80" width="40" height="121"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oQ0-RV-nIV" customClass="TagListView">
-                                                    <rect key="frame" x="41" y="0.0" width="542" height="121"/>
+                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oQ0-RV-nIV" customClass="TagListView">
+                                                    <rect key="frame" x="20" y="0.0" width="0.0" height="121"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
@@ -148,10 +148,10 @@
                                         <constraint firstItem="Hjg-mP-40I" firstAttribute="centerY" secondItem="x81-HX-rYB" secondAttribute="centerY" id="ta2-XR-6lF"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smn-ms-5Ls">
-                                    <rect key="frame" x="0.0" y="167" width="600" height="8"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Smn-ms-5Ls" customClass="SepLineLabel">
+                                    <rect key="frame" x="20" y="136" width="560" height="1"/>
                                     <animations/>
-                                    <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="Emm-JP-Bf9"/>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="p0d-Nc-SBt"/>
@@ -160,10 +160,10 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2i-Qr-RCh">
-                                    <rect key="frame" x="0.0" y="224" width="600" height="6"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2i-Qr-RCh" customClass="SepLineLabel">
+                                    <rect key="frame" x="20" y="193" width="560" height="1"/>
                                     <animations/>
-                                    <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="j9h-br-hBQ"/>
                                     </constraints>
@@ -171,8 +171,8 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UV3-Mc-gHf">
-                                    <rect key="frame" x="0.0" y="238" width="600" height="90"/>
+                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UV3-Mc-gHf">
+                                    <rect key="frame" x="0.0" y="194" width="600" height="90"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v39-hc-yNi" customClass="OnwerTagView">
                                             <rect key="frame" x="139" y="-6" width="444" height="96"/>
@@ -202,8 +202,8 @@
                                         <constraint firstItem="EP1-bW-loV" firstAttribute="top" secondItem="UV3-Mc-gHf" secondAttribute="top" constant="20" id="naE-Ns-mlv"/>
                                     </constraints>
                                 </view>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fqp-Ya-NVO">
-                                    <rect key="frame" x="0.0" y="179" width="600" height="42"/>
+                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fqp-Ya-NVO">
+                                    <rect key="frame" x="0.0" y="137" width="600" height="56"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="联系电话" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Dx-oV-fPn">
                                             <rect key="frame" x="37" y="36" width="72" height="22"/>
@@ -260,10 +260,10 @@
                                 <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AT2-Md-cUK">
                                     <rect key="frame" x="0.0" y="331" width="600" height="39"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEH-qV-LSW">
-                                            <rect key="frame" x="124" y="10" width="476" height="19"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEH-qV-LSW" customClass="SepLineLabel">
+                                            <rect key="frame" x="74" y="15" width="506" height="1"/>
                                             <animations/>
-                                            <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="yQi-yB-RQx"/>
                                             </constraints>

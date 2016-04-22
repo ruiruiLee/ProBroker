@@ -8,6 +8,7 @@
 
 #import "InsuranceInfoView.h"
 #import "LeftImgButton.h"
+#import "SepLineLabel.h"
 
 @class BaseInsuranceInfo;
 
@@ -32,7 +33,7 @@
 
 @property (nonatomic, strong)  UITableView *tableview;
 @property (nonatomic, strong)  UILabel *lbTitle;
-@property (nonatomic, strong)  UILabel *lbSepLine;
+@property (nonatomic, strong)  SepLineLabel *lbSepLine;
 @property (nonatomic, strong)  LeftImgButton *btnEdit;
 @property (nonatomic, strong)  UIButton *btnClicked;
 @property (nonatomic, weak) id<BaseInsuranceInfoDelegate> delegate;

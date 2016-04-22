@@ -37,6 +37,16 @@
     return btn;
 }
 
++ (SepLineButton *) CreateButtonWithImage:(UIImage *) image
+{
+    SepLineButton *btn = [[SepLineButton alloc] initWithFrame:CGRectZero];
+    btn.backgroundColor = [UIColor whiteColor];
+    [btn setBackgroundImage:image forState:UIControlStateNormal];
+    btn.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    return btn;
+}
+
 + (UIView *) CreateView
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectZero];

@@ -18,7 +18,7 @@
 {
     [super viewDidLoad];
     self.table.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.table.separatorColor = _COLOR(0xe6, 0xe6, 0xe6);
+    self.table.separatorColor = SepLineColor;
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 0, 0, 0);
     if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.table setSeparatorInset:insets];

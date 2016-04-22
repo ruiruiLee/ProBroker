@@ -124,7 +124,7 @@
     self.lbTitle.textColor = _COLOR(0x21, 0x21, 0x21);
     self.lbTitle.text = title;
     
-    line = [[UILabel alloc] initWithFrame:CGRectMake(0, 59, rect.size.width, 0.5)];
+    line = [[SepLineLabel alloc] initWithFrame:CGRectMake(0, 59, rect.size.width, 0.5)];
     [self.headView addSubview:line];
     line.backgroundColor = _COLOR(0xe6, 0xe6, 0xe6);
     

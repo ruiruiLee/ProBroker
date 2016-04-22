@@ -16,6 +16,7 @@
 		86248EEC1CC0C9E000F1B493 /* UserFeedbackImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EEB1CC0C9E000F1B493 /* UserFeedbackImageVC.m */; };
 		86248EF21CC6220E00F1B493 /* ProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EF11CC6220E00F1B493 /* ProductListVC.m */; };
 		86248EF91CC7776000F1B493 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86248EF81CC7776000F1B493 /* HomeVC.xib */; };
+		86248EFE1CC9FDFF00F1B493 /* SepLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EFD1CC9FDFF00F1B493 /* SepLineButton.m */; };
 		8625AF7A1C315D6600312B98 /* DeatilTextTableviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625AF781C315D6600312B98 /* DeatilTextTableviewCell.m */; };
 		8625AF7B1C315D6600312B98 /* DeatilTextTableviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8625AF791C315D6600312B98 /* DeatilTextTableviewCell.xib */; };
 		8625AF7E1C3164A700312B98 /* OrderManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625AF7D1C3164A700312B98 /* OrderManagerVC.m */; };
@@ -454,6 +455,8 @@
 		86248EF01CC6220E00F1B493 /* ProductListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListVC.h; sourceTree = "<group>"; };
 		86248EF11CC6220E00F1B493 /* ProductListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListVC.m; sourceTree = "<group>"; };
 		86248EF81CC7776000F1B493 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
+		86248EFC1CC9FDFF00F1B493 /* SepLineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SepLineButton.h; sourceTree = "<group>"; };
+		86248EFD1CC9FDFF00F1B493 /* SepLineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SepLineButton.m; sourceTree = "<group>"; };
 		8625AF771C315D6600312B98 /* DeatilTextTableviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeatilTextTableviewCell.h; sourceTree = "<group>"; };
 		8625AF781C315D6600312B98 /* DeatilTextTableviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeatilTextTableviewCell.m; sourceTree = "<group>"; };
 		8625AF791C315D6600312B98 /* DeatilTextTableviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeatilTextTableviewCell.xib; sourceTree = "<group>"; };
@@ -2038,6 +2041,8 @@
 				86C3BB4E1C24049400F98E80 /* MainFunctionButton.m */,
 				86A26E921C4605700073FFFC /* BaseStrategyView.h */,
 				86A26E931C4605700073FFFC /* BaseStrategyView.m */,
+				86248EFC1CC9FDFF00F1B493 /* SepLineButton.h */,
+				86248EFD1CC9FDFF00F1B493 /* SepLineButton.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2987,6 +2992,7 @@
 				86248EF21CC6220E00F1B493 /* ProductListVC.m in Sources */,
 				8625B01B1C3BF27900312B98 /* NetWorkHandler+queryCustomerBaseInfo.m in Sources */,
 				8625AFDB1C351EFF00312B98 /* MyTeamsVC.m in Sources */,
+				86248EFE1CC9FDFF00F1B493 /* SepLineButton.m in Sources */,
 				8654CD811C312CE100411C54 /* SBJsonStreamParserAccumulator.m in Sources */,
 				86A505091C52717A0032A901 /* LeftImgButtonLeft.m in Sources */,
 				868C7CD31C9A4F7600B7617A /* TeamListTableViewCell.m in Sources */,
@@ -3347,7 +3353,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
