@@ -360,21 +360,11 @@
         isCarInfo = YES;
         return YES;
     }
-//    if(isCarInfo && (self.btnCert.selected || [Util validateIdentityCard:carOwnerCard])){
-//        return YES;
-//    }
-    
-//    if(!self.btnCert.selected){
-//        BOOL flag = [Util validateIdentityCard:carOwnerCard];//[self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
-//        if(!flag){
-//            [Util showAlertMessage:@"车主身份证号不正确"];
-//            return result;
-//        }
-//    }
+
     if(!self.btnReSubmit.selected){
         if(!self.btnNoNo.selected){
             if(![Util validateCarNo:carNo]){
-                [Util showAlertMessage:@"车牌号不正确"];
+                [Util showAlertMessage:@"请输入正确车牌号！"];
                 return result;
             }
         }
@@ -395,6 +385,7 @@
     return result;
 }
 
+// 保存
 - (BOOL) checkInfoRight
 {
     BOOL result = YES;
@@ -403,14 +394,15 @@
     NSString *carNo = [self getCarCertString];//车牌;
     
 
-    BOOL flag = [Util validateIdentityCard:carOwnerCard];//[self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
+    BOOL flag = [Util validateIdentityCard:carOwnerCard];
+    
     if([carOwnerCard length] > 0 && !flag){
-        [Util showAlertMessage:@"车主身份证号不正确"];
+        [Util showAlertMessage:@"车主身份证号输入格式不正确"];
         return NO;
     }
 
     if([carNo length] > 0 && ![Util validateCarNo:carNo]){
-        [Util showAlertMessage:@"车牌号不正确"];
+        [Util showAlertMessage:@"请输入正确车牌号！"];
         return NO;
     }
     
