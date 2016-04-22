@@ -360,21 +360,11 @@
         isCarInfo = YES;
         return YES;
     }
-//    if(isCarInfo && (self.btnCert.selected || [Util validateIdentityCard:carOwnerCard])){
-//        return YES;
-//    }
-    
-//    if(!self.btnCert.selected){
-//        BOOL flag = [Util validateIdentityCard:carOwnerCard];//[self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
-//        if(!flag){
-//            [Util showAlertMessage:@"车主身份证号不正确"];
-//            return result;
-//        }
-//    }
+
     if(!self.btnReSubmit.selected){
         if(!self.btnNoNo.selected){
             if(![Util validateCarNo:carNo]){
-                [Util showAlertMessage:@"车牌号不正确"];
+                [Util showAlertMessage:@"请输入正确车牌号！"];
                 return result;
             }
         }
@@ -395,6 +385,7 @@
     return result;
 }
 
+// 保存
 - (BOOL) checkInfoRight
 {
     BOOL result = YES;
@@ -403,14 +394,15 @@
     NSString *carNo = [self getCarCertString];//车牌;
     
 
-    BOOL flag = [Util validateIdentityCard:carOwnerCard];//[self showMessage:@"车主身份证号不能为空" string:carOwnerCard];
+    BOOL flag = [Util validateIdentityCard:carOwnerCard];
+    
     if([carOwnerCard length] > 0 && !flag){
-        [Util showAlertMessage:@"车主身份证号不正确"];
+        [Util showAlertMessage:@"车主身份证号输入格式不正确"];
         return NO;
     }
 
     if([carNo length] > 0 && ![Util validateCarNo:carNo]){
-        [Util showAlertMessage:@"车牌号不正确"];
+        [Util showAlertMessage:@"请输入正确车牌号！"];
         return NO;
     }
     
@@ -423,15 +415,7 @@
     [self resignFirstResponder];
     
     if([self checkInfoRight]){
-//        if(newCert){
-//            [self submitWithLicense:^(int code, id content) {
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }];
-//        }else{
-//            [self submitWithLicense:^(int code, id content) {
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }];
-//        }
+
         [self submitWithLicense:^(int code, id content) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
@@ -481,23 +465,35 @@
         carInsurStatus1 = @"0";
         carInsurCompId1 = @"";
     }
-    [ProgressHUD show:@"正在上传"];
+    [ProgressHUD show:@"正在保存"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSString *filePahe = nil;
         NSString *filePahe1 = nil;
         if(newLisence != nil){
             filePahe = [self fileupMothed:newLisence];
+            if (filePahe==nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                     [ProgressHUD showError:@"图片上传失败"];
+                });
+               
+                return ;
+            }
         }
         if(newCert != nil){
             filePahe1 = [self fileupMothed:newCert];
+            if (filePahe1==nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [ProgressHUD showError:@"图片上传失败"];
+                });
+                return ;
+            }
         }
-        
         [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe travelCard2:nil carOwnerCard1:filePahe1 carOwnerCard2:nil carRegTime:carRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
             //[ProgressHUD dismiss];
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
                 
-                [ProgressHUD showSuccess:@"上传成功"];
+                [ProgressHUD showSuccess:@"保存成功"];
                 
                 CarInfoModel *model = self.customerModel.carInfo;
                 if(model == nil){
@@ -527,10 +523,11 @@
                 if(completion){
                     completion(code, content);
                 }
-            }else
-            {
-                [ProgressHUD showError:@"上传失败"];
             }
+            else{
+                [ProgressHUD showError:@"保存失败"];
+            }
+            
         }];
     });
 }
@@ -543,12 +540,11 @@
         NSData *imageData = UIImageJPEGRepresentation(image, 1.f);
         AVFile *file = [AVFile fileWithData:imageData];
         [file save];
-        
         return file.url;
     }
-
-    //文字内容
 }
+    //文字内容
+
 
 - (IBAction)doButtonEditNo:(UIButton *)sender
 {
