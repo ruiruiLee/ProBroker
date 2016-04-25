@@ -18,6 +18,11 @@ typedef enum : NSUInteger {
     enumAddPhotoTypeLisence,
 } addPhotoType;
 
+typedef enum : NSUInteger {
+    enumInsurance,//首次报价
+    enumReInsurance,//重新报价
+} InsuranceType;
+
 @interface AutoInsuranceInfoEditVC : BaseViewController
 {
     HBImageViewList *_imageList;
@@ -85,9 +90,11 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) CustomerDetailModel *customerModel;
 @property (nonatomic, strong) NSString *customerId;
 @property (nonatomic, assign) addPhotoType type;
+@property (nonatomic, strong) NSString *orderId;
+@property (nonatomic, assign) InsuranceType insType;
 
 - (IBAction)doButtonEditNo:(UIButton *)sender;
 - (IBAction)doButtonHowToWrite:(UIButton *)sender;
-
+- (void) loadCarInfoWithCustomerId:(NSString *) customerCarId;
 
 @end

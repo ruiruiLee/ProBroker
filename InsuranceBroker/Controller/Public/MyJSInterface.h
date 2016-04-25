@@ -13,6 +13,7 @@
 
 - (void) NotifyCloseWindow;
 - (void) NotifyShareWindow;
+- (void) NotifyToReSubmitCarInfo:(NSString *) orderId customerId:(NSString *) customerId customerCarId:(NSString *) customerCarId;
 
 @end
 
@@ -32,5 +33,7 @@
 - (void) close;
 
 - (void) shareUrl;
+
+- (void) againParamsMap:(NSDictionary *) pramas;
 
 @end

@@ -117,6 +117,7 @@
         _perInsurCompany = -1;
         _changeNameIdx = 0;
         self.type = enumAddPhotoTypeNone;
+        self.insType = enumInsurance;
         isShowWarning = NO;
     }
     
@@ -159,7 +160,8 @@
     
     
     self.title = @"车辆信息";
-    [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
+//    [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
+    [self setRightBarButtonWithFlag:NO];
 
     
     self.tfDate.delegate = self;
@@ -322,24 +324,10 @@
     return NO;
 }
 
-////续保用户; 上传所有材料：身份证和行驶证； 上传文字资料
-//- (BOOL) isRenewingCoverage
-//{
-//    BOOL result = NO;
-//    
-//    NSString *carNo = [self getCarCertString];
-//    if(([Util validateCarNo:carNo] || [self isHasLisence]) && _perInsurCompany >= 0){
-//        return YES;
-//    }
-//    
-//    return result;
-//}
-
 - (BOOL) checkInfoFull
 {
     BOOL result = NO;
     
-   // NSString *carOwnerCard = self.tfCert.text;//身份证号
     NSString *carRegTime = self.tfDate.text;//注册日期
     NSString *carEngineNo = self.tfMotorCode.text;////发动机号
     NSString *carShelfNo = self.tfIdenCode.text;//识别码
@@ -350,7 +338,7 @@
         if([Util validateCarNo:carNo] || [self isHasLisence]){
             return YES;
         }else{
-            [Util showAlertMessage:@"请填写正确的车牌号或上传行驶证"];
+            [Util showAlertMessage:@"请填写正确的车牌号或上传行驶证！"];
             return NO;
         }
     }
@@ -364,19 +352,23 @@
     if(!self.btnReSubmit.selected){
         if(!self.btnNoNo.selected){
             if(![Util validateCarNo:carNo]){
-                [Util showAlertMessage:@"请输入正确车牌号！"];
+                [Util showAlertMessage:@"请填写正确的车牌号或上传行驶证！"];
                 return result;
             }
         }
-        BOOL flag = [self showMessage:@"发动机号不能为空" string:carEngineNo];
+        BOOL flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carEngineNo];
         if(flag){
             return result;
         }
-        flag = [self showMessage:@"车辆识别代号不能为空" string:carShelfNo];
+        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carShelfNo];
         if(flag){
             return result;
         }
-        flag = [self showMessage:@"品牌型号不能为空" string:carTypeNo];
+        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carTypeNo];
+        if(flag){
+            return result;
+        }
+        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carRegTime];
         if(flag){
             return result;
         }
@@ -743,6 +735,10 @@
         }else
             self.btnReSubmit.selected = NO;
         
+        if(model.travelCard1 == nil && ([Util isNilValue:model.carEngineNo] || [Util isNilValue:model.carTypeNo] || [Util isNilValue:model.carShelfNo] || ![Util isNilOrNull:model.carRegTime])){
+            [self.scrollview scrollRectToVisible:CGRectMake(ScreenWidth, 0, ScreenWidth, self.scrollview.frame.size.height) animated:YES];;
+        }
+        
         if(model.carOwnerCard1 != nil){
             [self.btnCert sd_setImageWithURL:[NSURL URLWithString:model.carOwnerCard1] forState:UIControlStateSelected];
             self.btnCert.selected = YES;
@@ -779,6 +775,7 @@
                 NSInteger i = _perInsurCompany;
                 [self cancelSelectPCompany:nil];
                 _perInsurCompany = i;
+                self.lbPName.text = @"其他";
             }
         }
         else{
@@ -841,6 +838,11 @@
         str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", self.customerModel.carInfo.carInsurCompId1];
     }
     
+    if(self.insType == enumReInsurance && self.orderId)
+    {
+        str = [NSString stringWithFormat:@"%@&orderId=%@", str, self.orderId];
+    }
+    
     web.title = @"报价";
     [self.navigationController pushViewController:web animated:YES];
     NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.customerModel.customerId, customerCarId, str];
@@ -876,14 +878,6 @@
 - (void) loadInsurCompany
 {
     [ProgressHUD show:nil];
-//    [NetWorkHandler requestToQueryForInsuranceCompanyList:nil insuranceType:@"1" Completion:^(int code, id content) {
-//        [ProgressHUD dismiss];
-//        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-//        if(code == 200){
-//            _insurCompanyArray = [InsuranceCompanyModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
-//            [self fillTheData];
-//        }
-//    }];
     [NetWorkHandler requestToQueryForProductList:@"1" Completion:^(int code, id content) {
         [ProgressHUD dismiss];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
@@ -922,7 +916,7 @@
 - (void) cancelSelectPCompany:(UIButton *)sender
 {
     _perInsurCompany = -1;
-    self.lbPName.text = @"";
+    self.lbPName.text = @"其他";
     [_menuView hide];
     self.view5.hidden = NO;
     self.view6.hidden = NO;
@@ -1143,10 +1137,12 @@
     }
     
     if(result){
-        [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
+//        [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
+        [self setRightBarButtonWithFlag:YES];
     }
     else{
-        [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
+//        [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
+        [self setRightBarButtonWithFlag:NO];
     }
     return result;
 }
@@ -1261,6 +1257,27 @@
 //    }];
     
     isShowWarning = !isShowWarning;
+}
+
+- (void) setCustomerId:(NSString *)customerId
+{
+    _customerId = customerId;
+    [self setRightBarButtonWithFlag:YES];
+}
+
+- (void) setRightBarButtonWithFlag:(BOOL) flag
+{
+    if(self.insType == enumReInsurance){
+        [self setRightBarButtonWithButton:nil];
+    }
+    else{
+        if(flag){
+            [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
+        }
+        else{
+            [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
+        }
+    }
 }
 
 @end

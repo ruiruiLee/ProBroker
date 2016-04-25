@@ -8,30 +8,31 @@
 
 #import "BaseStrategyView.h"
 #import "define.h"
-#import "AgentStrategyTableViewCell.h"
-#import "NetWorkHandler+news.h"
+#import "ProductListTableViewCell.h"
+#import "NetWorkHandler+queryForProductAttrPageList.h"
 #import <ShareSDK/ShareSDK.h>
 #import "WXApi.h"
-#import "NewsModel.h"
+#import "productAttrModel.h"
 #import "UIImageView+WebCache.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "KGStatusBar.h"
 @implementation BaseStrategyView
 @synthesize pulltable;
+@synthesize imgWithNoData;
 
 
-- (id) initWithFrame:(CGRect)frame Strategy:(NSString *) Strategy
+- (id) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if(self){
         self.total = INT_MAX;
-        _category = Strategy;
         
+        self.handler = [[NetWorkHandler alloc] init];
         _data = [[NSMutableArray alloc] init];
         
         [self initSubViews];
         
-        [self refresh2Loaddata];
+//        [self refresh2Loaddata];
     }
     
     return self;
@@ -46,7 +47,7 @@
     pulltable.pullDelegate = self;
     pulltable.separatorStyle = UITableViewCellSeparatorStyleNone;
     pulltable.translatesAutoresizingMaskIntoConstraints = NO;
-     [self.pulltable registerNib:[UINib nibWithNibName:@"AgentStrategyTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+     [self.pulltable registerNib:[UINib nibWithNibName:@"ProductListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     pulltable.backgroundColor = [UIColor clearColor];
     pulltable.tableFooterView = [[UIView alloc] init];
     
@@ -61,7 +62,7 @@
     }
     
     //弹出下拉刷新控件刷新数据
-    pulltable.pullTableIsRefreshing = YES;
+//    pulltable.pullTableIsRefreshing = YES;
     //    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(pulltable);
@@ -73,6 +74,25 @@
     [self addConstraints:self.hConstraints];
 }
 
+- (void) refreshAndReloadData:(NSString *) category list:(NSMutableArray *) list
+{
+    self.category = category;
+    self.data = list;
+    
+    [self.handler removeAllRequest];
+    
+    if(list == nil)
+        self.data = [[NSMutableArray alloc] init];
+    if(list == nil || [list count] == 0){
+        [self refresh2Loaddata];
+    }else{
+        self.pageNum = [list count] / LIMIT;
+        if([list count] % LIMIT > 0)
+            self.pageNum ++;
+        [self.pulltable reloadData];
+    }
+}
+
 #pragma UITableViewDataSource UITableViewDelegate
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -82,6 +102,12 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if([_data count] == 0){
+        [self showNoDatasImage:ThemeImage(@"no_data")];
+    }
+    else{
+        [self hidNoDatasImage];
+    }
     return [_data count];
 }
 
@@ -93,26 +119,31 @@
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *deq = @"cell";
-     AgentStrategyTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+     ProductListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
-//        cell = [[AgentStrategyTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
-        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"AgentStrategyTableViewCell" owner:nil options:nil];
+        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"ProductListTableViewCell" owner:nil options:nil];
         cell = [nibs lastObject];
     }
     
-    NewsModel *model = [self.data objectAtIndex:indexPath.row];
+    productAttrModel *model = [self.data objectAtIndex:indexPath.row];
     
-    if(model.isRedirect){
-        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-    }else
-    {
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.logoImage sd_setImageWithURL:[NSURL URLWithString:model.productImg] placeholderImage:Normal_Image];
+    cell.lbTitle.text = model.productTitle;
+    cell.lbContent.text = model.productIntro;
+    if(model.productSellNums){
+        cell.lbCount.hidden = NO;
+        cell.lbCount.text = [NSString stringWithFormat:@"已售 %@ 份", model.productSellNums];
+    }else{
+        cell.lbCount.hidden = YES;
     }
     
-    [cell.photoImgV sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] placeholderImage:Normal_Image];
-    cell.lbTitle.text = model.title;
-    cell.lbContent.text = model.content;
-    cell.lbTime.text = [Util getShowingTime:model.createdAt];
+    if(model.minPrice){
+        cell.lbPrice.hidden = NO;
+        cell.lbPrice.attributedText = [self attstringwithPrice:model.minPrice];
+    }
+    else{
+        cell.lbPrice.hidden = YES;
+    }
     
     return cell;
 }
@@ -120,23 +151,23 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    NewsModel *model = [self.data objectAtIndex:indexPath.row];
-    if(model.isRedirect){
-        WebViewController *web = [IBUIFactory CreateWebViewController];
-        web.title = model.title;
-        web.type = enumShareTypeShare;
-        if(model.imgUrl)
-            web.shareImgArray = [NSArray arrayWithObject:model.imgUrl];
-        web.shareTitle = model.title;
-        web.shareContent = model.content;
-        [self.parentvc.navigationController pushViewController:web animated:YES];
-//        [web loadHtmlFromUrl:model.url];
-        if(model.url == nil){
-            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid]];
-        }else{
-            [web loadHtmlFromUrlWithUserId:model.url];
-        }
-    }
+//    NewsModel *model = [self.data objectAtIndex:indexPath.row];
+//    if(model.isRedirect){
+//        WebViewController *web = [IBUIFactory CreateWebViewController];
+//        web.title = model.title;
+//        web.type = enumShareTypeShare;
+//        if(model.imgUrl)
+//            web.shareImgArray = [NSArray arrayWithObject:model.imgUrl];
+//        web.shareTitle = model.title;
+//        web.shareContent = model.content;
+//        [self.parentvc.navigationController pushViewController:web animated:YES];
+////        [web loadHtmlFromUrl:model.url];
+//        if(model.url == nil){
+//            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid]];
+//        }else{
+//            [web loadHtmlFromUrlWithUserId:model.url];
+//        }
+//    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -177,6 +208,7 @@
 {
     NSLog(@"refresh2Loaddata");
     self.pageNum = 0;
+    pulltable.pullTableIsRefreshing = YES;
     [self loadDataInPages:self.pageNum];
 }
 
@@ -197,7 +229,13 @@
  */
 - (void) loadDataInPages:(NSInteger)page
 {
-    [NetWorkHandler requestToNews:self.category userId:[UserInfoModel shareUserInfoModel].userId offset:page limit:LIMIT completion:^(int code, id content) {
+    NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
+    [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
+    NSMutableArray *rules = [[NSMutableArray alloc] init];
+    [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:self.category]];
+    [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
+    
+    [self.handler requestToQueryForProductAttrPageList:page limit:LIMIT sidx:@"P_ProductAttr.seqNo" sord:@"asc" filters:filters completion:^(int code, id content) {
         [self refreshTable];
         [self loadMoreDataToTable];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
@@ -205,11 +243,30 @@
             if(page == 0)
                 [self.data removeAllObjects];
             
-            [self.data addObjectsFromArray:[NewsModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
+            [self.data addObjectsFromArray:[productAttrModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
             self.total = [[[content objectForKey:@"data"] objectForKey:@"total"] integerValue];
             [self.pulltable reloadData];
         }
     }];
+}
+
+- (NSDictionary *) getRulesByField:(NSString *) field op:(NSString *) op data:(NSString *) data
+{
+    NSMutableDictionary *rule = [[NSMutableDictionary alloc] init];
+    [Util setValueForKeyWithDic:rule value:field key:@"field"];
+    [Util setValueForKeyWithDic:rule value:op key:@"op"];
+    [Util setValueForKeyWithDic:rule value:data key:@"data"];
+    
+    return rule;
+}
+
+- (NSMutableAttributedString *) attstringwithPrice:(NSString *) price
+{
+    NSString *string = [NSString stringWithFormat:@"¥ %@", price];
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
+    NSRange range = [string rangeOfString:price];
+    [attString addAttribute:NSFontAttributeName value:_FONT_B(14) range:range];
+    return attString;
 }
 
 #pragma 登录
@@ -256,6 +313,27 @@
         result = NO;
     }
     return result;
+}
+
+- (void) showNoDatasImage:(UIImage *) image
+{
+    if(!self.explainBgView){
+        self.explainBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 80)];
+        imgWithNoData = [[UIImageView alloc] initWithImage:image];
+        [self.explainBgView addSubview:imgWithNoData];
+        [self.pulltable addSubview:self.explainBgView];
+        self.explainBgView.center = CGPointMake(ScreenWidth/2, self.pulltable.frame.size.height/2);
+    }else{
+        self.explainBgView.center = CGPointMake(ScreenWidth/2, self.pulltable.frame.size.height/2);
+    }
+}
+
+- (void) hidNoDatasImage
+{
+    [self.explainBgView removeFromSuperview];
+    [imgWithNoData removeFromSuperview];
+    self.explainBgView = nil;
+    self.imgWithNoData = nil;
 }
 
 @end

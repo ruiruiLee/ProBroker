@@ -7,6 +7,7 @@
 //
 
 #import "MyJSInterface.h"
+#import "SBJsonParser.h"
 
 @implementation MyJSInterface
 
@@ -57,6 +58,20 @@
     if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyShareWindow)])
     {
         [self.delegate NotifyShareWindow];
+    }
+}
+
+- (void) againParamsMap:(NSString *) pramas
+{
+    if([pramas isKindOfClass:[NSString class]]){
+        SBJsonParser *_parser = [[SBJsonParser alloc] init];
+        NSDictionary *result = [_parser objectWithString:pramas];
+        NSString *customerCarId = [result objectForKey:@"customerCarId"];
+        NSString *orderId = [result objectForKey:@"orderId"];
+        NSString *userId = [result objectForKey:@"userId"];
+        if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToReSubmitCarInfo:customerId:customerCarId:)]){
+            [self.delegate NotifyToReSubmitCarInfo:orderId customerId:userId customerCarId:customerCarId];
+        }
     }
 }
 

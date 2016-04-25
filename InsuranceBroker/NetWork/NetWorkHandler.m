@@ -274,4 +274,9 @@ static NetWorkHandler *networkmanager;
     return [writer stringWithObject:obj];
 }
 
+- (void) removeAllRequest
+{
+    [self.manager.operationQueue cancelAllOperations];
+}
+
 @end

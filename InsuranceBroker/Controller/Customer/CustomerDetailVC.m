@@ -789,6 +789,11 @@
     }else{
         [self showProgressHUD];
         [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.5];
+        
+        AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
+        [self.navigationController pushViewController:vc animated:YES];
+        vc.customerId = self.customerId;
+        vc.customerModel = self.data;
     }
 }
 

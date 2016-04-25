@@ -7,7 +7,13 @@
 //
 
 #import "BasePullTableVC.h"
+#import "LightMenuBar.h"
+#import "LightMenuBarDelegate.h"
+#import "LightMenuBarView.h"
+#import "BaseStrategyView.h"
 
-@interface ProductListVC : BasePullTableVC
+@interface ProductListVC : BaseViewController <LightMenuBarDelegate>
+
+@property (nonatomic, strong) BaseStrategyView *contentView;
 
 @end

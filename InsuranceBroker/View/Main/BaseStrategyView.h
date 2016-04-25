@@ -9,19 +9,26 @@
 #import <UIKit/UIKit.h>
 #import "PullTableView.h"
 
+#import "NetWorkHandler.h"
+
 @interface BaseStrategyView : UIView <PullTableViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong, readonly) NSString *category;
+@property (nonatomic, strong) NSString *category;
 @property (nonatomic, strong) PullTableView *pulltable;
 @property (nonatomic, assign) NSInteger pageNum;//当前第几页
 @property (nonatomic, assign) NSInteger total;//数据总条数
 @property (nonatomic, strong) NSMutableArray *data;
+
+@property (nonatomic, strong) UIView *explainBgView;
+@property (nonatomic, strong) UIImageView *imgWithNoData;
 
 //约束
 @property (nonatomic, strong) NSArray *hConstraints;
 @property (nonatomic, strong) NSArray *vConstraints;
 
 @property (nonatomic, weak) UIViewController *parentvc;
+
+@property (nonatomic, strong) NetWorkHandler *handler;
 
 - (void) initSubViews;
 
@@ -30,6 +37,8 @@
 - (void) refreshTable;
 - (void) loadMoreDataToTable;
 
-- (id) initWithFrame:(CGRect)frame Strategy:(NSString *) Strategy;
+//- (id) initWithFrame:(CGRect)frame Strategy:(NSString *) Strategy;
+
+- (void) refreshAndReloadData:(NSString *) category list:(NSMutableArray *) list;
 
 @end

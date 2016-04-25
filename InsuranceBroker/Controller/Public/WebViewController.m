@@ -13,6 +13,8 @@
 #import "KGStatusBar.h"
 #import "MyJSInterface.h"
 #import "IQKeyboardManager.h"
+#import "AppDelegate.h"
+#import "RootViewController.h"
 
 @interface WebViewController ()<MyJSInterfaceDelegate>
 
@@ -72,6 +74,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma MyJSInterfaceDelegate
 - (void) NotifyShareWindow
 {
     [self handleRightBarButtonClicked:nil];
@@ -80,6 +83,28 @@
 - (void) NotifyCloseWindow
 {
     
+}
+
+- (void) NotifyToReSubmitCarInfo:(NSString *) orderId customerId:(NSString *) customerId customerCarId:(NSString *) customerCarId
+{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//    BaseViewController *vc = delegate.root.selectVC;
+    
+    AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
+    vc.insType = enumReInsurance;
+    vc.customerId = customerId;
+    vc.orderId = orderId;
+    
+    CustomerDetailModel *model = [[CustomerDetailModel alloc] init];
+    model.carInfo = [[CarInfoModel alloc] init];
+    model.carInfo.customerCarId = customerCarId;
+    model.carInfo.customerId = customerId;
+    model.customerId = customerId;
+    vc.customerModel = model;
+    vc.hidesBottomBarWhenPushed = YES;
+    [delegate.root.selectVC.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated

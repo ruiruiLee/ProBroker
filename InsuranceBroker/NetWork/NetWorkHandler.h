@@ -29,4 +29,6 @@ typedef void(^Completion) (int code, id content);
 + (NSString *) getStringWithList:(NSArray *)array;//序列化数组
 + (NSString *) objectToJson:(id) obj;//json化
 
+- (void) removeAllRequest;
+
 @end
