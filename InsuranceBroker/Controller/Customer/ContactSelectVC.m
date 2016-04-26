@@ -201,7 +201,9 @@
     cell.lbName.text = model.customerName;
     cell.lbStatus.text = model.visitType;
     cell.lbTimr.hidden = YES;
-    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:ThemeImage(@"customer_head")];
+//    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:ThemeImage(@"customer_head")];
+    CGSize size = cell.photoImage.frame.size;
+    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.headImg, (int)size.width, (int)size.height)] placeholderImage:ThemeImage(@"customer_head")];
     cell.headImg = model.headImg;
     if(!model.isAgentCreate)
         cell.logoImage.hidden = NO;
@@ -273,8 +275,9 @@
         CustomerInfoModel *model = [self.resultData objectAtIndex:i];
         
         TopImageButton *btn = [[TopImageButton alloc] initWithFrame:CGRectMake(ox, 5, 55, 75)];
-//        [btn setImage:ThemeImage(@"user_head") forState:UIControlStateNormal];
-        [btn sd_setImageWithURL:[NSURL URLWithString:model.headImg] forState:UIControlStateNormal placeholderImage:ThemeImage(@"customer_head")];
+//        [btn sd_setImageWithURL:[NSURL URLWithString:model.headImg] forState:UIControlStateNormal placeholderImage:ThemeImage(@"customer_head")];
+        CGSize size = btn.frame.size;
+        [btn sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.headImg, (int)size.width, (int)size.width)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"customer_head")];
         [btn setTitle:model.customerName forState:UIControlStateNormal];
         [btn setTitleColor:_COLOR(0x21, 0x21, 0x21) forState:UIControlStateNormal];
         btn.titleLabel.font = _FONT(14);

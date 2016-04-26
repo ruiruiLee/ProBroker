@@ -82,10 +82,10 @@
     
     for (int i = 0; i < [userArray count]; i++) {
         EditButton *btn = [[EditButton alloc] initWithFrame:CGRectZero];
-        [btn setImage:ThemeImage(@"user_head") forState:UIControlStateNormal];
         CustomerInfoModel *model = [userArray objectAtIndex:i];
         [btn setTitle:model.customerName forState:UIControlStateNormal];
-        [btn sd_setImageWithURL:[NSURL URLWithString:model.headImg] forState:UIControlStateNormal placeholderImage:ThemeImage(@"customer_head")];
+//        [btn sd_setImageWithURL:[NSURL URLWithString:model.headImg] forState:UIControlStateNormal placeholderImage:ThemeImage(@"customer_head")];
+        [btn sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.headImg, Btn_width, Btn_width)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"customer_head")];
         [btn setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];
         btn.titleLabel.font = _FONT(14);
         [btn addTarget:self action:@selector(doBtnCustomerClicked:) forControlEvents:UIControlEventTouchUpInside];
