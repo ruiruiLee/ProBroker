@@ -186,13 +186,22 @@
     [self.btnReSubmit setTitle:@"上传照片" forState:UIControlStateNormal];
     [self.btnReSubmit addTarget:self action:@selector(btnPhotoPressed:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIView *bgview = [[UIView alloc] init];
+    [self.view addSubview:bgview];
+    bgview.translatesAutoresizingMaskIntoConstraints = NO;
+    bgview.backgroundColor = _COLOR(245, 245, 245);
+    
     btnQuote = [[UIButton alloc] init];
-    [self.view addSubview:btnQuote];
-    [btnQuote setTitle:@"立即\n报价" forState:UIControlStateNormal];
+    [bgview addSubview:btnQuote];
+    if(self.insType == enumInsurance)
+        [btnQuote setTitle:@"立即报价" forState:UIControlStateNormal];
+    else{
+        [btnQuote setTitle:@"下一步" forState:UIControlStateNormal];
+    }
     btnQuote.translatesAutoresizingMaskIntoConstraints = NO;
-    btnQuote.layer.cornerRadius = 24;
+    btnQuote.layer.cornerRadius = 3;
     btnQuote.backgroundColor = _COLOR(0xff, 0x66, 0x19);
-    btnQuote.titleLabel.font = _FONT_B(14);
+    btnQuote.titleLabel.font = _FONT_B(15);
     btnQuote.titleLabel.numberOfLines = 2;
     btnQuote.titleLabel.textAlignment = NSTextAlignmentCenter;
     btnQuote.layer.shadowColor = _COLOR(0xff, 0x66, 0x19).CGColor;
@@ -203,9 +212,11 @@
     
     self.scrollview.showsHorizontalScrollIndicator = NO;
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(btnQuote);
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(48)]-10-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views]];
+    NSDictionary *views = NSDictionaryOfVariableBindings(btnQuote, bgview);
+    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-12-[btnQuote(36)]-22-|" options:0 metrics:nil views:views]];
+    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-30-[btnQuote]-30-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[bgview]-0-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[bgview(60)]-0-|" options:0 metrics:nil views:views]];
     
     self.btnReSubmit.layer.cornerRadius = 3;
     
