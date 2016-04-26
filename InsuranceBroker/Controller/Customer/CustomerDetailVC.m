@@ -70,7 +70,8 @@
     
     [self.headerView.btnPhone addTarget:self action:@selector(doBtnRing:) forControlEvents:UIControlEventTouchUpInside];
     [self.headerView.btnMsg addTarget:self action:@selector(doBtnEmail:) forControlEvents:UIControlEventTouchUpInside];
-    [self.headerView.photoImageV sd_setImageWithURL:[NSURL URLWithString:self.data.headImg] placeholderImage:ThemeImage(@"user_head")];
+//    [self.headerView.photoImageV sd_setImageWithURL:[NSURL URLWithString:self.data.headImg] placeholderImage:ThemeImage(@"user_head")];
+    [self.headerView.photoImageV sd_setImageWithURL:[NSURL URLWithString:FormatImage(self.data.headImg, (int)self.headerView.photoImageV.frame.size.width, (int)self.headerView.photoImageV.frame.size.height)] placeholderImage:ThemeImage(@"user_head")];
     
     self.headerView.delegate = self;
     UIColor *normal = _COLOR(0x75, 0x75, 0x75);
@@ -657,7 +658,7 @@
     //图片
     //添加文件名
     @autoreleasepool {
-        NSData *imageData = UIImageJPEGRepresentation(image, 1.f);
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
         AVFile *file = [AVFile fileWithData:imageData];
         [file save];
         

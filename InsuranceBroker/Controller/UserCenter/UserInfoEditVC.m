@@ -111,7 +111,9 @@
             if(model.sex == 2)
                 image = ThemeImage(@"head_famale_edit");
             [self setCellData:cell title:@"头像" image:image content:@""];
-            [cell.imgv sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:image];
+//            [cell.imgv sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:image];
+            CGSize size = cell.imgv.frame.size;
+            [cell.imgv sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.headerImg, (int)size.width, (int)size.height)] placeholderImage:image];
             cell.imgv.layer.cornerRadius = 25;
             cell.imgv.layer.borderWidth = 1;
             cell.imgHConstraint.constant = image.size.width;

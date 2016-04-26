@@ -529,7 +529,7 @@
     //图片
     //添加文件名
     @autoreleasepool {
-        NSData *imageData = UIImageJPEGRepresentation(image, 1.f);
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
         AVFile *file = [AVFile fileWithData:imageData];
         [file save];
         return file.url;
@@ -622,16 +622,17 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self dismissViewControllerAnimated:YES completion:^{
-        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],0.5);
+        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],1);
         UIImage *image= [UIImage imageWithData:imageData];
+        UIImage *new = [Util scaleToSize:image scaledToSize:CGSizeMake(1500, 1500)];
         isCertModify = YES;
         if(self.type == enumAddPhotoTypeLisence){
-            [self.btnReSubmit setImage:image forState:UIControlStateSelected];
-            newLisence = image;
+            [self.btnReSubmit setImage:new forState:UIControlStateSelected];
+            newLisence = new;
             self.btnReSubmit.selected = YES;
         }else{
-            [self.btnCert setImage:image forState:UIControlStateSelected];
-            newCert = image;
+            [self.btnCert setImage:new forState:UIControlStateSelected];
+            newCert = new;
             self.btnCert.selected = YES;
         }
         [self isModify];

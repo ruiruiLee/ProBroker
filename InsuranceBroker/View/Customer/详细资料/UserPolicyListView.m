@@ -74,7 +74,7 @@
     cell.lbName.text = [NSString stringWithFormat:@"%@  %@", model.customerName, carNo];
     cell.lbPlate.text = @"";
     cell.lbContent.text = model.planTypeName;//[Util getStringByPlanType:model.planType];
-    cell.lbUpdateTime.text = [Util getTimeString:model.createdAt];
+    cell.lbUpdateTime.text = [Util getTimeString:model.updatedAt];
     cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:model.orderOfferStatusStr orderOfferGatherStatus:model.orderOfferGatherStatus];
     [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatus:model.orderOfferStatus orderOfferStatusStr:model.orderOfferStatusStr orderOfferPrintStatus:model.orderOfferPrintStatus];
     [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];

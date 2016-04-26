@@ -381,6 +381,9 @@
     CGFloat width = CGImage.size.width;
     CGFloat height = CGImage.size.height;
     
+    if(width <= size.width && height <= size.height)
+        return CGImage;
+    
     float verticalRadio = size.height*1.0/height;
     float horizontalRadio = size.width*1.0/width;
     
@@ -397,19 +400,19 @@
     width = width*radio;
     height = height*radio;
     
-    int xPos = (size.width - width)/2;
-    int yPos = (size.height-height)/2;
+    int xPos = 0;//(size.width - width)/2;
+    int yPos = 0;//(size.height-height)/2;
     
     // 创建一个bitmap的context
     // 并把它设置成为当前正在使用的context
-    UIGraphicsBeginImageContext(size);
+    UIGraphicsBeginImageContext(CGSizeMake(width, height));
     
     // 绘制改变大小的图片xPos,yPos
     [CGImage drawInRect:CGRectMake(xPos, yPos, width, height)];
     
     // 从当前context中创建一个改变大小后的图片
     UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    
+
     // 使当前的context出堆栈
     UIGraphicsEndImageContext();
     

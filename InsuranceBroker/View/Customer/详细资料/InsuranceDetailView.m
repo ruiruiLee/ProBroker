@@ -331,7 +331,8 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self.pVc dismissViewControllerAnimated:YES completion:^{
-        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],0.5);
+        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],1);
+        
         UIImage *image= [UIImage imageWithData:imageData];
         UIImageOrientation imageOrientation=image.imageOrientation;
         if(imageOrientation!=UIImageOrientationUp)
@@ -344,24 +345,26 @@
             UIGraphicsEndImageContext();
             // 调整图片角度完毕
         }
-
-        [addImgButton setImage:image forState:UIControlStateNormal];
+        
+        UIImage *new = [Util scaleToSize:image scaledToSize:CGSizeMake(1500, 1500)];
+        
+        [addImgButton setImage:new forState:UIControlStateNormal];
          NSInteger tag = addImgButton.tag - 100;
         if(tag == 0){
-            driveLisence1 = image;
-            [self saveOrUpdateCustomerCar:image travelCard2:nil];
+            driveLisence1 = new;
+            [self saveOrUpdateCustomerCar:new travelCard2:nil];
         }
         else if (tag == 1){
-            driveLisence2 = image;
-            [self saveOrUpdateCustomerCar:nil travelCard2:image];
+            driveLisence2 = new;
+            [self saveOrUpdateCustomerCar:nil travelCard2:new];
         }
         else if (tag ==2 ){
-            cert1 = image;
-            [self saveOrUpdateCustomer:image cert2:nil];
+            cert1 = new;
+            [self saveOrUpdateCustomer:new cert2:nil];
         }
         else{
-            cert2 = image;
-            [self saveOrUpdateCustomer:nil cert2:image];
+            cert2 = new;
+            [self saveOrUpdateCustomer:nil cert2:new];
         }
     }];
 }

@@ -130,7 +130,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self.pvc dismissViewControllerAnimated:YES completion:^{
-        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerEditedImage"],0.5);
+        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerEditedImage"],1);
         UIImage *image= [UIImage imageWithData:imageData];
         UIImageOrientation imageOrientation=image.imageOrientation;
         if(imageOrientation!=UIImageOrientationUp)

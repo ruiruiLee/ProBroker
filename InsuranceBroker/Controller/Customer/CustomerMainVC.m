@@ -203,7 +203,9 @@
         CustomerInfoModel *model = [self.data objectAtIndex:indexPath.row];
         cell.lbName.text = model.customerName;
         cell.lbStatus.text = model.visitType;
-        [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:ThemeImage(@"customer_head")];
+//        [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:ThemeImage(@"customer_head")];
+//        FormatImage
+        [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.headImg, (int)cell.photoImage.frame.size.width, (int)cell.photoImage.frame.size.height)] placeholderImage:ThemeImage(@"customer_head")];
         cell.headImg = model.headImg;
         if(model.visitType == nil)
             cell.lbStatus.text = @"";

@@ -102,6 +102,7 @@
     UIImage *placeholderImage = ThemeImage(@"head_male");
     if(model.sex == 2)
         placeholderImage = ThemeImage(@"head_famale");
+    
     [self.photoImgV sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         if(image == nil){
             [self.gradientView setimage:[self blurryImage:placeholderImage withBlurLevel:0.4]];

@@ -43,7 +43,11 @@
     
     self.userinfo =  [[UserInfoModel alloc] init];
     UIImage *placeholderImage = ThemeImage(@"head_male");
-    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.brokerInfo.headerImg] placeholderImage:placeholderImage];
+//    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.brokerInfo.headerImg] placeholderImage:placeholderImage];
+    CGSize size = self.photo.frame.size;
+    [self.photo sd_setImageWithURL:[NSURL URLWithString:FormatImage(self.brokerInfo.headerImg, (int)size.width, (int)size.height)] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+
+    }];
     
     self.scHConstraint.constant = ScreenWidth;
     self.photo.layer.cornerRadius = 27.5;
@@ -88,7 +92,11 @@
     UIImage *placeholderImage = ThemeImage(@"head_male");
     if(self.userinfo.sex == 2)
         placeholderImage = ThemeImage(@"head_famale");
-    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.brokerInfo.headerImg] placeholderImage:placeholderImage];
+//    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.brokerInfo.headerImg] placeholderImage:placeholderImage];
+    CGSize size = self.photo.frame.size;
+    [self.photo sd_setImageWithURL:[NSURL URLWithString:FormatImage(self.brokerInfo.headerImg, (int)size.width, (int)size.height)] placeholderImage:placeholderImage completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+
+    }];
     
     UserInfoModel *model = self.userinfo;
     

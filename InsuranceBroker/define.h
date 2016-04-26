@@ -92,4 +92,7 @@
 #define QR_ADDRESS @"http://ukb.weixin.car517.com/app_download/specialty_agent_app_download.html"
 #define ServicePhone @"4000803939"
 
+
+#define FormatImage(imageUrl,imageWidth,imageHeight) [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", imageUrl,imageWidth * 2,imageHeight * 2]
+
 #endif /* define_h */

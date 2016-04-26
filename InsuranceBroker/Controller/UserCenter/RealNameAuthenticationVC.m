@@ -258,7 +258,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
     [self dismissViewControllerAnimated:YES completion:^{
-        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],0.5);
+        NSData * imageData = UIImageJPEGRepresentation([info objectForKey:@"UIImagePickerControllerOriginalImage"],1);
         UIImage *image= [UIImage imageWithData:imageData];
         UIImageOrientation imageOrientation=image.imageOrientation;
         if(imageOrientation!=UIImageOrientationUp)
@@ -271,18 +271,14 @@
             UIGraphicsEndImageContext();
             // 调整图片角度完毕
         }
+        image = [Util scaleToSize:image scaledToSize:CGSizeMake(1500, 1500)];
         if(currentcertType == enumCertType1){
-//        [self.btnCert1 sd_setImageWithURL:nil forState:UIControlStateSelected placeholderImage: [Util fitSmallImage:image scaledToSize:CGSizeMake(self.btnCert1.frame.size.width, self.btnCert1.frame.size.height)]];
-        imgCer1 = image;
-      
-        [self.btnCert1 setImage: [Util scaleToSize:image scaledToSize:CGSizeMake(self.btnCert1.frame.size.width, self.btnCert1.frame.size.height)] forState:UIControlStateNormal];
-      //  self.btnCert1.selected = YES;
-           
+            imgCer1 = image;
+            [self.btnCert1 setImage: image forState:UIControlStateNormal];
         }
         else{
             imgCer2 = image;
-            [self.btnCert2 setImage:[Util scaleToSize:image scaledToSize:CGSizeMake(self.btnCert1.frame.size.width, self.btnCert1.frame.size.height)]forState:UIControlStateNormal];
-            //self.btnCert2.selected = YES;
+            [self.btnCert2 setImage:image forState:UIControlStateNormal];
         }
     }];
     

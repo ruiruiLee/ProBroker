@@ -240,7 +240,9 @@
         image = ThemeImage(@"list_user_famale");
     }
 
-    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:image];
+//    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:image];
+    CGSize size = cell.photoImage.frame.size;
+    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.headerImg, (int)size.width, (int)size.height)] placeholderImage:image];
     cell.logoImage.hidden = NO;
     if(indexPath.row == 0)
         cell.logoImage.image = ThemeImage(@"award_1");
