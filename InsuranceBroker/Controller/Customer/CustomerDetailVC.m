@@ -33,7 +33,7 @@
 
 @implementation CustomerDetailVC
 @synthesize scrollview;
-@synthesize btnQuote;
+//@synthesize btnQuote;
 
 - (void) setCustomerinfoModel:(CustomerInfoModel *)model
 {
@@ -131,25 +131,25 @@
     [self.detailView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_insuranceDetailView]-0-|" options:0 metrics:nil views:views]];
     
     
-    btnQuote = [[UIButton alloc] init];
-    [self.view addSubview:btnQuote];
-    [btnQuote setTitle:@"立即\n报价" forState:UIControlStateNormal];
-    btnQuote.translatesAutoresizingMaskIntoConstraints = NO;
-    btnQuote.layer.cornerRadius = 24;
-    btnQuote.backgroundColor = _COLOR(0xff, 0x66, 0x19);
-    btnQuote.titleLabel.font = _FONT_B(14);
-    btnQuote.titleLabel.numberOfLines = 2;
-    btnQuote.titleLabel.textAlignment = NSTextAlignmentCenter;
-    btnQuote.layer.shadowColor = _COLOR(0xff, 0x66, 0x19).CGColor;
-    btnQuote.layer.shadowOffset = CGSizeMake(0, 0);
-    btnQuote.layer.shadowOpacity = 0.5;
-    btnQuote.layer.shadowRadius = 1;
-    [btnQuote addTarget:self action:@selector(doBtnCarInsurPlan:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    NSDictionary *views1 = NSDictionaryOfVariableBindings(btnQuote);
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(48)]-10-|" options:0 metrics:nil views:views1]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views1]];
+//    btnQuote = [[UIButton alloc] init];
+//    [self.view addSubview:btnQuote];
+//    [btnQuote setTitle:@"立即\n报价" forState:UIControlStateNormal];
+//    btnQuote.translatesAutoresizingMaskIntoConstraints = NO;
+//    btnQuote.layer.cornerRadius = 24;
+//    btnQuote.backgroundColor = _COLOR(0xff, 0x66, 0x19);
+//    btnQuote.titleLabel.font = _FONT_B(14);
+//    btnQuote.titleLabel.numberOfLines = 2;
+//    btnQuote.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    btnQuote.layer.shadowColor = _COLOR(0xff, 0x66, 0x19).CGColor;
+//    btnQuote.layer.shadowOffset = CGSizeMake(0, 0);
+//    btnQuote.layer.shadowOpacity = 0.5;
+//    btnQuote.layer.shadowRadius = 1;
+//    [btnQuote addTarget:self action:@selector(doBtnCarInsurPlan:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    
+//    NSDictionary *views1 = NSDictionaryOfVariableBindings(btnQuote);
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(48)]-10-|" options:0 metrics:nil views:views1]];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views1]];
     
     [self doBtnSelectDetailInfoView:self.btnInfo];
 }
@@ -386,7 +386,7 @@
     
     CGRect frame = self.lbFocusLine.frame;
     self.scrollOffsetConstraint.constant = 0;
-    btnQuote.hidden = YES;
+//    btnQuote.hidden = YES;
     
     switch (tag) {
         case 101:
@@ -399,7 +399,7 @@
             _insuranceView.type = enumInsuranceInfoViewTypeInsurance;
             self.scrollOffsetConstraint.constant = 0;
             [self resetContetHeight:_insuranceDetailView];
-            btnQuote.hidden = NO;
+//            btnQuote.hidden = NO;
             _insuranceView.indicatorView.hidden = YES;
         }
             break;
@@ -773,7 +773,7 @@
 }
 
 //算价
-- (void) doBtnCarInsurPlan:(UIButton *) sender
+- (void) NotifyToPlanCarInsurance
 {
     if([Util checkInfoFull:self.data.carInfo]){
         
@@ -797,6 +797,30 @@
         vc.customerModel = self.data;
     }
 }
+//- (void) doBtnCarInsurPlan:(UIButton *) sender
+//{
+//    if([Util checkInfoFull:self.data.carInfo]){
+//        
+//        NSString *str = @"";
+//        if(self.customerinfoModel.detailModel.carInfo.carInsurStatus1 && self.customerinfoModel.detailModel.carInfo.carInsurCompId1 != nil){
+//            str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", self.customerinfoModel.detailModel.carInfo.carInsurCompId1];
+//        }
+//        
+//        OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
+//        web.title = @"报价";
+//        [self.navigationController pushViewController:web animated:YES];
+//        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.data.customerId, self.data.carInfo.customerCarId, str];
+//        [web loadHtmlFromUrl:url];
+//    }else{
+//        [self showProgressHUD];
+//        [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.5];
+//        
+//        AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
+//        [self.navigationController pushViewController:vc animated:YES];
+//        vc.customerId = self.customerId;
+//        vc.customerModel = self.data;
+//    }
+//}
 
 - (void) showProgressHUD
 {

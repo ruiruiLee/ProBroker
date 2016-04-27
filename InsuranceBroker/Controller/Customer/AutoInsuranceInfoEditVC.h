@@ -11,6 +11,7 @@
 #import "CustomerDetailModel.h"
 #import "LeftImgButton.h"
 #import "HBImageViewList.h"
+#import "ReactiveButton.h"
 
 typedef enum : NSUInteger {
     enumAddPhotoTypeNone,
@@ -85,7 +86,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) IBOutlet UIButton *btnHowOrder;
 
-@property (nonatomic, strong) UIButton *btnQuote;//立即报价
+@property (nonatomic, strong) ReactiveButton *btnQuote;//立即报价
 
 @property (nonatomic, strong) CustomerDetailModel *customerModel;
 @property (nonatomic, strong) NSString *customerId;

@@ -98,13 +98,13 @@
     sepWidth = 1.0f;
     sepHeightRate = 0.7f;
     
-    backgoundColor = SepLineColor;//[self colorFromCode:0xe9f4e9];
+    backgoundColor = _COLOR(0xf5, 0xf5, 0xf5);//[self colorFromCode:0xe9f4e9];
     buttonHighlightColor = [UIColor clearColor];//[self colorFromCode:0x4d9c5d];
-    titleHighlightColor = _COLOR(61, 131, 221);//[UIColor brownColor];//[self colorFromCode:0xe9f4e9];
-    titleNormalColor = [self colorFromCode:0x757575];
+    titleHighlightColor = [self colorFromCode:0xff6619];
+    titleNormalColor = [self colorFromCode:0x2d2d2d];
     sepColor = [UIColor clearColor];
     
-    titleFont = _FONT(14);
+    titleFont = _FONT_B(15);
     
     //< TODO, ugly code, any better solution here ?
     
@@ -211,7 +211,7 @@
         
     CGContextRef context = UIGraphicsGetCurrentContext();
 
-    CGContextSetFillColorWithColor(context, [self colorFromCode:0xcacaca].CGColor);
+    CGContextSetFillColorWithColor(context, backgoundColor.CGColor);
     CGContextFillRect(context, rect);
     
     /**< Background */

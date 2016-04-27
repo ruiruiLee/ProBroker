@@ -16,6 +16,7 @@
 #import "UIImageView+WebCache.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "KGStatusBar.h"
+
 @implementation BaseStrategyView
 @synthesize pulltable;
 @synthesize imgWithNoData;
@@ -89,8 +90,9 @@
         self.pageNum = [list count] / LIMIT;
         if([list count] % LIMIT > 0)
             self.pageNum ++;
-        [self.pulltable reloadData];
     }
+    
+    [self.pulltable reloadData];
 }
 
 #pragma UITableViewDataSource UITableViewDelegate
@@ -113,7 +115,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 94.f;
+    return 110.f;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -139,7 +141,7 @@
     
     if(model.minPrice){
         cell.lbPrice.hidden = NO;
-        cell.lbPrice.attributedText = [self attstringwithPrice:model.minPrice];
+        cell.lbPrice.text = [self attstringwithPrice:model.minPrice];
     }
     else{
         cell.lbPrice.hidden = YES;
@@ -260,13 +262,13 @@
     return rule;
 }
 
-- (NSMutableAttributedString *) attstringwithPrice:(NSString *) price
+- (NSString *) attstringwithPrice:(NSString *) price
 {
     NSString *string = [NSString stringWithFormat:@"¥ %@", price];
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
-    NSRange range = [string rangeOfString:price];
-    [attString addAttribute:NSFontAttributeName value:_FONT_B(14) range:range];
-    return attString;
+//    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
+//    NSRange range = [string rangeOfString:price];
+//    [attString addAttribute:NSFontAttributeName value:_FONT_B(14) range:range];
+    return string;
 }
 
 #pragma 登录

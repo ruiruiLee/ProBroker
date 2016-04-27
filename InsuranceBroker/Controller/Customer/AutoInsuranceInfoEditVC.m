@@ -183,7 +183,7 @@
     self.tfCert.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
     
-    [self.btnReSubmit setTitle:@"上传照片" forState:UIControlStateNormal];
+//    [self.btnReSubmit setTitle:@"上传照片" forState:UIControlStateNormal];
     [self.btnReSubmit addTarget:self action:@selector(btnPhotoPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *bgview = [[UIView alloc] init];
@@ -191,7 +191,7 @@
     bgview.translatesAutoresizingMaskIntoConstraints = NO;
     bgview.backgroundColor = _COLOR(245, 245, 245);
     
-    btnQuote = [[UIButton alloc] init];
+    btnQuote = [[ReactiveButton alloc] init];
     [bgview addSubview:btnQuote];
     if(self.insType == enumInsurance)
         [btnQuote setTitle:@"立即报价" forState:UIControlStateNormal];
@@ -209,6 +209,7 @@
     btnQuote.layer.shadowOpacity = 0.5;
     btnQuote.layer.shadowRadius = 1;
     [btnQuote addTarget:self action:@selector(doBtnCarInsurPlan:) forControlEvents:UIControlEventTouchUpInside];
+    btnQuote.enabled = NO;//初始化为不能点击
     
     self.scrollview.showsHorizontalScrollIndicator = NO;
     
@@ -328,7 +329,7 @@
 {
     if(string == nil || [string length] == 0)
     {
-        [Util showAlertMessage:msg];
+//        [Util showAlertMessage:msg];
         return YES;
     }
     
@@ -349,7 +350,7 @@
         if([Util validateCarNo:carNo] || [self isHasLisence]){
             return YES;
         }else{
-            [Util showAlertMessage:@"请填写正确的车牌号或上传行驶证！"];
+//            [Util showAlertMessage:@"请填写正确的车牌号或上传行驶证！"];
             return NO;
         }
     }
@@ -363,7 +364,7 @@
     if(!self.btnReSubmit.selected){
         if(!self.btnNoNo.selected){
             if(![Util validateCarNo:carNo]){
-                [Util showAlertMessage:@"请填写正确的车牌号或上传行驶证！"];
+//                [Util showAlertMessage:@"请填写正确的车牌号或上传行驶证！"];
                 return result;
             }
         }
@@ -748,7 +749,10 @@
             self.btnReSubmit.selected = NO;
         
         if(model.travelCard1 == nil && ([Util isNilValue:model.carEngineNo] || [Util isNilValue:model.carTypeNo] || [Util isNilValue:model.carShelfNo] || ![Util isNilOrNull:model.carRegTime])){
-            [self.scrollview scrollRectToVisible:CGRectMake(ScreenWidth, 0, ScreenWidth, self.scrollview.frame.size.height) animated:YES];;
+//            [self.scrollview scrollRectToVisible:CGRectMake(ScreenWidth, 0, ScreenWidth, self.scrollview.frame.size.height) animated:YES];
+            [self performSelector:@selector(scrollToInfo) withObject:nil afterDelay:1];
+        }else{
+            [self performSelector:@selector(scrollToImage) withObject:nil afterDelay:0.2];
         }
         
         if(model.carOwnerCard1 != nil){
@@ -795,6 +799,16 @@
         }
     }
     [self isModify];
+}
+
+- (void) scrollToInfo
+{
+    [self.scrollview scrollRectToVisible:CGRectMake(ScreenWidth, 0, ScreenWidth, self.scrollview.frame.size.height) animated:YES];
+}
+
+- (void) scrollToImage
+{
+    [self.scrollview scrollRectToVisible:CGRectMake(0, 0, ScreenWidth, self.scrollview.frame.size.height) animated:YES];
 }
 
 - (NSInteger) getSelectIdxFromArray:(NSString *) comapyId
@@ -1155,6 +1169,12 @@
     else{
 //        [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
         [self setRightBarButtonWithFlag:NO];
+    }
+    
+    if ([self checkInfoFull]) {
+        self.btnQuote.enabled = YES;
+    }else{
+        self.btnQuote.enabled = NO;
     }
     return result;
 }

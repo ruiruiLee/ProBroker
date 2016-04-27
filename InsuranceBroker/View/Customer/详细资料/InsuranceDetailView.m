@@ -13,6 +13,7 @@
 #import "NetWorkHandler+saveOrUpdateCustomerCar.h"
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "SepLineLabel.h"
 
 @implementation InsuranceDetailView
 
@@ -22,19 +23,17 @@
     if(self){
         [self.tableview registerNib:[UINib nibWithNibName:@"InsuranceTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
         self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.lbTitle.text = @"车辆信息";
+        self.lbTitle.text = @"车险资料";
         [self.btnEdit setImage:ThemeImage(@"edit_profile") forState:UIControlStateNormal];
         [self.btnEdit setTitle:@"详情" forState:UIControlStateNormal];
         [self.btnEdit setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];
         self.btnHConstraint.constant = 54;
         
         _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, INTMAX_MAX)];
-//        _footView.backgroundColor = SepLine_color;
         
         UIView *bgview = [[UIView alloc] initWithFrame:CGRectZero];
         [_footView addSubview:bgview];
         bgview.translatesAutoresizingMaskIntoConstraints = NO;
-        bgview.backgroundColor = SepLine_color;
         
         UILabel *lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT_B(15) TextColor:_COLOR(0x66, 0x90, 0xab)];
         [bgview addSubview:lbTitle];
@@ -43,22 +42,39 @@
         _btnShut = [[UIButton alloc] initWithFrame:CGRectZero];
         _btnShut.translatesAutoresizingMaskIntoConstraints = NO;
         [bgview addSubview:_btnShut];
-        _btnShut.titleLabel.font = _FONT(15);
-        [_btnShut setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
-        [_btnShut setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateSelected];
-        [_btnShut setTitle:@"展开" forState:UIControlStateSelected];
-        [_btnShut setTitle:@"关闭" forState:UIControlStateNormal];
+        [_btnShut setImage:ThemeImage(@"info_zhankai") forState:UIControlStateSelected];
+        [_btnShut setImage:ThemeImage(@"info_guanbi") forState:UIControlStateNormal];
         
         UIButton *btnClicked = [[UIButton alloc] initWithFrame:CGRectZero];
         btnClicked.translatesAutoresizingMaskIntoConstraints = NO;
         [bgview addSubview:btnClicked];
         [btnClicked addTarget:self action:@selector(doBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
         
+        SepLineLabel *sepline = [[SepLineLabel alloc] initWithFrame:CGRectZero];
+        [bgview addSubview:sepline];
+        sepline.translatesAutoresizingMaskIntoConstraints = NO;
+        
         _contentView = [[UIView alloc] initWithFrame:CGRectZero];
         _contentView.translatesAutoresizingMaskIntoConstraints = NO;
         [_footView addSubview:_contentView];
         _contentView.backgroundColor = [UIColor whiteColor];
         _contentView.clipsToBounds = YES;
+        
+        
+        UIButton *btnQuote = [[UIButton alloc] init];
+        [self addSubview:btnQuote];
+        [btnQuote setTitle:@"立即\n报价" forState:UIControlStateNormal];
+        btnQuote.translatesAutoresizingMaskIntoConstraints = NO;
+        btnQuote.layer.cornerRadius = 24;
+        btnQuote.backgroundColor = _COLOR(0xff, 0x66, 0x19);
+        btnQuote.titleLabel.font = _FONT_B(14);
+        btnQuote.titleLabel.numberOfLines = 2;
+        btnQuote.titleLabel.textAlignment = NSTextAlignmentCenter;
+        btnQuote.layer.shadowColor = _COLOR(0xff, 0x66, 0x19).CGColor;
+        btnQuote.layer.shadowOffset = CGSizeMake(0, 0);
+        btnQuote.layer.shadowOpacity = 0.5;
+        btnQuote.layer.shadowRadius = 1;
+        [btnQuote addTarget:self action:@selector(doBtnCarInsurPlan:) forControlEvents:UIControlEventTouchUpInside];
         
         lb1 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
         [_contentView addSubview:lb1];
@@ -73,9 +89,10 @@
         lb2.attributedText = [Util getWarningString:@"＊注：客户确认投保后，应保监会规定需要补齐以上所有证件照片方可出单。优快保经纪人将保证所有证件资料仅用于车辆报价或投保，绝不用作其它用途，请放心上传。"];
         lb2.numberOfLines = 0;
         
-        NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, _btnShut, _contentView, lb1, lb2, btnClicked, bgview);
-        [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]->=10-[_btnShut(60)]-8-|" options:0 metrics:nil views:views]];
+        NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, _btnShut, _contentView, lb1, lb2, btnClicked, bgview, sepline, btnQuote);
+        [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=24-[lbTitle]-10-[_btnShut]-24-|" options:0 metrics:nil views:views]];
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnClicked]-20-|" options:0 metrics:nil views:views]];
+        [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[sepline]-24-|" options:0 metrics:nil views:views]];
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[lbTitle]-10-|" options:0 metrics:nil views:views]];
         [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_contentView]-0-|" options:0 metrics:nil views:views]];
         [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[bgview]-0-|" options:0 metrics:nil views:views]];
@@ -84,6 +101,11 @@
         
         [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[bgview(40)]-0-[_contentView]-0-|" options:0 metrics:nil views:views]];
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnClicked(40)]-0-|" options:0 metrics:nil views:views]];
+        [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[sepline(1)]-0-|" options:0 metrics:nil views:views]];
+        
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:btnQuote attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sepline attribute:NSLayoutAttributeBottom multiplier:1 constant:-6]];
         
         vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[lb1]-20-[lb2]-20-|" options:0 metrics:nil views:views];
         [_contentView addConstraints:vConstraint];
@@ -100,6 +122,13 @@
     }
     
     return self;
+}
+
+- (void) doBtnCarInsurPlan:(id) sender
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToPlanCarInsurance)]){
+        [self.delegate NotifyToPlanCarInsurance];
+    }
 }
 
 - (NSMutableAttributedString *) getInsuranceRules:(NSString *) str{

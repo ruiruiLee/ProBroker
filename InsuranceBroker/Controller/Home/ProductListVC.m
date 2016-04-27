@@ -38,12 +38,13 @@
 {
     headerView = [[UIView alloc] initWithFrame:CGRectZero];
     headerView.translatesAutoresizingMaskIntoConstraints = NO;
-    headerView.backgroundColor = [UIColor whiteColor];
+    headerView.backgroundColor = _COLOR(0xf5, 0xf5, 0xf5);
     [self.view addSubview:headerView];
     
     contentView = [[BaseStrategyView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:contentView];
     contentView.translatesAutoresizingMaskIntoConstraints = NO;
+    contentView.parentvc = self;
     
     NSDictionary *views = NSDictionaryOfVariableBindings(headerView, contentView);
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[contentView]-0-|" options:0 metrics:nil views:views]];
@@ -72,11 +73,11 @@
 - (void) initMenus
 {
     if(!menuBar){
-        menuBar = [[LightMenuBar alloc] initWithFrame:CGRectMake(0, 0, 320, 40) andStyle:LightMenuBarStyleItem];
+        menuBar = [[LightMenuBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40) andStyle:LightMenuBarStyleItem];
         menuBar.delegate = self;
         menuBar.bounces = YES;
         menuBar.selectedItemIndex = 0;
-        menuBar.backgroundColor = SepLineColor;
+        menuBar.backgroundColor = _COLOR(0xf5, 0xf5, 0xf5);
         [self.headerView addSubview:menuBar];
     }else{
         [menuBar.menuBarView fillParams];

@@ -21,7 +21,7 @@
     self.logoImage.contentMode = UIViewContentModeScaleAspectFill;
     self.lbContent.preferredMaxLayoutWidth = ScreenWidth - 20 - 20 - 10 - 93;
     
-    self.lbTitle.font = _FONT_B(14);
+    self.lbTitle.font = _FONT_B(15);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

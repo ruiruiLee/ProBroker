@@ -23,6 +23,7 @@
 		86248F0F1CCDF67C00F1B493 /* productAttrModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248F0E1CCDF67C00F1B493 /* productAttrModel.m */; };
 		86248F201CCDFA6A00F1B493 /* ProductListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248F1E1CCDFA6A00F1B493 /* ProductListTableViewCell.m */; };
 		86248F211CCDFA6A00F1B493 /* ProductListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86248F1F1CCDFA6A00F1B493 /* ProductListTableViewCell.xib */; };
+		86248F241CD05A0E00F1B493 /* ReactiveButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248F231CD05A0E00F1B493 /* ReactiveButton.m */; };
 		8625AF7A1C315D6600312B98 /* DeatilTextTableviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625AF781C315D6600312B98 /* DeatilTextTableviewCell.m */; };
 		8625AF7B1C315D6600312B98 /* DeatilTextTableviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8625AF791C315D6600312B98 /* DeatilTextTableviewCell.xib */; };
 		8625AF7E1C3164A700312B98 /* OrderManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625AF7D1C3164A700312B98 /* OrderManagerVC.m */; };
@@ -475,6 +476,8 @@
 		86248F1D1CCDFA6A00F1B493 /* ProductListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListTableViewCell.h; sourceTree = "<group>"; };
 		86248F1E1CCDFA6A00F1B493 /* ProductListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListTableViewCell.m; sourceTree = "<group>"; };
 		86248F1F1CCDFA6A00F1B493 /* ProductListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductListTableViewCell.xib; sourceTree = "<group>"; };
+		86248F221CD05A0E00F1B493 /* ReactiveButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReactiveButton.h; sourceTree = "<group>"; };
+		86248F231CD05A0E00F1B493 /* ReactiveButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReactiveButton.m; sourceTree = "<group>"; };
 		8625AF771C315D6600312B98 /* DeatilTextTableviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeatilTextTableviewCell.h; sourceTree = "<group>"; };
 		8625AF781C315D6600312B98 /* DeatilTextTableviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeatilTextTableviewCell.m; sourceTree = "<group>"; };
 		8625AF791C315D6600312B98 /* DeatilTextTableviewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeatilTextTableviewCell.xib; sourceTree = "<group>"; };
@@ -2053,6 +2056,8 @@
 				868C7CA81C92CFAD00B7617A /* SepLineLabel.m */,
 				86CC8C521CB3D04500362AD0 /* HighNightBgButton.h */,
 				86CC8C531CB3D04500362AD0 /* HighNightBgButton.m */,
+				86248F221CD05A0E00F1B493 /* ReactiveButton.h */,
+				86248F231CD05A0E00F1B493 /* ReactiveButton.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -2983,6 +2988,7 @@
 				86A26E941C4605700073FFFC /* BaseStrategyView.m in Sources */,
 				865066191C21343E00429EAE /* ViewFactory.m in Sources */,
 				8625AF8C1C3256FA00312B98 /* HSepView.m in Sources */,
+				86248F241CD05A0E00F1B493 /* ReactiveButton.m in Sources */,
 				86A26E7C1C4518370073FFFC /* PosterModel.m in Sources */,
 				86A26E6D1C44E2CE0073FFFC /* DetailAccountTableViewCell.m in Sources */,
 				86C3BBF91C2C133C00F98E80 /* InsuranceInfoView.m in Sources */,
