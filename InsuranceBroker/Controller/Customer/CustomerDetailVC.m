@@ -66,7 +66,7 @@
     
     self.title = @"客户资料";
     
-    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
+//    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
     
     [self.headerView.btnPhone addTarget:self action:@selector(doBtnRing:) forControlEvents:UIControlEventTouchUpInside];
     [self.headerView.btnMsg addTarget:self action:@selector(doBtnEmail:) forControlEvents:UIControlEventTouchUpInside];

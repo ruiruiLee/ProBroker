@@ -30,6 +30,7 @@
         self.type = enumShareTypeNo;
         self.shareType = enumNeedInitShareInfoNo;
         self.shareImgArray = @[Share_Icon];
+        _isLoad = false;
     }
     
     return self;
@@ -87,8 +88,8 @@
 
 - (void) NotifyToReSubmitCarInfo:(NSString *) orderId customerId:(NSString *) customerId customerCarId:(NSString *) customerCarId
 {
-    [self.navigationController popToRootViewControllerAnimated:NO];
-    
+//    [self.navigationController popToRootViewControllerAnimated:NO];
+    _isLoad = YES;
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
 //    BaseViewController *vc = delegate.root.selectVC;
     
@@ -121,17 +122,19 @@
 {
     [super viewDidAppear:animated];
     [[IQKeyboardManager sharedManager] setEnable:NO];
-    if(_urlpath != nil){
-        
-        id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:self.urlpath]];
-        if (cacheDatas !=nil) {
-            NSString *datastr = [[NSString alloc] initWithData:cacheDatas encoding:NSUTF8StringEncoding];
-            [ _webview loadHTMLString:datastr baseURL:[NSURL URLWithString:self.urlpath]];
-        }
-       else{
-           NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlpath]];
-             [self addWebCache:request]; // 加缓存
-            [_webview loadRequest:request];
+    if(!_isLoad){
+        if(_urlpath != nil){
+            
+            id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:self.urlpath]];
+            if (cacheDatas !=nil) {
+                NSString *datastr = [[NSString alloc] initWithData:cacheDatas encoding:NSUTF8StringEncoding];
+                [ _webview loadHTMLString:datastr baseURL:[NSURL URLWithString:self.urlpath]];
+            }
+            else{
+                NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlpath]];
+                [self addWebCache:request]; // 加缓存
+                [_webview loadRequest:request];
+            }
         }
     }
 }

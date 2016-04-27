@@ -62,7 +62,7 @@
         
         
         UIButton *btnQuote = [[UIButton alloc] init];
-        [self addSubview:btnQuote];
+        [_footView addSubview:btnQuote];
         [btnQuote setTitle:@"立即\n报价" forState:UIControlStateNormal];
         btnQuote.translatesAutoresizingMaskIntoConstraints = NO;
         btnQuote.layer.cornerRadius = 24;
@@ -91,7 +91,7 @@
         
         NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, _btnShut, _contentView, lb1, lb2, btnClicked, bgview, sepline, btnQuote);
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=24-[lbTitle]-10-[_btnShut]-24-|" options:0 metrics:nil views:views]];
-        [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnClicked]-20-|" options:0 metrics:nil views:views]];
+        [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90-[btnClicked]-20-|" options:0 metrics:nil views:views]];
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[sepline]-24-|" options:0 metrics:nil views:views]];
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[lbTitle]-10-|" options:0 metrics:nil views:views]];
         [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_contentView]-0-|" options:0 metrics:nil views:views]];
@@ -103,9 +103,9 @@
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnClicked(40)]-0-|" options:0 metrics:nil views:views]];
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[sepline(1)]-0-|" options:0 metrics:nil views:views]];
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views]];
-        [self addConstraint:[NSLayoutConstraint constraintWithItem:btnQuote attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sepline attribute:NSLayoutAttributeBottom multiplier:1 constant:-6]];
+        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views]];
+        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views]];
+        [_footView addConstraint:[NSLayoutConstraint constraintWithItem:btnQuote attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sepline attribute:NSLayoutAttributeBottom multiplier:1 constant:-6]];
         
         vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[lb1]-20-[lb2]-20-|" options:0 metrics:nil views:views];
         [_contentView addConstraints:vConstraint];
