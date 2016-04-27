@@ -27,23 +27,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"系统推送客户";
+    self.title = @"新的客户";
     [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 //    NSString *title = @"系统通过大数据为您筛选推送优质客户\n您未接收的客户，系统将在10天内自动收回";
-    btnInfotips = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, [Util getHeightByWidth:3 height:1 nwidth:ScreenWidth])];
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-    NewUserModel *model = appdelegate.customerBanner;
-    if( model == nil || model.imgUrl == nil){
-        btnInfotips.frame = CGRectMake(0, 0, ScreenWidth, 0);
-    }
-    else{
-        [btnInfotips sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] forState:UIControlStateNormal];
-//        if(!model.isRedirect)
-        btnInfotips.userInteractionEnabled = NO;
-        [btnInfotips addTarget:self action:@selector(doBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    
-    self.pulltable.tableHeaderView = btnInfotips;
+//    btnInfotips = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, [Util getHeightByWidth:3 height:1 nwidth:ScreenWidth])];
+//    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+//    NewUserModel *model = appdelegate.customerBanner;
+//    if( model == nil || model.imgUrl == nil){
+//        btnInfotips.frame = CGRectMake(0, 0, ScreenWidth, 0);
+//    }
+//    else{
+//        [btnInfotips sd_setImageWithURL:[NSURL URLWithString:model.imgUrl] forState:UIControlStateNormal];
+////        if(!model.isRedirect)
+//        btnInfotips.userInteractionEnabled = NO;
+//        [btnInfotips addTarget:self action:@selector(doBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    
+//    self.pulltable.tableHeaderView = btnInfotips;
 }
 
 - (void) doBtnClicked:(UIButton *)sender

@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="367" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="367" height="70"/>
+                <rect key="frame" x="0.0" y="0.0" width="367" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="customer_head" translatesAutoresizingMaskIntoConstraints="NO" id="mKk-9c-fjY">
@@ -29,8 +29,8 @@
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="12" id="13b-gJ-0da"/>
-                            <constraint firstAttribute="width" constant="12" id="JT6-Ks-cPQ"/>
+                            <constraint firstAttribute="height" constant="16" id="13b-gJ-0da"/>
+                            <constraint firstAttribute="width" constant="16" id="JT6-Ks-cPQ"/>
                         </constraints>
                     </imageView>
                     <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97g-E7-tR1">
@@ -111,7 +111,7 @@
                     <constraint firstItem="1hZ-KC-djp" firstAttribute="top" secondItem="2IT-pt-0Nn" secondAttribute="bottom" constant="4" id="Lw5-dr-0cY"/>
                     <constraint firstAttribute="bottomMargin" secondItem="mKk-9c-fjY" secondAttribute="bottom" constant="6" id="SeB-5I-826"/>
                     <constraint firstItem="97g-E7-tR1" firstAttribute="top" secondItem="mKk-9c-fjY" secondAttribute="top" id="V2k-vx-6FN"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="OT2-Kc-hMz" secondAttribute="bottom" constant="2" id="dl3-WV-Dpy"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="OT2-Kc-hMz" secondAttribute="bottom" id="dl3-WV-Dpy"/>
                     <constraint firstItem="2IT-pt-0Nn" firstAttribute="leading" secondItem="97g-E7-tR1" secondAttribute="trailing" constant="10" id="g3N-eS-SJV"/>
                     <constraint firstItem="97g-E7-tR1" firstAttribute="bottom" secondItem="mKk-9c-fjY" secondAttribute="bottom" id="g4E-rN-quK"/>
                     <constraint firstItem="1hZ-KC-djp" firstAttribute="trailing" secondItem="2IT-pt-0Nn" secondAttribute="trailing" id="i0B-Gt-I7z"/>
@@ -120,7 +120,7 @@
                     <constraint firstItem="mKk-9c-fjY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="srZ-c8-cF5"/>
                     <constraint firstItem="2IT-pt-0Nn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="tp6-d8-Lic"/>
                     <constraint firstItem="mKk-9c-fjY" firstAttribute="bottom" secondItem="8Ic-sh-FZs" secondAttribute="bottom" id="wau-pK-wZC"/>
-                    <constraint firstItem="OT2-Kc-hMz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="38" id="zaG-sJ-I6x"/>
+                    <constraint firstItem="OT2-Kc-hMz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="36" id="zaG-sJ-I6x"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
@@ -141,6 +141,6 @@
     </objects>
     <resources>
         <image name="customer_head" width="40" height="40"/>
-        <image name="push_style_ico" width="12" height="12"/>
+        <image name="push_style_ico" width="16" height="16"/>
     </resources>
 </document>

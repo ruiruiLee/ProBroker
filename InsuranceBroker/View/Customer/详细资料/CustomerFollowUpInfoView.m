@@ -21,7 +21,9 @@
         [self.tableview registerNib:[UINib nibWithNibName:@"CustomerFollowUpTableCell" bundle:nil] forCellReuseIdentifier:@"cell"];
         self.lbTitle.text = @"跟进信息";
         [self.btnEdit setImage:ThemeImage(@"add_icon") forState:UIControlStateNormal];
-        self.btnHConstraint.constant = 30;
+        [self.btnEdit setTitle:@"新增" forState:UIControlStateNormal];
+        [self.btnEdit setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];
+        self.btnHConstraint.constant = 54;
         
         footer = [[FooterView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
         self.tableview.tableFooterView = footer;

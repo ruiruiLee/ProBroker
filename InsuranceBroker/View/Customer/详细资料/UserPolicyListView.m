@@ -26,7 +26,10 @@
         self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.lbTitle.text = @"保单信息";
         [self.btnEdit setImage:ThemeImage(@"refresh") forState:UIControlStateNormal];
-        self.btnHConstraint.constant = 30;
+        [self.btnEdit setTitle:@"刷新" forState:UIControlStateNormal];
+        [self.btnEdit setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];
+
+        self.btnHConstraint.constant = 54;
         
         footer = [[FooterView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
         self.tableview.tableFooterView = footer;
