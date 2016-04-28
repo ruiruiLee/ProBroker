@@ -11,9 +11,6 @@
 		861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF93D1CA4E40D00FB58B1 /* RatioMapsModel.m */; };
 		861DF9411CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF9401CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m */; };
 		86248EE11CBF7E1600F1B493 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EE01CBF7E1600F1B493 /* BaseNavigationController.m */; };
-		86248EE51CBF82BE00F1B493 /* UserFeedbackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EE41CBF82BE00F1B493 /* UserFeedbackVC.m */; };
-		86248EE91CC0A42E00F1B493 /* LCUserFeedbackThread+objectId.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EE81CC0A42E00F1B493 /* LCUserFeedbackThread+objectId.m */; };
-		86248EEC1CC0C9E000F1B493 /* UserFeedbackImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EEB1CC0C9E000F1B493 /* UserFeedbackImageVC.m */; };
 		86248EF21CC6220E00F1B493 /* ProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EF11CC6220E00F1B493 /* ProductListVC.m */; };
 		86248EF91CC7776000F1B493 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86248EF81CC7776000F1B493 /* HomeVC.xib */; };
 		86248EFE1CC9FDFF00F1B493 /* SepLineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EFD1CC9FDFF00F1B493 /* SepLineButton.m */; };
@@ -453,12 +450,6 @@
 		861DF9401CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryUserTeamSellTj.m"; sourceTree = "<group>"; };
 		86248EDF1CBF7E1600F1B493 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		86248EE01CBF7E1600F1B493 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
-		86248EE31CBF82BE00F1B493 /* UserFeedbackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFeedbackVC.h; sourceTree = "<group>"; };
-		86248EE41CBF82BE00F1B493 /* UserFeedbackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFeedbackVC.m; sourceTree = "<group>"; };
-		86248EE71CC0A42E00F1B493 /* LCUserFeedbackThread+objectId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "LCUserFeedbackThread+objectId.h"; sourceTree = "<group>"; };
-		86248EE81CC0A42E00F1B493 /* LCUserFeedbackThread+objectId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "LCUserFeedbackThread+objectId.m"; sourceTree = "<group>"; };
-		86248EEA1CC0C9E000F1B493 /* UserFeedbackImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserFeedbackImageVC.h; sourceTree = "<group>"; };
-		86248EEB1CC0C9E000F1B493 /* UserFeedbackImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserFeedbackImageVC.m; sourceTree = "<group>"; };
 		86248EF01CC6220E00F1B493 /* ProductListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListVC.h; sourceTree = "<group>"; };
 		86248EF11CC6220E00F1B493 /* ProductListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListVC.m; sourceTree = "<group>"; };
 		86248EF81CC7776000F1B493 /* HomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeVC.xib; sourceTree = "<group>"; };
@@ -1269,17 +1260,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		86248EE61CC0A41100F1B493 /* feedback */ = {
-			isa = PBXGroup;
-			children = (
-				86248EE71CC0A42E00F1B493 /* LCUserFeedbackThread+objectId.h */,
-				86248EE81CC0A42E00F1B493 /* LCUserFeedbackThread+objectId.m */,
-				86248EEA1CC0C9E000F1B493 /* UserFeedbackImageVC.h */,
-				86248EEB1CC0C9E000F1B493 /* UserFeedbackImageVC.m */,
-			);
-			path = feedback;
-			sourceTree = "<group>";
-		};
 		86248F051CCDB9FD00F1B493 /* LightMenuBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1398,7 +1378,6 @@
 		865065B61C1EA2D000429EAE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				86248EE61CC0A41100F1B493 /* feedback */,
 				86C3BB601C242A0B00F98E80 /* Customer */,
 				86C3BB611C242A0B00F98E80 /* Home */,
 				86C3BB621C242A0B00F98E80 /* UserCenter */,
@@ -2170,8 +2149,6 @@
 				8625AFEE1C38FF9E00312B98 /* IncomeWithdrawVC.xib */,
 				8625AFF11C391F2900312B98 /* BindBankCardVC.h */,
 				8625AFF21C391F2900312B98 /* BindBankCardVC.m */,
-				86248EE31CBF82BE00F1B493 /* UserFeedbackVC.h */,
-				86248EE41CBF82BE00F1B493 /* UserFeedbackVC.m */,
 			);
 			path = UserCenter;
 			sourceTree = "<group>";
@@ -3050,7 +3027,6 @@
 				8625AF7E1C3164A700312B98 /* OrderManagerVC.m in Sources */,
 				8625B0091C3B9CBE00312B98 /* NetWorkHandler+saveOrUpdateCustomer.m in Sources */,
 				86A505031C5258930032A901 /* MyJSInterface.m in Sources */,
-				86248EE51CBF82BE00F1B493 /* UserFeedbackVC.m in Sources */,
 				8625B0271C3D1E4000312B98 /* NetWorkHandler+queryForCustomerCarInfo.m in Sources */,
 				868C7CB41C96546700B7617A /* BaseLineView.m in Sources */,
 				86248F011CCA0B0E00F1B493 /* NetWorkHandler+queryForProductAttrPageList.m in Sources */,
@@ -3075,7 +3051,6 @@
 				86D3D99A1CBBC50200276AC0 /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
 				86FC492A1C756ECA0031B435 /* SetTeamLeaderPhoneView.m in Sources */,
 				865065BD1C1EB1ED00429EAE /* UINavigationBar+Awesome.m in Sources */,
-				86248EE91CC0A42E00F1B493 /* LCUserFeedbackThread+objectId.m in Sources */,
 				86A26E851C4528A40073FFFC /* NetWorkHandler+announcement.m in Sources */,
 				86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */,
 				86A26E881C452A5B0073FFFC /* AnnouncementModel.m in Sources */,
@@ -3225,7 +3200,6 @@
 				861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */,
 				86C3BC1B1C2CE0EB00F98E80 /* CustomerFollowUpInfoView.m in Sources */,
 				86A26EA01C4666850073FFFC /* InsurOffersInfoModel.m in Sources */,
-				86248EEC1CC0C9E000F1B493 /* UserFeedbackImageVC.m in Sources */,
 				86493FFC1C745E1300121BD1 /* SJAvatarBrowser.m in Sources */,
 				86A5041F1C4CDCB30032A901 /* GMDCircleLoader.m in Sources */,
 				8654CA5A1C31243B00411C54 /* NSString+MD5.m in Sources */,
