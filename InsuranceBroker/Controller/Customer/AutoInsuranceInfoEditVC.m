@@ -1102,7 +1102,7 @@
     BOOL flag1 = [self checkValueChange:name text:model.carOwnerName];
 //    if(flag1 && [Util isNilValue:model.carOwnerName])
 //        result = flag1;
-    if(flag1 && [Util isNilValue:model.carOwnerName] && [self checkValueChange:self.customerModel.customerName text:model.carOwnerName]){
+    if(flag1 && ![Util isNilValue:model.carOwnerName] && [self checkValueChange:self.customerModel.customerName text:name]){
         result = flag1;
     }
     
