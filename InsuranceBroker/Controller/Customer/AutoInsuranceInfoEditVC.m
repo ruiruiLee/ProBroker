@@ -589,17 +589,17 @@
             [Util openPhotoLibrary:self allowEdit:NO completion:nil];
         }else{
             NSMutableArray *array = [[NSMutableArray alloc] init];
+            CarInfoModel *model = self.customerModel.carInfo;
             if(self.type == enumAddPhotoTypeLisence){
-                [array addObject:[self imageLisence]];
+                [array addObject:model.travelCard1];
             }
             else{
-                [array addObject:[self imageCert]];
+                [array addObject:model.carOwnerCard1];
             }
             
             _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
             [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
-            //        [_imageList addImagesURL:array withSmallImage:nil];
-            [_imageList addImages:array];
+            [_imageList addImagesURL:array withSmallImage:nil];
             [self.view.window addSubview:_imageList];
         }
         
@@ -658,9 +658,9 @@
     [self resignFirstResponder];
     
     UIActionSheet *ac;
-    
+    CarInfoModel *model = self.customerModel.carInfo;
     if(sender == self.btnCert){
-        if([self isHasCert]){
+        if([Util isNilValue:model.carOwnerCard1]){
             ac = [[UIActionSheet alloc] initWithTitle:@""
                                              delegate:(id)self
                                     cancelButtonTitle:@"取消"
@@ -679,7 +679,7 @@
         }
     }
     else{
-        if([self isHasLisence]){
+        if([Util isNilValue:model.travelCard1]){
             ac = [[UIActionSheet alloc] initWithTitle:@""
                                              delegate:(id)self
                                     cancelButtonTitle:@"取消"
@@ -743,20 +743,21 @@
         self.tfCert.text = model.carOwnerCard;
         
         if(model.travelCard1 != nil){
-            [self.btnReSubmit sd_setImageWithURL:[NSURL URLWithString:model.travelCard1] forState:UIControlStateSelected];
+            CGSize size = self.btnReSubmit.frame.size;
+            [self.btnReSubmit sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.travelCard1, (int)size.width, (int)size.height)] forState:UIControlStateSelected];
             self.btnReSubmit.selected = YES;
         }else
             self.btnReSubmit.selected = NO;
         
         if(model.travelCard1 == nil && ([Util isNilValue:model.carEngineNo] || [Util isNilValue:model.carTypeNo] || [Util isNilValue:model.carShelfNo] || ![Util isNilOrNull:model.carRegTime])){
-//            [self.scrollview scrollRectToVisible:CGRectMake(ScreenWidth, 0, ScreenWidth, self.scrollview.frame.size.height) animated:YES];
             [self performSelector:@selector(scrollToInfo) withObject:nil afterDelay:1];
         }else{
             [self performSelector:@selector(scrollToImage) withObject:nil afterDelay:0.2];
         }
         
         if(model.carOwnerCard1 != nil){
-            [self.btnCert sd_setImageWithURL:[NSURL URLWithString:model.carOwnerCard1] forState:UIControlStateSelected];
+            CGSize size = self.btnCert.frame.size;
+            [self.btnCert sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.carOwnerCard1, (int)size.width, (int)size.height)] forState:UIControlStateSelected];
             self.btnCert.selected = YES;
         }else{
             self.btnCert.selected = NO;

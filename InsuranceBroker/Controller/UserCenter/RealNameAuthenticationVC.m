@@ -40,6 +40,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"实名认证";
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
     
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     
@@ -49,18 +60,16 @@
     self.tfCertNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
     if(model.cardNumberImg1 != nil && ![model.cardNumberImg1 isKindOfClass:[NSNull class]]){
-//        [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg1] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert")];
-//      imgCer1 = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.cardNumberImg1]]];
-        [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg1] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        CGSize size = self.btnCert1.frame.size;
+        [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.cardNumberImg1, (int)size.width, (int)size.height)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             imgCer1 = image;
         }];
     }else{
         
     }
     if(model.cardNumberImg2 != nil && ![model.cardNumberImg2 isKindOfClass:[NSNull class]]){
-//        [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg2] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert")];
-//         imgCer2 = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:model.cardNumberImg2]]];
-        [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:model.cardNumberImg2] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        CGSize size = self.btnCert1.frame.size;
+        [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.cardNumberImg2, (int)size.width, (int)size.height)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             imgCer2 = image;
         }];
     }else{
@@ -86,8 +95,6 @@
         self.btnSubmit.hidden = YES;
         self.tfName.userInteractionEnabled = NO;
         self.tfCertNo.userInteractionEnabled = NO;
-//        self.btnCert1.userInteractionEnabled = NO;
-//        self.btnCert2.userInteractionEnabled = NO;
         self.submitVConstraint.constant = 0;
         self.submitOffsetVConstraint.constant = 0;
     }
@@ -99,22 +106,10 @@
         self.btnSubmit.hidden = YES;
         self.tfName.userInteractionEnabled = NO;
         self.tfCertNo.userInteractionEnabled = NO;
-//        self.btnCert1.userInteractionEnabled = NO;
-//        self.btnCert2.userInteractionEnabled = NO;
         self.submitVConstraint.constant = 0;
         self.submitOffsetVConstraint.constant = 0;
     }
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 - (void) doBtnSubmit:(UIButton *)sender
