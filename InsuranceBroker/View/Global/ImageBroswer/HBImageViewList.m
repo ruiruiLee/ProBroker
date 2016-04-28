@@ -73,6 +73,29 @@
 
 }
 
+-(void)addImageObjs:(NSArray*)objects
+{
+    _images = objects;
+    _imageViews=[NSMutableArray array];
+    NSInteger count=[_images count];
+    self.contentSize=CGSizeMake(self.frame.size.width*count, self.frame.size.height);
+    for(int i=0;i<count;i++)
+    {
+        HBImageScroller * scroll=[[HBImageScroller alloc]initWithFrame:CGRectMake(self.frame.size.width*i,0 , self.bounds.size.width,self.bounds.size.height)];
+        [self addSubview:scroll];
+        id obj = [_images objectAtIndex:i];
+        if([obj isKindOfClass:[UIImage class]]){
+            [scroll setImage:obj];
+        }else{
+            [scroll setImageWithURL:obj andSmallImage:nil];
+        }
+        
+        [_imageViews addObject:scroll];
+        [scroll addTarget:self tapOnceAction:@selector(tapImageAction:)];
+    }
+    _pageControl.numberOfPages=count;
+}
+
 -(void)addImagesURL:(NSArray*)urls withSmallImage:(NSArray*)images
 {
     _imageViews=[NSMutableArray array];

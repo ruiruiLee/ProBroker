@@ -591,15 +591,22 @@
             NSMutableArray *array = [[NSMutableArray alloc] init];
             CarInfoModel *model = self.customerModel.carInfo;
             if(self.type == enumAddPhotoTypeLisence){
-                [array addObject:model.travelCard1];
+                if(newLisence)
+                    [array addObject:newLisence];
+                else
+                    [array addObject:model.travelCard1];
             }
             else{
-                [array addObject:model.carOwnerCard1];
+                if(newCert)
+                    [array addObject:newCert];
+                else
+                    [array addObject:model.carOwnerCard1];
             }
             
             _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
             [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
-            [_imageList addImagesURL:array withSmallImage:nil];
+//            [_imageList addImagesURL:array withSmallImage:nil];
+            [_imageList addImageObjs:array];
             [self.view.window addSubview:_imageList];
         }
         
@@ -660,7 +667,7 @@
     UIActionSheet *ac;
     CarInfoModel *model = self.customerModel.carInfo;
     if(sender == self.btnCert){
-        if([Util isNilValue:model.carOwnerCard1]){
+        if([Util isNilValue:model.carOwnerCard1] || newCert){
             ac = [[UIActionSheet alloc] initWithTitle:@""
                                              delegate:(id)self
                                     cancelButtonTitle:@"取消"
@@ -679,7 +686,7 @@
         }
     }
     else{
-        if([Util isNilValue:model.travelCard1]){
+        if([Util isNilValue:model.travelCard1] || newLisence){
             ac = [[UIActionSheet alloc] initWithTitle:@""
                                              delegate:(id)self
                                     cancelButtonTitle:@"取消"

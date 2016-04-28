@@ -39,4 +39,6 @@
 
 -(void)addTarget:(id)target tapOnceAction:(SEL)action; //添加单击事件的委托
 
+-(void)addImageObjs:(NSArray*)objects;
+
 @end

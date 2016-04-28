@@ -20,6 +20,8 @@ typedef enum : NSUInteger {
     HBImageViewList *_imageList;
     UIImage * imgCer1;
     UIImage * imgCer2;
+    UIImage * newimgCer1;
+    UIImage * newimgCer2;
 }
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewHConstraint;

@@ -12,6 +12,8 @@
 #import "UIButton+WebCache.h"
 #import "NetWorkHandler+modifyUserInfo.h"
 
+#define imageSize CGSizeMake(200, 120)
+
 @interface RealNameAuthenticationVC ()
 {
     NSString *cert1path;
@@ -40,6 +42,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"实名认证";
+    
+    [self initData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,7 +55,11 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-    
+
+}
+
+- (void) initData
+{
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     
     self.tfName.text = model.realName;
@@ -60,16 +68,14 @@
     self.tfCertNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
     if(model.cardNumberImg1 != nil && ![model.cardNumberImg1 isKindOfClass:[NSNull class]]){
-        CGSize size = self.btnCert1.frame.size;
-        [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.cardNumberImg1, (int)size.width, (int)size.height)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.cardNumberImg1, (int)imageSize.width, (int)imageSize.height)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             imgCer1 = image;
         }];
     }else{
         
     }
     if(model.cardNumberImg2 != nil && ![model.cardNumberImg2 isKindOfClass:[NSNull class]]){
-        CGSize size = self.btnCert1.frame.size;
-        [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.cardNumberImg2, (int)size.width, (int)size.height)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.cardNumberImg2, (int)imageSize.width, (int)imageSize.height)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             imgCer2 = image;
         }];
     }else{
@@ -109,7 +115,6 @@
         self.submitVConstraint.constant = 0;
         self.submitOffsetVConstraint.constant = 0;
     }
-
 }
 
 - (void) doBtnSubmit:(UIButton *)sender
@@ -195,16 +200,26 @@
         if(buttonIndex == 0){
             NSMutableArray *array = [[NSMutableArray alloc] init];
 
-            if(cert1path)
-                [array addObject:cert1path];
-            if(cert2path)
-                [array addObject:cert2path];
+            if(newimgCer1 ){
+                [array addObject:newimgCer1];
+            }else{
+                if(cert1path)
+                    [array addObject:cert1path];
+            }
+            
+            if(newimgCer2 ){
+                [array addObject:newimgCer2];
+            }else{
+                if(cert2path)
+                    [array addObject:cert2path];
+            }
 
             
             _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
             [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
-            [_imageList addImagesURL:array withSmallImage:nil];
-//            [_imageList addImages:array];
+//            [_imageList addImagesURL:array withSmallImage:nil];
+            [_imageList addImageObjs:array];
+            
             [self.view.window addSubview:_imageList];
             if(currentcertType == enumCertType1){
                 [_imageList setIndex:0];
@@ -269,10 +284,12 @@
         image = [Util scaleToSize:image scaledToSize:CGSizeMake(1500, 1500)];
         if(currentcertType == enumCertType1){
             imgCer1 = image;
+            newimgCer1 = image;
             [self.btnCert1 setImage: image forState:UIControlStateNormal];
         }
         else{
             imgCer2 = image;
+            newimgCer2 = image;
             [self.btnCert2 setImage:image forState:UIControlStateNormal];
         }
     }];
@@ -302,7 +319,15 @@
                                         otherButtonTitles:@"查看原图", @"从相册选取", @"拍照",nil];
             }
             ac.tag = 1001;
-        }else{
+        }else if (newimgCer1){
+            ac = [[UIActionSheet alloc] initWithTitle:@""
+                                             delegate:(id)self
+                                    cancelButtonTitle:@"取消"
+                               destructiveButtonTitle:nil
+                                    otherButtonTitles:@"查看原图", @"从相册选取", @"拍照",nil];
+            ac.tag = 1001;
+        }
+        else{
             ac = [[UIActionSheet alloc] initWithTitle:@""
                                              delegate:(id)self
                                     cancelButtonTitle:@"取消"
@@ -328,6 +353,13 @@
                                    destructiveButtonTitle:nil
                                         otherButtonTitles:@"查看原图", @"从相册选取", @"拍照",nil];
             }
+            ac.tag = 1001;
+        }else if (newimgCer2){
+            ac = [[UIActionSheet alloc] initWithTitle:@""
+                                             delegate:(id)self
+                                    cancelButtonTitle:@"取消"
+                               destructiveButtonTitle:nil
+                                    otherButtonTitles:@"查看原图", @"从相册选取", @"拍照",nil];
             ac.tag = 1001;
         }else{
             ac = [[UIActionSheet alloc] initWithTitle:@""
