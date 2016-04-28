@@ -32,10 +32,6 @@ Copyright 2015 LeanCloud, Inc. See https://leancloud.cn/terms.html
 
 Copyright 2015 LeanCloud, Inc. See https://leancloud.cn/terms.html
 
-## LeanCloudFeedback
-
-Copyright 2015 LeanCloud, Inc. See https://leancloud.cn/terms.html
-
 ## Mantle
 
 **Copyright (c) GitHub, Inc.**
