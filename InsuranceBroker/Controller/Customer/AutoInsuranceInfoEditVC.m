@@ -1100,8 +1100,11 @@
     
     NSString *name = self.tfName.text;
     BOOL flag1 = [self checkValueChange:name text:model.carOwnerName];
-    if(flag1 && [Util isNilValue:model.carOwnerName])
+//    if(flag1 && [Util isNilValue:model.carOwnerName])
+//        result = flag1;
+    if(flag1 && [Util isNilValue:model.carOwnerName] && [self checkValueChange:self.customerModel.customerName text:model.carOwnerName]){
         result = flag1;
+    }
     
     NSString *cert = self.tfCert.text;
     BOOL flag = [self checkValueChange:cert text:model.carOwnerCard];
