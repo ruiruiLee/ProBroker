@@ -10,8 +10,9 @@
 #import "NetWorkHandler+queryForProductAttrPageList.h"
 #import "define.h"
 #import "DictModel.h"
+#import "productAttrModel.h"
 
-@interface ProductListVC ()
+@interface ProductListVC ()<BaseStrategyViewDelegate>
 
 
 @property (nonatomic, strong)  NSArray *dataList;
@@ -43,6 +44,7 @@
     
     contentView = [[BaseStrategyView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:contentView];
+    contentView.delegate = self;
     contentView.translatesAutoresizingMaskIntoConstraints = NO;
     contentView.parentvc = self;
     
@@ -90,8 +92,8 @@
         [self.productList addObject:array];
     }
     
-    DictModel *model = [self.dataList objectAtIndex:menuBar.selectedItemIndex];
-    [contentView refreshAndReloadData:model.dictValue list:[self.productList objectAtIndex:menuBar.selectedItemIndex]];
+//    DictModel *model = [self.dataList objectAtIndex:menuBar.selectedItemIndex];
+//    [contentView refreshAndReloadData:model.dictValue list:[self.productList objectAtIndex:menuBar.selectedItemIndex]];
     
 }
 
@@ -187,5 +189,17 @@
 }
 
 #endif
+
+- (void) NotifyItemSelectIndex:(productAttrModel*) m view:(BaseStrategyView *) view
+{
+    WebViewController *web = [IBUIFactory CreateWebViewController];
+    web.title = m.productTitle;
+    web.type = enumShareTypeShare;
+    if(m.productImg != nil)
+        web.shareImgArray = [NSArray arrayWithObject:m.productImg];
+    [self.navigationController pushViewController:web animated:YES];
+    [web loadHtmlFromUrlWithUserId:m.clickAddr];
+
+}
 
 @end

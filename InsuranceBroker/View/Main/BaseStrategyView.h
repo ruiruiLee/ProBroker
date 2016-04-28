@@ -11,6 +11,15 @@
 
 #import "NetWorkHandler.h"
 
+@class BaseStrategyView;
+@class productAttrModel;
+
+@protocol BaseStrategyViewDelegate <NSObject>
+
+- (void) NotifyItemSelectIndex:(productAttrModel*) model view:(BaseStrategyView *) view;
+
+@end
+
 @interface BaseStrategyView : UIView <PullTableViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSString *category;
@@ -29,6 +38,8 @@
 @property (nonatomic, weak) UIViewController *parentvc;
 
 @property (nonatomic, strong) NetWorkHandler *handler;
+
+@property (nonatomic, assign) id<BaseStrategyViewDelegate> delegate;
 
 - (void) initSubViews;
 

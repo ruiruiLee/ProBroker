@@ -20,6 +20,7 @@
 @implementation BaseStrategyView
 @synthesize pulltable;
 @synthesize imgWithNoData;
+@synthesize delegate;
 
 
 - (id) initWithFrame:(CGRect)frame
@@ -153,6 +154,11 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if(delegate && [delegate respondsToSelector:@selector(NotifyItemSelectIndex:view:)]){
+        productAttrModel *model = [self.data objectAtIndex:indexPath.row];
+        [self.delegate NotifyItemSelectIndex:model view:self];
+    }
 //    NewsModel *model = [self.data objectAtIndex:indexPath.row];
 //    if(model.isRedirect){
 //        WebViewController *web = [IBUIFactory CreateWebViewController];
