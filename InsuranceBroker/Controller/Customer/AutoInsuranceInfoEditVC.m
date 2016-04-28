@@ -356,7 +356,7 @@
     }
     
     BOOL isCarInfo = NO;
-    if(self.btnReSubmit.selected || ([self isNilValue:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && ([self isNilValue:carNo] || self.btnNoNo.selected))){
+    if(self.btnReSubmit.selected || ([self isNilValue:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && (([self isNilValue:carNo] && [Util validateCarNo:carNo]) || self.btnNoNo.selected))){
         isCarInfo = YES;
         return YES;
     }
@@ -1098,10 +1098,11 @@
     
     result = isCertModify;
     
-//    NSString *name = self.tfName.text;
-//    BOOL flag = [self checkValueChange:name text:model.carOwnerName];
-//    if(flag)
-//        result = flag;
+    NSString *name = self.tfName.text;
+    BOOL flag1 = [self checkValueChange:name text:model.carOwnerName];
+    if(flag1 && [Util isNilValue:model.carOwnerName])
+        result = flag1;
+    
     NSString *cert = self.tfCert.text;
     BOOL flag = [self checkValueChange:cert text:model.carOwnerCard];
     if(flag)

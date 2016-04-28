@@ -20,7 +20,6 @@
 #import "AppDelegate.h"
 #import "MyTeamInfoVC.h"
 #import "ProductListVC.h"
-//#import "SetTeamLeaderPhoneView.h"
 
 @interface HomeVC ()<MJBannnerPlayerDeledage>
 {
