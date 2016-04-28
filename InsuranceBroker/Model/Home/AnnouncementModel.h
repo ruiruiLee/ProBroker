@@ -18,5 +18,7 @@
 @property (nonatomic, strong) NSString *imgUrl;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, assign) BOOL isRedirect;
+@property (nonatomic, strong) NSString *bgImg;
+@property (nonatomic, strong) NSString *bannerImg;
 
 @end

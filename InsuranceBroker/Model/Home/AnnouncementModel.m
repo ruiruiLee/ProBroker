@@ -35,6 +35,8 @@
     model.imgUrl = [dictionary objectForKey:@"imgUrl"];
     model.url = [dictionary objectForKey:@"url"];
     model.isRedirect = [[dictionary objectForKey:@"isRedirect"] boolValue];
+    model.bgImg = [dictionary objectForKey:@"bgImg"];
+    model.bannerImg = [dictionary objectForKey:@"bannerImg"];
     
     return model;
 }

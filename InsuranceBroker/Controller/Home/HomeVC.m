@@ -26,8 +26,8 @@
     AppDelegate *appdelegate;
 }
 
-@property (nonatomic, strong)  NSString *customerService;
-
+@property (nonatomic, strong) NSString *customerService;
+@property (nonatomic, strong) NSArray *infoArray;
 @end
 
 @implementation HomeVC
@@ -43,6 +43,7 @@
 @synthesize btnMessage;
 @synthesize imgBroker;
 @synthesize imgService;
+@synthesize btnCarLife;
 
 - (void) dealloc
 {
@@ -195,11 +196,16 @@
     
     btnDetail = [ViewFactory CreateButtonWithImage:imgNormal];
     [infoBg addSubview:btnDetail];
-    [btnDetail setSepLineType:NO right:NO top:YES bottom:NO];
+    [btnDetail setSepLineType:NO right:YES top:YES bottom:NO];
     [btnDetail addTarget:self action:@selector(doBtnDuSheBaoXian:) forControlEvents:UIControlEventTouchUpInside];
     
+    btnCarLife = [ViewFactory CreateButtonWithImage:imgNormal];
+    [infoBg addSubview:btnCarLife];
+    [btnCarLife setSepLineType:NO right:NO top:YES bottom:NO];
+    [btnCarLife addTarget:self action:@selector(doBtnCarLife:) forControlEvents:UIControlEventTouchUpInside];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(scroll, bgview, scrollview, titleBg, headline, contenBg, newUserBg, infoBg, btnCalculate, btnTeams, btnInvite, btnMyService, sepView1, sepView2, sepView3, btnProduct, btnPlan, btnBroker, btnService, btnNewUser, btnDetail, imgBroker, imgService);
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(scroll, bgview, scrollview, titleBg, headline, contenBg, newUserBg, infoBg, btnCalculate, btnTeams, btnInvite, btnMyService, sepView1, sepView2, sepView3, btnProduct, btnPlan, btnBroker, btnService, btnNewUser, btnDetail, imgBroker, imgService, btnCarLife);
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scroll]-0-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scroll]-0-|" options:0 metrics:nil views:views]];
@@ -214,11 +220,11 @@
     [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[contenBg]-0-|" options:0 metrics:nil views:views]];
     [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[newUserBg]-0-|" options:0 metrics:nil views:views]];
     [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[infoBg]-0-|" options:0 metrics:nil views:views]];
-    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scrollview]-0-[headline(40)]-0-[titleBg(86)]-0-[contenBg]-0-[infoBg]-0-[newUserBg]-0-|" options:0 metrics:nil views:views]];
+    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scrollview]-0-[headline(40)]-0-[titleBg(100)]-0-[contenBg]-0-[newUserBg]-0-[infoBg]-0-|" options:0 metrics:nil views:views]];
     
     [bgview addConstraint:[NSLayoutConstraint constraintWithItem:scrollview attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:320 nwidth:ScreenWidth]]];
     [bgview addConstraint:[NSLayoutConstraint constraintWithItem:newUserBg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:180 nwidth:ScreenWidth]]];
-    [bgview addConstraint:[NSLayoutConstraint constraintWithItem:infoBg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:320 nwidth:ScreenWidth]]];
+    [bgview addConstraint:[NSLayoutConstraint constraintWithItem:infoBg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:440 nwidth:ScreenWidth]]];
     
     [titleBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[btnCalculate]-0-[sepView1]-0-[btnTeams]-0-[sepView2]-0-[btnInvite]-0-[sepView3]-0-[btnMyService]-10-|" options:0 metrics:nil views:views]];
     [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:btnCalculate attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
@@ -257,8 +263,10 @@
     [newUserBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnNewUser]-0-|" options:0 metrics:nil views:views]];
     [newUserBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnNewUser]-0-|" options:0 metrics:nil views:views]];
     
-    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnDetail]-0-|" options:0 metrics:nil views:views]];
+    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnDetail]-0-[btnCarLife]-0-|" options:0 metrics:nil views:views]];
     [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnDetail]-0-|" options:0 metrics:nil views:views]];
+    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnCarLife]-0-|" options:0 metrics:nil views:views]];
+    [infoBg addConstraint:[NSLayoutConstraint constraintWithItem:btnDetail attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnCarLife attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
 }
 
 # pragma mark - Custom view configuration
@@ -286,15 +294,16 @@
             _adArray = [PosterModel modelArrayFromArray:[d objectForKey:@"poster"]];
             _headlineArray = [HeadlineModel modelArrayFromArray:[d objectForKey:@"headlines"]];
             _newUserModel = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"newUser"]];
-            _liPeiChuXian = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"liPeiChuXian"]];
+//            _liPeiChuXian = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"liPeiChuXian"]];
             _jiHuaShu = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"jiHuaShu"]];
-            _duSheBaoXian = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"duSheBaoXian"]];
-            _chengGongZhiLu = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"chengGongZhiLu"]];
+//            _duSheBaoXian = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"duSheBaoXian"]];
+//            _chengGongZhiLu = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"chengGongZhiLu"]];
             _quoteUrl = [d objectForKey:@"quoteUrl"];
             appdelegate.customerBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"customerBanner"]];
             appdelegate.workBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"workBanner"]];
             appdelegate.inviteBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"friendBanner"]];
             self.customerService = [d objectForKey:@"customerService"];
+            self.infoArray = [AnnouncementModel modelArrayFromArray:[d objectForKey:@"gongLue"]];
             [self initData];
         }
     }];
@@ -318,11 +327,40 @@
    
     [self.headline reloadData];
     [self.btnNewUser sd_setBackgroundImageWithURL:[NSURL URLWithString:_newUserModel.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
-    [self.btnPlan sd_setBackgroundImageWithURL:[NSURL URLWithString:_jiHuaShu.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
-    [self.btnBroker sd_setBackgroundImageWithURL:[NSURL URLWithString:_chengGongZhiLu.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
-    [self.btnService sd_setBackgroundImageWithURL:[NSURL URLWithString:_liPeiChuXian.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
-    [self.btnDetail sd_setBackgroundImageWithURL:[NSURL URLWithString:_duSheBaoXian.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
-    
+    [self.btnPlan sd_setBackgroundImageWithURL:[NSURL URLWithString:_jiHuaShu.bgImg] forState:UIControlStateNormal placeholderImage:Normal_Image];
+    if([self.infoArray count] > 0){
+        AnnouncementModel *chengGongZhiLu = [self.infoArray objectAtIndex:0];
+        [self.btnBroker sd_setBackgroundImageWithURL:[NSURL URLWithString:chengGongZhiLu.bgImg] forState:UIControlStateNormal placeholderImage:Normal_Image];
+        self.btnBroker.hidden = NO;
+        if([self.infoArray count] > 1){
+            AnnouncementModel *liPeiChuXian = [self.infoArray objectAtIndex:1];
+            [self.btnService sd_setBackgroundImageWithURL:[NSURL URLWithString:liPeiChuXian.bgImg] forState:UIControlStateNormal placeholderImage:Normal_Image];
+            self.btnService.hidden = NO;
+            if([self.infoArray count] > 2){
+                AnnouncementModel *duSheBaoXian = [self.infoArray objectAtIndex:2];
+                [self.btnDetail sd_setBackgroundImageWithURL:[NSURL URLWithString:duSheBaoXian.bgImg] forState:UIControlStateNormal placeholderImage:Normal_Image];
+                self.btnDetail.hidden = NO;
+                if([self.infoArray count] > 3){
+                    AnnouncementModel *cheshenghuo = [self.infoArray objectAtIndex:3];
+                    [self.btnCarLife sd_setBackgroundImageWithURL:[NSURL URLWithString:cheshenghuo.bgImg] forState:UIControlStateNormal placeholderImage:Normal_Image];
+                    self.btnCarLife.hidden = NO;
+                }else
+                    self.btnCarLife.hidden = YES;
+            }else{
+                self.btnCarLife.hidden = YES;
+                self.btnDetail.hidden = YES;
+            }
+        }else{
+            self.btnCarLife.hidden = YES;
+            self.btnDetail.hidden = YES;
+            self.btnService.hidden = YES;
+        }
+    }else{
+        self.btnCarLife.hidden = YES;
+        self.btnDetail.hidden = YES;
+        self.btnService.hidden = YES;
+        self.btnBroker.hidden = YES;
+    }
 }
 
 # pragma mark MJBannnerPlayer delegate
@@ -442,11 +480,15 @@
 {
 //    BOOL result = [self login];
 //    if(result){
-    AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
-    vc.hidesBottomBarWhenPushed = YES;
-    vc.category = _chengGongZhiLu.category;
-    vc.title = _chengGongZhiLu.title;
-    [self.navigationController pushViewController:vc animated:YES];
+    if([self.infoArray count] > 0){
+        AnnouncementModel *chengGongZhiLu = [self.infoArray objectAtIndex:0];
+        AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.category = chengGongZhiLu.category;
+        vc.title = chengGongZhiLu.title;
+        vc.totalModel = chengGongZhiLu;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 //    }
 }
 
@@ -456,25 +498,47 @@
     vc.hidesBottomBarWhenPushed = YES;
     vc.category = _jiHuaShu.category;
     vc.title = _jiHuaShu.title;
+    vc.totalModel = _jiHuaShu;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) doBtnFuWuZhiCheng:(id) sender
 {
-    AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
-    vc.hidesBottomBarWhenPushed = YES;
-    vc.category = _liPeiChuXian.category;
-    vc.title = _liPeiChuXian.title;
-    [self.navigationController pushViewController:vc animated:YES];
+    if([self.infoArray count] > 1){
+        AnnouncementModel *liPeiChuXian = [self.infoArray objectAtIndex:1];
+        AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.category = liPeiChuXian.category;
+        vc.title = liPeiChuXian.title;
+        vc.totalModel = liPeiChuXian;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void) doBtnDuSheBaoXian:(id) sender
 {
-    AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
-    vc.hidesBottomBarWhenPushed = YES;
-    vc.category = _duSheBaoXian.category;
-    vc.title = _duSheBaoXian.title;
-    [self.navigationController pushViewController:vc animated:YES];
+    if([self.infoArray count] > 2){
+        AnnouncementModel *duSheBaoXian = [self.infoArray objectAtIndex:2];
+        AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.category = duSheBaoXian.category;
+        vc.title = duSheBaoXian.title;
+        vc.totalModel = duSheBaoXian;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+- (void) doBtnCarLife:(id) sender
+{
+    if([self.infoArray count] > 3){
+        AnnouncementModel *carLife = [self.infoArray objectAtIndex:3];
+        AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.category = carLife.category;
+        vc.title = carLife.title;
+        vc.totalModel = carLife;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void) doBtnMyService:(id)sender

@@ -7,10 +7,15 @@
 //
 
 #import "BasePullTableVC.h"
+#import "AnnouncementModel.h"
 
 
 @interface AgentStrategyViewController : BasePullTableVC
 
 @property (nonatomic, strong) NSString *category;
+
+@property (nonatomic, strong) UIButton *bannerImageView;
+
+@property (nonatomic, strong) AnnouncementModel *totalModel;
 
 @end

@@ -507,14 +507,7 @@
         InsurInfoModel *model = [self.data.insurArray objectAtIndex:idx];
         NSInteger orderOfferStatus = model.orderOfferStatus;
         
-        if(orderOfferStatus == 1 || orderOfferStatus == 2 || orderOfferStatus == 9){
-            WebViewController *web = [IBUIFactory CreateWebViewController];
-            web.title = @"报价详情";
-            [self.navigationController pushViewController:web animated:YES];
-            NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@", Base_Uri, @"1", model.insuranceOrderUuid];
-            [web loadHtmlFromUrl:url];
-        }
-        else if (orderOfferStatus == 4 || orderOfferStatus == 5 || orderOfferStatus == 6 || orderOfferStatus == 7 || orderOfferStatus == 8){
+        if (orderOfferStatus == 4 || orderOfferStatus == 5 || orderOfferStatus == 6 || orderOfferStatus == 7 || orderOfferStatus == 8){
             OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
             web.title = @"报价详情";
             web.type = enumShareTypeShare;
@@ -538,6 +531,14 @@
             OfferDetailsVC *vc = [IBUIFactory CreateOfferDetailsViewController];
             vc.orderId = model.insuranceOrderUuid;
             [self.navigationController pushViewController:vc animated:YES];
+        }else{
+//            if(orderOfferStatus == 1 || orderOfferStatus == 2 || orderOfferStatus == 9){
+                WebViewController *web = [IBUIFactory CreateWebViewController];
+                web.title = @"报价详情";
+                [self.navigationController pushViewController:web animated:YES];
+                NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@", Base_Uri, @"1", model.insuranceOrderUuid];
+                [web loadHtmlFromUrl:url];
+//            }
         }
     }
 }

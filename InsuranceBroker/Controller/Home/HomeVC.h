@@ -25,10 +25,10 @@
     NSArray *_headlineArray;
     //newuser
     NewUserModel *_newUserModel;
-    AnnouncementModel *_liPeiChuXian;
+//    AnnouncementModel *_liPeiChuXian;
     AnnouncementModel *_jiHuaShu;
-    AnnouncementModel *_duSheBaoXian;
-    AnnouncementModel *_chengGongZhiLu;
+//    AnnouncementModel *_duSheBaoXian;
+//    AnnouncementModel *_chengGongZhiLu;
     
     NSString *_quoteUrl;
 }
@@ -44,9 +44,11 @@
 @property (nonatomic, strong) SepLineButton *btnService;//服务支撑
 
 
+@property (nonatomic, strong) SepLineButton *btnDetail;//毒舌保险
+@property (nonatomic, strong) SepLineButton *btnCarLife;//互联网车生活
+
 //底部图片跳转页面
 @property (nonatomic, strong) SepLineButton *btnNewUser;
-@property (nonatomic, strong) SepLineButton *btnDetail;
 
 @property (nonatomic, strong) HighNightBgButton *btnMessage;
 

@@ -11,17 +11,32 @@
 #import "define.h"
 #import "NetWorkHandler+news.h"
 #import "NewsModel.h"
+#import "UIButton+WebCache.h"
 
 @interface AgentStrategyViewController ()
 
 @end
 
 @implementation AgentStrategyViewController
+@synthesize bannerImageView;
+@synthesize totalModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.pulltable registerNib:[UINib nibWithNibName:@"AgentStrategyTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    
+    if(self.totalModel.bannerImg){
+        bannerImageView = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, [Util getHeightByWidth:3 height:1 nwidth:ScreenWidth])];
+        [bannerImageView addTarget:self action:@selector(doButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [bannerImageView sd_setBackgroundImageWithURL:[NSURL URLWithString:self.totalModel.bannerImg] forState:UIControlStateNormal placeholderImage:Normal_Image];
+        
+        if(!self.totalModel.isRedirect){
+            bannerImageView.userInteractionEnabled = NO;
+        }
+        
+        self.pulltable.tableHeaderView = bannerImageView;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,7 +44,19 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void) doButtonClicked:(UIButton *)sender
+{
+    if(totalModel.isRedirect){
+        WebViewController *web = [IBUIFactory CreateWebViewController];
+        web.title = totalModel.title;
+        web.type = enumShareTypeShare;
+        web.shareTitle = totalModel.title;
+        if(totalModel.imgUrl != nil)
+            web.shareImgArray = [NSArray arrayWithObject:totalModel.imgUrl];
+        [self.navigationController pushViewController:web animated:YES];
+        [web loadHtmlFromUrlWithUserId:totalModel.url];
+    }
+}
 /**
  重载此函数获取数据
  */

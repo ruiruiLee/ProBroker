@@ -153,12 +153,12 @@
     rotationAnimation.cumulative = YES;
     rotationAnimation.repeatCount = INT_MAX;
     
-    [self.btnEdit.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    [self.btnEdit.imageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
 }
 
 - (void) endAnimation
 {
-    [self.btnEdit.layer removeAnimationForKey:@"rotationAnimation"];
+    [self.btnEdit.imageView.layer removeAnimationForKey:@"rotationAnimation"];
 }
 
 @end
