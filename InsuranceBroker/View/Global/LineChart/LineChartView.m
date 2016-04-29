@@ -328,7 +328,14 @@
                 [self.backgroundColor setFill];
                 [color set];
                 CGRect rect = CGRectMake(xVal - 15, self.frame.size.height - 15 , 30, 12);
-                [datItem.xLabel drawInRect:rect withFont:self.scaleFont lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
+                
+                NSMutableParagraphStyle *style = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+                [style setLineBreakMode:NSLineBreakByClipping];
+                [style setAlignment:NSTextAlignmentCenter];
+                
+                NSDictionary *attributes = @{NSFontAttributeName: self.scaleFont, NSParagraphStyleAttributeName: style};
+                [datItem.xLabel drawInRect:rect withAttributes:attributes];
+                
             } // for
         } // draw data points
         
