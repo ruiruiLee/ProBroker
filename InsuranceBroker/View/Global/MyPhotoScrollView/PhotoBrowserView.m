@@ -83,7 +83,7 @@
     //label
         _numberLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 30, 30)];
         _numberLabel.center = CGPointMake(_backNavigationView.center.x, _backNavigationView.center.y+5);
-        _numberLabel.text=[NSString stringWithFormat:@"%d/%ld",_currentIndex+1,_urlArray.count];
+        _numberLabel.text=[NSString stringWithFormat:@"%d/%ld",_currentIndex+1,(unsigned long)_urlArray.count];
         _numberLabel.textAlignment=NSTextAlignmentCenter;
         [_backNavigationView addSubview:_numberLabel];
     
@@ -98,7 +98,7 @@
     allScreeenSV.arrayUrl = _urlArray;
     allScreeenSV.tag  = 100;
     allScreeenSV.delegate  = self;
-    __weak PhotoBrowserView *BlockSelf =self;
+//    __weak PhotoBrowserView *BlockSelf =self;
     allScreeenSV.imageClickBlock  = ^{
 //            if(BlockSelf.backNavigationView.hidden==YES){
 //                BlockSelf.backNavigationView.hidden=NO;
@@ -136,7 +136,7 @@
     
     if(scrollView.tag == 100){
         int index = scrollView.contentOffset.x/scrollView.frame.size.width;
-            _numberLabel.text = [NSString stringWithFormat:@"%d/%ld",(index+1),_urlArray.count];
+            _numberLabel.text = [NSString stringWithFormat:@"%d/%ld",(index+1),(unsigned long)_urlArray.count];
     }
     
 }

@@ -268,10 +268,10 @@
     [view addSubview:lb];
     lb.backgroundColor = [UIColor clearColor];
     lb.font = _FONT(12);
-    lb.textColor = _COLOR(0xcc, 0xcc, 0xcc);
+    lb.textColor = _COLOR(0x75, 0x75, 0x75);
     lb.textAlignment = NSTextAlignmentCenter;
     InsurInfoModel *model = [[insurArray objectAtIndex:section] objectAtIndex:0];
-    lb.text = [Util getDayString:model.updatedAt];
+    lb.text = [Util getDayStringWithCh:model.updatedAt];
     
     return view;
 }

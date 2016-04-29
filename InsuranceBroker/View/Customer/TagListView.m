@@ -109,7 +109,8 @@
     for (int i = 0; i < [viewArray count]; i++) {
         UIButton *btn = [viewArray objectAtIndex:i];
         NSString *title = btn.titleLabel.text;
-        CGSize size = [title sizeWithFont:btn.titleLabel.font constrainedToSize:CGSizeMake(INT_MAX, 26)];
+//        CGSize size = [title sizeWithFont:btn.titleLabel.font constrainedToSize:CGSizeMake(INT_MAX, 26)];
+        CGSize size = [title sizeWithAttributes:@{NSFontAttributeName:btn.titleLabel.font}];
         
         CGFloat nx = ox + size.width + 20;
         if(nx > frame.size.width){

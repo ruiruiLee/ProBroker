@@ -88,6 +88,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, strong) ReactiveButton *btnQuote;//立即报价
 
+@property (nonatomic, strong) IBOutlet UILabel *lbCertTitle;
+
 @property (nonatomic, strong) CustomerDetailModel *customerModel;
 @property (nonatomic, strong) NSString *customerId;
 @property (nonatomic, assign) addPhotoType type;

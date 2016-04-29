@@ -310,10 +310,10 @@
                 if(day1 == day2){
                     rowTitle = @"今天";
                 }else{
-                    rowTitle = [NSString stringWithFormat:@"%@%2ld月%2ld日", [self GetWeekString:[components weekday]], month1, day1];
+                    rowTitle = [NSString stringWithFormat:@"%@%2ld月%2ld日", [self GetWeekString:[components weekday]], (long)month1, (long)day1];
                 }
             }else{
-                rowTitle = [NSString stringWithFormat:@"%@%2ld月%2ld日", [self GetWeekString:[components weekday]], month1, day1];
+                rowTitle = [NSString stringWithFormat:@"%@%2ld月%2ld日", [self GetWeekString:[components weekday]], (long)month1, (long)day1];
             }
         }
         else{

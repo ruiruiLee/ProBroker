@@ -18,6 +18,7 @@
                 <outlet property="contenView" destination="Ht5-MD-Gr8" id="9u8-ur-huZ"/>
                 <outlet property="imageHConstraint" destination="4hK-Y7-7xI" id="Q7k-fU-Y5c"/>
                 <outlet property="infoHConstraint" destination="LbB-ue-s9X" id="75j-RR-uwH"/>
+                <outlet property="lbCertTitle" destination="V2E-lO-P5k" id="TMy-6D-how"/>
                 <outlet property="lbDateTitle" destination="6Cu-SR-vPJ" id="sAG-wJ-R07"/>
                 <outlet property="lbExplain" destination="Cn9-yH-6lk" id="JzS-54-7Ne"/>
                 <outlet property="lbInfo" destination="1nE-gK-j1g" id="wie-bh-APO"/>

@@ -198,17 +198,17 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
     
-    NSArray *vcarray = self.navigationController.viewControllers;
-    UIViewController *vc = nil;
-    for (int i = 0; i < [vcarray count]; i++) {
-        UIViewController *temp = [vcarray objectAtIndex:i];
-        if([temp isKindOfClass:[WXLoginVC class]]){
-            vc = temp;
-            break;
-        }
-    }
-    
-    [self.navigationController dismissViewControllerAnimated:vc completion:nil];
+//    NSArray *vcarray = self.navigationController.viewControllers;
+//    UIViewController *vc = nil;
+//    for (int i = 0; i < [vcarray count]; i++) {
+//        UIViewController *temp = [vcarray objectAtIndex:i];
+//        if([temp isKindOfClass:[WXLoginVC class]]){
+//            vc = temp;
+//            break;
+//        }
+//    }
+//    
+//    [self.navigationController dismissViewControllerAnimated:vc completion:nil];
 }
 
 @end

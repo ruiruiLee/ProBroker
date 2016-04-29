@@ -186,12 +186,12 @@
                   moduleName = "InsuranceBroker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/liuzf/Desktop/PROJECT/Pods/AFNetworking/AFNetworking/AFURLRequestSerialization.m"
-                  timestampString = "483602966.419745"
+                  timestampString = "483615761.407236"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "685"
                   endingLineNumber = "685"
-                  offsetFromSymbolStart = "6">
+                  offsetFromSymbolStart = "24">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -201,12 +201,12 @@
                   moduleName = "InsuranceBroker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/liuzf/Desktop/PROJECT/Pods/AFNetworking/AFNetworking/AFURLRequestSerialization.m"
-                  timestampString = "483602966.420041"
+                  timestampString = "483615761.407564"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
-                  offsetFromSymbolStart = "36">
+                  offsetFromSymbolStart = "34">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -240,6 +240,22 @@
             startingLineNumber = "96"
             endingLineNumber = "96"
             landmarkName = "-resetViews"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InsuranceBroker/Root/ModifyPhoneNumVC.m"
+            timestampString = "483611746.02738"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "-handleLeftBarButtonClicked:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

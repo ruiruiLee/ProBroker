@@ -42,6 +42,7 @@
 + (NSString *) getShowingTime:(NSDate *)date;
 + (NSString *) getTimeString:(NSDate *)date;
 + (NSString *) getDayString:(NSDate *) date;
++ (NSString *) getDayStringWithCh:(NSDate *)date;
 + (NSDate*) convertDateFromString:(NSString*)string;
 
 + (void)openCamera:(UIViewController*)currentViewController allowEdit:(BOOL)allowEdit completion:(void (^)(void))completion;

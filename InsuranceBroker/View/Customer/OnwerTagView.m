@@ -95,7 +95,7 @@
 - (void) reset
 {
     CGRect frame = self.frame;
-    CGFloat width = frame.size.width;
+//    CGFloat width = frame.size.width;
     
     CGFloat ox = 0;
     CGFloat oy = 10;
@@ -166,7 +166,7 @@
 - (void) resetSubViews
 {
     CGRect frame = self.frame;
-    CGFloat width = frame.size.width;
+//    CGFloat width = frame.size.width;
     
     CGFloat ox = 0;
     CGFloat oy = 10;

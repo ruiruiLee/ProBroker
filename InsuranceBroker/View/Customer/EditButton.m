@@ -49,7 +49,8 @@
     CGFloat h = (frame.size.height - imgvframe.size.height - 2 - titleframe.size.height)/2;
     if(titleframe.size.height == 0){
         NSString *string = @"阿迪风格";
-        CGSize size = [string sizeWithFont:self.titleLabel.font];
+        CGSize size = [string sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}];
+        
         h = (frame.size.height - imgvframe.size.height - 2 - size.height)/2;
     }
     

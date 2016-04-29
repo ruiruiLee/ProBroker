@@ -101,6 +101,11 @@
     [self handleRightBarButtonClicked:nil];
 }
 
+- (void) NotifyToReSubmitCarInfo:(NSString *) orderId customerId:(NSString *) customerId customerCarId:(NSString *) customerCarId
+{
+    
+}
+
 - (void) turnToCustomerPage
 {
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;

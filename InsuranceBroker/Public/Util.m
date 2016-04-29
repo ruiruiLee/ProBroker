@@ -265,6 +265,13 @@
     return result;
 }
 
++ (NSString *) getDayStringWithCh:(NSDate *)date
+{
+    NSDateFormatter *dateFormatter = [Util dateFormatterWithFormat:@"yyyy年 MM月 dd日"];
+    NSString *result = [dateFormatter stringFromDate:date];
+    return result;
+}
+
 + (NSString *) getTimeSecString:(NSDate *) date
 {
     NSDateFormatter *dateFormatter = [Util dateFormatterWithFormat:@"HH:mm"];

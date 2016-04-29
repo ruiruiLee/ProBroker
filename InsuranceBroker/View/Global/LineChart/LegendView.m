@@ -30,9 +30,11 @@
             CGContextFillEllipseInRect(c, CGRectMake(PADDING + 2, PADDING + round(y) + self.titlesFont.xHeight / 2 + 1, 6, 6));
         }
         [[UIColor whiteColor] set];
-        [title drawAtPoint:CGPointMake(COLORPADDING + PADDING, y + PADDING + 1) withFont:self.titlesFont];
+//        [title drawAtPoint:CGPointMake(COLORPADDING + PADDING, y + PADDING + 1) withFont:self.titlesFont];
+        [title drawAtPoint:CGPointMake(COLORPADDING + PADDING, y + PADDING + 1) withAttributes:@{NSFontAttributeName:self.titlesFont}];
         [[UIColor blackColor] set];
-        [title drawAtPoint:CGPointMake(COLORPADDING + PADDING, y + PADDING) withFont:self.titlesFont];
+//        [title drawAtPoint:CGPointMake(COLORPADDING + PADDING, y + PADDING) withFont:self.titlesFont];
+        [title drawAtPoint:CGPointMake(COLORPADDING + PADDING, y + PADDING) withAttributes:@{NSFontAttributeName:self.titlesFont}];
         y += [self.titlesFont lineHeight];
     }
 }
@@ -47,7 +49,7 @@
     CGFloat h = [self.titlesFont lineHeight] * [self.titles count];
     CGFloat w = 0;
     for(NSString *title in self.titles) {
-        CGSize s = [title sizeWithFont:self.titlesFont];
+        CGSize s = [title sizeWithAttributes:@{NSFontAttributeName:self.titlesFont}];
         w = MAX(w, s.width);
     }
     return CGSizeMake(COLORPADDING + w + 2 * PADDING, h + 2 * PADDING);

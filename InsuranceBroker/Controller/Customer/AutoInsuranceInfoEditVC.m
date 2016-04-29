@@ -46,6 +46,8 @@
     
     UIImage *newLisence;
     UIImage *newCert;
+    
+    NSString *_travelCard1;
 }
 
 @property (nonatomic,strong) PhotoBrowserView *photoBrowserView;
@@ -492,6 +494,10 @@
                 return ;
             }
         }
+        
+        if(filePahe == nil)
+            filePahe = _travelCard1;
+        
         [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe travelCard2:nil carOwnerCard1:filePahe1 carOwnerCard2:nil carRegTime:carRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
             //[ProgressHUD dismiss];
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
@@ -559,25 +565,33 @@
         self.tfNo.enabled = YES;
         self.lbDateTitle.text = @"注册日期";
         self.tfDate.placeholder = @"请选择注册日期";
+        self.lbCertTitle.text = @"行驶证信息";
         self.pInfoView.hidden = NO;
         self.assignedView.hidden = NO;
         self.baseViewVConstraint.constant = 90;
         _perInsurCompany = -1;
         _changeNameIdx = -1;
         _changNameDate = nil;
+        [self.btnReSubmit setImage:ThemeImage(@"drivingLicenseBg") forState:UIControlStateNormal];
     }else{
         self.tfNo.enabled = NO;
         self.tfNo.text = @"";
         self.lbDateTitle.text = @"购车日期";
         self.tfDate.placeholder = @"请选择购车日期";
+        self.lbCertTitle.text = @"购车发票信息";
         self.pInfoView.hidden = YES;
         self.assignedView.hidden = YES;
         self.baseViewVConstraint.constant = 50;
+        [self.btnReSubmit setImage:ThemeImage(@"fapiao") forState:UIControlStateNormal];
     }
     
+    newLisence = nil;
+    self.btnReSubmit.selected = NO;
     sender.selected = !selected;
     [self cancelSelectPCompany:nil];
     [self isModify];
+    
+    _travelCard1 = @"";
 }
 
 #pragma mark- UIActionSheetDelegate
@@ -728,6 +742,9 @@
 - (void) fillTheData
 {
     CarInfoModel *model = self.customerModel.carInfo;
+    
+    _travelCard1 = model.travelCard1;
+    
     self.tfName.text = self.customerModel.customerName;
     if(model){
         self.tfName.text = model.carOwnerName;
@@ -737,11 +754,19 @@
             self.tfNo.enabled = NO;
             self.lbDateTitle.text = @"购车日期";
             self.tfDate.placeholder = @"请选择购车日期";
+            self.lbCertTitle.text = @"购车发票信息";
+            [self.btnReSubmit setImage:ThemeImage(@"fapiao") forState:UIControlStateNormal];
+            newLisence = nil;
+            self.btnReSubmit.selected = NO;
         }else{
             self.btnNoNo.selected = NO;
             self.tfNo.enabled = YES;
             self.lbDateTitle.text = @"注册日期";
             self.tfDate.placeholder = @"请选择注册日期";
+            self.lbCertTitle.text = @"行驶证信息";
+            [self.btnReSubmit setImage:ThemeImage(@"drivingLicenseBg") forState:UIControlStateNormal];
+            newLisence = nil;
+            self.btnReSubmit.selected = NO;
         }
         self.tfMotorCode.text = model.carEngineNo;
         self.tfModel.text = model.carTypeNo;
@@ -889,21 +914,15 @@
     
     if(self.btnNoNo.selected){
         NSArray *urlArray = @[ThemeImage(@"price_img")];
-//        _photoBrowserView=[[PhotoBrowserView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame WithArray:urlArray andCurrentIndex:0];
-//        [self.view.window addSubview:_photoBrowserView];
         _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
         [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
-//        [_imageList addImagesURL:urlArray withSmallImage:nil];
         [_imageList addImages:urlArray];
         [self.view.window addSubview:_imageList];
     }
     else{
         NSArray *urlArray = @[ThemeImage(@"license_img")];
-//        _photoBrowserView=[[PhotoBrowserView alloc]initWithFrame:[UIApplication sharedApplication].keyWindow.frame WithArray:urlArray andCurrentIndex:0];
-//        [self.view.window addSubview:_photoBrowserView];
         _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
         [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
-//        [_imageList addImagesURL:urlArray withSmallImage:nil];
         [_imageList addImages:urlArray];
         [self.view.window addSubview:_imageList];
     }
@@ -952,17 +971,17 @@
     _perInsurCompany = -1;
     self.lbPName.text = @"其他";
     [_menuView hide];
-    self.view5.hidden = NO;
-    self.view6.hidden = NO;
-    self.view7.hidden = NO;
-    self.view5VConstraint.constant = 30;
-    self.view6VConstraint.constant = 190;
-    self.view7VConstraint.constant = 40;
-    
-    self.view2.hidden = NO;
-    self.view2VConstraint.constant = 130;
-    self.view3.hidden = NO;
-    self.view3VConstraint.constant = 30;
+//    self.view5.hidden = NO;
+//    self.view6.hidden = NO;
+//    self.view7.hidden = NO;
+//    self.view5VConstraint.constant = 30;
+//    self.view6VConstraint.constant = 190;
+//    self.view7VConstraint.constant = 40;
+//    
+//    self.view2.hidden = NO;
+//    self.view2VConstraint.constant = 130;
+//    self.view3.hidden = NO;
+//    self.view3VConstraint.constant = 30;
     
     [self isModify];
 }
@@ -990,16 +1009,16 @@
     if(menu == _menuView){//上年度投保
         _perInsurCompany = index;
         self.lbPName.text = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:index]).productName;
-        self.view6.hidden = YES;
-        self.view7.hidden = YES;
-        self.view5.hidden = YES;
-        self.view5VConstraint.constant = 0;
-        self.view6VConstraint.constant = 0;
-        self.view7VConstraint.constant = 0;
-        self.view2.hidden = YES;
-        self.view2VConstraint.constant = 0;
-        self.view3.hidden = YES;
-        self.view3VConstraint.constant = 0;
+//        self.view6.hidden = YES;
+//        self.view7.hidden = YES;
+//        self.view5.hidden = YES;
+//        self.view5VConstraint.constant = 0;
+//        self.view6VConstraint.constant = 0;
+//        self.view7VConstraint.constant = 0;
+//        self.view2.hidden = YES;
+//        self.view2VConstraint.constant = 0;
+//        self.view3.hidden = YES;
+//        self.view3VConstraint.constant = 0;
     }else if (menu == _menu){
         _changeNameIdx = index;
         if(index == 1){
@@ -1110,7 +1129,7 @@
     BOOL flag1 = [self checkValueChange:name text:model.carOwnerName];
 //    if(flag1 && [Util isNilValue:model.carOwnerName])
 //        result = flag1;
-    if(flag1 && ![Util isNilValue:model.carOwnerName] && [self checkValueChange:self.customerModel.customerName text:name]){
+    if(flag1 && ((![Util isNilValue:model.carOwnerName] && [self checkValueChange:self.customerModel.customerName text:name]) || [Util isNilValue:model.carOwnerName])){
         result = flag1;
     }
     

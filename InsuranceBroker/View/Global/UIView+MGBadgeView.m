@@ -11,11 +11,11 @@
 
 @implementation MGBadgeView
 
-static float const kMGBadgeViewInnerSpaceFromBorder = 7.0;
+//static float const kMGBadgeViewInnerSpaceFromBorder = 7.0;
 static int const kMGBadgeViewTag = 9876;
 
-#define BADGE_SIDE_OFFSET kMGBadgeViewInnerSpaceFromBorder + _outlineWidth
-#define BADGE_TOTAL_OFFSET BADGE_SIDE_OFFSET * 2.0
+//#define BADGE_SIDE_OFFSET kMGBadgeViewInnerSpaceFromBorder + _outlineWidth
+//#define BADGE_TOTAL_OFFSET BADGE_SIDE_OFFSET * 2.0
 
 - (instancetype)initWithFrame:(CGRect)frame {
     

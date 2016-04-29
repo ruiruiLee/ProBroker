@@ -338,88 +338,88 @@
 
 - (void)showIndicatorForTouch:(UITouch *)touch {
     return;
-    if(! self.infoView) {
-        self.infoView = [[InfoView alloc] init];
-        [self addSubview:self.infoView];
-    }
-    
-    CGPoint pos = [touch locationInView:self];
-    CGFloat xStart = PADDING + self.yAxisLabelsWidth;
-    
-    xStart += self.xDisplacement;
-    
-    CGFloat yStart = PADDING;
-    CGFloat yRangeLen = self.yMax - self.yMin;
-    CGFloat xPos = pos.x - xStart;
-    CGFloat yPos = pos.y - yStart;
-    CGFloat availableWidth = self.bounds.size.width - 2 * PADDING - self.yAxisLabelsWidth;
-    CGFloat stepWidth = 40;
-    if(self.data != nil && [self.data count] > 0){
-        LineChartData *data = [self.data objectAtIndex:0];
-        CGFloat width = data.itemCount * stepWidth;
-        if(width > availableWidth)
-            availableWidth = width;
-    }
-    
-    CGFloat availableHeight = self.bounds.size.height - 2 * PADDING - X_AXIS_SPACE;
-    
-    LineChartDataItem *closest = nil;
-    float minDist = FLT_MAX;
-    float minDistY = FLT_MAX;
-    CGPoint closestPos = CGPointZero;
-    
-    for(LineChartData *data in self.data) {
-        float xRangeLen = data.xMax - data.xMin;
-        for(NSUInteger i = 0; i < data.itemCount; ++i) {
-            LineChartDataItem *datItem = data.getData(i);
-            CGFloat xVal = round((xRangeLen == 0 ? 0.5 : ((datItem.x - data.xMin) / xRangeLen)) * availableWidth);
-            CGFloat yVal = round((1.0 - (datItem.y - self.yMin) / yRangeLen) * availableHeight);
-            
-            float dist = fabsf(xVal - xPos);
-            float distY = fabsf(yVal - yPos);
-            if(dist < minDist || (dist == minDist && distY < minDistY)) {
-                minDist = dist;
-                minDistY = distY;
-                closest = datItem;
-                closestPos = CGPointMake(xStart + xVal - 3, yStart + yVal - 7);
-            }
-        }
-    }
-    
-    self.infoView.infoLabel.attributedText = closest.dataLabel;
-    self.infoView.detailinfoLabel.text = closest.detail;
-    self.infoView.tapPoint = closestPos;
-    [self.infoView sizeToFit];
-    [self.infoView setNeedsLayout];
-    [self.infoView setNeedsDisplay];
-    
-    self.xAxisLabel.backgroundColor = [UIColor yellowColor];
-    self.currentPosView.backgroundColor = [UIColor whiteColor];
-    
-    
-    if(self.currentPosView.alpha == 0.0) {
-        CGRect r = self.currentPosView.frame;
-        r.origin.x = closestPos.x + 3 - 1;
-        self.currentPosView.frame = r;
-    }
-    
-    [UIView animateWithDuration:0.1 animations:^{
-        self.infoView.alpha = 1.0;
-        self.currentPosView.alpha = 1.0;
-        self.xAxisLabel.alpha = 0.0;
-        
-        CGRect r = self.currentPosView.frame;
-        r.origin.x = closestPos.x + 3 - 1;
-        self.currentPosView.frame = r;
-        
-        self.xAxisLabel.text = closest.xLabel;
-        if(self.xAxisLabel.text != nil) {
-            [self.xAxisLabel sizeToFit];
-            r = self.xAxisLabel.frame;
-            r.origin.x = round(closestPos.x - r.size.width / 2);
-            self.xAxisLabel.frame = r;
-        }
-    }];
+//    if(! self.infoView) {
+//        self.infoView = [[InfoView alloc] init];
+//        [self addSubview:self.infoView];
+//    }
+//    
+//    CGPoint pos = [touch locationInView:self];
+//    CGFloat xStart = PADDING + self.yAxisLabelsWidth;
+//    
+//    xStart += self.xDisplacement;
+//    
+//    CGFloat yStart = PADDING;
+//    CGFloat yRangeLen = self.yMax - self.yMin;
+//    CGFloat xPos = pos.x - xStart;
+//    CGFloat yPos = pos.y - yStart;
+//    CGFloat availableWidth = self.bounds.size.width - 2 * PADDING - self.yAxisLabelsWidth;
+//    CGFloat stepWidth = 40;
+//    if(self.data != nil && [self.data count] > 0){
+//        LineChartData *data = [self.data objectAtIndex:0];
+//        CGFloat width = data.itemCount * stepWidth;
+//        if(width > availableWidth)
+//            availableWidth = width;
+//    }
+//    
+//    CGFloat availableHeight = self.bounds.size.height - 2 * PADDING - X_AXIS_SPACE;
+//    
+//    LineChartDataItem *closest = nil;
+//    float minDist = FLT_MAX;
+//    float minDistY = FLT_MAX;
+//    CGPoint closestPos = CGPointZero;
+//    
+//    for(LineChartData *data in self.data) {
+//        float xRangeLen = data.xMax - data.xMin;
+//        for(NSUInteger i = 0; i < data.itemCount; ++i) {
+//            LineChartDataItem *datItem = data.getData(i);
+//            CGFloat xVal = round((xRangeLen == 0 ? 0.5 : ((datItem.x - data.xMin) / xRangeLen)) * availableWidth);
+//            CGFloat yVal = round((1.0 - (datItem.y - self.yMin) / yRangeLen) * availableHeight);
+//            
+//            float dist = fabsf(xVal - xPos);
+//            float distY = fabsf(yVal - yPos);
+//            if(dist < minDist || (dist == minDist && distY < minDistY)) {
+//                minDist = dist;
+//                minDistY = distY;
+//                closest = datItem;
+//                closestPos = CGPointMake(xStart + xVal - 3, yStart + yVal - 7);
+//            }
+//        }
+//    }
+//    
+//    self.infoView.infoLabel.attributedText = closest.dataLabel;
+//    self.infoView.detailinfoLabel.text = closest.detail;
+//    self.infoView.tapPoint = closestPos;
+//    [self.infoView sizeToFit];
+//    [self.infoView setNeedsLayout];
+//    [self.infoView setNeedsDisplay];
+//    
+//    self.xAxisLabel.backgroundColor = [UIColor yellowColor];
+//    self.currentPosView.backgroundColor = [UIColor whiteColor];
+//    
+//    
+//    if(self.currentPosView.alpha == 0.0) {
+//        CGRect r = self.currentPosView.frame;
+//        r.origin.x = closestPos.x + 3 - 1;
+//        self.currentPosView.frame = r;
+//    }
+//    
+//    [UIView animateWithDuration:0.1 animations:^{
+//        self.infoView.alpha = 1.0;
+//        self.currentPosView.alpha = 1.0;
+//        self.xAxisLabel.alpha = 0.0;
+//        
+//        CGRect r = self.currentPosView.frame;
+//        r.origin.x = closestPos.x + 3 - 1;
+//        self.currentPosView.frame = r;
+//        
+//        self.xAxisLabel.text = closest.xLabel;
+//        if(self.xAxisLabel.text != nil) {
+//            [self.xAxisLabel sizeToFit];
+//            r = self.xAxisLabel.frame;
+//            r.origin.x = round(closestPos.x - r.size.width / 2);
+//            self.xAxisLabel.frame = r;
+//        }
+//    }];
 }
 
 - (void)hideIndicator {

@@ -282,16 +282,16 @@
 {
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
     if(!user.isLogin){
-        if([WXApi isWXAppInstalled]){
-            WXLoginVC *vc  = [IBUIFactory CreateWXLoginViewController];
-            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
-            [self.parentvc.navigationController presentViewController:naVC animated:YES completion:nil];
-        }
-        else{
+//        if([WXApi isWXAppInstalled]){
+//            WXLoginVC *vc  = [IBUIFactory CreateWXLoginViewController];
+//            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+//            [self.parentvc.navigationController presentViewController:naVC animated:YES completion:nil];
+//        }
+//        else{
             loginViewController *vc = [IBUIFactory CreateLoginViewController];
             UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
             [self.parentvc.navigationController presentViewController:naVC animated:NO completion:nil];
-        }
+//        }
         return NO;
     }else{
         return YES;

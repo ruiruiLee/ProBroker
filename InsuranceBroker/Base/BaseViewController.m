@@ -85,7 +85,8 @@
     self.view.backgroundColor = _COLOR(0xf5, 0xf5, 0xf5);
     
     UIColor * color = _COLOR(0x21, 0x21, 0x21);
-     NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:UITextAttributeTextColor];
+//     NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:UITextAttributeTextColor];
+    NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
      self.navigationController.navigationBar.titleTextAttributes = dict;
     
 //    [self setBackBarButton];

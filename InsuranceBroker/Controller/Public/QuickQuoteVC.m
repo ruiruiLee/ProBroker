@@ -7,6 +7,7 @@
 //
 
 #import "QuickQuoteVC.h"
+#import "SBJsonParser.h"
 
 @interface QuickQuoteVC ()
 
@@ -24,13 +25,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    //    self.shareUrl = webView.request.URL.absoluteString;
-    NSString *url = webView.request.URL.absoluteString;
-    if(![url isEqualToString:self.urlpath])
-        self.shareUrl = url;
-}
+//- (void)webViewDidFinishLoad:(UIWebView *)webView
+//{
+//    //    self.shareUrl = webView.request.URL.absoluteString;
+//    NSString *url = webView.request.URL.absoluteString;
+//    if(![url isEqualToString:self.urlpath])
+//        self.shareUrl = url;
+//}
 
 - (void) handleRightBarButtonClicked:(id)sender
 {
@@ -40,6 +41,25 @@
 - (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag
 {
 
+    NSString *jsonstr = [self getShareContent];
+    SBJsonParser *_parser = [[SBJsonParser alloc] init];
+    NSDictionary *dic = [_parser objectWithString:jsonstr];
+    if([dic objectForKey:@"url"]){
+        self.shareUrl = [dic objectForKey:@"url"];
+    }
+    
+    if([dic objectForKey:@"content"]){
+        self.shareContent = [dic objectForKey:@"content"];
+    }
+    
+//    if([dic objectForKey:@"image"]){
+//        self.shareImgArray = [NSArray arrayWithObject:[dic objectForKey:@"image"]];
+//    }
+    
+    if([dic objectForKey:@"title"]){
+        self.shareTitle = [dic objectForKey:@"title"];
+    }
+    
     switch (tag) {
         case 0:
         {
@@ -64,6 +84,12 @@
         default:
             break;
     }
+}
+
+- (NSString *) getShareContent
+{
+    NSString *str = [self.webview stringByEvaluatingJavaScriptFromString:@"getShareContent();"];
+    return str;
 }
 
 @end

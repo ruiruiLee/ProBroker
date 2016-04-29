@@ -217,7 +217,7 @@
     totalPage.textAlignment = NSTextAlignmentCenter;
     totalPage.font = [UIFont boldSystemFontOfSize:14.f / 375 * [UIScreen mainScreen].bounds.size.width];
     totalPage.textColor = [UIColor whiteColor];
-    totalPage.text = [NSString stringWithFormat:@"／ %ld",totalPageNumber];
+    totalPage.text = [NSString stringWithFormat:@"／ %ld",(unsigned long)totalPageNumber];
     totalPage.backgroundColor = [UIColor clearColor];
     [self addSubview:totalPage];
     

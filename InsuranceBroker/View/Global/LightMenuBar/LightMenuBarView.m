@@ -286,7 +286,7 @@
                                          titleSize.width, titleSize.height) 
                      withFont:titleFont
                 lineBreakMode:UILineBreakModeTailTruncation
-                    alignment:UITextAlignmentCenter];            
+                    alignment:NSTextAlignmentCenter];
             
             currentX += itemWidth;
         }            

@@ -40,8 +40,6 @@
     UILabel *titlelabel = self.titleLabel;
     CGRect titleframe = titlelabel.frame;
     
-    CGRect frame = self.frame;
-    
     CGFloat w = 20;//(frame.size.width - 6 - imgvframe.size.width - titleframe.size.width)/2;
     
     imgv.frame = CGRectMake(w, imgvframe.origin.y, imgvframe.size.width, imgvframe.size.height);

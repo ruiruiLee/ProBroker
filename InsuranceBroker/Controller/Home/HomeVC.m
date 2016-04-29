@@ -442,8 +442,8 @@
 - (void)doBtnInvite:(id)sender
 {
     if([self login]){
-        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-        NewUserModel *model = appdelegate.workBanner;
+        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        NewUserModel *model = appDelegate.workBanner;
         if(model.isRedirect){
             WebViewController *web = [IBUIFactory CreateWebViewController];
             web.title = model.title;

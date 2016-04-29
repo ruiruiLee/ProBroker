@@ -81,15 +81,15 @@ void CGContextAddRoundedRectWithHookSimple(CGContextRef c, CGRect rect, CGFloat 
     [self.infoLabel sizeToFit];
     [self.detailinfoLabel sizeToFit];
     
-    CGSize s = [self.infoLabel.text sizeWithFont:self.infoLabel.font];
-    CGSize s1 = [self.detailinfoLabel.text sizeWithFont:self.infoLabel.font];
+    CGSize s = [self.infoLabel.text sizeWithAttributes:@{NSFontAttributeName:self.infoLabel.font}];
+    CGSize s1 = [self.detailinfoLabel.text sizeWithAttributes:@{NSFontAttributeName:self.infoLabel.font}];
     self.infoLabel.frame = CGRectMake(self.bounds.origin.x + 7, self.bounds.origin.y + 8, self.frame.size.width - 14, s.height);
     self.detailinfoLabel.frame = CGRectMake(self.bounds.origin.x + 7, self.bounds.origin.y + 10 + s.height, s1.width, s1.height);
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    CGSize s = [self.infoLabel.text sizeWithFont:self.infoLabel.font];
-    CGSize s1 = [self.detailinfoLabel.text sizeWithFont:self.infoLabel.font];
+    CGSize s = [self.infoLabel.text sizeWithAttributes:@{NSFontAttributeName:self.infoLabel.font}];
+    CGSize s1 = [self.detailinfoLabel.text sizeWithAttributes:@{NSFontAttributeName:self.infoLabel.font}];
     s.height += 15;
     
     if(s1.width > s.width)

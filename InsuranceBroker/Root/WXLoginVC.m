@@ -145,4 +145,9 @@
     }];
 }
 
+- (void) NotifyToSetTeamLeaderPhone:(NSString*) phoneNum remarkName:(NSString *) remarkName
+{
+    
+}
+
 @end

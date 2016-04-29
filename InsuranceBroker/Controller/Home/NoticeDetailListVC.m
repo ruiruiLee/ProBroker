@@ -211,7 +211,7 @@
 
 - (CGFloat) getHeightWithFont:(UIFont *) font text:(NSString *) text
 {
-    CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(ScreenWidth - 60, INT_MAX)];
+    CGSize size = [text sizeWithAttributes:@{NSFontAttributeName:font}];
     return size.height;
 }
 
