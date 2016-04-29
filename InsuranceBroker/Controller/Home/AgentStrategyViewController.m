@@ -84,10 +84,17 @@
 //    return 1;
 //}
 //
-//- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return [self.data count];
-//}
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if([self.data count] == 0){
+        [self showNoDatasImage:ThemeImage(@"no_data")];
+    }
+    else{
+        [self hidNoDatasImage];
+    }
+    
+    return [self.data count];
+}
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {

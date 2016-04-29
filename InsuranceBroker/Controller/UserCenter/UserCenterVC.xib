@@ -57,11 +57,11 @@
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oRq-rh-239">
-                                            <rect key="frame" x="325" y="434" width="16" height="16"/>
+                                            <rect key="frame" x="323" y="436" width="20" height="20"/>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="16" id="m6O-An-RQC"/>
-                                                <constraint firstAttribute="height" constant="16" id="zaP-aS-0oO"/>
+                                                <constraint firstAttribute="width" constant="20" id="m6O-An-RQC"/>
+                                                <constraint firstAttribute="height" constant="20" id="zaP-aS-0oO"/>
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM3-fg-Gjp">
@@ -113,9 +113,9 @@
                                         <constraint firstItem="Rsn-QE-tbL" firstAttribute="centerY" secondItem="oRq-rh-239" secondAttribute="centerY" id="QvT-ex-GAj"/>
                                         <constraint firstAttribute="height" constant="525" id="Szf-BU-CPh"/>
                                         <constraint firstAttribute="trailing" secondItem="KM3-fg-Gjp" secondAttribute="trailing" constant="7" id="Wac-B8-iZY"/>
-                                        <constraint firstItem="oRq-rh-239" firstAttribute="bottom" secondItem="ggM-nS-vmh" secondAttribute="bottom" constant="-10" id="YHV-f3-fcv"/>
+                                        <constraint firstItem="oRq-rh-239" firstAttribute="bottom" secondItem="ggM-nS-vmh" secondAttribute="bottom" constant="-4" id="YHV-f3-fcv"/>
                                         <constraint firstItem="T2v-PH-1Ge" firstAttribute="top" secondItem="ggM-nS-vmh" secondAttribute="bottom" constant="10" id="eNq-hg-xb3"/>
-                                        <constraint firstItem="oRq-rh-239" firstAttribute="trailing" secondItem="ggM-nS-vmh" secondAttribute="trailing" constant="-4" id="jfY-Px-gkC"/>
+                                        <constraint firstItem="oRq-rh-239" firstAttribute="trailing" secondItem="ggM-nS-vmh" secondAttribute="trailing" constant="-2" id="jfY-Px-gkC"/>
                                         <constraint firstAttribute="trailing" secondItem="T2v-PH-1Ge" secondAttribute="trailing" id="jsr-wY-7TP"/>
                                         <constraint firstItem="oRq-rh-239" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LXV-Wz-yex" secondAttribute="leading" constant="6" id="v2C-pY-Hyu"/>
                                         <constraint firstItem="6W8-QF-hW6" firstAttribute="trailing" secondItem="ggM-nS-vmh" secondAttribute="trailing" id="xjA-A2-nPn"/>
@@ -278,7 +278,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="110"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本月销售额（元）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HPA-Y3-WkX">
-                                                    <rect key="frame" x="20" y="20" width="280" height="15"/>
+                                                    <rect key="frame" x="20" y="20" width="280" height="14.5"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -286,7 +286,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPf-8l-4oE">
-                                                    <rect key="frame" x="20" y="40" width="280" height="0.0"/>
+                                                    <rect key="frame" x="20" y="39.5" width="280" height="0.0"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -294,7 +294,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zLq-4h-RIQ">
-                                                    <rect key="frame" x="20" y="40" width="280" height="0.0"/>
+                                                    <rect key="frame" x="20" y="39.5" width="280" height="0.0"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -332,14 +332,14 @@
                                             <rect key="frame" x="300" y="0.0" width="300" height="110"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本月收益（元）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCo-up-LQN">
-                                                    <rect key="frame" x="20" y="20" width="280" height="15"/>
+                                                    <rect key="frame" x="20" y="20" width="280" height="14.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBF-ec-czD">
-                                                    <rect key="frame" x="20" y="40" width="280" height="0.0"/>
+                                                    <rect key="frame" x="20" y="39.5" width="280" height="0.0"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
@@ -347,7 +347,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="累计收益" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1E-4r-Dt7">
-                                                    <rect key="frame" x="20" y="40" width="280" height="14"/>
+                                                    <rect key="frame" x="20" y="39.5" width="280" height="14.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>

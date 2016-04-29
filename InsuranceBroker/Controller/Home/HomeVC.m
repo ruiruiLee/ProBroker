@@ -155,7 +155,7 @@
     [btnProduct setSepLineType:NO right:NO top:YES bottom:NO];
     [btnProduct addTarget:self action:@selector(doBtnProductSelect:) forControlEvents:UIControlEventTouchUpInside];
     
-    btnPlan = [ViewFactory CreateButtonWithImage:imgNormal];
+    btnPlan = [ViewFactory CreateButtonWithImage:ThemeImage(@"jihuashu")];
     [contenBg addSubview:btnPlan];
     [btnPlan setSepLineType:NO right:NO top:YES bottom:NO];
     [btnPlan addTarget:self action:@selector(doBtnJiHuaShu:) forControlEvents:UIControlEventTouchUpInside];
@@ -196,7 +196,7 @@
     
     btnDetail = [ViewFactory CreateButtonWithImage:imgNormal];
     [infoBg addSubview:btnDetail];
-    [btnDetail setSepLineType:NO right:YES top:YES bottom:NO];
+    [btnDetail setSepLineType:NO right:NO top:YES bottom:NO];
     [btnDetail addTarget:self action:@selector(doBtnDuSheBaoXian:) forControlEvents:UIControlEventTouchUpInside];
     
     btnCarLife = [ViewFactory CreateButtonWithImage:imgNormal];
@@ -263,7 +263,7 @@
     [newUserBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnNewUser]-0-|" options:0 metrics:nil views:views]];
     [newUserBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnNewUser]-0-|" options:0 metrics:nil views:views]];
     
-    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnDetail]-0-[btnCarLife]-0-|" options:0 metrics:nil views:views]];
+    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnDetail]-0.5-[btnCarLife]-0-|" options:0 metrics:nil views:views]];
     [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnDetail]-0-|" options:0 metrics:nil views:views]];
     [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnCarLife]-0-|" options:0 metrics:nil views:views]];
     [infoBg addConstraint:[NSLayoutConstraint constraintWithItem:btnDetail attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnCarLife attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
@@ -325,24 +325,25 @@
                          withTimeInterval:4.f];
     
    
+    UIImage *normal = nil;
     [self.headline reloadData];
-    [self.btnNewUser sd_setBackgroundImageWithURL:[NSURL URLWithString:_newUserModel.imgUrl] forState:UIControlStateNormal placeholderImage:Normal_Image];
-    [self.btnPlan sd_setBackgroundImageWithURL:[NSURL URLWithString:_jiHuaShu.bgImg] forState:UIControlStateNormal placeholderImage:Normal_Image];
+    [self.btnNewUser sd_setBackgroundImageWithURL:[NSURL URLWithString:_newUserModel.imgUrl] forState:UIControlStateNormal placeholderImage:normal];
+//    [self.btnPlan sd_setBackgroundImageWithURL:[NSURL URLWithString:_jiHuaShu.bgImg] forState:UIControlStateNormal placeholderImage:normal];
     if([self.infoArray count] > 0){
         AnnouncementModel *chengGongZhiLu = [self.infoArray objectAtIndex:0];
-        [self.btnBroker sd_setBackgroundImageWithURL:[NSURL URLWithString:chengGongZhiLu.bgImg] forState:UIControlStateNormal placeholderImage:Normal_Image];
+        [self.btnBroker sd_setBackgroundImageWithURL:[NSURL URLWithString:chengGongZhiLu.bgImg] forState:UIControlStateNormal placeholderImage:normal];
         self.btnBroker.hidden = NO;
         if([self.infoArray count] > 1){
             AnnouncementModel *liPeiChuXian = [self.infoArray objectAtIndex:1];
-            [self.btnService sd_setBackgroundImageWithURL:[NSURL URLWithString:liPeiChuXian.bgImg] forState:UIControlStateNormal placeholderImage:Normal_Image];
+            [self.btnService sd_setBackgroundImageWithURL:[NSURL URLWithString:liPeiChuXian.bgImg] forState:UIControlStateNormal placeholderImage:normal];
             self.btnService.hidden = NO;
             if([self.infoArray count] > 2){
                 AnnouncementModel *duSheBaoXian = [self.infoArray objectAtIndex:2];
-                [self.btnDetail sd_setBackgroundImageWithURL:[NSURL URLWithString:duSheBaoXian.bgImg] forState:UIControlStateNormal placeholderImage:Normal_Image];
+                [self.btnDetail sd_setBackgroundImageWithURL:[NSURL URLWithString:duSheBaoXian.bgImg] forState:UIControlStateNormal placeholderImage:normal];
                 self.btnDetail.hidden = NO;
                 if([self.infoArray count] > 3){
                     AnnouncementModel *cheshenghuo = [self.infoArray objectAtIndex:3];
-                    [self.btnCarLife sd_setBackgroundImageWithURL:[NSURL URLWithString:cheshenghuo.bgImg] forState:UIControlStateNormal placeholderImage:Normal_Image];
+                    [self.btnCarLife sd_setBackgroundImageWithURL:[NSURL URLWithString:cheshenghuo.bgImg] forState:UIControlStateNormal placeholderImage:normal];
                     self.btnCarLife.hidden = NO;
                 }else
                     self.btnCarLife.hidden = YES;

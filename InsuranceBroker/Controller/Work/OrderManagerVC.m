@@ -210,7 +210,7 @@
         NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@", Base_Uri, @"1", model.insuranceOrderUuid];
         [web loadHtmlFromUrl:url];
     }
-    if (orderOfferStatus == 4 || orderOfferStatus == 5 || orderOfferStatus == 6 || orderOfferStatus == 7 || orderOfferStatus == 8){
+    else if (orderOfferStatus == 4 || orderOfferStatus == 5 || orderOfferStatus == 6 || orderOfferStatus == 7 || orderOfferStatus == 8){
         //        title = @"出单配送";
         OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
         web.title = @"报价详情";

@@ -38,12 +38,10 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fp5-ld-PV7">
-                        <rect key="frame" x="38" y="74" width="16" height="16"/>
+                        <rect key="frame" x="40" y="76" width="16" height="16"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="16" id="I1U-Er-o02"/>
                             <constraint firstAttribute="width" constant="16" id="Mlp-gf-GJk"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="hU9-HW-Ucc"/>
                             <constraint firstAttribute="height" constant="16" id="nJ2-fu-18G"/>
                         </constraints>
                     </imageView>
@@ -65,8 +63,8 @@
                     <constraint firstItem="Ebk-ui-51N" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="8s4-aJ-E1v"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Y1Z-KK-D8w" secondAttribute="trailing" constant="16" id="94N-Sx-3gC"/>
                     <constraint firstItem="Ebk-ui-51N" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="BWR-0f-64r"/>
-                    <constraint firstItem="fp5-ld-PV7" firstAttribute="bottom" secondItem="Ebk-ui-51N" secondAttribute="bottom" id="Hfd-AB-Jdy"/>
-                    <constraint firstItem="fp5-ld-PV7" firstAttribute="trailing" secondItem="Ebk-ui-51N" secondAttribute="trailing" id="S79-Ep-pwq"/>
+                    <constraint firstItem="fp5-ld-PV7" firstAttribute="bottom" secondItem="Ebk-ui-51N" secondAttribute="bottom" constant="2" id="Hfd-AB-Jdy"/>
+                    <constraint firstItem="fp5-ld-PV7" firstAttribute="trailing" secondItem="Ebk-ui-51N" secondAttribute="trailing" constant="2" id="S79-Ep-pwq"/>
                     <constraint firstItem="Y1Z-KK-D8w" firstAttribute="leading" secondItem="lLP-7g-v3L" secondAttribute="leading" id="fyQ-g5-jBw"/>
                     <constraint firstItem="lLP-7g-v3L" firstAttribute="leading" secondItem="Ebk-ui-51N" secondAttribute="trailing" constant="10" id="tXo-TK-Bgu"/>
                     <constraint firstItem="Y1Z-KK-D8w" firstAttribute="trailing" secondItem="lLP-7g-v3L" secondAttribute="trailing" id="tgp-jp-Izx"/>

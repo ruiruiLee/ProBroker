@@ -224,7 +224,7 @@
             if(currentcertType == enumCertType1){
                 [_imageList setIndex:0];
             }else{
-                if(cert1path)
+                if(cert1path || newimgCer1)
                     [_imageList setIndex:1];
             }
         }

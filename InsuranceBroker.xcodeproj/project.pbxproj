@@ -282,6 +282,8 @@
 		86A505211C57588D0032A901 /* ZWIntroductionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A505201C57588D0032A901 /* ZWIntroductionViewController.m */; };
 		86A505271C58D92D0032A901 /* LeftMargenButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A505261C58D92D0032A901 /* LeftMargenButton.m */; };
 		86AD9ACB1CAE735D00389428 /* NetWorkHandler+queryForProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AD9ACA1CAE735D00389428 /* NetWorkHandler+queryForProductList.m */; };
+		86B279011CD31537000E5FAA /* QuickQuoteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B278FF1CD31537000E5FAA /* QuickQuoteVC.m */; };
+		86B279021CD31537000E5FAA /* QuickQuoteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B279001CD31537000E5FAA /* QuickQuoteVC.xib */; };
 		86C3BB111C228D6F00F98E80 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB121C228D6F00F98E80 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB031C228D6F00F98E80 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB131C228D6F00F98E80 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB051C228D6F00F98E80 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -970,6 +972,9 @@
 		86A505261C58D92D0032A901 /* LeftMargenButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMargenButton.m; sourceTree = "<group>"; };
 		86AD9AC91CAE735D00389428 /* NetWorkHandler+queryForProductList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+queryForProductList.h"; sourceTree = "<group>"; };
 		86AD9ACA1CAE735D00389428 /* NetWorkHandler+queryForProductList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryForProductList.m"; sourceTree = "<group>"; };
+		86B278FE1CD31537000E5FAA /* QuickQuoteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickQuoteVC.h; sourceTree = "<group>"; };
+		86B278FF1CD31537000E5FAA /* QuickQuoteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickQuoteVC.m; sourceTree = "<group>"; };
+		86B279001CD31537000E5FAA /* QuickQuoteVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickQuoteVC.xib; sourceTree = "<group>"; };
 		86C3BB001C228D6F00F98E80 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		86C3BB021C228D6F00F98E80 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -1486,6 +1491,9 @@
 				8650661D1C2154C200429EAE /* WebViewController.h */,
 				8650661E1C2154C200429EAE /* WebViewController.m */,
 				8650661F1C2154C200429EAE /* WebViewController.xib */,
+				86B278FE1CD31537000E5FAA /* QuickQuoteVC.h */,
+				86B278FF1CD31537000E5FAA /* QuickQuoteVC.m */,
+				86B279001CD31537000E5FAA /* QuickQuoteVC.xib */,
 				86A504E81C524E8F0032A901 /* OrderDetailWebVC.h */,
 				86A504E91C524E8F0032A901 /* OrderDetailWebVC.m */,
 				86A504EB1C524E9F0032A901 /* OrderDetailWebVC.xib */,
@@ -2833,6 +2841,7 @@
 				86C3BB171C228D6F00F98E80 /* blueArrow.png in Resources */,
 				8654CA531C30CFEB00411C54 /* BindPhoneNumVC.xib in Resources */,
 				86C3BC3D1C2D73E100F98E80 /* MenuCell.xib in Resources */,
+				86B279021CD31537000E5FAA /* QuickQuoteVC.xib in Resources */,
 				86C3BB151C228D6F00F98E80 /* blackArrow.png in Resources */,
 				86C3BB9D1C27F95E00F98E80 /* CustomDetailHeaderView.xib in Resources */,
 				86C3BCC71C2E933600F98E80 /* IQKeyboardManager.bundle in Resources */,
@@ -3064,6 +3073,7 @@
 				86A504EA1C524E8F0032A901 /* OrderDetailWebVC.m in Sources */,
 				8654CD861C312CE100411C54 /* SBJsonStreamWriterState.m in Sources */,
 				868C7CD71C9BE91400B7617A /* CurveSellModel.m in Sources */,
+				86B279011CD31537000E5FAA /* QuickQuoteVC.m in Sources */,
 				86A26E7F1C45184C0073FFFC /* HaedlineModel.m in Sources */,
 				CF677E341C97EB4D00128F1B /* MJBannnerPlayer.m in Sources */,
 				8625AFD31C34DB5600312B98 /* InviteFriendsVC.m in Sources */,
