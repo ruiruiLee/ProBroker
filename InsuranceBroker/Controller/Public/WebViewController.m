@@ -160,13 +160,13 @@
 
 #pragma UIWebViewDelegate
 
-//- (void)webViewDidFinishLoad:(UIWebView *)webView
-//{
-////    self.shareUrl = webView.request.URL.absoluteString;
-//    NSString *url = webView.request.URL.absoluteString;
-//    if(![url isEqualToString:self.urlpath])
-//        self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1", url, [UserInfoModel shareUserInfoModel].userId];
-//}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+//    self.shareUrl = webView.request.URL.absoluteString;
+    NSString *url = webView.request.URL.absoluteString;
+    if(![url isEqualToString:self.urlpath])
+        self.shareUrl = url;
+}
 
 
 #pragma mark - NJKWebViewProgressDelegate

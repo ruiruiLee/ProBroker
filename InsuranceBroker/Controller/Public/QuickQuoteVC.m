@@ -29,7 +29,41 @@
     //    self.shareUrl = webView.request.URL.absoluteString;
     NSString *url = webView.request.URL.absoluteString;
     if(![url isEqualToString:self.urlpath])
-        self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1", url, [UserInfoModel shareUserInfoModel].userId];
+        self.shareUrl = url;
+}
+
+- (void) handleRightBarButtonClicked:(id)sender
+{
+    [self showPopView];
+}
+
+- (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag
+{
+
+    switch (tag) {
+        case 0:
+        {
+            [self simplyShare:SSDKPlatformSubTypeWechatSession];
+        }
+            break;
+        case 1:
+        {
+            [self simplyShare:SSDKPlatformSubTypeWechatTimeline];
+        }
+            break;
+        case 2:
+        {
+            [self simplyShare:SSDKPlatformSubTypeQQFriend];
+        }
+            break;
+        case 3:
+        {
+            [self simplyShare:SSDKPlatformSubTypeQZone];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 @end

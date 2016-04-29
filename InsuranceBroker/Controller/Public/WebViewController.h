@@ -47,4 +47,7 @@
 - (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag;
 //- (void) initShareUrl:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId;
 
+- (void) showPopView;
+- (void) showPopView1;
+
 @end

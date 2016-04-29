@@ -182,4 +182,12 @@
     TeamMateIncomeStatisticsVC *income = [[TeamMateIncomeStatisticsVC alloc] initWithNibName:@"TeamMateIncomeStatisticsVC" bundle:nil];
     return income;
 }
+
+//快速算价
++ (QuickQuoteVC *) CreateQuickQuoteVC
+{
+    QuickQuoteVC *quick = [[QuickQuoteVC alloc] initWithNibName:@"QuickQuoteVC" bundle:nil];
+    return quick;
+}
+
 @end

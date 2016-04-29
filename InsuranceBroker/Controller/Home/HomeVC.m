@@ -585,11 +585,11 @@
 
 - (void) doBtnQuote:(id) sender
 {
-    WebViewController *web = [IBUIFactory CreateWebViewController];
+    QuickQuoteVC *web = [IBUIFactory CreateQuickQuoteVC];
     web.hidesBottomBarWhenPushed = YES;
     web.title = @"快速算价";
-    web.type = enumShareTypeShare;
-    web.shareTitle = @"快速算价";
+    web.type = enumShareTypeNo;
+    web.shareTitle = @"算价方案";
     [self.navigationController pushViewController:web animated:YES];
     
     [web loadHtmlFromUrlWithUserId:_quoteUrl];
