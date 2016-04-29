@@ -25,13 +25,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (void)webViewDidFinishLoad:(UIWebView *)webView
-//{
-//    //    self.shareUrl = webView.request.URL.absoluteString;
-//    NSString *url = webView.request.URL.absoluteString;
-//    if(![url isEqualToString:self.urlpath])
-//        self.shareUrl = url;
-//}
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //    self.shareUrl = webView.request.URL.absoluteString;
+    NSString *url = webView.request.URL.absoluteString;
+    if(![url isEqualToString:self.urlpath])
+        self.shareUrl = url;
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    // Determine if we want the system to handle it.
+    NSURL *url = request.URL;
+    NSString *uri = url.absoluteString;
+    if([uri rangeOfString:@"userId="].length > 0){
+        
+    }else{
+        NSString *newUrlString =  [NSString stringWithFormat:@"%@&userId=%@", uri, [UserInfoModel shareUserInfoModel].userId];
+        url = [NSURL URLWithString:newUrlString];
+        [self.webview loadRequest:[NSURLRequest requestWithURL:url]];
+        return NO;
+    }
+
+    return YES;
+}
 
 - (void) handleRightBarButtonClicked:(id)sender
 {
@@ -46,6 +62,7 @@
     NSDictionary *dic = [_parser objectWithString:jsonstr];
     if([dic objectForKey:@"url"]){
         self.shareUrl = [dic objectForKey:@"url"];
+//        self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1", [dic objectForKey:@"url"], [UserInfoModel shareUserInfoModel].userId];
     }
     
     if([dic objectForKey:@"content"]){

@@ -15,6 +15,7 @@
                                          sidx:(NSString *) sidx
                                          sord:(NSString *) sord
                                       filters:(NSDictionary *) filters
+                                        userId:(NSString *) userId
                                    completion:(Completion)completion;
 
 @end

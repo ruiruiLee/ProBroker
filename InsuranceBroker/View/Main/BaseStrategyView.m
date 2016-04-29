@@ -142,11 +142,16 @@
     
     if(model.minPrice){
         cell.lbPrice.hidden = NO;
-        cell.lbPrice.text = [self attstringwithPrice:model.minPrice];
+        cell.lbPrice.attributedText = [self attstringwithPrice:model.minPrice];
     }
     else{
         cell.lbPrice.hidden = YES;
     }
+    
+    if(model.productMaxRatio != nil)
+        cell.lbRate.text = [NSString stringWithFormat:@"推广费：%@%@", model.productMaxRatio, @"\%"];
+    else
+        cell.lbRate.text = [NSString stringWithFormat:@"推广费：0%@", @"\%"];
     
     return cell;
 }
@@ -243,7 +248,7 @@
     [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:self.category]];
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     
-    [self.handler requestToQueryForProductAttrPageList:page limit:LIMIT sidx:@"P_ProductAttr.seqNo" sord:@"asc" filters:filters completion:^(int code, id content) {
+    [self.handler requestToQueryForProductAttrPageList:page limit:LIMIT sidx:@"P_ProductAttr.seqNo" sord:@"asc" filters:filters userId:[UserInfoModel shareUserInfoModel].userId completion:^(int code, id content) {
         [self refreshTable];
         [self loadMoreDataToTable];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
@@ -268,13 +273,14 @@
     return rule;
 }
 
-- (NSString *) attstringwithPrice:(NSString *) price
+- (NSAttributedString *) attstringwithPrice:(NSString *) price
 {
-    NSString *string = [NSString stringWithFormat:@"¥ %@", price];
-//    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
-//    NSRange range = [string rangeOfString:price];
-//    [attString addAttribute:NSFontAttributeName value:_FONT_B(14) range:range];
-    return string;
+    NSString *string = [NSString stringWithFormat:@"¥ %@ 起", price];
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
+    NSRange range = [string rangeOfString:@"起"];
+    [attString addAttribute:NSFontAttributeName value:_FONT(10) range:range];
+    [attString addAttribute:NSForegroundColorAttributeName value:_COLOR(0x75, 0x75, 0x75) range:range];
+    return attString;
 }
 
 #pragma 登录

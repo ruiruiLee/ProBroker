@@ -16,5 +16,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbContent;
 @property (nonatomic, strong) IBOutlet UILabel *lbPrice;
 @property (nonatomic, strong) IBOutlet UILabel *lbCount;
+@property (nonatomic, strong) IBOutlet UILabel *lbRate;
 
 @end

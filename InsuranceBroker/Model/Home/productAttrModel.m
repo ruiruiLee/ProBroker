@@ -35,6 +35,7 @@
     model.productTitle = [dictionary objectForKey:@"productTitle"];
     model.seqNo = [dictionary objectForKey:@"seqNo"];
     model.minPrice = [dictionary objectForKey:@"minPrice"];
+    model.productMaxRatio = [dictionary objectForKey:@"productMaxRatio"];
     
     return model;
 }

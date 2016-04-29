@@ -17,6 +17,7 @@
                                          sidx:(NSString *) sidx
                                          sord:(NSString *) sord
                                       filters:(NSDictionary *) filters
+                                       userId:(NSString *) userId
                                    completion:(Completion)completion
 {
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
@@ -24,6 +25,7 @@
     [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:limit] key:@"limit"];
     [Util setValueForKeyWithDic:pramas value:sord key:@"sord"];
     [Util setValueForKeyWithDic:pramas value:sidx key:@"sidx"];
+    [Util setValueForKeyWithDic:pramas value:userId key:@"userId"];
     
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
     NSString *filtersStr = [writer stringWithObject:filters];
