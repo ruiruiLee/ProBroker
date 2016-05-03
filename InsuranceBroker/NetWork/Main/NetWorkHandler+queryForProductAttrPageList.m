@@ -18,6 +18,7 @@
                                          sord:(NSString *) sord
                                       filters:(NSDictionary *) filters
                                        userId:(NSString *) userId
+                                insuranceType:(NSString *) insuranceType
                                    completion:(Completion)completion
 {
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
@@ -26,6 +27,7 @@
     [Util setValueForKeyWithDic:pramas value:sord key:@"sord"];
     [Util setValueForKeyWithDic:pramas value:sidx key:@"sidx"];
     [Util setValueForKeyWithDic:pramas value:userId key:@"userId"];
+    [Util setValueForKeyWithDic:pramas value:insuranceType key:@"insuranceType"];
     
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
     NSString *filtersStr = [writer stringWithObject:filters];

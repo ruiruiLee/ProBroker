@@ -16,6 +16,7 @@
                                          sord:(NSString *) sord
                                       filters:(NSDictionary *) filters
                                         userId:(NSString *) userId
+                                insuranceType:(NSString*) insuranceType
                                    completion:(Completion)completion;
 
 @end

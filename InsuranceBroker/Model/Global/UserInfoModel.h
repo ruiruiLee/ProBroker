@@ -81,6 +81,8 @@
 @property (nonatomic, assign) NSInteger teamInviteNums;//自己邀请人数
 @property (nonatomic, assign) NSInteger teamTotalNums;//团队总人数
 
+@property (nonatomic, assign) BOOL possessTeamStatus;// 具备团队长状态；0没有，1有
+
 + (UserInfoModel *) shareUserInfoModel;
 - (void) setContentWithDictionary:(NSDictionary *) dic;//isLogin单独修改
 - (void) queryUserInfo;//获取经纪人信息详情

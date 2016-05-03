@@ -11,12 +11,11 @@
 #import "define.h"
 #import "NetWorkHandler+queryForPageList.h"
 #import "NetWorkHandler+queryForCustomerCarPageList.h"
-#import "CTPopOutMenu.h"
 #import "CarInfoModel.h"
 #import "BackGroundView.h"
 #import "OrderWebVC.h"
 
-@interface SelectCustomerVC () <CTPopoutMenuDelegate, BackGroundViewDelegate>
+@interface SelectCustomerVC () <BackGroundViewDelegate>
 {
     UISearchDisplayController *searchDisplayController;
     NSString *filterString;
@@ -24,8 +23,6 @@
     
     BackGroundView *_addview;
 }
-
-@property (nonatomic) CTPopoutMenu * popMenu;
 
 @end
 

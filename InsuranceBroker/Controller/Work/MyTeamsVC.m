@@ -54,7 +54,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self setRightBarButtonWithImage:ThemeImage(@"inviteUser")];
+    if([UserInfoModel shareUserInfoModel].possessTeamStatus)
+        [self setRightBarButtonWithImage:ThemeImage(@"inviteUser")];
 
     [self.pulltable registerNib:[UINib nibWithNibName:@"TeamListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.pulltable.backgroundColor = [UIColor clearColor];

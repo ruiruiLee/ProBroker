@@ -20,6 +20,8 @@
 #import "AppDelegate.h"
 #import "MyTeamInfoVC.h"
 #import "ProductListVC.h"
+#import "RootViewController.h"
+#import "UITabBar+badge.h"
 
 @interface HomeVC ()<MJBannnerPlayerDeledage>
 {
@@ -56,8 +58,10 @@
     if(con.isNewMessage)
     {
         self.btnMessage.imageView.badgeView.badgeValue = 1;
+        [self.tabBarController.tabBar showBadgeOnItemIndex:0];
     }else{
         self.btnMessage.imageView.badgeView.badgeValue = 0;
+        [self.tabBarController.tabBar hideBadgeOnItemIndex:0];
     }
 }
 

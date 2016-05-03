@@ -53,6 +53,7 @@
         self.leader = 0;
         self.cardVerifiy = 1;
         self.userType = 4;
+        self.possessTeamStatus = NO;
     }
     
     return self;
@@ -84,6 +85,7 @@
     self.cardVerifiy = [[dic objectForKey:@"cardVerifiy"] integerValue];
     self.userType = [[dic objectForKey:@"userType"] integerValue];
     self.userId = [dic objectForKey:@"userId"];
+    self.possessTeamStatus = [[dic objectForKey:@"possessTeamStatus"] boolValue];
     
 //    self.cardNumber = [dic objectForKey:@"cardNumber"];
 //    self.cardNumberImg1 = [dic objectForKey:@"cardNumberImg1"];
@@ -111,6 +113,7 @@
     [context saveData];
 }
 
+//存到本地的东西
 - (NSMutableDictionary *) dictionaryWithObject:(UserInfoModel *)model
 {
     NSMutableDictionary *mDic = [[NSMutableDictionary alloc] init];
@@ -132,6 +135,7 @@
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInt:self.leader] key:@"leader"];
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.cardVerifiy] key:@"cardVerifiy"];
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.userType] key:@"userType"];
+    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithBool:self.possessTeamStatus] key:@"possessTeamStatus"];
     
     return mDic;
 }
@@ -206,6 +210,7 @@
     self.teamTotalNums = [[dic objectForKey:@"teamTotalNums"] integerValue];
     self.nowUserTotalMoney = [[dic objectForKey:@"nowUserTotalMoney"] floatValue];
     self.userTotalMoney = [[dic objectForKey:@"userTotalMoney"] floatValue];
+    self.possessTeamStatus = [[dic objectForKey:@"possessTeamStatus"] boolValue];
 }
 
 - (void) queryUserInfo

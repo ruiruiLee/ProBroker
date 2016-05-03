@@ -27,6 +27,8 @@
         [self addSubview:view];
         view.translatesAutoresizingMaskIntoConstraints = NO;
         
+        
+        self.lbTitle = [view viewWithTag:100001];
         self.btnAdd = [view viewWithTag:1001];
         self.btnAdd.layer.cornerRadius = 3;
         [self.btnAdd addTarget:self action:@selector(doBtnAdd:) forControlEvents:UIControlEventTouchUpInside];

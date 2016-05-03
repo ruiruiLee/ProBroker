@@ -116,7 +116,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 110.f;
+    return 113.f;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -149,9 +149,11 @@
     }
     
     if(model.productMaxRatio != nil)
-        cell.lbRate.text = [NSString stringWithFormat:@"推广费：%@%@", model.productMaxRatio, @"\%"];
+//        cell.lbRate.text = [NSString stringWithFormat:@"推广费：%@%@", model.productMaxRatio, @"\%"];
+        cell.lbRate.attributedText = [self attstringwithRate:model.productMaxRatio];
     else
-        cell.lbRate.text = [NSString stringWithFormat:@"推广费：0%@", @"\%"];
+//        cell.lbRate.text = [NSString stringWithFormat:@"推广费：0%@", @"\%"];
+        cell.lbRate.attributedText = [self attstringwithRate:@"0"];
     
     return cell;
 }
@@ -248,7 +250,7 @@
     [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:self.category]];
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     
-    [self.handler requestToQueryForProductAttrPageList:page limit:LIMIT sidx:@"P_ProductAttr.seqNo" sord:@"asc" filters:filters userId:[UserInfoModel shareUserInfoModel].userId completion:^(int code, id content) {
+    [self.handler requestToQueryForProductAttrPageList:page limit:LIMIT sidx:@"P_ProductAttr.seqNo" sord:@"asc" filters:filters userId:[UserInfoModel shareUserInfoModel].userId insuranceType:self.category completion:^(int code, id content) {
         [self refreshTable];
         [self loadMoreDataToTable];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
@@ -280,6 +282,16 @@
     NSRange range = [string rangeOfString:@"起"];
     [attString addAttribute:NSFontAttributeName value:_FONT(10) range:range];
     [attString addAttribute:NSForegroundColorAttributeName value:_COLOR(0x75, 0x75, 0x75) range:range];
+    return attString;
+}
+
+- (NSAttributedString *) attstringwithRate:(NSString *) rate
+{
+    NSString *string = [NSString stringWithFormat:@"%@%@ 推广费", rate, @"\%"];
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
+    NSRange range = [string rangeOfString:[NSString stringWithFormat:@"%@%@", rate, @"\%"]];
+    [attString addAttribute:NSFontAttributeName value:_FONT(15) range:range];
+    [attString addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
     return attString;
 }
 

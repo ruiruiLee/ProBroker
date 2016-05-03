@@ -284,6 +284,7 @@
 		86AD9ACB1CAE735D00389428 /* NetWorkHandler+queryForProductList.m in Sources */ = {isa = PBXBuildFile; fileRef = 86AD9ACA1CAE735D00389428 /* NetWorkHandler+queryForProductList.m */; };
 		86B279011CD31537000E5FAA /* QuickQuoteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B278FF1CD31537000E5FAA /* QuickQuoteVC.m */; };
 		86B279021CD31537000E5FAA /* QuickQuoteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B279001CD31537000E5FAA /* QuickQuoteVC.xib */; };
+		86B279051CD8798A000E5FAA /* UITabBar+badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B279041CD8798A000E5FAA /* UITabBar+badge.m */; };
 		86C3BB111C228D6F00F98E80 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB121C228D6F00F98E80 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB031C228D6F00F98E80 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB131C228D6F00F98E80 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB051C228D6F00F98E80 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -975,6 +976,8 @@
 		86B278FE1CD31537000E5FAA /* QuickQuoteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuickQuoteVC.h; sourceTree = "<group>"; };
 		86B278FF1CD31537000E5FAA /* QuickQuoteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuickQuoteVC.m; sourceTree = "<group>"; };
 		86B279001CD31537000E5FAA /* QuickQuoteVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickQuoteVC.xib; sourceTree = "<group>"; };
+		86B279031CD8798A000E5FAA /* UITabBar+badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+badge.h"; sourceTree = "<group>"; };
+		86B279041CD8798A000E5FAA /* UITabBar+badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+badge.m"; sourceTree = "<group>"; };
 		86C3BB001C228D6F00F98E80 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		86C3BB021C228D6F00F98E80 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -2045,6 +2048,8 @@
 				86CC8C531CB3D04500362AD0 /* HighNightBgButton.m */,
 				86248F221CD05A0E00F1B493 /* ReactiveButton.h */,
 				86248F231CD05A0E00F1B493 /* ReactiveButton.m */,
+				86B279031CD8798A000E5FAA /* UITabBar+badge.h */,
+				86B279041CD8798A000E5FAA /* UITabBar+badge.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -2987,6 +2992,7 @@
 				8625F8EF1C892815001569BE /* TeamMateIncomeStatisticsVC.m in Sources */,
 				86A504C31C509DE50032A901 /* TasksModel.m in Sources */,
 				8625B01E1C3BF75500312B98 /* CustomerDetailModel.m in Sources */,
+				86B279051CD8798A000E5FAA /* UITabBar+badge.m in Sources */,
 				86A504B41C4FBC440032A901 /* BankSelectVC.m in Sources */,
 				8654CD891C312CE100411C54 /* SBJsonWriter.m in Sources */,
 				86C3BB2F1C22C42D00F98E80 /* UIView+MGBadgeView.m in Sources */,

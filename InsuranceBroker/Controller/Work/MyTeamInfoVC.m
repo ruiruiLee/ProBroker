@@ -18,11 +18,14 @@
 #import "ProductSettingTableViewCell.h"
 #import "NetWorkHandler+updateUserRemarkName.h"
 #import "HMPopUpView.h"
+#import "BackGroundView.h"
 
-@interface MyTeamInfoVC () <HMPopUpViewDelegate>
+@interface MyTeamInfoVC () <HMPopUpViewDelegate, BackGroundViewDelegate>
 {
     UIImageView *iconview;
     HMPopUpView *hmPopUp;
+    
+    BackGroundView *_addview;
 }
 
 @property (nonatomic, strong) ParentInfoModel *parentModel;
@@ -45,55 +48,55 @@
 
 - (void) initHeaderView
 {
-    CGFloat bannerHeight = [Util getHeightByWidth:375 height:60 nwidth:ScreenWidth];
-    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, bannerHeight)];
-    UIImageView *banner = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, bannerHeight)];
-    banner.image  = ThemeImage(@"refund_banner");
-    banner.userInteractionEnabled = YES;
-    [header addSubview:banner];
-    banner.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    iconview = [[UIImageView alloc] initWithFrame:CGRectZero];
-    [banner addSubview:iconview];
-    iconview.translatesAutoresizingMaskIntoConstraints = NO;
-    iconview.image = ThemeImage(@"zhankai");
-    
-    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
-    btn.translatesAutoresizingMaskIntoConstraints = NO;
-    [banner addSubview:btn];
-    [btn addTarget:self action:@selector(doBtnShowProductInfo:) forControlEvents:UIControlEventTouchUpInside];
-    btn.selected = NO;
-    
-    self.productTable = [[UITableView alloc] initWithFrame:CGRectZero];
-    [header addSubview:self.productTable];
-    self.productTable.scrollEnabled = NO;
-    self.productTable.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.productTable registerNib:[UINib nibWithNibName:@"ProductSettingTableViewCell" bundle:nil] forCellReuseIdentifier:@"productcell"];
-    self.productTable.delegate = self;
-    self.productTable.dataSource = self;
-    
-    UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 2)];
-    foot.backgroundColor = _COLOR(0xff, 0xaa, 0x7f);
-    foot.translatesAutoresizingMaskIntoConstraints = NO;
-    [header addSubview:foot];
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(banner, btn, productTable, foot, iconview);
-    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[banner]-0-|" options:0 metrics:nil views:views]];
-    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[productTable]-0-|" options:0 metrics:nil views:views]];
-    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[foot]-0-|" options:0 metrics:nil views:views]];
-    [banner addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btn]-0-|" options:0 metrics:nil views:views]];
-    [banner addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=0-[iconview]-22-|" options:0 metrics:nil views:views]];
-    [banner addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btn]-0-|" options:0 metrics:nil views:views]];
-    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[banner]-0-[productTable]-0-[foot]-0-|" options:0 metrics:nil views:views]];
-    
-    self.headerTableVConstraint = [NSLayoutConstraint constraintWithItem:self.productTable attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
-    [header addConstraint:self.headerTableVConstraint];
-    self.footTableVConstraint = [NSLayoutConstraint constraintWithItem:foot attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
-    [header addConstraint:self.footTableVConstraint];
-    
-    [banner addConstraint:[NSLayoutConstraint constraintWithItem:iconview attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:banner attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
-    
-    self.pulltable.tableHeaderView = header;
+//    CGFloat bannerHeight = [Util getHeightByWidth:375 height:60 nwidth:ScreenWidth];
+//    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, bannerHeight)];
+//    UIImageView *banner = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, bannerHeight)];
+//    banner.image  = ThemeImage(@"refund_banner");
+//    banner.userInteractionEnabled = YES;
+//    [header addSubview:banner];
+//    banner.translatesAutoresizingMaskIntoConstraints = NO;
+//    
+//    iconview = [[UIImageView alloc] initWithFrame:CGRectZero];
+//    [banner addSubview:iconview];
+//    iconview.translatesAutoresizingMaskIntoConstraints = NO;
+//    iconview.image = ThemeImage(@"zhankai");
+//    
+//    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
+//    btn.translatesAutoresizingMaskIntoConstraints = NO;
+//    [banner addSubview:btn];
+//    [btn addTarget:self action:@selector(doBtnShowProductInfo:) forControlEvents:UIControlEventTouchUpInside];
+//    btn.selected = NO;
+//    
+//    self.productTable = [[UITableView alloc] initWithFrame:CGRectZero];
+//    [header addSubview:self.productTable];
+//    self.productTable.scrollEnabled = NO;
+//    self.productTable.translatesAutoresizingMaskIntoConstraints = NO;
+//    [self.productTable registerNib:[UINib nibWithNibName:@"ProductSettingTableViewCell" bundle:nil] forCellReuseIdentifier:@"productcell"];
+//    self.productTable.delegate = self;
+//    self.productTable.dataSource = self;
+//    
+//    UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 2)];
+//    foot.backgroundColor = _COLOR(0xff, 0xaa, 0x7f);
+//    foot.translatesAutoresizingMaskIntoConstraints = NO;
+//    [header addSubview:foot];
+//    
+//    NSDictionary *views = NSDictionaryOfVariableBindings(banner, btn, productTable, foot, iconview);
+//    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[banner]-0-|" options:0 metrics:nil views:views]];
+//    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[productTable]-0-|" options:0 metrics:nil views:views]];
+//    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[foot]-0-|" options:0 metrics:nil views:views]];
+//    [banner addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btn]-0-|" options:0 metrics:nil views:views]];
+//    [banner addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=0-[iconview]-22-|" options:0 metrics:nil views:views]];
+//    [banner addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btn]-0-|" options:0 metrics:nil views:views]];
+//    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[banner]-0-[productTable]-0-[foot]-0-|" options:0 metrics:nil views:views]];
+//    
+//    self.headerTableVConstraint = [NSLayoutConstraint constraintWithItem:self.productTable attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
+//    [header addConstraint:self.headerTableVConstraint];
+//    self.footTableVConstraint = [NSLayoutConstraint constraintWithItem:foot attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
+//    [header addConstraint:self.footTableVConstraint];
+//    
+//    [banner addConstraint:[NSLayoutConstraint constraintWithItem:iconview attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:banner attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+//    
+//    self.pulltable.tableHeaderView = header;
 }
 
 - (void) initSubViews
@@ -204,8 +207,13 @@
 {
     if(tableView == self.productTable)
         return 1;
-    else
-        return 2;
+    else{
+        if([UserInfoModel shareUserInfoModel].possessTeamStatus){
+            return 2;
+        }
+        else
+            return 1;
+    }
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -215,8 +223,25 @@
         return [self.productList count];
     }
     else{
-        if(section == 1)
+        if(section == 1){
+            
+            if([self.data count] == 0){
+                if(!_addview){
+                    _addview = [[BackGroundView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 2 / 5, ScreenWidth, 100)];
+                    _addview.delegate = self;
+                    _addview.lbTitle.text = @"暂无队员，邀请好友组建你的团队吧";
+                    [_addview.btnAdd setTitle:@"立即邀请" forState:UIControlStateNormal];
+                }else{
+                    [_addview removeFromSuperview];
+                }
+                [self.pulltable addSubview:_addview];
+            }
+            else{
+                [_addview removeFromSuperview];
+            }
+            
             return [self.data count];
+        }
         else
             return 1;
     }
@@ -392,6 +417,10 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
     view.backgroundColor = _COLOR(0xf5, 0xf5, 0xf5);
     
+    UIImageView *imgV = [[UIImageView alloc] init];
+    [view addSubview:imgV];
+    imgV.translatesAutoresizingMaskIntoConstraints = NO;
+    
     UILabel *lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
     [view addSubview:lbTitle];
     lbTitle.text = self.toptitle;
@@ -401,17 +430,21 @@
     lbAmount.textAlignment = NSTextAlignmentRight;
     if(section == 0){
         lbTitle.text = @"我的团长";
+        imgV.image = ThemeImage(@"wodetuanzhang");
         lbAmount.text = @"";
     }
     else{
         lbTitle.text = @"我的队员";
+        imgV.image = ThemeImage(@"my_team");
         lbAmount.text = [NSString stringWithFormat:@"共%d人", [self.data count]];
     }
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbAmount);
-    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]->=10-[lbAmount]-20-|" options:0 metrics:nil views:views]];
+    NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbAmount, imgV);
+    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[imgV(25)]-6-[lbTitle]->=10-[lbAmount]-20-|" options:0 metrics:nil views:views]];
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbTitle(40)]->=0-|" options:0 metrics:nil views:views]];
+    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[imgV(20)]->=0-|" options:0 metrics:nil views:views]];
     [view addConstraint:[NSLayoutConstraint constraintWithItem:lbAmount attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [view addConstraint:[NSLayoutConstraint constraintWithItem:imgV attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     
     if(section == 1 && [self.data count] > 0){
         UIView *teamview = [self createTeamTotalInfo];
@@ -507,6 +540,11 @@
             [self.pulltable reloadData];
         }
     }];
+}
+
+- (void) notifyToAddNewCustomer:(BackGroundView *) view
+{
+    [self handleRightBarButtonClicked:nil];
 }
 
 @end
