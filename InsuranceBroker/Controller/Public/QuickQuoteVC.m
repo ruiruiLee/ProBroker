@@ -30,7 +30,7 @@
     //    self.shareUrl = webView.request.URL.absoluteString;
     NSString *url = webView.request.URL.absoluteString;
     if(![url isEqualToString:self.urlpath])
-        self.shareUrl = url;
+        self.shareUrl = [NSString stringWithFormat:@"%@&appShare=1", url];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -38,7 +38,7 @@
     NSURL *url = request.URL;
     NSString *uri = url.absoluteString;
     if([uri rangeOfString:@"userId="].length > 0){
-        
+
     }else{
         NSString *newUrlString =  [NSString stringWithFormat:@"%@&userId=%@", uri, [UserInfoModel shareUserInfoModel].userId];
         url = [NSURL URLWithString:newUrlString];
@@ -61,7 +61,7 @@
     SBJsonParser *_parser = [[SBJsonParser alloc] init];
     NSDictionary *dic = [_parser objectWithString:jsonstr];
     if([dic objectForKey:@"url"]){
-        self.shareUrl = [dic objectForKey:@"url"];
+        self.shareUrl = [NSString stringWithFormat:@"%@&appShare=1", [dic objectForKey:@"url"]];;
 //        self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1", [dic objectForKey:@"url"], [UserInfoModel shareUserInfoModel].userId];
     }
     
