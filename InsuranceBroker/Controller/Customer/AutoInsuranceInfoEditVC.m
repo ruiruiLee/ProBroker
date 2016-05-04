@@ -587,6 +587,10 @@
     
     newLisence = nil;
     self.btnReSubmit.selected = NO;
+    self.tfModel.text = @"";
+    self.tfDate.text = @"";
+    self.tfIdenCode.text = @"";
+    self.tfMotorCode.text = @"";
     sender.selected = !selected;
     [self cancelSelectPCompany:nil];
     [self isModify];
