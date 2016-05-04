@@ -38,6 +38,9 @@
 //#define AVOSCloudAppID  @"0PyuKjNlBECHhEf3HxDB7NYX-gzGzoHsz"
 //#define AVOSCloudAppKey @"mOmncwQfyeroy2jcDj0ch1Q1"
 
+// 在线客服
+#define APP_KEY @"f3b9c7da5044b70c7bbf1e4a83862c6b"
+
 //location
 #define LcationInstance [LocationManagerObserver sharedInstance]
 
