@@ -1308,6 +1308,7 @@
 //    [UIView animateWithDuration:0.25 animations:^{
         if(isShowWarning){
             self.topVConstraint.constant = 30;
+            self.imageShut.image = ThemeImage(@"info_zhankai");
         }
         else{
             CGRect rect = [explain boundingRectWithSize:CGSizeMake(ScreenWidth - 32, MAXFLOAT)
@@ -1318,6 +1319,7 @@
                            
                                                       context:nil];
             self.topVConstraint.constant = 30 + rect.size.height + 9;
+            self.imageShut.image = ThemeImage(@"info_guanbi");
         }
         [self.view1 layoutIfNeeded];
         [self.view1 setNeedsLayout];

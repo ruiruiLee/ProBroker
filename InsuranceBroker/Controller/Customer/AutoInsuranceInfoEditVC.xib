@@ -17,6 +17,7 @@
                 <outlet property="btnReSubmit" destination="a1B-nY-nfe" id="6QB-zA-Sr2"/>
                 <outlet property="contenView" destination="Ht5-MD-Gr8" id="9u8-ur-huZ"/>
                 <outlet property="imageHConstraint" destination="4hK-Y7-7xI" id="Q7k-fU-Y5c"/>
+                <outlet property="imageShut" destination="iN4-U2-yKq" id="awy-II-hX7"/>
                 <outlet property="infoHConstraint" destination="LbB-ue-s9X" id="75j-RR-uwH"/>
                 <outlet property="lbCertTitle" destination="V2E-lO-P5k" id="TMy-6D-how"/>
                 <outlet property="lbDateTitle" destination="6Cu-SR-vPJ" id="sAG-wJ-R07"/>
@@ -83,8 +84,8 @@
                                                 <constraint firstAttribute="width" constant="18" id="kQE-gk-M66"/>
                                             </constraints>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8O-fE-faa" customClass="LeftImgButton">
-                                            <rect key="frame" x="132" y="0.0" width="143" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8O-fE-faa" customClass="LeftImgButton">
+                                            <rect key="frame" x="466" y="1" width="95" height="30"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="ESn-QO-SEH"/>
@@ -93,9 +94,6 @@
                                             <state key="normal" title="（ 如何报价？）">
                                                 <color key="titleColor" red="0.40000000000000002" green="0.56470588235294117" blue="0.6705882352941176" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
-                                            <connections>
-                                                <action selector="doBtnShowWarning:" destination="-1" eventType="touchUpInside" id="6VX-hK-abb"/>
-                                            </connections>
                                         </button>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgm-h4-ntg">
                                             <rect key="frame" x="0.0" y="30" width="600" height="0.0"/>
@@ -132,22 +130,39 @@
                                                 <constraint firstAttribute="trailing" secondItem="gNM-7Z-xye" secondAttribute="trailing" constant="16" id="yo5-Zd-dAo"/>
                                             </constraints>
                                         </view>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info_zhankai" translatesAutoresizingMaskIntoConstraints="NO" id="iN4-U2-yKq">
+                                            <rect key="frame" x="565" y="12" width="15" height="8"/>
+                                            <animations/>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGt-SE-cMh" customClass="HighNightBgButton">
+                                            <rect key="frame" x="445" y="0.0" width="147" height="32"/>
+                                            <animations/>
+                                            <connections>
+                                                <action selector="doBtnShowWarning:" destination="-1" eventType="touchUpInside" id="DIg-iU-MT5"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <animations/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="xgm-h4-ntg" firstAttribute="leading" secondItem="8Za-H7-mhZ" secondAttribute="leading" id="3zg-2w-mzu"/>
+                                        <constraint firstItem="iN4-U2-yKq" firstAttribute="trailing" secondItem="eGt-SE-cMh" secondAttribute="trailing" constant="-8" id="5Kb-hO-4Cp"/>
                                         <constraint firstAttribute="height" constant="30" id="CHl-km-LNy"/>
                                         <constraint firstAttribute="bottom" secondItem="xgm-h4-ntg" secondAttribute="bottom" id="Kkn-j6-io9"/>
+                                        <constraint firstItem="G8O-fE-faa" firstAttribute="leading" secondItem="eGt-SE-cMh" secondAttribute="leading" id="PWf-G7-5p5"/>
                                         <constraint firstItem="9NN-zS-x7n" firstAttribute="centerY" secondItem="PZW-gA-cW3" secondAttribute="centerY" id="QK9-8j-KbI"/>
                                         <constraint firstItem="PZW-gA-cW3" firstAttribute="top" secondItem="8Za-H7-mhZ" secondAttribute="top" constant="6" id="Qzh-sK-dlk"/>
                                         <constraint firstItem="9NN-zS-x7n" firstAttribute="leading" secondItem="PZW-gA-cW3" secondAttribute="trailing" constant="8" id="TKU-Q9-64s"/>
                                         <constraint firstAttribute="trailing" secondItem="xgm-h4-ntg" secondAttribute="trailing" id="U1j-g5-LEO"/>
+                                        <constraint firstItem="iN4-U2-yKq" firstAttribute="centerY" secondItem="G8O-fE-faa" secondAttribute="centerY" id="Uir-0P-2eh"/>
                                         <constraint firstItem="PZW-gA-cW3" firstAttribute="leading" secondItem="8Za-H7-mhZ" secondAttribute="leading" constant="16" id="Xi8-Y0-Prt"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="G8O-fE-faa" secondAttribute="trailing" constant="5" id="hNh-sE-2Zf"/>
-                                        <constraint firstItem="G8O-fE-faa" firstAttribute="leading" secondItem="9NN-zS-x7n" secondAttribute="trailing" id="mnX-NK-AFF"/>
+                                        <constraint firstItem="iN4-U2-yKq" firstAttribute="leading" secondItem="G8O-fE-faa" secondAttribute="trailing" constant="4" id="ZCd-rt-JWP"/>
+                                        <constraint firstAttribute="bottom" secondItem="eGt-SE-cMh" secondAttribute="bottom" id="dKy-dn-3Rn"/>
+                                        <constraint firstAttribute="trailing" secondItem="iN4-U2-yKq" secondAttribute="trailing" constant="20" id="iNa-bI-RZE"/>
+                                        <constraint firstItem="G8O-fE-faa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9NN-zS-x7n" secondAttribute="trailing" id="mnX-NK-AFF"/>
                                         <constraint firstItem="G8O-fE-faa" firstAttribute="baseline" secondItem="9NN-zS-x7n" secondAttribute="baseline" id="nSc-sg-JI9"/>
                                         <constraint firstItem="xgm-h4-ntg" firstAttribute="top" secondItem="8Za-H7-mhZ" secondAttribute="top" constant="30" id="tn5-hR-s4C"/>
+                                        <constraint firstItem="eGt-SE-cMh" firstAttribute="top" secondItem="8Za-H7-mhZ" secondAttribute="top" id="uH4-FS-8F1"/>
                                     </constraints>
                                 </view>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Uf-0m-g1d" userLabel="View3">
@@ -869,7 +884,7 @@
                 <constraint firstAttribute="trailing" secondItem="Ese-Kt-mPQ" secondAttribute="trailing" id="Yv3-hb-rPM"/>
                 <constraint firstAttribute="bottom" secondItem="Ese-Kt-mPQ" secondAttribute="bottom" id="ZuU-O7-XEw"/>
             </constraints>
-            <point key="canvasLocation" x="-13" y="-61"/>
+            <point key="canvasLocation" x="3" y="-61"/>
         </view>
     </objects>
     <resources>
@@ -879,6 +894,7 @@
         <image name="certLogo" width="72" height="50"/>
         <image name="drivingLicenseBg" width="235" height="164"/>
         <image name="faq_car_profile" width="16" height="16"/>
+        <image name="info_zhankai" width="15" height="8"/>
         <image name="right_arrow" width="16" height="16"/>
         <image name="switch" width="13" height="13"/>
         <image name="unselect" width="16" height="16"/>
