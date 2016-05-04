@@ -7,8 +7,8 @@
 //
 
 #import "OnlineCustomer.h"
-
 #import "AppKeFuLib.h"
+#import "define.h"
 @implementation OnlineCustomer
 
 
@@ -18,11 +18,24 @@
     self = [super init];
     if (self) {
         _groupName = groupName;
+         titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+        titleView.textColor = [UIColor blackColor];
+        titleView.textAlignment = NSTextAlignmentCenter;
+        titleView.text = @"在线客服";
+        //自定义会话页面左上角返回按钮
+        leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
+
+       // leftBarButtonItemButton =[UIButton buttonWithType:UIButtonTypeCustom];
+        [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
+                                 forState:UIControlStateNormal];
         [self customerInit];
     }
     return self;
 }
-
+-(void)leftBarButtonItemTouchUpInside:(UIButton *)sender
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
 
 -(void)customerInit{
     //监听登录状态
@@ -69,6 +82,8 @@
         _returnMsg= @"登录成功";
 //        [[AppKeFuLib sharedInstance] queryWorkgroupOnlineStatus:@"zhixun"];
 //        [[AppKeFuLib sharedInstance] queryWorkgroupOnlineStatus:@"baojia"];
+        
+        
     }
     else
     {
@@ -90,10 +105,6 @@
     
     //客服工作组在线状态
     NSString *status   = [dict objectForKey:@"status"];
-    
-    NSLog(@"%s workgroupName:%@, status:%@", __PRETTY_FUNCTION__, workgroupName, status);
-    
-    //
     if ([workgroupName isEqualToString:_groupName]) {
         
         //客服工作组在线
@@ -110,8 +121,6 @@
         }
         
     }
-
-    //[self.tableView reloadData];
 }
 
 #pragma mark Message
@@ -124,8 +133,7 @@
     KFMessageItem *msgItem = [nofication object];
     //接收到来自客服的消息
     if (!msgItem.isSendFromMe) {
-        
-        //
+
         NSLog(@"消息时间:%@, 工作组名称:%@, 发送消息用户名:%@",
               msgItem.timestamp,
               msgItem.workgroupName,
@@ -147,8 +155,6 @@
             NSLog(@"语音消息内容：%@", msgItem.messageContent);
         }
     }
-    
-    //[self.tableView reloadData];
 }
 
 -(void)notifyXmppStreamDisconnectWithError:(NSNotification *)notification
@@ -158,6 +164,13 @@
 }
 
 
+
+-(void)intoFAQ:(UINavigationController *)nav
+{
+    [[AppKeFuLib sharedInstance] pushFAQViewController:nav
+                                     withWorkgroupName:_groupName
+                              hidesBottomBarWhenPushed:YES];
+}
 #pragma mark  进入在线客户聊天界面
 
 -(void)beginChat:(UINavigationController *)nav
@@ -167,8 +180,8 @@
                                  hideRightBarButtonItem:NO
                              rightBarButtonItemCallback:nil
                                  showInputBarSwitchMenu:YES
-                                  withLeftBarButtonItem:nil
-                                          withTitleView:nil
+                                  withLeftBarButtonItem:leftBarButtonItemButton
+                                          withTitleView:titleView
                                  withRightBarButtonItem:nil
                                         withProductInfo:nil
                              withLeftBarButtonItemColor:nil
@@ -177,7 +190,7 @@
                                            defaultRobot:FALSE
      //TRUE 注意：如果要强制用户在关闭会话的时候评价，需要首先设置参数：withLeftBarButtonItem， 否则此参数不会生效
                                                mustRate:FALSE
-                                    withKefuAvatarImage:UserAvatarImage
+                                    withKefuAvatarImage:KefuAvatarImage
                                     withUserAvatarImage:UserAvatarImage
                                          shouldShowGoodsInfo:FALSE
                                   withGoodsImageViewURL:nil
@@ -189,9 +202,49 @@
      
                              httpLinkURLClickedCallBack:nil
                          faqButtonTouchUpInsideCallback:nil];
+     
 
 }
 
+-(void)beginBaoDanChat:(UINavigationController *)nav LogoUrlstring:(NSString*)LogoUrlstring bxDetail:(NSString*)bxDetail bxPrice:(NSString*)bxPrice baodanURL:(NSString*)baodanURL CallbackID:(NSString*)CallbackID
+{
+    [[AppKeFuLib sharedInstance] pushChatViewController:nav
+                                      withWorkgroupName:_groupName
+                                 hideRightBarButtonItem:NO
+                             rightBarButtonItemCallback:nil
+                                 showInputBarSwitchMenu:YES
+                                  withLeftBarButtonItem:leftBarButtonItemButton
+                                          withTitleView:titleView
+                                 withRightBarButtonItem:nil
+                                        withProductInfo:nil
+                             withLeftBarButtonItemColor:nil
+                               hidesBottomBarWhenPushed:YES
+                                     showHistoryMessage:YES
+                                           defaultRobot:FALSE
+     //TRUE 注意：如果要强制用户在关闭会话的时候评价，需要首先设置参数：withLeftBarButtonItem， 否则此参数不会生效
+                                               mustRate:FALSE
+                                    withKefuAvatarImage:KefuAvatarImage
+                                    withUserAvatarImage:UserAvatarImage
+                                    shouldShowGoodsInfo:TRUE
+                                  withGoodsImageViewURL:LogoUrlstring
+                                   withGoodsTitleDetail:bxDetail
+                                         withGoodsPrice:bxPrice
+                                           withGoodsURL:baodanURL
+                                    withGoodsCallbackID:CallbackID
+                               goodsInfoClickedCallback:^(NSString *goodsCallbackId) {
+                                   //点击保单详情区域会触发此回调函数
+                                   NSLog(@"%s this is: %@", __PRETTY_FUNCTION__, goodsCallbackId);
+                               }
+     
+                             httpLinkURLClickedCallBack:nil
+                         faqButtonTouchUpInsideCallback:^(){
+                             
+                             NSLog(@"faqButtonTouchUpInsideCallback, 自定义FAQ常见问题button回调，可在此打开自己的常见问题FAQ页面");
+                             
+                         }];
+    
+    
+}
 
 
 @end
