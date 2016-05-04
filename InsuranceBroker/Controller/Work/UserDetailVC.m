@@ -291,7 +291,7 @@
     
     _datePicker = [[PickView alloc] initPickviewWithArray:array isHaveNavControler:NO];
     _datePicker.delegate = self;
-    _datePicker.lbTitle.text = [NSString stringWithFormat:@"%@,佣金范围(%d%@－%d%@)", model.productName, (int)model.productMinRatio, @"%", (int)model.productMaxRatio, @"%"];
+    _datePicker.lbTitle.text = [NSString stringWithFormat:@"%@,推广费范围(%d%@－%d%@)", model.productName, (int)model.productMinRatio, @"%", (int)model.productMaxRatio, @"%"];
     //    }
     [_datePicker show];
     _datePicker.tag = sender.tag;

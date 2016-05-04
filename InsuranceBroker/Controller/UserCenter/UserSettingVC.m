@@ -15,6 +15,7 @@
 #import "EGOCache.h"
 #import "BaseTableViewCell.h"
 #import "HighNightBgButton.h"
+#import "AppDelegate.h"
 
 @interface UserSettingVC ()
 
@@ -266,11 +267,10 @@
     model.isLogin = NO;
     [[AppContext sharedAppContext] removeData];
     [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
-//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-//    RootViewController *root = delegate.root;
-//    root.selectedIndex = 0;
-//    root.selectVC = root.homevc;
-//    [self.navigationController popViewControllerAnimated:NO];
+    
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    AppDelegate *appdelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+    appdelegate.root.selectedIndex = 0;
     [self login];
     
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
@@ -278,6 +278,21 @@
     [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
     [currentInstallation saveInBackground];
     [AVUser logOut];  //清除缓存用户对象
+}
+
+- (BOOL) login
+{
+    UserInfoModel *user = [UserInfoModel shareUserInfoModel];
+    if(!user.isLogin){
+        loginViewController *vc = [IBUIFactory CreateLoginViewController];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+        AppDelegate *appdelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+        [appdelegate.root presentViewController:naVC animated:NO completion:nil];
+        
+        return NO;
+    }else{
+        return YES;
+    }
 }
 
 @end

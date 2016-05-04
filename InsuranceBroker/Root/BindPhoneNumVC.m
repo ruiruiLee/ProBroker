@@ -52,6 +52,7 @@
     self.tfCaptcha.keyboardType = UIKeyboardTypeNumberPad;
     self.tfMobile.keyboardType = UIKeyboardTypeNumberPad;
     self.tfMobile.delegate = self;
+    self.tfCaptcha.delegate = self;
     
     self.btnGetCaptcha.enabled = NO;
     self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
@@ -93,12 +94,32 @@
         if ([Util isMobilePhoeNumber:text]) {
             self.btnGetCaptcha.enabled = YES;
             self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
-            self.btnSubmit.enabled = YES;
-            self.btnSubmit.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
+//            self.btnSubmit.enabled = YES;
+//            self.btnSubmit.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
         }else{
             
             self.btnGetCaptcha.enabled = NO;
             self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
+//            self.btnSubmit.enabled = NO;
+//            self.btnSubmit.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
+        }
+    }else{
+        NSString *text = nil;
+        NSString *textfront = nil;
+        NSString *textend=nil;
+        if (string.length > 0) {
+            textfront = [textField.text substringToIndex:range.location];
+            textend=[textField.text substringFromIndex:range.location];
+            text = [NSString stringWithFormat:@"%@%@%@",textfront,string,textend];
+            
+        }else{
+            text = [textField.text substringToIndex:range.location];
+        }
+        
+        if ([text length] == 6) {
+            self.btnSubmit.enabled = YES;
+            self.btnSubmit.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
+        }else{
             self.btnSubmit.enabled = NO;
             self.btnSubmit.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
         }

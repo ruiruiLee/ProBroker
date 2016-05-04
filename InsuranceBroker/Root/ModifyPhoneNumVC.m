@@ -52,9 +52,10 @@
         else{
             
             long code = [[error.userInfo objectForKey:@"code"] longValue];
-            if(code == 1){
+            if(code == 603){
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"无效的验证码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
+                self.tfCaptcha.text = @"";
             }else
                 [Util showAlertMessage:@"网络连接异常，请检查网络设置！" ];
         }
