@@ -85,7 +85,7 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8O-fE-faa" customClass="LeftImgButton">
-                                            <rect key="frame" x="466" y="1" width="95" height="30"/>
+                                            <rect key="frame" x="470" y="1" width="95" height="30"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="ESn-QO-SEH"/>
@@ -137,6 +137,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eGt-SE-cMh" customClass="HighNightBgButton">
                                             <rect key="frame" x="445" y="0.0" width="147" height="32"/>
                                             <animations/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="RQr-BO-Jbg"/>
+                                            </constraints>
                                             <connections>
                                                 <action selector="doBtnShowWarning:" destination="-1" eventType="touchUpInside" id="DIg-iU-MT5"/>
                                             </connections>
@@ -156,8 +159,7 @@
                                         <constraint firstAttribute="trailing" secondItem="xgm-h4-ntg" secondAttribute="trailing" id="U1j-g5-LEO"/>
                                         <constraint firstItem="iN4-U2-yKq" firstAttribute="centerY" secondItem="G8O-fE-faa" secondAttribute="centerY" id="Uir-0P-2eh"/>
                                         <constraint firstItem="PZW-gA-cW3" firstAttribute="leading" secondItem="8Za-H7-mhZ" secondAttribute="leading" constant="16" id="Xi8-Y0-Prt"/>
-                                        <constraint firstItem="iN4-U2-yKq" firstAttribute="leading" secondItem="G8O-fE-faa" secondAttribute="trailing" constant="4" id="ZCd-rt-JWP"/>
-                                        <constraint firstAttribute="bottom" secondItem="eGt-SE-cMh" secondAttribute="bottom" id="dKy-dn-3Rn"/>
+                                        <constraint firstItem="iN4-U2-yKq" firstAttribute="leading" secondItem="G8O-fE-faa" secondAttribute="trailing" id="ZCd-rt-JWP"/>
                                         <constraint firstAttribute="trailing" secondItem="iN4-U2-yKq" secondAttribute="trailing" constant="20" id="iNa-bI-RZE"/>
                                         <constraint firstItem="G8O-fE-faa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9NN-zS-x7n" secondAttribute="trailing" id="mnX-NK-AFF"/>
                                         <constraint firstItem="G8O-fE-faa" firstAttribute="baseline" secondItem="9NN-zS-x7n" secondAttribute="baseline" id="nSc-sg-JI9"/>

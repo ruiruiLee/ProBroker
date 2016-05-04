@@ -111,6 +111,8 @@
             [currentInstallation saveInBackground];
             
 //            [KGStatusBar showSuccessWithStatus:SETTING];
+        }else{
+            self.tfCaptcha.text = @"";
         }
     }];
 }
