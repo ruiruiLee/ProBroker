@@ -20,7 +20,7 @@
 //#import "NetWorkHandler+saveOrUpdateCustomer.h"
 #import "NetWorkHandler+updateCustomerHeadImg.h"
 #import <AVOSCloud/AVOSCloud.h>
-
+#import "OnlineCustomer.h"
 #import "BaseNavigationController.h"
 
 @interface CustomerDetailVC ()<BaseInsuranceInfoDelegate, InsuranceInfoViewDelegate, MFMessageComposeViewControllerDelegate>
@@ -166,6 +166,9 @@
 //    // 不设置导航栏样式
 //    feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
 //    [self.navigationController pushViewController:feedbackViewController animated:YES];
+    
+    OnlineCustomer *kf =  [[OnlineCustomer alloc]initWithDict:@"zhixun"];
+    [kf  beginChat:self.navigationController KefuAvatarImage:nil UserAvatarImage:nil];
 }
 
 //拨打电话

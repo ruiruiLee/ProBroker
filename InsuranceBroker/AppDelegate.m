@@ -20,6 +20,7 @@
 #import "ZWIntroductionViewController.h"
 #import "RootViewController.h"
 #import "AppContext.h"
+#import "AppKeFuLib.h"
 @interface AppDelegate ()
 
 @property (nonatomic, strong) ZWIntroductionViewController *introductionView;
@@ -134,6 +135,8 @@
             loginViewController *vc = [IBUIFactory CreateLoginViewController];
             UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
             [root presentViewController:naVC animated:NO completion:nil];
+    }else{
+          [[AppKeFuLib sharedInstance] loginWithAppkey:APP_KEY];
     }
     //判断程序是不是由推送服务完成的
     if (launchOptions)
@@ -164,10 +167,16 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    //离线消息通过服务器推送可接收到
+    //在程序切换到前台时，执行重新登录，见applicationWillEnterForeground函数中
+    [[AppKeFuLib sharedInstance] logout];
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    //切换到前台重新登录
+    [[AppKeFuLib sharedInstance] loginWithAppkey:APP_KEY];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -185,6 +194,8 @@
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation addUniqueObject:@"ykbbrokerAllUser4" forKey:@"channels"];
     [currentInstallation saveInBackground];
+    //同步deviceToken便于离线消息推送, 同时必须在管理后台上传 .pem文件才能生效
+    [[AppKeFuLib sharedInstance] uploadDeviceToken:deviceToken];
 }
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
@@ -217,7 +228,6 @@
       NSInteger mt = [[userInfo objectForKey:@"mt"] integerValue];
       NSInteger ct = [[userInfo objectForKey:@"ct"] integerValue];
       AppContext *context = [AppContext sharedAppContext];
-    // mt == 3 表示推送客户
     if(mt == 1){
       [context changeNewsTip:ct display:YES];
     }
