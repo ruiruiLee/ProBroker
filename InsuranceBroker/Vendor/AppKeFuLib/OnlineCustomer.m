@@ -28,6 +28,8 @@
        // leftBarButtonItemButton =[UIButton buttonWithType:UIButtonTypeCustom];
         [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
                                  forState:UIControlStateNormal];
+        [leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+
         [self customerInit];
     }
     return self;
@@ -35,6 +37,7 @@
 -(void)leftBarButtonItemTouchUpInside:(UIButton *)sender
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    [self backfromServie];
 }
 
 -(void)customerInit{
