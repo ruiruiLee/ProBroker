@@ -22,14 +22,7 @@
         titleView.textColor = [UIColor blackColor];
         titleView.textAlignment = NSTextAlignmentCenter;
         titleView.text = @"在线客服";
-        //自定义会话页面左上角返回按钮
-        leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 40)];
-
-       // leftBarButtonItemButton =[UIButton buttonWithType:UIButtonTypeCustom];
-        [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
-                                 forState:UIControlStateNormal];
-        [leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-
+     
         [self customerInit];
     }
     return self;
@@ -183,7 +176,7 @@
                                  hideRightBarButtonItem:NO
                              rightBarButtonItemCallback:nil
                                  showInputBarSwitchMenu:YES
-                                  withLeftBarButtonItem:leftBarButtonItemButton
+                                  withLeftBarButtonItem:_leftBarButtonItemButton
                                           withTitleView:titleView
                                  withRightBarButtonItem:nil
                                         withProductInfo:nil
@@ -216,7 +209,7 @@
                                  hideRightBarButtonItem:NO
                              rightBarButtonItemCallback:nil
                                  showInputBarSwitchMenu:YES
-                                  withLeftBarButtonItem:leftBarButtonItemButton
+                                  withLeftBarButtonItem:_leftBarButtonItemButton
                                           withTitleView:titleView
                                  withRightBarButtonItem:nil
                                         withProductInfo:nil

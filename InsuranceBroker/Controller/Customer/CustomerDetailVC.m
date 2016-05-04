@@ -24,6 +24,9 @@
 #import "BaseNavigationController.h"
 
 @interface CustomerDetailVC ()<BaseInsuranceInfoDelegate, InsuranceInfoViewDelegate, MFMessageComposeViewControllerDelegate>
+{
+      OnlineCustomer *kf ;
+}
 
 @property (nonatomic, strong) CustomerDetailModel *data;
 @property (nonatomic, strong) NSString *customerId;
@@ -175,9 +178,24 @@
     if([UserInfoModel shareUserInfoModel].headerImg!=nil){
         placeholderImage =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[UserInfoModel shareUserInfoModel].headerImg]]];
     }
-    OnlineCustomer *kf =  [[OnlineCustomer alloc]initWithGroup:@"zhixun"];
+    //自定义会话页面左上角返回按钮
+    UIButton * leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    
+    // leftBarButtonItemButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
+                             forState:UIControlStateNormal];
+    [leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+
+    
+    kf =  [[OnlineCustomer alloc]initWithGroup:@"zhixun"];
+    kf.leftBarButtonItemButton=leftBarButtonItemButton;
     [kf userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage];
     [kf beginChat:self.navigationController];
+}
+
+-(void)leftBarButtonItemTouchUpInside:(UIButton *)sender
+{
+    [kf backfromServie];
 }
 
 //拨打电话
@@ -800,8 +818,8 @@
         NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.data.customerId, self.data.carInfo.customerCarId, str];
         [web loadHtmlFromUrl:url];
     }else{
-        [self showProgressHUD];
-        [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.5];
+//        [self showProgressHUD];
+//        [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.5];
         
         AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
         [self.navigationController pushViewController:vc animated:YES];
@@ -809,39 +827,16 @@
         vc.customerModel = self.data;
     }
 }
-//- (void) doBtnCarInsurPlan:(UIButton *) sender
+
+
+//- (void) showProgressHUD
 //{
-//    if([Util checkInfoFull:self.data.carInfo]){
-//        
-//        NSString *str = @"";
-//        if(self.customerinfoModel.detailModel.carInfo.carInsurStatus1 && self.customerinfoModel.detailModel.carInfo.carInsurCompId1 != nil){
-//            str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", self.customerinfoModel.detailModel.carInfo.carInsurCompId1];
-//        }
-//        
-//        OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
-//        web.title = @"报价";
-//        [self.navigationController pushViewController:web animated:YES];
-//        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.data.customerId, self.data.carInfo.customerCarId, str];
-//        [web loadHtmlFromUrl:url];
-//    }else{
-//        [self showProgressHUD];
-//        [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.5];
-//        
-//        AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
-//        [self.navigationController pushViewController:vc animated:YES];
-//        vc.customerId = self.customerId;
-//        vc.customerModel = self.data;
-//    }
+//    [ProgressHUD show:@"请完善投保资料"];
 //}
-
-- (void) showProgressHUD
-{
-    [ProgressHUD show:@"请完善投保资料"];
-}
-
-- (void) shutProgressHUD
-{
-    [ProgressHUD dismiss];
-}
+//
+//- (void) shutProgressHUD
+//{
+//    [ProgressHUD dismiss];
+//}
 
 @end

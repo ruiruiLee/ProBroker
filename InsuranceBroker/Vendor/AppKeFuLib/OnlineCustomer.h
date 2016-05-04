@@ -14,11 +14,11 @@
     UIImage *KefuAvatarImage;
     UIImage *UserAvatarImage;
     UILabel *titleView;
-    UIButton *leftBarButtonItemButton;
 }
 
 @property (nonatomic, strong) NSString *groupName;
 @property (nonatomic, strong) NSString *returnMsg;
+@property (nonatomic, retain) UIButton *leftBarButtonItemButton;
 @property (nonatomic, assign) Boolean online;
 
 -(instancetype)initWithGroup:(NSString *)groupName;

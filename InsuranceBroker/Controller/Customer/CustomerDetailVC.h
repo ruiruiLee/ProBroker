@@ -21,7 +21,7 @@
     UserPolicyListView *_policyListView;
     CustomerFollowUpInfoView *_followUpView;
     InsuranceDetailView *_insuranceDetailView;
-    
+  
     BaseInsuranceInfo *_selectedView;
 }
 
