@@ -13,7 +13,7 @@
 
 
 
--(instancetype)initWithDict:(NSString *)groupName
+-(instancetype)initWithGroup:(NSString *)groupName
 {
     self = [super init];
     if (self) {
@@ -40,6 +40,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyXmppStreamDisconnectWithError:) name:APPKEFU_NOTIFICATION_DISCONNECT_WITH_ERROR object:nil];
 
 }
+-(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage
+ {
+      [[AppKeFuLib sharedInstance] setTagNickname:userName];
+      [[AppKeFuLib sharedInstance] setTagSex:sex];
+      [[AppKeFuLib sharedInstance] setTagProvince:Province];
+      [[AppKeFuLib sharedInstance] setTagCity:City];
+      [[AppKeFuLib sharedInstance] setTagOther:phone];
+      UserAvatarImage=headImage;
+ }
+
+
 -(void)backfromServie{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_LOGIN_SUCCEED_NOTIFICATION object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_WORKGROUP_ONLINESTATUS object:self];
@@ -71,6 +82,7 @@
 //监听工作组在线状态
 -(void)notifyOnlineStatus:(NSNotification *)notification
 {
+    
     NSDictionary *dict = [notification userInfo];
     
     //客服工作组名称
@@ -110,7 +122,6 @@
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
     KFMessageItem *msgItem = [nofication object];
-    
     //接收到来自客服的消息
     if (!msgItem.isSendFromMe) {
         
@@ -150,8 +161,6 @@
 #pragma mark  进入在线客户聊天界面
 
 -(void)beginChat:(UINavigationController *)nav
-         KefuAvatarImage:(NSString *)KefuAvatarImage
-         UserAvatarImage:(UIImage *)UserAvatarImage
  {
     [[AppKeFuLib sharedInstance] pushChatViewController:nav
                                       withWorkgroupName:_groupName
@@ -168,13 +177,9 @@
                                            defaultRobot:FALSE
      //TRUE 注意：如果要强制用户在关闭会话的时候评价，需要首先设置参数：withLeftBarButtonItem， 否则此参数不会生效
                                                mustRate:FALSE
-     //@"http://admin.appkefu.com/AppKeFu/admin/assets/avatar/ykb_kf001.jpg"
-     //  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:KefuAvatarImage]]]
                                     withKefuAvatarImage:UserAvatarImage
-   
                                     withUserAvatarImage:UserAvatarImage
-     
-                                    shouldShowGoodsInfo:FALSE
+                                         shouldShowGoodsInfo:FALSE
                                   withGoodsImageViewURL:nil
                                    withGoodsTitleDetail:nil
                                          withGoodsPrice:nil

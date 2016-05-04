@@ -166,9 +166,18 @@
 //    // 不设置导航栏样式
 //    feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
 //    [self.navigationController pushViewController:feedbackViewController animated:YES];
-    
-    OnlineCustomer *kf =  [[OnlineCustomer alloc]initWithDict:@"zhixun"];
-    [kf  beginChat:self.navigationController KefuAvatarImage:nil UserAvatarImage:nil];
+    NSString * msex =@"男";
+    UIImage *placeholderImage = ThemeImage(@"head_male");
+    if([UserInfoModel shareUserInfoModel].sex==2){
+         msex =@"女";
+         placeholderImage = ThemeImage(@"head_famale");
+    }
+    if([UserInfoModel shareUserInfoModel].headerImg!=nil){
+        placeholderImage =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[UserInfoModel shareUserInfoModel].headerImg]]];
+    }
+    OnlineCustomer *kf =  [[OnlineCustomer alloc]initWithGroup:@"zhixun"];
+    [kf userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage];
+    [kf beginChat:self.navigationController];
 }
 
 //拨打电话

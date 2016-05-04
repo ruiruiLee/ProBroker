@@ -8,16 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import  <UIKit/UIKit.h>
+#define kefuUrl = @"http://admin.appkefu.com/AppKeFu/admin/assets/avatar/"
+
 @interface OnlineCustomer : NSObject{
-    NSString *studentName;
-    NSInteger age;
+    UIImage *KefuAvatarImage;
+    UIImage *UserAvatarImage;
 }
 @property (nonatomic, strong) NSString *groupName;
 @property (nonatomic, strong) NSString *returnMsg;
 @property (nonatomic, assign) Boolean online;
 
--(instancetype)initWithDict:(NSString *)groupName;
--(void)beginChat:(UINavigationController *)nav
-                   KefuAvatarImage:(NSString *)KefuAvatarImage
-                   UserAvatarImage:(UIImage *)UserAvatarImage;
+-(instancetype)initWithGroup:(NSString *)groupName;
+
+-(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage;
+
+-(void)beginChat:(UINavigationController *)nav;
 @end
