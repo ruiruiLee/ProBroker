@@ -297,7 +297,7 @@
         firstname = @"";
     if(lastname == nil)
         lastname = @"";
-    self.tfName.text = [NSString stringWithFormat:@"%@%@", firstname, lastname];
+    self.tfName.text = [NSString stringWithFormat:@"%@%@", lastname, firstname];
     if([phoneNumbers count] > 0){
         CNLabeledValue *value = [phoneNumbers objectAtIndex:0];
         CNPhoneNumber *number = value.value;
