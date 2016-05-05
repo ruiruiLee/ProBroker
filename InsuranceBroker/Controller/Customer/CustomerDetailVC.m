@@ -178,25 +178,11 @@
     if([UserInfoModel shareUserInfoModel].headerImg!=nil){
         placeholderImage =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[UserInfoModel shareUserInfoModel].headerImg]]];
     }
-    //自定义会话页面左上角返回按钮
-    UIButton * leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     
-    // leftBarButtonItemButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
-                             forState:UIControlStateNormal];
-    [leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-
-    
-    kf =  [[OnlineCustomer alloc]initWithGroup:@"zhixun"];
-    kf.leftBarButtonItemButton=leftBarButtonItemButton;
+    kf =  [[OnlineCustomer alloc]initWithArray:[NSArray arrayWithObjects:bjkf, @"保单相关咨询",self.navigationController, nil]];
     [kf userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage];
-    [kf beginChat:self.navigationController];
 }
 
--(void)leftBarButtonItemTouchUpInside:(UIButton *)sender
-{
-    [kf backfromServie];
-}
 
 //拨打电话
 - (IBAction) doBtnRing:(UIButton *)sender

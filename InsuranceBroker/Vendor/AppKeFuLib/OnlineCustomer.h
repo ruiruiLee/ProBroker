@@ -14,19 +14,24 @@
     UIImage *KefuAvatarImage;
     UIImage *UserAvatarImage;
     UILabel *titleView;
+    BOOL openRobot;
+    UINavigationController *nav;
 }
 
 @property (nonatomic, strong) NSString *groupName;
 @property (nonatomic, strong) NSString *returnMsg;
 @property (nonatomic, retain) UIButton *leftBarButtonItemButton;
-@property (nonatomic, assign) Boolean online;
 
--(instancetype)initWithGroup:(NSString *)groupName;
+//保单信息
+@property (nonatomic, strong) NSString *baodanLogoUrlstring;
+@property (nonatomic, strong) NSString *baodanDetail;
+@property (nonatomic, strong) NSString *baodanPrice;
+@property (nonatomic, strong) NSString *baodanURL;
+@property (nonatomic, strong) NSString *baodanCallbackID;
+
+-(instancetype)initWithArray:(NSArray *)array;
 
 -(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage;
 
--(void)intoFAQ:(UINavigationController *)nav;
--(void)beginChat:(UINavigationController *)nav;
--(void)beginBaoDanChat:(UINavigationController *)nav LogoUrlstring:(NSString*)LogoUrlstring bxDetail:(NSString*)bxDetail bxPrice:(NSString*)bxPrice baodanURL:(NSString*)baodanURL CallbackID:(NSString*)CallbackID;
--(void)backfromServie;
+-(void)intoFAQ;
 @end

@@ -36,7 +36,7 @@
 "AgentQuitSession"="客服退出会话";
 "There are %d agent before you, about to wait %@ seconds"="您前面还有%d位访客,约需要等待%@秒";
 "There are %d agent before you, please wait"="您前面还有%d位访客,请您耐心等待";
-"NoAgentOnline"="您好,客服不在线，点击“常见问题”看是否能帮助您。您也可以给我们留言，我们会第一时间回复！";
+"NoAgentOnline"="您好,客服不在线，您可以点击“常见问题”看看是否有所帮助。";
 
 "Settings"="设置";
 "OnlineStatus"="在线状态";
@@ -76,14 +76,14 @@
 "Rate"="评价";
 "ThxForRate"="多谢评价!";
 
-"SendLink" = "发送链接";
+"SendLink" = "发送保单";
 "NetworkLost" = "当前无网络,请稍后重试";
 
-"robotNotFound" = "很抱歉,客服小秘书未能理解您的问题,请选择以下操作:";
+"robotNotFound" = "很抱歉,我未能理解您的问题！";
 "robotViewFAQ" = "查看常见问题";
-"robotCallAgent" = "呼叫人工客服";
-"RobotNoImage" = "不能向机器人发送图片";
-"RobotNoVoice" = "不能向机器人发送语音";
+"robotCallAgent" = "转人工客服(工作时间：9:30-18:00)";
+"RobotNoImage" = "真尴尬，我的智能程度还不能识别图片";
+"RobotNoVoice" = "真尴尬，我的智能程度还不能识别语音";
 
 "tip" = "附言";
 "RateTitle" = "请对我们的服务做出评价";
@@ -92,6 +92,6 @@
 "alreadRated" = "已经评价过,不能重复评价";
 "foundedAnswers" = "为您找到以下相关问题:";
 
-"agentNickname" = "优快保客服";
+"agentNickname" = "";
 
 
