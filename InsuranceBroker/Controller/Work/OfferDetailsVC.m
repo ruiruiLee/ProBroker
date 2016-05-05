@@ -97,13 +97,15 @@
 - (void) resetBtnNameWidth:(NSString *) string
 {
     UIImage *image = ThemeImage(@"car_owner");
-    self.btnNameHConstraint.constant = 6 + image.size.width + [string sizeWithFont:self.btnName.titleLabel.font constrainedToSize:CGSizeMake(200, 30)].width;
+    CGRect rect = [string boundingRectWithSize:CGSizeMake(200, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.btnName.titleLabel.font} context:nil];
+    self.btnNameHConstraint.constant = 6 + image.size.width + rect.size.width;
 }
 
 - (void) resetBtnNoWidth:(NSString *) string
 {
     UIImage *image = ThemeImage(@"car_id");
-    self.btnNoHConstraint.constant = 6 + image.size.width + [string sizeWithFont:self.btnNo.titleLabel.font constrainedToSize:CGSizeMake(200, 30)].width;
+    CGRect rect = [string boundingRectWithSize:CGSizeMake(200, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.btnNo.titleLabel.font} context:nil];
+    self.btnNoHConstraint.constant = 6 + image.size.width + rect.size.width;
 }
 
 #pragma UITableViewDataSource UITableViewDelegate
