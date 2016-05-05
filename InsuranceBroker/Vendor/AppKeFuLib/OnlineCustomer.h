@@ -35,5 +35,7 @@
 
 -(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage;
 
+-(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage baodanLogoUrlstring:(NSString *) baodanLogoUrlstring baodanDetail:(NSString *) baodanDetail baodanPrice:(NSString *) baodanPrice baodanURL:(NSString *) baodanURL baodanCallbackID:(NSString *) baodanCallbackID;
+
 -(void)intoFAQ;
 @end

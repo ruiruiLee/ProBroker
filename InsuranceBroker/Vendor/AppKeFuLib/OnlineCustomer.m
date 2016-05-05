@@ -76,7 +76,23 @@
       [[AppKeFuLib sharedInstance] queryWorkgroupOnlineStatus:_groupName];
  }
 
-
+-(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage baodanLogoUrlstring:(NSString *) baodanLogoUrlstring baodanDetail:(NSString *) baodanDetail baodanPrice:(NSString *) baodanPrice baodanURL:(NSString *) baodanURL baodanCallbackID:(NSString *) baodanCallbackID
+{
+    [[AppKeFuLib sharedInstance] setTagNickname:userName];
+    [[AppKeFuLib sharedInstance] setTagSex:sex];
+    [[AppKeFuLib sharedInstance] setTagProvince:Province];
+    [[AppKeFuLib sharedInstance] setTagCity:City];
+    [[AppKeFuLib sharedInstance] setTagOther:phone];
+    UserAvatarImage=headImage;
+    
+    self.baodanLogoUrlstring = baodanLogoUrlstring;
+    self.baodanDetail = baodanDetail;
+    self.baodanPrice = baodanPrice;
+    self.baodanURL = baodanURL;
+    self.baodanCallbackID = baodanCallbackID;
+    
+    [[AppKeFuLib sharedInstance] queryWorkgroupOnlineStatus:_groupName];
+}
 
 -(void)notifyXmppStreamDisconnectWithError:(NSNotification *)notification
 {

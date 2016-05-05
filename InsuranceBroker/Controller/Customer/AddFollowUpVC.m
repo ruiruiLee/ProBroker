@@ -338,7 +338,7 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     if(self.tfAdd == textView){
-        CGSize size = [textView.text sizeWithFont:textView.font constrainedToSize:CGSizeMake(ScreenWidth - 158, INT_MAX)];
+        CGSize size = [textView.text boundingRectWithSize:CGSizeMake(ScreenWidth - 158, INT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:textView.font} context:nil].size;//[textView.text sizeWithFont:textView.font constrainedToSize:CGSizeMake(ScreenWidth - 158, INT_MAX)];
         if(size.height > 36)
             size.height = 36;
         if(size.height < 10)

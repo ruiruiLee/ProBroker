@@ -14,10 +14,14 @@
 #import "InsurOffersInfoModel.h"
 #import "UIImageView+WebCache.h"
 #import "LCPickView.h"
+#import "OnlineCustomer.h"
+#import "BaseNavigationController.h"
 
 @interface OfferDetailsVC ()<LCPickViewDelegate>
 {
     LCPickView *_datePicker;
+    
+    OnlineCustomer *kf ;
 }
 
 @property (nonatomic, strong) InsurOffersInfoModel *data;
@@ -36,6 +40,8 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"报价详情";
     
+    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
+    
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableview.scrollEnabled = NO;
     [self.tableview registerNib:[UINib nibWithNibName:@"OfferDetailTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
@@ -48,6 +54,27 @@
     
     self.lbWarning.attributedText = [Util getWarningString:@"＊客户优惠 为您实际优惠客户的点数，只针对商业险，对于只购买强制交强险的客户不能享有优惠"];
 }
+
+- (void) handleRightBarButtonClicked:(id)sender
+{
+    NSString * msex =@"男";
+    UIImage *placeholderImage = ThemeImage(@"head_male");
+    if([UserInfoModel shareUserInfoModel].sex==2){
+        msex =@"女";
+        placeholderImage = ThemeImage(@"head_famale");
+    }
+    if([UserInfoModel shareUserInfoModel].headerImg!=nil){
+        placeholderImage =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[UserInfoModel shareUserInfoModel].headerImg]]];
+    }
+    
+    kf =  [[OnlineCustomer alloc]initWithArray:[NSArray arrayWithObjects:bjkf, @"保单相关咨询",self.navigationController, nil]];
+    
+    OffersModel *model = [self.data.offersVoList objectAtIndex:0];
+    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", self.orderId, model.planOfferId];
+    
+    [kf userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:model.productLogo baodanDetail:model.planOfferStatusMsg baodanPrice:@"dfgds" baodanURL:url baodanCallbackID:self.orderId];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -97,13 +124,15 @@
 - (void) resetBtnNameWidth:(NSString *) string
 {
     UIImage *image = ThemeImage(@"car_owner");
-    self.btnNameHConstraint.constant = 6 + image.size.width + [string sizeWithFont:self.btnName.titleLabel.font constrainedToSize:CGSizeMake(200, 30)].width;
+    CGRect rect = [string boundingRectWithSize:CGSizeMake(200, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.btnName.titleLabel.font} context:nil];
+    self.btnNameHConstraint.constant = 6 + image.size.width + rect.size.width;
 }
 
 - (void) resetBtnNoWidth:(NSString *) string
 {
     UIImage *image = ThemeImage(@"car_id");
-    self.btnNoHConstraint.constant = 6 + image.size.width + [string sizeWithFont:self.btnNo.titleLabel.font constrainedToSize:CGSizeMake(200, 30)].width;
+    CGRect rect = [string boundingRectWithSize:CGSizeMake(200, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:self.btnNo.titleLabel.font} context:nil];
+    self.btnNoHConstraint.constant = 6 + image.size.width + rect.size.width;
 }
 
 #pragma UITableViewDataSource UITableViewDelegate
