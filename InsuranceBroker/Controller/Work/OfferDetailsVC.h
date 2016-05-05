@@ -29,6 +29,6 @@
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollview;
 
-@property (nonatomic, strong) IBOutlet NSString *orderId;
+@property (nonatomic, strong) NSString *orderId;
 
 @end
