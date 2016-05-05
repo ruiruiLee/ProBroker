@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSString *groupName;
 @property (nonatomic, copy) NSString *returnMsg;
 @property (nonatomic, copy) UIButton *leftBarButtonItemButton;
+@property (nonatomic, copy) UIButton *rightBarButtonItemButton;
 
 //保单信息
 @property (nonatomic, strong) NSString *baodanLogoUrlstring;
@@ -28,6 +29,7 @@
 @property (nonatomic, strong) NSString *baodanPrice;
 @property (nonatomic, strong) NSString *baodanURL;
 @property (nonatomic, strong) NSString *baodanCallbackID;
+@property (copy, nonatomic) void(^BaodanInfoClicked)(NSString*);
 
 -(instancetype)initWithArray:(NSArray *)array;
 

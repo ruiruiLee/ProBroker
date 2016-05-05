@@ -27,6 +27,13 @@
         [_leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
                                  forState:UIControlStateNormal];
         [_leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+        _rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+//        [_rightBarButtonItemButton setImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
+
+        [_rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
+        [_rightBarButtonItemButton setTitleColor:UIColorFromRGB(0xff6619)forState:UIControlStateNormal];
+
+//        [_rightBarButtonItemButton addTarget:self action:@selector(rightBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
 
         [self customerInit];
     }
@@ -37,6 +44,10 @@
 {
     [self backfromServie];
 }
+//-(void)rightBarButtonItemTouchUpInside:(UIButton *)sender
+//{
+//    [self backfromServie];
+//}
 -(void)customerInit{
     
     //监听在线状态
@@ -124,7 +135,7 @@
                                  showInputBarSwitchMenu:NO
                                   withLeftBarButtonItem:_leftBarButtonItemButton
                                           withTitleView:titleView
-                                 withRightBarButtonItem:nil
+                                 withRightBarButtonItem:_rightBarButtonItemButton
                                         withProductInfo:nil
                              withLeftBarButtonItemColor:nil
                                hidesBottomBarWhenPushed:YES
@@ -147,14 +158,15 @@
 }
 
 -(void)beginBaoDanChat{
+    
+
     [[AppKeFuLib sharedInstance] pushChatViewController:nav
                                       withWorkgroupName:_groupName
                                  hideRightBarButtonItem:NO
-                             rightBarButtonItemCallback:nil
-                                 showInputBarSwitchMenu:NO
+                             rightBarButtonItemCallback:nil                                 showInputBarSwitchMenu:NO
                                   withLeftBarButtonItem:_leftBarButtonItemButton
                                           withTitleView:titleView
-                                 withRightBarButtonItem:nil
+                                 withRightBarButtonItem:_rightBarButtonItemButton
                                         withProductInfo:nil
                              withLeftBarButtonItemColor:nil
                                hidesBottomBarWhenPushed:YES
@@ -170,10 +182,13 @@
                                          withGoodsPrice:_baodanPrice
                                            withGoodsURL:_baodanURL
                                     withGoodsCallbackID:_baodanCallbackID
-                               goodsInfoClickedCallback:^(NSString *goodsCallbackId) {
-                                   //点击保单详情区域会触发此回调函数
-                                   NSLog(@"%s this is: %@", __PRETTY_FUNCTION__, goodsCallbackId);
-                               }
+                   goodsInfoClickedCallback:^(NSString *goodsCallbackId) {
+                       //点击保单详情区域会触发此回调函数
+                       NSLog(@"%s this is: %@", __PRETTY_FUNCTION__, goodsCallbackId);
+                   if(_BaodanInfoClicked !=nil){
+                       _BaodanInfoClicked(goodsCallbackId);
+                       }
+                   }
      
                              httpLinkURLClickedCallBack:nil
                          faqButtonTouchUpInsideCallback:^(){
