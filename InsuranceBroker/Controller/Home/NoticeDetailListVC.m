@@ -125,7 +125,7 @@
     NSString *path = FormatImage_1(model.imgUrl,(int) ScreenWidth - 40, 97);
     [cell.photoImgV sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:Normal_Image];
     if(model.imgUrl == nil && [model.imgUrl length] == 0){
-        cell.imgVConstraint.constant = 0;
+        cell.imgVConstraint.constant = 0.1;
     }else{
         cell.imgVConstraint.constant = 100;
     }
@@ -180,7 +180,7 @@
     lb.backgroundColor = [UIColor clearColor];
     lb.font = _FONT(12);
     lb.textAlignment = NSTextAlignmentCenter;
-    lb.textColor = _COLOR(0xcc, 0xcc, 0xcc);
+    lb.textColor = _COLOR(0x75, 0x75, 0x75);
     [view addSubview:lb];
     lb.text = [Util getDayString:model.createdAt];
     
@@ -200,7 +200,7 @@
     }
     h += 12;
     h += [self getHeightWithFont:_FONT(13) text:model.content];
-    h += 8;
+    h += 10;
     if(model.isRedirect || model.keyType == 1){
         h += 3;
         h += 48;
@@ -211,8 +211,8 @@
 
 - (CGFloat) getHeightWithFont:(UIFont *) font text:(NSString *) text
 {
-    CGSize size = [text sizeWithAttributes:@{NSFontAttributeName:font}];
-    return size.height;
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(ScreenWidth - 36, INT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
+    return rect.size.height;
 }
 
 - (void) initData
