@@ -152,6 +152,7 @@
                         </view>
                     </subviews>
                     <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="S4F-sh-jST" firstAttribute="leading" secondItem="DIj-C0-IHx" secondAttribute="leading" id="2C5-dl-3Y9"/>
                         <constraint firstAttribute="trailing" secondItem="S4F-sh-jST" secondAttribute="trailing" id="MYf-x1-dVD"/>
