@@ -38,19 +38,22 @@
     [self backfromServie];
 }
 -(void)customerInit{
-
-//    //监听在线状态
+    
+    //监听在线状态
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(notifyOnlineStatus:) name:APPKEFU_WORKGROUP_ONLINESTATUS object:nil];
-//    //监听连接服务器报错
+    
+    //监听连接服务器报错
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyXmppStreamDisconnectWithError:) name:APPKEFU_NOTIFICATION_DISCONNECT_WITH_ERROR object:nil];
+
 }
 
 
 -(void)backfromServie{
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_WORKGROUP_ONLINESTATUS object:self];
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_NOTIFICATION_DISCONNECT_WITH_ERROR object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_WORKGROUP_ONLINESTATUS object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_NOTIFICATION_DISCONNECT_WITH_ERROR object:nil];
 }
+
 -(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage
  {
       [[AppKeFuLib sharedInstance] setTagNickname:userName];
@@ -61,6 +64,7 @@
       UserAvatarImage=headImage;
       [[AppKeFuLib sharedInstance] queryWorkgroupOnlineStatus:_groupName];
  }
+
 
 
 -(void)notifyXmppStreamDisconnectWithError:(NSNotification *)notification
@@ -100,7 +104,7 @@
         {
             openRobot=YES;
         }
-        if ([_groupName isEqual:zxkf]) {
+        if ([_groupName isEqual:zxkf] || _baodanCallbackID==nil) {
             [self beginChat];
         }else{
             [self beginBaoDanChat];
@@ -147,7 +151,7 @@
                                       withWorkgroupName:_groupName
                                  hideRightBarButtonItem:NO
                              rightBarButtonItemCallback:nil
-                                 showInputBarSwitchMenu:YES
+                                 showInputBarSwitchMenu:NO
                                   withLeftBarButtonItem:_leftBarButtonItemButton
                                           withTitleView:titleView
                                  withRightBarButtonItem:nil
@@ -175,6 +179,7 @@
                          faqButtonTouchUpInsideCallback:^(){
                              
                              NSLog(@"faqButtonTouchUpInsideCallback, 自定义FAQ常见问题button回调，可在此打开自己的常见问题FAQ页面");
+                             [self intoFAQ];
                              
                          }];
     

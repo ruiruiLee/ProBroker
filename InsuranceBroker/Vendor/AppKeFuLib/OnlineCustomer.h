@@ -18,9 +18,9 @@
     UINavigationController *nav;
 }
 
-@property (nonatomic, strong) NSString *groupName;
-@property (nonatomic, strong) NSString *returnMsg;
-@property (nonatomic, retain) UIButton *leftBarButtonItemButton;
+@property (nonatomic, copy) NSString *groupName;
+@property (nonatomic, copy) NSString *returnMsg;
+@property (nonatomic, copy) UIButton *leftBarButtonItemButton;
 
 //保单信息
 @property (nonatomic, strong) NSString *baodanLogoUrlstring;

@@ -169,6 +169,7 @@
 //    // 不设置导航栏样式
 //    feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
 //    [self.navigationController pushViewController:feedbackViewController animated:YES];
+    
     NSString * msex =@"男";
     UIImage *placeholderImage = ThemeImage(@"head_male");
     if([UserInfoModel shareUserInfoModel].sex==2){
