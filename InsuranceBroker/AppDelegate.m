@@ -78,47 +78,32 @@
     //设置AVOSCloud
     [AVOSCloud setApplicationId:AVOSCloudAppID clientKey:AVOSCloudAppKey];
     
-if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]){
-     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
-     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         // 第一次安装时运行打开推送
-      #if !TARGET_IPHONE_SIMULATOR
-if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert| UIUserNotificationTypeBadge| UIUserNotificationTypeSound categories:nil];
-        [application registerUserNotificationSettings:settings];
-        [application registerForRemoteNotifications];
+#if !TARGET_IPHONE_SIMULATOR
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert
+                                                    | UIUserNotificationTypeBadge
+                                                    | UIUserNotificationTypeSound
+                                                                                     categories:nil];
+            [application registerUserNotificationSettings:settings];
+            [application registerForRemoteNotifications];
         }
-else{
-    [application registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];
-   }
-     #endif
-    // 引导页
-    NSArray *coverImageNames = @[@"guide1",@"guide2",@"guide3",@"guide4"];
-    // Example 2 自定义登陆按钮
-    UIButton *enterButton = [UIButton new];
-    [enterButton setBackgroundColor:[UIColor redColor]];
-    [enterButton setTitle:NSLocalizedString(@"立刻体验", nil) forState:UIControlStateNormal];
-    self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:nil button:enterButton];
-    
-    [self.window addSubview:self.introductionView.view];
-    __weak AppDelegate *weakSelf = self;
-    self.introductionView.didSelectedEnter = ^() {
-        [weakSelf.introductionView.view removeFromSuperview];
-        weakSelf.introductionView = nil;
-        UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-        if(!user.isLogin){
-            
-            loginViewController *vc = [IBUIFactory CreateLoginViewController];
-            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
-            [weakSelf.root presentViewController:naVC animated:NO completion:nil];
+        else{
+            [application registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge |
+             UIRemoteNotificationTypeAlert |
+             UIRemoteNotificationTypeSound];
         }
-
-    };
-
-}
-else{
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
-}
+#endif
+        // 引导界面展示
+        // [_rootTabController showIntroWithCrossDissolve];
+        
+    }
+    else{
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
+    }
     
     //create root view controller
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -130,6 +115,33 @@ else{
     [self.window makeKeyAndVisible];
     
 
+    BOOL firsetLaunch = [AppContext sharedAppContext].firstLaunch;
+    if(!firsetLaunch){
+        NSArray *coverImageNames = @[@"guide1",@"guide2",@"guide3",@"guide4"];
+        // Example 2 自定义登陆按钮
+        UIButton *enterButton = [UIButton new];
+        [enterButton setBackgroundColor:[UIColor redColor]];
+        [enterButton setTitle:NSLocalizedString(@"立刻体验", nil) forState:UIControlStateNormal];
+        self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:nil button:enterButton];
+        
+        [self.window addSubview:self.introductionView.view];
+        [AppContext sharedAppContext].firstLaunch = YES;
+        [[AppContext sharedAppContext] saveData];
+        __weak AppDelegate *weakSelf = self;
+        self.introductionView.didSelectedEnter = ^() {
+            [weakSelf.introductionView.view removeFromSuperview];
+            weakSelf.introductionView = nil;
+        };
+    }
+    
+    UserInfoModel *user = [UserInfoModel shareUserInfoModel];
+    if(!user.isLogin){
+        
+        loginViewController *vc = [IBUIFactory CreateLoginViewController];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+        [root presentViewController:naVC animated:NO completion:nil];
+    }
+    
        //判断程序是不是由推送服务完成的
     if (launchOptions)
     {

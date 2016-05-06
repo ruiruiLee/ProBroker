@@ -21,8 +21,6 @@
 @interface OfferDetailsVC ()<LCPickViewDelegate>
 {
     LCPickView *_datePicker;
-    
-    OnlineCustomer *kf ;
 }
 
 @property (nonatomic, strong) InsurOffersInfoModel *data;
@@ -68,28 +66,22 @@
         placeholderImage =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[UserInfoModel shareUserInfoModel].headerImg]]];
     }
     
-<<<<<<< HEAD
-//    kf =  [[OnlineCustomer alloc]initWithArray:[NSArray arrayWithObjects:bjkf, @"保单相关咨询",self.navigationController, nil]];
-//    
-//    OffersModel *model = [self.data.offersVoList objectAtIndex:0];
-//    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", self.orderId, model.planOfferId];
-//    
-//    [kf userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:model.productLogo baodanDetail:model.planOfferStatusMsg baodanPrice:@"dfgds" baodanURL:url baodanCallbackID:self.orderId];
-=======
-    kf =  [[OnlineCustomer alloc]initWithArray:[NSArray arrayWithObjects:bjkf, @"保单相关咨询",self.navigationController, nil]];
+
+    [OnlineCustomer sharedInstance].groupName= bjkf;
+    [OnlineCustomer sharedInstance].navTitle= @"保单相关咨询";
+    [OnlineCustomer sharedInstance].nav= self.navigationController;
     
     OffersModel *model = [self.data.offersVoList objectAtIndex:0];
     NSString *url1 = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", self.orderId, model.planOfferId];
     
-    __weak OnlineCustomer *weakkf = kf;
     __weak OfferDetailsVC *weakself = self;
     self.initWithUrl = ^(NSString *url){
-        [weakkf userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:model.productLogo baodanDetail:model.planOfferStatusMsg baodanPrice:@"dfgds" baodanURL:url baodanCallbackID:weakself.orderId];
+        [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:model.productLogo baodanDetail:model.productName baodanPrice:[NSString stringWithFormat:@"%.2f", model.planInsuranceCompanyPrice] baodanURL:url baodanCallbackID:weakself.orderId];
     };
     
     [self loadShortUrl:url1];
     
-    kf.BaodanInfoClicked = ^(NSString *sid){
+    [OnlineCustomer sharedInstance].BaodanInfoClicked = ^(NSString *sid){
         OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
         web.type = enumShareTypeToCustomer;
         web.title = @"保单详情";
@@ -102,7 +94,6 @@
         [web initShareUrl:sid insuranceType:@"1" planOfferId:model.planOfferId];
         [web loadHtmlFromUrl:url];
     };
->>>>>>> 594e857273e88cb4c291ce775c2c3b9531587072
 }
 
 - (void)didReceiveMemoryWarning {
