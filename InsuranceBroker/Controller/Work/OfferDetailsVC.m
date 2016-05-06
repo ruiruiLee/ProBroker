@@ -72,7 +72,7 @@
     [OnlineCustomer sharedInstance].nav= self.navigationController;
     
     OffersModel *model = [self.data.offersVoList objectAtIndex:0];
-    NSString *url1 = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", self.orderId, model.planOfferId];
+    NSString *url1 = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@&fxBut=0&tbBut=0", Base_Uri, @"1", self.orderId, model.planOfferId];
     
     __weak OfferDetailsVC *weakself = self;
     self.initWithUrl = ^(NSString *url){

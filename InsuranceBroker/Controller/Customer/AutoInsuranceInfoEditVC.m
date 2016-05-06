@@ -762,6 +762,7 @@
             [self.btnReSubmit setImage:ThemeImage(@"fapiao") forState:UIControlStateNormal];
             newLisence = nil;
             self.btnReSubmit.selected = NO;
+            self.baseViewVConstraint.constant = 50;
         }else{
             self.btnNoNo.selected = NO;
             self.tfNo.enabled = YES;
@@ -770,6 +771,7 @@
             self.lbCertTitle.text = @"行驶证信息";
             [self.btnReSubmit setImage:ThemeImage(@"drivingLicenseBg") forState:UIControlStateNormal];
             newLisence = nil;
+            self.baseViewVConstraint.constant = 90;
             self.btnReSubmit.selected = NO;
         }
         self.tfMotorCode.text = model.carEngineNo;
