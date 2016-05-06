@@ -285,6 +285,7 @@
 		86B279011CD31537000E5FAA /* QuickQuoteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B278FF1CD31537000E5FAA /* QuickQuoteVC.m */; };
 		86B279021CD31537000E5FAA /* QuickQuoteVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B279001CD31537000E5FAA /* QuickQuoteVC.xib */; };
 		86B279051CD8798A000E5FAA /* UITabBar+badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B279041CD8798A000E5FAA /* UITabBar+badge.m */; };
+		86B279081CDB6546000E5FAA /* NetWorkHandler+initShorUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B279071CDB6546000E5FAA /* NetWorkHandler+initShorUrl.m */; };
 		86C3BB111C228D6F00F98E80 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB121C228D6F00F98E80 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB031C228D6F00F98E80 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB131C228D6F00F98E80 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB051C228D6F00F98E80 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -982,6 +983,8 @@
 		86B279001CD31537000E5FAA /* QuickQuoteVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuickQuoteVC.xib; sourceTree = "<group>"; };
 		86B279031CD8798A000E5FAA /* UITabBar+badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+badge.h"; sourceTree = "<group>"; };
 		86B279041CD8798A000E5FAA /* UITabBar+badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+badge.m"; sourceTree = "<group>"; };
+		86B279061CDB6546000E5FAA /* NetWorkHandler+initShorUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+initShorUrl.h"; sourceTree = "<group>"; };
+		86B279071CDB6546000E5FAA /* NetWorkHandler+initShorUrl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+initShorUrl.m"; sourceTree = "<group>"; };
 		86C3BB001C228D6F00F98E80 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		86C3BB021C228D6F00F98E80 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -1578,6 +1581,8 @@
 				8654CA591C31243B00411C54 /* NSString+MD5.m */,
 				8654CA5B1C31256A00411C54 /* NetWorkHandler.h */,
 				8654CA5C1C31256A00411C54 /* NetWorkHandler.m */,
+				86B279061CDB6546000E5FAA /* NetWorkHandler+initShorUrl.h */,
+				86B279071CDB6546000E5FAA /* NetWorkHandler+initShorUrl.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -3004,6 +3009,7 @@
 				CF6F36531CD9A1BC00DC95C5 /* README.md in Sources */,
 				86A5047E1C4F27950032A901 /* qrinput.c in Sources */,
 				86A26E941C4605700073FFFC /* BaseStrategyView.m in Sources */,
+				86B279081CDB6546000E5FAA /* NetWorkHandler+initShorUrl.m in Sources */,
 				865066191C21343E00429EAE /* ViewFactory.m in Sources */,
 				8625AF8C1C3256FA00312B98 /* HSepView.m in Sources */,
 				86248F241CD05A0E00F1B493 /* ReactiveButton.m in Sources */,

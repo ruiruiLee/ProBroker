@@ -15,6 +15,7 @@
 #import "NetManager.h"
 #import "KGStatusBar.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "NetWorkHandler+initShorUrl.h"
 
 @implementation BaseViewController
 
@@ -255,6 +256,18 @@
             [self setExclusiveTouchForButtons:v];
         }
     }
+}
+
+- (void) loadShortUrl:(NSString *) url 
+{
+    [NetWorkHandler requestToInitShorUrl:url Completion:^(int code, id content) {
+        if(code == 200){
+            NSString *url = [content objectForKey:@"data"];
+            if(self.initWithUrl){
+                self.initWithUrl ( url );
+            }
+        }
+    }];
 }
 
 @end

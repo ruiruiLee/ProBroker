@@ -31,7 +31,7 @@ static NetWorkHandler *networkmanager;
     self = [super init];
     if(self){
         [ProjectDefine shareProjectDefine];
-        self.manager = [AFHTTPRequestOperationManager manager];
+        self.manager = [AFHTTPSessionManager manager];
     }
     
     return self;
@@ -71,7 +71,7 @@ static NetWorkHandler *networkmanager;
 //    self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
 //    self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
     
-    [self.manager GET:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [self.manager GET:path parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSDictionary *result = nil;
         if([responseObject isKindOfClass:[NSData class]]){
             SBJsonParser *_parser = [[SBJsonParser alloc] init];
@@ -86,7 +86,7 @@ static NetWorkHandler *networkmanager;
         
         [ProjectDefine removeRequestTag:Tag];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"请求URL：%@ \n请求方法:%@ \n请求参数：%@\n 请求结果：%@\n==================================", url, method, params, error);
         [ProjectDefine removeRequestTag:Tag];
         
@@ -175,8 +175,8 @@ static NetWorkHandler *networkmanager;
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
     NSMutableURLRequest *request = [self.manager.requestSerializer requestWithMethod:@"POST" URLString:path parameters:params error:nil];
-
-    [self.manager POST:path parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    
+    [self.manager POST:path parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [ProjectDefine removeRequestTag:Tag];
         NSDictionary *result = nil;
         if([responseObject isKindOfClass:[NSData class]]){
@@ -185,32 +185,32 @@ static NetWorkHandler *networkmanager;
         }else{
             result = responseObject;
         }
-         _urlstring= [self ConvertCachKeyString:[self getUrlAbsoluteString:request]];
+        _urlstring= [self ConvertCachKeyString:[self getUrlAbsoluteString:request]];
         // 加缓存
         [[EGOCache globalCache] setObject:result forKey: [Util md5Hash:_urlstring]];
         
         NSLog(@"请求URL：%@ \n请求方法:%@ \n请求参数：%@\n 请求结果：%@\n==================================", url, method, params, result);
-
+        
         [self handleResponse:result Completion:completion];
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [ProjectDefine removeRequestTag:Tag];
         NSLog(@"请求URL：%@ \n请求方法:%@ \n请求参数：%@\n 请求结果：%@\n==================================", url, method, params, error);
-
+        
         _urlstring= [self ConvertCachKeyString:[self getUrlAbsoluteString:request]];
-    id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:_urlstring]];
+        id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:_urlstring]];
         if([method isEqualToString:@"/api/user/login"])
         {
             [self handleResponse:nil Completion:completion];
         }else
             [self handleResponse:cacheDatas Completion:completion];
-
-//        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-//        [dic setObject:[NSNumber numberWithInteger:error.code] forKey:@"code"];
-//        [dic setObject:error.localizedDescription forKey:@"msg"];
-//        
-//        [self handleResponse:dic Completion:completion];
+        
+        //        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        //        [dic setObject:[NSNumber numberWithInteger:error.code] forKey:@"code"];
+        //        [dic setObject:error.localizedDescription forKey:@"msg"];
+        //
+        //        [self handleResponse:dic Completion:completion];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }

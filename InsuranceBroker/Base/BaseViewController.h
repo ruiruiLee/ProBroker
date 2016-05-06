@@ -13,6 +13,9 @@
 
 @interface BaseViewController : UIViewController
 
+
+@property (copy, nonatomic) void(^initWithUrl)(NSString *);
+
 //设置title
 - (void) setNavTitle:(NSString *) title;
 
@@ -45,5 +48,7 @@
 - (void)stopCircleLoader;
 
 - (float)getIOSVersion;
+
+- (void) loadShortUrl:(NSString *) url;
 
 @end
