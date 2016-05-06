@@ -11,7 +11,7 @@
 #define kefuUrl = @"http://admin.appkefu.com/AppKeFu/admin/assets/avatar/"
 
 @interface OnlineCustomer : NSObject{
-    UIImage *KefuAvatarImage;
+    
     UIImage *UserAvatarImage;
     UILabel *titleView;
 }
@@ -20,7 +20,8 @@
 @property (nonatomic, copy) NSString *navTitle;
 @property (nonatomic, assign) BOOL isConnect;
 @property (nonatomic, assign) BOOL openRobot;
-@property (nonatomic, strong) UINavigationController *nav;
+@property (nonatomic, copy) UIImage *KefuAvatarImage;
+@property (nonatomic, retain) UINavigationController *nav;
 @property (nonatomic, strong) UIButton *leftBarButtonItemButton;
 @property (nonatomic, strong) UIButton *rightBarButtonItemButton;
 
