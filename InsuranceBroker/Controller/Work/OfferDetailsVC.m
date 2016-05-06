@@ -90,7 +90,7 @@
         //        web.shareTitle = [NSString stringWithFormat:@"我是%@，我是优快保自由经纪人。这是为您定制的投保方案报价，请查阅。电话%@", user.realName, user.phone];
         web.shareTitle = [NSString stringWithFormat:@"您好，优快保携手%@为您定制车险",model.productName];
         [weakself.navigationController pushViewController:web animated:YES];
-        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", sid, model.planOfferId];
+        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@&fxBut=0&tbBut=0", Base_Uri, @"1", sid, model.planOfferId];
         [web initShareUrl:sid insuranceType:@"1" planOfferId:model.planOfferId];
         [web loadHtmlFromUrl:url];
     };
