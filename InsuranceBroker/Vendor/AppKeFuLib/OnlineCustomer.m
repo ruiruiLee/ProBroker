@@ -31,7 +31,7 @@
 
 -(void)leftBarButtonItemTouchUpInside:(UIButton *)sender
 {
-    [self closeNotification];
+    //[self closeNotification];
 }
 
 -(void)setNavTitle:(NSString *)navTitle{
@@ -60,14 +60,6 @@
     
     [_rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
     [_rightBarButtonItemButton setTitleColor:UIColorFromRGB(0xff6619)forState:UIControlStateNormal];
-}
-
-
--(void)closeNotification{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_LOGIN_SUCCEED_NOTIFICATION object:nil];
-
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_WORKGROUP_ONLINESTATUS object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_NOTIFICATION_DISCONNECT_WITH_ERROR object:nil];
 }
 
 
