@@ -1,12 +1,12 @@
 //
-//  OrderDetailWebVC.m
+//  OfferDetailWebVC.m
 //  InsuranceBroker
 //
-//  Created by LiuZach on 16/1/22.
+//  Created by LiuZach on 16/5/6.
 //  Copyright © 2016年 LiuZach. All rights reserved.
 //
 
-#import "OrderDetailWebVC.h"
+#import "OfferDetailWebVC.h"
 #import "NetWorkHandler+initOrderShare.h"
 #import "SBJson.h"
 #import "MyJSInterface.h"
@@ -15,11 +15,11 @@
 #import "OnlineCustomer.h"
 #import "BaseNavigationController.h"
 
-@interface OrderDetailWebVC ()<UIWebViewDelegate>
+@interface OfferDetailWebVC ()<UIWebViewDelegate>
 
 @end
 
-@implementation OrderDetailWebVC
+@implementation OfferDetailWebVC
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -201,10 +201,10 @@
     [OnlineCustomer sharedInstance].navTitle= @"保单相关咨询";
     [OnlineCustomer sharedInstance].nav= self.navigationController;
     
-    __weak OrderDetailWebVC *weakself = self;
+    __weak OfferDetailWebVC *weakself = self;
     self.initWithUrl = ^(NSString *url){
-        NSString *detail = [NSString stringWithFormat:@"%@ 车牌号:%@", weakself.insModel.customerName, weakself.insModel.carNo];
-        [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:weakself.insModel.productLogo baodanDetail:detail baodanPrice:[NSString stringWithFormat:@"%.2f", weakself.insModel.orderOfferPayPrice] baodanURL:url baodanCallbackID:weakself.insModel.insuranceOrderId];
+        NSString *detail = [NSString stringWithFormat:@"%@ 车牌号:%@", weakself.customerName, weakself.carNo];
+        [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:weakself.insModel.productLogo baodanDetail:detail baodanPrice:[NSString stringWithFormat:@"%.2f", weakself.insModel.planInsuranceCompanyPrice] baodanURL:url baodanCallbackID:weakself.orderId];
         
         [OnlineCustomer sharedInstance].BaodanInfoClicked = ^(NSString *sid){
             WebViewController *web = [IBUIFactory CreateWebViewController];
@@ -215,7 +215,7 @@
     };
     
     [self loadShortUrl:self.urlpath];
-
+    
 }
 
 @end
