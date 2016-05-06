@@ -31,7 +31,7 @@
 
 -(void)leftBarButtonItemTouchUpInside:(UIButton *)sender
 {
-    //[self closeNotification];
+    _nav=nil;
 }
 
 -(void)setNavTitle:(NSString *)navTitle{
@@ -53,9 +53,11 @@
     [_leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
                               forState:UIControlStateNormal];
     [_leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    // 右边按钮
     _rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
 
-    //右边按钮
     //        [_rightBarButtonItemButton setImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
     
     [_rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
@@ -94,23 +96,6 @@
 
 #pragma mark OnlineStatus
 
-
-//接收是否登录成功通知
-- (void)isConnected:(NSNotification*)notification
-{
-    NSNumber *isConnected = [notification object];
-    if ([isConnected boolValue])
-    {
-     //登录成功
-      _isConnect =YES;
-     [[AppKeFuLib sharedInstance] queryWorkgroupOnlineStatus:_groupName];
-    }
-    else
-    {
-     //登录失败
-      _isConnect =NO;
-    }
-}
 
 -(void)intoFAQ
 {

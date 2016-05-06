@@ -24,9 +24,6 @@
 #import "BaseNavigationController.h"
 
 @interface CustomerDetailVC ()<BaseInsuranceInfoDelegate, InsuranceInfoViewDelegate, MFMessageComposeViewControllerDelegate>
-{
-      OnlineCustomer *kf ;
-}
 
 @property (nonatomic, strong) CustomerDetailModel *data;
 @property (nonatomic, strong) NSString *customerId;

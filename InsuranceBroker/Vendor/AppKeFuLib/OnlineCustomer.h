@@ -20,7 +20,7 @@
 @property (nonatomic, copy) NSString *navTitle;
 @property (nonatomic, assign) BOOL isConnect;
 @property (nonatomic, assign) BOOL openRobot;
-@property (nonatomic, strong) UINavigationController *nav;
+@property (nonatomic, retain) UINavigationController *nav;
 @property (nonatomic, strong) UIButton *leftBarButtonItemButton;
 @property (nonatomic, strong) UIButton *rightBarButtonItemButton;
 
