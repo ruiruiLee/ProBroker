@@ -125,7 +125,7 @@
                                            //客服不在线，开启机器人
                                            defaultRobot:_openRobot
                                                mustRate:NO
-                                    withKefuAvatarImage:KefuAvatarImage
+                                    withKefuAvatarImage:_KefuAvatarImage
                                     withUserAvatarImage:UserAvatarImage
                                          shouldShowGoodsInfo:NO
                                   withGoodsImageViewURL:nil
@@ -156,7 +156,7 @@
                                            //客服不在线，开启机器人
                                            defaultRobot:_openRobot
                                                mustRate:NO
-                                    withKefuAvatarImage:KefuAvatarImage
+                                    withKefuAvatarImage:_KefuAvatarImage
                                     withUserAvatarImage:UserAvatarImage
                                     shouldShowGoodsInfo:YES
                                   withGoodsImageViewURL:_baodanLogoUrlstring
@@ -173,12 +173,14 @@
                    }
      
                              httpLinkURLClickedCallBack:nil
-                         faqButtonTouchUpInsideCallback:^(){
-                             
-                             NSLog(@"faqButtonTouchUpInsideCallback, 自定义FAQ常见问题button回调，可在此打开自己的常见问题FAQ页面");
-                             [self intoFAQ];
-                             
-                         }];
+                         faqButtonTouchUpInsideCallback:nil
+//                         faqButtonTouchUpInsideCallback:^(){
+//                             
+//                             NSLog(@"faqButtonTouchUpInsideCallback, 自定义FAQ常见问题button回调，可在此打开自己的常见问题FAQ页面");
+//                             [self intoFAQ];
+//                             
+//                         }
+     ];
     
     
 }
