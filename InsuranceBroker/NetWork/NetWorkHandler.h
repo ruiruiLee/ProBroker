@@ -16,7 +16,8 @@ typedef void(^Completion) (int code, id content);
     NSMutableString       * _urlstring;
 }
 
-@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
+//@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
+@property (nonatomic, strong) AFHTTPSessionManager *manager;
 
 + (NetWorkHandler *) shareNetWorkHandler;
 
