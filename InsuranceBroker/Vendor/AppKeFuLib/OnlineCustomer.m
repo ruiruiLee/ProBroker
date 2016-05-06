@@ -44,7 +44,7 @@
     // title
     titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
     titleView.textColor = [UIColor blackColor];
-    titleView.font = [UIFont boldSystemFontOfSize:20];
+    titleView.font = [UIFont boldSystemFontOfSize:18];
     titleView.textAlignment = NSTextAlignmentCenter;
     
 
