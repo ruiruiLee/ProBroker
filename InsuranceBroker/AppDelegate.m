@@ -231,8 +231,10 @@
         else
         {
             [OnlineCustomer sharedInstance].openRobot=YES;
+            [OnlineCustomer sharedInstance].KefuAvatarImage= ThemeImage(@"head_male");
         }
         [[OnlineCustomer sharedInstance] beginChat];
+         [ProgressHUD dismiss];
     }
 }
 

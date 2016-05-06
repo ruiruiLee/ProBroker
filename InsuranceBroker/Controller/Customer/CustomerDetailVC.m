@@ -184,8 +184,9 @@
     }
     
     [self kefuNavigationBar];
-    [OnlineCustomer sharedInstance].navTitle=@"保单相关咨询";
+    [OnlineCustomer sharedInstance].navTitle=bjTitke;
     [OnlineCustomer sharedInstance].groupName=bjkf;
+    [ProgressHUD show:@"连接客服..."];
     [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage nav:self.navigationController leftBtn:leftBarButtonItemButton rightBtn:rightBarButtonItemButton];
 }
 
@@ -249,12 +250,6 @@
                 self.customerinfoModel.detailModel = self.data;
                 self.customerinfoModel.customerName = self.data.customerName;
             }
-        }else{
-//            if(self .data == nil){
-//                self.data = [[CustomerDetailModel alloc] init];
-//                self.data.visitAttay = [[NSMutableArray alloc] init];
-//                self.data.insurArray = [[NSMutableArray alloc] init];
-//            }
         }
     }];
 }
@@ -797,9 +792,7 @@
         NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.data.customerId, self.data.carInfo.customerCarId, str];
         [web loadHtmlFromUrl:url];
     }else{
-//        [self showProgressHUD];
-//        [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.5];
-        
+
         AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
         [self.navigationController pushViewController:vc animated:YES];
         vc.customerId = self.customerId;
@@ -808,14 +801,5 @@
 }
 
 
-//- (void) showProgressHUD
-//{
-//    [ProgressHUD show:@"请完善投保资料"];
-//}
-//
-//- (void) shutProgressHUD
-//{
-//    [ProgressHUD dismiss];
-//}
 
 @end

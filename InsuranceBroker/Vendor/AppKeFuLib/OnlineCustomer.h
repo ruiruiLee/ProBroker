@@ -11,6 +11,8 @@
 #define kefuUrl = @"http://admin.appkefu.com/AppKeFu/admin/assets/avatar/"
 #define bjkf @"policy"
 #define zxkf @"business"
+#define bjTitke @"保单咨询"
+#define zxTitle @"专属客服"
 @interface OnlineCustomer : NSObject{
     
     UIImage *UserAvatarImage;

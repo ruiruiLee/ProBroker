@@ -102,7 +102,7 @@
                                      hideRightBarButtonItem:NO
                                  rightBarButtonItemCallback:^(){
                                      UIAlertView *alerview = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                                                        message:@"确定要清空聊天记录吗?" delegate:self
+                                                                                        message:@"确定清空当前聊天记录吗?" delegate:self
                                                                               cancelButtonTitle:@"取消"
                                                                               otherButtonTitles:@"确定", nil];
                                       [alerview show];
@@ -164,12 +164,6 @@
          
                                  httpLinkURLClickedCallBack:nil
                              faqButtonTouchUpInsideCallback:nil
-         //                         faqButtonTouchUpInsideCallback:^(){
-         //
-         //                             NSLog(@"faqButtonTouchUpInsideCallback, 自定义FAQ常见问题button回调，可在此打开自己的常见问题FAQ页面");
-         //                             [self intoFAQ];
-         //
-         //                         }
          ];
         
     }
@@ -180,9 +174,14 @@
 {
     NSLog(@"%s, %ld", __PRETTY_FUNCTION__, (unsigned long)buttonIndex);
     if (buttonIndex == 1) {
-        
-        //清空与客服工作组 "wgdemo" 的所有聊天记录
         [[AppKeFuLib sharedInstance] deleteMessagesWith:self.groupName];
+        [self.nav popViewControllerAnimated:YES];
+        UIAlertView *alertView2 = [[UIAlertView alloc] initWithTitle:@"聊天记录已清空！"
+                                                            message:nil
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"确定"
+                                                  otherButtonTitles:nil];
+        [alertView2 show];
 
     }
 }
