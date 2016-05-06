@@ -226,6 +226,7 @@
         if ([status isEqualToString:@"online"])
         {
             [OnlineCustomer sharedInstance].openRobot=NO;
+            [OnlineCustomer sharedInstance].KefuAvatarImage=nil;
         }
         //客服工作组离线
         else
