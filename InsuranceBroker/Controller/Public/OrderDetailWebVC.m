@@ -196,7 +196,6 @@
     }
     
     _isLoad = YES;
-    
     [OnlineCustomer sharedInstance].groupName= bjkf;
     [OnlineCustomer sharedInstance].navTitle= @"保单相关咨询";
     [OnlineCustomer sharedInstance].nav= self.navigationController;

@@ -288,6 +288,7 @@
 		86B279081CDB6546000E5FAA /* NetWorkHandler+initShorUrl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B279071CDB6546000E5FAA /* NetWorkHandler+initShorUrl.m */; };
 		86B279111CDC9163000E5FAA /* OfferDetailWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B2790F1CDC9163000E5FAA /* OfferDetailWebVC.m */; };
 		86B279121CDC9163000E5FAA /* OfferDetailWebVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B279101CDC9163000E5FAA /* OfferDetailWebVC.xib */; };
+		86B279151CDCB2DD000E5FAA /* CustomerServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B279141CDCB2DD000E5FAA /* CustomerServiceVC.m */; };
 		86C3BB111C228D6F00F98E80 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB121C228D6F00F98E80 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB031C228D6F00F98E80 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB131C228D6F00F98E80 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB051C228D6F00F98E80 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -990,6 +991,8 @@
 		86B2790E1CDC9163000E5FAA /* OfferDetailWebVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferDetailWebVC.h; sourceTree = "<group>"; };
 		86B2790F1CDC9163000E5FAA /* OfferDetailWebVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailWebVC.m; sourceTree = "<group>"; };
 		86B279101CDC9163000E5FAA /* OfferDetailWebVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferDetailWebVC.xib; sourceTree = "<group>"; };
+		86B279131CDCB2DD000E5FAA /* CustomerServiceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerServiceVC.h; sourceTree = "<group>"; };
+		86B279141CDCB2DD000E5FAA /* CustomerServiceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerServiceVC.m; sourceTree = "<group>"; };
 		86C3BB001C228D6F00F98E80 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		86C3BB021C228D6F00F98E80 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -2154,6 +2157,8 @@
 				86A504091C4CCE730032A901 /* SelectCustomerVC.m */,
 				86248EF01CC6220E00F1B493 /* ProductListVC.h */,
 				86248EF11CC6220E00F1B493 /* ProductListVC.m */,
+				86B279131CDCB2DD000E5FAA /* CustomerServiceVC.h */,
+				86B279141CDCB2DD000E5FAA /* CustomerServiceVC.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -2985,6 +2990,7 @@
 				86A26EE51C48FB010073FFFC /* CustomTagTableCell.m in Sources */,
 				8625AFE71C37C8D500312B98 /* OfferDetailTableViewCell.m in Sources */,
 				86A26E821C4518990073FFFC /* NewUserModel.m in Sources */,
+				86B279151CDCB2DD000E5FAA /* CustomerServiceVC.m in Sources */,
 				86C3BB221C228FCA00F98E80 /* BasePullTableVC.m in Sources */,
 				86D3D99F1CBC998500276AC0 /* TranslucentToolbar.m in Sources */,
 				8625AFF81C39316800312B98 /* NetWorkHandler+login.m in Sources */,
