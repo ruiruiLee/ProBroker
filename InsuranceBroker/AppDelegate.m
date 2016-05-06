@@ -21,6 +21,7 @@
 #import "RootViewController.h"
 #import "AppContext.h"
 #import "AppKeFuLib.h"
+#import "OnlineCustomer.h"
 @interface AppDelegate ()
 
 @property (nonatomic, strong) ZWIntroductionViewController *introductionView;
@@ -33,7 +34,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+    [[AppKeFuLib sharedInstance] loginWithAppkey:APP_KEY];
+    //监听登录状态
+    [self openNotification];
     //第三方分享ggg
     [ShareSDK registerApp:@"c736476da58c" activePlatforms:@[@(SSDKPlatformTypeSMS), @(SSDKPlatformTypeWechat), @(SSDKPlatformTypeQQ), @(SSDKPlatformSubTypeQZone)] onImport:^(SSDKPlatformType platformType) {
         
@@ -73,33 +76,49 @@
     }];
     
     //设置AVOSCloud
-    [AVOSCloud setApplicationId:AVOSCloudAppID
-                      clientKey:AVOSCloudAppKey];
+    [AVOSCloud setApplicationId:AVOSCloudAppID clientKey:AVOSCloudAppKey];
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) {
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
+if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]){
+     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
+     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         // 第一次安装时运行打开推送
-#if !TARGET_IPHONE_SIMULATOR
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert
-                                                    | UIUserNotificationTypeBadge
-                                                    | UIUserNotificationTypeSound
-                                                                                     categories:nil];
-            [application registerUserNotificationSettings:settings];
-            [application registerForRemoteNotifications];
+      #if !TARGET_IPHONE_SIMULATOR
+if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert| UIUserNotificationTypeBadge| UIUserNotificationTypeSound categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
         }
-        else{
-            [application registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge |
-             UIRemoteNotificationTypeAlert |
-             UIRemoteNotificationTypeSound];
-        }
-#endif
-        // 引导界面展示
-        // [_rootTabController showIntroWithCrossDissolve];
-        
-    }
+else{
+    [application registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];
+   }
+     #endif
+    // 引导页
+    NSArray *coverImageNames = @[@"guide1",@"guide2",@"guide3",@"guide4"];
+    // Example 2 自定义登陆按钮
+    UIButton *enterButton = [UIButton new];
+    [enterButton setBackgroundColor:[UIColor redColor]];
+    [enterButton setTitle:NSLocalizedString(@"立刻体验", nil) forState:UIControlStateNormal];
+    self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:nil button:enterButton];
     
+    [self.window addSubview:self.introductionView.view];
+    __weak AppDelegate *weakSelf = self;
+    self.introductionView.didSelectedEnter = ^() {
+        [weakSelf.introductionView.view removeFromSuperview];
+        weakSelf.introductionView = nil;
+        UserInfoModel *user = [UserInfoModel shareUserInfoModel];
+        if(!user.isLogin){
+            
+            loginViewController *vc = [IBUIFactory CreateLoginViewController];
+            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+            [weakSelf.root presentViewController:naVC animated:NO completion:nil];
+        }
+
+    };
+
+}
+else{
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstLaunch"];
+}
     
     //create root view controller
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -110,35 +129,8 @@
     
     [self.window makeKeyAndVisible];
     
-    // Added Introduction View Controller
-    BOOL firsetLaunch = [AppContext sharedAppContext].firstLaunch;
-    if(!firsetLaunch){
-        NSArray *coverImageNames = @[@"guide1",@"guide2",@"guide3",@"guide4"];
-        // Example 2 自定义登陆按钮
-        UIButton *enterButton = [UIButton new];
-        [enterButton setBackgroundColor:[UIColor redColor]];
-        [enterButton setTitle:NSLocalizedString(@"立刻体验", nil) forState:UIControlStateNormal];
-        self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:nil button:enterButton];
-        
-        [self.window addSubview:self.introductionView.view];
-        [AppContext sharedAppContext].firstLaunch = YES;
-        [[AppContext sharedAppContext] saveData];
-        __weak AppDelegate *weakSelf = self;
-        self.introductionView.didSelectedEnter = ^() {
-            [weakSelf.introductionView.view removeFromSuperview];
-            weakSelf.introductionView = nil;
-        };
-    }
-    UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    if(!user.isLogin){
 
-            loginViewController *vc = [IBUIFactory CreateLoginViewController];
-            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
-            [root presentViewController:naVC animated:NO completion:nil];
-    }else{
-          [[AppKeFuLib sharedInstance] loginWithAppkey:APP_KEY];
-    }
-    //判断程序是不是由推送服务完成的
+       //判断程序是不是由推送服务完成的
     if (launchOptions)
     {
        // [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
@@ -157,7 +149,113 @@
     return YES;
 }
 
+// 在线客服
+-(void)openNotification{
+    //监听登录状态
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(isConnected :) name:APPKEFU_LOGIN_SUCCEED_NOTIFICATION object:nil];
+    //监听在线状态
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self selector:@selector(notifyOnlineStatus:) name:APPKEFU_WORKGROUP_ONLINESTATUS object:nil];
+    //监听接收到的消息
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyMessage:) name:APPKEFU_NOTIFICATION_MESSAGE object:nil];
 
+    //监听连接服务器报错
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyXmppStreamDisconnectWithError:) name:APPKEFU_NOTIFICATION_DISCONNECT_WITH_ERROR object:nil];
+    }
+
+
+
+// 在线客服 接收是否登录成功通知
+- (void)isConnected:(NSNotification*)notification
+{
+    NSNumber *isConnected = [notification object];
+    if ([isConnected boolValue])
+    {
+        //登录成功
+        [OnlineCustomer sharedInstance].isConnect =YES;
+    }
+    else
+    {
+        //登录失败
+        [OnlineCustomer sharedInstance].isConnect =NO;
+    }
+}
+ // 在线客服
+-(void)notifyXmppStreamDisconnectWithError:(NSNotification *)notification
+{
+    //登录失败
+    [OnlineCustomer sharedInstance].isConnect =NO;
+}
+// 在线客服 监听工作组在线状态
+-(void)notifyOnlineStatus:(NSNotification *)notification
+{
+    // 链接失败
+    if( ![OnlineCustomer sharedInstance].isConnect ||[OnlineCustomer sharedInstance].groupName==nil){
+        return;
+    }
+    NSDictionary *dict = [notification userInfo];
+    //客服工作组名称
+    NSString *workgroupName = [dict objectForKey:@"workgroupname"];
+    //客服工作组在线状态
+    NSString *status   = [dict objectForKey:@"status"];
+    if ([workgroupName isEqualToString:[OnlineCustomer sharedInstance].groupName]) {
+        
+        //客服工作组在线
+        if ([status isEqualToString:@"online"])
+        {
+            [OnlineCustomer sharedInstance].openRobot=NO;
+        }
+        //客服工作组离线
+        else
+        {
+            [OnlineCustomer sharedInstance].openRobot=YES;
+        }
+        if ([[OnlineCustomer sharedInstance].groupName isEqual:zxkf] || [OnlineCustomer sharedInstance].baodanCallbackID==nil)
+        {
+            [[OnlineCustomer sharedInstance] beginChat];
+        }
+        else
+        {
+            [[OnlineCustomer sharedInstance] beginBaoDanChat];
+        }
+        
+    }
+}
+
+//接收到新消息
+- (void)notifyMessage:(NSNotification *)nofication
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    KFMessageItem *msgItem = [nofication object];
+    
+    //接收到来自客服的消息
+    if (!msgItem.isSendFromMe) {
+        
+        //
+        NSLog(@"消息时间:%@, 工作组名称:%@, 发送消息用户名:%@",
+              msgItem.timestamp,
+              msgItem.workgroupName,
+              msgItem.username);
+        
+        //文本消息
+        if (KFMessageTypeText == msgItem.messageType) {
+            
+            NSLog(@"文本消息内容：%@", msgItem.messageContent);
+        }
+        //图片消息
+        else if (KFMessageTypeImageHTTPURL == msgItem.messageType)
+        {
+            NSLog(@"图片消息内容：%@", msgItem.messageContent);
+        }
+        //语音消息
+        else if (KFMessageTypeSoundHTTPURL == msgItem.messageType)
+        {
+            NSLog(@"语音消息内容：%@", msgItem.messageContent);
+        }
+    }
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -14,28 +14,33 @@
     UIImage *KefuAvatarImage;
     UIImage *UserAvatarImage;
     UILabel *titleView;
-    BOOL openRobot;
-    UINavigationController *nav;
 }
 
-@property (nonatomic, copy) NSString *groupName;
-@property (nonatomic, copy) NSString *returnMsg;
-@property (nonatomic, copy) UIButton *leftBarButtonItemButton;
-@property (nonatomic, copy) UIButton *rightBarButtonItemButton;
+@property (nonatomic, copy) NSString *groupName; //组名
+@property (nonatomic, copy) NSString *navTitle;
+@property (nonatomic, assign) BOOL isConnect;
+@property (nonatomic, assign) BOOL openRobot;
+@property (nonatomic, strong) UINavigationController *nav;
+@property (nonatomic, strong) UIButton *leftBarButtonItemButton;
+@property (nonatomic, strong) UIButton *rightBarButtonItemButton;
 
 //保单信息
-@property (nonatomic, strong) NSString *baodanLogoUrlstring;
-@property (nonatomic, strong) NSString *baodanDetail;
-@property (nonatomic, strong) NSString *baodanPrice;
-@property (nonatomic, strong) NSString *baodanURL;
-@property (nonatomic, strong) NSString *baodanCallbackID;
+@property (nonatomic, copy) NSString *baodanLogoUrlstring;
+@property (nonatomic, copy) NSString *baodanDetail;
+@property (nonatomic, copy) NSString *baodanPrice;
+@property (nonatomic, copy) NSString *baodanURL;
+@property (nonatomic, copy) NSString *baodanCallbackID;
 @property (copy, nonatomic) void(^BaodanInfoClicked)(NSString*);
 
--(instancetype)initWithArray:(NSArray *)array;
+
++ (OnlineCustomer *)sharedInstance;
+
 
 -(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage;
 
 -(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage baodanLogoUrlstring:(NSString *) baodanLogoUrlstring baodanDetail:(NSString *) baodanDetail baodanPrice:(NSString *) baodanPrice baodanURL:(NSString *) baodanURL baodanCallbackID:(NSString *) baodanCallbackID;
 
 -(void)intoFAQ;
+-(void)beginChat;
+-(void)beginBaoDanChat;
 @end

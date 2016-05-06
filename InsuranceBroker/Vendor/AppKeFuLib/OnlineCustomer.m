@@ -12,58 +12,64 @@
 @implementation OnlineCustomer
 
 
-
--(instancetype)initWithArray:(NSArray *)array
++ (OnlineCustomer *)sharedInstance
 {
+    static dispatch_once_t once;
+    static OnlineCustomer *instance = nil;
+    dispatch_once( &once, ^{
+        instance = [[OnlineCustomer alloc] init]; } );
+    return instance;
+}
+
+-(instancetype)init{
     self = [super init];
     if (self) {
-         _groupName = array[0];
-        titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
-        titleView.textColor = [UIColor blackColor];
-        titleView.textAlignment = NSTextAlignmentCenter;
-        titleView.text = array[1];
-        nav =array[2];
-         _leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        [_leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
-                                 forState:UIControlStateNormal];
-        [_leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-        _rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-//        [_rightBarButtonItemButton setImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
-
-        [_rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
-        [_rightBarButtonItemButton setTitleColor:UIColorFromRGB(0xff6619)forState:UIControlStateNormal];
-
-//        [_rightBarButtonItemButton addTarget:self action:@selector(rightBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-
-        [self customerInit];
+         [self customerInit];
     }
     return self;
 }
 
 -(void)leftBarButtonItemTouchUpInside:(UIButton *)sender
 {
-    [self backfromServie];
+    [self closeNotification];
 }
-//-(void)rightBarButtonItemTouchUpInside:(UIButton *)sender
-//{
-//    [self backfromServie];
-//}
+
+-(void)setNavTitle:(NSString *)navTitle{
+    _navTitle=navTitle;
+     titleView.text = navTitle;
+}
+
 -(void)customerInit{
     
-    //监听在线状态
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self selector:@selector(notifyOnlineStatus:) name:APPKEFU_WORKGROUP_ONLINESTATUS object:nil];
+    // title
+    titleView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 44)];
+    titleView.textColor = [UIColor blackColor];
+    titleView.font = [UIFont boldSystemFontOfSize:20];
+    titleView.textAlignment = NSTextAlignmentCenter;
     
-    //监听连接服务器报错
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyXmppStreamDisconnectWithError:) name:APPKEFU_NOTIFICATION_DISCONNECT_WITH_ERROR object:nil];
 
+    // 左边按钮
+    _leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [_leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
+                              forState:UIControlStateNormal];
+    [_leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    _rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+
+    //右边按钮
+    //        [_rightBarButtonItemButton setImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
+    
+    [_rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
+    [_rightBarButtonItemButton setTitleColor:UIColorFromRGB(0xff6619)forState:UIControlStateNormal];
 }
 
 
--(void)backfromServie{
+-(void)closeNotification{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_LOGIN_SUCCEED_NOTIFICATION object:nil];
+
     [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_WORKGROUP_ONLINESTATUS object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_NOTIFICATION_DISCONNECT_WITH_ERROR object:nil];
 }
+
 
 -(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage
  {
@@ -72,9 +78,9 @@
       [[AppKeFuLib sharedInstance] setTagProvince:Province];
       [[AppKeFuLib sharedInstance] setTagCity:City];
       [[AppKeFuLib sharedInstance] setTagOther:phone];
-      UserAvatarImage=headImage;
+       UserAvatarImage=headImage;
       [[AppKeFuLib sharedInstance] queryWorkgroupOnlineStatus:_groupName];
- }
+    }
 
 -(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage baodanLogoUrlstring:(NSString *) baodanLogoUrlstring baodanDetail:(NSString *) baodanDetail baodanPrice:(NSString *) baodanPrice baodanURL:(NSString *) baodanURL baodanCallbackID:(NSString *) baodanCallbackID
 {
@@ -94,57 +100,40 @@
     [[AppKeFuLib sharedInstance] queryWorkgroupOnlineStatus:_groupName];
 }
 
--(void)notifyXmppStreamDisconnectWithError:(NSNotification *)notification
-{
-    //登录失败
-    _returnMsg= @"网络连接失败,请稍候再试";
-}
-
 #pragma mark OnlineStatus
 
 
+//接收是否登录成功通知
+- (void)isConnected:(NSNotification*)notification
+{
+    NSNumber *isConnected = [notification object];
+    if ([isConnected boolValue])
+    {
+     //登录成功
+      _isConnect =YES;
+     [[AppKeFuLib sharedInstance] queryWorkgroupOnlineStatus:_groupName];
+    }
+    else
+    {
+     //登录失败
+      _isConnect =NO;
+    }
+}
 
 -(void)intoFAQ
 {
-    [[AppKeFuLib sharedInstance] pushFAQViewController:nav
+    [[AppKeFuLib sharedInstance] pushFAQViewController:_nav
                                      withWorkgroupName:_groupName
                               hidesBottomBarWhenPushed:YES];
 }
 
-//监听工作组在线状态
--(void)notifyOnlineStatus:(NSNotification *)notification
-{
-    NSDictionary *dict = [notification userInfo];
-    //客服工作组名称
-    NSString *workgroupName = [dict objectForKey:@"workgroupname"];
-    //客服工作组在线状态
-    NSString *status   = [dict objectForKey:@"status"];
-    if ([workgroupName isEqualToString:_groupName]) {
-        
-        //客服工作组在线
-        if ([status isEqualToString:@"online"])
-        {
-            openRobot=NO;
-        }
-        //客服工作组离线
-        else
-        {
-            openRobot=YES;
-        }
-        if ([_groupName isEqual:zxkf] || _baodanCallbackID==nil) {
-            [self beginChat];
-        }else{
-            [self beginBaoDanChat];
-        }
 
-    }
-}
 
 #pragma mark  进入在线客户聊天界面
 
 -(void)beginChat
  {
-    [[AppKeFuLib sharedInstance] pushChatViewController:nav
+    [[AppKeFuLib sharedInstance] pushChatViewController:_nav
                                       withWorkgroupName:_groupName
                                  hideRightBarButtonItem:NO
                              rightBarButtonItemCallback:nil
@@ -157,7 +146,7 @@
                                hidesBottomBarWhenPushed:YES
                                      showHistoryMessage:YES
                                            //客服不在线，开启机器人
-                                           defaultRobot:openRobot
+                                           defaultRobot:_openRobot
                                                mustRate:NO
                                     withKefuAvatarImage:KefuAvatarImage
                                     withUserAvatarImage:UserAvatarImage
@@ -176,7 +165,7 @@
 -(void)beginBaoDanChat{
     
 
-    [[AppKeFuLib sharedInstance] pushChatViewController:nav
+    [[AppKeFuLib sharedInstance] pushChatViewController:_nav
                                       withWorkgroupName:_groupName
                                  hideRightBarButtonItem:NO
                              rightBarButtonItemCallback:nil                                 showInputBarSwitchMenu:NO
@@ -188,7 +177,7 @@
                                hidesBottomBarWhenPushed:YES
                                      showHistoryMessage:YES
                                            //客服不在线，开启机器人
-                                           defaultRobot:openRobot
+                                           defaultRobot:_openRobot
                                                mustRate:NO
                                     withKefuAvatarImage:KefuAvatarImage
                                     withUserAvatarImage:UserAvatarImage

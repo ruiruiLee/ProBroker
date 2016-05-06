@@ -67,12 +67,12 @@
         placeholderImage =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[UserInfoModel shareUserInfoModel].headerImg]]];
     }
     
-    kf =  [[OnlineCustomer alloc]initWithArray:[NSArray arrayWithObjects:bjkf, @"保单相关咨询",self.navigationController, nil]];
-    
-    OffersModel *model = [self.data.offersVoList objectAtIndex:0];
-    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", self.orderId, model.planOfferId];
-    
-    [kf userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:model.productLogo baodanDetail:model.planOfferStatusMsg baodanPrice:@"dfgds" baodanURL:url baodanCallbackID:self.orderId];
+//    kf =  [[OnlineCustomer alloc]initWithArray:[NSArray arrayWithObjects:bjkf, @"保单相关咨询",self.navigationController, nil]];
+//    
+//    OffersModel *model = [self.data.offersVoList objectAtIndex:0];
+//    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", self.orderId, model.planOfferId];
+//    
+//    [kf userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:model.productLogo baodanDetail:model.planOfferStatusMsg baodanPrice:@"dfgds" baodanURL:url baodanCallbackID:self.orderId];
 }
 
 

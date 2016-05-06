@@ -180,8 +180,12 @@
         placeholderImage =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[UserInfoModel shareUserInfoModel].headerImg]]];
     }
     
-    kf =  [[OnlineCustomer alloc]initWithArray:[NSArray arrayWithObjects:bjkf, @"保单相关咨询",self.navigationController, nil]];
-    [kf userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage];
+//    kf =  [[OnlineCustomer alloc]initWithArray:[NSArray arrayWithObjects:bjkf, @"保单相关咨询",self.navigationController, nil]];
+    
+    [OnlineCustomer sharedInstance].groupName= bjkf;
+    [OnlineCustomer sharedInstance].navTitle= @"保单相关咨询";
+     [OnlineCustomer sharedInstance].nav= self.navigationController;
+    [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage];
 }
 
 
