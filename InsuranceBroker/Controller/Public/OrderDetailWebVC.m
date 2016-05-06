@@ -196,14 +196,14 @@
     }
     
     _isLoad = YES;
-    [OnlineCustomer sharedInstance].groupName= bjkf;
+   // [OnlineCustomer sharedInstance].groupName= bjkf;
     [OnlineCustomer sharedInstance].navTitle= @"保单相关咨询";
     [OnlineCustomer sharedInstance].nav= self.navigationController;
     
     __weak OrderDetailWebVC *weakself = self;
     self.initWithUrl = ^(NSString *url){
         NSString *detail = [NSString stringWithFormat:@"%@ 车牌号:%@", weakself.insModel.customerName, weakself.insModel.carNo];
-        [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:weakself.insModel.productLogo baodanDetail:detail baodanPrice:[NSString stringWithFormat:@"%.2f", weakself.insModel.orderOfferPayPrice] baodanURL:url baodanCallbackID:weakself.insModel.insuranceOrderId];
+//        [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:weakself.insModel.productLogo baodanDetail:detail baodanPrice:[NSString stringWithFormat:@"%.2f", weakself.insModel.orderOfferPayPrice] baodanURL:url baodanCallbackID:weakself.insModel.insuranceOrderId];
         
         [OnlineCustomer sharedInstance].BaodanInfoClicked = ^(NSString *sid){
             WebViewController *web = [IBUIFactory CreateWebViewController];

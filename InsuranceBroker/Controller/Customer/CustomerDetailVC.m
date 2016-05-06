@@ -31,8 +31,12 @@
 @end
 
 @implementation CustomerDetailVC
+{
+    UIButton * leftBarButtonItemButton;
+    UIButton * rightBarButtonItemButton;
+}
 @synthesize scrollview;
-//@synthesize btnQuote;
+
 
 - (void) setCustomerinfoModel:(CustomerInfoModel *)model
 {
@@ -60,12 +64,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCustomerDetail:) name:Notify_Reload_CustomerDetail object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshOrderList:) name:Notify_Refresh_OrderList object:nil];
     
     self.title = @"客户资料";
     
-    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
+    
     
     [self.headerView.btnPhone addTarget:self action:@selector(doBtnRing:) forControlEvents:UIControlEventTouchUpInside];
     [self.headerView.btnMsg addTarget:self action:@selector(doBtnEmail:) forControlEvents:UIControlEventTouchUpInside];
@@ -128,44 +133,45 @@
     [self.detailView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_policyListView]-0-|" options:0 metrics:nil views:views]];
     [self.detailView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_insuranceDetailView]-0-|" options:0 metrics:nil views:views]];
     [self.detailView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_insuranceDetailView]-0-|" options:0 metrics:nil views:views]];
-    
-    
-//    btnQuote = [[UIButton alloc] init];
-//    [self.view addSubview:btnQuote];
-//    [btnQuote setTitle:@"立即\n报价" forState:UIControlStateNormal];
-//    btnQuote.translatesAutoresizingMaskIntoConstraints = NO;
-//    btnQuote.layer.cornerRadius = 24;
-//    btnQuote.backgroundColor = _COLOR(0xff, 0x66, 0x19);
-//    btnQuote.titleLabel.font = _FONT_B(14);
-//    btnQuote.titleLabel.numberOfLines = 2;
-//    btnQuote.titleLabel.textAlignment = NSTextAlignmentCenter;
-//    btnQuote.layer.shadowColor = _COLOR(0xff, 0x66, 0x19).CGColor;
-//    btnQuote.layer.shadowOffset = CGSizeMake(0, 0);
-//    btnQuote.layer.shadowOpacity = 0.5;
-//    btnQuote.layer.shadowRadius = 1;
-//    [btnQuote addTarget:self action:@selector(doBtnCarInsurPlan:) forControlEvents:UIControlEventTouchUpInside];
-//    
-//    
-//    NSDictionary *views1 = NSDictionaryOfVariableBindings(btnQuote);
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(48)]-10-|" options:0 metrics:nil views:views1]];
-//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views1]];
+ 
     
     [self doBtnSelectDetailInfoView:self.btnInfo];
+    // 加载客服
+    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
 }
 
-//
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.headerView.lbName.text = self.data.customerName;
+    self.headerView.lbMobile.text = self.data.customerPhone;
+    self.headerView.lbTag.text = [self.data getCustomerLabelString];
+    [self setCarInfo];
+    [self resetContetHeight:_selectedView];
+    
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+-(void) kefuNavigationBar{
+    // 左边按钮
+    leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
+                              forState:UIControlStateNormal];
+//    [leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    // 右边按钮
+    rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    
+    //        [_rightBarButtonItemButton setImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
+    
+    [rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
+    [rightBarButtonItemButton setTitleColor:UIColorFromRGB(0xff6619)forState:UIControlStateNormal];
+}
 - (void) handleRightBarButtonClicked:(id)sender
 {
-//    UserFeedbackVC *feedbackViewController = [[UserFeedbackVC alloc] init];
-//    feedbackViewController.feedbackTitle = nil;
-//    feedbackViewController.contact = [UserInfoModel shareUserInfoModel].phone;
-//    // 隐藏联系人表头
-//    feedbackViewController.contactHeaderHidden = YES;
-//    // 决定返回按钮和样式
-//    feedbackViewController.presented = NO;
-//    // 不设置导航栏样式
-//    feedbackViewController.navigationBarStyle = LCUserFeedbackNavigationBarStyleNone;
-//    [self.navigationController pushViewController:feedbackViewController animated:YES];
     
     NSString * msex =@"男";
     UIImage *placeholderImage = ThemeImage(@"head_male");
@@ -177,13 +183,10 @@
         placeholderImage =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[UserInfoModel shareUserInfoModel].headerImg]]];
     }
     
-//    kf =  [[OnlineCustomer alloc]initWithArray:[NSArray arrayWithObjects:bjkf, @"保单相关咨询",self.navigationController, nil]];
-    
-    [OnlineCustomer sharedInstance].groupName= bjkf;
-    [OnlineCustomer sharedInstance].navTitle= @"保单相关咨询";
-   [[OnlineCustomer sharedInstance] setNav: self.navigationController];
-    //chatNavigation = self.navigationController;
-    [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage];
+    [self kefuNavigationBar];
+    [OnlineCustomer sharedInstance].navTitle=@"保单相关咨询";
+    [OnlineCustomer sharedInstance].groupName=bjkf;
+    [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage nav:self.navigationController leftBtn:leftBarButtonItemButton rightBtn:rightBarButtonItemButton];
 }
 
 
@@ -226,20 +229,7 @@
     scrollview.contentSize = CGSizeMake(ScreenWidth, self.viewVConstraint.constant);
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    self.headerView.lbName.text = self.data.customerName;
-    self.headerView.lbMobile.text = self.data.customerPhone;
-    self.headerView.lbTag.text = [self.data getCustomerLabelString];
-    [self setCarInfo];
-    
-    [self resetContetHeight:_selectedView];
-    
-    //客服跟进和保单信息后续
 
-}
 
 //获取详情
 - (void) loadDetailWithCustomerId:(NSString *)customerId

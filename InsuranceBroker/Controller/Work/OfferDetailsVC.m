@@ -67,10 +67,10 @@
     }
     
 
-    [OnlineCustomer sharedInstance].groupName= bjkf;
+   // [OnlineCustomer sharedInstance].groupName= bjkf;
     [OnlineCustomer sharedInstance].navTitle= @"保单相关咨询";
     [OnlineCustomer sharedInstance].nav= self.navigationController;
-    [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage];
+//    [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage];
     
 //    OffersModel *model = [self.data.offersVoList objectAtIndex:0];
 //    NSString *url1 = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@&fxBut=0&tbBut=0", Base_Uri, @"1", self.orderId, model.planOfferId];

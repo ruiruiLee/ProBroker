@@ -40,8 +40,7 @@
 
 // 在线客服
 #define APP_KEY @"f3b9c7da5044b70c7bbf1e4a83862c6b"
-#define bjkf @"policy"
-#define zxkf @"business"
+
 //location
 #define LcationInstance [LocationManagerObserver sharedInstance]
 

@@ -232,15 +232,7 @@
         {
             [OnlineCustomer sharedInstance].openRobot=YES;
         }
-        if ([[OnlineCustomer sharedInstance].groupName isEqual:zxkf] || [OnlineCustomer sharedInstance].baodanCallbackID==nil)
-        {
-            [[OnlineCustomer sharedInstance] beginChat];
-        }
-        else
-        {
-            [[OnlineCustomer sharedInstance] beginBaoDanChat];
-        }
-        
+        [[OnlineCustomer sharedInstance] beginChat];
     }
 }
 

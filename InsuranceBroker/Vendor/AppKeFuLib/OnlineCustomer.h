@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import  <UIKit/UIKit.h>
 #define kefuUrl = @"http://admin.appkefu.com/AppKeFu/admin/assets/avatar/"
-
+#define bjkf @"policy"
+#define zxkf @"business"
 @interface OnlineCustomer : NSObject{
     
     UIImage *UserAvatarImage;
     UILabel *titleView;
-    UINavigationController * chatNavigation;
  
 }
 
@@ -38,11 +38,12 @@
 
 + (OnlineCustomer *)sharedInstance;
 
--(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage;
+-(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage nav :(UINavigationController * )nav leftBtn:(UIButton *)leftBtn rightBtn:(UIButton *)rightBtn
+;
 
--(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage baodanLogoUrlstring:(NSString *) baodanLogoUrlstring baodanDetail:(NSString *) baodanDetail baodanPrice:(NSString *) baodanPrice baodanURL:(NSString *) baodanURL baodanCallbackID:(NSString *) baodanCallbackID;
+-(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage baodanLogoUrlstring:(NSString *) baodanLogoUrlstring baodanDetail:(NSString *) baodanDetail baodanPrice:(NSString *) baodanPrice baodanURL:(NSString *) baodanURL baodanCallbackID:(NSString *) baodanCallbackID nav :(UINavigationController * )nav leftBtn:(UIButton *)leftBtn rightBtn:(UIButton *)rightBtn
+;
 
 -(void)intoFAQ;
 -(void)beginChat;
--(void)beginBaoDanChat;
 @end

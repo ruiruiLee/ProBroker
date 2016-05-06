@@ -29,10 +29,6 @@
     return self;
 }
 
--(void)leftBarButtonItemTouchUpInside:(UIButton *)sender
-{
-    //[_nav popViewControllerAnimated:YES];
-}
 
 -(void)setNavTitle:(NSString *)navTitle{
     _navTitle=navTitle;
@@ -47,25 +43,10 @@
     titleView.font = [UIFont boldSystemFontOfSize:18];
     titleView.textAlignment = NSTextAlignmentCenter;
     
-
-    // 左边按钮
-    _leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [_leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
-                              forState:UIControlStateNormal];
-    [_leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    // 右边按钮
-    _rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-
-    //        [_rightBarButtonItemButton setImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
-    
-    [_rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
-    [_rightBarButtonItemButton setTitleColor:UIColorFromRGB(0xff6619)forState:UIControlStateNormal];
 }
 
 
--(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage
+-(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage nav :(UINavigationController * )nav leftBtn:(UIButton *)leftBtn rightBtn:(UIButton *)rightBtn
  {
       [[AppKeFuLib sharedInstance] setTagNickname:userName];
       [[AppKeFuLib sharedInstance] setTagSex:sex];
@@ -73,10 +54,13 @@
       [[AppKeFuLib sharedInstance] setTagCity:City];
       [[AppKeFuLib sharedInstance] setTagOther:phone];
        UserAvatarImage=headImage;
+     self.nav=nav;
+     self.leftBarButtonItemButton=leftBtn ;
+     self.rightBarButtonItemButton=rightBtn;
       [[AppKeFuLib sharedInstance] queryWorkgroupOnlineStatus:_groupName];
     }
 
--(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage baodanLogoUrlstring:(NSString *) baodanLogoUrlstring baodanDetail:(NSString *) baodanDetail baodanPrice:(NSString *) baodanPrice baodanURL:(NSString *) baodanURL baodanCallbackID:(NSString *) baodanCallbackID
+-(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage baodanLogoUrlstring:(NSString *) baodanLogoUrlstring baodanDetail:(NSString *) baodanDetail baodanPrice:(NSString *) baodanPrice baodanURL:(NSString *) baodanURL baodanCallbackID:(NSString *) baodanCallbackID nav :(UINavigationController * )nav leftBtn:(UIButton *)leftBtn rightBtn:(UIButton *)rightBtn
 {
     [[AppKeFuLib sharedInstance] setTagNickname:userName];
     [[AppKeFuLib sharedInstance] setTagSex:sex];
@@ -90,7 +74,9 @@
     self.baodanPrice = baodanPrice;
     self.baodanURL = baodanURL;
     self.baodanCallbackID = baodanCallbackID;
-    
+    self.nav=nav;
+    self.leftBarButtonItemButton=leftBtn ;
+    self.rightBarButtonItemButton=rightBtn;
     [[AppKeFuLib sharedInstance] queryWorkgroupOnlineStatus:_groupName];
 }
 
@@ -99,7 +85,7 @@
 
 -(void)intoFAQ
 {
-    [[AppKeFuLib sharedInstance] pushFAQViewController:_nav
+    [[AppKeFuLib sharedInstance] pushFAQViewController:self.nav
                                      withWorkgroupName:_groupName
                               hidesBottomBarWhenPushed:YES];
 }
@@ -107,88 +93,98 @@
 
 
 #pragma mark  进入在线客户聊天界面
--(void)setNav:(UINavigationController *)nav
-{
-    chatNavigation=nav;
-}
-
 
 -(void)beginChat
- {
-    [[AppKeFuLib sharedInstance] pushChatViewController: chatNavigation
-                                      withWorkgroupName:_groupName
-                                 hideRightBarButtonItem:NO
-                             rightBarButtonItemCallback:nil
-                                 showInputBarSwitchMenu:NO
-                                  withLeftBarButtonItem:_leftBarButtonItemButton
-                                          withTitleView:titleView
-                                 withRightBarButtonItem:_rightBarButtonItemButton
-                                        withProductInfo:nil
-                             withLeftBarButtonItemColor:nil
-                               hidesBottomBarWhenPushed:YES
-                                     showHistoryMessage:YES
-                                           //客服不在线，开启机器人
-                                           defaultRobot:_openRobot
-                                               mustRate:NO
-                                    withKefuAvatarImage:_KefuAvatarImage
-                                    withUserAvatarImage:UserAvatarImage
-                                         shouldShowGoodsInfo:NO
-                                  withGoodsImageViewURL:nil
-                                   withGoodsTitleDetail:nil
-                                         withGoodsPrice:nil
-                                           withGoodsURL:nil
-                                    withGoodsCallbackID:nil
-                               goodsInfoClickedCallback:nil
-     
-                             httpLinkURLClickedCallBack:nil
-                         faqButtonTouchUpInsideCallback:nil];
+{
+    if ([_groupName isEqual:zxkf] || _baodanCallbackID==nil){
+        [[AppKeFuLib sharedInstance] pushChatViewController: self.nav
+                                          withWorkgroupName:_groupName
+                                     hideRightBarButtonItem:NO
+                                 rightBarButtonItemCallback:^(){
+                                     UIAlertView *alerview = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                                        message:@"确定要清空聊天记录吗?" delegate:self
+                                                                              cancelButtonTitle:@"取消"
+                                                                              otherButtonTitles:@"确定", nil];
+                                      [alerview show];
+                                 }
+                                     showInputBarSwitchMenu:NO
+                                      withLeftBarButtonItem:_leftBarButtonItemButton
+                                              withTitleView:titleView
+                                     withRightBarButtonItem:_rightBarButtonItemButton
+                                            withProductInfo:nil
+                                 withLeftBarButtonItemColor:nil
+                                   hidesBottomBarWhenPushed:YES
+                                         showHistoryMessage:YES
+                                          //客服不在线，开启机器人
+                                               defaultRobot:_openRobot
+                                                   mustRate:NO
+                                        withKefuAvatarImage:_KefuAvatarImage
+                                        withUserAvatarImage:UserAvatarImage
+                                        shouldShowGoodsInfo:NO
+                                      withGoodsImageViewURL:nil
+                                       withGoodsTitleDetail:nil
+                                             withGoodsPrice:nil
+                                               withGoodsURL:nil
+                                        withGoodsCallbackID:nil
+                                   goodsInfoClickedCallback:nil
+         
+                                 httpLinkURLClickedCallBack:nil
+                             faqButtonTouchUpInsideCallback:nil];
+    }
+    else{
+        [[AppKeFuLib sharedInstance] pushChatViewController:self.nav
+                                          withWorkgroupName:_groupName
+                                     hideRightBarButtonItem:NO
+                                 rightBarButtonItemCallback:nil                                 showInputBarSwitchMenu:NO
+                                      withLeftBarButtonItem:_leftBarButtonItemButton
+                                              withTitleView:titleView
+                                     withRightBarButtonItem:_rightBarButtonItemButton
+                                            withProductInfo:nil
+                                 withLeftBarButtonItemColor:nil
+                                   hidesBottomBarWhenPushed:YES
+                                         showHistoryMessage:YES
+         //客服不在线，开启机器人
+                                               defaultRobot:_openRobot
+                                                   mustRate:NO
+                                        withKefuAvatarImage:_KefuAvatarImage
+                                        withUserAvatarImage:UserAvatarImage
+                                        shouldShowGoodsInfo:YES
+                                      withGoodsImageViewURL:_baodanLogoUrlstring
+                                       withGoodsTitleDetail:_baodanDetail
+                                             withGoodsPrice:_baodanPrice
+                                               withGoodsURL:_baodanURL
+                                        withGoodsCallbackID:_baodanCallbackID
+                                   goodsInfoClickedCallback:^(NSString *goodsCallbackId) {
+                                       //点击保单详情区域会触发此回调函数
+                                       NSLog(@"%s this is: %@", __PRETTY_FUNCTION__, goodsCallbackId);
+                                       if(_BaodanInfoClicked !=nil){
+                                           _BaodanInfoClicked(goodsCallbackId);
+                                       }
+                                   }
+         
+                                 httpLinkURLClickedCallBack:nil
+                             faqButtonTouchUpInsideCallback:nil
+         //                         faqButtonTouchUpInsideCallback:^(){
+         //
+         //                             NSLog(@"faqButtonTouchUpInsideCallback, 自定义FAQ常见问题button回调，可在此打开自己的常见问题FAQ页面");
+         //                             [self intoFAQ];
+         //
+         //                         }
+         ];
+        
+    }
 }
 
--(void)beginBaoDanChat{
-    
+#pragma mark UIAlerviewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"%s, %ld", __PRETTY_FUNCTION__, (unsigned long)buttonIndex);
+    if (buttonIndex == 1) {
+        
+        //清空与客服工作组 "wgdemo" 的所有聊天记录
+        [[AppKeFuLib sharedInstance] deleteMessagesWith:self.groupName];
 
-    [[AppKeFuLib sharedInstance] pushChatViewController:_nav
-                                      withWorkgroupName:_groupName
-                                 hideRightBarButtonItem:NO
-                             rightBarButtonItemCallback:nil                                 showInputBarSwitchMenu:NO
-                                  withLeftBarButtonItem:_leftBarButtonItemButton
-                                          withTitleView:titleView
-                                 withRightBarButtonItem:_rightBarButtonItemButton
-                                        withProductInfo:nil
-                             withLeftBarButtonItemColor:nil
-                               hidesBottomBarWhenPushed:YES
-                                     showHistoryMessage:YES
-                                           //客服不在线，开启机器人
-                                           defaultRobot:_openRobot
-                                               mustRate:NO
-                                    withKefuAvatarImage:_KefuAvatarImage
-                                    withUserAvatarImage:UserAvatarImage
-                                    shouldShowGoodsInfo:YES
-                                  withGoodsImageViewURL:_baodanLogoUrlstring
-                                   withGoodsTitleDetail:_baodanDetail
-                                         withGoodsPrice:_baodanPrice
-                                           withGoodsURL:_baodanURL
-                                    withGoodsCallbackID:_baodanCallbackID
-                   goodsInfoClickedCallback:^(NSString *goodsCallbackId) {
-                       //点击保单详情区域会触发此回调函数
-                       NSLog(@"%s this is: %@", __PRETTY_FUNCTION__, goodsCallbackId);
-                   if(_BaodanInfoClicked !=nil){
-                       _BaodanInfoClicked(goodsCallbackId);
-                       }
-                   }
-     
-                             httpLinkURLClickedCallBack:nil
-                         faqButtonTouchUpInsideCallback:nil
-//                         faqButtonTouchUpInsideCallback:^(){
-//                             
-//                             NSLog(@"faqButtonTouchUpInsideCallback, 自定义FAQ常见问题button回调，可在此打开自己的常见问题FAQ页面");
-//                             [self intoFAQ];
-//                             
-//                         }
-     ];
-    
-    
+    }
 }
-
 
 @end
