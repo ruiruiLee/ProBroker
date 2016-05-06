@@ -260,7 +260,8 @@
 
 - (void) loadShortUrl:(NSString *) url 
 {
-    [NetWorkHandler requestToInitShorUrl:url Completion:^(int code, id content) {
+    NSString *urlpath = [NSString stringWithFormat:@"%@&fxBut=0&tbBut=0", url];
+    [NetWorkHandler requestToInitShorUrl:urlpath Completion:^(int code, id content) {
         if(code == 200){
             NSString *url = [content objectForKey:@"data"];
             if(self.initWithUrl){

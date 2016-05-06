@@ -22,6 +22,7 @@
 #import "ProductListVC.h"
 #import "RootViewController.h"
 #import "UITabBar+badge.h"
+#import "CustomerServiceVC.h"
 
 @interface HomeVC ()<MJBannnerPlayerDeledage>
 {
@@ -548,13 +549,17 @@
 
 - (void) doBtnMyService:(id)sender
 {
-    WebViewController *web = [IBUIFactory CreateWebViewController];
-    web.hidesBottomBarWhenPushed = YES;
-    web.title = @"我的客服";
-    web.type = enumShareTypeNo;
-    [self.navigationController pushViewController:web animated:YES];
-    NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/customer/service/", self.customerService];
-    [web loadHtmlFromUrl:url];
+//    WebViewController *web = [IBUIFactory CreateWebViewController];
+//    web.hidesBottomBarWhenPushed = YES;
+//    web.title = @"我的客服";
+//    web.type = enumShareTypeNo;
+//    [self.navigationController pushViewController:web animated:YES];
+//    NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/customer/service/", self.customerService];
+//    [web loadHtmlFromUrl:url];
+    
+    CustomerServiceVC *vc = [[CustomerServiceVC alloc] initWithNibName:nil bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) doBtnNewUser:(id)sender

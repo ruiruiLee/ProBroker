@@ -16,7 +16,7 @@
 #import "LCPickView.h"
 #import "OnlineCustomer.h"
 #import "BaseNavigationController.h"
-#import "NetWorkHandler+initOrderShare.h"
+#import "OfferDetailWebVC.h"
 
 @interface OfferDetailsVC ()<LCPickViewDelegate>
 {
@@ -70,30 +70,31 @@
     [OnlineCustomer sharedInstance].groupName= bjkf;
     [OnlineCustomer sharedInstance].navTitle= @"保单相关咨询";
     [OnlineCustomer sharedInstance].nav= self.navigationController;
+    [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage];
     
-    OffersModel *model = [self.data.offersVoList objectAtIndex:0];
-    NSString *url1 = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@&fxBut=0&tbBut=0", Base_Uri, @"1", self.orderId, model.planOfferId];
-    
-    __weak OfferDetailsVC *weakself = self;
-    self.initWithUrl = ^(NSString *url){
-        [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:model.productLogo baodanDetail:model.productName baodanPrice:[NSString stringWithFormat:@"%.2f", model.planInsuranceCompanyPrice] baodanURL:url baodanCallbackID:weakself.orderId];
-    };
-    
-    [self loadShortUrl:url1];
-    
-    [OnlineCustomer sharedInstance].BaodanInfoClicked = ^(NSString *sid){
-        OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
-        web.type = enumShareTypeToCustomer;
-        web.title = @"保单详情";
-        if(model.productLogo)
-            web.shareImgArray = [NSArray arrayWithObject:model.productLogo];
-        //        web.shareTitle = [NSString stringWithFormat:@"我是%@，我是优快保自由经纪人。这是为您定制的投保方案报价，请查阅。电话%@", user.realName, user.phone];
-        web.shareTitle = [NSString stringWithFormat:@"您好，优快保携手%@为您定制车险",model.productName];
-        [weakself.navigationController pushViewController:web animated:YES];
-        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@&fxBut=0&tbBut=0", Base_Uri, @"1", sid, model.planOfferId];
-        [web initShareUrl:sid insuranceType:@"1" planOfferId:model.planOfferId];
-        [web loadHtmlFromUrl:url];
-    };
+//    OffersModel *model = [self.data.offersVoList objectAtIndex:0];
+//    NSString *url1 = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@&fxBut=0&tbBut=0", Base_Uri, @"1", self.orderId, model.planOfferId];
+//    
+//    __weak OfferDetailsVC *weakself = self;
+//    self.initWithUrl = ^(NSString *url){
+//        [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:model.productLogo baodanDetail:model.productName baodanPrice:[NSString stringWithFormat:@"%.2f", model.planInsuranceCompanyPrice] baodanURL:url baodanCallbackID:weakself.orderId];
+//    };
+//    
+//    [self loadShortUrl:url1];
+//    
+//    [OnlineCustomer sharedInstance].BaodanInfoClicked = ^(NSString *sid){
+//        OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
+//        web.type = enumShareTypeToCustomer;
+//        web.title = @"保单详情";
+//        if(model.productLogo)
+//            web.shareImgArray = [NSArray arrayWithObject:model.productLogo];
+//        //        web.shareTitle = [NSString stringWithFormat:@"我是%@，我是优快保自由经纪人。这是为您定制的投保方案报价，请查阅。电话%@", user.realName, user.phone];
+//        web.shareTitle = [NSString stringWithFormat:@"您好，优快保携手%@为您定制车险",model.productName];
+//        [weakself.navigationController pushViewController:web animated:YES];
+//        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@&fxBut=0&tbBut=0", Base_Uri, @"1", sid, model.planOfferId];
+//        [web initShareUrl:sid insuranceType:@"1" planOfferId:model.planOfferId];
+//        [web loadHtmlFromUrl:url];
+//    };
 }
 
 - (void)didReceiveMemoryWarning {
@@ -303,13 +304,14 @@
     [_datePicker remove];
     
     if(model.isRatioSubmit){
-        OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
+        OfferDetailWebVC *web = [[OfferDetailWebVC alloc] initWithNibName:@"OfferDetailWebVC" bundle:nil];//[IBUIFactory CreateOrderDetailWebVC];
         web.type = enumShareTypeToCustomer;
         web.title = @"保单详情";
-//        UserInfoModel *user = [UserInfoModel shareUserInfoModel];
+        web.insModel = model;
+        web.customerName = self.data.customerName;
+        web.carNo = self.data.carNo;
         if(model.productLogo)
             web.shareImgArray = [NSArray arrayWithObject:model.productLogo];
-//        web.shareTitle = [NSString stringWithFormat:@"我是%@，我是优快保自由经纪人。这是为您定制的投保方案报价，请查阅。电话%@", user.realName, user.phone];
         web.shareTitle = [NSString stringWithFormat:@"您好，优快保携手%@为您定制车险",model.productName];
         [self.navigationController pushViewController:web animated:YES];
         NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", orderId, planOfferId];
@@ -320,8 +322,11 @@
         [NetWorkHandler requestToSaveOrUpdateInsuranceRatio:orderId insuranceType:@"1" planOfferId:planOfferId ratio:[NSString stringWithFormat:@"%d", (int)model.planUkbRatio] userId:[UserInfoModel shareUserInfoModel].userId Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
-                OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
+                OfferDetailWebVC *web = [[OfferDetailWebVC alloc] initWithNibName:@"OfferDetailWebVC" bundle:nil];
                 web.type = enumShareTypeToCustomer;
+                web.insModel = model;
+                web.customerName = self.data.customerName;
+                web.carNo = self.data.carNo;
                 web.title = @"保单详情";
                 if(model.productLogo)
                     web.shareImgArray = [NSArray arrayWithObject:model.productLogo];
