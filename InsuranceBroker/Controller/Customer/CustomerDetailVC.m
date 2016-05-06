@@ -181,7 +181,8 @@
     
     [OnlineCustomer sharedInstance].groupName= bjkf;
     [OnlineCustomer sharedInstance].navTitle= @"保单相关咨询";
-     [OnlineCustomer sharedInstance].nav= self.navigationController;
+   [[OnlineCustomer sharedInstance] setNav: self.navigationController];
+    //chatNavigation = self.navigationController;
     [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage];
 }
 

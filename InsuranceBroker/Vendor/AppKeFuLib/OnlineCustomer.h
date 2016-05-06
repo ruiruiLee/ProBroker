@@ -14,6 +14,8 @@
     
     UIImage *UserAvatarImage;
     UILabel *titleView;
+    UINavigationController * chatNavigation;
+ 
 }
 
 @property (nonatomic, copy) NSString *groupName; //组名
@@ -35,7 +37,6 @@
 
 
 + (OnlineCustomer *)sharedInstance;
-
 
 -(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage;
 

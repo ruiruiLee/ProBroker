@@ -31,7 +31,7 @@
 
 -(void)leftBarButtonItemTouchUpInside:(UIButton *)sender
 {
-    _nav=nil;
+    //[_nav popViewControllerAnimated:YES];
 }
 
 -(void)setNavTitle:(NSString *)navTitle{
@@ -107,10 +107,15 @@
 
 
 #pragma mark  进入在线客户聊天界面
+-(void)setNav:(UINavigationController *)nav
+{
+    chatNavigation=nav;
+}
+
 
 -(void)beginChat
  {
-    [[AppKeFuLib sharedInstance] pushChatViewController:_nav
+    [[AppKeFuLib sharedInstance] pushChatViewController: chatNavigation
                                       withWorkgroupName:_groupName
                                  hideRightBarButtonItem:NO
                              rightBarButtonItemCallback:nil
