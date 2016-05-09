@@ -206,6 +206,7 @@
 {
     //登录失败
     [OnlineCustomer sharedInstance].isConnect =NO;
+    [ProgressHUD dismiss];
     [KGStatusBar showErrorWithStatus:@"无法连接网络，请稍后再试！"];
 }
 // 在线客服 监听工作组在线状态
@@ -213,6 +214,7 @@
 {
     // 链接失败 ![OnlineCustomer sharedInstance].isConnect ||
     if([OnlineCustomer sharedInstance].groupName==nil){
+        [ProgressHUD dismiss];
         return;
     }
     NSDictionary *dict = [notification userInfo];
