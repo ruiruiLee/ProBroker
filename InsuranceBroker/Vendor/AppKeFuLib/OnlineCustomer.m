@@ -112,7 +112,7 @@
                                               withTitleView:titleView
                                      withRightBarButtonItem:_rightBarButtonItemButton
                                             withProductInfo:nil
-                                 withLeftBarButtonItemColor:nil
+                                 withLeftBarButtonItemColor:UIColorFromRGB(0xff6619)
                                    hidesBottomBarWhenPushed:YES
                                          showHistoryMessage:YES
                                           //客服不在线，开启机器人
@@ -140,7 +140,7 @@
                                               withTitleView:titleView
                                      withRightBarButtonItem:_rightBarButtonItemButton
                                             withProductInfo:nil
-                                 withLeftBarButtonItemColor:nil
+                                 withLeftBarButtonItemColor:UIColorFromRGB(0xff6619)
                                    hidesBottomBarWhenPushed:YES
                                          showHistoryMessage:YES
          //客服不在线，开启机器人
