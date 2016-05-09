@@ -230,7 +230,8 @@
         WebViewController *web = [IBUIFactory CreateWebViewController];
         web.title = @"保单详情";
         [weakself.navigationController pushViewController:web animated:YES];
-        [web loadHtmlFromUrl:self.urlpath];
+        NSString *urlpath = [NSString stringWithFormat:@"%@&fxBut=0&tbBut=0", self.urlpath];
+        [web loadHtmlFromUrl:urlpath];
     };
     
 }
