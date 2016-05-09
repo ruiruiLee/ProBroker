@@ -580,7 +580,7 @@
         
         [self kefuNavigationBar];
         [OnlineCustomer sharedInstance].navTitle=zxTitle;
-        [OnlineCustomer sharedInstance].groupName=bjkf;
+        [OnlineCustomer sharedInstance].groupName=zxkf;
         [ProgressHUD show:@"连接客服..."];
         [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage nav:self.navigationController leftBtn:leftBarButtonItemButton rightBtn:rightBarButtonItemButton];
     }
@@ -593,13 +593,11 @@
                              forState:UIControlStateNormal];
     //    [leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     // 右边按钮
-    rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     
-    //        [_rightBarButtonItemButton setImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
+   [rightBarButtonItemButton setImage:[UIImage imageNamed:@"garbage"] forState:UIControlStateNormal];
     
-    [rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
-    [rightBarButtonItemButton setTitleColor:UIColorFromRGB(0xff6619)forState:UIControlStateNormal];
-}
+  }
 
 - (void) doBtnNewUser:(id)sender
 {
