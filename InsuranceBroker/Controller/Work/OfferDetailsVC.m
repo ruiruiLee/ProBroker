@@ -21,6 +21,9 @@
 @interface OfferDetailsVC ()<LCPickViewDelegate>
 {
     LCPickView *_datePicker;
+    
+    UIButton * leftBarButtonItemButton;
+    UIButton * rightBarButtonItemButton;
 }
 
 @property (nonatomic, strong) InsurOffersInfoModel *data;
@@ -66,35 +69,26 @@
         placeholderImage =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[UserInfoModel shareUserInfoModel].headerImg]]];
     }
     
+    [self kefuNavigationBar];
+    [OnlineCustomer sharedInstance].navTitle=bjTitle;
+    [OnlineCustomer sharedInstance].groupName=bjkf;
+    [ProgressHUD show:@"连接客服..."];
+    [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage nav:self.navigationController leftBtn:leftBarButtonItemButton rightBtn:rightBarButtonItemButton];
+}
 
-   // [OnlineCustomer sharedInstance].groupName= bjkf;
-    [OnlineCustomer sharedInstance].navTitle= @"保单相关咨询";
-    [OnlineCustomer sharedInstance].nav= self.navigationController;
-//    [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage];
+-(void) kefuNavigationBar{
+    // 左边按钮
+    leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
+                             forState:UIControlStateNormal];
+    //    [leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    // 右边按钮
+    rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     
-//    OffersModel *model = [self.data.offersVoList objectAtIndex:0];
-//    NSString *url1 = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@&fxBut=0&tbBut=0", Base_Uri, @"1", self.orderId, model.planOfferId];
-//    
-//    __weak OfferDetailsVC *weakself = self;
-//    self.initWithUrl = ^(NSString *url){
-//        [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:model.productLogo baodanDetail:model.productName baodanPrice:[NSString stringWithFormat:@"%.2f", model.planInsuranceCompanyPrice] baodanURL:url baodanCallbackID:weakself.orderId];
-//    };
-//    
-//    [self loadShortUrl:url1];
-//    
-//    [OnlineCustomer sharedInstance].BaodanInfoClicked = ^(NSString *sid){
-//        OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
-//        web.type = enumShareTypeToCustomer;
-//        web.title = @"保单详情";
-//        if(model.productLogo)
-//            web.shareImgArray = [NSArray arrayWithObject:model.productLogo];
-//        //        web.shareTitle = [NSString stringWithFormat:@"我是%@，我是优快保自由经纪人。这是为您定制的投保方案报价，请查阅。电话%@", user.realName, user.phone];
-//        web.shareTitle = [NSString stringWithFormat:@"您好，优快保携手%@为您定制车险",model.productName];
-//        [weakself.navigationController pushViewController:web animated:YES];
-//        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@&fxBut=0&tbBut=0", Base_Uri, @"1", sid, model.planOfferId];
-//        [web initShareUrl:sid insuranceType:@"1" planOfferId:model.planOfferId];
-//        [web loadHtmlFromUrl:url];
-//    };
+    //        [_rightBarButtonItemButton setImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
+    
+    [rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
+    [rightBarButtonItemButton setTitleColor:UIColorFromRGB(0xff6619)forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
