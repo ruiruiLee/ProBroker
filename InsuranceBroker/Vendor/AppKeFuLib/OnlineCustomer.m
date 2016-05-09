@@ -96,6 +96,7 @@
 
 -(void)beginChat
 {
+  
     if ([_groupName isEqual:zxkf] || _baodanCallbackID==nil){
         [[AppKeFuLib sharedInstance] pushChatViewController: self.nav
                                           withWorkgroupName:_groupName
@@ -135,7 +136,14 @@
         [[AppKeFuLib sharedInstance] pushChatViewController:self.nav
                                           withWorkgroupName:_groupName
                                      hideRightBarButtonItem:NO
-                                 rightBarButtonItemCallback:nil                                 showInputBarSwitchMenu:NO
+                                 rightBarButtonItemCallback:^(){
+                                     UIAlertView *alerview = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                                        message:@"确定清空当前聊天记录吗?" delegate:self
+                                                                              cancelButtonTitle:@"取消"
+                                                                              otherButtonTitles:@"确定", nil];
+                                     [alerview show];
+                                 }
+                                 showInputBarSwitchMenu:NO
                                       withLeftBarButtonItem:_leftBarButtonItemButton
                                               withTitleView:titleView
                                      withRightBarButtonItem:_rightBarButtonItemButton
