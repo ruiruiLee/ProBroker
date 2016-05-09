@@ -194,12 +194,8 @@
                              forState:UIControlStateNormal];
     //    [leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     // 右边按钮
-    rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-    
-    //        [_rightBarButtonItemButton setImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
-    
-    [rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
-    [rightBarButtonItemButton setTitleColor:UIColorFromRGB(0xff6619)forState:UIControlStateNormal];
+    rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+     [rightBarButtonItemButton setImage:[UIImage imageNamed:@"garbage"] forState:UIControlStateNormal];
 }
 
 - (void) handleRightBarButtonClicked:(id)sender

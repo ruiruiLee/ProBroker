@@ -192,14 +192,10 @@
     leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
                              forState:UIControlStateNormal];
-    //    [leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     // 右边按钮
-    rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     
-    //        [_rightBarButtonItemButton setImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
-    
-    [rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
-    [rightBarButtonItemButton setTitleColor:UIColorFromRGB(0xff6619)forState:UIControlStateNormal];
+     [rightBarButtonItemButton setImage:[UIImage imageNamed:@"garbage"] forState:UIControlStateNormal];
 }
 
 - (void) handleRightBarButtonClicked:(id)sender
@@ -220,11 +216,6 @@
     [ProgressHUD show:@"连接客服..."];
     
     _isLoad = YES;
-    
-    //[OnlineCustomer sharedInstance].groupName= bjkf;
-    [OnlineCustomer sharedInstance].navTitle= @"保单相关咨询";
-    [OnlineCustomer sharedInstance].nav= self.navigationController;
-    
     __weak OfferDetailWebVC *weakself = self;
     __weak UIButton *weakleftBarButtonItemButton = leftBarButtonItemButton;
     __weak UIButton *weakrightBarButtonItemButton = rightBarButtonItemButton;
