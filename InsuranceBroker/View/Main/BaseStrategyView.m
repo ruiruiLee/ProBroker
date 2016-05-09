@@ -53,15 +53,15 @@
     pulltable.backgroundColor = [UIColor clearColor];
     pulltable.tableFooterView = [[UIView alloc] init];
     
-    UIEdgeInsets insets = UIEdgeInsetsMake(0, 16, 0, 16);
-    self.pulltable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    self.pulltable.separatorColor = SepLineColor;
-    if ([pulltable respondsToSelector:@selector(setSeparatorInset:)]) {
-        [pulltable setSeparatorInset:insets];
-    }
-    if ([pulltable respondsToSelector:@selector(setLayoutMargins:)]) {
-        [pulltable setLayoutMargins:insets];
-    }
+//    UIEdgeInsets insets = UIEdgeInsetsMake(0, 16, 0, 16);
+//    self.pulltable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+//    self.pulltable.separatorColor = SepLineColor;
+//    if ([pulltable respondsToSelector:@selector(setSeparatorInset:)]) {
+//        [pulltable setSeparatorInset:insets];
+//    }
+//    if ([pulltable respondsToSelector:@selector(setLayoutMargins:)]) {
+//        [pulltable setLayoutMargins:insets];
+//    }
     
     //弹出下拉刷新控件刷新数据
 //    pulltable.pullTableIsRefreshing = YES;
@@ -116,7 +116,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 113.f;
+    return 183.f;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -140,20 +140,18 @@
         cell.lbCount.hidden = YES;
     }
     
-    if(model.minPrice){
+    if(model.showPrice){
         cell.lbPrice.hidden = NO;
-        cell.lbPrice.attributedText = [self attstringwithPrice:model.minPrice];
+        cell.lbPrice.text = model.showPrice;
     }
     else{
         cell.lbPrice.hidden = YES;
     }
     
     if(model.productMaxRatio != nil)
-//        cell.lbRate.text = [NSString stringWithFormat:@"推广费：%@%@", model.productMaxRatio, @"\%"];
-        cell.lbRate.attributedText = [self attstringwithRate:model.productMaxRatio];
+        cell.lbRate.text = [self attstringwithRate:model.productMaxRatio];
     else
-//        cell.lbRate.text = [NSString stringWithFormat:@"推广费：0%@", @"\%"];
-        cell.lbRate.attributedText = [self attstringwithRate:@"0"];
+        cell.lbRate.text = [self attstringwithRate:@"0"];
     
     return cell;
 }
@@ -285,14 +283,10 @@
     return attString;
 }
 
-- (NSAttributedString *) attstringwithRate:(NSString *) rate
+- (NSString *) attstringwithRate:(NSString *) rate
 {
-    NSString *string = [NSString stringWithFormat:@"%@%@ 推广费", rate, @"\%"];
-    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
-    NSRange range = [string rangeOfString:[NSString stringWithFormat:@"%@%@", rate, @"\%"]];
-    [attString addAttribute:NSFontAttributeName value:_FONT(15) range:range];
-    [attString addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
-    return attString;
+    NSString *string = [NSString stringWithFormat:@"推广费:%@", rate];
+    return string;
 }
 
 #pragma 登录

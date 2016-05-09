@@ -290,6 +290,7 @@
 		86B279121CDC9163000E5FAA /* OfferDetailWebVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B279101CDC9163000E5FAA /* OfferDetailWebVC.xib */; };
 		86B279151CDCB2DD000E5FAA /* CustomerServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B279141CDCB2DD000E5FAA /* CustomerServiceVC.m */; };
 		86B2791B1CE06576000E5FAA /* ServiceSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B2791A1CE06576000E5FAA /* ServiceSelectView.m */; };
+		86B279211CE0725A000E5FAA /* DashSepLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B279201CE0725A000E5FAA /* DashSepLineView.m */; };
 		86C3BB111C228D6F00F98E80 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB121C228D6F00F98E80 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB031C228D6F00F98E80 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB131C228D6F00F98E80 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB051C228D6F00F98E80 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -996,6 +997,8 @@
 		86B279141CDCB2DD000E5FAA /* CustomerServiceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerServiceVC.m; sourceTree = "<group>"; };
 		86B279191CE06576000E5FAA /* ServiceSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceSelectView.h; sourceTree = "<group>"; };
 		86B2791A1CE06576000E5FAA /* ServiceSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceSelectView.m; sourceTree = "<group>"; };
+		86B2791F1CE0725A000E5FAA /* DashSepLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashSepLineView.h; sourceTree = "<group>"; };
+		86B279201CE0725A000E5FAA /* DashSepLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashSepLineView.m; sourceTree = "<group>"; };
 		86C3BB001C228D6F00F98E80 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		86C3BB021C228D6F00F98E80 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -2106,6 +2109,8 @@
 				86A26E931C4605700073FFFC /* BaseStrategyView.m */,
 				86248EFC1CC9FDFF00F1B493 /* SepLineButton.h */,
 				86248EFD1CC9FDFF00F1B493 /* SepLineButton.m */,
+				86B2791F1CE0725A000E5FAA /* DashSepLineView.h */,
+				86B279201CE0725A000E5FAA /* DashSepLineView.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -3084,6 +3089,7 @@
 				86248EF21CC6220E00F1B493 /* ProductListVC.m in Sources */,
 				8625B01B1C3BF27900312B98 /* NetWorkHandler+queryCustomerBaseInfo.m in Sources */,
 				8625AFDB1C351EFF00312B98 /* MyTeamsVC.m in Sources */,
+				86B279211CE0725A000E5FAA /* DashSepLineView.m in Sources */,
 				86248EFE1CC9FDFF00F1B493 /* SepLineButton.m in Sources */,
 				8654CD811C312CE100411C54 /* SBJsonStreamParserAccumulator.m in Sources */,
 				86A505091C52717A0032A901 /* LeftImgButtonLeft.m in Sources */,

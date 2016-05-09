@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSString *productIntro;//描述
 @property (nonatomic, strong) NSString *productTitle;//标题
 @property (nonatomic, strong) NSString *seqNo;
-@property (nonatomic, strong) NSString *minPrice;//价格
+@property (nonatomic, strong) NSString *showPrice;//价格
 @property (nonatomic, strong) NSString *productMaxRatio;
 
 @end
