@@ -184,7 +184,7 @@
     }
     
     [self kefuNavigationBar];
-    [OnlineCustomer sharedInstance].navTitle=bjTitke;
+    [OnlineCustomer sharedInstance].navTitle=bjTitle;
     [OnlineCustomer sharedInstance].groupName=bjkf;
     [ProgressHUD show:@"连接客服..."];
     [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage nav:self.navigationController leftBtn:leftBarButtonItemButton rightBtn:rightBarButtonItemButton];

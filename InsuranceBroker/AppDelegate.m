@@ -211,6 +211,7 @@
 // 在线客服 监听工作组在线状态
 -(void)notifyOnlineStatus:(NSNotification *)notification
 {
+    [ProgressHUD dismiss];
     // 链接失败 ![OnlineCustomer sharedInstance].isConnect ||
     if([OnlineCustomer sharedInstance].groupName==nil){
         return;
@@ -235,7 +236,7 @@
             [OnlineCustomer sharedInstance].KefuAvatarImage= ThemeImage(@"head_male");
         }
         [[OnlineCustomer sharedInstance] beginChat];
-         [ProgressHUD dismiss];
+//         [ProgressHUD dismiss];
     }
 }
 
