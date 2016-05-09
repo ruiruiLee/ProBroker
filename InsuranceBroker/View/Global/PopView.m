@@ -10,10 +10,13 @@
 #import "define.h"
 #import "AppInfoView.h"
 
+#define ViewHeight 210
+
 @implementation PopView
 @synthesize bgView;
 @synthesize view;
 @synthesize delegate;
+@synthesize btnCancel;
 
 - (id) initWithImageArray:(NSArray*) images nameArray:(NSArray*) names
 {
@@ -27,7 +30,7 @@
         [self addSubview:view];
         view.backgroundColor = [UIColor clearColor];
         
-        bgView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, ScreenWidth, 200)];
+        bgView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT, ScreenWidth, ViewHeight)];
         [self addSubview:bgView];
         bgView.backgroundColor = [UIColor whiteColor];
         
@@ -51,10 +54,8 @@
             ox += (step + 80);
         }
         
-        UIButton *btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(20, 130, ScreenWidth - 20 * 2, 42)];
+        btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(20, 150, ScreenWidth - 20 * 2, 42)];
         btnCancel.layer.cornerRadius = 3;
-//        btnCancel.layer.borderWidth = 1;
-//        btnCancel.layer.borderColor = [UIColor grayColor].CGColor;
         [btnCancel setTitle:@"取消" forState:UIControlStateNormal];
         [btnCancel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         btnCancel.titleLabel.font = _FONT(18);
@@ -74,7 +75,7 @@
     [UIView animateWithDuration:0.25 animations:^{
         view.alpha = 1;
         view.backgroundColor = [UIColor clearColor];
-        bgView.frame = CGRectMake(0, SCREEN_HEIGHT, ScreenWidth, 200);
+        bgView.frame = CGRectMake(0, SCREEN_HEIGHT, ScreenWidth, ViewHeight);
     } completion:^(BOOL finished) {
         self.hidden = YES;
         
@@ -92,7 +93,7 @@
     [UIView animateWithDuration:0.25 animations:^{
         view.backgroundColor = [UIColor blackColor];
         view.alpha = 0.3;
-        bgView.frame = CGRectMake(0, SCREEN_HEIGHT - 200, ScreenWidth, 200);
+        bgView.frame = CGRectMake(0, SCREEN_HEIGHT - ViewHeight, ScreenWidth, ViewHeight);
     }];
 }
 
@@ -101,7 +102,7 @@
     [UIView animateWithDuration:0.25 animations:^{
         view.alpha = 1;
         view.backgroundColor = [UIColor clearColor];
-        bgView.frame = CGRectMake(0, SCREEN_HEIGHT, ScreenWidth, 200);
+        bgView.frame = CGRectMake(0, SCREEN_HEIGHT, ScreenWidth, ViewHeight);
     } completion:^(BOOL finished) {
         self.hidden = YES;
     }];

@@ -289,6 +289,7 @@
 		86B279111CDC9163000E5FAA /* OfferDetailWebVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B2790F1CDC9163000E5FAA /* OfferDetailWebVC.m */; };
 		86B279121CDC9163000E5FAA /* OfferDetailWebVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86B279101CDC9163000E5FAA /* OfferDetailWebVC.xib */; };
 		86B279151CDCB2DD000E5FAA /* CustomerServiceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B279141CDCB2DD000E5FAA /* CustomerServiceVC.m */; };
+		86B2791B1CE06576000E5FAA /* ServiceSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86B2791A1CE06576000E5FAA /* ServiceSelectView.m */; };
 		86C3BB111C228D6F00F98E80 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB121C228D6F00F98E80 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB031C228D6F00F98E80 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		86C3BB131C228D6F00F98E80 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BB051C228D6F00F98E80 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -993,6 +994,8 @@
 		86B279101CDC9163000E5FAA /* OfferDetailWebVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OfferDetailWebVC.xib; sourceTree = "<group>"; };
 		86B279131CDCB2DD000E5FAA /* CustomerServiceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerServiceVC.h; sourceTree = "<group>"; };
 		86B279141CDCB2DD000E5FAA /* CustomerServiceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerServiceVC.m; sourceTree = "<group>"; };
+		86B279191CE06576000E5FAA /* ServiceSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceSelectView.h; sourceTree = "<group>"; };
+		86B2791A1CE06576000E5FAA /* ServiceSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceSelectView.m; sourceTree = "<group>"; };
 		86C3BB001C228D6F00F98E80 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		86C3BB011C228D6F00F98E80 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		86C3BB021C228D6F00F98E80 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -2055,6 +2058,8 @@
 				868C7CB31C96546700B7617A /* BaseLineView.m */,
 				86A504421C4E57910032A901 /* PopView.h */,
 				86A504431C4E57910032A901 /* PopView.m */,
+				86B279191CE06576000E5FAA /* ServiceSelectView.h */,
+				86B2791A1CE06576000E5FAA /* ServiceSelectView.m */,
 				86A504451C4E5A790032A901 /* AppInfoView.h */,
 				86A504461C4E5A790032A901 /* AppInfoView.m */,
 				86A504891C4F517A0032A901 /* BackGroundView.h */,
@@ -3284,6 +3289,7 @@
 				86A26F0A1C4A29CB0073FFFC /* UIKit+DrawingHelpers.m in Sources */,
 				86A26E9A1C4664610073FFFC /* NetWorkHandler+saveOrUpdateInsuranceRatio.m in Sources */,
 				86A26E381C4356540073FFFC /* ProviendeModel.m in Sources */,
+				86B2791B1CE06576000E5FAA /* ServiceSelectView.m in Sources */,
 				86A26E8B1C452EF30073FFFC /* NetWorkHandler+news.m in Sources */,
 				868C7CC71C969AC600B7617A /* ObjImageDataInfo.m in Sources */,
 				868C7CC51C969AC600B7617A /* NSImageUtil.m in Sources */,

@@ -23,7 +23,7 @@
 #import "RootViewController.h"
 #import "UITabBar+badge.h"
 #import "CustomerServiceVC.h"
-#import "PopView.h"
+#import "ServiceSelectView.h"
 #import "OnlineCustomer.h"
 
 @interface HomeVC ()<MJBannnerPlayerDeledage, PopViewDelegate>
@@ -555,7 +555,7 @@
 
 - (void) doBtnMyService:(id)sender
 {
-    PopView *popview = [[PopView alloc] initWithImageArray:@[@"wechat", @"share_message"] nameArray:@[@"客服电话", @"在线咨询"]];
+    ServiceSelectView *popview = [[ServiceSelectView alloc] initWithImageArray:@[@"wechat", @"share_message"] nameArray:@[@"客服电话", @"在线咨询"]];
     [self.view.window addSubview:popview];
     popview.delegate = self;
     [popview show];

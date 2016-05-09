@@ -20,6 +20,7 @@
 
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UIView *view;
+@property (nonatomic, strong) UIButton *btnCancel;
 
 @property (nonatomic, weak) id<PopViewDelegate> delegate;
 
