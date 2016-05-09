@@ -221,18 +221,21 @@
     __weak UIButton *weakleftBarButtonItemButton = leftBarButtonItemButton;
     __weak UIButton *weakrightBarButtonItemButton = rightBarButtonItemButton;
     self.initWithUrl = ^(NSString *url){
-        NSString *detail = [NSString stringWithFormat:@"%@ 车牌号:%@", weakself.insModel.customerName, weakself.insModel.carNo];
-        [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:weakself.insModel.productLogo baodanDetail:detail baodanPrice:[NSString stringWithFormat:@"%.2f", weakself.insModel.orderOfferPayPrice] baodanURL:url baodanCallbackID:weakself.insModel.insuranceOrderId nav:weakself.navigationController leftBtn:weakleftBarButtonItemButton rightBtn:weakrightBarButtonItemButton];
+        NSString *detail = [NSString stringWithFormat:@"车主: %@ 车牌号: %@", weakself.insModel.customerName, weakself.insModel.carNo];
+        detail = [detail stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
         
-        [OnlineCustomer sharedInstance].BaodanInfoClicked = ^(NSString *sid){
-            WebViewController *web = [IBUIFactory CreateWebViewController];
-            web.title = @"保单详情";
-            [weakself.navigationController pushViewController:web animated:YES];
-            [web loadHtmlFromUrl:url];
-        };
+        [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:weakself.insModel.productLogo baodanDetail:detail baodanPrice:[NSString stringWithFormat:@"¥ %.2f", weakself.insModel.orderOfferPayPrice] baodanURL:url baodanCallbackID:weakself.insModel.insuranceOrderId nav:weakself.navigationController leftBtn:weakleftBarButtonItemButton rightBtn:weakrightBarButtonItemButton];
     };
     
     [self loadShortUrl:self.urlpath];
+    
+    [OnlineCustomer sharedInstance].BaodanInfoClicked = ^(NSString *sid){
+        WebViewController *web = [IBUIFactory CreateWebViewController];
+        web.title = @"保单详情";
+        [weakself.navigationController pushViewController:web animated:YES];
+        NSString *urlpath = [NSString stringWithFormat:@"%@&fxBut=0&tbBut=0", self.urlpath];
+        [web loadHtmlFromUrl:urlpath];
+    };
 
 }
 
