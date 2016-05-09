@@ -555,7 +555,7 @@
 
 - (void) doBtnMyService:(id)sender
 {
-    ServiceSelectView *popview = [[ServiceSelectView alloc] initWithImageArray:@[@"wechat", @"share_message"] nameArray:@[@"客服电话", @"在线咨询"]];
+    ServiceSelectView *popview = [[ServiceSelectView alloc] initWithImageArray:@[@"service_ring", @"info_online"] nameArray:@[@"客服电话", @"在线咨询"]];
     [self.view.window addSubview:popview];
     popview.delegate = self;
     [popview show];
