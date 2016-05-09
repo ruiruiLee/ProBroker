@@ -235,7 +235,7 @@
         else
         {
             [OnlineCustomer sharedInstance].openRobot=YES;
-            [OnlineCustomer sharedInstance].KefuAvatarImage= ThemeImage(@"head_male");
+            [OnlineCustomer sharedInstance].KefuAvatarImage= ThemeImage(@"robot");
         }
         [[OnlineCustomer sharedInstance] beginChat];
 //         [ProgressHUD dismiss];
