@@ -198,6 +198,7 @@
     {
         //登录失败
         [OnlineCustomer sharedInstance].isConnect =NO;
+        [ProgressHUD dismiss];
         [KGStatusBar showErrorWithStatus:@"无法连接网络，请稍后再试！"];
     }
 }
@@ -212,7 +213,6 @@
 // 在线客服 监听工作组在线状态
 -(void)notifyOnlineStatus:(NSNotification *)notification
 {
-    [ProgressHUD dismiss];
     // 链接失败 ![OnlineCustomer sharedInstance].isConnect ||
     if([OnlineCustomer sharedInstance].groupName==nil){
         [ProgressHUD dismiss];
@@ -238,7 +238,7 @@
             [OnlineCustomer sharedInstance].KefuAvatarImage= ThemeImage(@"robot");
         }
         [[OnlineCustomer sharedInstance] beginChat];
-//         [ProgressHUD dismiss];
+        [ProgressHUD dismiss];
     }
 }
 
