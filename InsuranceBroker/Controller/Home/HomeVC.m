@@ -23,10 +23,16 @@
 #import "RootViewController.h"
 #import "UITabBar+badge.h"
 #import "CustomerServiceVC.h"
+#import "PopView.h"
+#import "OnlineCustomer.h"
 
-@interface HomeVC ()<MJBannnerPlayerDeledage>
+@interface HomeVC ()<MJBannnerPlayerDeledage, PopViewDelegate>
 {
     AppDelegate *appdelegate;
+
+    UIButton * leftBarButtonItemButton;
+    UIButton * rightBarButtonItemButton;
+
 }
 
 @property (nonatomic, strong) NSString *customerService;
@@ -549,17 +555,50 @@
 
 - (void) doBtnMyService:(id)sender
 {
-//    WebViewController *web = [IBUIFactory CreateWebViewController];
-//    web.hidesBottomBarWhenPushed = YES;
-//    web.title = @"我的客服";
-//    web.type = enumShareTypeNo;
-//    [self.navigationController pushViewController:web animated:YES];
-//    NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/customer/service/", self.customerService];
-//    [web loadHtmlFromUrl:url];
+    PopView *popview = [[PopView alloc] initWithImageArray:@[@"wechat", @"share_message"] nameArray:@[@"客服电话", @"在线咨询"]];
+    [self.view.window addSubview:popview];
+    popview.delegate = self;
+    [popview show];
+}
+
+- (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag
+{
+    if(tag == 0){
+        NSString *num = [[NSString alloc] initWithFormat:@"tel://%@",ServicePhone]; //而这个方法则打电话前先弹框  是否打电话 然后打完电话之后回到程序中
+        
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:num]];
+    }else{
+        NSString * msex =@"男";
+        UIImage *placeholderImage = ThemeImage(@"head_male");
+        if([UserInfoModel shareUserInfoModel].sex==2){
+            msex =@"女";
+            placeholderImage = ThemeImage(@"head_famale");
+        }
+        if([UserInfoModel shareUserInfoModel].headerImg!=nil){
+            placeholderImage =  [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[UserInfoModel shareUserInfoModel].headerImg]]];
+        }
+        
+        [self kefuNavigationBar];
+        [OnlineCustomer sharedInstance].navTitle=zxTitle;
+        [OnlineCustomer sharedInstance].groupName=bjkf;
+        [ProgressHUD show:@"连接客服..."];
+        [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage nav:self.navigationController leftBtn:leftBarButtonItemButton rightBtn:rightBarButtonItemButton];
+    }
+}
+
+-(void) kefuNavigationBar{
+    // 左边按钮
+    leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
+                             forState:UIControlStateNormal];
+    //    [leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    // 右边按钮
+    rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     
-    CustomerServiceVC *vc = [[CustomerServiceVC alloc] initWithNibName:nil bundle:nil];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    //        [_rightBarButtonItemButton setImage:[UIImage imageNamed:@"setting"] forState:UIControlStateNormal];
+    
+    [rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
+    [rightBarButtonItemButton setTitleColor:UIColorFromRGB(0xff6619)forState:UIControlStateNormal];
 }
 
 - (void) doBtnNewUser:(id)sender
