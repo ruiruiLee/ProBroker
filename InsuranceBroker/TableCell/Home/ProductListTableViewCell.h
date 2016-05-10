@@ -18,4 +18,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbCount;
 @property (nonatomic, strong) IBOutlet UILabel *lbRate;
 
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *sepHeight;
+
 @end

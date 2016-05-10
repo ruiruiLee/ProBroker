@@ -221,8 +221,8 @@
     __weak UIButton *weakleftBarButtonItemButton = leftBarButtonItemButton;
     __weak UIButton *weakrightBarButtonItemButton = rightBarButtonItemButton;
     self.initWithUrl = ^(NSString *url){
-        NSString *detail = [NSString stringWithFormat:@"车主: %@ 车牌号: %@", weakself.insModel.customerName, weakself.insModel.carNo];
-        detail = [detail stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
+        NSString *detail = [NSString stringWithFormat:@"车主: %@ (%@)", weakself.insModel.customerName, weakself.insModel.carNo];
+        detail = [detail stringByReplacingOccurrencesOfString:@"((null))" withString:@""];
         
         [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage baodanLogoUrlstring:weakself.insModel.productLogo baodanDetail:detail baodanPrice:[NSString stringWithFormat:@"¥ %.2f", weakself.insModel.orderOfferPayPrice] baodanURL:url baodanCallbackID:weakself.insModel.insuranceOrderId nav:weakself.navigationController leftBtn:weakleftBarButtonItemButton rightBtn:weakrightBarButtonItemButton];
     };

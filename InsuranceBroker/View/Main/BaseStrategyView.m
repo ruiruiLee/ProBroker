@@ -116,7 +116,11 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 183.f;
+//    return 178.f;
+    if(indexPath.row < [_data count] - 1)
+        return 178.f;
+    else
+        return 163.f;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,6 +156,11 @@
         cell.lbRate.text = [self attstringwithRate:model.productMaxRatio];
     else
         cell.lbRate.text = [self attstringwithRate:@"0"];
+    
+    if(indexPath.row < [_data count] - 1)
+        cell.sepHeight.constant = 15;
+    else
+        cell.sepHeight.constant = 0;
     
     return cell;
 }
