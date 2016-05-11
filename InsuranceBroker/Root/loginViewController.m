@@ -14,8 +14,6 @@
 #import "SetTeamLeaderPhoneView.h"
 #import "IQKeyboardManager.h"
 
-#define SETTING @"请联系您的团长设置您的佣金!"
-
 
 @interface loginViewController ()<SetTeamLeaderPhoneViewDelegate>
 
@@ -109,10 +107,9 @@
             [currentInstallation addUniqueObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
             [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
             [currentInstallation saveInBackground];
-            
-//            [KGStatusBar showSuccessWithStatus:SETTING];
-        }else{
-            self.tfCaptcha.text = @"";
+                  }else{
+            //self.tfCaptcha.text = @"";
+             [KGStatusBar showErrorWithStatus:@"登陆失败，请检测网络是否设置或联系客服！"];
         }
     }];
 }
@@ -129,8 +126,7 @@
     [AVOSCloud requestSmsCodeWithPhoneNumber:phone callback:^(BOOL succeeded, NSError *error) {
         if(succeeded){
             [self timerOutTimer];
-//            [Util showAlertMessage:@"验证码已发送!" ];
-            [KGStatusBar showSuccessWithStatus:@"验证码已发送!"];
+            [KGStatusBar showSuccessWithStatus:@"验证码已发送,请及时查收！"];
         }else{
            if([error localizedDescription].length>0)
             [KGStatusBar showErrorWithStatus:[error localizedDescription]];
@@ -160,9 +156,7 @@
     [NetWorkHandler loginWithPhone:self.tfMobile.text openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:remarkName privilege:[dic objectForKey:@"privilege"] unionid:[dic objectForKey:@"unionid"] province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:nil parentPhone:(NSString *)phoneNum Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 505){
-            //            BindPhoneNumVC *vc = [IBUIFactory CreateBindPhoneNumViewController];
-            //            [self.navigationController pushViewController:vc animated:YES];
-            //            vc.wxDic = dic;
+            
             SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
             
             view.delegate = self;
@@ -180,8 +174,6 @@
             [currentInstallation addUniqueObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
             [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
             [currentInstallation saveInBackground];
-            
-            [KGStatusBar showSuccessWithStatus:SETTING];
         }
     }];
 }
