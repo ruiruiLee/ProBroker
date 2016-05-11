@@ -126,6 +126,8 @@
     [bgview addSubview:titleBg];
     titleBg.backgroundColor = [UIColor whiteColor];
     
+    UIView *sepView0 = [ViewFactory CreateView];
+    [titleBg addSubview:sepView0];
     //快速算价
     HighNightBgButton *btnCalculate = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:ThemeImage(@"calculate")];
     [titleBg addSubview:btnCalculate];
@@ -152,6 +154,9 @@
     HighNightBgButton *btnMyService = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:ThemeImage(@"service")];
     [titleBg addSubview:btnMyService];
     [btnMyService addTarget:self action:@selector(doBtnMyService:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIView *sepView4 = [ViewFactory CreateView];
+    [titleBg addSubview:sepView4];
     
     headline = [[HeadlineView alloc] initWithFrame:CGRectZero];
     headline.translatesAutoresizingMaskIntoConstraints = NO;
@@ -216,7 +221,7 @@
     [btnCarLife addTarget:self action:@selector(doBtnCarLife:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(scroll, bgview, scrollview, titleBg, headline, contenBg, newUserBg, infoBg, btnCalculate, btnTeams, btnInvite, btnMyService, sepView1, sepView2, sepView3, btnProduct, btnPlan, btnBroker, btnService, btnNewUser, btnDetail, imgBroker, imgService, btnCarLife);
+    NSDictionary *views = NSDictionaryOfVariableBindings(scroll, bgview, scrollview, titleBg, headline, contenBg, newUserBg, infoBg, btnCalculate, btnTeams, btnInvite, btnMyService, sepView1, sepView2, sepView3, btnProduct, btnPlan, btnBroker, btnService, btnNewUser, btnDetail, imgBroker, imgService, btnCarLife, sepView4, sepView0);
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[scroll]-0-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scroll]-0-|" options:0 metrics:nil views:views]];
@@ -237,7 +242,7 @@
     [bgview addConstraint:[NSLayoutConstraint constraintWithItem:newUserBg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:180 nwidth:ScreenWidth]]];
     [bgview addConstraint:[NSLayoutConstraint constraintWithItem:infoBg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:440 nwidth:ScreenWidth]]];
     
-    [titleBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10-[btnCalculate]-0-[sepView1]-0-[btnTeams]-0-[sepView2]-0-[btnInvite]-0-[sepView3]-0-[btnMyService]-10-|" options:0 metrics:nil views:views]];
+    [titleBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[sepView0]-0-[btnCalculate]-0-[sepView1]-0-[btnTeams]-0-[sepView2]-0-[btnInvite]-0-[sepView3]-0-[btnMyService]-0-[sepView4]-0-|" options:0 metrics:nil views:views]];
     [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:btnCalculate attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView1 attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:btnTeams attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
@@ -245,9 +250,13 @@
     [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:btnInvite attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView3 attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:btnMyService attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView0 attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView4 attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:titleBg attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     
     [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView2 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:sepView1 attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView3 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:sepView1 attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView0 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:sepView1 attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView4 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:sepView1 attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     
     [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnProduct]-0-[btnPlan]-0-|" options:0 metrics:nil views:views]];
     [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imgBroker]-0-[imgService]-0-|" options:0 metrics:nil views:views]];

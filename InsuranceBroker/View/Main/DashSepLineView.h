@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface DashSepLineView : UIView
+{
+    CAShapeLayer *shapeLayer;
+}
 
 @end
