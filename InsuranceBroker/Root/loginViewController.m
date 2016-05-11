@@ -84,8 +84,9 @@
     [self resignFirstResponder];
 
     [NetWorkHandler loginWithPhone:phone openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:[dic objectForKey:@"nickname"] privilege:[dic objectForKey:@"privilege"] unionid:@"" province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:smCode Completion:^(int code, id content) {
-        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-        if(code == 505){
+      //  [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+        [ProgressHUD dismiss];
+        if(code == 505){ // 弹出输入团长手机号窗口
 //            BindPhoneNumVC *vc = [IBUIFactory CreateBindPhoneNumViewController];
 //            [self.navigationController pushViewController:vc animated:YES];
 //            vc.wxDic = dic;
@@ -94,7 +95,7 @@
             view.tfNickname.text = [dic objectForKey:@"nickname"];
             [[UIApplication sharedApplication].keyWindow addSubview:view];
             
-        }else if (code == 200){
+        }else if (code == 200){ // 直接登陆成功
             NSDictionary *data = [content objectForKey:@"data"];
             UserInfoModel *userinfo = [UserInfoModel shareUserInfoModel];
             userinfo.isLogin = YES;
@@ -107,10 +108,15 @@
             [currentInstallation addUniqueObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
             [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
             [currentInstallation saveInBackground];
-                  }else{
-            //self.tfCaptcha.text = @"";
-             [KGStatusBar showErrorWithStatus:@"登陆失败，请检测网络是否设置或联系客服！"];
-        }
+                  }
+        else{   // 登陆失败
+            if(code<0){
+                [KGStatusBar showErrorWithStatus:@"无法连接网络，请监测网络设置！"];
+            }
+            else{
+                [KGStatusBar showErrorWithStatus:[content objectForKey:@"msg"]];
+            }
+          }
     }];
 }
 
@@ -154,7 +160,7 @@
     
     NSDictionary *dic = self.wxDic;
     [NetWorkHandler loginWithPhone:self.tfMobile.text openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:remarkName privilege:[dic objectForKey:@"privilege"] unionid:[dic objectForKey:@"unionid"] province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:nil parentPhone:(NSString *)phoneNum Completion:^(int code, id content) {
-        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+        //[self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 505){
             
             SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -175,6 +181,15 @@
             [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
             [currentInstallation saveInBackground];
         }
+        else{   // 登陆失败
+            if(code<0){
+                [KGStatusBar showErrorWithStatus:@"无法连接网络，请稍后再试！"];
+            }
+            else{
+                [KGStatusBar showErrorWithStatus:[content objectForKey:@"msg"]];
+            }
+        }
+
     }];
 }
 

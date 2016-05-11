@@ -12,6 +12,7 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import <AVOSCloudSNS/AVOSCloudSNS.h>
 
+
 @interface BindPhoneNumVC ()
 
 @end
@@ -158,7 +159,7 @@
     
     NSString *verifyCode = _tfCaptcha.text;
     NSString *phone = _tfMobile.text;
-
+    [ProgressHUD show:@"登陆中..."];
     [self loginWithDictionary:self.wxDic phone:phone smCode:verifyCode];
 }
 
