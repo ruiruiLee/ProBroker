@@ -206,6 +206,8 @@
             case 3:{
                 [[EGOCache globalCache] clearCache];
                 [[AppKeFuLib sharedInstance] clearAllFileCache];
+                [[AppKeFuLib sharedInstance] deleteMessagesWith:@"policy"];
+                [[AppKeFuLib sharedInstance] deleteMessagesWith:@"business"];
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"缓存清除成功！"
                                                                     message:nil
                                                                    delegate:nil
