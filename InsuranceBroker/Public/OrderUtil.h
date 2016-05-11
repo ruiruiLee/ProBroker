@@ -13,9 +13,9 @@
 
 @interface OrderUtil : NSObject
 
-+ (void) setPolicyStatusWithTableCell:(PolicyInfoTableViewCell *) cell orderOfferStatus:(NSInteger) orderOfferStatus orderOfferStatusStr:(NSString*) orderOfferStatusStr orderOfferPrintStatus:(NSInteger) orderOfferPrintStatus;
++ (void) setPolicyStatusWithTableCell:(PolicyInfoTableViewCell *) cell orderOfferStatusStr:(NSString*) orderOfferStatusStr orderImgType:(NSInteger) orderImgType;
 
-+ (void) setPolicyStatusWithCell:(OrderManagerTableViewCell *) cell orderOfferStatus:(NSInteger) orderOfferStatus orderOfferStatusStr:(NSString *) orderOfferStatusStr orderOfferPrintStatus:(NSInteger) orderOfferPrintStatus;
++ (void) setPolicyStatusWithCell:(OrderManagerTableViewCell *) cell orderOfferStatusStr:(NSString *) orderOfferStatusStr orderImgType:(NSInteger) orderImgType;
 
 + (NSMutableAttributedString *) getAttributedString:(NSString *)desc orderOfferNums:(NSInteger) orderOfferNums orderOfferStatus:(NSInteger) orderOfferStatus orderOfferPayPrice:(float) orderOfferPayPrice orderOfferStatusStr:(NSString *) orderOfferStatusStr orderOfferGatherStatus:(BOOL) orderOfferGatherStatus;
 

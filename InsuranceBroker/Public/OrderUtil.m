@@ -14,16 +14,16 @@
 
 @implementation OrderUtil
 
-+ (void) setPolicyStatusWithTableCell:(PolicyInfoTableViewCell *) cell orderOfferStatus:(NSInteger) orderOfferStatus orderOfferStatusStr:(NSString*) orderOfferStatusStr orderOfferPrintStatus:(NSInteger) orderOfferPrintStatus
++ (void) setPolicyStatusWithTableCell:(PolicyInfoTableViewCell *) cell orderOfferStatusStr:(NSString*) orderOfferStatusStr orderImgType:(NSInteger) orderImgType
 {
     LeftImgButtonLeft *btn = cell.btnStatus;
-    [self checkOrderStatus:orderOfferStatus orderOfferPrintStatus:orderOfferPrintStatus orderOfferStatusStr:orderOfferStatusStr btn:btn];
+    [self checkOrderOfferStatusStr:orderOfferStatusStr btn:btn orderImgType:orderImgType];
 }
 
-+ (void) setPolicyStatusWithCell:(OrderManagerTableViewCell *) cell orderOfferStatus:(NSInteger) orderOfferStatus orderOfferStatusStr:(NSString *) orderOfferStatusStr orderOfferPrintStatus:(NSInteger) orderOfferPrintStatus
++ (void) setPolicyStatusWithCell:(OrderManagerTableViewCell *) cell orderOfferStatusStr:(NSString *) orderOfferStatusStr orderImgType:(NSInteger) orderImgType
 {
     LeftImgButtonLeft *btn = cell.btnStatus;
-    [self checkOrderStatus:orderOfferStatus orderOfferPrintStatus:orderOfferPrintStatus orderOfferStatusStr:orderOfferStatusStr btn:btn];
+    [self checkOrderOfferStatusStr:orderOfferStatusStr btn:btn orderImgType:orderImgType];
 }
 
 //":"1"; //订单报价状态；1等待报价，2报价失败(读取失败原因,StatusId,StatusMsg），3报价完成，4出单配送-未付款（货到付款），5出单配送-付款中，6出单配送-已付款，7付款失败，8交易成功，9已过期，10禁止流程操作当扫表状态为1或2的时候，进行报价
@@ -82,59 +82,31 @@
     return nil;
 }
 
-+ (void) checkOrderStatus:(NSInteger) orderOfferStatus orderOfferPrintStatus:(NSInteger) orderOfferPrintStatus orderOfferStatusStr:(NSString *) orderOfferStatusStr btn:(LeftImgButtonLeft *) btn
++ (void) checkOrderOfferStatusStr:(NSString *) orderOfferStatusStr btn:(LeftImgButtonLeft *) btn  orderImgType:(NSInteger) orderImgType
 {
     NSString *title = @"";
     UIImage *image = nil;
-    if(orderOfferStatus == 1){
-        //        title = @"报价中";
+    if(orderImgType == 1){
         image = ThemeImage(@"price_loading");
     }
-    else if(orderOfferStatus == 2){
-        //        title = @"报价失败";
+    else if (orderImgType == 2){
         image = ThemeImage(@"error");
     }
-    else if (orderOfferStatus == 3){
-        //        title = @"报价完成";
+    else if (orderImgType == 3){
         image = ThemeImage(@"price_done");
     }
-    else if (orderOfferStatus == 4){
-        if(orderOfferPrintStatus == 2){
-            //            title = @"出单配送";
-            image = ThemeImage(@"deliver");
-        }else{
-            //            title = @"等待出单";
-            image = ThemeImage(@"Issuing");
-        }
+    else if (orderImgType == 4){
+        image = ThemeImage(@"Issuing");
     }
-    else if (orderOfferStatus == 5){
-        //        title = @"出单配送";
+    else if (orderImgType == 5){
         image = ThemeImage(@"deliver");
     }
-    else if (orderOfferStatus == 6){
-        if(orderOfferPrintStatus == 2){
-            //            title = @"出单配送";
-            image = ThemeImage(@"deliver");
-        }else{
-            //            title = @"等待出单";
-            image = ThemeImage(@"Issuing");
-        }
+    else if (orderImgType == 6){
+        image = ThemeImage(@"qianshou");
     }
-    else if (orderOfferStatus == 7){
-        //        title = @"付款失败";
-        image = ThemeImage(@"error");
-    }
-    else if (orderOfferStatus == 8){
-        //        title = @"交易成功";
+    else if (orderImgType == 7){
         image = ThemeImage(@"order_done");
     }
-    else if (orderOfferStatus == 9){
-        //        title = @"保单过期";
-        image = ThemeImage(@"error");
-    }else{
-        image = ThemeImage(@"error");
-    }
-    
     title = orderOfferStatusStr;
     [btn setImage:image forState:UIControlStateNormal];
     [btn setTitle:title forState:UIControlStateNormal];

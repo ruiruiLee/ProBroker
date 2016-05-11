@@ -46,4 +46,6 @@
 
 @property (nonatomic, assign) BOOL orderOfferGatherStatus;
 
+@property (nonatomic, assign) NSInteger orderImgType;
+
 @end

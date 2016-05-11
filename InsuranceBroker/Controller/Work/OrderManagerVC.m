@@ -188,7 +188,8 @@
     cell.lbContent.text = model.planTypeName;//[Util getStringByPlanType:model.planType];
     [cell.phoneNum setTitle:model.customerPhone forState:UIControlStateNormal];
     cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
-    [OrderUtil setPolicyStatusWithCell:cell orderOfferStatus:model.orderOfferStatus orderOfferStatusStr:model.orderOfferStatusStr orderOfferPrintStatus:model.orderOfferPrintStatus];
+//    [OrderUtil setPolicyStatusWithCell:cell orderOfferStatus:model.orderOfferStatus orderOfferStatusStr:model.orderOfferStatusStr orderOfferPrintStatus:model.orderOfferPrintStatus];
+    [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
     [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];
     
     return cell;

@@ -50,6 +50,7 @@
     model.productLogo = [dictionary objectForKey:@"productLogo"];
     model.orderOfferPrintStatus = [[dictionary objectForKey:@"orderOfferPrintStatus"] integerValue];
     model.orderOfferGatherStatus = [[dictionary objectForKey:@"orderOfferGatherStatus"] boolValue];
+    model.orderImgType = [[dictionary objectForKey:@"orderImgType"] integerValue];
     
     return model;
 }
