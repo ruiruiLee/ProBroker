@@ -30,7 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"产品中心";
+    self.title = @"产品目录";
     [self initSubviews];
     [self loadData];
 }
