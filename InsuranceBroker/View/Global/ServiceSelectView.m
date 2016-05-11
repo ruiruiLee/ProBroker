@@ -19,7 +19,7 @@
     if(self){
         lbServiceTime = [ViewFactory CreateLabelViewWithFont:_FONT(13) TextColor:_COLOR(0x75, 0x75, 0x75)];
         [self.bgView addSubview:lbServiceTime];
-        lbServiceTime.text = @"客服在线时间：工作日9:30-18:30";
+        lbServiceTime.text = @"客服在线时间：工作日9:30-18:00";
         lbServiceTime.textAlignment = NSTextAlignmentCenter;
         
         SepLineLabel *line = [[SepLineLabel alloc] initWithFrame:CGRectZero];
