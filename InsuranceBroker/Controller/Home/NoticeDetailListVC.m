@@ -211,7 +211,7 @@
 
 - (CGFloat) getHeightWithFont:(UIFont *) font text:(NSString *) text
 {
-    CGRect rect = [text boundingRectWithSize:CGSizeMake(ScreenWidth - 36, INT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
+    CGRect rect = [text boundingRectWithSize:CGSizeMake(ScreenWidth - 40, INT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil];
     return rect.size.height;
 }
 

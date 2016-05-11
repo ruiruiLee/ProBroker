@@ -16,7 +16,7 @@
     [super awakeFromNib];
     
     self.lbContent.numberOfLines = 0;
-    self.lbContent.preferredMaxLayoutWidth = ScreenWidth - 60;
+    self.lbContent.preferredMaxLayoutWidth = ScreenWidth - 40;
     self.clipsToBounds = YES;
     self.btnDetail.userInteractionEnabled = NO;
 }
