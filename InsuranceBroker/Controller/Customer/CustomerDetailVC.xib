@@ -57,7 +57,7 @@
                                             <rect key="frame" x="202" y="12" width="195" height="30"/>
                                             <animations/>
                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <state key="normal" title="客户跟进">
+                                            <state key="normal" title="线索进展">
                                                 <color key="titleColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                         </button>

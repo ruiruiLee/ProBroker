@@ -87,7 +87,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = @"新增跟进记录";
+    self.title = @"新增记录";
     [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
     
     _selectVisitProgressIdx = -1;
@@ -95,11 +95,11 @@
     
     self.viewHConstraint.constant = ScreenWidth;
     
-    self.tfStatus.placeholder = @"请填写跟进情况";
-    self.tfWay.placeholder = @"请填写跟进方式";
-    self.tfTIme.placeholder = @"请填写跟进时间";
-    self.tfAdd.placeholder = @"请填写地点";
-    self.tfview.placeholder = @"请填写跟进记录内容";
+    self.tfStatus.placeholder = @"选择最新进展情况";
+    self.tfWay.placeholder = @"选择来源或者跟进方式";
+    self.tfTIme.placeholder = @"选择记录时间";
+    self.tfAdd.placeholder = @"请填写跟进地址或其他线索渠道";
+    self.tfview.placeholder = @"请记录详细进展内容";
     self.tfAdd.PlaceholderLabel.textAlignment = NSTextAlignmentRight;
     self.tfview.delegate = self;
     self.tfAdd.delegate = self;
@@ -130,12 +130,12 @@
     [self resignFirstResponder];
     
     if(_selectVisitProgressIdx == -1){
-        [Util showAlertMessage:@"请选择跟进情况"];
+        [Util showAlertMessage:@"请选择最新进展情况"];
         return;
     }
     if(_selectvisitTypeIdx == -1)
     {
-        [Util showAlertMessage:@"请选择跟进方式"];
+        [Util showAlertMessage:@"请选择来源.方式"];
         return;
     }
     
@@ -192,13 +192,13 @@
         _menuView.selectIdx = _selectVisitProgressIdx;
         _menuView.titleArray = self.visitProgress;
         _menuView.tag = 100;
-        _menuView.title = @"跟进情况";
+        _menuView.title = @"最新进展";
     }
     else{
         _menuView.selectIdx = _selectvisitTypeIdx;
         _menuView.titleArray = self.visitType;
         _menuView.tag = 101;
-        _menuView.title = @"跟进方式";
+        _menuView.title = @"来源.方式";
     }
     [_menuView show:self.view];
     
@@ -210,7 +210,7 @@
     
     if(!_datePicker){
         _datePicker = [[ZHPickView alloc] initDatePickWithDate:[NSDate date] datePickerMode:UIDatePickerModeDateAndTime isHaveNavControler:YES];
-        _datePicker.lbTitle.text = @"选择跟进日期";
+        _datePicker.lbTitle.text = @"选择日期";
         [_datePicker show];
         _datePicker.delegate = self;
     }else{
@@ -303,7 +303,7 @@
     self.tfTIme.text = [Util getTimeString:model.visitTime];
     self.tfWay.text = model.visitType;
     [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
-    self.title = @"查看跟进记录";
+    self.title = @"查看记录";
     [self textViewDidChange:self.tfAdd];
 }
 
