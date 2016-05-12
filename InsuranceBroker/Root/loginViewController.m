@@ -114,7 +114,8 @@
                 [KGStatusBar showErrorWithStatus:@"无法连接网络，请监测网络设置！"];
             }
             else{
-                [KGStatusBar showErrorWithStatus:[content objectForKey:@"msg"]];
+                [Util showAlertMessage:[content objectForKey:@"msg"]];
+               // [KGStatusBar showErrorWithStatus:[content objectForKey:@"msg"]];
             }
           }
     }];
