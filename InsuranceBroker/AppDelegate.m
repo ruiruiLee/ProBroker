@@ -377,7 +377,7 @@
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
        
-        [[UserInfoModel shareUserInfoModel] queryUserInfo];
+        //[[UserInfoModel shareUserInfoModel] queryUserInfo];
         [[UserInfoModel shareUserInfoModel] queryLastNewsTip:^(int code, id content) {
         if(code == 200){
             AppContext *context = [AppContext sharedAppContext];
