@@ -30,7 +30,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DFz-0h-QBy">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="523"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="543"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="真实姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTY-M9-s4t">
                                     <rect key="frame" x="16" y="30" width="75" height="18"/>
@@ -83,14 +83,14 @@
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（请上传身份证正面及背面照片）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fHb-wp-mqf">
-                                    <rect key="frame" x="101" y="128" width="479" height="13.5"/>
+                                    <rect key="frame" x="101" y="129" width="479" height="14"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                    <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFT-5n-TFl" customClass="HighNightBgButton">
-                                    <rect key="frame" x="10" y="447" width="580" height="42"/>
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cFT-5n-TFl" customClass="HighNightBgButton">
+                                    <rect key="frame" x="10" y="468" width="580" height="42"/>
                                     <animations/>
                                     <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
@@ -101,8 +101,8 @@
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnL-JK-NQv" customClass="HighNightBgButton">
-                                    <rect key="frame" x="101" y="272" width="200" height="120"/>
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnL-JK-NQv" customClass="HighNightBgButton">
+                                    <rect key="frame" x="101" y="293" width="200" height="120"/>
                                     <animations/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="1HL-Wz-D8f"/>
@@ -111,22 +111,22 @@
                                     </constraints>
                                     <state key="normal" backgroundImage="add_cert"/>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fY2-2z-h0E">
-                                    <rect key="frame" x="0.0" y="499" width="600" height="13.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fY2-2z-h0E">
+                                    <rect key="frame" x="0.0" y="520" width="600" height="13"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                    <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTs-3f-Grx">
-                                    <rect key="frame" x="10" y="412" width="580" height="0.0"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTs-3f-Grx">
+                                    <rect key="frame" x="10" y="433" width="580" height="0.0"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" red="0.95686274509803915" green="0.2627450980392157" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XB9-9d-uu5" customClass="HighNightBgButton">
-                                    <rect key="frame" x="101" y="146" width="200" height="120"/>
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XB9-9d-uu5" customClass="HighNightBgButton">
+                                    <rect key="frame" x="101" y="157" width="200" height="120"/>
                                     <animations/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="200" id="ROy-yz-Iux"/>
@@ -143,7 +143,7 @@
                                 <constraint firstItem="fHb-wp-mqf" firstAttribute="trailing" secondItem="HFJ-vA-0qg" secondAttribute="trailing" id="3Ff-fi-WAa"/>
                                 <constraint firstItem="xy7-SC-4NN" firstAttribute="leading" secondItem="xTY-M9-s4t" secondAttribute="leading" id="3Qv-iH-KbO"/>
                                 <constraint firstItem="xTY-M9-s4t" firstAttribute="leading" secondItem="DFz-0h-QBy" secondAttribute="leading" constant="16" id="6VV-qA-nXx"/>
-                                <constraint firstItem="XB9-9d-uu5" firstAttribute="top" secondItem="fHb-wp-mqf" secondAttribute="bottom" constant="4" id="8Wp-z3-3ZN"/>
+                                <constraint firstItem="XB9-9d-uu5" firstAttribute="top" secondItem="fHb-wp-mqf" secondAttribute="bottom" constant="14" id="8Wp-z3-3ZN"/>
                                 <constraint firstItem="1Z9-nl-6hr" firstAttribute="trailing" secondItem="HFJ-vA-0qg" secondAttribute="trailing" id="ABo-pk-afl"/>
                                 <constraint firstItem="fY2-2z-h0E" firstAttribute="top" secondItem="cFT-5n-TFl" secondAttribute="bottom" constant="10" id="AuX-8C-CI5"/>
                                 <constraint firstItem="1Z9-nl-6hr" firstAttribute="leading" secondItem="HFJ-vA-0qg" secondAttribute="leading" id="HrD-5G-hIC"/>
@@ -164,7 +164,7 @@
                                 <constraint firstItem="fY2-2z-h0E" firstAttribute="leading" secondItem="DFz-0h-QBy" secondAttribute="leading" id="jeD-FF-UEV"/>
                                 <constraint firstItem="fHb-wp-mqf" firstAttribute="centerY" secondItem="xy7-SC-4NN" secondAttribute="centerY" id="lvD-vh-gje"/>
                                 <constraint firstItem="cFT-5n-TFl" firstAttribute="top" secondItem="nnL-JK-NQv" secondAttribute="bottom" constant="55" id="ouX-NB-CUb"/>
-                                <constraint firstItem="nnL-JK-NQv" firstAttribute="top" secondItem="XB9-9d-uu5" secondAttribute="bottom" constant="6" id="p7P-qL-OCp"/>
+                                <constraint firstItem="nnL-JK-NQv" firstAttribute="top" secondItem="XB9-9d-uu5" secondAttribute="bottom" constant="16" id="p7P-qL-OCp"/>
                                 <constraint firstAttribute="trailing" secondItem="TTs-3f-Grx" secondAttribute="trailing" constant="10" id="s8K-s9-aDt"/>
                                 <constraint firstItem="TTs-3f-Grx" firstAttribute="leading" secondItem="DFz-0h-QBy" secondAttribute="leading" constant="10" id="saz-oA-Yst"/>
                                 <constraint firstItem="nnL-JK-NQv" firstAttribute="leading" secondItem="fHb-wp-mqf" secondAttribute="leading" id="t9K-Mn-LmY"/>
