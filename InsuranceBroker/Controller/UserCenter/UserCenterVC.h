@@ -10,13 +10,10 @@
 #import "TopImageButton.h"
 #import "GradientView.h"
 #import "UserNameEditButton.h"
-#import "EGORefreshTableHeaderView.h"
+#import "UIScrollView+JElasticPullToRefresh.h"
 #import "UserCenterHeaderBgView.h"
 
-@interface UserCenterVC : BaseViewController <UIScrollViewDelegate, EGORefreshTableHeaderDelegate>
-{
-    EGORefreshTableHeaderView *refreshView;
-}
+@interface UserCenterVC : BaseViewController <UIScrollViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollview;
 @property (nonatomic, strong) IBOutlet UIImageView *photoImgV;

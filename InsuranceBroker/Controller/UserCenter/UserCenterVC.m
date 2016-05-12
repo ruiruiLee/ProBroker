@@ -15,7 +15,6 @@
 #import "DetailAccountVC.h"
 #import "MyTeamInfoVC.h"
 #import "OrderManagerVC.h"
-#import "InsuranceBroker-Swift.h"
 #import <Accelerate/Accelerate.h>
 
 @implementation UserCenterVC
@@ -65,22 +64,19 @@
     [context addObserver:self forKeyPath:@"isRedPack" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [model addObserver:self forKeyPath:@"nowMonthOrderSuccessNums" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
-//    [self config];
-    DGElasticPullToRefreshLoadingViewCircle *loadingView = [[DGElasticPullToRefreshLoadingViewCircle alloc] init];
-    loadingView.tintColor = _COLOR(78, 221, 200);
-    [self.scrollview dg_addPullToRefreshWithActionHandler:^{
-//        [self performSelector:@selector(stopRefresh) withObject:nil afterDelay:0.5];
-        [self egoRefreshTableHeaderDidTriggerRefresh:nil];
-    } loadingView:loadingView];
-    [self.scrollview dg_setPullToRefreshBackgroundColor:[UIColor clearColor]];
-    [self.scrollview dg_setPullToRefreshFillColor:_COLORa(0xff, 0x66, 0x19, 0.4)];
+    JElasticPullToRefreshLoadingViewCircle *loadingViewCircle = [[JElasticPullToRefreshLoadingViewCircle alloc] init];
+    loadingViewCircle.tintColor = [UIColor whiteColor];
+    
+    __weak __typeof(self)weakSelf = self;
+    [self.scrollview addJElasticPullToRefreshViewWithActionHandler:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf egoRefreshTableHeaderDidTriggerRefresh:nil];
+        });
+    } LoadingView:loadingViewCircle];
+    [self.scrollview setJElasticPullToRefreshFillColor:_COLORa(0xff, 0x66, 0x19, 0.4)];
+    [self.scrollview setJElasticPullToRefreshBackgroundColor:[UIColor clearColor]];
     
     [self updateUserInfo];
-}
-
-- (void) stopRefresh
-{
-    [self.scrollview dg_stopLoading];
 }
 
 - (void) updateUserInfo
@@ -148,15 +144,6 @@
 }
 
 # pragma mark - Custom view configuration
-
-- (void) config
-{
-    /* Refresh View */
-    refreshView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, -self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
-    refreshView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-    refreshView.delegate = self;
-    [self.scrollview addSubview:refreshView];
-}
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -303,7 +290,7 @@
     [[UserInfoModel shareUserInfoModel] loadDetail:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
 //        [refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.scrollview];
-        [self.scrollview dg_stopLoading];
+        [self.scrollview stopLoading];
         [self updateUserInfo];
     }];
 }
@@ -312,29 +299,29 @@
 //    return self.pullLastRefreshDate;
 //}
 
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    
-    [refreshView egoRefreshScrollViewDidScroll:scrollView];
-    
-    // Also forward the message to the real delegate
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    
-    [refreshView egoRefreshScrollViewDidEndDragging:scrollView];
-    
-    // Also forward the message to the real delegate
-}
-
-- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    [refreshView egoRefreshScrollViewWillBeginDragging:scrollView];
-    
-    // Also forward the message to the real delegate
-}
+//#pragma mark - UIScrollViewDelegate
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    
+//    [refreshView egoRefreshScrollViewDidScroll:scrollView];
+//    
+//    // Also forward the message to the real delegate
+//}
+//
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+//{
+//    
+//    [refreshView egoRefreshScrollViewDidEndDragging:scrollView];
+//    
+//    // Also forward the message to the real delegate
+//}
+//
+//- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
+//{
+//    [refreshView egoRefreshScrollViewWillBeginDragging:scrollView];
+//    
+//    // Also forward the message to the real delegate
+//}
 
 - (UIImage *)blurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur {
     //模糊度,

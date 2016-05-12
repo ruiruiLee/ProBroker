@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8612F4131CE4828D0045340F /* JElasticPullToRefreshLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40A1CE4828D0045340F /* JElasticPullToRefreshLoadingView.m */; };
+		8612F4141CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40C1CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.m */; };
+		8612F4151CE4828D0045340F /* JElasticPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40E1CE4828D0045340F /* JElasticPullToRefreshView.m */; };
+		8612F4161CE4828D0045340F /* UIScrollView+JElasticPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4101CE4828D0045340F /* UIScrollView+JElasticPullToRefresh.m */; };
+		8612F4171CE4828D0045340F /* UIView+JElasticPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4121CE4828D0045340F /* UIView+JElasticPullToRefresh.m */; };
 		861DF93B1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF93A1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m */; };
 		861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF93D1CA4E40D00FB58B1 /* RatioMapsModel.m */; };
 		861DF9411CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF9401CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m */; };
@@ -384,11 +389,6 @@
 		86CC8C541CB3D04500362AD0 /* HighNightBgButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C531CB3D04500362AD0 /* HighNightBgButton.m */; };
 		86CC8C5A1CB79FFF00362AD0 /* TeamItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C581CB79FFF00362AD0 /* TeamItemTableViewCell.m */; };
 		86CC8C5B1CB79FFF00362AD0 /* TeamItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86CC8C591CB79FFF00362AD0 /* TeamItemTableViewCell.xib */; };
-		86D3D9971CBBC50200276AC0 /* DGElasticPullToRefreshConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D9921CBBC50200276AC0 /* DGElasticPullToRefreshConstants.swift */; };
-		86D3D9981CBBC50200276AC0 /* DGElasticPullToRefreshExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D9931CBBC50200276AC0 /* DGElasticPullToRefreshExtensions.swift */; };
-		86D3D9991CBBC50200276AC0 /* DGElasticPullToRefreshLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D9941CBBC50200276AC0 /* DGElasticPullToRefreshLoadingView.swift */; };
-		86D3D99A1CBBC50200276AC0 /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D9951CBBC50200276AC0 /* DGElasticPullToRefreshLoadingViewCircle.swift */; };
-		86D3D99B1CBBC50200276AC0 /* DGElasticPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D9961CBBC50200276AC0 /* DGElasticPullToRefreshView.swift */; };
 		86D3D99F1CBC998500276AC0 /* TranslucentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D99E1CBC998500276AC0 /* TranslucentToolbar.m */; };
 		86D3D9A21CBCD7AF00276AC0 /* UserCenterHeaderBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D9A11CBCD7AF00276AC0 /* UserCenterHeaderBgView.m */; };
 		86E6347B1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */; };
@@ -450,6 +450,17 @@
 /* Begin PBXFileReference section */
 		03AB914CAC81E099C3474FBB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		39658BE0FF776730306DC2D4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8612F4081CE4828D0045340F /* JElasticPullToRefreshConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JElasticPullToRefreshConstants.h; sourceTree = "<group>"; };
+		8612F4091CE4828D0045340F /* JElasticPullToRefreshLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JElasticPullToRefreshLoadingView.h; sourceTree = "<group>"; };
+		8612F40A1CE4828D0045340F /* JElasticPullToRefreshLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JElasticPullToRefreshLoadingView.m; sourceTree = "<group>"; };
+		8612F40B1CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JElasticPullToRefreshLoadingViewCircle.h; sourceTree = "<group>"; };
+		8612F40C1CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JElasticPullToRefreshLoadingViewCircle.m; sourceTree = "<group>"; };
+		8612F40D1CE4828D0045340F /* JElasticPullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JElasticPullToRefreshView.h; sourceTree = "<group>"; };
+		8612F40E1CE4828D0045340F /* JElasticPullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JElasticPullToRefreshView.m; sourceTree = "<group>"; };
+		8612F40F1CE4828D0045340F /* UIScrollView+JElasticPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+JElasticPullToRefresh.h"; sourceTree = "<group>"; };
+		8612F4101CE4828D0045340F /* UIScrollView+JElasticPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+JElasticPullToRefresh.m"; sourceTree = "<group>"; };
+		8612F4111CE4828D0045340F /* UIView+JElasticPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JElasticPullToRefresh.h"; sourceTree = "<group>"; };
+		8612F4121CE4828D0045340F /* UIView+JElasticPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JElasticPullToRefresh.m"; sourceTree = "<group>"; };
 		861DF9391CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+updateUserRemarkName.h"; sourceTree = "<group>"; };
 		861DF93A1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateUserRemarkName.m"; sourceTree = "<group>"; };
 		861DF93C1CA4E40D00FB58B1 /* RatioMapsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatioMapsModel.h; sourceTree = "<group>"; };
@@ -1137,12 +1148,6 @@
 		86CC8C571CB79FFF00362AD0 /* TeamItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamItemTableViewCell.h; sourceTree = "<group>"; };
 		86CC8C581CB79FFF00362AD0 /* TeamItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamItemTableViewCell.m; sourceTree = "<group>"; };
 		86CC8C591CB79FFF00362AD0 /* TeamItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamItemTableViewCell.xib; sourceTree = "<group>"; };
-		86D3D9911CBBC50100276AC0 /* InsuranceBroker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "InsuranceBroker-Bridging-Header.h"; sourceTree = "<group>"; };
-		86D3D9921CBBC50200276AC0 /* DGElasticPullToRefreshConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshConstants.swift; sourceTree = "<group>"; };
-		86D3D9931CBBC50200276AC0 /* DGElasticPullToRefreshExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshExtensions.swift; sourceTree = "<group>"; };
-		86D3D9941CBBC50200276AC0 /* DGElasticPullToRefreshLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingView.swift; sourceTree = "<group>"; };
-		86D3D9951CBBC50200276AC0 /* DGElasticPullToRefreshLoadingViewCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingViewCircle.swift; sourceTree = "<group>"; };
-		86D3D9961CBBC50200276AC0 /* DGElasticPullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshView.swift; sourceTree = "<group>"; };
 		86D3D99D1CBC998500276AC0 /* TranslucentToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslucentToolbar.h; sourceTree = "<group>"; };
 		86D3D99E1CBC998500276AC0 /* TranslucentToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslucentToolbar.m; sourceTree = "<group>"; };
 		86D3D9A01CBCD7AF00276AC0 /* UserCenterHeaderBgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCenterHeaderBgView.h; sourceTree = "<group>"; };
@@ -1263,6 +1268,24 @@
 				DFE808A7D7A93EC82240AE11 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		8612F4071CE4828D0045340F /* JElasticPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				8612F4081CE4828D0045340F /* JElasticPullToRefreshConstants.h */,
+				8612F4091CE4828D0045340F /* JElasticPullToRefreshLoadingView.h */,
+				8612F40A1CE4828D0045340F /* JElasticPullToRefreshLoadingView.m */,
+				8612F40B1CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.h */,
+				8612F40C1CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.m */,
+				8612F40D1CE4828D0045340F /* JElasticPullToRefreshView.h */,
+				8612F40E1CE4828D0045340F /* JElasticPullToRefreshView.m */,
+				8612F40F1CE4828D0045340F /* UIScrollView+JElasticPullToRefresh.h */,
+				8612F4101CE4828D0045340F /* UIScrollView+JElasticPullToRefresh.m */,
+				8612F4111CE4828D0045340F /* UIView+JElasticPullToRefresh.h */,
+				8612F4121CE4828D0045340F /* UIView+JElasticPullToRefresh.m */,
+			);
+			path = JElasticPullToRefresh;
 			sourceTree = "<group>";
 		};
 		86248F051CCDB9FD00F1B493 /* LightMenuBar */ = {
@@ -1919,8 +1942,8 @@
 		86C3BB241C22C3FC00F98E80 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				8612F4071CE4828D0045340F /* JElasticPullToRefresh */,
 				86248F051CCDB9FD00F1B493 /* LightMenuBar */,
-				86D3D9861CBBC30000276AC0 /* DGElasticPullToRefresh */,
 				868C7CB51C969AC600B7617A /* ImageBroswer */,
 				862CD33D1C5C8CFE0056D2EA /* ProgressHUD */,
 				CF608EFA1C58A44900DC10CA /* KGStatusBar */,
@@ -2542,19 +2565,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		86D3D9861CBBC30000276AC0 /* DGElasticPullToRefresh */ = {
-			isa = PBXGroup;
-			children = (
-				86D3D9921CBBC50200276AC0 /* DGElasticPullToRefreshConstants.swift */,
-				86D3D9931CBBC50200276AC0 /* DGElasticPullToRefreshExtensions.swift */,
-				86D3D9941CBBC50200276AC0 /* DGElasticPullToRefreshLoadingView.swift */,
-				86D3D9951CBBC50200276AC0 /* DGElasticPullToRefreshLoadingViewCircle.swift */,
-				86D3D9961CBBC50200276AC0 /* DGElasticPullToRefreshView.swift */,
-				86D3D9911CBBC50100276AC0 /* InsuranceBroker-Bridging-Header.h */,
-			);
-			path = DGElasticPullToRefresh;
-			sourceTree = "<group>";
-		};
 		CF608EE91C58A11500DC10CA /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -2927,7 +2937,6 @@
 				8625B0571C41020D00312B98 /* NetWorkHandler+saveOrUpdateUser.m in Sources */,
 				86C3BBEF1C2BA30600F98E80 /* DashBorderTextfield.m in Sources */,
 				8625B0211C3BF92B00312B98 /* BaseModel.m in Sources */,
-				86D3D9991CBBC50200276AC0 /* DGElasticPullToRefreshLoadingView.swift in Sources */,
 				86A504A81C4FAEB00032A901 /* BankCardModel.m in Sources */,
 				86CC8C451CB3AE3600362AD0 /* BaseTableViewCell.m in Sources */,
 				86A26E911C45F0970073FFFC /* NetWorkHandler+strategy.m in Sources */,
@@ -2981,7 +2990,6 @@
 				8625AFA51C32B15000312B98 /* RealNameAuthenticationVC.m in Sources */,
 				86C3BC291C2D389D00F98E80 /* AddFollowUpVC.m in Sources */,
 				8625AFE21C37B4D300312B98 /* OfferDetailsVC.m in Sources */,
-				86D3D9981CBBC50200276AC0 /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				86F2DA831C7704400088B783 /* CommissionSetTableViewCell.m in Sources */,
 				86248F0B1CCDB9FD00F1B493 /* LightMenuBar.m in Sources */,
 				8625B0181C3BCA1D00312B98 /* NetWorkHandler+saveOrUpdateCustomerLabel.m in Sources */,
@@ -3000,6 +3008,7 @@
 				865065C01C1EB36E00429EAE /* BaseViewController.m in Sources */,
 				8625AF821C321E5B00312B98 /* OrderManagerTableViewCell.m in Sources */,
 				8625AF7E1C3164A700312B98 /* OrderManagerVC.m in Sources */,
+				8612F4161CE4828D0045340F /* UIScrollView+JElasticPullToRefresh.m in Sources */,
 				8625B0091C3B9CBE00312B98 /* NetWorkHandler+saveOrUpdateCustomer.m in Sources */,
 				86A505031C5258930032A901 /* MyJSInterface.m in Sources */,
 				8625B0271C3D1E4000312B98 /* NetWorkHandler+queryForCustomerCarInfo.m in Sources */,
@@ -3023,18 +3032,17 @@
 				86F0142D1C86831800A3C68E /* BillDetailInfoFromLuckyVC.m in Sources */,
 				8625B02A1C3D1F6100312B98 /* CarInfoModel.m in Sources */,
 				8654CD801C312CE100411C54 /* SBJsonStreamParser.m in Sources */,
-				86D3D99A1CBBC50200276AC0 /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
 				86FC492A1C756ECA0031B435 /* SetTeamLeaderPhoneView.m in Sources */,
 				865065BD1C1EB1ED00429EAE /* UINavigationBar+Awesome.m in Sources */,
 				86A26E851C4528A40073FFFC /* NetWorkHandler+announcement.m in Sources */,
 				86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */,
 				86A26E881C452A5B0073FFFC /* AnnouncementModel.m in Sources */,
+				8612F4171CE4828D0045340F /* UIView+JElasticPullToRefresh.m in Sources */,
 				86D3D9A21CBCD7AF00276AC0 /* UserCenterHeaderBgView.m in Sources */,
 				86C3BB2C1C22C42D00F98E80 /* AnimationButton.m in Sources */,
 				862CD3421C5C8CFE0056D2EA /* ProgressHUD.m in Sources */,
 				861DF93B1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m in Sources */,
 				8625B0541C3F9B2D00312B98 /* NetWorkHandler+saveOrUpdateLabelCustomer.m in Sources */,
-				86D3D9971CBBC50200276AC0 /* DGElasticPullToRefreshConstants.swift in Sources */,
 				8625B04D1C3F7B0E00312B98 /* EditButton.m in Sources */,
 				86A504EA1C524E8F0032A901 /* OrderDetailWebVC.m in Sources */,
 				8654CD861C312CE100411C54 /* SBJsonStreamWriterState.m in Sources */,
@@ -3086,6 +3094,7 @@
 				86A26F021C4A29CB0073FFFC /* InfoView.m in Sources */,
 				86F2DA7E1C75F25B0088B783 /* UserDetailVC.m in Sources */,
 				8625B0301C3E1EF800312B98 /* FooterView.m in Sources */,
+				8612F4141CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.m in Sources */,
 				86C3BB141C228D6F00F98E80 /* PullTableView.m in Sources */,
 				8625B03F1C3E548500312B98 /* DictModel.m in Sources */,
 				8625B00C1C3BA14F00312B98 /* NetWorkHandler+queryForLabelPageList.m in Sources */,
@@ -3096,6 +3105,7 @@
 				8654CD7F1C312CE100411C54 /* SBJsonParser.m in Sources */,
 				8625AFDE1C37713000312B98 /* PotentialPlayersVC.m in Sources */,
 				8654CD871C312CE100411C54 /* SBJsonTokeniser.m in Sources */,
+				8612F4151CE4828D0045340F /* JElasticPullToRefreshView.m in Sources */,
 				86A504AE1C4FB7D30032A901 /* NetWorkHandler+getBacks.m in Sources */,
 				8654CD851C312CE100411C54 /* SBJsonStreamWriterAccumulator.m in Sources */,
 				86C3BC381C2D6EA100F98E80 /* MenuViewController.m in Sources */,
@@ -3140,6 +3150,7 @@
 				8625AFA01C32A59600312B98 /* NoticeListTableViewCell.m in Sources */,
 				86C3BBE61C2ACF4200F98E80 /* OnwerTagView.m in Sources */,
 				8625AFEF1C38FF9E00312B98 /* IncomeWithdrawVC.m in Sources */,
+				8612F4131CE4828D0045340F /* JElasticPullToRefreshLoadingView.m in Sources */,
 				86C3BC0E1C2CDFE500F98E80 /* BaseInsuranceInfo.m in Sources */,
 				86C3BC411C2E37A700F98E80 /* AutoInsuranceInfoEditVC.m in Sources */,
 				86A504C61C50FEDD0032A901 /* NetWorkHandler+initOrderShare.m in Sources */,
@@ -3172,7 +3183,6 @@
 				8625AFD01C34D29E00312B98 /* RightImgButton.m in Sources */,
 				86C3BC451C2E747E00F98E80 /* BaseLineTextField.m in Sources */,
 				86A504E71C52165F0032A901 /* RedPackTasksInfoTips.m in Sources */,
-				86D3D99B1CBBC50200276AC0 /* DGElasticPullToRefreshView.swift in Sources */,
 				86A26EEA1C4905210073FFFC /* CustomerTagTableCell.m in Sources */,
 				861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */,
 				86C3BC1B1C2CE0EB00F98E80 /* CustomerFollowUpInfoView.m in Sources */,
