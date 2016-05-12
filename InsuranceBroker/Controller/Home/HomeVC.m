@@ -58,6 +58,7 @@
 {
     AppContext *context = [AppContext sharedAppContext];
     [context removeObserver:self forKeyPath:@"isNewMessage"];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
@@ -72,6 +73,11 @@
     }
 }
 
+- (void) NotifyLogin:(NSNotification *) notify
+{
+    [self loadDatas];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -79,6 +85,7 @@
     appdelegate = [UIApplication sharedApplication].delegate;
     AppContext *context = [AppContext sharedAppContext];
     [context addObserver:self forKeyPath:@"isNewMessage" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NotifyLogin:) name:Notify_Login object:nil];
     
     UIImageView *logoView = [[UIImageView alloc] initWithImage:ThemeImage(@"logo")];
     self.navigationItem.titleView = logoView;

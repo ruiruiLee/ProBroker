@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -12,11 +13,11 @@
             <rect key="frame" x="0.0" y="0.0" width="427" height="130"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="427" height="129.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="427" height="130"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adz-GH-BMn">
-                        <rect key="frame" x="25" y="20" width="89" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adz-GH-BMn">
+                        <rect key="frame" x="20" y="10" width="80" height="0.0"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -26,8 +27,8 @@
                         <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqK-Qf-Mro">
-                        <rect key="frame" x="141" y="20" width="267" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IqK-Qf-Mro">
+                        <rect key="frame" x="120" y="10" width="287" height="22"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -37,8 +38,8 @@
                         <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxA-Js-vBh">
-                        <rect key="frame" x="25" y="49" width="89" height="22"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxA-Js-vBh">
+                        <rect key="frame" x="20" y="14" width="80" height="0.0"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
@@ -46,24 +47,22 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I5n-N7-YVQ">
-                        <rect key="frame" x="127" y="28" width="144" height="99"/>
+                        <rect key="frame" x="120" y="42" width="80" height="50"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="DpP-as-2VB"/>
-                            <constraint firstAttribute="width" constant="80" id="trw-pf-A3H"/>
+                            <constraint firstAttribute="width" secondItem="I5n-N7-YVQ" secondAttribute="height" multiplier="8:5" id="MIH-0a-BCd"/>
                         </constraints>
-                        <state key="normal" image="driveLisence1"/>
+                        <state key="normal" backgroundImage="driveLisence1"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQ1-VV-ech">
-                        <rect key="frame" x="273" y="35" width="144" height="99"/>
+                        <rect key="frame" x="220" y="42" width="80" height="50"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="50" id="ZCd-u0-t3x"/>
-                            <constraint firstAttribute="width" constant="80" id="u2N-6j-Ct7"/>
+                            <constraint firstAttribute="width" secondItem="iQ1-VV-ech" secondAttribute="height" multiplier="8:5" id="Xpi-8K-0st"/>
                         </constraints>
-                        <state key="normal" image="driveLisence2"/>
+                        <state key="normal" backgroundImage="driveLisence2"/>
                     </button>
                 </subviews>
                 <animations/>
@@ -75,7 +74,9 @@
                     <constraint firstItem="I5n-N7-YVQ" firstAttribute="leading" secondItem="IqK-Qf-Mro" secondAttribute="leading" id="HCS-6j-WwG"/>
                     <constraint firstItem="Adz-GH-BMn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="Ksj-Dm-Xn2"/>
                     <constraint firstItem="Adz-GH-BMn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="Onq-HJ-YVI"/>
+                    <constraint firstItem="iQ1-VV-ech" firstAttribute="width" secondItem="I5n-N7-YVQ" secondAttribute="width" id="emy-oq-ngs"/>
                     <constraint firstItem="YxA-Js-vBh" firstAttribute="leading" secondItem="Adz-GH-BMn" secondAttribute="leading" id="jUp-vh-RsV"/>
+                    <constraint firstItem="iQ1-VV-ech" firstAttribute="trailing" secondItem="IqK-Qf-Mro" secondAttribute="trailing" id="mmf-gy-Wo4"/>
                     <constraint firstItem="iQ1-VV-ech" firstAttribute="top" secondItem="I5n-N7-YVQ" secondAttribute="top" id="ozX-p6-DFi"/>
                     <constraint firstItem="IqK-Qf-Mro" firstAttribute="top" secondItem="Adz-GH-BMn" secondAttribute="top" id="tZ8-ZC-HC9"/>
                     <constraint firstItem="IqK-Qf-Mro" firstAttribute="leading" secondItem="Adz-GH-BMn" secondAttribute="trailing" constant="20" id="vzm-mu-XzL"/>
@@ -98,7 +99,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="driveLisence1" width="144" height="99"/>
-        <image name="driveLisence2" width="144" height="99"/>
+        <image name="driveLisence1" width="72" height="50"/>
+        <image name="driveLisence2" width="72" height="50"/>
     </resources>
 </document>

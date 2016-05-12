@@ -224,6 +224,14 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    CGFloat height = 70;
+    CGSize size = self.frame.size;
+    
+    if(size.width == 375)
+        height = 70 + 17;
+    else if (size.width == 414)
+        height = 70 + 29;
+    
     NSInteger row = indexPath.row;
     NSString *content ;
     if(row == 0){
@@ -234,9 +242,9 @@
     }
     if(content == nil || [content length] == 0)
     {
-        return 70;
+        return height;
     }
-    return 102;
+    return height + 32;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -290,10 +298,12 @@
         cell.spaceVConstraint.constant = 10;
     }
     CGSize size1 = cell.imgV1.frame.size;
-    [cell.imgV1 sd_setImageWithURL:[NSURL URLWithString:FormatImage(img1, (int)size1.width, (int)size1.height)] forState:UIControlStateNormal placeholderImage:ThemeImage(placeholderImage1)];
+    NSString *url1 = FormatImage(img1, (int)size1.width, (int)size1.height);
+    [cell.imgV1 sd_setBackgroundImageWithURL:[NSURL URLWithString:url1] forState:UIControlStateNormal placeholderImage:ThemeImage(placeholderImage1)];
     
     CGSize size2 = cell.imgV2.frame.size;
-    [cell.imgV2 sd_setImageWithURL:[NSURL URLWithString:FormatImage(img2, (int)size2.width, (int)size2.height)] forState:UIControlStateNormal placeholderImage:ThemeImage(placeholderImage2)];
+    NSString *url2 = FormatImage(img2, (int)size2.width, (int)size2.height);
+    [cell.imgV2 sd_setBackgroundImageWithURL:[NSURL URLWithString:url2] forState:UIControlStateNormal placeholderImage:ThemeImage(placeholderImage2)];
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

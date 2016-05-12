@@ -6,12 +6,12 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "我的团长.png",
+      "filename" : "我的团长@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "我的团长@1.5x.png",
+      "filename" : "我的团长@3x.png",
       "scale" : "3x"
     }
   ],

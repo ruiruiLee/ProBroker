@@ -219,7 +219,7 @@
                                                                                 <constraint firstAttribute="height" constant="164" id="iaA-Vg-LXZ"/>
                                                                                 <constraint firstAttribute="width" constant="235" id="qlf-20-tD7"/>
                                                                             </constraints>
-                                                                            <state key="normal" image="drivingLicenseBg"/>
+                                                                            <state key="normal" backgroundImage="drivingLicenseBg"/>
                                                                         </button>
                                                                     </subviews>
                                                                     <animations/>
@@ -718,7 +718,7 @@
                                                 <constraint firstAttribute="height" constant="50" id="QjT-V7-358"/>
                                                 <constraint firstAttribute="width" constant="72" id="cws-9h-JW6"/>
                                             </constraints>
-                                            <state key="normal" image="certLogo"/>
+                                            <state key="normal" backgroundImage="certLogo"/>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pec-k9-zdp" customClass="BaseLineView">
                                             <rect key="frame" x="16" y="0.0" width="504" height="40"/>

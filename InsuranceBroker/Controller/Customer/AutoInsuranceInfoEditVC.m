@@ -117,7 +117,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
         _perInsurCompany = -1;
-        _changeNameIdx = 0;
+        _changeNameIdx = -1;
         self.type = enumAddPhotoTypeNone;
         self.insType = enumInsurance;
         isShowWarning = NO;
@@ -184,8 +184,6 @@
     self.tfNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     self.tfCert.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
-    
-//    [self.btnReSubmit setTitle:@"上传照片" forState:UIControlStateNormal];
     [self.btnReSubmit addTarget:self action:@selector(btnPhotoPressed:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *bgview = [[UIView alloc] init];
@@ -502,6 +500,7 @@
             //[ProgressHUD dismiss];
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
+                isCertModify = NO;
                 
                 [ProgressHUD showSuccess:@"保存成功"];
                 
@@ -538,6 +537,7 @@
                 [ProgressHUD showError:@"保存失败"];
             }
             
+            [self isModify];
         }];
     });
 }
@@ -572,7 +572,7 @@
         _perInsurCompany = -1;
         _changeNameIdx = -1;
         _changNameDate = nil;
-        [self.btnReSubmit setImage:ThemeImage(@"drivingLicenseBg") forState:UIControlStateNormal];
+        [self.btnReSubmit setBackgroundImage:ThemeImage(@"drivingLicenseBg") forState:UIControlStateNormal];
     }else{
         self.tfNo.enabled = NO;
         self.tfNo.text = @"";
@@ -582,7 +582,7 @@
         self.pInfoView.hidden = YES;
         self.assignedView.hidden = YES;
         self.baseViewVConstraint.constant = 50;
-        [self.btnReSubmit setImage:ThemeImage(@"fapiao") forState:UIControlStateNormal];
+        [self.btnReSubmit setBackgroundImage:ThemeImage(@"fapiao") forState:UIControlStateNormal];
     }
     
     newLisence = nil;
@@ -664,11 +664,11 @@
         UIImage *new = [Util scaleToSize:image scaledToSize:CGSizeMake(1500, 1500)];
         isCertModify = YES;
         if(self.type == enumAddPhotoTypeLisence){
-            [self.btnReSubmit setImage:new forState:UIControlStateSelected];
+            [self.btnReSubmit setBackgroundImage:new forState:UIControlStateSelected];
             newLisence = new;
             self.btnReSubmit.selected = YES;
         }else{
-            [self.btnCert setImage:new forState:UIControlStateSelected];
+            [self.btnCert setBackgroundImage:new forState:UIControlStateSelected];
             newCert = new;
             self.btnCert.selected = YES;
         }
@@ -759,7 +759,7 @@
             self.lbDateTitle.text = @"购车日期";
             self.tfDate.placeholder = @"请选择购车日期";
             self.lbCertTitle.text = @"购车发票信息";
-            [self.btnReSubmit setImage:ThemeImage(@"fapiao") forState:UIControlStateNormal];
+            [self.btnReSubmit setBackgroundImage:ThemeImage(@"fapiao") forState:UIControlStateNormal];
             newLisence = nil;
             self.btnReSubmit.selected = NO;
             self.baseViewVConstraint.constant = 50;
@@ -769,7 +769,7 @@
             self.lbDateTitle.text = @"注册日期";
             self.tfDate.placeholder = @"请选择注册日期";
             self.lbCertTitle.text = @"行驶证信息";
-            [self.btnReSubmit setImage:ThemeImage(@"drivingLicenseBg") forState:UIControlStateNormal];
+            [self.btnReSubmit setBackgroundImage:ThemeImage(@"drivingLicenseBg") forState:UIControlStateNormal];
             newLisence = nil;
             self.baseViewVConstraint.constant = 90;
             self.btnReSubmit.selected = NO;
@@ -782,7 +782,8 @@
         
         if(model.travelCard1 != nil){
             CGSize size = self.btnReSubmit.frame.size;
-            [self.btnReSubmit sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.travelCard1, (int)size.width, (int)size.height)] forState:UIControlStateSelected];
+            [self.btnReSubmit sd_setBackgroundImageWithURL:[NSURL URLWithString:FormatImage(model.travelCard1, (int)size.width, (int)size.height)] forState:UIControlStateSelected placeholderImage:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            }];
             self.btnReSubmit.selected = YES;
         }else
             self.btnReSubmit.selected = NO;
@@ -795,7 +796,7 @@
         
         if(model.carOwnerCard1 != nil){
             CGSize size = self.btnCert.frame.size;
-            [self.btnCert sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.carOwnerCard1, (int)size.width, (int)size.height)] forState:UIControlStateSelected];
+            [self.btnCert sd_setBackgroundImageWithURL:[NSURL URLWithString:FormatImage(model.carOwnerCard1, (int)size.width, (int)size.height)] forState:UIControlStateSelected];
             self.btnCert.selected = YES;
         }else{
             self.btnCert.selected = NO;
@@ -870,17 +871,7 @@
     
     if([self isModify]){
         if([self checkInfoFull]){
-            if(newCert){
-//                [self saveOrUpdateCustomerCert:^(int code, id content) {
-//                    if(code == 200){
-                        [self submitWithLicense:^(int code, id content) {
-                            if(code == 200){
-                                [self car_insur_plan:[content objectForKey:@"data"]];
-                            }
-                        }];
-//                    }
-//                }];
-            }else{
+            if([self checkInfoRight]){
                 [self submitWithLicense:^(int code, id content) {
                     if(code == 200){
                         [self car_insur_plan:[content objectForKey:@"data"]];
@@ -1247,11 +1238,6 @@
     return [NSString stringWithFormat:@"%@%@", @"", num];
 }
 
-- (UIImage *) imageLisence
-{
-    return [self.btnReSubmit imageForState:UIControlStateSelected];
-}
-
 //没有行驶证照片返回NO
 - (BOOL) isHasLisence
 {
@@ -1259,11 +1245,6 @@
         return NO;
     }else
         return YES;
-}
-
-- (UIImage *) imageCert
-{
-    return [self.btnCert imageForState:UIControlStateSelected];
 }
 
 //m

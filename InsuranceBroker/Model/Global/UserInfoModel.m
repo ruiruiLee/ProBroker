@@ -10,6 +10,9 @@
 #import "define.h"
 #import "NetWorkHandler+queryUserInfo.h"
 #import "NetWorkHandler+announcement.h"
+#import <AVOSCloud/AVOSCloud.h>
+#import "AppDelegate.h"
+#import "RootViewController.h"
 
 
 @interface UserInfoModel ()
@@ -192,12 +195,6 @@
     
     self.qrcodeAddr = [dic objectForKey:@"qrcodeAddr"];
     self.monthOrderSuccessNums = [[dic objectForKey:@"monthOrderSuccessNums"] integerValue];
-//    self.orderSuccessNums = [[dic objectForKey:@"orderSuccessNums"] integerValue];
-//    self.monthOrderEarn = [[dic objectForKey:@"monthOrderEarn"] floatValue];
-//    self.orderEarn = [[dic objectForKey:@"orderEarn"] floatValue];
-//    self.redBagId = [dic objectForKey:@"redBagId"];
-//    self.userInviteNums = [[dic objectForKey:@"userInviteNums"] integerValue];
-//    self.userTeamInviteNums = [[dic objectForKey:@"userTeamInviteNums"] integerValue];
     
     self.cardVerifiyMsg = [dic objectForKey:@"cardVerifiyMsg"];
     self.nowMonthOrderSuccessNums = [[dic objectForKey:@"nowMonthOrderSuccessNums"] integerValue];
@@ -220,6 +217,19 @@
     [NetWorkHandler requestToQueryUserInfo:self.userId Completion:^(int code, id content) {
         if(code == 200){
             [self setDetailContentWithDictionary:[content objectForKey:@"data"]];
+        }else if (code == 504){
+            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+            model.isLogin = NO;
+            [[AppContext sharedAppContext] removeData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
+            
+            [AVUser logOut];  //清除缓存用户对象
+            
+            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
+            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
+            [currentInstallation saveInBackground];
+            [self login];
         }
         
         if(self.storeCompletion){
@@ -241,7 +251,6 @@
     [NetWorkHandler requestToAnnouncementNum:self.userId completion:^(int code, id content) {
          completion(code, content);
     }];
-
 }
 
 - (void) loadLastNewsTip
@@ -250,9 +259,38 @@
         if(code == 200){
             AppContext *context = [AppContext sharedAppContext];
             [context SaveNewsTip:[NSArray arrayWithArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
+        }else if (code == 504){
+            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+            model.isLogin = NO;
+            [[AppContext sharedAppContext] removeData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
+            
+            [AVUser logOut];  //清除缓存用户对象
+            
+            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
+            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
+            [currentInstallation saveInBackground];
+            [self login];
         }
     }];
 
+}
+
+#pragma 登录
+- (BOOL) login
+{
+    UserInfoModel *user = [UserInfoModel shareUserInfoModel];
+    if(!user.isLogin){
+        loginViewController *vc = [IBUIFactory CreateLoginViewController];
+        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+        
+        [((AppDelegate*)[UIApplication sharedApplication].delegate).root.navigationController presentViewController:naVC animated:NO completion:nil];
+        //        }
+        return NO;
+    }else{
+        return YES;
+    }
 }
 
 - (void) loadDetail:(Completion) completion
@@ -284,5 +322,6 @@
         [self performSelector:@selector(loadLastNewsTip) withObject:nil afterDelay:0.1];
     }
 }
+
 
 @end

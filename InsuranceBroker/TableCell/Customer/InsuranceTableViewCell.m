@@ -13,6 +13,9 @@
 - (void)awakeFromNib {
     // Initialization code
     [super awakeFromNib];
+    
+    self.imgV1.imageView.contentMode = UIViewContentModeScaleToFill;
+    self.imgV2.imageView.contentMode = UIViewContentModeScaleToFill;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -436,13 +436,13 @@
     else{
         lbTitle.text = @"我的队员";
         imgV.image = ThemeImage(@"my_team");
-        lbAmount.text = [NSString stringWithFormat:@"共%d人", [self.data count]];
+        lbAmount.text = [NSString stringWithFormat:@"共%d人", (int)[self.data count]];
     }
     
     NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbAmount, imgV);
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[imgV(25)]-4-[lbTitle]->=10-[lbAmount]-20-|" options:0 metrics:nil views:views]];
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbTitle(40)]->=0-|" options:0 metrics:nil views:views]];
-    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[imgV(16)]->=0-|" options:0 metrics:nil views:views]];
+    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[imgV(18)]->=0-|" options:0 metrics:nil views:views]];
     [view addConstraint:[NSLayoutConstraint constraintWithItem:lbAmount attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     [view addConstraint:[NSLayoutConstraint constraintWithItem:imgV attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     
