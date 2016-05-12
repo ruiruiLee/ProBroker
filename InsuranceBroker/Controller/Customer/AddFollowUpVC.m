@@ -95,11 +95,11 @@
     
     self.viewHConstraint.constant = ScreenWidth;
     
-    self.tfStatus.placeholder = @"选择最新进展情况";
-    self.tfWay.placeholder = @"选择来源或者跟进方式";
-    self.tfTIme.placeholder = @"选择记录时间";
-    self.tfAdd.placeholder = @"请填写跟进地址或其他线索渠道";
-    self.tfview.placeholder = @"请记录详细进展内容";
+    self.tfStatus.placeholder = @"最新进展情况";
+    self.tfWay.placeholder = @"来源或跟进方式";
+    self.tfTIme.placeholder = @"记录时间";
+    self.tfAdd.placeholder = @"填写地址或线索渠道";
+    self.tfview.placeholder = @"记录详细进展内容";
     self.tfAdd.PlaceholderLabel.textAlignment = NSTextAlignmentRight;
     self.tfview.delegate = self;
     self.tfAdd.delegate = self;
