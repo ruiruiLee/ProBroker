@@ -68,14 +68,14 @@
     self.tfCertNo.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
     if(model.cardNumberImg1 != nil && ![model.cardNumberImg1 isKindOfClass:[NSNull class]]){
-        [self.btnCert1 sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.cardNumberImg1, (int)imageSize.width, (int)imageSize.height)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [self.btnCert1 sd_setBackgroundImageWithURL:[NSURL URLWithString:FormatImage(model.cardNumberImg1, (int)imageSize.width, (int)imageSize.height)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             imgCer1 = image;
         }];
     }else{
         
     }
     if(model.cardNumberImg2 != nil && ![model.cardNumberImg2 isKindOfClass:[NSNull class]]){
-        [self.btnCert2 sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.cardNumberImg2, (int)imageSize.width, (int)imageSize.height)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [self.btnCert2 sd_setBackgroundImageWithURL:[NSURL URLWithString:FormatImage(model.cardNumberImg2, (int)imageSize.width, (int)imageSize.height)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"add_cert") completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             imgCer2 = image;
         }];
     }else{
@@ -285,12 +285,12 @@
         if(currentcertType == enumCertType1){
             imgCer1 = image;
             newimgCer1 = image;
-            [self.btnCert1 setImage: image forState:UIControlStateNormal];
+            [self.btnCert1 setBackgroundImage: image forState:UIControlStateNormal];
         }
         else{
             imgCer2 = image;
             newimgCer2 = image;
-            [self.btnCert2 setImage:image forState:UIControlStateNormal];
+            [self.btnCert2 setBackgroundImage:image forState:UIControlStateNormal];
         }
     }];
     
