@@ -416,6 +416,10 @@
 		86F2DAA61C8595C40088B783 /* BIllDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F2DAA41C8595C40088B783 /* BIllDetailTableViewCell.xib */; };
 		86FC492A1C756ECA0031B435 /* SetTeamLeaderPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */; };
 		86FC492E1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */; };
+		CF2C88CF1CE47FB7001B6FFF /* AppKeFuResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF2C88CA1CE47FB7001B6FFF /* AppKeFuResources.bundle */; };
+		CF2C88D01CE47FB7001B6FFF /* libAppKeFuLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2C88CB1CE47FB7001B6FFF /* libAppKeFuLib.a */; };
+		CF2C88D11CE47FB7001B6FFF /* OnlineCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2C88CD1CE47FB7001B6FFF /* OnlineCustomer.m */; };
+		CF2C88D21CE47FB7001B6FFF /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = CF2C88CE1CE47FB7001B6FFF /* README.md */; };
 		CF608EE71C589C2900DC10CA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EE61C589C2900DC10CA /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CF608EEC1C58A12E00DC10CA /* CMNavBarNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EEB1C58A12E00DC10CA /* CMNavBarNotificationView.m */; };
 		CF608EEF1C58A13900DC10CA /* OBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EEE1C58A13900DC10CA /* OBGradientView.m */; };
@@ -423,10 +427,6 @@
 		CF608EF91C58A43D00DC10CA /* KGStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EF81C58A43D00DC10CA /* KGStatusBar.m */; };
 		CF608EFD1C5A330F00DC10CA /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EFB1C5A330F00DC10CA /* NetManager.m */; };
 		CF677E341C97EB4D00128F1B /* MJBannnerPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF677E331C97EB4D00128F1B /* MJBannnerPlayer.m */; };
-		CF6F36501CD9A1BC00DC95C5 /* OnlineCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF6F364A1CD9A1BC00DC95C5 /* OnlineCustomer.m */; };
-		CF6F36511CD9A1BC00DC95C5 /* libAppKeFuLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF6F364C1CD9A1BC00DC95C5 /* libAppKeFuLib.a */; };
-		CF6F36521CD9A1BC00DC95C5 /* AppKeFuResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF6F364D1CD9A1BC00DC95C5 /* AppKeFuResources.bundle */; };
-		CF6F36531CD9A1BC00DC95C5 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = CF6F364F1CD9A1BC00DC95C5 /* README.md */; };
 		E9335367AF4BBFA55372CBCC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AB914CAC81E099C3474FBB /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -1192,6 +1192,12 @@
 		86FC49281C756ECA0031B435 /* SetTeamLeaderPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTeamLeaderPhoneView.h; sourceTree = "<group>"; };
 		86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTeamLeaderPhoneView.m; sourceTree = "<group>"; };
 		86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetTeamLeaderPhoneView.xib; sourceTree = "<group>"; };
+		CF2C88C91CE47FB7001B6FFF /* AppKeFuLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppKeFuLib.h; sourceTree = "<group>"; };
+		CF2C88CA1CE47FB7001B6FFF /* AppKeFuResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppKeFuResources.bundle; sourceTree = "<group>"; };
+		CF2C88CB1CE47FB7001B6FFF /* libAppKeFuLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppKeFuLib.a; sourceTree = "<group>"; };
+		CF2C88CC1CE47FB7001B6FFF /* OnlineCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineCustomer.h; sourceTree = "<group>"; };
+		CF2C88CD1CE47FB7001B6FFF /* OnlineCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineCustomer.m; sourceTree = "<group>"; };
+		CF2C88CE1CE47FB7001B6FFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CF608EE51C589C2900DC10CA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
 		CF608EE61C589C2900DC10CA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		CF608EEA1C58A12E00DC10CA /* CMNavBarNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMNavBarNotificationView.h; path = pushNotificationView/CMNavBarNotificationView/CMNavBarNotificationView.h; sourceTree = "<group>"; };
@@ -1206,12 +1212,6 @@
 		CF608EFC1C5A330F00DC10CA /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetManager.h; path = Reachability/NetManager.h; sourceTree = "<group>"; };
 		CF677E321C97EB4D00128F1B /* MJBannnerPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJBannnerPlayer.h; sourceTree = "<group>"; };
 		CF677E331C97EB4D00128F1B /* MJBannnerPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJBannnerPlayer.m; sourceTree = "<group>"; };
-		CF6F364A1CD9A1BC00DC95C5 /* OnlineCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnlineCustomer.m; path = AppKeFuLib/OnlineCustomer.m; sourceTree = "<group>"; };
-		CF6F364B1CD9A1BC00DC95C5 /* OnlineCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnlineCustomer.h; path = AppKeFuLib/OnlineCustomer.h; sourceTree = "<group>"; };
-		CF6F364C1CD9A1BC00DC95C5 /* libAppKeFuLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAppKeFuLib.a; path = AppKeFuLib/libAppKeFuLib.a; sourceTree = "<group>"; };
-		CF6F364D1CD9A1BC00DC95C5 /* AppKeFuResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AppKeFuResources.bundle; path = AppKeFuLib/AppKeFuResources.bundle; sourceTree = "<group>"; };
-		CF6F364E1CD9A1BC00DC95C5 /* AppKeFuLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppKeFuLib.h; path = AppKeFuLib/AppKeFuLib.h; sourceTree = "<group>"; };
-		CF6F364F1CD9A1BC00DC95C5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = AppKeFuLib/README.md; sourceTree = "<group>"; };
 		DFE808A7D7A93EC82240AE11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1222,13 +1222,13 @@
 			files = (
 				86A5049C1C4F78B10032A901 /* libiconv.tbd in Frameworks */,
 				86A5049B1C4F76760032A901 /* ContactsUI.framework in Frameworks */,
-				CF6F36511CD9A1BC00DC95C5 /* libAppKeFuLib.a in Frameworks */,
 				86A5043A1C4E37E30032A901 /* MOBFoundation.framework in Frameworks */,
 				86A504381C4E37E30032A901 /* libWeChatSDK.a in Frameworks */,
 				86A26E611C44DAB10073FFFC /* MessageUI.framework in Frameworks */,
 				86A504361C4E37E30032A901 /* TencentOpenAPI.framework in Frameworks */,
 				865066071C1FB36E00429EAE /* AdSupport.framework in Frameworks */,
 				865066051C1FB35E00429EAE /* libz.1.2.5.tbd in Frameworks */,
+				CF2C88D01CE47FB7001B6FFF /* libAppKeFuLib.a in Frameworks */,
 				86A5043C1C4E37E30032A901 /* ShareSDK.framework in Frameworks */,
 				86A5043D1C4E37E30032A901 /* ShareSDKConnector.framework in Frameworks */,
 				865065FD1C1FAE6000429EAE /* libc++.tbd in Frameworks */,
@@ -1372,7 +1372,7 @@
 		865065B51C1EA29900429EAE /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				CF6F36491CD9A1B000DC95C5 /* AppKeFuLib */,
+				CF2C88C81CE47FB7001B6FFF /* AppKeFuLib */,
 				8654CD641C312CE100411C54 /* SBJson */,
 				86C3BC9B1C2E933600F98E80 /* IQKeyBoardManager */,
 				86C3BAFE1C228D6F00F98E80 /* EGOTableViewPullRefresh */,
@@ -2555,6 +2555,19 @@
 			path = DGElasticPullToRefresh;
 			sourceTree = "<group>";
 		};
+		CF2C88C81CE47FB7001B6FFF /* AppKeFuLib */ = {
+			isa = PBXGroup;
+			children = (
+				CF2C88C91CE47FB7001B6FFF /* AppKeFuLib.h */,
+				CF2C88CA1CE47FB7001B6FFF /* AppKeFuResources.bundle */,
+				CF2C88CB1CE47FB7001B6FFF /* libAppKeFuLib.a */,
+				CF2C88CC1CE47FB7001B6FFF /* OnlineCustomer.h */,
+				CF2C88CD1CE47FB7001B6FFF /* OnlineCustomer.m */,
+				CF2C88CE1CE47FB7001B6FFF /* README.md */,
+			);
+			path = AppKeFuLib;
+			sourceTree = "<group>";
+		};
 		CF608EE91C58A11500DC10CA /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -2593,19 +2606,6 @@
 				CF608EF81C58A43D00DC10CA /* KGStatusBar.m */,
 			);
 			name = KGStatusBar;
-			sourceTree = "<group>";
-		};
-		CF6F36491CD9A1B000DC95C5 /* AppKeFuLib */ = {
-			isa = PBXGroup;
-			children = (
-				CF6F364A1CD9A1BC00DC95C5 /* OnlineCustomer.m */,
-				CF6F364B1CD9A1BC00DC95C5 /* OnlineCustomer.h */,
-				CF6F364C1CD9A1BC00DC95C5 /* libAppKeFuLib.a */,
-				CF6F364D1CD9A1BC00DC95C5 /* AppKeFuResources.bundle */,
-				CF6F364E1CD9A1BC00DC95C5 /* AppKeFuLib.h */,
-				CF6F364F1CD9A1BC00DC95C5 /* README.md */,
-			);
-			name = AppKeFuLib;
 			sourceTree = "<group>";
 		};
 		D1F40C377712D00EF47C11DD /* Frameworks */ = {
@@ -2766,6 +2766,7 @@
 				86A5048D1C4F52320032A901 /* BackGroundView.xib in Resources */,
 				865066211C2154C200429EAE /* WebViewController.xib in Resources */,
 				86A26E6E1C44E2CE0073FFFC /* DetailAccountTableViewCell.xib in Resources */,
+				CF2C88CF1CE47FB7001B6FFF /* AppKeFuResources.bundle in Resources */,
 				86C3BB1A1C228D6F00F98E80 /* grayArrow@2x.png in Resources */,
 				86A26E761C44F7BB0073FFFC /* AgentStrategyTableViewCell.xib in Resources */,
 				8625AFD81C34F4DB00312B98 /* IncomeStatisticsVC.xib in Resources */,
@@ -2806,7 +2807,6 @@
 				86C3BCC71C2E933600F98E80 /* IQKeyboardManager.bundle in Resources */,
 				86C3BC2A1C2D389D00F98E80 /* AddFollowUpVC.xib in Resources */,
 				86C3BBC21C297D4900F98E80 /* EditTagVC.xib in Resources */,
-				CF6F36521CD9A1BC00DC95C5 /* AppKeFuResources.bundle in Resources */,
 				86C3BC051C2C205D00F98E80 /* PolicyInfoTableViewCell.xib in Resources */,
 				86A504391C4E37E30032A901 /* read_me.txt in Resources */,
 				86A26EA51C4678110073FFFC /* CustomerDetailVC.xib in Resources */,
@@ -2932,7 +2932,6 @@
 				86CC8C451CB3AE3600362AD0 /* BaseTableViewCell.m in Sources */,
 				86A26E911C45F0970073FFFC /* NetWorkHandler+strategy.m in Sources */,
 				86A504441C4E57910032A901 /* PopView.m in Sources */,
-				CF6F36531CD9A1BC00DC95C5 /* README.md in Sources */,
 				86A5047E1C4F27950032A901 /* qrinput.c in Sources */,
 				86A26E941C4605700073FFFC /* BaseStrategyView.m in Sources */,
 				86B279081CDB6546000E5FAA /* NetWorkHandler+initShorUrl.m in Sources */,
@@ -3039,6 +3038,7 @@
 				86A504EA1C524E8F0032A901 /* OrderDetailWebVC.m in Sources */,
 				8654CD861C312CE100411C54 /* SBJsonStreamWriterState.m in Sources */,
 				868C7CD71C9BE91400B7617A /* CurveSellModel.m in Sources */,
+				CF2C88D21CE47FB7001B6FFF /* README.md in Sources */,
 				86B279011CD31537000E5FAA /* QuickQuoteVC.m in Sources */,
 				86A26E7F1C45184C0073FFFC /* HaedlineModel.m in Sources */,
 				CF677E341C97EB4D00128F1B /* MJBannnerPlayer.m in Sources */,
@@ -3127,7 +3127,6 @@
 				86F2DA8D1C7719D10088B783 /* ProductInfoModel.m in Sources */,
 				86C3BB321C22C45E00F98E80 /* InfoTipsView.m in Sources */,
 				86A26E751C44F7BB0073FFFC /* AgentStrategyTableViewCell.m in Sources */,
-				CF6F36501CD9A1BC00DC95C5 /* OnlineCustomer.m in Sources */,
 				86A26F171C4B5E900073FFFC /* SalesStatisticsVC.m in Sources */,
 				86C3BB111C228D6F00F98E80 /* EGORefreshTableHeaderView.m in Sources */,
 				8625AF7A1C315D6600312B98 /* DeatilTextTableviewCell.m in Sources */,
@@ -3154,6 +3153,7 @@
 				8625B0031C3A998D00312B98 /* NetWorkHandler+queryForPageList.m in Sources */,
 				86A26E3E1C437DD00073FFFC /* NetWorkHandler+getCitys.m in Sources */,
 				86F2DA931C7EDF6A0088B783 /* NetWorkHandler+queryUserTeamInfo.m in Sources */,
+				CF2C88D11CE47FB7001B6FFF /* OnlineCustomer.m in Sources */,
 				86C3BB6B1C242D8D00F98E80 /* HomeVC.m in Sources */,
 				86C3BBA91C28FD4600F98E80 /* UserInfoEditVC.m in Sources */,
 				8625AFAC1C33ACCB00312B98 /* HMPopUpView.m in Sources */,
@@ -3426,7 +3426,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
