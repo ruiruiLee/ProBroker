@@ -55,7 +55,7 @@
     [Util setValueForKeyWithDic:pramas value:visitLon key:@"visitLon"];
     [Util setValueForKeyWithDic:pramas value:visitLat key:@"visitLat"];
     [Util setValueForKeyWithDic:pramas value:visitMemo key:@"visitMemo"];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:visitStatus] key:@"visitStatus"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:visitStatus] key:@"visitStatus"];
     [Util setValueForKeyWithDic:pramas value:visitId key:@"visitId"];
     
     [handle postWithMethod:@"/web/customer/saveOrUpdateCustomerVisits.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];

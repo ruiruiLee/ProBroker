@@ -141,10 +141,10 @@
     
     DictModel *model = [_visitType objectAtIndex:_selectvisitTypeIdx];
     NSString *visitType = model.dictName;
-    NSString *visitTypeId = model.dictId;
+    NSString *visitTypeId = model.dictValue;
     model = [_visitProgress objectAtIndex:_selectVisitProgressIdx];
     NSString *visitProgress = model.dictName;
-    NSString *visitProgressId = model.dictId;
+    NSString *visitProgressId = model.dictValue;
     
     NSString *addr = self.tfAdd.text;
     NSString *visitTime = self.tfTIme.text;
