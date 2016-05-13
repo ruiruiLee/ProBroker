@@ -187,53 +187,16 @@
 
 -(void) doBtnAgreementClicked:(UIButton *)sender
 {
-//    NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, Service_Methord, Care_Agreement];
-//    WebViewController *vc = [[WebViewController alloc] initWithTitle:@"用户协议" url:url];
-//    [self.navigationController pushViewController:vc animated:YES];
+
 }
 
 - (void) loginWithDictionary:(NSDictionary *)dic phone:(NSString *) phone smCode:(NSString *)smCode
 {
-    [NetWorkHandler loginWithPhone:phone openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:[dic objectForKey:@"nickname"] privilege:[dic objectForKey:@"privilege"] unionid:[dic objectForKey:@"unionid"] province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:smCode Completion:^(int code, id content) {
-        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-        if(code == 505){
-            BindPhoneNumVC *vc = [IBUIFactory CreateBindPhoneNumViewController];
-            [self.navigationController pushViewController:vc animated:YES];
-            vc.wxDic = dic;
-        }else if (code == 200){
-            NSDictionary *data = [content objectForKey:@"data"];
-            UserInfoModel *userinfo = [UserInfoModel shareUserInfoModel];
-            userinfo.isLogin = YES;
-            [userinfo setContentWithDictionary:data];
-            [userinfo queryUserInfo];
-            [self handleLeftBarButtonClicked:nil];
-            
-            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
-            [currentInstallation addUniqueObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
-            [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
-            [currentInstallation saveInBackground];
-        }
-        else{
-              [Util showAlertMessage:[content objectForKey:@"msg"]];
-        }
-    }];
 }
 
 - (void) handleLeftBarButtonClicked:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
-    
-//    NSArray *vcarray = self.navigationController.viewControllers;
-//    UIViewController *vc = nil;
-//    for (int i = 0; i < [vcarray count]; i++) {
-//        UIViewController *temp = [vcarray objectAtIndex:i];
-//        if([temp isKindOfClass:[WXLoginVC class]]){
-//            vc = temp;
-//            break;
-//        }
-//    }
-//    
-//    [self.navigationController dismissViewControllerAnimated:vc completion:nil];
 }
 
 @end

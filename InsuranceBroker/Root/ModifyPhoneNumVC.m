@@ -42,20 +42,20 @@
     [AVOSCloud verifySmsCode:smCode mobilePhoneNumber:phone callback:^(BOOL succeeded, NSError *error) {
         if(error == nil){
             [NetWorkHandler requestToModifyuserInfo:user.userId realName:nil userName:nil phone:phone cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:nil Completion:^(int code, id content) {
-                [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-                if(code == 200){
+                 [ProgressHUD dismiss];
+                  if(code == 200){
                     user.phone = phone;
                     [self.navigationController popViewControllerAnimated:YES];
-                }
+                  }else{
+                      [Util showAlertMessage:@"重新绑定号码失败！" ];
+                  }
             }];
         }
         else{
-            
+             [ProgressHUD dismiss];
             long code = [[error.userInfo objectForKey:@"code"] longValue];
             if(code == 603){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"无效的验证码！" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert show];
-                self.tfCaptcha.text = @"";
+                 [Util showAlertMessage:@"无效的验证码！" ];
             }else
                 [Util showAlertMessage:@"网络连接异常，请检查网络设置！" ];
         }
