@@ -25,6 +25,7 @@
 #import "CustomerServiceVC.h"
 #import "ServiceSelectView.h"
 #import "OnlineCustomer.h"
+#import "UIScrollView+JElasticPullToRefresh.h"
 
 @interface HomeVC ()<MJBannnerPlayerDeledage, PopViewDelegate>
 {
@@ -53,6 +54,7 @@
 @synthesize imgBroker;
 @synthesize imgService;
 @synthesize btnCarLife;
+@synthesize scroll;
 
 - (void) dealloc
 {
@@ -114,7 +116,7 @@
     UIImage *imgNormal = nil;
     
     //整个视图的
-    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectZero];
+    scroll = [[UIScrollView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:scroll];
     scroll.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -294,37 +296,41 @@
     [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnDetail]-0-|" options:0 metrics:nil views:views]];
     [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnCarLife]-0-|" options:0 metrics:nil views:views]];
     [infoBg addConstraint:[NSLayoutConstraint constraintWithItem:btnDetail attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnCarLife attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
-}
-
-# pragma mark - Custom view configuration
-
-- (void) config
-{
-    self.scrollview.delegate = self;
-    /* Refresh View */
-    refreshView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, -self.view.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height)];
-    refreshView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
-    refreshView.delegate = self;
-    [self.scrollview addSubview:refreshView];
     
+    JElasticPullToRefreshLoadingViewCircle *loadingViewCircle = [[JElasticPullToRefreshLoadingViewCircle alloc] init];
+    loadingViewCircle.tintColor = [UIColor whiteColor];
+    
+    __weak __typeof(self)weakSelf = self;
+    [self.scroll addJElasticPullToRefreshViewWithActionHandler:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf egoRefreshTableHeaderDidTriggerRefresh:nil];
+        });
+    } LoadingView:loadingViewCircle];
+    [self.scroll setJElasticPullToRefreshFillColor:[UIColor clearColor]];
+    [self.scroll setJElasticPullToRefreshBackgroundColor:[UIColor clearColor]];
+    
+    self.scroll.delegate = self;
 }
 
+#pragma mark - EGORefreshTableHeaderDelegate
 
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
+{
+    //    [pullDelegate pullTableViewDidTriggerRefresh:self];
+    [self loadDatas];
+}
 
 - (void) loadDatas
 {
     [NetWorkHandler requestToIndex:^(int code, id content) {
-        [refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.scrollview];
+        [self.scroll stopLoading];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             NSDictionary *d = [content objectForKey:@"data"];
             _adArray = [PosterModel modelArrayFromArray:[d objectForKey:@"poster"]];
             _headlineArray = [HeadlineModel modelArrayFromArray:[d objectForKey:@"headlines"]];
             _newUserModel = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"newUser"]];
-//            _liPeiChuXian = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"liPeiChuXian"]];
             _jiHuaShu = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"jiHuaShu"]];
-//            _duSheBaoXian = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"duSheBaoXian"]];
-//            _chengGongZhiLu = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"chengGongZhiLu"]];
             _quoteUrl = [d objectForKey:@"quoteUrl"];
             appdelegate.customerBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"customerBanner"]];
             appdelegate.workBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"workBanner"]];
@@ -654,42 +660,6 @@
     [self.navigationController pushViewController:web animated:YES];
     
     [web loadHtmlFromUrlWithUserId:_quoteUrl];
-}
-
-#pragma mark - EGORefreshTableHeaderDelegate
-
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
-{
-//    [pullDelegate pullTableViewDidTriggerRefresh:self];
-    [self loadDatas];
-}
-
-//- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view {
-//    return self.pullLastRefreshDate;
-//}
-
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    
-    [refreshView egoRefreshScrollViewDidScroll:scrollView];
-    
-    // Also forward the message to the real delegate
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    
-    [refreshView egoRefreshScrollViewDidEndDragging:scrollView];
-    
-    // Also forward the message to the real delegate
-}
-
-- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    [refreshView egoRefreshScrollViewWillBeginDragging:scrollView];
-    
-    // Also forward the message to the real delegate
 }
 
 @end

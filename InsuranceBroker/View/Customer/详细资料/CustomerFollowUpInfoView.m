@@ -87,6 +87,8 @@
     }
     else if ([model.visitTypeId isEqualToString:@"7"]){
         cell.logoImgV.image = ThemeImage(@"others_talk");
+    }else if ([model.visitTypeId isEqualToString:@"9"]){
+        cell.logoImgV.image = ThemeImage(@"wechat_pengyouquan");
     }
     
     

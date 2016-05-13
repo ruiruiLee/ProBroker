@@ -12,13 +12,11 @@
 #import "LeftImgButton.h"
 #import "MJBannnerPlayer.h"
 #import "NewUserModel.h"
-#import "EGORefreshTableHeaderView.h"
 #import "AnnouncementModel.h"
 #import "SepLineButton.h"
 
-@interface HomeVC : BaseViewController<HeadlineViewDelegate, EGORefreshTableHeaderDelegate, UIScrollViewDelegate>
+@interface HomeVC : BaseViewController<HeadlineViewDelegate, UIScrollViewDelegate>
 {
-    EGORefreshTableHeaderView *refreshView;
     //ad
     NSArray *_adArray;
     //headline
@@ -34,6 +32,8 @@
 }
 
 @property (nonatomic, strong) UIScrollView *scrollview;
+
+@property (nonatomic, strong) UIScrollView *scroll;//背景scroll；
 
 @property (nonatomic, strong) HeadlineView *headline;
 //@property (nonatomic, strong) UIView *adView;
