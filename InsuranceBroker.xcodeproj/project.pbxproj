@@ -419,7 +419,6 @@
 		CF2C88CF1CE47FB7001B6FFF /* AppKeFuResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF2C88CA1CE47FB7001B6FFF /* AppKeFuResources.bundle */; };
 		CF2C88D01CE47FB7001B6FFF /* libAppKeFuLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2C88CB1CE47FB7001B6FFF /* libAppKeFuLib.a */; };
 		CF2C88D11CE47FB7001B6FFF /* OnlineCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2C88CD1CE47FB7001B6FFF /* OnlineCustomer.m */; };
-		CF2C88D21CE47FB7001B6FFF /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = CF2C88CE1CE47FB7001B6FFF /* README.md */; };
 		CF608EE71C589C2900DC10CA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EE61C589C2900DC10CA /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CF608EEC1C58A12E00DC10CA /* CMNavBarNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EEB1C58A12E00DC10CA /* CMNavBarNotificationView.m */; };
 		CF608EEF1C58A13900DC10CA /* OBGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EEE1C58A13900DC10CA /* OBGradientView.m */; };
@@ -1202,7 +1201,6 @@
 		CF2C88CB1CE47FB7001B6FFF /* libAppKeFuLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppKeFuLib.a; sourceTree = "<group>"; };
 		CF2C88CC1CE47FB7001B6FFF /* OnlineCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineCustomer.h; sourceTree = "<group>"; };
 		CF2C88CD1CE47FB7001B6FFF /* OnlineCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineCustomer.m; sourceTree = "<group>"; };
-		CF2C88CE1CE47FB7001B6FFF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CF608EE51C589C2900DC10CA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
 		CF608EE61C589C2900DC10CA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Reachability/Reachability.m; sourceTree = "<group>"; };
 		CF608EEA1C58A12E00DC10CA /* CMNavBarNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CMNavBarNotificationView.h; path = pushNotificationView/CMNavBarNotificationView/CMNavBarNotificationView.h; sourceTree = "<group>"; };
@@ -2573,7 +2571,6 @@
 				CF2C88CB1CE47FB7001B6FFF /* libAppKeFuLib.a */,
 				CF2C88CC1CE47FB7001B6FFF /* OnlineCustomer.h */,
 				CF2C88CD1CE47FB7001B6FFF /* OnlineCustomer.m */,
-				CF2C88CE1CE47FB7001B6FFF /* README.md */,
 			);
 			path = AppKeFuLib;
 			sourceTree = "<group>";
@@ -3046,7 +3043,6 @@
 				86A504EA1C524E8F0032A901 /* OrderDetailWebVC.m in Sources */,
 				8654CD861C312CE100411C54 /* SBJsonStreamWriterState.m in Sources */,
 				868C7CD71C9BE91400B7617A /* CurveSellModel.m in Sources */,
-				CF2C88D21CE47FB7001B6FFF /* README.md in Sources */,
 				86B279011CD31537000E5FAA /* QuickQuoteVC.m in Sources */,
 				86A26E7F1C45184C0073FFFC /* HaedlineModel.m in Sources */,
 				CF677E341C97EB4D00128F1B /* MJBannnerPlayer.m in Sources */,

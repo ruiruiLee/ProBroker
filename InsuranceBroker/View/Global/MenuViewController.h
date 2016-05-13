@@ -25,7 +25,7 @@
 @property (nonatomic, strong) UIView *headView;
 @property (nonatomic, strong) UILabel *lbTitle;
 @property (nonatomic, assign) NSInteger tag;
-@property (nonatomic, strong) NSString *title;
+@property (nonatomic, copy) NSString *title;
 
 @property (nonatomic, assign) NSInteger selectIdx;
 
