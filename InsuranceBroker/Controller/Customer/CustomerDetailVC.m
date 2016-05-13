@@ -431,8 +431,8 @@
         case 103:
         {
             [self focusLineMovieTo:CGRectMake(ScreenWidth /3, frame.origin.y, ScreenWidth /3, 3)];
-            _insuranceView.lbTitle.text = @"跟进信息";
-            _insuranceView.lbExplain.text = @"暂无新的跟进信息，请添加";
+            _insuranceView.lbTitle.text = @"线索进展";
+            _insuranceView.lbExplain.text = @"暂无新的线索进展，请添加";
             _insuranceView.btnAdd.hidden = NO;
             _followUpView.hidden = NO;
             _insuranceView.type = enumInsuranceInfoViewTypeFollowUp;

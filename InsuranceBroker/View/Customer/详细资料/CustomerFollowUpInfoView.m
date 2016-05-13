@@ -19,7 +19,7 @@
     self = [super initWithFrame:frame];
     if(self){
         [self.tableview registerNib:[UINib nibWithNibName:@"CustomerFollowUpTableCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-        self.lbTitle.text = @"跟进信息";
+        self.lbTitle.text = @"线索进展";
         [self.btnEdit setImage:ThemeImage(@"add_icon") forState:UIControlStateNormal];
         [self.btnEdit setTitle:@"新增" forState:UIControlStateNormal];
         [self.btnEdit setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];
