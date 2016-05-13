@@ -1,5 +1,5 @@
 platform :ios, '7.0'
-pod 'AFNetworking', '~>2.6.3'
+pod 'AFNetworking'
 pod 'AVOSCloudSNS'
 pod 'AVOSCloud'
 pod 'Mantle'

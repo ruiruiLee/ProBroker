@@ -281,7 +281,7 @@
 //        else{
 //            
 //        }
-        [NetWorkHandler requestToModifyuserInfo:model.userId realName:nil userName:nil phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:[NSString stringWithFormat:@"%d", buttonIndex + 1] headerImg:nil Completion:^(int code, id content) {
+        [NetWorkHandler requestToModifyuserInfo:model.userId realName:nil userName:nil phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:[NSString stringWithFormat:@"%ld", buttonIndex + 1] headerImg:nil Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
                 model.sex = buttonIndex + 1;

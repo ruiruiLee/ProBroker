@@ -115,7 +115,6 @@
             }
             else{
                 [Util showAlertMessage:[content objectForKey:@"msg"]];
-               // [KGStatusBar showErrorWithStatus:[content objectForKey:@"msg"]];
             }
           }
     }];

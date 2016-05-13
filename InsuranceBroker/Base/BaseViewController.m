@@ -206,34 +206,34 @@
 //处理返回数据
 - (BOOL) handleResponseWithCode:(NSInteger) code msg:(NSString *)msg
 {
-    BOOL result = YES;
-    if(code != 200){
-        if (code == 504){   // 需要重新登陆，服务器端过期失效
-            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            model.isLogin = NO;
-            [[AppContext sharedAppContext] removeData];
-            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
-            
-            [AVUser logOut];  //清除缓存用户对象
-            
-            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
-            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
-            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
-            [currentInstallation saveInBackground];
-            [self login];
-        }
-        else if (code == 505)
-        {}
-        else if(code<0){
-          //[KGStatusBar showErrorWithStatus:@"无法连接网络，请稍后再试！"];
-        }
-        else{
-             if(msg.length>0)
-               [KGStatusBar showErrorWithStatus:msg];
-          }
-            result = NO;
-    }
-    return result;
+//    BOOL result = YES;
+//    if(code != 200){
+//        if (code == 504){   // 需要重新登陆，服务器端过期失效
+//            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+//            model.isLogin = NO;
+//            [[AppContext sharedAppContext] removeData];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
+//            
+//            [AVUser logOut];  //清除缓存用户对象
+//            
+//            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+//            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
+//            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
+//            [currentInstallation saveInBackground];
+//            [self login];
+//        }
+//        else if (code == 505)
+//        {}
+//        else if(code<0){
+//          //[KGStatusBar showErrorWithStatus:@"无法连接网络，请稍后再试！"];
+//        }
+//        else{
+//             if(msg.length>0)
+//               [KGStatusBar showErrorWithStatus:msg];
+//          }
+//            result = NO;
+//    }
+    return YES;
 }
 
 //show loading洁面

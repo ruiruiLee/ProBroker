@@ -159,7 +159,7 @@
     
     NSString *verifyCode = _tfCaptcha.text;
     NSString *phone = _tfMobile.text;
-    [ProgressHUD show:@"登陆中..."];
+    [ProgressHUD show:nil];
     [self loginWithDictionary:self.wxDic phone:phone smCode:verifyCode];
 }
 
@@ -174,7 +174,7 @@
 - (void)timerObserver
 {
     _count --;
-    [_btnGetCaptcha setTitle:[NSString stringWithFormat:@"%d秒", _count] forState:UIControlStateNormal];
+    [_btnGetCaptcha setTitle:[NSString stringWithFormat:@"%ld秒", (long)_count] forState:UIControlStateNormal];
     if(_count == 0){
         [_timerOutTimer invalidate];
         [_btnGetCaptcha setTitle:@"重取验证码" forState:UIControlStateNormal];
@@ -212,6 +212,9 @@
             [currentInstallation addUniqueObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
             [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
             [currentInstallation saveInBackground];
+        }
+        else{
+              [Util showAlertMessage:[content objectForKey:@"msg"]];
         }
     }];
 }
