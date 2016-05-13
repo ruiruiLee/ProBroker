@@ -195,7 +195,8 @@
 - (void) loginWithDictionary:(NSDictionary *)dic phone:(NSString *) phone smCode:(NSString *)smCode
 {
     [NetWorkHandler loginWithPhone:phone openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:[dic objectForKey:@"nickname"] privilege:[dic objectForKey:@"privilege"] unionid:[dic objectForKey:@"unionid"] province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:smCode Completion:^(int code, id content) {
-        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+        //[self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+         [ProgressHUD dismiss];
         if(code == 505){
             BindPhoneNumVC *vc = [IBUIFactory CreateBindPhoneNumViewController];
             [self.navigationController pushViewController:vc animated:YES];
