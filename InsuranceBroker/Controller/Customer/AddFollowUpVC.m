@@ -98,7 +98,7 @@
     self.tfStatus.placeholder = @"最新进展情况";
     self.tfWay.placeholder = @"来源或跟进方式";
     self.tfTIme.placeholder = @"记录时间";
-    self.tfAdd.placeholder = @"填写地址或线索渠道";
+    self.tfAdd.placeholder = @"填写跟进地点或线索渠道";
     self.tfview.placeholder = @"记录详细进展内容";
     self.tfAdd.PlaceholderLabel.textAlignment = NSTextAlignmentRight;
     self.tfview.delegate = self;
@@ -135,7 +135,7 @@
     }
     if(_selectvisitTypeIdx == -1)
     {
-        [Util showAlertMessage:@"请选择来源.方式"];
+        [Util showAlertMessage:@"请选择线索来源或跟进方式"];
         return;
     }
     
@@ -198,7 +198,7 @@
         _menuView.selectIdx = _selectvisitTypeIdx;
         _menuView.titleArray = self.visitType;
         _menuView.tag = 101;
-        _menuView.title = @"来源.方式";
+        _menuView.title = @"线索跟进";
     }
     [_menuView show:self.view];
     
