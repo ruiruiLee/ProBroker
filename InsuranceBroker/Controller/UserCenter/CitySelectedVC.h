@@ -15,4 +15,8 @@
 
 @property (nonatomic, strong) ProviendeModel *proviendemodel;
 
+@property (nonatomic, strong) NSArray *data;
+
+- (void) modifyAddress:(CityModel *)citymodel;
+
 @end

@@ -15,11 +15,6 @@
 #import "BaseTableViewCell.h"
 
 @interface CitySelectedVC ()
-{
-    NSArray *data;
-}
-
-@property (nonatomic, strong) NSArray *data;
 
 @end
 

@@ -10,4 +10,6 @@
 
 @interface AreaSelectedVC : BaseTableViewController
 
+@property (nonatomic, strong) NSArray *data;
+
 @end

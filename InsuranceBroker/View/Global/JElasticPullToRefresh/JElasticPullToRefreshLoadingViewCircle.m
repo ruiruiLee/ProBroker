@@ -44,11 +44,11 @@ static NSString *const RotationAnimation = @"RotationAnimation";
 
     if (self) {
         
-        grayHead = [[UIImageView alloc] initWithFrame:CGRectMake(-15, 2, 30, 20)];
+        grayHead = [[UIImageView alloc] initWithFrame:CGRectMake(-7, 2, 30, 20)];
         [self addSubview:grayHead];
         grayHead.image = [UIImage imageNamed:@"normal_logo1"];
         
-        greenHead = [[UIImageView alloc] initWithFrame:CGRectMake(-15, 2, 30, 20)];
+        greenHead = [[UIImageView alloc] initWithFrame:CGRectMake(-7, 2, 30, 20)];
         [self addSubview:greenHead];
         greenHead.image = [UIImage imageNamed:@"select_logo1"];
         

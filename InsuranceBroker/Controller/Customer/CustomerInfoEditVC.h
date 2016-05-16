@@ -10,8 +10,10 @@
 #import "TagListView.h"
 #import "OnwerTagView.h"
 #import "CustomerDetailModel.h"
+#import "SelectAreaModel.h"
 
-@interface CustomerInfoEditVC : BaseViewController<TagListViewDelegate, OnwerTagViewDelegate, UITextFieldDelegate>
+@interface CustomerInfoEditVC : BaseViewController<TagListViewDelegate, OnwerTagViewDelegate, UITextFieldDelegate, UIActionSheetDelegate>
+
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewHConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *tagVConstraint;
@@ -22,11 +24,25 @@
 @property (nonatomic, strong) IBOutlet TagListView *tagView;
 @property (nonatomic, strong) IBOutlet OnwerTagView *onwerTag;
 
+//add
+@property (nonatomic, strong) IBOutlet UITextField *tfEmail;
+@property (nonatomic, strong) IBOutlet UITextField *tfDetailAddr;
+@property (nonatomic, strong) IBOutlet UITextField *tfRemarks;
+@property (nonatomic, strong) IBOutlet UITextField *tfAddr;
+@property (nonatomic, strong) IBOutlet UITextField *tfSex;
+
+@property (nonatomic, strong) NSString *sex;
+
 @property (nonatomic, strong) CustomerDetailModel *data;
+
+@property (nonatomic, strong) SelectAreaModel *selectArea;
 
 - (BOOL) isHasModify;
 - (NSArray *) tagModelArrayFromIdAndName;
 - (void) updateOrAddLabelInfo;
 - (NSString *) formatPhoneNum:(NSString *) phoneNum;
+
+- (IBAction)doBtnSelectSex:(id)sender;
+- (IBAction)doBtnSelectArea:(id)sender;
 
 @end
