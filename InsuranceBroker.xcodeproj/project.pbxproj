@@ -12,6 +12,9 @@
 		8612F4151CE4828D0045340F /* JElasticPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40E1CE4828D0045340F /* JElasticPullToRefreshView.m */; };
 		8612F4161CE4828D0045340F /* UIScrollView+JElasticPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4101CE4828D0045340F /* UIScrollView+JElasticPullToRefresh.m */; };
 		8612F4171CE4828D0045340F /* UIView+JElasticPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4121CE4828D0045340F /* UIView+JElasticPullToRefresh.m */; };
+		8612F4221CE9B5F90045340F /* ProvienceSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4211CE9B5F90045340F /* ProvienceSelectVC.m */; };
+		8612F4251CE9B6270045340F /* CustomerCitySelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4241CE9B6270045340F /* CustomerCitySelectVC.m */; };
+		8612F4281CE9BBA50045340F /* SelectAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4271CE9BBA50045340F /* SelectAreaModel.m */; };
 		861DF93B1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF93A1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m */; };
 		861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF93D1CA4E40D00FB58B1 /* RatioMapsModel.m */; };
 		861DF9411CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF9401CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m */; };
@@ -460,6 +463,12 @@
 		8612F4101CE4828D0045340F /* UIScrollView+JElasticPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+JElasticPullToRefresh.m"; sourceTree = "<group>"; };
 		8612F4111CE4828D0045340F /* UIView+JElasticPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JElasticPullToRefresh.h"; sourceTree = "<group>"; };
 		8612F4121CE4828D0045340F /* UIView+JElasticPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JElasticPullToRefresh.m"; sourceTree = "<group>"; };
+		8612F4201CE9B5F90045340F /* ProvienceSelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvienceSelectVC.h; sourceTree = "<group>"; };
+		8612F4211CE9B5F90045340F /* ProvienceSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvienceSelectVC.m; sourceTree = "<group>"; };
+		8612F4231CE9B6270045340F /* CustomerCitySelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCitySelectVC.h; sourceTree = "<group>"; };
+		8612F4241CE9B6270045340F /* CustomerCitySelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCitySelectVC.m; sourceTree = "<group>"; };
+		8612F4261CE9BBA50045340F /* SelectAreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectAreaModel.h; sourceTree = "<group>"; };
+		8612F4271CE9BBA50045340F /* SelectAreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectAreaModel.m; sourceTree = "<group>"; };
 		861DF9391CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+updateUserRemarkName.h"; sourceTree = "<group>"; };
 		861DF93A1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateUserRemarkName.m"; sourceTree = "<group>"; };
 		861DF93C1CA4E40D00FB58B1 /* RatioMapsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatioMapsModel.h; sourceTree = "<group>"; };
@@ -2120,8 +2129,12 @@
 				8625AFA41C32B15000312B98 /* RealNameAuthenticationVC.xib */,
 				8625AFAF1C33BAA800312B98 /* AreaSelectedVC.h */,
 				8625AFB01C33BAA800312B98 /* AreaSelectedVC.m */,
+				8612F4201CE9B5F90045340F /* ProvienceSelectVC.h */,
+				8612F4211CE9B5F90045340F /* ProvienceSelectVC.m */,
 				8625AFBB1C33D76F00312B98 /* CitySelectedVC.h */,
 				8625AFBC1C33D76F00312B98 /* CitySelectedVC.m */,
+				8612F4231CE9B6270045340F /* CustomerCitySelectVC.h */,
+				8612F4241CE9B6270045340F /* CustomerCitySelectVC.m */,
 				8625AFEC1C38FF9E00312B98 /* IncomeWithdrawVC.h */,
 				8625AFED1C38FF9E00312B98 /* IncomeWithdrawVC.m */,
 				8625AFEE1C38FF9E00312B98 /* IncomeWithdrawVC.xib */,
@@ -2200,6 +2213,8 @@
 				86A504211C4D04970032A901 /* OffersModel.m */,
 				86A26EBC1C47CF1A0073FFFC /* InsuranceCompanyModel.h */,
 				86A26EBD1C47CF1A0073FFFC /* InsuranceCompanyModel.m */,
+				8612F4261CE9BBA50045340F /* SelectAreaModel.h */,
+				8612F4271CE9BBA50045340F /* SelectAreaModel.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -3015,6 +3030,7 @@
 				CF608EFD1C5A330F00DC10CA /* NetManager.m in Sources */,
 				8625AF861C32319300312B98 /* UserSettingVC.m in Sources */,
 				86C3BB711C242E2B00F98E80 /* WorkMainVC.m in Sources */,
+				8612F4281CE9BBA50045340F /* SelectAreaModel.m in Sources */,
 				8625F8F71C897728001569BE /* SalesStatisticsModel.m in Sources */,
 				8625AF941C32862C00312B98 /* QRCodeVC.m in Sources */,
 				86C3BB121C228D6F00F98E80 /* LoadMoreTableFooterView.m in Sources */,
@@ -3129,6 +3145,7 @@
 				868C7CC31C969AC600B7617A /* HBImageViewList.m in Sources */,
 				86A26E711C44F5E10073FFFC /* AgentStrategyViewController.m in Sources */,
 				86F2DA991C7EF6030088B783 /* ParentInfoModel.m in Sources */,
+				8612F4221CE9B5F90045340F /* ProvienceSelectVC.m in Sources */,
 				86A504BD1C50820B0032A901 /* NetWorkHandler+getRedPack.m in Sources */,
 				86F2DA8D1C7719D10088B783 /* ProductInfoModel.m in Sources */,
 				86C3BB321C22C45E00F98E80 /* InfoTipsView.m in Sources */,
@@ -3181,6 +3198,7 @@
 				86A504E71C52165F0032A901 /* RedPackTasksInfoTips.m in Sources */,
 				86A26EEA1C4905210073FFFC /* CustomerTagTableCell.m in Sources */,
 				861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */,
+				8612F4251CE9B6270045340F /* CustomerCitySelectVC.m in Sources */,
 				86C3BC1B1C2CE0EB00F98E80 /* CustomerFollowUpInfoView.m in Sources */,
 				86A26EA01C4666850073FFFC /* InsurOffersInfoModel.m in Sources */,
 				86493FFC1C745E1300121BD1 /* SJAvatarBrowser.m in Sources */,

@@ -11,6 +11,7 @@
 #import "NetWorkHandler+queryForLabelPageList.h"
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
 #import "TagObjectModel.h"
+#import "ProvienceSelectVC.h"
 
 @interface CustomerInfoEditVC ()
 
@@ -374,6 +375,51 @@
     mobile = [Util formatPhoneNum:mobile];
     
     return mobile;
+}
+
+#pragma ACTION
+- (IBAction)doBtnSelectSex:(id)sender
+{
+    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"选择性别" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"男" otherButtonTitles:@"女", nil];
+    [action showInView:self.view];
+    action.tag = 1000;
+}
+
+- (IBAction)doBtnSelectArea:(id)sender
+{
+    ProvienceSelectVC *vc = [[ProvienceSelectVC alloc] initWithNibName:nil bundle:nil];
+    if(!self.selectArea){
+        SelectAreaModel *model = [[SelectAreaModel alloc] init];
+        model.liveProvinceId = self.data.liveProvinceId;
+        model.liveProvince = self.data.liveProvinceId;
+        model.liveCityId = self.data.liveCityId;
+        model.liveCity = self.data.liveCityId;
+        vc.selectArea = model;
+    }else
+    {
+        vc.selectArea = self.selectArea;
+    }
+    
+    vc._edit = self;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark- UIActionSheetDelegate
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+
+    if(actionSheet.tag == 1000){
+        if(buttonIndex == 0){
+            self.tfSex.text = @"男";
+            _sex = @"1";
+        }
+        else if (buttonIndex == 1){
+            self.tfSex.text = @"女";
+            _sex = @"2";
+        }else
+            _sex = nil;
+    }
 }
 
 @end
