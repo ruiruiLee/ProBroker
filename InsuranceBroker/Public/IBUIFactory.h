@@ -33,6 +33,8 @@
 #import "UserDetailVC.h"
 #import "TeamMateIncomeStatisticsVC.h"
 #import "QuickQuoteVC.h"
+#import "InsuredUserInfoEditVC.h"
+#import "EditInsuredUserInfoVC.h"
 
 @interface IBUIFactory : NSObject
 
@@ -87,5 +89,9 @@
 + (TeamMateIncomeStatisticsVC *) CreateTeamMateIncomeStatisticsVC;
 
 + (QuickQuoteVC *) CreateQuickQuoteVC;
+
++ (InsuredUserInfoEditVC *) CreateInsuredUserInfoEditVC;
+
++ (EditInsuredUserInfoVC *) CreateEditInsuredUserInfoVC;
 
 @end

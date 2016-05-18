@@ -14,13 +14,110 @@
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "SepLineLabel.h"
+#import "InsuredUserInfoModel.h"
+
+
+#define CELL_HEIGHT  56
 
 @implementation InsuranceDetailView
+@synthesize tableviewNoCar;
 
 - (id) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if(self){
+        
+        _selectIdx = 0;
+        //非车险部分
+        
+        UIView *sepView = [[UIView alloc] initWithFrame:CGRectZero];
+        sepView.translatesAutoresizingMaskIntoConstraints = NO;
+        sepView.backgroundColor = SepLine_color;
+        [self addSubview:sepView];
+        
+        UILabel *lbTitleNoCar = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
+        [self addSubview:lbTitleNoCar];
+        lbTitleNoCar.text = @"个险资料";
+        
+        LeftImgButton *btnEditNoCar = [[LeftImgButton alloc] initWithFrame:CGRectZero];
+        [self addSubview:btnEditNoCar];
+        btnEditNoCar.translatesAutoresizingMaskIntoConstraints = NO;
+        [btnEditNoCar addTarget:self action:@selector(doEditButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        btnEditNoCar.titleLabel.font = _FONT(15);
+        [btnEditNoCar setTitle:@"添加被保人" forState:UIControlStateNormal];
+        [btnEditNoCar setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];
+        [btnEditNoCar setImage:ThemeImage(@"add_icon") forState:UIControlStateNormal];
+        
+        UIButton *btnClickedNoCar = [[UIButton alloc] initWithFrame:CGRectZero];
+        [self addSubview:btnClickedNoCar];
+        btnClickedNoCar.translatesAutoresizingMaskIntoConstraints = NO;
+        [btnClickedNoCar addTarget:self action:@selector(doBtnAddInsurInfo:) forControlEvents:UIControlEventTouchUpInside];
+        btnClickedNoCar.backgroundColor = [UIColor clearColor];
+        
+        SepLineLabel *lbSepLineNoCar = [[SepLineLabel alloc] initWithFrame:CGRectZero];//[ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
+        lbSepLineNoCar.translatesAutoresizingMaskIntoConstraints = NO;
+        [self addSubview:lbSepLineNoCar];
+        lbSepLineNoCar.backgroundColor = [UIColor clearColor];
+        
+        tableviewNoCar = [[UITableView alloc] initWithFrame:CGRectZero];
+        [self addSubview:tableviewNoCar];
+        tableviewNoCar.delegate = self;
+        tableviewNoCar.dataSource = self;
+        self.tableviewNoCar.scrollEnabled = NO;
+        tableviewNoCar.translatesAutoresizingMaskIntoConstraints = NO;
+        [tableviewNoCar registerNib:[UINib nibWithNibName:@"InsureInfoListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
+        tableviewNoCar.backgroundColor = [UIColor clearColor];
+        
+        UIButton *btnApplicant = [[UIButton alloc] init];
+        [self addSubview:btnApplicant];
+        [btnApplicant setTitle:@"立即\n投保" forState:UIControlStateNormal];
+        btnApplicant.translatesAutoresizingMaskIntoConstraints = NO;
+        btnApplicant.layer.cornerRadius = 24;
+        btnApplicant.backgroundColor = _COLOR(0xff, 0x66, 0x19);
+        btnApplicant.titleLabel.font = _FONT_B(14);
+        btnApplicant.titleLabel.numberOfLines = 2;
+        btnApplicant.titleLabel.textAlignment = NSTextAlignmentCenter;
+        btnApplicant.layer.shadowColor = _COLOR(0xff, 0x66, 0x19).CGColor;
+        btnApplicant.layer.shadowOffset = CGSizeMake(0, 0);
+        btnApplicant.layer.shadowOpacity = 0.5;
+        btnApplicant.layer.shadowRadius = 1;
+        [btnApplicant addTarget:self action:@selector(doBtnInsurPlan:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UITableView *tableview = self.tableview;
+        UILabel *lbTitleCar = self.lbTitle;
+        UILabel *lbSepLine = self.lbSepLine;
+        NSDictionary *views1 = NSDictionaryOfVariableBindings(sepView, lbTitleNoCar, btnClickedNoCar, lbSepLineNoCar, tableviewNoCar, tableview, lbTitleCar, lbSepLine, btnEditNoCar, btnApplicant);
+        [self removeConstraints:self.contentVConstraint];
+        self.contentVConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[lbTitleCar(15)]-10-[lbSepLine(1)]-0-[tableview]-0-[sepView(15)]-30-[lbTitleNoCar(15)]-10-[lbSepLineNoCar(1)]-0-[tableviewNoCar]-10-[btnApplicant(48)]-20-|" options:0 metrics:nil views:views1];
+        [self addConstraints:self.contentVConstraint];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnApplicant(48)]->=0-|" options:0 metrics:nil views:views1]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[sepView]-0-|" options:0 metrics:nil views:views1]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitleNoCar]->=10-[btnEditNoCar]-20-|" options:0 metrics:nil views:views1]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbSepLineNoCar]-20-|" options:0 metrics:nil views:views1]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tableviewNoCar]-0-|" options:0 metrics:nil views:views1]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnEditNoCar(30)]->=0-|" options:0 metrics:nil views:views1]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnClickedNoCar(40)]->=0-|" options:0 metrics:nil views:views1]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnClickedNoCar]-20-|" options:0 metrics:nil views:views1]];
+        
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:btnEditNoCar attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitleNoCar attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+        [self addConstraint:[NSLayoutConstraint constraintWithItem:btnClickedNoCar attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitleNoCar attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+        self.editHConstraint = [NSLayoutConstraint constraintWithItem:btnEditNoCar attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:100];
+        [self addConstraint:self.editHConstraint];
+        
+        self.tableVConstraint = [NSLayoutConstraint constraintWithItem:tableviewNoCar attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
+        [self addConstraint:self.tableVConstraint];
+        
+        UIEdgeInsets insets = UIEdgeInsetsMake(0, 20, 0, 20);
+        self.tableviewNoCar.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.tableviewNoCar.separatorColor = SepLineColor;
+        if ([self.tableviewNoCar respondsToSelector:@selector(setSeparatorInset:)]) {
+            [self.tableviewNoCar setSeparatorInset:insets];
+        }
+        if ([self.tableviewNoCar respondsToSelector:@selector(setLayoutMargins:)]) {
+            [self.tableviewNoCar setLayoutMargins:insets];
+        }
+
+        
         [self.tableview registerNib:[UINib nibWithNibName:@"InsuranceTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
         self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.lbTitle.text = @"车险资料";
@@ -30,6 +127,7 @@
         self.btnHConstraint.constant = 54;
         
         _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, INTMAX_MAX)];
+        _footView.backgroundColor = [UIColor clearColor];
         
         UIView *bgview = [[UIView alloc] initWithFrame:CGRectZero];
         [_footView addSubview:bgview];
@@ -57,7 +155,7 @@
         _contentView = [[UIView alloc] initWithFrame:CGRectZero];
         _contentView.translatesAutoresizingMaskIntoConstraints = NO;
         [_footView addSubview:_contentView];
-        _contentView.backgroundColor = [UIColor whiteColor];
+        _contentView.backgroundColor = [UIColor clearColor];
         _contentView.clipsToBounds = YES;
         
         
@@ -79,7 +177,6 @@
         lb1 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
         [_contentView addSubview:lb1];
         lb1.attributedText = [self getInsuranceRules:@"＊优快保经纪人提供以下三种报价方式\n \n  1 上传车主［行驶证正本］清晰照片 或者 进入（详情）填写行驶证信息可快速报价，此报价可能与真实价格存在一点偏差，成交最终以真实价格为准。\n\n  2 上传车主［行驶证正本］和［身份证正面］清晰照片 进行精准报价。\n\n  3 续保车辆 只需进入（详情）填写［车牌号］(或传行驶证照片) 并选择［上年度保险］，就可精准报价。"];
-        
 
         lb1.preferredMaxLayoutWidth = ScreenWidth - 40;
         lb1.numberOfLines = 0;
@@ -88,7 +185,7 @@
         lb2.preferredMaxLayoutWidth = ScreenWidth - 40;
         lb2.attributedText = [Util getWarningString:@"＊注：客户确认投保后，应保监会规定需要补齐以上所有证件照片方可出单。优快保经纪人将保证所有证件资料仅用于车辆报价或投保，绝不用作其它用途，请放心上传。"];
         lb2.numberOfLines = 0;
-        
+
         NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, _btnShut, _contentView, lb1, lb2, btnClicked, bgview, sepline, btnQuote);
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=24-[lbTitle]-10-[_btnShut]-24-|" options:0 metrics:nil views:views]];
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90-[btnClicked]-20-|" options:0 metrics:nil views:views]];
@@ -105,7 +202,7 @@
         
         [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views]];
         [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views]];
-        [_footView addConstraint:[NSLayoutConstraint constraintWithItem:btnQuote attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sepline attribute:NSLayoutAttributeBottom multiplier:1 constant:-6]];
+        [_footView addConstraint:[NSLayoutConstraint constraintWithItem:btnQuote attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sepline attribute:NSLayoutAttributeBottom multiplier:1 constant:-1]];
         
         vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[lb1]-20-[lb2]-20-|" options:0 metrics:nil views:views];
         [_contentView addConstraints:vConstraint];
@@ -119,15 +216,33 @@
         _footView.frame = CGRectMake(0, 0, ScreenWidth, size.height);
         
         self.tableview.tableFooterView = _footView;
+        
     }
     
     return self;
 }
 
+//添加非车险被保人资料
+- (void) doBtnAddInsurInfo:(id) sender
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToAddInsuranceInfo:)]){
+        [self.delegate NotifyToAddInsuranceInfo:self];
+    }
+}
+
+//车险报价
 - (void) doBtnCarInsurPlan:(id) sender
 {
     if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToPlanCarInsurance)]){
         [self.delegate NotifyToPlanCarInsurance];
+    }
+}
+
+//非车险报价
+- (void) doBtnInsurPlan:(id) sender
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToPlanInsurance:)]){
+        [self.delegate NotifyToPlanInsurance:nil];
     }
 }
 
@@ -205,7 +320,11 @@
         tableheight += [self tableView:self.tableview heightForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
     }
     
-    return tableheight + 56 + 10 + 70 + _footView.frame.size.height;
+    tableheight += [self tableView:self.tableviewNoCar numberOfRowsInSection:0] * CELL_HEIGHT;
+    self.tableVConstraint.constant = [self tableView:self.tableviewNoCar numberOfRowsInSection:0] * CELL_HEIGHT;
+
+    
+    return tableheight + 147 + 68 + _footView.frame.size.height;
 }
 
 - (void) doEditButtonClicked:(UIButton *)sender
@@ -219,70 +338,102 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    if(tableView != tableviewNoCar)
+        return 2;
+    else
+        return [self.data count];
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat height = 70;
-    CGSize size = self.frame.size;
-    
-    if(size.width == 375)
-        height = 70 + 17;
-    else if (size.width == 414)
-        height = 70 + 29;
-    
-    NSInteger row = indexPath.row;
-    NSString *content ;
-    if(row == 0){
-        content = _carInfo.carNo;
-    }
-    else if(row == 1){
-        content = _carInfo.carOwnerCard;
-    }
-    if(content == nil || [content length] == 0)
-    {
-        return height;
-    }
-    return height + 32;
+    if(tableView != tableviewNoCar){
+        CGFloat height = 70;
+        CGSize size = self.frame.size;
+        
+        if(size.width == 375)
+            height = 70 + 17;
+        else if (size.width == 414)
+            height = 70 + 29;
+        
+        NSInteger row = indexPath.row;
+        NSString *content ;
+        if(row == 0){
+            content = _carInfo.carNo;
+        }
+        else if(row == 1){
+            content = _carInfo.carOwnerCard;
+        }
+        if(content == nil || [content length] == 0)
+        {
+            return height;
+        }
+        return height + 32;
+    }else
+        return CELL_HEIGHT;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *deq = @"cell";
-    InsuranceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
-    if(!cell){
-        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"InsuranceTableViewCell" owner:nil options:nil];
-        cell = [nibs lastObject];
+    if(tableView != tableviewNoCar)
+    {
+        NSString *deq = @"cell";
+        InsuranceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+        if(!cell){
+            NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"InsuranceTableViewCell" owner:nil options:nil];
+            cell = [nibs lastObject];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        NSInteger row = indexPath.row;
+        
+        cell.imgV1.tag = 100 + row * 2;
+        cell.imgV2.tag = 100 + row * 2 + 1;
+        [cell.imgV1 addTarget:self action:@selector(doBtnAddImage:) forControlEvents:UIControlEventTouchUpInside];
+        [cell.imgV2 addTarget:self action:@selector(doBtnAddImage:) forControlEvents:UIControlEventTouchUpInside];
+        
+        if(row == 0){
+            [self setCellData:cell title:@"行驶证" value:@"(正本／副本)" content:_carInfo.carNo img1:self.carInfo.travelCard1 placeholderImage1:@"driveLisence1" img2:self.carInfo.travelCard2 placeholderImage2:@"driveLisence2"];
+            if(driveLisence1 != nil){
+                [cell.imgV1 setImage:driveLisence1 forState:UIControlStateNormal];
+            }
+            if(driveLisence2 != nil){
+                [cell.imgV2 setImage:driveLisence2 forState:UIControlStateNormal];
+            }
+        }
+        else if (row == 1){
+            [self setCellData:cell title:@"车主身份证" value:@"(正面／反面)" content:_carInfo.carOwnerCard img1:self.carInfo.carOwnerCard1 placeholderImage1:@"cert1" img2:self.carInfo.carOwnerCard2 placeholderImage2:@"cert2"];
+            if(cert1 != nil){
+                [cell.imgV1 setImage:cert1 forState:UIControlStateNormal];
+            }
+            if(cert2 != nil){
+                [cell.imgV2 setImage:cert2 forState:UIControlStateNormal];
+            }
+        } ;
+        
+        return cell;
+    }else
+    {
+        NSString *deq = @"cell1";
+        InsureInfoListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+        if(!cell){
+            NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"InsureInfoListTableViewCell" owner:nil options:nil];
+            cell = [nibs lastObject];
+        }
+        cell.delegate = self;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        NSInteger row = indexPath.row;
+        if(_selectIdx == row){
+            cell.btnSelected.selected = YES;
+        }else{
+            cell.btnSelected.selected = NO;
+        }
+        cell.btnSelected.tag = 100 + row;
+        
+        InsuredUserInfoModel *model = [self.data objectAtIndex:row];
+        cell.lbName.text = model.insuredName;
+        cell.lbRelation.text = model.relationTypeName;
+        
+        return cell;
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSInteger row = indexPath.row;
-    
-    cell.imgV1.tag = 100 + row * 2;
-    cell.imgV2.tag = 100 + row * 2 + 1;
-    [cell.imgV1 addTarget:self action:@selector(doBtnAddImage:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.imgV2 addTarget:self action:@selector(doBtnAddImage:) forControlEvents:UIControlEventTouchUpInside];
-    
-    if(row == 0){
-        [self setCellData:cell title:@"行驶证" value:@"(正本／副本)" content:_carInfo.carNo img1:self.carInfo.travelCard1 placeholderImage1:@"driveLisence1" img2:self.carInfo.travelCard2 placeholderImage2:@"driveLisence2"];
-        if(driveLisence1 != nil){
-            [cell.imgV1 setImage:driveLisence1 forState:UIControlStateNormal];
-        }
-        if(driveLisence2 != nil){
-            [cell.imgV2 setImage:driveLisence2 forState:UIControlStateNormal];
-        }
-    }
-    else if (row == 1){
-        [self setCellData:cell title:@"车主身份证" value:@"(正面／反面)" content:_carInfo.carOwnerCard img1:self.carInfo.carOwnerCard1 placeholderImage1:@"cert1" img2:self.carInfo.carOwnerCard2 placeholderImage2:@"cert2"];
-        if(cert1 != nil){
-            [cell.imgV1 setImage:cert1 forState:UIControlStateNormal];
-        }
-        if(cert2 != nil){
-            [cell.imgV2 setImage:cert2 forState:UIControlStateNormal];
-        }
-    } ;
-    
-    return cell;
 }
 
 - (void) setCellData:(InsuranceTableViewCell *) cell title:(NSString *)title value:(NSString *) value content:(NSString *) content img1:(NSString *) img1 placeholderImage1:(NSString *)placeholderImage1 img2:(NSString *)img2 placeholderImage2:(NSString *)placeholderImage2
@@ -309,6 +460,11 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if(tableView == tableviewNoCar){
+        if(self .delegate && [self.delegate respondsToSelector:@selector(NotifyHandleInsuranceInfoClicked:idx:)]){
+            [self.delegate NotifyHandleInsuranceInfoClicked:self idx:indexPath.row];
+        }
+    }
 }
 
 - (void) setCarInfo:(CarInfoModel *)model
@@ -502,5 +658,11 @@
     }
 }
 
+
+- (void) NotifySelectedAtIndex:(NSInteger) idx cell:(InsureInfoListTableViewCell *) cell
+{
+    _selectIdx = idx;
+    [self.tableviewNoCar reloadData];
+}
 
 @end

@@ -51,6 +51,9 @@
 @property (nonatomic, assign) NSInteger insurTotal;
 @property (nonatomic, strong) NSMutableArray *insurArray;//客户保单信息列表
 
+@property (nonatomic, strong) NSMutableArray *insuredArray;//被保人列表
+@property (nonatomic, assign) BOOL isLoadInsuredList;//
+
 - (NSString *) getCustomerLabelString;
 
 @end

@@ -12,6 +12,7 @@
 #import "NetWorkHandler+queryForCustomerVisitsPageList.h"
 #import "NetWorkHandler+saveOrUpdateCustomerVisits.h"
 #import "NetWorkHandler+queryForCustomerInsurPageList.h"
+#import "NetWorkHandler+queryForInsuredPageList.h"
 #import "CustomerDetailModel.h"
 #import "VisitInfoModel.h"
 #import <MessageUI/MessageUI.h>
@@ -22,6 +23,7 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "OnlineCustomer.h"
 #import "BaseNavigationController.h"
+#import "InsuredUserInfoModel.h"
 
 @interface CustomerDetailVC ()<BaseInsuranceInfoDelegate, InsuranceInfoViewDelegate, MFMessageComposeViewControllerDelegate>
 
@@ -58,6 +60,24 @@
 {
     [self startRefresh];
     [self loadInsurPageList:0];
+}
+
+- (void) loadInsuredListWithCustomerId:(NSString *) customerId
+{
+    NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
+    [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
+    NSMutableArray *rules = [[NSMutableArray alloc] init];
+    [rules addObject:[self getRulesByField:@"customerId" op:@"cn" data:customerId]];
+    [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
+    [NetWorkHandler requestToQueryForInsuredPageListOffset:0 limit:1000 filters:filters customerId:customerId Completion:^(int code, id content) {
+        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+        if(code == 200){
+            NSArray *array = [InsuredUserInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
+            self.customerinfoModel.detailModel.insuredArray = [[NSMutableArray alloc] initWithArray:array];
+            _insuranceDetailView.data = self.customerinfoModel.detailModel.insuredArray;
+            [_insuranceDetailView.tableviewNoCar reloadData];
+        }
+    }];
 }
 
 - (void)viewDidLoad {
@@ -166,10 +186,8 @@
     rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     
     [rightBarButtonItemButton setImage:[UIImage imageNamed:@"garbage"] forState:UIControlStateNormal];
-    
-   // [rightBarButtonItemButton setTitle:@"更多" forState:UIControlStateNormal];
-    //[rightBarButtonItemButton setTitleColor:UIColorFromRGB(0xff6619)forState:UIControlStateNormal];
 }
+
 - (void) handleRightBarButtonClicked:(id)sender
 {
     
@@ -249,6 +267,7 @@
             if(self.customerinfoModel){
                 self.customerinfoModel.detailModel = self.data;
                 self.customerinfoModel.customerName = self.data.customerName;
+                [self loadInsuredListWithCustomerId:self.data.customerId];
             }
         }
     }];
@@ -496,6 +515,7 @@
         [self editAutoInsuranceInfo];
 }
 
+//客户跟进列表点击
 - (void) NotifyHandleFollowUpClicked:(BaseInsuranceInfo *)sender idx:(NSInteger) idx
 {
     if(sender == _followUpView){
@@ -547,6 +567,7 @@
     }
 }
 
+//客户跟进加载更多
 - (void) NotifyToLoadMoreFollowUp:(BaseInsuranceInfo *)sender
 {
     if(sender == _followUpView){
@@ -554,6 +575,7 @@
     }
 }
 
+//爆单信息加载更多
 - (void) NotifyToLoadMorePloicy:(BaseInsuranceInfo *)sender
 {
     if(sender == _policyListView){
@@ -563,6 +585,7 @@
     }
 }
 
+//列表的删除事件，
 - (void) NotifyHandleItemDelegateClicked:(BaseInsuranceInfo *)sender model:(id) model
 {
     if(sender == _policyListView){
@@ -602,6 +625,7 @@
 
 
 #pragma InsuranceInfoViewDelegate
+//
 - (void) NotifyAddButtonClicked:(InsuranceInfoView *) sender type:(InsuranceInfoViewType) type
 {
     if(type == enumInsuranceInfoViewTypeFollowUp){
@@ -616,6 +640,30 @@
     
 }
 
+//非车险报价
+- (void) NotifyToPlanInsurance:(id) model
+{
+    
+}
+
+//添加非车险客户资料
+- (void) NotifyToAddInsuranceInfo:(BaseInsuranceInfo *) sender
+{
+    InsuredUserInfoEditVC *vc = [IBUIFactory CreateInsuredUserInfoEditVC];
+    vc.title = @"添加投保资料";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//非车险列表点击
+- (void) NotifyHandleInsuranceInfoClicked:(BaseInsuranceInfo *)sender idx:(NSInteger) idx
+{
+    EditInsuredUserInfoVC *vc = [IBUIFactory CreateEditInsuredUserInfoVC];
+    vc.title = @"投保资料详情";
+    vc.insuredModel = nil;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//上传车险资料
 - (void) NotifyToSubmitImage:(UIImage *) travelCard1 travelCard2:(UIImage *)travelCard2 image1:(UIImage *) image1 cert2:(UIImage *)image2
 {
      [ProgressHUD show:@"正在上传"];
@@ -690,6 +738,7 @@
     [self loadInsurPageList:0];
 }
 
+//添加客户跟进
 - (void) addFollowUp
 {
     AddFollowUpVC *vc = [IBUIFactory CreateAddFollowUpViewController];
@@ -698,6 +747,7 @@
     vc.customerModel = self.customerinfoModel;
 }
 
+//编辑车险资料
 - (void) editAutoInsuranceInfo
 {
     AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
@@ -706,6 +756,7 @@
     vc.customerModel = self.data;
 }
 
+//添加车险资料
 - (void) addAutoInsuranceInfo
 {
     AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
@@ -776,7 +827,7 @@
     }
 }
 
-//算价
+//车险算价
 - (void) NotifyToPlanCarInsurance
 {
     if([Util checkInfoFull:self.data.carInfo]){

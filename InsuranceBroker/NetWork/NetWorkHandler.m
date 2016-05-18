@@ -66,12 +66,9 @@ static NetWorkHandler *networkmanager;
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-//    self.manager.requestSerializer.timeoutInterval = 20;
-    
-//    self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-//    self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
-    
-    [self.manager GET:path parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [self.manager GET:path parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *result = nil;
         if([responseObject isKindOfClass:[NSData class]]){
             SBJsonParser *_parser = [[SBJsonParser alloc] init];
@@ -176,7 +173,9 @@ static NetWorkHandler *networkmanager;
 
     NSMutableURLRequest *request = [self.manager.requestSerializer requestWithMethod:@"POST" URLString:path parameters:params error:nil];
     
-    [self.manager POST:path parameters:params success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    [self.manager POST:path parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [ProjectDefine removeRequestTag:Tag];
         NSDictionary *result = nil;
         if([responseObject isKindOfClass:[NSData class]]){
@@ -206,11 +205,6 @@ static NetWorkHandler *networkmanager;
         }else
             [self handleResponse:cacheDatas Completion:completion];
         
-        //        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
-        //        [dic setObject:[NSNumber numberWithInteger:error.code] forKey:@"code"];
-        //        [dic setObject:error.localizedDescription forKey:@"msg"];
-        //
-        //        [self handleResponse:dic Completion:completion];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }];
 }
@@ -221,7 +215,7 @@ static NetWorkHandler *networkmanager;
             completion(-1, nil);
         }
     }else{
-        NSInteger code = [[result objectForKey:@"code"] integerValue];
+        int code = [[result objectForKey:@"code"] intValue];
         if(completion){
             completion(code, result);
         }

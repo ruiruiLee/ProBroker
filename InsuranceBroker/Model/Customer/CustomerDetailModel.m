@@ -66,6 +66,9 @@
     model.insurTotal = 0;
     model.insurArray = [[NSMutableArray alloc] init];
     
+    model.insuredArray = [[NSMutableArray alloc] init];
+    model.isLoadInsuredList = NO;
+    
     return model;
 }
 
@@ -78,6 +81,12 @@
         [result appendString:@"   "];
     }
     return result;
+}
+
+- (void) setInsuredArray:(NSMutableArray *)insuredArray
+{
+    _insuredArray = insuredArray;
+    self.isLoadInsuredList = YES;
 }
 
 @end

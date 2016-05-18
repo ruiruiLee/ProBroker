@@ -26,7 +26,7 @@
 
  */
 
-#define SERVER_ADDRESS @"http://dev.ykbtest.leanapp.cn"
+#define SERVER_ADDRESS @"http://ykbtest.leanapp.cn"
 #define Base_Uri @"http://118.123.249.87:8783/UKB.AgentNew"
 #define AVOSCloudAppID  @"dwhKbFjMcY4ppGaSVvzN4577-gzGzoHsz"
 #define AVOSCloudAppKey @"6ygVI6sQEL0z4vTjSLeFXD3T"

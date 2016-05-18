@@ -27,7 +27,7 @@
 //add
 @property (nonatomic, strong) IBOutlet UITextField *tfEmail;
 @property (nonatomic, strong) IBOutlet UITextField *tfDetailAddr;
-@property (nonatomic, strong) IBOutlet UITextField *tfRemarks;
+@property (nonatomic, strong) IBOutlet UITextView *tvRemarks;
 @property (nonatomic, strong) IBOutlet UITextField *tfAddr;
 @property (nonatomic, strong) IBOutlet UITextField *tfSex;
 

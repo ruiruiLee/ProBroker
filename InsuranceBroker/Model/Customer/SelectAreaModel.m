@@ -10,4 +10,16 @@
 
 @implementation SelectAreaModel
 
++ (BaseModel *) modelFromDictionary:(NSDictionary *)dictionary
+{
+    SelectAreaModel *model = [[SelectAreaModel alloc] init];
+    
+    model.liveProvinceId = [dictionary objectForKey:@"liveProvinceId"];
+    model.liveProvince = [dictionary objectForKey:@"liveProvince"];
+    model.liveCityId = [dictionary objectForKey:@"liveCityId"];
+    model.liveCity = [dictionary objectForKey:@"liveCity"];
+    
+    return model;
+}
+
 @end
