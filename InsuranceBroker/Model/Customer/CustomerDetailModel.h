@@ -29,8 +29,11 @@
 @property (nonatomic, strong) NSString *cardAddr;//身份证所在户籍地址
 @property (nonatomic, strong) NSDate *verifiyTime;//"2015-12-25 15:33:44",
 @property (nonatomic, strong) NSString *liveProvinceId;//居住省id
+@property (nonatomic, strong) NSString *liveProvinceName;//居住省
 @property (nonatomic, strong) NSString *liveCityId;//居住城市id
+@property (nonatomic, strong) NSString *liveCityName;//居住城市
 @property (nonatomic, strong) NSString *liveAreaId;//居住区ID
+@property (nonatomic, strong) NSString *liveAreaName;//居住区
 @property (nonatomic, strong) NSString *liveAddr; //居住地址
 @property (nonatomic, assign) NSInteger customerStatus;//删除用户时仅传coustomerId和status=-1
 @property (nonatomic, strong) NSString *drivingCard1;//"驾驶证正本",
@@ -41,6 +44,8 @@
 @property (nonatomic, strong) NSDate *createdAt;//"创建时间",
 @property (nonatomic, assign) NSInteger customerSex;//"性别",
 @property (nonatomic, strong) NSDate *customerBirthday;//"生日",
+@property (nonatomic, strong) NSString *customerMemo;
+@property (nonatomic, strong) NSString *customerEmail;
 
 
 @property (nonatomic, strong) CarInfoModel *carInfo;//车信息

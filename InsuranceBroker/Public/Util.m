@@ -442,7 +442,8 @@
     NSString *sexString = @"男";
     if (sex == 2) {
         sexString = @"女";
-    }
+    }else if (sex == 0)
+        sexString = @"";
     
     return sexString;
 }
@@ -715,6 +716,14 @@
         return NO;
     else
         return YES;
+}
+
+//电子邮箱
++ (BOOL) validateEmail:(NSString *)email
+{
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
 }
 
 @end

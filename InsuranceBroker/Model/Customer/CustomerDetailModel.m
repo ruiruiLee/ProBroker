@@ -53,6 +53,11 @@
     model.createdAt = [CustomerDetailModel dateFromString:[dictionary objectForKey:@"createdAt"]];
     model.customerSex = [[dictionary objectForKey:@"customerSex"] integerValue];
     model.customerBirthday = [CustomerDetailModel dateFromString:[dictionary objectForKey:@"customerBirthday"]];
+    model.liveProvinceName = [dictionary objectForKey:@"liveProvinceName"];
+    model.liveCityName = [dictionary objectForKey:@"liveCityName"];
+    model.liveAreaName = [dictionary objectForKey:@"liveAreaName"];
+    model.customerMemo = [dictionary objectForKey:@"customerMemo"];
+    model.customerEmail = [dictionary objectForKey:@"customerEmail"];
     
     NSArray *car = [dictionary objectForKey:@"carInfo"];
     if([car count] > 0)

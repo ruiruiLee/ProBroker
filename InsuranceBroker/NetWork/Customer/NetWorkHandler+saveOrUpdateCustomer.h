@@ -62,6 +62,9 @@
                                  drivingCard2:(NSString *)drivingCard2
                                 customerLabel:(NSArray *) customerLabel
                               customerLabelId:(NSArray *) customerLabelId
+                                customerEmail:(NSString *) customerEmail
+                                 customerMemo:(NSString *) customerMemo
+                                          sex:(NSInteger) sex
                                    Completion:(Completion) completion;
 
 @end

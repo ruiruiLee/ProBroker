@@ -42,7 +42,7 @@
         //        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         
 //        UserInfoModel *model  = [UserInfoModel shareUserInfoModel];
-        cell.lbTitle.text = self.selectArea.liveCityId;
+        cell.lbTitle.text = self.selectArea.liveCity;
         cell.imgv.image = nil;
         if(self.selectArea.liveCityId == nil)
             cell.lbDetail.text = @"请选择地区";
@@ -81,6 +81,8 @@
         self._edit.selectArea = model;
         self._edit.tfAddr.text = [Util getAddrWithProvience:model.liveProvince city:model.liveCity];
     }
+    
+    [self._edit isHasModify];
     
     NSArray *vcarray = self.navigationController.viewControllers;
     UIViewController *vc = nil;
