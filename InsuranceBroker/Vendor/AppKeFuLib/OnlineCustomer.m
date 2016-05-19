@@ -69,6 +69,8 @@
     [[AppKeFuLib sharedInstance] setTagOther:phone];
     UserAvatarImage=headImage;
     
+    if(baodanLogoUrlstring == nil)
+        baodanLogoUrlstring = ((AppDelegate *)[UIApplication sharedApplication].delegate).chexianimg;
     self.baodanLogoUrlstring = baodanLogoUrlstring;
     self.baodanDetail = baodanDetail;
     self.baodanPrice = baodanPrice;

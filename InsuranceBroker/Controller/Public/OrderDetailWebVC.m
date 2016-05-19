@@ -120,8 +120,13 @@
     //创建分享参数
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     
-    if(self.shareImgArray == nil || [self.shareImgArray count] == 0)
-        self.shareImgArray = @[Share_Icon];
+    if(self.shareImgArray == nil || [self.shareImgArray count] == 0){
+        NSMutableArray *icon = [[NSMutableArray alloc] init];
+        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+        if(appdelegate.appIcon)
+            [icon addObject:appdelegate.appIcon];
+        self.shareImgArray = icon;
+    }
     
     
     if (self.shareImgArray) {

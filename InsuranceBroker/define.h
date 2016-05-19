@@ -46,7 +46,6 @@
 
 //image
 #define ThemeImage(imageName)  [UIImage imageNamed:imageName]
-//#define Share_Icon @"http://ac-0pyukjnl.clouddn.com/0962f076d953a07efe56.png"
 #define Share_Icon @"http://ac-0pyukjnl.clouddn.com/4b3d8bcb59e5b9bf736f.png"
 
 //rgb Color

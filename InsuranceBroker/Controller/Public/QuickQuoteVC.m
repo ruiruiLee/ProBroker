@@ -8,6 +8,7 @@
 
 #import "QuickQuoteVC.h"
 #import "SBJsonParser.h"
+#import "define.h"
 
 @interface QuickQuoteVC ()
 
@@ -18,6 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    UIButton *btnDetail = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 68, 20)];
+    [btnDetail setTitle:@"精准算价?" forState:UIControlStateNormal];
+    btnDetail.layer.cornerRadius = 10;
+    btnDetail.layer.borderWidth = 0.5;
+    btnDetail.layer.borderColor = _COLOR(0xff, 0x66, 0x19).CGColor;
+    [btnDetail setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
+    btnDetail.titleLabel.font = _FONT(10);
+    [self setRightBarButtonWithButton:btnDetail];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +60,17 @@
 }
 
 - (void) handleRightBarButtonClicked:(id)sender
+{
+    WebViewController *web = [IBUIFactory CreateWebViewController];
+    web.hidesBottomBarWhenPushed = YES;
+    web.title = @"怎样精准报价?";
+    [self.navigationController pushViewController:web animated:YES];
+    
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", appdelegate.exactQuoteNewsId]];
+}
+
+- (void) NotifyShareWindow
 {
     [self showPopView];
 }

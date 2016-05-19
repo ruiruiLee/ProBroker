@@ -36,7 +36,6 @@
 
 }
 
-@property (nonatomic, strong) NSString *customerService;
 @property (nonatomic, strong) NSArray *infoArray;
 @end
 
@@ -335,7 +334,11 @@
             appdelegate.customerBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"customerBanner"]];
             appdelegate.workBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"workBanner"]];
             appdelegate.inviteBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"friendBanner"]];
-            self.customerService = [d objectForKey:@"customerService"];
+            appdelegate.exactQuoteNewsId = [d objectForKey:@"exactQuoteNewsId"];
+            NSDictionary *commonImg = [d objectForKey:@"commonImg"];
+            appdelegate.appIcon = [commonImg objectForKey:@"appIcon"];
+            appdelegate.chexianimg = [commonImg objectForKey:@"cheXian"];
+            appdelegate.lineCustomer = [commonImg objectForKey:@"lineCustomer"];
             self.infoArray = [AnnouncementModel modelArrayFromArray:[d objectForKey:@"gongLue"]];
             [self initData];
         }
