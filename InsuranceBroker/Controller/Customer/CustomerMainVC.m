@@ -228,7 +228,7 @@
         UIImage *image = nil;
         if(indexPath.row == 0){
             image = ThemeImage(@"push_style_customer");
-            cell.lbTitle.text = @"新的客户";
+            cell.lbTitle.text = @"分享获客";
             cell.lbCount.hidden = NO;
             AppContext *context = [AppContext sharedAppContext];
             cell.lbCount.text = [NSString stringWithFormat:@"%d", context.pushCustomerNum];
