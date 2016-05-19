@@ -111,7 +111,7 @@
                   }
         else{   // 登陆失败
             if(code<0){
-                [KGStatusBar showErrorWithStatus:@"无法连接网络，请监测网络设置！"];
+                [KGStatusBar showErrorWithStatus:@"无法连接网络，请检查网络设置！"];
             }
             else{
                 [Util showAlertMessage:[content objectForKey:@"msg"]];
