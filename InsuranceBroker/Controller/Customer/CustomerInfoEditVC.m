@@ -81,6 +81,7 @@
     [self.onwerTag.textfield.textfield addTarget:self action:@selector(textChangeAction:) forControlEvents:UIControlEventEditingChanged];
     
     self.tvRemarks.delegate = self;
+    self.tvRemarks.placeholder = @"备注";
     
     self.viewHConstraint.constant = ScreenWidth;
     NSArray *array = nil;
@@ -445,6 +446,15 @@
 - (void) textViewDidEndEditing:(UITextView *)textView
 {
     [self isHasModify];
+}
+
+//动态计算textview的高度
+- (void)textViewDidChange:(UITextView *)textView
+{
+    CGSize size = [textView sizeThatFits:CGSizeMake(CGRectGetWidth(textView.frame), MAXFLOAT)];
+    self.remarkCellVConstraint.constant = size.height + 22;
+    if(size.height <= 34)
+        self.remarkCellVConstraint.constant = 56;
 }
 
 - (NSString *) formatPhoneNum:(NSString *) phoneNum

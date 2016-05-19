@@ -45,7 +45,7 @@
     int w = ScreenWidth - 20 - 10 - 128;
     NSString *format = [NSString stringWithFormat:@"H:|->=0-[PlaceholderLabel(%d)]-0-|", w];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:format options:0 metrics:nil views:NSDictionaryOfVariableBindings(PlaceholderLabel)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[PlaceholderLabel(30)]->=0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(PlaceholderLabel)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[PlaceholderLabel(30)]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(PlaceholderLabel)]];
 
 }
 // Only override drawRect: if you perform custom drawing.
