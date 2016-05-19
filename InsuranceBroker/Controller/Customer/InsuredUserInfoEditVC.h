@@ -27,6 +27,16 @@
 @property (nonatomic, strong) NSArray *relatrionArray;
 
 @property (nonatomic, assign) NSInteger selectRelationTypeIdx;
-@property (nonatomic, assign) NSString *sex;
+@property (nonatomic, assign) NSInteger sex;
+
+@property (nonatomic, strong) NSString *customerId;
+
+- (BOOL) isModify;
+
+- (NSString *) formatPhoneNum:(NSString *) phoneNum;
+
+- (void) submitWithInsuredId:(NSString *) insuredId;
+
+- (NSInteger) getSelectIndexWithRelationValue:(NSString *) value;
 
 @end

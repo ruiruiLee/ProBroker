@@ -10,7 +10,7 @@
 
 @interface NetWorkHandler (saveOrUpdateCustomerInsured)
 
-+ (void) requestToQueryForInsuredPageListCardNumber:(NSString *) cardNumber//身份证
++ (void) requestToSaveOrUpdateCustomerInsuredCardNumber:(NSString *) cardNumber//身份证
                                          customerId:(NSString *) customerId//经纪人id
                                        insuredEmail:(NSString *) insuredEmail//被保人邮箱
                                           insuredId:(NSString *) insuredId//被保人id
