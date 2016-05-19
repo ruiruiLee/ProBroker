@@ -301,7 +301,7 @@
         
         NSString *userId = [UserInfoModel shareUserInfoModel].userId;
         CustomerInfoModel *model = [self.data objectAtIndex:indexPath.row];
-        [NetWorkHandler requestToSaveOrUpdateCustomerWithUID:userId isAgentCreate:model.isAgentCreate customerId:model.customerId customerName:nil customerPhone:nil customerTel:nil headImg:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil cardProvinceId:nil cardCityId:nil cardAreaId:nil cardVerifiy:model.detailModel.cardVerifiy cardAddr:nil verifiyTime:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil customerStatus:-1 drivingCard1:nil drivingCard2:nil customerLabel:nil customerLabelId:nil Completion:^(int code, id content) {
+        [NetWorkHandler requestToSaveOrUpdateCustomerWithUID:userId isAgentCreate:model.isAgentCreate customerId:model.customerId customerName:nil customerPhone:nil customerTel:nil headImg:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil cardProvinceId:nil cardCityId:nil cardAreaId:nil cardVerifiy:model.detailModel.cardVerifiy cardAddr:nil verifiyTime:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil customerStatus:-1 drivingCard1:nil drivingCard2:nil customerLabel:nil customerLabelId:nil customerEmail:nil customerMemo:nil sex:0 Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
                 [self.data removeObject:model];

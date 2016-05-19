@@ -15,6 +15,12 @@
 		8612F4221CE9B5F90045340F /* ProvienceSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4211CE9B5F90045340F /* ProvienceSelectVC.m */; };
 		8612F4251CE9B6270045340F /* CustomerCitySelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4241CE9B6270045340F /* CustomerCitySelectVC.m */; };
 		8612F4281CE9BBA50045340F /* SelectAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4271CE9BBA50045340F /* SelectAreaModel.m */; };
+		8612F42C1CE9C5C20045340F /* InsureInfoListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F42A1CE9C5C20045340F /* InsureInfoListTableViewCell.m */; };
+		8612F42D1CE9C5C20045340F /* InsureInfoListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8612F42B1CE9C5C20045340F /* InsureInfoListTableViewCell.xib */; };
+		8612F4301CEB155B0045340F /* NetWorkHandler+queryForInsuredPageList.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F42F1CEB155B0045340F /* NetWorkHandler+queryForInsuredPageList.m */; };
+		8612F4331CEB166B0045340F /* NetWorkHandler+saveOrUpdateCustomerInsured.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4321CEB166B0045340F /* NetWorkHandler+saveOrUpdateCustomerInsured.m */; };
+		8612F4361CEB23830045340F /* InsuredUserInfoEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4351CEB23830045340F /* InsuredUserInfoEditVC.m */; };
+		8612F4381CEB23940045340F /* InsuredUserInfoEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8612F4371CEB23940045340F /* InsuredUserInfoEditVC.xib */; };
 		861DF93B1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF93A1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m */; };
 		861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF93D1CA4E40D00FB58B1 /* RatioMapsModel.m */; };
 		861DF9411CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF9401CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m */; };
@@ -138,6 +144,10 @@
 		8654CD891C312CE100411C54 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CD7D1C312CE100411C54 /* SBJsonWriter.m */; };
 		8654CD8C1C31350D00411C54 /* ProjectDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CD8B1C31350D00411C54 /* ProjectDefine.m */; };
 		8654CD941C314E1900411C54 /* WorkMainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8654CD931C314E1900411C54 /* WorkMainVC.xib */; };
+		86769D1E1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D1D1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.m */; };
+		86769D211CEC106B009C7E8F /* EditInsuredUserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D201CEC106B009C7E8F /* EditInsuredUserInfoVC.m */; };
+		86769D231CEC1085009C7E8F /* EditInsuredUserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86769D221CEC1085009C7E8F /* EditInsuredUserInfoVC.xib */; };
+		86769D261CEC13D4009C7E8F /* InsuredUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D251CEC13D4009C7E8F /* InsuredUserInfoModel.m */; };
 		868C7CA91C92CFAD00B7617A /* SepLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CA81C92CFAD00B7617A /* SepLineLabel.m */; };
 		868C7CB41C96546700B7617A /* BaseLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CB31C96546700B7617A /* BaseLineView.m */; };
 		868C7CC21C969AC600B7617A /* HBImageScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CB71C969AC600B7617A /* HBImageScroller.m */; };
@@ -469,6 +479,16 @@
 		8612F4241CE9B6270045340F /* CustomerCitySelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCitySelectVC.m; sourceTree = "<group>"; };
 		8612F4261CE9BBA50045340F /* SelectAreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectAreaModel.h; sourceTree = "<group>"; };
 		8612F4271CE9BBA50045340F /* SelectAreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectAreaModel.m; sourceTree = "<group>"; };
+		8612F4291CE9C5C20045340F /* InsureInfoListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsureInfoListTableViewCell.h; sourceTree = "<group>"; };
+		8612F42A1CE9C5C20045340F /* InsureInfoListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsureInfoListTableViewCell.m; sourceTree = "<group>"; };
+		8612F42B1CE9C5C20045340F /* InsureInfoListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InsureInfoListTableViewCell.xib; sourceTree = "<group>"; };
+		8612F42E1CEB155B0045340F /* NetWorkHandler+queryForInsuredPageList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+queryForInsuredPageList.h"; sourceTree = "<group>"; };
+		8612F42F1CEB155B0045340F /* NetWorkHandler+queryForInsuredPageList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryForInsuredPageList.m"; sourceTree = "<group>"; };
+		8612F4311CEB166B0045340F /* NetWorkHandler+saveOrUpdateCustomerInsured.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+saveOrUpdateCustomerInsured.h"; sourceTree = "<group>"; };
+		8612F4321CEB166B0045340F /* NetWorkHandler+saveOrUpdateCustomerInsured.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+saveOrUpdateCustomerInsured.m"; sourceTree = "<group>"; };
+		8612F4341CEB23830045340F /* InsuredUserInfoEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsuredUserInfoEditVC.h; sourceTree = "<group>"; };
+		8612F4351CEB23830045340F /* InsuredUserInfoEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsuredUserInfoEditVC.m; sourceTree = "<group>"; };
+		8612F4371CEB23940045340F /* InsuredUserInfoEditVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InsuredUserInfoEditVC.xib; sourceTree = "<group>"; };
 		861DF9391CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+updateUserRemarkName.h"; sourceTree = "<group>"; };
 		861DF93A1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateUserRemarkName.m"; sourceTree = "<group>"; };
 		861DF93C1CA4E40D00FB58B1 /* RatioMapsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatioMapsModel.h; sourceTree = "<group>"; };
@@ -703,6 +723,13 @@
 		8654CD8A1C31350D00411C54 /* ProjectDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDefine.h; sourceTree = "<group>"; };
 		8654CD8B1C31350D00411C54 /* ProjectDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDefine.m; sourceTree = "<group>"; };
 		8654CD931C314E1900411C54 /* WorkMainVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WorkMainVC.xib; sourceTree = "<group>"; };
+		86769D1C1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+queryCustomerInsuredInfo.h"; sourceTree = "<group>"; };
+		86769D1D1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryCustomerInsuredInfo.m"; sourceTree = "<group>"; };
+		86769D1F1CEC106B009C7E8F /* EditInsuredUserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInsuredUserInfoVC.h; sourceTree = "<group>"; };
+		86769D201CEC106B009C7E8F /* EditInsuredUserInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditInsuredUserInfoVC.m; sourceTree = "<group>"; };
+		86769D221CEC1085009C7E8F /* EditInsuredUserInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditInsuredUserInfoVC.xib; sourceTree = "<group>"; };
+		86769D241CEC13D4009C7E8F /* InsuredUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsuredUserInfoModel.h; sourceTree = "<group>"; };
+		86769D251CEC13D4009C7E8F /* InsuredUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsuredUserInfoModel.m; sourceTree = "<group>"; };
 		868C7CA71C92CFAD00B7617A /* SepLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SepLineLabel.h; sourceTree = "<group>"; };
 		868C7CA81C92CFAD00B7617A /* SepLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SepLineLabel.m; sourceTree = "<group>"; };
 		868C7CB21C96546700B7617A /* BaseLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLineView.h; sourceTree = "<group>"; };
@@ -1646,6 +1673,12 @@
 				86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */,
 				86AD9AC91CAE735D00389428 /* NetWorkHandler+queryForProductList.h */,
 				86AD9ACA1CAE735D00389428 /* NetWorkHandler+queryForProductList.m */,
+				8612F42E1CEB155B0045340F /* NetWorkHandler+queryForInsuredPageList.h */,
+				8612F42F1CEB155B0045340F /* NetWorkHandler+queryForInsuredPageList.m */,
+				8612F4311CEB166B0045340F /* NetWorkHandler+saveOrUpdateCustomerInsured.h */,
+				8612F4321CEB166B0045340F /* NetWorkHandler+saveOrUpdateCustomerInsured.m */,
+				86769D1C1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.h */,
+				86769D1D1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -2079,6 +2112,12 @@
 				86C3BC3E1C2E37A700F98E80 /* AutoInsuranceInfoEditVC.h */,
 				86C3BC3F1C2E37A700F98E80 /* AutoInsuranceInfoEditVC.m */,
 				86C3BC401C2E37A700F98E80 /* AutoInsuranceInfoEditVC.xib */,
+				8612F4341CEB23830045340F /* InsuredUserInfoEditVC.h */,
+				8612F4351CEB23830045340F /* InsuredUserInfoEditVC.m */,
+				8612F4371CEB23940045340F /* InsuredUserInfoEditVC.xib */,
+				86769D1F1CEC106B009C7E8F /* EditInsuredUserInfoVC.h */,
+				86769D201CEC106B009C7E8F /* EditInsuredUserInfoVC.m */,
+				86769D221CEC1085009C7E8F /* EditInsuredUserInfoVC.xib */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -2215,6 +2254,8 @@
 				86A26EBD1C47CF1A0073FFFC /* InsuranceCompanyModel.m */,
 				8612F4261CE9BBA50045340F /* SelectAreaModel.h */,
 				8612F4271CE9BBA50045340F /* SelectAreaModel.m */,
+				86769D241CEC13D4009C7E8F /* InsuredUserInfoModel.h */,
+				86769D251CEC13D4009C7E8F /* InsuredUserInfoModel.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -2330,6 +2371,9 @@
 				86A26ED21C47DC200073FFFC /* CarAddInfoTableCell.h */,
 				86A26ED31C47DC200073FFFC /* CarAddInfoTableCell.m */,
 				86A26ED41C47DC200073FFFC /* CarAddInfoTableCell.xib */,
+				8612F4291CE9C5C20045340F /* InsureInfoListTableViewCell.h */,
+				8612F42A1CE9C5C20045340F /* InsureInfoListTableViewCell.m */,
+				8612F42B1CE9C5C20045340F /* InsureInfoListTableViewCell.xib */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -2765,6 +2809,7 @@
 				8625F8F11C892822001569BE /* TeamMateIncomeStatisticsVC.xib in Resources */,
 				86C3BBDD1C2AA31000F98E80 /* CustomerInfoEditVC.xib in Resources */,
 				86C3BC421C2E37A700F98E80 /* AutoInsuranceInfoEditVC.xib in Resources */,
+				8612F4381CEB23940045340F /* InsuredUserInfoEditVC.xib in Resources */,
 				8625AF911C32761A00312B98 /* UserEditTableViewCell.xib in Resources */,
 				86C3BB181C228D6F00F98E80 /* blueArrow@2x.png in Resources */,
 				86C3BCCC1C2E999300F98E80 /* loginViewController.xib in Resources */,
@@ -2782,6 +2827,7 @@
 				86A26E541C43A8FF0073FFFC /* Localizable.strings in Resources */,
 				86C3BB891C279C8200F98E80 /* CustomerTableViewCell.xib in Resources */,
 				86FC492E1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib in Resources */,
+				86769D231CEC1085009C7E8F /* EditInsuredUserInfoVC.xib in Resources */,
 				8650658D1C1E6BC800429EAE /* Assets.xcassets in Resources */,
 				86A5043B1C4E37E30032A901 /* ShareSDK.bundle in Resources */,
 				86A504371C4E37E30032A901 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
@@ -2808,6 +2854,7 @@
 				86A26F181C4B5E900073FFFC /* SalesStatisticsVC.xib in Resources */,
 				86248F211CCDFA6A00F1B493 /* ProductListTableViewCell.xib in Resources */,
 				86C3BC201C2CE1B700F98E80 /* CustomerFollowUpTableCell.xib in Resources */,
+				8612F42D1CE9C5C20045340F /* InsureInfoListTableViewCell.xib in Resources */,
 				86F2DA7F1C75F25B0088B783 /* UserDetailVC.xib in Resources */,
 				86A26EE11C48F1F20073FFFC /* ModifyPhoneNumVC.xib in Resources */,
 				8625AFA11C32A59600312B98 /* NoticeListTableViewCell.xib in Resources */,
@@ -2936,6 +2983,7 @@
 				86B279111CDC9163000E5FAA /* OfferDetailWebVC.m in Sources */,
 				86C3BBA51C28F83100F98E80 /* TopImageButton.m in Sources */,
 				86C3BB4A1C24017E00F98E80 /* LeftImgButton.m in Sources */,
+				8612F42C1CE9C5C20045340F /* InsureInfoListTableViewCell.m in Sources */,
 				86C3BB881C279C8200F98E80 /* CustomerTableViewCell.m in Sources */,
 				8625AFD71C34F4DB00312B98 /* IncomeStatisticsVC.m in Sources */,
 				86F014301C8685C900A3C68E /* NetWorkHandler+queryUserBillDetail.m in Sources */,
@@ -2985,6 +3033,7 @@
 				861DF9411CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m in Sources */,
 				865066201C2154C200429EAE /* WebViewController.m in Sources */,
 				86C3BCC11C2E933600F98E80 /* IQSegmentedNextPrevious.m in Sources */,
+				86769D261CEC13D4009C7E8F /* InsuredUserInfoModel.m in Sources */,
 				8625B03C1C3E3D0F00312B98 /* NetWorkHandler+saveOrUpdateCustomerVisits.m in Sources */,
 				86A504EF1C5254B80032A901 /* NetWorkHandler+queryOrderShareInfo.m in Sources */,
 				86A5047B1C4F27950032A901 /* mask.c in Sources */,
@@ -3006,6 +3055,7 @@
 				8625B0181C3BCA1D00312B98 /* NetWorkHandler+saveOrUpdateCustomerLabel.m in Sources */,
 				86A504FA1C5257440032A901 /* EasyJSWebView.m in Sources */,
 				86248EF21CC6220E00F1B493 /* ProductListVC.m in Sources */,
+				8612F4331CEB166B0045340F /* NetWorkHandler+saveOrUpdateCustomerInsured.m in Sources */,
 				8625B01B1C3BF27900312B98 /* NetWorkHandler+queryCustomerBaseInfo.m in Sources */,
 				8625AFDB1C351EFF00312B98 /* MyTeamsVC.m in Sources */,
 				86B279211CE0725A000E5FAA /* DashSepLineView.m in Sources */,
@@ -3093,6 +3143,7 @@
 				8625B0061C3B802900312B98 /* CustomerInfoModel.m in Sources */,
 				86A504FE1C5258730032A901 /* OrderWebVC.m in Sources */,
 				86A504D81C51D0720032A901 /* BillInfoModel.m in Sources */,
+				86769D1E1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.m in Sources */,
 				86A504C01C509D0B0032A901 /* NetWorkHandler+queryUserTaskList.m in Sources */,
 				86A26E351C4355220073FFFC /* NetWorkHandler+getProvinces.m in Sources */,
 				86C3BBB31C291CDE00F98E80 /* LucyMoneyTableCell.m in Sources */,
@@ -3161,12 +3212,15 @@
 				86A504DB1C51D3250032A901 /* CurveModel.m in Sources */,
 				8625AFA01C32A59600312B98 /* NoticeListTableViewCell.m in Sources */,
 				86C3BBE61C2ACF4200F98E80 /* OnwerTagView.m in Sources */,
+				86769D211CEC106B009C7E8F /* EditInsuredUserInfoVC.m in Sources */,
 				8625AFEF1C38FF9E00312B98 /* IncomeWithdrawVC.m in Sources */,
 				8612F4131CE4828D0045340F /* JElasticPullToRefreshLoadingView.m in Sources */,
+				8612F4301CEB155B0045340F /* NetWorkHandler+queryForInsuredPageList.m in Sources */,
 				86C3BC0E1C2CDFE500F98E80 /* BaseInsuranceInfo.m in Sources */,
 				86C3BC411C2E37A700F98E80 /* AutoInsuranceInfoEditVC.m in Sources */,
 				86A504C61C50FEDD0032A901 /* NetWorkHandler+initOrderShare.m in Sources */,
 				8625AF901C32761A00312B98 /* UserEditTableViewCell.m in Sources */,
+				8612F4361CEB23830045340F /* InsuredUserInfoEditVC.m in Sources */,
 				86A504B11C4FB8870032A901 /* BankInfoModel.m in Sources */,
 				86A26F0E1C4A2C9F0073FFFC /* XYPieChart.m in Sources */,
 				86A26F071C4A29CB0073FFFC /* NSDate+Additions.m in Sources */,

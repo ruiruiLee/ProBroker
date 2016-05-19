@@ -116,6 +116,21 @@
         userId = self.data.userId;
     }
     
+    NSString *addr = self.tfDetailAddr.text;
+    NSString *email = self.tfEmail.text;
+    if([email length] > 0 && ![Util validateEmail:email]){
+        [Util showAlertMessage:@"电子邮箱格式不正确"];
+        return;
+    }
+    NSString *remark = self.tvRemarks.text;
+    
+    NSString *liveProvinceId = self.data.liveProvinceId;
+    NSString *liveCityId = self.data.liveCityId;
+    if(self.selectArea){
+        liveProvinceId = self.selectArea.liveProvinceId;
+        liveCityId = self.selectArea.liveCityId;
+    }
+    
     [NetWorkHandler requestToSaveOrUpdateCustomerWithUID:userId
                                            isAgentCreate:isAgentCreate
                                               customerId:self.data.customerId
@@ -132,15 +147,18 @@
                                              cardVerifiy:self.data.cardVerifiy
                                                 cardAddr:self.data.cardAddr
                                              verifiyTime:[CustomerDetailModel stringFromDate:self.data.verifiyTime]
-                                          liveProvinceId:self.data.liveProvinceId
-                                              liveCityId:self.data.liveCityId
+                                          liveProvinceId:liveProvinceId
+                                              liveCityId:liveCityId
                                               liveAreaId:self.data.liveAreaId
-                                                liveAddr:self.data.liveAddr
+                                                liveAddr:addr
                                           customerStatus:1
                                             drivingCard1:self.data.drivingCard1
                                             drivingCard2:self.data.drivingCard2
                                            customerLabel:customerLabel
                                          customerLabelId:customerLabelId
+                                           customerEmail:email
+                                            customerMemo:remark
+                                                     sex:self.sex
                                               Completion:^(int code, id content) {
                                                   
                                                   [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];

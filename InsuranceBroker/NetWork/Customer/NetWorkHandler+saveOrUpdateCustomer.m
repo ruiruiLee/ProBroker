@@ -12,7 +12,7 @@
 @implementation NetWorkHandler (saveOrUpdateCustomer)
 
 + (void) requestToSaveOrUpdateCustomerWithUID:(NSString *) userId
-                                isAgentCreate:(BOOL) isAgentCreate //本人创建为1
+                                isAgentCreate:(BOOL) isAgentCreate//本人创建为1
                                    customerId:(NSString*)customerId
                                  customerName:(NSString *)customerName
                                 customerPhone:(NSString* )customerPhone
@@ -36,6 +36,9 @@
                                  drivingCard2:(NSString *)drivingCard2
                                 customerLabel:(NSArray *) customerLabel
                               customerLabelId:(NSArray *) customerLabelId
+                                customerEmail:(NSString *) customerEmail
+                                 customerMemo:(NSString *) customerMemo
+                                          sex:(NSInteger)sex
                                    Completion:(Completion) completion
 {
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
@@ -65,6 +68,9 @@
     [Util setValueForKeyWithDic:pramas value:drivingCard2 key:@"drivingCard2"];
     [Util setValueForKeyWithDic:pramas value:[NetWorkHandler objectToJson:customerLabel] key:@"customerLabel"];
     [Util setValueForKeyWithDic:pramas value:[NetWorkHandler objectToJson:customerLabelId] key:@"customerLabelId"];
+    [Util setValueForKeyWithDic:pramas value:customerEmail key:@"customerEmail"];
+    [Util setValueForKeyWithDic:pramas value:customerMemo key:@"customerMemo"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:sex] key:@"customerSex"];
     
     [handle postWithMethod:@"/web/customer/saveOrUpdateCustomer.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }

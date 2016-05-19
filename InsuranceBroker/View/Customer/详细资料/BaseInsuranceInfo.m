@@ -59,7 +59,8 @@
         
         NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbSepLine, tableview, btnEdit, btnClicked);
         
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[lbTitle]-10-[lbSepLine(1)]-0-[tableview]-10-|" options:0 metrics:nil views:views]];
+        self.contentVConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[lbTitle]-10-[lbSepLine(1)]-0-[tableview]-10-|" options:0 metrics:nil views:views];
+        [self addConstraints:self.contentVConstraint];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]->=10-[btnEdit]-20-|" options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbSepLine]-20-|" options:0 metrics:nil views:views]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tableview]-0-|" options:0 metrics:nil views:views]];

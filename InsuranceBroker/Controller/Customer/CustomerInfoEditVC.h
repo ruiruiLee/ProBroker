@@ -12,7 +12,7 @@
 #import "CustomerDetailModel.h"
 #import "SelectAreaModel.h"
 
-@interface CustomerInfoEditVC : BaseViewController<TagListViewDelegate, OnwerTagViewDelegate, UITextFieldDelegate, UIActionSheetDelegate>
+@interface CustomerInfoEditVC : BaseViewController<TagListViewDelegate, OnwerTagViewDelegate, UITextFieldDelegate, UIActionSheetDelegate, UITextViewDelegate>
 
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewHConstraint;
@@ -27,11 +27,11 @@
 //add
 @property (nonatomic, strong) IBOutlet UITextField *tfEmail;
 @property (nonatomic, strong) IBOutlet UITextField *tfDetailAddr;
-@property (nonatomic, strong) IBOutlet UITextField *tfRemarks;
+@property (nonatomic, strong) IBOutlet UITextView *tvRemarks;
 @property (nonatomic, strong) IBOutlet UITextField *tfAddr;
 @property (nonatomic, strong) IBOutlet UITextField *tfSex;
 
-@property (nonatomic, strong) NSString *sex;
+@property (nonatomic, assign) NSInteger sex;
 
 @property (nonatomic, strong) CustomerDetailModel *data;
 

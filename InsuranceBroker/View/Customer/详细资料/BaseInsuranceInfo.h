@@ -18,6 +18,8 @@
 - (void) NotifyHandleFollowUpClicked:(BaseInsuranceInfo *)sender idx:(NSInteger) idx;
 - (void) NotifyToLoadMoreFollowUp:(BaseInsuranceInfo *)sender;
 - (void) NotifyModifyInsuranceInfo:(BaseInsuranceInfo *) sender;//编辑投保资料
+- (void) NotifyToAddInsuranceInfo:(BaseInsuranceInfo *) sender;//添加非车险被保人资料
+- (void) NotifyHandleInsuranceInfoClicked:(BaseInsuranceInfo *)sender idx:(NSInteger) idx;//处理非车险资料列表点击
 - (void) NotifyHandlePolicyClicked:(BaseInsuranceInfo *)sender idx:(NSInteger) idx;//处理保单列表点击
 - (void) NotifyToLoadMorePloicy:(BaseInsuranceInfo *)sender;
 
@@ -27,7 +29,9 @@
 - (void) NotifyToRefreshSubviewFrames;
 - (void) NotifyToSubmitImage:(UIImage *) travelCard1 travelCard2:(UIImage *)travelCard2 image1:(UIImage *) image1 cert2:(UIImage *)image2;
 
-- (void) NotifyToPlanCarInsurance;
+- (void) NotifyToPlanCarInsurance;//车险报价
+- (void) NotifyToPlanInsurance:(id) model;//非车险报价
+
 @end
 
 @interface BaseInsuranceInfo : UIView <UITableViewDataSource, UITableViewDelegate>
@@ -40,6 +44,7 @@
 @property (nonatomic, strong)  UIButton *btnClicked;
 @property (nonatomic, weak) id<BaseInsuranceInfoDelegate> delegate;
 @property (nonatomic, strong) NSLayoutConstraint *btnHConstraint;
+@property (nonatomic, strong) NSArray *contentVConstraint;
 
 - (CGFloat) resetSubviewsFrame;
 

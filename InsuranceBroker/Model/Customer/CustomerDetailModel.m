@@ -53,6 +53,11 @@
     model.createdAt = [CustomerDetailModel dateFromString:[dictionary objectForKey:@"createdAt"]];
     model.customerSex = [[dictionary objectForKey:@"customerSex"] integerValue];
     model.customerBirthday = [CustomerDetailModel dateFromString:[dictionary objectForKey:@"customerBirthday"]];
+    model.liveProvinceName = [dictionary objectForKey:@"liveProvinceName"];
+    model.liveCityName = [dictionary objectForKey:@"liveCityName"];
+    model.liveAreaName = [dictionary objectForKey:@"liveAreaName"];
+    model.customerMemo = [dictionary objectForKey:@"customerMemo"];
+    model.customerEmail = [dictionary objectForKey:@"customerEmail"];
     
     NSArray *car = [dictionary objectForKey:@"carInfo"];
     if([car count] > 0)
@@ -66,6 +71,9 @@
     model.insurTotal = 0;
     model.insurArray = [[NSMutableArray alloc] init];
     
+    model.insuredArray = [[NSMutableArray alloc] init];
+    model.isLoadInsuredList = NO;
+    
     return model;
 }
 
@@ -78,6 +86,12 @@
         [result appendString:@"   "];
     }
     return result;
+}
+
+- (void) setInsuredArray:(NSMutableArray *)insuredArray
+{
+    _insuredArray = insuredArray;
+    self.isLoadInsuredList = YES;
 }
 
 @end

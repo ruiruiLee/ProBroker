@@ -87,4 +87,6 @@
 + (BOOL) checkInfoFull:(CarInfoModel*) carInfo;
 + (BOOL) isNilValue:(NSString *) value;
 
++ (BOOL) validateEmail:(NSString *)email;
+
 @end

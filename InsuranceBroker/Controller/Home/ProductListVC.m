@@ -197,6 +197,9 @@
     web.type = enumShareTypeShare;
     if(m.productImg != nil)
         web.shareImgArray = [NSArray arrayWithObject:m.productImg];
+    
+    web.shareContent = m.productIntro;
+    web.shareTitle = m.productTitle;
     [self.navigationController pushViewController:web animated:YES];
     [web loadHtmlFromUrlWithUserId:m.clickAddr];
 

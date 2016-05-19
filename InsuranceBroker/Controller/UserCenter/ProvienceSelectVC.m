@@ -40,7 +40,7 @@
         }
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 //        UserInfoModel *model  = [UserInfoModel shareUserInfoModel];
-        cell.lbTitle.text = self.selectArea.liveProvinceId;
+        cell.lbTitle.text = self.selectArea.liveProvince;
         cell.imgv.image = nil;
         if(self.selectArea.liveProvinceId == nil)
             cell.lbDetail.text = @"请选择地区";
@@ -85,7 +85,7 @@
         vc.selectIdx = indexPath.row;
         ProviendeModel *model = [[ProviendeModel alloc] init];
         model.provinceId = self.selectArea.liveProvinceId;
-        model.provinceName = self.selectArea.liveProvinceId;
+        model.provinceName = self.selectArea.liveProvince;
         vc.proviendemodel = model;
     }
 }

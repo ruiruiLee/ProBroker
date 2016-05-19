@@ -190,4 +190,18 @@
     return quick;
 }
 
+//非车险详情
++ (InsuredUserInfoEditVC *) CreateInsuredUserInfoEditVC
+{
+    InsuredUserInfoEditVC *insured = [[InsuredUserInfoEditVC alloc] initWithNibName:@"InsuredUserInfoEditVC" bundle:nil];
+    return insured;
+}
+
+
++ (EditInsuredUserInfoVC *) CreateEditInsuredUserInfoVC
+{
+    EditInsuredUserInfoVC *insured = [[EditInsuredUserInfoVC alloc] initWithNibName:@"EditInsuredUserInfoVC" bundle:nil];
+    return insured;
+}
+
 @end

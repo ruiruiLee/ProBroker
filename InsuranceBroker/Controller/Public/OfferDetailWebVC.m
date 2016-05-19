@@ -184,7 +184,7 @@
 
 - (void) NotifyShareWindow
 {
-    [self showPopView];
+    [self showPopView1];
 }
 
 -(void) kefuNavigationBar{

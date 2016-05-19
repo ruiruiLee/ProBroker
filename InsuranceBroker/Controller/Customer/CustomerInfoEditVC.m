@@ -60,6 +60,9 @@
     [self.tfMobile resignFirstResponder];
     [self.onwerTag resignFirstResponder];
     [self.tagView resignFirstResponder];
+    [self.tvRemarks resignFirstResponder];
+    [self.tfEmail resignFirstResponder];
+    [self.tfDetailAddr resignFirstResponder];
     
     return [super resignFirstResponder];
 }
@@ -67,18 +70,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.title = @"详细资料";
     [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
     
     [self.tfMobile addTarget:self action:@selector(textChangeAction:) forControlEvents:UIControlEventEditingChanged];
+    [self.tfDetailAddr addTarget:self action:@selector(textChangeAction:) forControlEvents:UIControlEventEditingChanged];
+    [self.tfEmail addTarget:self action:@selector(textChangeAction:) forControlEvents:UIControlEventEditingChanged];
     [self.tfName addTarget:self action:@selector(textChangeAction:) forControlEvents:UIControlEventEditingChanged];
     [self.onwerTag.textfield.textfield addTarget:self action:@selector(textChangeAction:) forControlEvents:UIControlEventEditingChanged];
+    
+    self.tvRemarks.delegate = self;
     
     self.viewHConstraint.constant = ScreenWidth;
     NSArray *array = nil;
     if(self.data){
+        
         self.tfName.text = self.data.customerName;
         self.tfMobile.text = self.data.customerPhone;
+        NSString *add = [NSString stringWithFormat:@"%@ %@", self.data.liveProvinceName, self.data.liveCityName];
+        add = [add stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
+        self.tfAddr.text = add;
+        self.tvRemarks.text = self.data.customerMemo;
+        self.tfDetailAddr.text = self.data.liveAddr;
+        self.tfEmail.text = self.data.customerEmail;
+        
+        self.tfSex.text = [Util getSexStringWithSex:self.data.customerSex];
+        self.sex = self.data.customerSex;
+        
         array = [self tagModelArrayFromIdAndName];
     }
     self.tagView.delegate = self;
@@ -118,6 +137,8 @@
     if( [name length] > 0 && (self.data == nil || (![name isEqualToString:self.data.customerName] && self.data != nil))){
         back = YES;
     }
+    
+    //电话
     NSString *mobile = self.tfMobile.text;
     if( [mobile length] > 0 && (self.data == nil || (![mobile isEqualToString:self.data.customerPhone] && self.data != nil))){
         back = YES;
@@ -127,6 +148,43 @@
         back = YES;
     }
     
+    //备注
+    NSString *remark = self.tvRemarks.text;
+    if( [remark length] > 0 && (self.data == nil || (![remark isEqualToString:self.data.customerMemo] && self.data != nil))){
+        back = YES;
+    }
+    
+    if([remark length] == 0 && (self.data != nil && [self.data.customerMemo length] > 0)){
+        back = YES;
+    }
+    
+    //邮件
+    NSString *email = self.tfEmail.text;
+    if( [email length] > 0 && (self.data == nil || (![email isEqualToString:self.data.customerEmail] && self.data != nil))){
+        back = YES;
+    }
+    
+    if([email length] == 0 && (self.data != nil && [self.data.customerEmail length] > 0)){
+        back = YES;
+    }
+    
+    //详细地址
+    NSString *addr = self.tfDetailAddr.text;
+    if( [addr length] > 0 && (self.data == nil || (![addr isEqualToString:self.data.liveAddr] && self.data != nil))){
+        back = YES;
+    }
+    
+    if([addr length] == 0 && (self.data != nil && [self.data.liveAddr length] > 0)){
+        back = YES;
+    }
+    
+    if(self.sex != self.data.customerSex){
+        back = YES;
+    }
+    
+    if(self.selectArea != nil && (![self.selectArea.liveCityId isEqualToString:self.data.liveCityId] || ![self.selectArea.liveProvinceId isEqualToString:self.data.liveProvinceId])){
+        back = YES;
+    }
 //    if(self.data != nil){
         NSMutableArray *result = [[NSMutableArray alloc] init];
         
@@ -319,6 +377,21 @@
         userId = self.data.userId;
     }
     
+    NSString *addr = self.tfDetailAddr.text;
+    NSString *email = self.tfEmail.text;
+    if([email length] > 0 && ![Util validateEmail:email]){
+        [Util showAlertMessage:@"电子邮箱格式不正确"];
+        return;
+    }
+    NSString *remark = self.tvRemarks.text;
+    
+    NSString *liveProvinceId = self.data.liveProvinceId;
+    NSString *liveCityId = self.data.liveCityId;
+    if(self.selectArea){
+        liveProvinceId = self.selectArea.liveProvinceId;
+        liveCityId = self.selectArea.liveCityId;
+    }
+    
     [NetWorkHandler requestToSaveOrUpdateCustomerWithUID:userId
                                            isAgentCreate:isAgentCreate
                                               customerId:self.data.customerId
@@ -335,15 +408,18 @@
                                              cardVerifiy:self.data.cardVerifiy
                                                 cardAddr:self.data.cardAddr
                                              verifiyTime:[CustomerDetailModel stringFromDate:self.data.verifiyTime]
-                                          liveProvinceId:self.data.liveProvinceId
-                                              liveCityId:self.data.liveCityId
+                                          liveProvinceId:liveProvinceId
+                                              liveCityId:liveCityId
                                               liveAreaId:self.data.liveAreaId
-                                                liveAddr:self.data.liveAddr
+                                                liveAddr:addr
                                           customerStatus:self.data.customerStatus
                                             drivingCard1:self.data.drivingCard1
                                             drivingCard2:self.data.drivingCard2
                                            customerLabel:customerLabel
                                          customerLabelId:customerLabelId
+                                           customerEmail:email
+                                            customerMemo:remark
+                                                     sex:self.sex
                                               Completion:^(int code, id content) {
                                                   
                                                   [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
@@ -363,6 +439,11 @@
 }
 
 - (void) textChangeAction:(id) sender {
+    [self isHasModify];
+}
+
+- (void) textViewDidEndEditing:(UITextView *)textView
+{
     [self isHasModify];
 }
 
@@ -391,9 +472,9 @@
     if(!self.selectArea){
         SelectAreaModel *model = [[SelectAreaModel alloc] init];
         model.liveProvinceId = self.data.liveProvinceId;
-        model.liveProvince = self.data.liveProvinceId;
+        model.liveProvince = self.data.liveProvinceName;
         model.liveCityId = self.data.liveCityId;
-        model.liveCity = self.data.liveCityId;
+        model.liveCity = self.data.liveCityName;
         vc.selectArea = model;
     }else
     {
@@ -412,14 +493,16 @@
     if(actionSheet.tag == 1000){
         if(buttonIndex == 0){
             self.tfSex.text = @"男";
-            _sex = @"1";
+            _sex = 1;
         }
         else if (buttonIndex == 1){
             self.tfSex.text = @"女";
-            _sex = @"2";
+            _sex = 2;
         }else
-            _sex = nil;
+            _sex = 0;
     }
+    
+    [self isHasModify];
 }
 
 @end
