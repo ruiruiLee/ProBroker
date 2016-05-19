@@ -159,7 +159,9 @@
           else{
                 NSLog(@"%ld---%@",(long)[error code],[error localizedDescription]);
               NSString *msg = [NSString stringWithFormat:@"(%ld)%@",(long)[error code],[error localizedDescription]];
-                [KGStatusBar showErrorWithStatus:msg];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                     [KGStatusBar showErrorWithStatus:msg];
+                    });
               }
            } );
 

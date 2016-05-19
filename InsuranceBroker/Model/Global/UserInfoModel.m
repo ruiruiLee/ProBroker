@@ -319,7 +319,7 @@
 {
     if([keyPath isEqualToString:@"userId"]){
         [self performSelector:@selector(queryUserInfo) withObject:nil afterDelay:0.1];
-        [self performSelector:@selector(loadLastNewsTip) withObject:nil afterDelay:0.1];
+//        [self performSelector:@selector(loadLastNewsTip) withObject:nil afterDelay:0.1];
     }
 }
 
