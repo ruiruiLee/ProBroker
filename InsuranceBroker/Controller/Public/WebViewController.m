@@ -122,31 +122,46 @@
 {
     [super viewDidAppear:animated];
     [[IQKeyboardManager sharedManager] setEnable:NO];
+
     if(!_isLoad){
         if(_urlpath != nil){
             
             id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:self.urlpath]];
-            if (cacheDatas !=nil) {
+            if (cacheDatas !=nil) { // 直接加在缓存
                 NSString *datastr = [[NSString alloc] initWithData:cacheDatas encoding:NSUTF8StringEncoding];
                 [ _webview loadHTMLString:datastr baseURL:[NSURL URLWithString:self.urlpath]];
-            }
-            else{
+                }
+            else{  //请求服务器资源
+           
                 NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlpath]];
-                [self addWebCache:request]; // 加缓存
-                [_webview loadRequest:request];
+                [self addWebCache:request]; // 加缓存并加载
             }
         }
     }
 }
 
+
+
 - (void)addWebCache:(NSURLRequest *)request{
+  
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-        if (response != nil){
-            // 加缓存
-            [[EGOCache globalCache] setObject:response forKey: [Util md5Hash:self.urlpath]];
-        }
-    } );
+        NSURLResponse *response = nil;
+        NSError *error = nil;
+        NSData *responseData = [NSURLConnection sendSynchronousRequest:request returningResponse: &response error:&error];
+          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+          if ((([httpResponse statusCode]/100) == 2)) {
+              // 加缓存
+              [[EGOCache globalCache] setObject:responseData forKey: [Util md5Hash:self.urlpath]];
+              dispatch_async(dispatch_get_main_queue(), ^{
+                   [_webview loadData:responseData MIMEType:@"text/html" textEncodingName:@"UTF-8" baseURL:[NSURL URLWithString:self.urlpath]];
+              });
+           }
+          else{
+                NSLog(@"%ld---%@",(long)[error code],[error localizedDescription]);
+              NSString *msg = [NSString stringWithFormat:@"(%ld)%@",(long)[error code],[error localizedDescription]];
+                [KGStatusBar showErrorWithStatus:msg];
+              }
+           } );
 
 }
 
