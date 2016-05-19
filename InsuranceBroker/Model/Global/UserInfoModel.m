@@ -89,6 +89,7 @@
     self.userType = [[dic objectForKey:@"userType"] integerValue];
     self.userId = [dic objectForKey:@"userId"];
     self.possessTeamStatus = [[dic objectForKey:@"possessTeamStatus"] boolValue];
+    self.uuid = [dic objectForKey:@"uuid"];
     
 //    self.cardNumber = [dic objectForKey:@"cardNumber"];
 //    self.cardNumberImg1 = [dic objectForKey:@"cardNumberImg1"];
@@ -139,6 +140,7 @@
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.cardVerifiy] key:@"cardVerifiy"];
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.userType] key:@"userType"];
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithBool:self.possessTeamStatus] key:@"possessTeamStatus"];
+    [Util setValueForKeyWithDic:mDic value:self.uuid key:@"uuid"];
     
     return mDic;
 }
@@ -161,6 +163,7 @@
 - (void) setDetailContentWithDictionary1:(NSDictionary *) dic
 {
     //    self.userId = [dic objectForKey:@"userId"];
+    self.uuid = [dic objectForKey:@"uuid"];
     self.realName = [dic objectForKey:@"realName"];
     self.headerImg = [dic objectForKey:@"headerImg"];
     self.phone = [dic objectForKey:@"phone"];

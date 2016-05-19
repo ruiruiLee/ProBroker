@@ -20,6 +20,11 @@
 @property (nonatomic, strong) NewUserModel *workBanner;
 @property (nonatomic, strong) NewUserModel *inviteBanner;
 
+@property (nonatomic, strong) NSString *chexianimg;
+@property (nonatomic, strong) NSString *appIcon;
+@property (nonatomic, strong) NSString *lineCustomer;
+@property (nonatomic, strong) NSString *exactQuoteNewsId;
+
 
 
 

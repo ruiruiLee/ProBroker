@@ -23,10 +23,7 @@
     NSArray *_headlineArray;
     //newuser
     NewUserModel *_newUserModel;
-//    AnnouncementModel *_liPeiChuXian;
     AnnouncementModel *_jiHuaShu;
-//    AnnouncementModel *_duSheBaoXian;
-//    AnnouncementModel *_chengGongZhiLu;
     
     NSString *_quoteUrl;
 }

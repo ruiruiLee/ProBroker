@@ -62,6 +62,11 @@
     [self loadInsurPageList:0];
 }
 
+- (void) refreshInsuredList:(NSNotification *) notify
+{
+    [self loadDetailWithCustomerId:self.data.customerId];
+}
+
 - (void) loadInsuredListWithCustomerId:(NSString *) customerId
 {
     NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
@@ -73,9 +78,10 @@
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             NSArray *array = [InsuredUserInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
-            self.customerinfoModel.detailModel.insuredArray = [[NSMutableArray alloc] initWithArray:array];
-            _insuranceDetailView.data = self.customerinfoModel.detailModel.insuredArray;
+            self.data.insuredArray = [[NSMutableArray alloc] initWithArray:array];
+            _insuranceDetailView.data = self.data.insuredArray;
             [_insuranceDetailView.tableviewNoCar reloadData];
+            [self resetContetHeight:_selectedView];
         }
     }];
 }
@@ -87,6 +93,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCustomerDetail:) name:Notify_Reload_CustomerDetail object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshOrderList:) name:Notify_Refresh_OrderList object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshInsuredList:) name:Notify_Refresh_Insured_list object:nil];
     
     self.title = @"客户资料";
     
@@ -267,8 +274,20 @@
             if(self.customerinfoModel){
                 self.customerinfoModel.detailModel = self.data;
                 self.customerinfoModel.customerName = self.data.customerName;
-                [self loadInsuredListWithCustomerId:self.data.customerId];
+            }else{
+                CustomerInfoModel *model = [[CustomerInfoModel alloc] init];
+//                self.customerinfoModel = [[CustomerInfoModel alloc] init];
+                model.detailModel = self.data;
+                model.customerName = self.data.customerName;
+                model.customerId = self.data.customerId;
+                model.isAgentCreate = 1;
+                model.customerLabel = self.data.customerLabel;
+                model.customerLabelId = self.data.customerLabelId;
+                model.headImg = self.data.headImg;
+                self.customerinfoModel = model;
             }
+            
+            [self loadInsuredListWithCustomerId:self.data.customerId];
         }
     }];
 }
@@ -651,6 +670,10 @@
 {
     InsuredUserInfoEditVC *vc = [IBUIFactory CreateInsuredUserInfoEditVC];
     vc.title = @"添加投保资料";
+    if(self.customerinfoModel)
+        vc.customerId = self.customerinfoModel.customerId;
+    else
+        vc.customerId = self.customerId;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -659,7 +682,11 @@
 {
     EditInsuredUserInfoVC *vc = [IBUIFactory CreateEditInsuredUserInfoVC];
     vc.title = @"投保资料详情";
-    vc.insuredModel = nil;
+    if(self.customerinfoModel)
+        vc.customerId = self.customerinfoModel.customerId;
+    else
+        vc.customerId = self.customerId;
+    vc.insuredModel = [self.data.insuredArray objectAtIndex:idx];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

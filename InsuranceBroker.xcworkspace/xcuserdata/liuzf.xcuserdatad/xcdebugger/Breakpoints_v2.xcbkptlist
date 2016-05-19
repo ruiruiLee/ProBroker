@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InsuranceBroker/Controller/Customer/CustomerDetailVC.m"
-            timestampString = "485248832.062563"
+            filePath = "InsuranceBroker/Controller/Public/OfferDetailWebVC.m"
+            timestampString = "485340724.990375"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "646"
-            endingLineNumber = "646"
-            landmarkName = "-NotifyToPlanInsurance:"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "-handleRightBarButtonClicked:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

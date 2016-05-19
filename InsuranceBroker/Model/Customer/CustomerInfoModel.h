@@ -11,7 +11,7 @@
 
 @interface CustomerInfoModel : MTLModel <MTLJSONSerializing>
 
-@property (nonatomic, strong, readonly) NSString *customerId;
+@property (nonatomic, strong) NSString *customerId;
 @property (nonatomic, strong) NSString *customerName;
 @property (nonatomic, strong) NSString *visitType;
 @property (nonatomic, strong) NSDate *createdAt;

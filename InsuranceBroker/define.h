@@ -46,7 +46,6 @@
 
 //image
 #define ThemeImage(imageName)  [UIImage imageNamed:imageName]
-//#define Share_Icon @"http://ac-0pyukjnl.clouddn.com/0962f076d953a07efe56.png"
 #define Share_Icon @"http://ac-0pyukjnl.clouddn.com/4b3d8bcb59e5b9bf736f.png"
 
 //rgb Color
@@ -93,6 +92,7 @@
 #define Notify_Logout @"Notify_Logout"
 #define Notify_Login @"Notify_Login"
 #define Notify_Refresh_OrderList @"Notify_Refresh_OrderList"
+#define Notify_Refresh_Insured_list @"Notify_Refresh_Insured_list"
 
 #define QR_ADDRESS @"http://ukb.weixin.car517.com/app_download/specialty_agent_app_download.html"
 #define ServicePhone @"4000803939"

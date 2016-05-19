@@ -33,14 +33,14 @@
 
 - (void) updateModelWithDictionary:(NSDictionary *) dictionary
 {
-    self.cardNumber = [dictionary objectForKey:@"cardNumber"];
+    self.cardNumber = [[dictionary objectForKey:@"cardNumber"] stringByReplacingOccurrencesOfString:@" " withString:@""];
     self.createdAt = [BaseModel dateFromString:[dictionary objectForKey:@"createdAt"]];
     self.customerId = [dictionary objectForKey:@"customerId"];
     self.insuredEmail = [dictionary objectForKey:@"insuredEmail"];
     self.insuredId = [dictionary objectForKey:@"insuredId"];
     self.insuredMemo = [dictionary objectForKey:@"insuredMemo"];
     self.insuredName = [dictionary objectForKey:@"insuredName"];
-    self.insuredPhone = [dictionary objectForKey:@"insuredPhone"];
+    self.insuredPhone = [[dictionary objectForKey:@"insuredPhone"] stringByReplacingOccurrencesOfString:@" " withString:@""];
     self.liveAddr = [dictionary objectForKey:@"liveAddr"];
     self.insuredSex = [[dictionary objectForKey:@"insuredSex"] integerValue];
     self.insuredStatus = [[dictionary objectForKey:@"insuredStatus"] integerValue];

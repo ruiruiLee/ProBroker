@@ -29,7 +29,11 @@
     if(self){
         self.type = enumShareTypeNo;
         self.shareType = enumNeedInitShareInfoNo;
-        self.shareImgArray = @[Share_Icon];
+        NSMutableArray *icon = [[NSMutableArray alloc] init];
+        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+        if(appdelegate.appIcon)
+            [icon addObject:appdelegate.appIcon];
+        self.shareImgArray = icon;
         _isLoad = false;
     }
     
@@ -206,6 +210,21 @@
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
 }
 
+- (void) loadHtmlFromUrlWithUuId:(NSString *) url
+{
+    if([UserInfoModel shareUserInfoModel].uuid == nil){
+        self.urlpath = url;
+        self.shareUrl =  url;
+    }
+    else{
+        self.urlpath = [NSString stringWithFormat:@"%@?uuid=%@", url, [UserInfoModel shareUserInfoModel].uuid];
+        self.shareUrl = [NSString stringWithFormat:@"%@?uuid=%@&appShare=1", url, [UserInfoModel shareUserInfoModel].uuid];
+    }
+    
+    if(self.webview)
+        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
+}
+
 - (void) loadHtmlFromUrl:(NSString *) url
 {
     self.urlpath = url;
@@ -301,8 +320,14 @@
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     
     if(self.shareImgArray == nil || [self.shareImgArray count] == 0)
-        self.shareImgArray = @[Share_Icon];
-        
+    {
+        NSMutableArray *icon = [[NSMutableArray alloc] init];
+        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+        if(appdelegate.appIcon)
+            [icon addObject:appdelegate.appIcon];
+        self.shareImgArray = icon;
+    }
+    
     
     if (self.shareImgArray) {
         

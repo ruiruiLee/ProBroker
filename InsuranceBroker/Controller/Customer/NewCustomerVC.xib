@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="myTagVConstraint" destination="VVM-yL-knA" id="Hb7-P4-euN"/>
                 <outlet property="onwerTag" destination="v39-hc-yNi" id="OUt-O2-1D9"/>
+                <outlet property="remarkCellVConstraint" destination="3hy-9j-4TI" id="3mt-sQ-Ul6"/>
                 <outlet property="tagVConstraint" destination="TJm-kl-bLW" id="kHF-XS-XCc"/>
                 <outlet property="tagView" destination="Mg4-BR-hSq" id="zKA-TO-c7z"/>
                 <outlet property="tfAddr" destination="trY-7b-iWH" id="1yd-tC-oUe"/>
@@ -382,7 +383,7 @@
                                             <color key="textColor" red="0.12941176469999999" green="0.12941176469999999" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ltb-HI-0aQ">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ltb-HI-0aQ" customClass="PlaceholderTextView">
                                             <rect key="frame" x="90" y="10" width="492" height="36"/>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -421,7 +422,7 @@
                                             <animations/>
                                             <color key="textColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                         </textField>
                                     </subviews>
                                     <animations/>

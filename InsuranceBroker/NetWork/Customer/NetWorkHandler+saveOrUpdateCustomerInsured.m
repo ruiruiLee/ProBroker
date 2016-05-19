@@ -11,7 +11,7 @@
 
 @implementation NetWorkHandler (saveOrUpdateCustomerInsured)
 
-+ (void) requestToQueryForInsuredPageListCardNumber:(NSString *) cardNumber
++ (void) requestToSaveOrUpdateCustomerInsuredCardNumber:(NSString *) cardNumber
                                          customerId:(NSString *) customerId
                                        insuredEmail:(NSString *) insuredEmail
                                           insuredId:(NSString *) insuredId
@@ -45,7 +45,7 @@
     [Util setValueForKeyWithDic:pramas value:liveProvinceId key:@"liveProvinceId"];
     [Util setValueForKeyWithDic:pramas value:relationType key:@"relationType"];
     
-    [handle postWithMethod:@"/web/customer/queryForInsuredPageList.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
+    [handle postWithMethod:@"/web/customer/saveOrUpdateCustomerInsured.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }
 
 @end

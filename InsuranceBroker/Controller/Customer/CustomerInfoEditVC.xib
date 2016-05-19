@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="myTagVConstraint" destination="Rew-B3-OAs" id="gkO-NH-4SB"/>
                 <outlet property="onwerTag" destination="H2i-Gb-L5Z" id="glU-aQ-g4X"/>
+                <outlet property="remarkCellVConstraint" destination="aZv-ye-FmG" id="7h2-cR-tv2"/>
                 <outlet property="tagVConstraint" destination="9PW-Rn-djm" id="EVc-M1-S52"/>
                 <outlet property="tagView" destination="zh2-XG-Jgu" id="9EG-qj-c8u"/>
                 <outlet property="tfAddr" destination="XqK-7l-xhc" id="mVg-lh-H5X"/>
@@ -239,7 +240,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="cj5-KY-9Ol">
-                                            <rect key="frame" x="566" y="20" width="16" height="16"/>
+                                            <rect key="frame" x="566" y="19.5" width="16" height="16"/>
                                             <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="16" id="Sxk-7F-EXc"/>
@@ -419,8 +420,8 @@
                                             <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bky-HX-C0c">
-                                            <rect key="frame" x="90" y="10" width="492" height="36"/>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bky-HX-C0c" customClass="PlaceholderTextView">
+                                            <rect key="frame" x="90" y="11" width="492" height="34"/>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
@@ -436,8 +437,8 @@
                                         <constraint firstAttribute="height" constant="56" id="aZv-ye-FmG"/>
                                         <constraint firstAttribute="trailing" secondItem="bky-HX-C0c" secondAttribute="trailing" constant="18" id="edl-Tu-PKw"/>
                                         <constraint firstItem="X3x-Jt-zjK" firstAttribute="leading" secondItem="oCO-rz-gfB" secondAttribute="leading" constant="20" id="oAI-Ci-i7x"/>
-                                        <constraint firstAttribute="bottom" secondItem="bky-HX-C0c" secondAttribute="bottom" constant="10" id="ojG-1A-pdg"/>
-                                        <constraint firstItem="bky-HX-C0c" firstAttribute="top" secondItem="oCO-rz-gfB" secondAttribute="top" constant="10" id="sx2-dk-EJ3"/>
+                                        <constraint firstAttribute="bottom" secondItem="bky-HX-C0c" secondAttribute="bottom" constant="11" id="ojG-1A-pdg"/>
+                                        <constraint firstItem="bky-HX-C0c" firstAttribute="top" secondItem="oCO-rz-gfB" secondAttribute="top" constant="11" id="sx2-dk-EJ3"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oAG-Vc-FQ3">
@@ -458,7 +459,7 @@
                                             <animations/>
                                             <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                         </textField>
                                     </subviews>
                                     <animations/>

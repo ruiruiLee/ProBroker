@@ -242,7 +242,8 @@
 - (void) doBtnInsurPlan:(id) sender
 {
     if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToPlanInsurance:)]){
-        [self.delegate NotifyToPlanInsurance:nil];
+        id model = [self.data objectAtIndex:_selectIdx];
+        [self.delegate NotifyToPlanInsurance:model];
     }
 }
 
