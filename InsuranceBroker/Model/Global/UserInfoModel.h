@@ -14,6 +14,7 @@
 @interface UserInfoModel : BaseModel
 
 @property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, assign) BOOL isRegister;//如果是第一次登录，则该字段为true
 @property (nonatomic, strong) NSString *realName;//通过微信获取,如果没有则返回””
 @property (nonatomic, strong) NSString *headerImg;//通过微信获取,如果没有则返回””

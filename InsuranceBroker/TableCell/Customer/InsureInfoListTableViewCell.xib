@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="476" height="75"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="476" height="75"/>
+                <rect key="frame" x="0.0" y="0.0" width="476" height="74.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="被保人姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lC6-Yp-vgM">
@@ -47,11 +47,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pgx-VD-GHm">
-                        <rect key="frame" x="18" y="22" width="32" height="32"/>
+                        <rect key="frame" x="8" y="12" width="52" height="52"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="32" id="Eem-6i-0f7"/>
-                            <constraint firstAttribute="height" constant="32" id="hD3-go-HEs"/>
+                            <constraint firstAttribute="width" constant="52" id="Eem-6i-0f7"/>
+                            <constraint firstAttribute="height" constant="52" id="hD3-go-HEs"/>
                         </constraints>
                         <state key="normal" image="unselect"/>
                         <connections>
@@ -68,9 +68,9 @@
                     <constraint firstItem="c7S-Wq-ywq" firstAttribute="centerY" secondItem="Pgx-VD-GHm" secondAttribute="centerY" constant="10" id="Xk2-pN-Cyh"/>
                     <constraint firstItem="lC6-Yp-vgM" firstAttribute="centerY" secondItem="Pgx-VD-GHm" secondAttribute="centerY" constant="-10" id="ZN4-v0-nso"/>
                     <constraint firstItem="4cv-lk-AXc" firstAttribute="centerY" secondItem="lC6-Yp-vgM" secondAttribute="centerY" id="ikU-dv-gaW"/>
-                    <constraint firstItem="Pgx-VD-GHm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="muT-69-FxN"/>
+                    <constraint firstItem="Pgx-VD-GHm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="muT-69-FxN"/>
                     <constraint firstItem="4cv-lk-AXc" firstAttribute="leading" secondItem="lC6-Yp-vgM" secondAttribute="trailing" constant="10" id="sN6-pI-OeK"/>
-                    <constraint firstItem="lC6-Yp-vgM" firstAttribute="leading" secondItem="Pgx-VD-GHm" secondAttribute="trailing" constant="12" id="vB0-9w-pid"/>
+                    <constraint firstItem="lC6-Yp-vgM" firstAttribute="leading" secondItem="Pgx-VD-GHm" secondAttribute="trailing" constant="2" id="vB0-9w-pid"/>
                     <constraint firstItem="b67-nH-Mh2" firstAttribute="leading" secondItem="4cv-lk-AXc" secondAttribute="leading" id="vDY-lr-q3L"/>
                 </constraints>
             </tableViewCellContentView>

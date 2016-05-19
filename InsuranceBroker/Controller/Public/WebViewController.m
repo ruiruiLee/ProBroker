@@ -204,6 +204,21 @@
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
 }
 
+- (void) loadHtmlFromUrlWithUuId:(NSString *) url
+{
+    if([UserInfoModel shareUserInfoModel].uuid == nil){
+        self.urlpath = url;
+        self.shareUrl =  url;
+    }
+    else{
+        self.urlpath = [NSString stringWithFormat:@"%@?uuid=%@", url, [UserInfoModel shareUserInfoModel].uuid];
+        self.shareUrl = [NSString stringWithFormat:@"%@?uuid=%@&appShare=1", url, [UserInfoModel shareUserInfoModel].uuid];
+    }
+    
+    if(self.webview)
+        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
+}
+
 - (void) loadHtmlFromUrl:(NSString *) url
 {
     self.urlpath = url;

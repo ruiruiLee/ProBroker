@@ -82,13 +82,14 @@
         web.shareContent = model.content;
         [self.navigationController pushViewController:web animated:YES];
         if(model.url){
-            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@", model.url]];
+            [web loadHtmlFromUrlWithUuId:[NSString stringWithFormat:@"%@", model.url]];
         }else{
             NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid];
-            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@",url]];
+            [web loadHtmlFromUrlWithUuId:[NSString stringWithFormat:@"%@",url]];
         }
     }
 }
+
 
 - (void) initHeaderView
 {

@@ -151,23 +151,7 @@
 - (void) handleRightBarButtonClicked:(id)sender
 {
     [self resignFirstResponder];
-    
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-    NewUserModel *model = appdelegate.workBanner;
-    if(model.isRedirect){
-        WebViewController *web = [IBUIFactory CreateWebViewController];
-        web.title = model.title;
-        web.type = enumShareTypeShare;
-        web.shareTitle = model.title;
-        web.shareContent = model.content;
-        [self.navigationController pushViewController:web animated:YES];
-        if(model.url){
-            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@", model.url]];
-        }else{
-            NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid];
-            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@",url]];
-        }
-    }
+    [super handleRightBarButtonClicked:sender];
 }
 
 - (void)didReceiveMemoryWarning {
