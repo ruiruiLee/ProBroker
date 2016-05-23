@@ -376,14 +376,7 @@
     [self performSelector:@selector(openlocation) withObject:nil afterDelay:1.0f];
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-       
-        //[[UserInfoModel shareUserInfoModel] queryUserInfo];
-        [[UserInfoModel shareUserInfoModel] queryLastNewsTip:^(int code, id content) {
-        if(code == 200){
-            AppContext *context = [AppContext sharedAppContext];
-            [context SaveNewsTip:[NSArray arrayWithArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
-         }
-    }];
+        [[UserInfoModel shareUserInfoModel] loadLastNewsTip];
     });
 
 }
