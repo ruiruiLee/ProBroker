@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InsuredUserInfoEditVC">
@@ -30,7 +30,6 @@
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZWU-jX-X4e">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="15"/>
-                                    <animations/>
                                     <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="15" id="dJb-sj-5VL"/>
@@ -41,7 +40,6 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvs-xE-44v">
                                             <rect key="frame" x="20" y="20" width="90" height="18"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="DAD-Qs-su8"/>
                                             </constraints>
@@ -49,9 +47,8 @@
                                             <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yd4-TC-5Jl">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="被保人姓名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yd4-TC-5Jl">
                                             <rect key="frame" x="120" y="14" width="462" height="30"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="FfD-TI-t8D"/>
                                             </constraints>
@@ -61,16 +58,14 @@
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48v-kE-r0d" customClass="SepLineLabel">
                                             <rect key="frame" x="20" y="56" width="560" height="1"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="W5H-5O-Z8w"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="pvs-xE-44v" firstAttribute="leading" secondItem="OiB-p5-LiX" secondAttribute="leading" constant="20" id="5qi-dG-BJR"/>
@@ -89,7 +84,6 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性别" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4r-O1-JQk">
                                             <rect key="frame" x="20" y="20" width="90" height="18"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="dvV-vb-YdP"/>
                                             </constraints>
@@ -99,17 +93,15 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7LP-WU-FCA" customClass="SepLineLabel">
                                             <rect key="frame" x="20" y="56" width="560" height="1"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="Lls-ud-7je"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="性别" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XP6-YR-GUW">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="被保人性别" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XP6-YR-GUW">
                                             <rect key="frame" x="120" y="14" width="438" height="30"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="Am6-55-jwj"/>
                                             </constraints>
@@ -119,7 +111,6 @@
                                         </textField>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="TbB-D1-VP9">
                                             <rect key="frame" x="568" y="21" width="16" height="16"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="16" id="LsV-ku-eiI"/>
                                                 <constraint firstAttribute="height" constant="16" id="hjm-Co-koG"/>
@@ -127,13 +118,11 @@
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGu-tj-um4">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="57"/>
-                                            <animations/>
                                             <connections>
                                                 <action selector="doBtnSelectSex:" destination="-1" eventType="touchUpInside" id="Pys-Ib-yiw"/>
                                             </connections>
                                         </button>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="TbB-D1-VP9" firstAttribute="centerY" secondItem="P4r-O1-JQk" secondAttribute="centerY" id="1Pw-N2-Vsg"/>
@@ -158,7 +147,6 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="身份证号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYy-kb-VMA">
                                             <rect key="frame" x="20" y="20" width="90" height="18"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="aDi-Tb-fN7"/>
                                             </constraints>
@@ -168,17 +156,15 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EMb-i9-set" customClass="SepLineLabel">
                                             <rect key="frame" x="20" y="56" width="560" height="1"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="ueR-IC-fRU"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="身份证号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O1U-pR-s7X">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="被保人身份证号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="O1U-pR-s7X">
                                             <rect key="frame" x="120" y="14" width="462" height="30"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="NFD-2w-U0E"/>
                                             </constraints>
@@ -187,7 +173,6 @@
                                             <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
                                         </textField>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="O1U-pR-s7X" firstAttribute="centerY" secondItem="dYy-kb-VMA" secondAttribute="centerY" id="1Zl-4d-61S"/>
@@ -206,7 +191,6 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="手机号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zAt-mw-Mat">
                                             <rect key="frame" x="20" y="19" width="60" height="20"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="HlO-TA-OQa"/>
                                             </constraints>
@@ -216,17 +200,15 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ec-sP-UCL" customClass="SepLineLabel">
                                             <rect key="frame" x="20" y="56" width="560" height="1"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="zQU-wa-nww"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HtM-1Y-chg">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="被保人手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HtM-1Y-chg">
                                             <rect key="frame" x="120" y="14" width="462" height="30"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="qgC-cs-N92"/>
                                             </constraints>
@@ -235,7 +217,6 @@
                                             <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                         </textField>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="zAt-mw-Mat" firstAttribute="leading" secondItem="z1d-Ay-uqI" secondAttribute="leading" constant="20" id="5GD-1p-PCR"/>
@@ -254,7 +235,6 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="电子邮箱" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjI-wv-WLJ">
                                             <rect key="frame" x="20" y="20" width="90" height="18"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="nSk-gx-rXd"/>
                                             </constraints>
@@ -264,17 +244,15 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ekg-d8-JlE" customClass="SepLineLabel">
                                             <rect key="frame" x="20" y="56" width="560" height="1"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="MYe-we-GlJ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="电子邮箱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aKG-WU-RrV">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="用于接收电子保单" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aKG-WU-RrV">
                                             <rect key="frame" x="120" y="14" width="462" height="30"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="fa8-cI-Nke"/>
                                             </constraints>
@@ -283,7 +261,6 @@
                                             <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                         </textField>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="Ekg-d8-JlE" secondAttribute="bottom" id="ENo-cr-U4w"/>
@@ -300,9 +277,8 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDb-0C-IgG">
                                     <rect key="frame" x="0.0" y="300" width="600" height="57"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="与投保人关系" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="opr-84-W0q">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择与投保人关系" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="opr-84-W0q">
                                             <rect key="frame" x="120" y="14" width="438" height="30"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="fNo-PV-JZY"/>
                                             </constraints>
@@ -312,7 +288,6 @@
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="与投保人关系" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgQ-e2-sFh">
                                             <rect key="frame" x="20" y="20" width="90" height="18"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="iby-te-KgA"/>
                                             </constraints>
@@ -322,7 +297,6 @@
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="sIQ-Rw-Lcc">
                                             <rect key="frame" x="568" y="21" width="16" height="16"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="CHJ-t5-btE"/>
                                                 <constraint firstAttribute="width" constant="16" id="aqW-7L-b1z"/>
@@ -330,23 +304,20 @@
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eCn-NP-Uha">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="57"/>
-                                            <animations/>
                                             <connections>
                                                 <action selector="doBtnSelectRelation:" destination="-1" eventType="touchUpInside" id="jZG-5P-6As"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehz-aF-btw" customClass="SepLineLabel">
                                             <rect key="frame" x="20" y="56" width="560" height="1"/>
-                                            <animations/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="zPe-aU-Ghv"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="eCn-NP-Uha" secondAttribute="trailing" id="5jf-5S-cLB"/>
@@ -367,7 +338,6 @@
                                     </constraints>
                                 </view>
                             </subviews>
-                            <animations/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="ZWU-jX-X4e" firstAttribute="leading" secondItem="dxx-Bb-ObU" secondAttribute="leading" id="0QH-Q7-yYS"/>
@@ -396,7 +366,6 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <animations/>
                     <constraints>
                         <constraint firstItem="dxx-Bb-ObU" firstAttribute="top" secondItem="HLP-GT-tIJ" secondAttribute="top" id="XCJ-zK-zY1"/>
                         <constraint firstAttribute="trailing" secondItem="dxx-Bb-ObU" secondAttribute="trailing" id="Zu8-SN-gMM"/>
@@ -405,7 +374,6 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="HLP-GT-tIJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Eph-a3-3Ia"/>

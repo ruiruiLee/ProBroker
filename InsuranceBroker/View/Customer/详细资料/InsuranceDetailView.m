@@ -72,7 +72,7 @@
         [self addSubview:btnApplicant];
         [btnApplicant setTitle:@"立即\n投保" forState:UIControlStateNormal];
         btnApplicant.translatesAutoresizingMaskIntoConstraints = NO;
-        btnApplicant.layer.cornerRadius = 24;
+        btnApplicant.layer.cornerRadius = 27;
         btnApplicant.backgroundColor = _COLOR(0xff, 0x66, 0x19);
         btnApplicant.titleLabel.font = _FONT_B(15);
         btnApplicant.titleLabel.numberOfLines = 2;
@@ -88,9 +88,9 @@
         UILabel *lbSepLine = self.lbSepLine;
         NSDictionary *views1 = NSDictionaryOfVariableBindings(sepView, lbTitleNoCar, btnClickedNoCar, lbSepLineNoCar, tableviewNoCar, tableview, lbTitleCar, lbSepLine, btnEditNoCar, btnApplicant);
         [self removeConstraints:self.contentVConstraint];
-        self.contentVConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[lbTitleCar(15)]-10-[lbSepLine(1)]-0-[tableview]-0-[sepView(15)]-30-[lbTitleNoCar(15)]-10-[lbSepLineNoCar(1)]-0-[tableviewNoCar]-10-[btnApplicant(48)]-20-|" options:0 metrics:nil views:views1];
+        self.contentVConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30-[lbTitleCar(15)]-10-[lbSepLine(1)]-0-[tableview]-0-[sepView(15)]-30-[lbTitleNoCar(15)]-10-[lbSepLineNoCar(1)]-0-[tableviewNoCar]-10-[btnApplicant(54)]-20-|" options:0 metrics:nil views:views1];
         [self addConstraints:self.contentVConstraint];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnApplicant(48)]->=0-|" options:0 metrics:nil views:views1]];
+        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnApplicant(54)]->=0-|" options:0 metrics:nil views:views1]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[sepView]-0-|" options:0 metrics:nil views:views1]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitleNoCar]->=10-[btnEditNoCar]-20-|" options:0 metrics:nil views:views1]];
         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbSepLineNoCar]-20-|" options:0 metrics:nil views:views1]];
@@ -124,7 +124,7 @@
         [self.btnEdit setImage:ThemeImage(@"edit_profile") forState:UIControlStateNormal];
         [self.btnEdit setTitle:@"详情" forState:UIControlStateNormal];
         [self.btnEdit setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];
-        self.btnHConstraint.constant = 54;
+        self.btnHConstraint.constant = 60;
         
         _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, INTMAX_MAX)];
         _footView.backgroundColor = [UIColor clearColor];
@@ -163,7 +163,7 @@
         [_footView addSubview:btnQuote];
         [btnQuote setTitle:@"车险\n报价" forState:UIControlStateNormal];
         btnQuote.translatesAutoresizingMaskIntoConstraints = NO;
-        btnQuote.layer.cornerRadius = 24;
+        btnQuote.layer.cornerRadius = 27;
         btnQuote.backgroundColor = _COLOR(0xff, 0x66, 0x19);
         btnQuote.titleLabel.font = _FONT_B(15);
         btnQuote.titleLabel.numberOfLines = 2;
@@ -196,12 +196,12 @@
         [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lb1]-20-|" options:0 metrics:nil views:views]];
         [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lb2]-20-|" options:0 metrics:nil views:views]];
         
-        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[bgview(40)]-0-[_contentView]-0-|" options:0 metrics:nil views:views]];
-        [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnClicked(40)]-0-|" options:0 metrics:nil views:views]];
+        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[bgview(54)]-0-[_contentView]-0-|" options:0 metrics:nil views:views]];
+        [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnClicked(54)]-0-|" options:0 metrics:nil views:views]];
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[sepline(1)]-0-|" options:0 metrics:nil views:views]];
         
-        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views]];
-        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(48)]->=0-|" options:0 metrics:nil views:views]];
+        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnQuote(54)]->=0-|" options:0 metrics:nil views:views]];
+        [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(54)]->=0-|" options:0 metrics:nil views:views]];
         [_footView addConstraint:[NSLayoutConstraint constraintWithItem:btnQuote attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sepline attribute:NSLayoutAttributeBottom multiplier:1 constant:-1]];
         
         vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[lb1]-20-[lb2]-20-|" options:0 metrics:nil views:views];

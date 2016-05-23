@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "define.h"
 #import "NoticeListVC.h"
+#import "AppDelegate.h"
 
 @interface RootViewController ()
 
@@ -133,11 +134,15 @@
 
 
 -(void) pushActivetoController:(id)dic{
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    NSString *appicon = appdelegate.appIcon;
+    
     [CMNavBarNotificationView notifyWithText:[dic objectForKey:@"title"]
                                       detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]
-                                       image:[UIImage imageNamed:@"icon"]
+                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appicon]]]
                                  andDuration:5.0
                                   msgparams:dic];
+    
 }
 
 -(void) pushtoController:(NSDictionary *)info
