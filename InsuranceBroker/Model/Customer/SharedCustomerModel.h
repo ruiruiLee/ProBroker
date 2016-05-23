@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSString *appType;//
 @property (nonatomic, strong) NSString *uuid;//
 @property (nonatomic, strong) NSString *headerUrl;//头像
-@property (nonatomic, strong) NSString *shareSource;//分享来源
+@property (nonatomic, assign) NSInteger shareSource;//分享来源
 @property (nonatomic, strong) NSString *objectId;//item的ID
 @property (nonatomic, strong) NSDate *createdAt;//创建时间
 @property (nonatomic, strong) NSString *cooperationImg;
@@ -25,5 +25,6 @@
 @property (nonatomic, strong) NSString *provence;
 @property (nonatomic, strong) NSString *city;
 @property (nonatomic, assign) BOOL flag;
+@property (nonatomic, strong) NSString *insuranceType;
 
 @end

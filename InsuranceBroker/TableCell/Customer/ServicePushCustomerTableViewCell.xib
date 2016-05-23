@@ -47,8 +47,8 @@
                         <rect key="frame" x="137" y="30" width="30" height="30"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="H8V-vC-bt2"/>
-                            <constraint firstAttribute="height" constant="30" id="Xlo-ba-En2"/>
+                            <constraint firstAttribute="width" constant="24" id="H8V-vC-bt2"/>
+                            <constraint firstAttribute="height" constant="24" id="Xlo-ba-En2"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voW-Xe-E90">
@@ -59,14 +59,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYN-mX-B95">
-                        <rect key="frame" x="403" y="63" width="70" height="28"/>
+                        <rect key="frame" x="403" y="65" width="70" height="28"/>
                         <animations/>
                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="4Pu-eN-u68"/>
                             <constraint firstAttribute="height" constant="28" id="IrF-x0-yPI"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <state key="normal" title="获客">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
@@ -92,11 +92,11 @@
                     <constraint firstItem="oYN-mX-B95" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-6" id="Crh-bl-lhE"/>
                     <constraint firstItem="voW-Xe-E90" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DHU-hB-pXm" secondAttribute="trailing" constant="10" id="D9L-PK-8T8"/>
                     <constraint firstItem="voW-Xe-E90" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-6" id="G2k-ns-Lee"/>
+                    <constraint firstItem="oYN-mX-B95" firstAttribute="bottom" secondItem="vla-E5-Mnl" secondAttribute="bottom" id="PuW-PO-Ysh"/>
                     <constraint firstItem="Zrw-Gp-tll" firstAttribute="leading" secondItem="vla-E5-Mnl" secondAttribute="trailing" constant="10" id="Svz-3p-fx4"/>
                     <constraint firstItem="DHU-hB-pXm" firstAttribute="leading" secondItem="Zrw-Gp-tll" secondAttribute="trailing" constant="10" id="Wmt-DI-skW"/>
                     <constraint firstItem="DHU-hB-pXm" firstAttribute="centerY" secondItem="Zrw-Gp-tll" secondAttribute="centerY" id="bEJ-Ln-uhM"/>
                     <constraint firstItem="9rx-J6-Huk" firstAttribute="bottom" secondItem="vla-E5-Mnl" secondAttribute="bottom" id="br0-Ba-m3j"/>
-                    <constraint firstItem="oYN-mX-B95" firstAttribute="baseline" secondItem="9rx-J6-Huk" secondAttribute="baseline" constant="-8" id="f84-HG-ycS"/>
                     <constraint firstItem="9rx-J6-Huk" firstAttribute="top" secondItem="a88-AV-Zfq" secondAttribute="bottom" constant="2" id="jqo-VY-bWq"/>
                     <constraint firstItem="9rx-J6-Huk" firstAttribute="leading" secondItem="Zrw-Gp-tll" secondAttribute="leading" id="lqV-XN-q0Y"/>
                     <constraint firstItem="a88-AV-Zfq" firstAttribute="leading" secondItem="Zrw-Gp-tll" secondAttribute="leading" id="zMr-Co-yB7"/>

@@ -42,12 +42,13 @@
     self.flag = [[dictionary objectForKey:@"flag"] boolValue];
     self.uuid = [dictionary objectForKey:@"uuid"];
     self.headerUrl = [dictionary objectForKey:@"headerUrl"];
-    self.shareSource = [dictionary objectForKey:@"shareSource"];
+    self.shareSource = [[dictionary objectForKey:@"shareSource"] integerValue];
     self.objectId = [dictionary objectForKey:@"objectId"];
     self.shareImg = [dictionary objectForKey:@"shareImg"];
     self.provence = [dictionary objectForKey:@"provence"];
     self.city = [dictionary objectForKey:@"city"];
     self.createdAt = [BaseModel dateFromInteger:[[dictionary objectForKey:@"createdAt"] longLongValue]];
+    self.insuranceType = [dictionary objectForKey:@"insuranceType"];
 }
 
 
