@@ -408,8 +408,6 @@
 		86D3D99F1CBC998500276AC0 /* TranslucentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D99E1CBC998500276AC0 /* TranslucentToolbar.m */; };
 		86D3D9A21CBCD7AF00276AC0 /* UserCenterHeaderBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D9A11CBCD7AF00276AC0 /* UserCenterHeaderBgView.m */; };
 		86E6347B1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */; };
-		86EECD9A1CF2A2B600BBAF11 /* JZAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECD971CF2A2B600BBAF11 /* JZAlbumViewController.m */; };
-		86EECD9B1CF2A2B600BBAF11 /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECD991CF2A2B600BBAF11 /* PhotoView.m */; };
 		86EECD9E1CF2A6CE00BBAF11 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECD9D1CF2A6CE00BBAF11 /* MBProgressHUD.m */; };
 		86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */; };
 		86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */; };
@@ -1200,10 +1198,6 @@
 		86D3D9A11CBCD7AF00276AC0 /* UserCenterHeaderBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterHeaderBgView.m; sourceTree = "<group>"; };
 		86E634791CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+updateCustomerHeadImg.h"; sourceTree = "<group>"; };
 		86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateCustomerHeadImg.m"; sourceTree = "<group>"; };
-		86EECD961CF2A2B600BBAF11 /* JZAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAlbumViewController.h; sourceTree = "<group>"; };
-		86EECD971CF2A2B600BBAF11 /* JZAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAlbumViewController.m; sourceTree = "<group>"; };
-		86EECD981CF2A2B600BBAF11 /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
-		86EECD991CF2A2B600BBAF11 /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
 		86EECD9C1CF2A6CE00BBAF11 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		86EECD9D1CF2A6CE00BBAF11 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromSubVC.h; sourceTree = "<group>"; };
@@ -2640,10 +2634,6 @@
 		86EECD951CF2A2A400BBAF11 /* JZAlbumViewController */ = {
 			isa = PBXGroup;
 			children = (
-				86EECD961CF2A2B600BBAF11 /* JZAlbumViewController.h */,
-				86EECD971CF2A2B600BBAF11 /* JZAlbumViewController.m */,
-				86EECD981CF2A2B600BBAF11 /* PhotoView.h */,
-				86EECD991CF2A2B600BBAF11 /* PhotoView.m */,
 				86EECD9C1CF2A6CE00BBAF11 /* MBProgressHUD.h */,
 				86EECD9D1CF2A6CE00BBAF11 /* MBProgressHUD.m */,
 			);
@@ -3127,7 +3117,6 @@
 				865065BD1C1EB1ED00429EAE /* UINavigationBar+Awesome.m in Sources */,
 				86A26E851C4528A40073FFFC /* NetWorkHandler+announcement.m in Sources */,
 				86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */,
-				86EECD9A1CF2A2B600BBAF11 /* JZAlbumViewController.m in Sources */,
 				86A26E881C452A5B0073FFFC /* AnnouncementModel.m in Sources */,
 				8612F4171CE4828D0045340F /* UIView+JElasticPullToRefresh.m in Sources */,
 				86D3D9A21CBCD7AF00276AC0 /* UserCenterHeaderBgView.m in Sources */,
@@ -3255,7 +3244,6 @@
 				86A504B11C4FB8870032A901 /* BankInfoModel.m in Sources */,
 				86A26F0E1C4A2C9F0073FFFC /* XYPieChart.m in Sources */,
 				86A26F071C4A29CB0073FFFC /* NSDate+Additions.m in Sources */,
-				86EECD9B1CF2A2B600BBAF11 /* PhotoView.m in Sources */,
 				86F2DA961C7EF0780088B783 /* MyTeamInfoVC.m in Sources */,
 				86A26EAB1C4796700073FFFC /* PlaceholderTextView.m in Sources */,
 				86C3BBC81C2A370A00F98E80 /* CustomerPanEditView.m in Sources */,

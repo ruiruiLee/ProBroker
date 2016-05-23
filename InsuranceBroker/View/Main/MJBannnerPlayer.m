@@ -119,6 +119,7 @@
         width += self.currentRect.size.width;
         
     }
+
 }
 
 //自动布局创建自定义的pageController
@@ -216,7 +217,7 @@
     totalPage.textAlignment = NSTextAlignmentCenter;
     totalPage.font = [UIFont boldSystemFontOfSize:14.f / 375 * [UIScreen mainScreen].bounds.size.width];
     totalPage.textColor = [UIColor whiteColor];
-    totalPage.text = [NSString stringWithFormat:@"／ %ld",(unsigned long)totalPageNumber];
+    totalPage.text = [NSString stringWithFormat:@"/ %ld",(unsigned long)totalPageNumber];
     totalPage.backgroundColor = [UIColor clearColor];
     [self addSubview:totalPage];
     
@@ -292,7 +293,7 @@
 -(void)animationDidStart:(CAAnimation *)anim{
 
     UILabel *index = (UILabel *)[self viewWithTag:99];
-    index.text = [NSString stringWithFormat:@"%d",self.index + 1];
+    index.text = [NSString stringWithFormat:@"%ld",self.index + 1];
 
 }
 
@@ -320,8 +321,8 @@
         
         if (sourceList.count == 1){
              id obj =[tempArray objectAtIndex:0];
-            [tempArray addObject:obj];
-            [tempArray addObject:obj];
+//            [tempArray addObject:obj];
+//            [tempArray addObject:obj];
            
              if ([obj isKindOfClass:[UIImage class]]) {
                  indexViewOne.image = obj;
@@ -338,7 +339,7 @@
         }else if (sourceList.count == 2){
             
             id obj =[tempArray objectAtIndex:0];
-            [tempArray addObject:obj];
+//            [tempArray addObject:obj];
             
             if ([obj isKindOfClass:[UIImage class]]) {
                 indexViewOne.image = [tempArray objectAtIndex:1];
@@ -414,6 +415,11 @@
 
 }
 
+- (int) getSourceCount
+{
+    return [self.sourceArray count];
+}
+
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
@@ -425,27 +431,50 @@
                 
                 self.index = self.sourceArray.count - 1;
                 [self setPicWithIndex:2 withImage:[self.sourceArray objectAtIndex:self.index]];
-                [self.mainSv setContentOffset:CGPointMake(self.currentRect.size.width, 0)];
-                [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.index - 1]];
-                [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:0]];
+                if([self getSourceCount] == 1){
+                    [self.mainSv setContentOffset:CGPointMake(self.currentRect.size.width, 0)];
+                    [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.index]];
+                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:self.index]];
+                }
+                else if ([self getSourceCount] == 2){
+                    [self.mainSv setContentOffset:CGPointMake(self.currentRect.size.width, 0)];
+                    [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:0]];
+                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:0]];
+                }
+                else{
+                    [self.mainSv setContentOffset:CGPointMake(self.currentRect.size.width, 0)];
+                    [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.index - 1]];
+                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:0]];
+                }
                 
             }else{
                 
                 self.index --;
                 [self setPicWithIndex:2 withImage:[self.sourceArray objectAtIndex:self.index]];
                 [self.mainSv setContentOffset:CGPointMake(self.currentRect.size.width, 0)];
-                
-                if (self.index == 0) {
+                if([self getSourceCount] == 1){
+                    [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.index]];
                     
-                    [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.sourceArray.count - 1]];
-                    
-                }else{
-                
-                   [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.index - 1]];
-                
+                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:self.index]];
                 }
-                
-                [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:self.index + 1]];
+                else if ([self getSourceCount] == 2){
+                        
+                    [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.sourceArray.count - 1]];
+                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:self.sourceArray.count - 1]];
+                }
+                else{
+                    if (self.index == 0) {
+                        
+                        [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.sourceArray.count - 1]];
+                        
+                    }else{
+                        
+                        [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.index - 1]];
+                        
+                    }
+                    
+                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:self.index + 1]];
+                }
                 
             }
             
@@ -467,28 +496,47 @@
                 self.index = 0;
                 [self setPicWithIndex:2 withImage:[self.sourceArray objectAtIndex:self.index]];
                 [self.mainSv setContentOffset:CGPointMake(self.currentRect.size.width, 0)];
-                [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.sourceArray.count - 1]];
-                [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:self.index + 1]];
-                
-                
+                if([self getSourceCount] == 1){
+                    [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.index]];
+                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:self.index]];
+                }
+                else if ([self getSourceCount] == 2){
+                    [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.index + 1]];
+                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:self.index + 1]];
+                }
+                else{
+                    [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.sourceArray.count - 1]];
+                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:self.index + 1]];
+                }
                 
             }else{
                 
                 self.index ++;
                 [self setPicWithIndex:2 withImage:[self.sourceArray objectAtIndex:self.index]];
                 [self.mainSv setContentOffset:CGPointMake(self.currentRect.size.width, 0)];
-                [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.index - 1]];
-                
-                if (self.index == self.sourceArray.count - 1) {
-                    
-                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:0]];
-                    
-                }else{
-                
-                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:self.index + 1]];
-                
+                if([self getSourceCount] == 1){
+                    [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.index]];
+                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:self.index]];
+
                 }
-                
+                else if ([self getSourceCount] == 2){
+                    [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:0]];
+
+                    [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:0]];
+                }
+                else{
+                    [self setPicWithIndex:1 withImage:[self.sourceArray objectAtIndex:self.index - 1]];
+                    
+                    if (self.index == self.sourceArray.count - 1) {
+                        
+                        [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:0]];
+                        
+                    }else{
+                        
+                        [self setPicWithIndex:3 withImage:[self.sourceArray objectAtIndex:self.index + 1]];
+                        
+                    }
+                }
             }
             
             //页码翻页动画
