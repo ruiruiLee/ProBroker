@@ -671,7 +671,7 @@
 - (void) NotifyToAddInsuranceInfo:(BaseInsuranceInfo *) sender
 {
     InsuredUserInfoEditVC *vc = [IBUIFactory CreateInsuredUserInfoEditVC];
-    vc.title = @"添加投保资料";
+    vc.title = @"被保人信息";
     if(self.customerinfoModel)
         vc.customerId = self.customerinfoModel.customerId;
     else
@@ -683,7 +683,7 @@
 - (void) NotifyHandleInsuranceInfoClicked:(BaseInsuranceInfo *)sender idx:(NSInteger) idx
 {
     EditInsuredUserInfoVC *vc = [IBUIFactory CreateEditInsuredUserInfoVC];
-    vc.title = @"投保资料详情";
+    vc.title = @"被保人信息";
     if(self.customerinfoModel)
         vc.customerId = self.customerinfoModel.customerId;
     else
