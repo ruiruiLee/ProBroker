@@ -123,7 +123,6 @@
     cell.lbTime.text = [Util getShowingTime:model.createdAt];
     cell.lbType.text = model.insuranceType;
     cell.lbActive.text = model.cooperationSource;
-    [cell.imageFromV sd_setImageWithURL:[NSURL URLWithString:model.shareImg]];
 
     if(model.shareSource == 1 ){
         cell.imageFromV.image = ThemeImage(@"wechat_talk");
