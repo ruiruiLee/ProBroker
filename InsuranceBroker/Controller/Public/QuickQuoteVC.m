@@ -20,13 +20,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    UIButton *btnDetail = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 68, 20)];
-    [btnDetail setTitle:@"精准算价?" forState:UIControlStateNormal];
+    UIButton *btnDetail = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 68, 24)];
+    [btnDetail setTitle:@"精准报价?" forState:UIControlStateNormal];
     btnDetail.layer.cornerRadius = 10;
     btnDetail.layer.borderWidth = 0.5;
     btnDetail.layer.borderColor = _COLOR(0xff, 0x66, 0x19).CGColor;
     [btnDetail setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
-    btnDetail.titleLabel.font = _FONT(10);
+    btnDetail.titleLabel.font = _FONT(12);
     [self setRightBarButtonWithButton:btnDetail];
 }
 

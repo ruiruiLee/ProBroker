@@ -74,7 +74,7 @@
         btnApplicant.translatesAutoresizingMaskIntoConstraints = NO;
         btnApplicant.layer.cornerRadius = 24;
         btnApplicant.backgroundColor = _COLOR(0xff, 0x66, 0x19);
-        btnApplicant.titleLabel.font = _FONT_B(14);
+        btnApplicant.titleLabel.font = _FONT_B(15);
         btnApplicant.titleLabel.numberOfLines = 2;
         btnApplicant.titleLabel.textAlignment = NSTextAlignmentCenter;
         btnApplicant.layer.shadowColor = _COLOR(0xff, 0x66, 0x19).CGColor;
@@ -161,11 +161,11 @@
         
         UIButton *btnQuote = [[UIButton alloc] init];
         [_footView addSubview:btnQuote];
-        [btnQuote setTitle:@"立即\n报价" forState:UIControlStateNormal];
+        [btnQuote setTitle:@"车险\n报价" forState:UIControlStateNormal];
         btnQuote.translatesAutoresizingMaskIntoConstraints = NO;
         btnQuote.layer.cornerRadius = 24;
         btnQuote.backgroundColor = _COLOR(0xff, 0x66, 0x19);
-        btnQuote.titleLabel.font = _FONT_B(14);
+        btnQuote.titleLabel.font = _FONT_B(15);
         btnQuote.titleLabel.numberOfLines = 2;
         btnQuote.titleLabel.textAlignment = NSTextAlignmentCenter;
         btnQuote.layer.shadowColor = _COLOR(0xff, 0x66, 0x19).CGColor;
