@@ -13,7 +13,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) NSString *deviceToken;
 @property (nonatomic, strong) RootViewController *root;
 
 @property (nonatomic,strong) NewUserModel *customerBanner;

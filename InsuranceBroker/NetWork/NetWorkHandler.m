@@ -228,8 +228,8 @@ static NetWorkHandler *networkmanager;
     [Util setValueForKeyWithDic:parmas value:version key:@"appVersion"];
     NSNumber *deviceType = [NSNumber numberWithInt:2];
     [Util setValueForKeyWithDic:parmas value:deviceType key:@"deviceType"];
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-    [Util setValueForKeyWithDic:parmas value:delegate.deviceToken key:@"deviceId"];
+//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+//    [Util setValueForKeyWithDic:parmas value:delegate.deviceToken key:@"deviceId"];
 }
 
 - (void) addClientKey:(NSMutableDictionary *) parmas

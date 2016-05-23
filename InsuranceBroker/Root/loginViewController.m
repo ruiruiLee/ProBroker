@@ -103,7 +103,7 @@
             [userinfo queryUserInfo];
             [self handleLeftBarButtonClicked:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Login object:nil];
-            
+              // 订阅 push 频道
             AVInstallation *currentInstallation = [AVInstallation currentInstallation];
             [currentInstallation addUniqueObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
             [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];

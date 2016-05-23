@@ -78,25 +78,26 @@
     //设置AVOSCloud
     [AVOSCloud setApplicationId:AVOSCloudAppID clientKey:AVOSCloudAppKey];
     
+    if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0) {
+        UIRemoteNotificationType types = UIRemoteNotificationTypeBadge |
+        UIRemoteNotificationTypeAlert |
+        UIRemoteNotificationTypeSound;
+        [application registerForRemoteNotificationTypes:types];
+    } else {
+        UIUserNotificationType types = UIUserNotificationTypeAlert |
+        UIUserNotificationTypeBadge |
+        UIUserNotificationTypeSound;
+        
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    }
+
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"everLaunched"]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"everLaunched"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         // 第一次安装时运行打开推送
-#if !TARGET_IPHONE_SIMULATOR
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-            UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert
-                                                    | UIUserNotificationTypeBadge
-                                                    | UIUserNotificationTypeSound
-                                                                                     categories:nil];
-            [application registerUserNotificationSettings:settings];
-            [application registerForRemoteNotifications];
-        }
-        else{
-            [application registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge |
-             UIRemoteNotificationTypeAlert |
-             UIRemoteNotificationTypeSound];
-        }
-#endif
         // 引导界面展示
         // [_rootTabController showIntroWithCrossDissolve];
         
@@ -304,15 +305,10 @@
 - (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     //推送功能打开时, 注册当前的设备, 同时记录用户活跃, 方便进行有针对的推送
-    self.deviceToken = [[NSString alloc] initWithData:deviceToken encoding:NSUTF8StringEncoding];
+  
+    [AVOSCloud handleRemoteNotificationsWithDeviceToken:deviceToken];
     
-    [AVUser logOut];  //清除缓存用户对象
-    [UserInfoModel shareUserInfoModel].userId = nil;
-    AVInstallation *currentInstallation = [AVInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation addUniqueObject:@"ykbbrokerAllUser4" forKey:@"channels"];
-    [currentInstallation saveInBackground];
-    //同步deviceToken便于离线消息推送, 同时必须在管理后台上传 .pem文件才能生效
+    //在线客服同步deviceToken便于离线消息推送, 同时必须在管理后台上传 .pem文件才能生效
     [[AppKeFuLib sharedInstance] uploadDeviceToken:deviceToken];
 }
 
@@ -351,20 +347,6 @@
     }
     
  }
-
-//category：10|12, //消息类别 10代表为“通知消息”12代表为”交易消息”，
-//title: "消息标题"，如体现通知、收益通知等
-//content: "消息内容"，如“您申请体现的￥300，已转入到你的帐号，请查收”
-//userId:44，//经纪人userIds，有则传，没有则不传
-//ct:消息子类别，
-//
-//当mt=1时，ct 可为10，11，12，13，系统通知消息类ct=10,交易通知类ct=12
-//具体情况为
-//ct=10 表示实名认证通过 ,提现申请审核通过  需要userId//通知类消息
-//ct=12 表示保单交易成功   ，需要userId
-//Ct=11,表示销售政策
-//Ct=13,表示激励政策
-//objectId:具体业务表主键，如报价完成时需要传入报价单id,提现申请需要传入申请单id,保单交易完成需要传入保单id,
 
 -(void) pushDetailPage: (id)dic
 {

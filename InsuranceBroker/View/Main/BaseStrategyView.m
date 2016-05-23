@@ -260,7 +260,7 @@
     [self.handler requestToQueryForProductAttrPageList:page limit:LIMIT sidx:@"P_ProductAttr.seqNo" sord:@"asc" filters:filters userId:[UserInfoModel shareUserInfoModel].userId insuranceType:self.category completion:^(int code, id content) {
         [self refreshTable];
         [self loadMoreDataToTable];
-        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+       //[self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             if(page == 0)
                 [self.data removeAllObjects];
@@ -322,30 +322,31 @@
 //处理返回数据
 - (BOOL) handleResponseWithCode:(NSInteger) code msg:(NSString *)msg
 {
-    BOOL result = YES;
-    if(code != 200){
-        if (code == 504){
-            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            model.isLogin = NO;
-            [[AppContext sharedAppContext] removeData];
-            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
-            
-            [AVUser logOut];  //清除缓存用户对象
-            
-            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
-            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
-            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
-            [currentInstallation saveInBackground];
-            [self login];
-        }
-        else if(code<0){
-        }
-        else
-             if(msg.length>0)
-                [KGStatusBar showErrorWithStatus:msg];
-        result = NO;
-    }
-    return result;
+//    BOOL result = YES;
+//    if(code != 200){
+//        
+//        if (code == 504){  // 不允许登录弹回到登录界面
+//            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+//            model.isLogin = NO;
+//            [[AppContext sharedAppContext] removeData];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
+//            
+//            [AVUser logOut];  //清除缓存用户对象
+//            
+//            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+//            [currentInstallation removeObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
+//            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
+//            [currentInstallation saveInBackground];
+//            [self login];
+//        }
+//        else if(code<0){
+//        }
+//        else
+//             if(msg.length>0)
+//                [KGStatusBar showErrorWithStatus:msg];
+//        result = NO;
+//    }
+    return YES;
 }
 
 - (void) showNoDatasImage:(UIImage *) image
