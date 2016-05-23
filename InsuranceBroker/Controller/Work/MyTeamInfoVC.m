@@ -278,17 +278,17 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            UIView *bgview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
+            UIView *bgview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 82, 40)];
             
             UIButton *btnRing = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
             [btnRing setImage:ThemeImage(@"call") forState:UIControlStateNormal];
             [bgview addSubview:btnRing];
             [btnRing addTarget:self action:@selector(doBtnRing:) forControlEvents:UIControlEventTouchUpInside];
             
-            UIButton *btnChat = [[UIButton alloc] initWithFrame:CGRectMake(60, 0, 40, 40)];
+            UIButton *btnChat = [[UIButton alloc] initWithFrame:CGRectMake(42, 0, 40, 40)];
             [btnChat setImage:ThemeImage(@"team_msg") forState:UIControlStateNormal];
             [bgview addSubview:btnChat];
-            [btnChat addTarget:self action:@selector(doBtnChat:) forControlEvents:UIControlEventTouchUpInside];
+            [btnChat addTarget:self action:@selector(doBtnChat:) forControlEvents:UIControlEventTouchUpInside];\
             
             cell.accessoryView = bgview;
             
