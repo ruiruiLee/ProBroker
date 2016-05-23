@@ -146,7 +146,6 @@
        //判断程序是不是由推送服务完成的
     if (launchOptions)
     {
-       // [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
         NSDictionary* notificationPayload = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         if (notificationPayload)
         {
@@ -329,8 +328,6 @@
     }
     else  //程序在后台中接收到推送
     {
-        // The application was just brought from the background to the foreground,
-        // so we consider the app as having been "opened by a push notification."
        //可选 通过统计功能追踪通过提醒打开应用的行为
         [AVAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
         [root pushtoController:userInfo];
