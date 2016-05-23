@@ -23,7 +23,7 @@
     NSArray *_headlineArray;
     //newuser
     NewUserModel *_newUserModel;
-    AnnouncementModel *_jiHuaShu;
+//    AnnouncementModel *_jiHuaShu;
     
     NSString *_quoteUrl;
 }
@@ -51,6 +51,7 @@
 
 @property (nonatomic, strong) UIImageView *imgBroker;
 @property (nonatomic, strong) UIImageView *imgService;
+@property (nonatomic, strong) AnnouncementModel *jiHuaShu;
 
 
 //我的消息

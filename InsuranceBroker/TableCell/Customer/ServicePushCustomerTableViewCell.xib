@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="487" height="127"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="487" height="127"/>
+                <rect key="frame" x="0.0" y="0.0" width="487" height="126.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vla-E5-Mnl">
@@ -59,7 +59,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYN-mX-B95">
-                        <rect key="frame" x="403" y="70" width="70" height="28"/>
+                        <rect key="frame" x="403" y="63" width="70" height="28"/>
                         <animations/>
                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -96,7 +96,7 @@
                     <constraint firstItem="DHU-hB-pXm" firstAttribute="leading" secondItem="Zrw-Gp-tll" secondAttribute="trailing" constant="10" id="Wmt-DI-skW"/>
                     <constraint firstItem="DHU-hB-pXm" firstAttribute="centerY" secondItem="Zrw-Gp-tll" secondAttribute="centerY" id="bEJ-Ln-uhM"/>
                     <constraint firstItem="9rx-J6-Huk" firstAttribute="bottom" secondItem="vla-E5-Mnl" secondAttribute="bottom" id="br0-Ba-m3j"/>
-                    <constraint firstItem="oYN-mX-B95" firstAttribute="baseline" secondItem="9rx-J6-Huk" secondAttribute="baseline" id="f84-HG-ycS"/>
+                    <constraint firstItem="oYN-mX-B95" firstAttribute="baseline" secondItem="9rx-J6-Huk" secondAttribute="baseline" constant="-8" id="f84-HG-ycS"/>
                     <constraint firstItem="9rx-J6-Huk" firstAttribute="top" secondItem="a88-AV-Zfq" secondAttribute="bottom" constant="2" id="jqo-VY-bWq"/>
                     <constraint firstItem="9rx-J6-Huk" firstAttribute="leading" secondItem="Zrw-Gp-tll" secondAttribute="leading" id="lqV-XN-q0Y"/>
                     <constraint firstItem="a88-AV-Zfq" firstAttribute="leading" secondItem="Zrw-Gp-tll" secondAttribute="leading" id="zMr-Co-yB7"/>
