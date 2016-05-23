@@ -121,32 +121,22 @@
     cell.lbName.text = model.name;
     [cell.logoImageV sd_setImageWithURL:[NSURL URLWithString:model.headerUrl] placeholderImage:ThemeImage(@"customer_head")];
     cell.lbTime.text = [Util getShowingTime:model.createdAt];
-    cell.lbType.text = @"safaa";
-    cell.lbActive.text = @"sadgsadfg";
+    cell.lbType.text = model.insuranceType;
+    cell.lbActive.text = model.cooperationSource;
+    [cell.imageFromV sd_setImageWithURL:[NSURL URLWithString:model.shareImg]];
 
-//    if([model.visitTypeId isEqualToString:@"1"]){
-//        cell.imageFromV.image = ThemeImage(@"phone_talk");
-//    }
-//    else if ([model.visitTypeId isEqualToString:@"2"]){
-//        cell.imageFromV.image = ThemeImage(@"face_talk");
-//    }
-//    else if ([model.visitTypeId isEqualToString:@"3"]){
-//        cell.imageFromV.image = ThemeImage(@"wechat_talk");
-//    }
-//    else if ([model.visitTypeId isEqualToString:@"4"]){
-//        cell.imageFromV.image = ThemeImage(@"qq_talk");
-//    }
-//    else if ([model.visitTypeId isEqualToString:@"5"]){
-//        cell.imageFromV.image = ThemeImage(@"message_talk");
-//    }
-//    else if ([model.visitTypeId isEqualToString:@"6"]){
-//        cell.imageFromV.image = ThemeImage(@"mail_talk");
-//    }
-//    else if ([model.visitTypeId isEqualToString:@"7"]){
-//        cell.imageFromV.image = ThemeImage(@"others_talk");
-//    }else if ([model.visitTypeId isEqualToString:@"9"]){
-//        cell.imageFromV.image = ThemeImage(@"wechat_pengyouquan");
-//    }
+    if(model.shareSource == 1 ){
+        cell.imageFromV.image = ThemeImage(@"wechat_talk");
+    }
+    else if (model.shareSource == 2){
+        cell.imageFromV.image = ThemeImage(@"qq_talk");
+    }
+    else if (model.shareSource == 3){
+        cell.imageFromV.image = ThemeImage(@"wechat_pengyouquan");
+    }
+    else if (model.shareSource == 4){
+        cell.imageFromV.image = ThemeImage(@"mail_talk");
+    }
 
     return cell;
 }
