@@ -14,8 +14,10 @@
 #import "AppDelegate.h"
 #import "UIButton+WebCache.h"
 #import "SharedCustomerModel.h"
-#import "NetWorkHandler+shareCustomerReject.h"
 #import "NetWorkHandler+shareCustomerAccept.h"
+#import "AgentStrategyViewController.h"
+#import "HomeVC.h"
+#import "RootViewController.h"
 
 @interface UserServicePushVC ()
 {
@@ -32,13 +34,7 @@
     self.title = @"分享获客";
     [self.tableview registerNib:[UINib nibWithNibName:@"ServicePushCustomerTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
-    UIButton *btnEdit = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 30)];
-    [self setRightBarButtonWithButton:btnEdit];
-    btnEdit.backgroundColor = _COLOR(0xff, 0x66, 0x19);
-    [btnEdit setTitle:@"编辑" forState:UIControlStateNormal];
-    [btnEdit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    btnEdit.titleLabel.font = _FONT(14);
-    [btnEdit addTarget:self action:@selector(doBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+//    [self SetRightBarButtonWithTitle:@"编辑" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
 }
 
 - (void) doBtnClicked:(UIButton *)sender
@@ -57,6 +53,18 @@
         }
     }
 }
+
+//- (void) handleRightBarButtonClicked:(id)sender
+//{
+//    BOOL flag = self.tableview.editing;
+//    if(flag){
+//        [self SetRightBarButtonWithTitle:@"编辑" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
+//        self.tableview.editing = NO;
+//    }else{
+//        [self SetRightBarButtonWithTitle:@"完成" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
+//        self.tableview.editing = YES;
+//    }
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -81,12 +89,12 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-//    if([self.data count] == 0){
-//        [self showNoDatasImage:ThemeImage(@"no_data")];
-//    }
-//    else{
-//        [self hidNoDatasImage];
-//    }
+    if([self.data count] == 0){
+        [self showNoDatasImage:ThemeImage(@"fenxainghuoke")];
+    }
+    else{
+        [self hidNoDatasImage];
+    }
     return [self.data count];
 }
 
@@ -113,21 +121,54 @@
     cell.lbName.text = model.name;
     [cell.logoImageV sd_setImageWithURL:[NSURL URLWithString:model.headerUrl] placeholderImage:ThemeImage(@"customer_head")];
     cell.lbTime.text = [Util getShowingTime:model.createdAt];
-//
-//    NSMutableString *label = [[NSMutableString alloc] init];
-//    for (int i = 0; i < [model.customerLabel count]; i++) {
-//        [label appendString:[model.customerLabel objectAtIndex:i]];
-//        if(i < [model.customerLabel count] - 1){
-//            [label appendString:@","];
-//        }
+    cell.lbType.text = @"safaa";
+    cell.lbActive.text = @"sadgsadfg";
+
+//    if([model.visitTypeId isEqualToString:@"1"]){
+//        cell.imageFromV.image = ThemeImage(@"phone_talk");
 //    }
-//    
-//    cell.lbStatus.text = label;
-//    cell.lbTimr.text = [Util getShowingTime:model.createdAt];
-//    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:ThemeImage(@"customer_head")];
+//    else if ([model.visitTypeId isEqualToString:@"2"]){
+//        cell.imageFromV.image = ThemeImage(@"face_talk");
+//    }
+//    else if ([model.visitTypeId isEqualToString:@"3"]){
+//        cell.imageFromV.image = ThemeImage(@"wechat_talk");
+//    }
+//    else if ([model.visitTypeId isEqualToString:@"4"]){
+//        cell.imageFromV.image = ThemeImage(@"qq_talk");
+//    }
+//    else if ([model.visitTypeId isEqualToString:@"5"]){
+//        cell.imageFromV.image = ThemeImage(@"message_talk");
+//    }
+//    else if ([model.visitTypeId isEqualToString:@"6"]){
+//        cell.imageFromV.image = ThemeImage(@"mail_talk");
+//    }
+//    else if ([model.visitTypeId isEqualToString:@"7"]){
+//        cell.imageFromV.image = ThemeImage(@"others_talk");
+//    }else if ([model.visitTypeId isEqualToString:@"9"]){
+//        cell.imageFromV.image = ThemeImage(@"wechat_pengyouquan");
+//    }
 
     return cell;
 }
+
+//-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
+//
+//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return UITableViewCellEditingStyleDelete;
+//}
+//
+//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (editingStyle == UITableViewCellEditingStyleDelete)
+//    {
+//        [self.data removeObjectAtIndex:indexPath.row];
+//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    }
+//}
 
 #pragma ACTION
 - (void) doBtnAcceptClicked:(UIButton *)sender
@@ -145,6 +186,42 @@
         }
 
     }];
+}
+
+- (void) showNoDatasImage:(UIImage *) image
+{
+    if(!self.explainBgView){
+        self.explainBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, SCREEN_HEIGHT)];
+//        self.imgWithNoData = [[UIImageView alloc] initWithImage:image];
+        self.imgWithNoData = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, SCREEN_HEIGHT)];
+        self.imgWithNoData.image = image;
+        self.imgWithNoData.contentMode = UIViewContentModeScaleToFill;
+        [self.explainBgView addSubview:self.imgWithNoData];
+        [self.view addSubview:self.explainBgView];
+        
+        UIButton *btnAdd = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 182, 40)];
+        [self.explainBgView addSubview:btnAdd];
+        btnAdd.backgroundColor = _COLOR(0xf9, 0x15, 0x0a);
+        btnAdd.layer.cornerRadius = 4;
+        [btnAdd setTitle:@"分享获客" forState:UIControlStateNormal];
+        [btnAdd setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        btnAdd.titleLabel.font = _FONT(17);
+        [btnAdd addTarget:self action:@selector(doBtnShared:) forControlEvents:UIControlEventTouchUpInside];
+        btnAdd.center = CGPointMake(self.explainBgView.center.x, self.explainBgView.frame.size.height * 2/3 + 34);
+    }
+}
+
+- (void) doBtnShared:(UIButton *) sender
+{
+    AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
+    vc.hidesBottomBarWhenPushed = YES;
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    RootViewController *root = appdelegate.root;
+    HomeVC *home = root.homevc;
+    vc.category = home.jiHuaShu.category;
+    vc.title = home.jiHuaShu.title;
+    vc.totalModel = home.jiHuaShu;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
