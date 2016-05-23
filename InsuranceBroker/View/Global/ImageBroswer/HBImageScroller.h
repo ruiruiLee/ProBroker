@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UIImageView+WebCache.h"
+#import "MBProgressHUD.h"
 
 @interface HBImageScroller : UIScrollView<UIActionSheetDelegate>
 {
@@ -22,6 +23,8 @@
     
     float _scale;
     float _imgScale;
+    
+    MBProgressHUD *hud;
    
 }
 @property(nonatomic,readonly) UIImageView * imageView;

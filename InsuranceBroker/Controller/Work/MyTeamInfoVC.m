@@ -346,6 +346,8 @@
             cell.lbSubStatus.hidden = NO;
             if(model.remarkName != nil && [model.remarkName length] > 0)
                 [cell.btnRemark setTitle:[NSString stringWithFormat:@"（%@）", model.remarkName] forState:UIControlStateNormal];
+            else
+                [cell.btnRemark setTitle:@"（备注）" forState:UIControlStateNormal];
             
             [cell.btnRemark addTarget:self action:@selector(doBtnModifyRemarkName:) forControlEvents:UIControlEventTouchUpInside];
             return cell;

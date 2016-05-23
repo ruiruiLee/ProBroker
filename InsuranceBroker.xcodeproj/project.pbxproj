@@ -148,6 +148,12 @@
 		86769D211CEC106B009C7E8F /* EditInsuredUserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D201CEC106B009C7E8F /* EditInsuredUserInfoVC.m */; };
 		86769D231CEC1085009C7E8F /* EditInsuredUserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86769D221CEC1085009C7E8F /* EditInsuredUserInfoVC.xib */; };
 		86769D261CEC13D4009C7E8F /* InsuredUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D251CEC13D4009C7E8F /* InsuredUserInfoModel.m */; };
+		86769D2A1CEEB00D009C7E8F /* ServicePushCustomerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D281CEEB00C009C7E8F /* ServicePushCustomerTableViewCell.m */; };
+		86769D2B1CEEB00D009C7E8F /* ServicePushCustomerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86769D291CEEB00C009C7E8F /* ServicePushCustomerTableViewCell.xib */; };
+		86769D2E1CEEE897009C7E8F /* NetWorkHandler+shareCustomerList.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D2D1CEEE897009C7E8F /* NetWorkHandler+shareCustomerList.m */; };
+		86769D311CEEEEBE009C7E8F /* SharedCustomerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D301CEEEEBE009C7E8F /* SharedCustomerModel.m */; };
+		86769D341CEF1365009C7E8F /* NetWorkHandler+shareCustomerAccept.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D331CEF1365009C7E8F /* NetWorkHandler+shareCustomerAccept.m */; };
+		86769D371CEF137B009C7E8F /* NetWorkHandler+shareCustomerReject.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D361CEF137B009C7E8F /* NetWorkHandler+shareCustomerReject.m */; };
 		868C7CA91C92CFAD00B7617A /* SepLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CA81C92CFAD00B7617A /* SepLineLabel.m */; };
 		868C7CB41C96546700B7617A /* BaseLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CB31C96546700B7617A /* BaseLineView.m */; };
 		868C7CC21C969AC600B7617A /* HBImageScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CB71C969AC600B7617A /* HBImageScroller.m */; };
@@ -191,9 +197,6 @@
 		86A26EA51C4678110073FFFC /* CustomerDetailVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86A26EA41C4678110073FFFC /* CustomerDetailVC.xib */; };
 		86A26EA81C4781F10073FFFC /* NetWorkHandler+updateCustomerBindStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26EA71C4781F10073FFFC /* NetWorkHandler+updateCustomerBindStatus.m */; };
 		86A26EAB1C4796700073FFFC /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26EAA1C4796700073FFFC /* PlaceholderTextView.m */; };
-		86A26EB31C47C18F0073FFFC /* PhotoBrowserScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26EAE1C47C18F0073FFFC /* PhotoBrowserScrollView.m */; };
-		86A26EB41C47C18F0073FFFC /* PhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26EB01C47C18F0073FFFC /* PhotoBrowserView.m */; };
-		86A26EB51C47C18F0073FFFC /* PhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26EB21C47C18F0073FFFC /* PhotoScrollView.m */; };
 		86A26EB81C47CCB90073FFFC /* NetWorkHandler+queryForInsuranceCompanyList.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26EB71C47CCB90073FFFC /* NetWorkHandler+queryForInsuranceCompanyList.m */; };
 		86A26EBE1C47CF1A0073FFFC /* InsuranceCompanyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26EBD1C47CF1A0073FFFC /* InsuranceCompanyModel.m */; };
 		86A26EC11C47D1620073FFFC /* InsurCompanySelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26EC01C47D1620073FFFC /* InsurCompanySelectVC.m */; };
@@ -405,6 +408,9 @@
 		86D3D99F1CBC998500276AC0 /* TranslucentToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D99E1CBC998500276AC0 /* TranslucentToolbar.m */; };
 		86D3D9A21CBCD7AF00276AC0 /* UserCenterHeaderBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D9A11CBCD7AF00276AC0 /* UserCenterHeaderBgView.m */; };
 		86E6347B1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */; };
+		86EECD9A1CF2A2B600BBAF11 /* JZAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECD971CF2A2B600BBAF11 /* JZAlbumViewController.m */; };
+		86EECD9B1CF2A2B600BBAF11 /* PhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECD991CF2A2B600BBAF11 /* PhotoView.m */; };
+		86EECD9E1CF2A6CE00BBAF11 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECD9D1CF2A6CE00BBAF11 /* MBProgressHUD.m */; };
 		86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */; };
 		86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */; };
 		86F0142A1C8682E400A3C68E /* BillDetailInfoFromOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014291C8682E400A3C68E /* BillDetailInfoFromOrderVC.m */; };
@@ -730,6 +736,17 @@
 		86769D221CEC1085009C7E8F /* EditInsuredUserInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditInsuredUserInfoVC.xib; sourceTree = "<group>"; };
 		86769D241CEC13D4009C7E8F /* InsuredUserInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsuredUserInfoModel.h; sourceTree = "<group>"; };
 		86769D251CEC13D4009C7E8F /* InsuredUserInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsuredUserInfoModel.m; sourceTree = "<group>"; };
+		86769D271CEEB00C009C7E8F /* ServicePushCustomerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicePushCustomerTableViewCell.h; sourceTree = "<group>"; };
+		86769D281CEEB00C009C7E8F /* ServicePushCustomerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicePushCustomerTableViewCell.m; sourceTree = "<group>"; };
+		86769D291CEEB00C009C7E8F /* ServicePushCustomerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServicePushCustomerTableViewCell.xib; sourceTree = "<group>"; };
+		86769D2C1CEEE897009C7E8F /* NetWorkHandler+shareCustomerList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+shareCustomerList.h"; sourceTree = "<group>"; };
+		86769D2D1CEEE897009C7E8F /* NetWorkHandler+shareCustomerList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+shareCustomerList.m"; sourceTree = "<group>"; };
+		86769D2F1CEEEEBE009C7E8F /* SharedCustomerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SharedCustomerModel.h; sourceTree = "<group>"; };
+		86769D301CEEEEBE009C7E8F /* SharedCustomerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SharedCustomerModel.m; sourceTree = "<group>"; };
+		86769D321CEF1365009C7E8F /* NetWorkHandler+shareCustomerAccept.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+shareCustomerAccept.h"; sourceTree = "<group>"; };
+		86769D331CEF1365009C7E8F /* NetWorkHandler+shareCustomerAccept.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+shareCustomerAccept.m"; sourceTree = "<group>"; };
+		86769D351CEF137B009C7E8F /* NetWorkHandler+shareCustomerReject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+shareCustomerReject.h"; sourceTree = "<group>"; };
+		86769D361CEF137B009C7E8F /* NetWorkHandler+shareCustomerReject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+shareCustomerReject.m"; sourceTree = "<group>"; };
 		868C7CA71C92CFAD00B7617A /* SepLineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SepLineLabel.h; sourceTree = "<group>"; };
 		868C7CA81C92CFAD00B7617A /* SepLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SepLineLabel.m; sourceTree = "<group>"; };
 		868C7CB21C96546700B7617A /* BaseLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLineView.h; sourceTree = "<group>"; };
@@ -811,12 +828,6 @@
 		86A26EA71C4781F10073FFFC /* NetWorkHandler+updateCustomerBindStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateCustomerBindStatus.m"; sourceTree = "<group>"; };
 		86A26EA91C4796700073FFFC /* PlaceholderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderTextView.h; sourceTree = "<group>"; };
 		86A26EAA1C4796700073FFFC /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextView.m; sourceTree = "<group>"; };
-		86A26EAD1C47C18F0073FFFC /* PhotoBrowserScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserScrollView.h; sourceTree = "<group>"; };
-		86A26EAE1C47C18F0073FFFC /* PhotoBrowserScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserScrollView.m; sourceTree = "<group>"; };
-		86A26EAF1C47C18F0073FFFC /* PhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoBrowserView.h; sourceTree = "<group>"; };
-		86A26EB01C47C18F0073FFFC /* PhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoBrowserView.m; sourceTree = "<group>"; };
-		86A26EB11C47C18F0073FFFC /* PhotoScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoScrollView.h; sourceTree = "<group>"; };
-		86A26EB21C47C18F0073FFFC /* PhotoScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoScrollView.m; sourceTree = "<group>"; };
 		86A26EB61C47CCB90073FFFC /* NetWorkHandler+queryForInsuranceCompanyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+queryForInsuranceCompanyList.h"; sourceTree = "<group>"; };
 		86A26EB71C47CCB90073FFFC /* NetWorkHandler+queryForInsuranceCompanyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryForInsuranceCompanyList.m"; sourceTree = "<group>"; };
 		86A26EBC1C47CF1A0073FFFC /* InsuranceCompanyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsuranceCompanyModel.h; sourceTree = "<group>"; };
@@ -1189,6 +1200,12 @@
 		86D3D9A11CBCD7AF00276AC0 /* UserCenterHeaderBgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterHeaderBgView.m; sourceTree = "<group>"; };
 		86E634791CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+updateCustomerHeadImg.h"; sourceTree = "<group>"; };
 		86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateCustomerHeadImg.m"; sourceTree = "<group>"; };
+		86EECD961CF2A2B600BBAF11 /* JZAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAlbumViewController.h; sourceTree = "<group>"; };
+		86EECD971CF2A2B600BBAF11 /* JZAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAlbumViewController.m; sourceTree = "<group>"; };
+		86EECD981CF2A2B600BBAF11 /* PhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoView.h; sourceTree = "<group>"; };
+		86EECD991CF2A2B600BBAF11 /* PhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoView.m; sourceTree = "<group>"; };
+		86EECD9C1CF2A6CE00BBAF11 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		86EECD9D1CF2A6CE00BBAF11 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromSubVC.h; sourceTree = "<group>"; };
 		86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailInfoFromSubVC.m; sourceTree = "<group>"; };
 		86F014251C8682A000A3C68E /* BillDetailInfoWithdrawVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoWithdrawVC.h; sourceTree = "<group>"; };
@@ -1679,6 +1696,12 @@
 				8612F4321CEB166B0045340F /* NetWorkHandler+saveOrUpdateCustomerInsured.m */,
 				86769D1C1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.h */,
 				86769D1D1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.m */,
+				86769D2C1CEEE897009C7E8F /* NetWorkHandler+shareCustomerList.h */,
+				86769D2D1CEEE897009C7E8F /* NetWorkHandler+shareCustomerList.m */,
+				86769D321CEF1365009C7E8F /* NetWorkHandler+shareCustomerAccept.h */,
+				86769D331CEF1365009C7E8F /* NetWorkHandler+shareCustomerAccept.m */,
+				86769D351CEF137B009C7E8F /* NetWorkHandler+shareCustomerReject.h */,
+				86769D361CEF137B009C7E8F /* NetWorkHandler+shareCustomerReject.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -1786,19 +1809,6 @@
 				868C7CC11C969AC600B7617A /* ObjImageDataInfo.m */,
 			);
 			path = ImageBroswer;
-			sourceTree = "<group>";
-		};
-		86A26EAC1C47C18F0073FFFC /* MyPhotoScrollView */ = {
-			isa = PBXGroup;
-			children = (
-				86A26EAD1C47C18F0073FFFC /* PhotoBrowserScrollView.h */,
-				86A26EAE1C47C18F0073FFFC /* PhotoBrowserScrollView.m */,
-				86A26EAF1C47C18F0073FFFC /* PhotoBrowserView.h */,
-				86A26EB01C47C18F0073FFFC /* PhotoBrowserView.m */,
-				86A26EB11C47C18F0073FFFC /* PhotoScrollView.h */,
-				86A26EB21C47C18F0073FFFC /* PhotoScrollView.m */,
-			);
-			path = MyPhotoScrollView;
 			sourceTree = "<group>";
 		};
 		86A26EEC1C4A29CB0073FFFC /* LineChart */ = {
@@ -1982,6 +1992,7 @@
 		86C3BB241C22C3FC00F98E80 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				86EECD951CF2A2A400BBAF11 /* JZAlbumViewController */,
 				8612F4071CE4828D0045340F /* JElasticPullToRefresh */,
 				86248F051CCDB9FD00F1B493 /* LightMenuBar */,
 				868C7CB51C969AC600B7617A /* ImageBroswer */,
@@ -1994,7 +2005,6 @@
 				86A5044A1C4F27950032A901 /* QRCode */,
 				86A26F0B1C4A2C9F0073FFFC /* XYPieChart */,
 				86A26EEC1C4A29CB0073FFFC /* LineChart */,
-				86A26EAC1C47C18F0073FFFC /* MyPhotoScrollView */,
 				86C3BC361C2D6EA100F98E80 /* MenuViewController.h */,
 				86C3BC371C2D6EA100F98E80 /* MenuViewController.m */,
 				86A26EBF1C47D1620073FFFC /* InsurCompanySelectVC.h */,
@@ -2256,6 +2266,8 @@
 				8612F4271CE9BBA50045340F /* SelectAreaModel.m */,
 				86769D241CEC13D4009C7E8F /* InsuredUserInfoModel.h */,
 				86769D251CEC13D4009C7E8F /* InsuredUserInfoModel.m */,
+				86769D2F1CEEEEBE009C7E8F /* SharedCustomerModel.h */,
+				86769D301CEEEEBE009C7E8F /* SharedCustomerModel.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -2374,6 +2386,9 @@
 				8612F4291CE9C5C20045340F /* InsureInfoListTableViewCell.h */,
 				8612F42A1CE9C5C20045340F /* InsureInfoListTableViewCell.m */,
 				8612F42B1CE9C5C20045340F /* InsureInfoListTableViewCell.xib */,
+				86769D271CEEB00C009C7E8F /* ServicePushCustomerTableViewCell.h */,
+				86769D281CEEB00C009C7E8F /* ServicePushCustomerTableViewCell.m */,
+				86769D291CEEB00C009C7E8F /* ServicePushCustomerTableViewCell.xib */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -2622,6 +2637,19 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		86EECD951CF2A2A400BBAF11 /* JZAlbumViewController */ = {
+			isa = PBXGroup;
+			children = (
+				86EECD961CF2A2B600BBAF11 /* JZAlbumViewController.h */,
+				86EECD971CF2A2B600BBAF11 /* JZAlbumViewController.m */,
+				86EECD981CF2A2B600BBAF11 /* PhotoView.h */,
+				86EECD991CF2A2B600BBAF11 /* PhotoView.m */,
+				86EECD9C1CF2A6CE00BBAF11 /* MBProgressHUD.h */,
+				86EECD9D1CF2A6CE00BBAF11 /* MBProgressHUD.m */,
+			);
+			path = JZAlbumViewController;
+			sourceTree = "<group>";
+		};
 		CF2C88C81CE47FB7001B6FFF /* AppKeFuLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -2814,6 +2842,7 @@
 				86C3BB181C228D6F00F98E80 /* blueArrow@2x.png in Resources */,
 				86C3BCCC1C2E999300F98E80 /* loginViewController.xib in Resources */,
 				86F2DAA61C8595C40088B783 /* BIllDetailTableViewCell.xib in Resources */,
+				86769D2B1CEEB00D009C7E8F /* ServicePushCustomerTableViewCell.xib in Resources */,
 				86C3BBFB1C2C13A800F98E80 /* InsuranceInfoView.xib in Resources */,
 				86C3BBD01C2A602000F98E80 /* TagListViewController.xib in Resources */,
 				86F2DA9E1C7FE81D0088B783 /* ProductSettingTableViewCell.xib in Resources */,
@@ -2960,7 +2989,6 @@
 				86F2DAA11C858BC40088B783 /* BillDetailInfoVC.m in Sources */,
 				86A26EDF1C48F1E20073FFFC /* ModifyPhoneNumVC.m in Sources */,
 				8625AFC31C33FDB400312B98 /* GradientView.m in Sources */,
-				86A26EB31C47C18F0073FFFC /* PhotoBrowserScrollView.m in Sources */,
 				86C3BCBF1C2E933600F98E80 /* IQKeyboardManager.m in Sources */,
 				CF608EE71C589C2900DC10CA /* Reachability.m in Sources */,
 				86A26E5D1C43AF920073FFFC /* NetWorkHandler+queryForCustomerInsurPageList.m in Sources */,
@@ -3049,6 +3077,7 @@
 				8625AFC01C33E29300312B98 /* NoticeDetailListVC.m in Sources */,
 				8625AFA51C32B15000312B98 /* RealNameAuthenticationVC.m in Sources */,
 				86C3BC291C2D389D00F98E80 /* AddFollowUpVC.m in Sources */,
+				86769D341CEF1365009C7E8F /* NetWorkHandler+shareCustomerAccept.m in Sources */,
 				8625AFE21C37B4D300312B98 /* OfferDetailsVC.m in Sources */,
 				86F2DA831C7704400088B783 /* CommissionSetTableViewCell.m in Sources */,
 				86248F0B1CCDB9FD00F1B493 /* LightMenuBar.m in Sources */,
@@ -3098,6 +3127,7 @@
 				865065BD1C1EB1ED00429EAE /* UINavigationBar+Awesome.m in Sources */,
 				86A26E851C4528A40073FFFC /* NetWorkHandler+announcement.m in Sources */,
 				86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */,
+				86EECD9A1CF2A2B600BBAF11 /* JZAlbumViewController.m in Sources */,
 				86A26E881C452A5B0073FFFC /* AnnouncementModel.m in Sources */,
 				8612F4171CE4828D0045340F /* UIView+JElasticPullToRefresh.m in Sources */,
 				86D3D9A21CBCD7AF00276AC0 /* UserCenterHeaderBgView.m in Sources */,
@@ -3106,6 +3136,7 @@
 				861DF93B1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m in Sources */,
 				8625B0541C3F9B2D00312B98 /* NetWorkHandler+saveOrUpdateLabelCustomer.m in Sources */,
 				8625B04D1C3F7B0E00312B98 /* EditButton.m in Sources */,
+				86769D371CEF137B009C7E8F /* NetWorkHandler+shareCustomerReject.m in Sources */,
 				86A504EA1C524E8F0032A901 /* OrderDetailWebVC.m in Sources */,
 				8654CD861C312CE100411C54 /* SBJsonStreamWriterState.m in Sources */,
 				868C7CD71C9BE91400B7617A /* CurveSellModel.m in Sources */,
@@ -3121,7 +3152,6 @@
 				86A26F041C4A29CB0073FFFC /* LegendView.m in Sources */,
 				8654CD831C312CE100411C54 /* SBJsonStreamParserState.m in Sources */,
 				86C3BB4F1C24049400F98E80 /* MainFunctionButton.m in Sources */,
-				86A26EB41C47C18F0073FFFC /* PhotoBrowserView.m in Sources */,
 				86CC8C5A1CB79FFF00362AD0 /* TeamItemTableViewCell.m in Sources */,
 				8625B0511C3F8E7A00312B98 /* ObjectButton.m in Sources */,
 				868C7CC21C969AC600B7617A /* HBImageScroller.m in Sources */,
@@ -3218,12 +3248,14 @@
 				8612F4301CEB155B0045340F /* NetWorkHandler+queryForInsuredPageList.m in Sources */,
 				86C3BC0E1C2CDFE500F98E80 /* BaseInsuranceInfo.m in Sources */,
 				86C3BC411C2E37A700F98E80 /* AutoInsuranceInfoEditVC.m in Sources */,
+				86769D2A1CEEB00D009C7E8F /* ServicePushCustomerTableViewCell.m in Sources */,
 				86A504C61C50FEDD0032A901 /* NetWorkHandler+initOrderShare.m in Sources */,
 				8625AF901C32761A00312B98 /* UserEditTableViewCell.m in Sources */,
 				8612F4361CEB23830045340F /* InsuredUserInfoEditVC.m in Sources */,
 				86A504B11C4FB8870032A901 /* BankInfoModel.m in Sources */,
 				86A26F0E1C4A2C9F0073FFFC /* XYPieChart.m in Sources */,
 				86A26F071C4A29CB0073FFFC /* NSDate+Additions.m in Sources */,
+				86EECD9B1CF2A2B600BBAF11 /* PhotoView.m in Sources */,
 				86F2DA961C7EF0780088B783 /* MyTeamInfoVC.m in Sources */,
 				86A26EAB1C4796700073FFFC /* PlaceholderTextView.m in Sources */,
 				86C3BBC81C2A370A00F98E80 /* CustomerPanEditView.m in Sources */,
@@ -3238,10 +3270,10 @@
 				8654CD821C312CE100411C54 /* SBJsonStreamParserAdapter.m in Sources */,
 				8625AFF41C391F2900312B98 /* BindBankCardVC.m in Sources */,
 				86A26E791C45177B0073FFFC /* NetWorkHandler+index.m in Sources */,
+				86769D311CEEEEBE009C7E8F /* SharedCustomerModel.m in Sources */,
 				86A26E3B1C4356620073FFFC /* CityModel.m in Sources */,
 				86C3BCC31C2E933600F98E80 /* IQBarButtonItem.m in Sources */,
 				8625B0151C3BC9BC00312B98 /* NetWorkHandler+saveOrUpdateLabel.m in Sources */,
-				86A26EB51C47C18F0073FFFC /* PhotoScrollView.m in Sources */,
 				8625AFC71C34094A00312B98 /* NoticeDetailTableViewCell.m in Sources */,
 				86C3BCBD1C2E933600F98E80 /* IQUIView+Hierarchy.m in Sources */,
 				865065C61C1EB66D00429EAE /* RootViewController.m in Sources */,
@@ -3252,8 +3284,10 @@
 				86A504E71C52165F0032A901 /* RedPackTasksInfoTips.m in Sources */,
 				86A26EEA1C4905210073FFFC /* CustomerTagTableCell.m in Sources */,
 				861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */,
+				86EECD9E1CF2A6CE00BBAF11 /* MBProgressHUD.m in Sources */,
 				8612F4251CE9B6270045340F /* CustomerCitySelectVC.m in Sources */,
 				86C3BC1B1C2CE0EB00F98E80 /* CustomerFollowUpInfoView.m in Sources */,
+				86769D2E1CEEE897009C7E8F /* NetWorkHandler+shareCustomerList.m in Sources */,
 				86A26EA01C4666850073FFFC /* InsurOffersInfoModel.m in Sources */,
 				86493FFC1C745E1300121BD1 /* SJAvatarBrowser.m in Sources */,
 				86A5041F1C4CDCB30032A901 /* GMDCircleLoader.m in Sources */,

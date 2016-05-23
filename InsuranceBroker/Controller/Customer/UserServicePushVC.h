@@ -6,8 +6,10 @@
 //  Copyright © 2015年 LiuZach. All rights reserved.
 //
 
-#import "BasePullTableVC.h"
+#import "BaseTableViewController.h"
 
-@interface UserServicePushVC : BasePullTableVC
+@interface UserServicePushVC : BaseTableViewController
+
+@property (nonatomic, strong) NSMutableArray *data;
 
 @end

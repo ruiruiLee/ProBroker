@@ -85,12 +85,12 @@
             return;
         }else{
             NSMutableArray *array = [[NSMutableArray alloc] init];
-            
-            [self addObject:((CustomerDetailVC*) self.pvc).customerinfoModel.headImg array:array];
+            NSMutableArray *small = [[NSMutableArray alloc] init];
+            [Util addImagePath:((CustomerDetailVC*) self.pvc).customerinfoModel.headImg pathArray:array smallImage:self.photoImageV.image imageArray:small];
             
             _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
             [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
-            [_imageList addImagesURL:array withSmallImage:nil];
+            [_imageList addImagesURL:array withSmallImage:small];
             [self.window addSubview:_imageList];
         }
     }else if (buttonIndex == 1)
@@ -108,15 +108,6 @@
         else
             [Util openCamera:self.pvc delegate:self allowEdit:YES completion:nil];
     }
-}
-
-- (BOOL) addObject:(NSString *) path array:(NSMutableArray *) array;
-{
-    if(path != nil){
-        [array addObject:path];
-        return YES;
-    }else
-        return NO;
 }
 
 -(void)dismissImageAction:(UIImageView*)sender

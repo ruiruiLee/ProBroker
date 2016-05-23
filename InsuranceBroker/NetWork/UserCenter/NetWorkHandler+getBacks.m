@@ -14,7 +14,9 @@
 + (void) requestTogetBanks:(Completion) complation
 {
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
-    [handle postWithMethod:@"/web/common/getBacks.xhtml" BaseUrl:Base_Uri Params:nil Completion:complation];
+    NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
+    [Util setValueForKeyWithDic:pramas value:@"1" key:@"backStatus"];
+    [handle postWithMethod:@"/web/common/getBacks.xhtml" BaseUrl:Base_Uri Params:pramas Completion:complation];
 }
 
 @end

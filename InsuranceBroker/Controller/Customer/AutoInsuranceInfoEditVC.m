@@ -10,7 +10,6 @@
 #import "define.h"
 #import "NetWorkHandler+saveOrUpdateCustomerCar.h"
 #import <AVOSCloud/AVOSCloud.h>
-#import "PhotoBrowserView.h"
 #import "InsurCompanySelectVC.h"
 #import "NetWorkHandler+queryForInsuranceCompanyList.h"
 #import "NetWorkHandler+queryForCustomerCarInfo.h"
@@ -50,7 +49,6 @@
     NSString *_travelCard1;
 }
 
-@property (nonatomic,strong) PhotoBrowserView *photoBrowserView;
 @property (nonatomic, strong) InsurCompanySelectVC *menuView;
 @property (nonatomic, strong) MenuViewController *menu;
 
@@ -623,7 +621,6 @@
             
             _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
             [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
-//            [_imageList addImagesURL:array withSmallImage:nil];
             [_imageList addImageObjs:array];
             [self.view.window addSubview:_imageList];
         }

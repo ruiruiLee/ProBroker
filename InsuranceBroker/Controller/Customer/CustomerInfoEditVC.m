@@ -81,7 +81,7 @@
     [self.onwerTag.textfield.textfield addTarget:self action:@selector(textChangeAction:) forControlEvents:UIControlEventEditingChanged];
     
     self.tvRemarks.delegate = self;
-    self.tvRemarks.placeholder = @"备注";
+    self.tvRemarks.placeholder = @"备注(25个字符)";
     
     self.viewHConstraint.constant = ScreenWidth;
     NSArray *array = nil;
@@ -113,6 +113,13 @@
         [self.tagView setDataArray:self.tagList];
         [self.tagView setOwnerArray:[self tagModelArrayFromIdAndName]];
     }
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self textViewDidChange:self.tvRemarks];
 }
 
 - (NSArray *) tagModelArrayFromIdAndName

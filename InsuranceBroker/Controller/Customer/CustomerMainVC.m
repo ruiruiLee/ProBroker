@@ -68,9 +68,7 @@
 
 - (void) notifyToInsertPushCustomer:(NSNotification *)notify
 {
-    id model = (CustomerInfoModel*)notify.object;
-    [self.data insertObject:model atIndex:0];
-    [self.pulltable reloadData];
+    [self refresh2Loaddata];
 }
 
 - (void) notifyCustomerAdd:(NSNotification *) notify

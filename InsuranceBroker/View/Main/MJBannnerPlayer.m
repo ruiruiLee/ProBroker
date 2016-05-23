@@ -119,7 +119,6 @@
         width += self.currentRect.size.width;
         
     }
-
 }
 
 //自动布局创建自定义的pageController
@@ -293,7 +292,7 @@
 -(void)animationDidStart:(CAAnimation *)anim{
 
     UILabel *index = (UILabel *)[self viewWithTag:99];
-    index.text = [NSString stringWithFormat:@"%ld",self.index + 1];
+    index.text = [NSString stringWithFormat:@"%d",self.index + 1];
 
 }
 

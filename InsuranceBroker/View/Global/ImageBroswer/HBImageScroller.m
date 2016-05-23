@@ -296,11 +296,24 @@
 
 -(void)setImageWithURL:(NSString*)url  andSmallImage:(UIImage*)image
 {
-    [_imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:image completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    SDWebImageManager *manager = [SDWebImageManager sharedManager];
+    BOOL isCached = [manager cachedImageExistsForURL:[NSURL URLWithString:url]];
+    if (!isCached) {//没有缓存
+        hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+        hud.mode = MBProgressHUDModeDeterminate;
+    }
+    
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:image options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize){
+        hud.progress = ((float)receivedSize)/expectedSize;
+    } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
+        NSLog(@"图片加载完成");
         _imageView.userInteractionEnabled=YES;
         UILongPressGestureRecognizer * longPress=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
         [self addGestureRecognizer:longPress];
         [self setImageFrameAndContentSize];
+        if (!isCached) {
+            [hud hide:YES];
+        }
     }];
 }
 

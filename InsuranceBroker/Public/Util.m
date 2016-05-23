@@ -726,4 +726,17 @@
     return [emailTest evaluateWithObject:email];
 }
 
++ (void) addImagePath:(NSString *) path pathArray:(NSMutableArray *) pathArray smallImage:(UIImage *) small imageArray:(NSMutableArray *) imageArray
+{
+    if(path != nil && [path length] > 0){
+        [pathArray addObject:path];
+        if(small){
+            [imageArray addObject:small];
+        }else{
+            [imageArray addObject:[UIImage imageNamed:@""]];
+        }
+    }
+        
+}
+
 @end

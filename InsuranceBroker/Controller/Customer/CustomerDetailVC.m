@@ -24,6 +24,7 @@
 #import "OnlineCustomer.h"
 #import "BaseNavigationController.h"
 #import "InsuredUserInfoModel.h"
+#import "ProductListVC.h"
 
 @interface CustomerDetailVC ()<BaseInsuranceInfoDelegate, InsuranceInfoViewDelegate, MFMessageComposeViewControllerDelegate>
 
@@ -662,7 +663,8 @@
 //非车险报价
 - (void) NotifyToPlanInsurance:(id) model
 {
-    
+    ProductListVC *vc = [[ProductListVC alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //添加非车险客户资料

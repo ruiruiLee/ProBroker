@@ -219,7 +219,6 @@
             
             _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
             [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
-//            [_imageList addImagesURL:array withSmallImage:nil];
             [_imageList addImageObjs:array];
             
             [self.view.window addSubview:_imageList];
