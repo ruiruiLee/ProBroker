@@ -185,13 +185,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InsuranceBroker/View/Customer/&#x8be6;&#x7ec6;&#x8d44;&#x6599;/InsuranceDetailView.m"
-            timestampString = "485689328.494227"
+            filePath = "InsuranceBroker/Root/RootViewController.m"
+            timestampString = "485691927.432279"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "-initWithFrame:"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "-pushtoController:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
