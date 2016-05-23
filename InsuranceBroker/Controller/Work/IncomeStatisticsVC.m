@@ -42,7 +42,7 @@
         btnDetail.layer.borderWidth = 0.5;
         btnDetail.layer.borderColor = _COLOR(0xff, 0x66, 0x19).CGColor;
         [btnDetail setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
-        btnDetail.titleLabel.font = _FONT(10);
+        btnDetail.titleLabel.font = _FONT(12);
 //        btnDetail.backgroundColor = _COLOR(0xff, 0x66, 0x1a);
         [self setRightBarButtonWithButton:btnDetail];
         [btnDetail addTarget:self action:@selector(doBtnDetailAccount:) forControlEvents:UIControlEventTouchUpInside];
