@@ -466,6 +466,7 @@
     ProductListVC *vc = [[ProductListVC alloc] initWithNibName:nil bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+    [vc loadData];
 }
 
 - (void) doBtnNoticeList:(id) sender

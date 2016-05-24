@@ -16,4 +16,7 @@
 
 @property (nonatomic, strong) BaseStrategyView *contentView;
 
+- (void) loadData;//直接获取所有的产品
+- (void) loadDataWithLimitVal;//获取除车险外的其他产品
+
 @end

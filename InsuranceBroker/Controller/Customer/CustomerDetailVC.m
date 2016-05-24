@@ -670,6 +670,7 @@
 {
     ProductListVC *vc = [[ProductListVC alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
+    [vc loadDataWithLimitVal];
 }
 
 //添加非车险客户资料
