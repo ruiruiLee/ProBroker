@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InsuranceBroker/Controller/Public/OfferDetailWebVC.m"
-            timestampString = "485340724.990375"
+            timestampString = "485749458.800104"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "-handleRightBarButtonClicked:"
             landmarkType = "5">
          </BreakpointContent>

@@ -54,6 +54,7 @@
 @synthesize imgService;
 @synthesize btnCarLife;
 @synthesize scroll;
+@synthesize btnMyService;
 
 - (void) dealloc
 {
@@ -159,7 +160,7 @@
     [titleBg addSubview:sepView3];
     sepView3.backgroundColor = SepLineColor;
     //我的客服
-    HighNightBgButton *btnMyService = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:ThemeImage(@"service")];
+    btnMyService = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:ThemeImage(@"service")];
     [titleBg addSubview:btnMyService];
     [btnMyService addTarget:self action:@selector(doBtnMyService:) forControlEvents:UIControlEventTouchUpInside];
     

@@ -31,4 +31,6 @@
 
 @property (nonatomic, strong) NSString *orderId;
 
+@property (nonatomic, strong) HighNightBgButton *btnChat;
+
 @end

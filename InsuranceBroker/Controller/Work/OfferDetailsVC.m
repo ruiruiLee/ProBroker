@@ -42,7 +42,11 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"报价详情";
     
-    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
+    self.btnChat = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+    [self.btnChat setImage:ThemeImage(@"chat") forState:UIControlStateNormal];
+    [self.btnChat addTarget:self action:@selector(handleRightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self setRightBarButtonWithButton:self.btnChat];
+//    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
     
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableview.scrollEnabled = NO;

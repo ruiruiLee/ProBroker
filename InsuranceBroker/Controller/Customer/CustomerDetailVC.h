@@ -44,6 +44,8 @@
 //@property (nonatomic, strong) UIButton *btnQuote;//立即报价
 @property (nonatomic, strong) CustomerInfoModel *customerinfoModel;
 
+@property (nonatomic, strong) HighNightBgButton *btnChat;
+
 - (void) loadDetailWithCustomerId:(NSString *)customerId;
 
 - (IBAction) doBtnRing:(UIButton *)sender;

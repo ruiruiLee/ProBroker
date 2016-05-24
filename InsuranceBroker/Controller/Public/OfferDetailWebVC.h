@@ -8,6 +8,7 @@
 
 #import "WebViewController.h"
 #import "OffersModel.h"
+#import "HighNightBgButton.h"
 
 @interface OfferDetailWebVC : WebViewController
 {
@@ -22,6 +23,8 @@
 @property (nonatomic, strong) OffersModel *insModel;
 @property (nonatomic, strong) NSString *customerName;
 @property (nonatomic, strong) NSString *carNo;
+
+@property (nonatomic, strong) HighNightBgButton *btnChat;
 
 - (void) initShareUrl:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId;
 

@@ -165,7 +165,12 @@
     
     [self doBtnSelectDetailInfoView:self.btnInfo];
     // 加载客服
-    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
+    
+    self.btnChat = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+    [self.btnChat setImage:ThemeImage(@"chat") forState:UIControlStateNormal];
+    [self.btnChat addTarget:self action:@selector(handleRightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self setRightBarButtonWithButton:self.btnChat];
+//    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
 }
 
 - (void) viewWillAppear:(BOOL)animated
