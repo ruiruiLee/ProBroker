@@ -18,6 +18,7 @@
 #import "AgentStrategyViewController.h"
 #import "HomeVC.h"
 #import "RootViewController.h"
+#import "ShareViewController.h"
 
 @interface UserServicePushVC ()
 {
@@ -82,6 +83,12 @@
             [self.tableview reloadData];
             [AppContext sharedAppContext].pushCustomerNum = [self.data count];
             [[AppContext sharedAppContext] saveData];
+            if([self.data count] == 0)
+            {
+                ShareViewController *vc = [[ShareViewController alloc] initWithNibName:nil bundle:nil];
+                [self.view.window addSubview:vc.view];
+                [self addChildViewController:vc];
+            }
         }
 
     }];

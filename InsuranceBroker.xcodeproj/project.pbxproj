@@ -409,6 +409,7 @@
 		86D3D9A21CBCD7AF00276AC0 /* UserCenterHeaderBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86D3D9A11CBCD7AF00276AC0 /* UserCenterHeaderBgView.m */; };
 		86E6347B1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */; };
 		86EECD9E1CF2A6CE00BBAF11 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECD9D1CF2A6CE00BBAF11 /* MBProgressHUD.m */; };
+		86EECDE81CF4529800BBAF11 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECDE71CF4529800BBAF11 /* ShareViewController.m */; };
 		86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */; };
 		86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */; };
 		86F0142A1C8682E400A3C68E /* BillDetailInfoFromOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014291C8682E400A3C68E /* BillDetailInfoFromOrderVC.m */; };
@@ -1200,6 +1201,8 @@
 		86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+updateCustomerHeadImg.m"; sourceTree = "<group>"; };
 		86EECD9C1CF2A6CE00BBAF11 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		86EECD9D1CF2A6CE00BBAF11 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		86EECDE61CF4529800BBAF11 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		86EECDE71CF4529800BBAF11 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromSubVC.h; sourceTree = "<group>"; };
 		86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailInfoFromSubVC.m; sourceTree = "<group>"; };
 		86F014251C8682A000A3C68E /* BillDetailInfoWithdrawVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoWithdrawVC.h; sourceTree = "<group>"; };
@@ -2096,6 +2099,8 @@
 				86A26EA41C4678110073FFFC /* CustomerDetailVC.xib */,
 				86C3BBBB1C294B7600F98E80 /* UserServicePushVC.h */,
 				86C3BBBC1C294B7600F98E80 /* UserServicePushVC.m */,
+				86EECDE61CF4529800BBAF11 /* ShareViewController.h */,
+				86EECDE71CF4529800BBAF11 /* ShareViewController.m */,
 				86C3BBBE1C297D4900F98E80 /* EditTagVC.h */,
 				86C3BBBF1C297D4900F98E80 /* EditTagVC.m */,
 				86C3BBC01C297D4900F98E80 /* EditTagVC.xib */,
@@ -3149,6 +3154,7 @@
 				86F2DA901C79889F0088B783 /* PickView.m in Sources */,
 				86A26ED51C47DC200073FFFC /* CarAddInfoTableCell.m in Sources */,
 				86C3BBD81C2A97F200F98E80 /* ContactSelectVC.m in Sources */,
+				86EECDE81CF4529800BBAF11 /* ShareViewController.m in Sources */,
 				865065821C1E6BC800429EAE /* main.m in Sources */,
 				86A5047D1C4F27950032A901 /* qrencode.c in Sources */,
 				86C3BBE31C2ACF2000F98E80 /* TagListView.m in Sources */,
