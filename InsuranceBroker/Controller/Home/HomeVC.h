@@ -40,6 +40,8 @@
 @property (nonatomic, strong) SepLineButton *btnBroker;//经纪人成长之路
 @property (nonatomic, strong) SepLineButton *btnService;//服务支撑
 
+@property (nonatomic, strong) HighNightBgButton *btnMyService;//我的客服
+
 
 @property (nonatomic, strong) SepLineButton *btnDetail;//毒舌保险
 @property (nonatomic, strong) SepLineButton *btnCarLife;//互联网车生活
