@@ -85,10 +85,10 @@
 #pragma mark OnlineStatus
 
 
--(void)intoFAQ
+-(void)intoFAQ:(NSString *)groupName
 {
     [[AppKeFuLib sharedInstance] pushFAQViewController:self.nav
-                                     withWorkgroupName:_groupName
+                                     withWorkgroupName:groupName
                               hidesBottomBarWhenPushed:YES];
 }
 
@@ -132,7 +132,12 @@
                                    goodsInfoClickedCallback:nil
          
                                  httpLinkURLClickedCallBack:nil
-                             faqButtonTouchUpInsideCallback:nil];
+                             faqButtonTouchUpInsideCallback:^(){
+                                 [self intoFAQ:faq];
+                                 NSLog(@"faqButtonTouchUpInsideCallback, 自定义FAQ常见问题button回调，可在此打开自己的常见问题FAQ页面");
+                                 
+                             }];
+
     }
     else{
         [[AppKeFuLib sharedInstance] pushChatViewController:self.nav
@@ -173,8 +178,11 @@
                                    }
          
                                  httpLinkURLClickedCallBack:nil
-                             faqButtonTouchUpInsideCallback:nil
-         ];
+                             faqButtonTouchUpInsideCallback:^(){
+                                 [self intoFAQ:faq];
+                                 NSLog(@"faqButtonTouchUpInsideCallback, 自定义FAQ常见问题button回调，可在此打开自己的常见问题FAQ页面");
+                                 
+                             }];
         
     }
 }

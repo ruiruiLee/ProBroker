@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import  <UIKit/UIKit.h>
-#define kefuUrl = @"http://admin.appkefu.com/AppKeFu/admin/assets/avatar/"
+//#define kefuUrl = @"http://admin.appkefu.com/AppKeFu/admin/assets/avatar/"
 #define bjkf @"policy"
 #define zxkf @"business"
+#define faq @"product"
 #define bjTitle @"保单客服"
 #define zxTitle @"专属客服"
 @interface OnlineCustomer : NSObject{
@@ -46,6 +47,6 @@
 -(void)userInfoInit:(NSString *)userName sex:(NSString *)sex Province:(NSString *)Province City:(NSString *)City phone:(NSString *)phone headImage:(UIImage *)headImage baodanLogoUrlstring:(NSString *) baodanLogoUrlstring baodanDetail:(NSString *) baodanDetail baodanPrice:(NSString *) baodanPrice baodanURL:(NSString *) baodanURL baodanCallbackID:(NSString *) baodanCallbackID nav :(UINavigationController * )nav leftBtn:(UIButton *)leftBtn rightBtn:(UIButton *)rightBtn
 ;
 
--(void)intoFAQ;
+-(void)intoFAQ:(NSString *)groupName;
 -(void)beginChat;
 @end

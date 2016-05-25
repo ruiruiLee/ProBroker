@@ -183,6 +183,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_NOTIFICATION_MESSAGE object:nil];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:APPKEFU_NOTIFICATION_DISCONNECT_WITH_ERROR object:nil];
+    [ProgressHUD dismiss];
 }
 
 // 在线客服 接收是否登录成功通知
