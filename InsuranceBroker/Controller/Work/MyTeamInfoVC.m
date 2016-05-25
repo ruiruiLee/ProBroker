@@ -504,6 +504,7 @@
 - (void) doBtnChat:(id) sender
 {
     //TODO
+    
 }
 
 - (void) doBtnModifyRemarkName:(UIButton *) sender

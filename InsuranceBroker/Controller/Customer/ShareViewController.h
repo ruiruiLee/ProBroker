@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface ShareViewController : BaseViewController
+@interface ShareViewController : UIViewController
 
 @property (nonatomic, strong) UIView *explainBgView;
 @property (nonatomic, strong) UIImageView *imgWithNoData;

@@ -83,12 +83,16 @@
             [self.tableview reloadData];
             [AppContext sharedAppContext].pushCustomerNum = [self.data count];
             [[AppContext sharedAppContext] saveData];
-            if([self.data count] == 0)
-            {
-                ShareViewController *vc = [[ShareViewController alloc] initWithNibName:nil bundle:nil];
-                [self.view.window addSubview:vc.view];
-                [self addChildViewController:vc];
-            }
+//            if([self.data count] == 0)
+//            {
+//                ShareViewController *vc = [[ShareViewController alloc] initWithNibName:nil bundle:nil];
+//                [self.view.window addSubview:vc.view];
+//                [self addChildViewController:vc];
+//                vc.view.alpha = 0;
+//                [UIView animateWithDuration:1 animations:^{
+//                    vc.view.alpha = 1;
+//                }];
+//            }
         }
 
     }];
@@ -188,7 +192,6 @@
 {
     if(!self.explainBgView){
         self.explainBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, SCREEN_HEIGHT)];
-//        self.imgWithNoData = [[UIImageView alloc] initWithImage:image];
         self.imgWithNoData = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, SCREEN_HEIGHT)];
         self.imgWithNoData.image = image;
         self.imgWithNoData.contentMode = UIViewContentModeScaleToFill;

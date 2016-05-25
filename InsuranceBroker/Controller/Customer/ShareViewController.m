@@ -33,7 +33,7 @@
     [btnAdd setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     btnAdd.titleLabel.font = _FONT(17);
     [btnAdd addTarget:self action:@selector(doBtnShared:) forControlEvents:UIControlEventTouchUpInside];
-    btnAdd.center = CGPointMake(self.explainBgView.center.x, self.explainBgView.frame.size.height * 2/3 + 34);
+    btnAdd.center = CGPointMake(self.explainBgView.center.x, self.explainBgView.frame.size.height * 2/3 + 34 + 60);
 }
 
 - (void) doBtnShared:(UIButton *) sender
@@ -46,7 +46,12 @@
     vc.category = home.jiHuaShu.category;
     vc.title = home.jiHuaShu.title;
     vc.totalModel = home.jiHuaShu;
-    [self.navigationController pushViewController:vc animated:YES];
+//    [self.navigationController pushViewController:vc animated:YES];
+    UIViewController *pre = self.parentViewController;
+    [self.view removeFromSuperview];
+    [pre.navigationController pushViewController:vc animated:YES];
 }
+
+
 
 @end
