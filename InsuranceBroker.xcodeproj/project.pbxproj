@@ -410,6 +410,8 @@
 		86E6347B1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m in Sources */ = {isa = PBXBuildFile; fileRef = 86E6347A1CA12C8F00AF9E39 /* NetWorkHandler+updateCustomerHeadImg.m */; };
 		86EECD9E1CF2A6CE00BBAF11 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECD9D1CF2A6CE00BBAF11 /* MBProgressHUD.m */; };
 		86EECDE81CF4529800BBAF11 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECDE71CF4529800BBAF11 /* ShareViewController.m */; };
+		86EECDEF1CF543C300BBAF11 /* UUInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECDEE1CF543C300BBAF11 /* UUInputAccessoryView.m */; };
+		86EECDF21CF5511B00BBAF11 /* InsuredInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECDF11CF5511B00BBAF11 /* InsuredInfoModel.m */; };
 		86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */; };
 		86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */; };
 		86F0142A1C8682E400A3C68E /* BillDetailInfoFromOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014291C8682E400A3C68E /* BillDetailInfoFromOrderVC.m */; };
@@ -1203,6 +1205,10 @@
 		86EECD9D1CF2A6CE00BBAF11 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		86EECDE61CF4529800BBAF11 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		86EECDE71CF4529800BBAF11 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		86EECDED1CF543C300BBAF11 /* UUInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UUInputAccessoryView.h; sourceTree = "<group>"; };
+		86EECDEE1CF543C300BBAF11 /* UUInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UUInputAccessoryView.m; sourceTree = "<group>"; };
+		86EECDF01CF5511B00BBAF11 /* InsuredInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsuredInfoModel.h; sourceTree = "<group>"; };
+		86EECDF11CF5511B00BBAF11 /* InsuredInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsuredInfoModel.m; sourceTree = "<group>"; };
 		86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromSubVC.h; sourceTree = "<group>"; };
 		86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailInfoFromSubVC.m; sourceTree = "<group>"; };
 		86F014251C8682A000A3C68E /* BillDetailInfoWithdrawVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoWithdrawVC.h; sourceTree = "<group>"; };
@@ -1989,6 +1995,7 @@
 		86C3BB241C22C3FC00F98E80 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				86EECDEC1CF543C300BBAF11 /* UUInputAccessoryView */,
 				86EECD951CF2A2A400BBAF11 /* JZAlbumViewController */,
 				8612F4071CE4828D0045340F /* JElasticPullToRefresh */,
 				86248F051CCDB9FD00F1B493 /* LightMenuBar */,
@@ -2286,6 +2293,8 @@
 				86A26E371C4356540073FFFC /* ProviendeModel.m */,
 				86A26E391C4356620073FFFC /* CityModel.h */,
 				86A26E3A1C4356620073FFFC /* CityModel.m */,
+				86EECDF01CF5511B00BBAF11 /* InsuredInfoModel.h */,
+				86EECDF11CF5511B00BBAF11 /* InsuredInfoModel.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -2643,6 +2652,15 @@
 				86EECD9D1CF2A6CE00BBAF11 /* MBProgressHUD.m */,
 			);
 			path = JZAlbumViewController;
+			sourceTree = "<group>";
+		};
+		86EECDEC1CF543C300BBAF11 /* UUInputAccessoryView */ = {
+			isa = PBXGroup;
+			children = (
+				86EECDED1CF543C300BBAF11 /* UUInputAccessoryView.h */,
+				86EECDEE1CF543C300BBAF11 /* UUInputAccessoryView.m */,
+			);
+			path = UUInputAccessoryView;
 			sourceTree = "<group>";
 		};
 		CF2C88C81CE47FB7001B6FFF /* AppKeFuLib */ = {
@@ -3049,6 +3067,7 @@
 				868C7CA91C92CFAD00B7617A /* SepLineLabel.m in Sources */,
 				86A26E8E1C4531290073FFFC /* NewsModel.m in Sources */,
 				86A26EDC1C48E2C90073FFFC /* NetWorkHandler+modifyUserInfo.m in Sources */,
+				86EECDF21CF5511B00BBAF11 /* InsuredInfoModel.m in Sources */,
 				86C3BB6E1C242DFC00F98E80 /* UserCenterVC.m in Sources */,
 				86C3BC181C2CE0A700F98E80 /* UserPolicyListView.m in Sources */,
 				86C3BBCB1C2A5E1A00F98E80 /* BaseTableViewController.m in Sources */,
@@ -3313,6 +3332,7 @@
 				86A26F031C4A29CB0073FFFC /* InnerShadowDrawing.m in Sources */,
 				86A505061C52612E0032A901 /* EasyJSWebView+JavaScriptAlert.m in Sources */,
 				86A504471C4E5A790032A901 /* AppInfoView.m in Sources */,
+				86EECDEF1CF543C300BBAF11 /* UUInputAccessoryView.m in Sources */,
 				8654CD7E1C312CE100411C54 /* NSObject+SBJson.m in Sources */,
 				86F2DA9D1C7FE81D0088B783 /* ProductSettingTableViewCell.m in Sources */,
 				86A5040A1C4CCE730032A901 /* SelectCustomerVC.m in Sources */,

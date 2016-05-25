@@ -19,6 +19,7 @@
 #import "NetWorkHandler+updateUserRemarkName.h"
 #import "HMPopUpView.h"
 #import "BackGroundView.h"
+#import "UUInputAccessoryView.h"
 
 @interface MyTeamInfoVC () <HMPopUpViewDelegate, BackGroundViewDelegate>
 {
@@ -504,7 +505,16 @@
 - (void) doBtnChat:(id) sender
 {
     //TODO
+    UIKeyboardType type = UIKeyboardTypeDefault;
+    NSString *content = @"";
     
+    [UUInputAccessoryView showKeyboardType:type
+                                   content:content
+                                     Block:^(NSString *contentStr)
+     {
+         if (contentStr.length == 0) return ;
+         [sender setTitle:contentStr forState:UIControlStateNormal];
+     }];
 }
 
 - (void) doBtnModifyRemarkName:(UIButton *) sender

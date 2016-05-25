@@ -242,8 +242,10 @@
 - (void) doBtnInsurPlan:(id) sender
 {
     if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToPlanInsurance:)]){
-        id model = [self.data objectAtIndex:_selectIdx];
-        [self.delegate NotifyToPlanInsurance:model];
+        if(_selectIdx >=0 && _selectIdx < [self.data count]){
+            id model = [self.data objectAtIndex:_selectIdx];
+            [self.delegate NotifyToPlanInsurance:model];
+        }
     }
 }
 
@@ -663,6 +665,13 @@
 - (void) NotifySelectedAtIndex:(NSInteger) idx cell:(InsureInfoListTableViewCell *) cell
 {
     _selectIdx = idx;
+    [self.tableviewNoCar reloadData];
+}
+
+- (void) setData:(NSArray *)data
+{
+    _data = data;
+    _selectIdx = [data count] -1;
     [self.tableviewNoCar reloadData];
 }
 
