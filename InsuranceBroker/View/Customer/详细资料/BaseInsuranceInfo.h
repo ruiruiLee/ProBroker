@@ -11,6 +11,7 @@
 #import "SepLineLabel.h"
 
 @class BaseInsuranceInfo;
+@class InsuredUserInfoModel;
 
 @protocol BaseInsuranceInfoDelegate <NSObject>
 
@@ -30,7 +31,7 @@
 - (void) NotifyToSubmitImage:(UIImage *) travelCard1 travelCard2:(UIImage *)travelCard2 image1:(UIImage *) image1 cert2:(UIImage *)image2;
 
 - (void) NotifyToPlanCarInsurance;//车险报价
-- (void) NotifyToPlanInsurance:(id) model;//非车险报价
+- (void) NotifyToPlanInsurance:(InsuredUserInfoModel *) model;//非车险报价
 
 @end
 

@@ -15,7 +15,6 @@
 @interface ProductListVC ()<BaseStrategyViewDelegate>
 
 
-@property (nonatomic, strong)  NSArray *dataList;
 @property (nonatomic, strong) LightMenuBar *menuBar;
 @property (nonatomic, strong) UIView *headerView;
 
@@ -58,23 +57,6 @@
 {
     [ProgressHUD show:nil];
     NSString *method = @"/web/common/getDicts.xhtml?dictType=insuranceType";
-    NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
-    __weak ProductListVC *weakself = self;
-    [handle getWithMethod:method BaseUrl:Base_Uri Params:nil Completion:^(int code, id content) {
-        [ProgressHUD dismiss];
-        [weakself handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-        if(code == 200){
-            self.dataList = [DictModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
-            if([self.dataList count] > 0)
-                [self initMenus];
-        }
-    }];
-}
-
-- (void) loadDataWithLimitVal
-{
-    [ProgressHUD show:nil];
-    NSString *method = @"/web/common/getDicts.xhtml?dictType=insuranceType&limitVal=1";
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
     __weak ProductListVC *weakself = self;
     [handle getWithMethod:method BaseUrl:Base_Uri Params:nil Completion:^(int code, id content) {

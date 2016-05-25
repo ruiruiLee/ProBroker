@@ -243,7 +243,7 @@
 {
     if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToPlanInsurance:)]){
         if(_selectIdx >=0 && _selectIdx < [self.data count]){
-            id model = [self.data objectAtIndex:_selectIdx];
+            InsuredUserInfoModel *model = [self.data objectAtIndex:_selectIdx];
             [self.delegate NotifyToPlanInsurance:model];
         }
     }

@@ -9,8 +9,8 @@
 #import "BaseModel.h"
 
 typedef enum : NSUInteger {
-    Insured1,//从用户进去选择个险投保
-    Insured2,//先选择产品，在选择投保人
+    InsuredType1,//从用户进去选择个险投保
+    InsuredType2,//先选择产品，在选择投保人
 } InsuredType;
 
 @interface InsuredInfoModel : BaseModel

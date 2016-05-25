@@ -24,7 +24,7 @@
 #import "OnlineCustomer.h"
 #import "BaseNavigationController.h"
 #import "InsuredUserInfoModel.h"
-#import "ProductListVC.h"
+#import "ProductListSelectVC.h"
 
 @interface CustomerDetailVC ()<BaseInsuranceInfoDelegate, InsuranceInfoViewDelegate, MFMessageComposeViewControllerDelegate>
 
@@ -666,11 +666,16 @@
 }
 
 //非车险报价
-- (void) NotifyToPlanInsurance:(id) model
+- (void) NotifyToPlanInsurance:(InsuredUserInfoModel *) model
 {
-    ProductListVC *vc = [[ProductListVC alloc] initWithNibName:nil bundle:nil];
+    //先选择被保人的情况
+    ProductListSelectVC *vc = [[ProductListSelectVC alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
-    [vc loadDataWithLimitVal];
+    InsuredInfoModel *infoModel = [[InsuredInfoModel alloc] init];
+    infoModel.type = InsuredType1;
+    infoModel.customerId = self.data.customerId;
+    infoModel.insuredId = model.insuredId;
+    [vc loadDataWithLimitVal:infoModel];
 }
 
 //添加非车险客户资料

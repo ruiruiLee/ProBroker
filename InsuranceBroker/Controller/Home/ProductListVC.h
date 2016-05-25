@@ -11,12 +11,15 @@
 #import "LightMenuBarDelegate.h"
 #import "LightMenuBarView.h"
 #import "BaseStrategyView.h"
+#import "InsuredInfoModel.h"
 
 @interface ProductListVC : BaseViewController <LightMenuBarDelegate>
 
 @property (nonatomic, strong) BaseStrategyView *contentView;
+@property (nonatomic, strong)  NSArray *dataList;
 
 - (void) loadData;//直接获取所有的产品
-- (void) loadDataWithLimitVal;//获取除车险外的其他产品
+
+- (void) initMenus;
 
 @end
