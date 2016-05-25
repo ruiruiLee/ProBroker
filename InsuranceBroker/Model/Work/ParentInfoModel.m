@@ -19,6 +19,7 @@
     model.parentHeaderImg = [dictionary objectForKey:@"parentHeaderImg"];
     model.parentPhone = [dictionary objectForKey:@"parentPhone"];
     model.parentUserSex = [[dictionary objectForKey:@"parentUserSex"] integerValue];
+    model.parentUserId = [dictionary objectForKey:@"parentUserId"];
     
     return model;
 }

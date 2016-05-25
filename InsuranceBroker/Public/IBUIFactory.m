@@ -204,4 +204,10 @@
     return insured;
 }
 
++ (ProductDetailWebVC *) CreateProductDetailWebVC
+{
+    ProductDetailWebVC *web = [[ProductDetailWebVC alloc] initWithNibName:@"ProductDetailWebVC" bundle:nil];
+    return web;
+}
+
 @end

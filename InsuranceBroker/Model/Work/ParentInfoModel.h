@@ -15,5 +15,6 @@
 @property (nonatomic, strong) NSString *parentPhone;
 @property (nonatomic, strong) NSString *parentHeaderImg;
 @property (nonatomic, assign) NSInteger parentUserSex;
+@property (nonatomic, strong) NSString *parentUserId;
 
 @end

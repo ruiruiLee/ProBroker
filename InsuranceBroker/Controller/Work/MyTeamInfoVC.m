@@ -20,6 +20,7 @@
 #import "HMPopUpView.h"
 #import "BackGroundView.h"
 #import "UUInputAccessoryView.h"
+#import "NetWorkHandler+privateLetter.h"
 
 @interface MyTeamInfoVC () <HMPopUpViewDelegate, BackGroundViewDelegate>
 {
@@ -513,7 +514,14 @@
                                      Block:^(NSString *contentStr)
      {
          if (contentStr.length == 0) return ;
-         [sender setTitle:contentStr forState:UIControlStateNormal];
+         UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+         NSString *senderName = [Util getUserName:model];
+         if(!senderName)
+             senderName = model.phone;
+         NSString *title = [NSString stringWithFormat:@"%@给你发了一条私信", senderName];
+         [NetWorkHandler requestToPostPrivateLetter:self.parentModel.parentUserId title:title content:contentStr senderId:model.userId senderName:senderName Completion:^(int code, id content) {
+             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+         }];
      }];
 }
 

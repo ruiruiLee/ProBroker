@@ -35,6 +35,7 @@
 #import "QuickQuoteVC.h"
 #import "InsuredUserInfoEditVC.h"
 #import "EditInsuredUserInfoVC.h"
+#import "ProductDetailWebVC.h"
 
 @interface IBUIFactory : NSObject
 
@@ -93,5 +94,7 @@
 + (InsuredUserInfoEditVC *) CreateInsuredUserInfoEditVC;
 
 + (EditInsuredUserInfoVC *) CreateEditInsuredUserInfoVC;
+
++ (ProductDetailWebVC *) CreateProductDetailWebVC;
 
 @end

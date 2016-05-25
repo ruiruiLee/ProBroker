@@ -208,7 +208,7 @@
 
 - (void) NotifyItemSelectIndex:(productAttrModel*) m view:(BaseStrategyView *) view
 {
-    WebViewController *web = [IBUIFactory CreateWebViewController];
+    ProductDetailWebVC *web = [IBUIFactory CreateProductDetailWebVC];
     web.title = m.productTitle;
     web.type = enumShareTypeShare;
     if(m.productImg != nil)

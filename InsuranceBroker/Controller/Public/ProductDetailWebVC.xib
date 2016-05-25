@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailWebVC">
+            <connections>
+                <outlet property="view" destination="iN0-l3-epB" id="Xx8-VF-BwC"/>
+                <outlet property="webview" destination="ciu-7Q-dzg" id="6u7-U9-ahB"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ciu-7Q-dzg" customClass="EasyJSWebView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                </webView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ciu-7Q-dzg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="GxA-xM-sQq"/>
+                <constraint firstAttribute="trailing" secondItem="ciu-7Q-dzg" secondAttribute="trailing" id="Ojx-FM-hJO"/>
+                <constraint firstAttribute="bottom" secondItem="ciu-7Q-dzg" secondAttribute="bottom" id="kKo-Su-kje"/>
+                <constraint firstItem="ciu-7Q-dzg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="uzs-b8-BQu"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

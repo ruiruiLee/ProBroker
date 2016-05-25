@@ -21,15 +21,6 @@
 
 @property (nonatomic, assign) id<MyJSInterfaceDelegate> delegate;
 
-- (void) test;
-- (void) testWithParam: (NSString*) param;
-- (void) testWithTwoParam: (NSString*) param AndParam2: (NSString*) param2;
-
-- (void) testWithFuncParam: (EasyJSDataFunction*) param;
-- (void) testWithFuncParam2: (EasyJSDataFunction*) param;
-
-- (NSString*) testWithRet;
-
 - (void) close;
 
 - (void) shareUrl;
