@@ -140,6 +140,8 @@
                 NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlpath]];
                 [self addWebCache:request]; // 加缓存并加载
             }
+            
+            _isLoad = YES;
         }
     }
 }
@@ -206,8 +208,10 @@
         self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1", url, [UserInfoModel shareUserInfoModel].userId];
     }
     
-    if(self.webview)
+    if(self.webview){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
+        _isLoad = YES;
+    }
 }
 
 - (void) loadHtmlFromUrlWithUuId:(NSString *) url
@@ -221,23 +225,29 @@
         self.shareUrl = [NSString stringWithFormat:@"%@?uuid=%@&appShare=1", url, [UserInfoModel shareUserInfoModel].uuid];
     }
     
-    if(self.webview)
+    if(self.webview){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
+        _isLoad = YES;
+    }
 }
 
 - (void) loadHtmlFromUrl:(NSString *) url
 {
     self.urlpath = url;
     self.shareUrl = url;
-    if(self.webview)
+    if(self.webview){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
+        _isLoad = YES;
+    }
 }
 
 - (void) loadCacheHtmlFromUrl:(NSString *)url
 {
     self.urlpath = url;
-    if(self.webview)
+    if(self.webview){
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+        _isLoad = YES;
+    }
 }
 
 - (void) handleRightBarButtonClicked:(id)sender

@@ -99,7 +99,7 @@
     self.headline.imgTitle.image = ThemeImage(@"Hot");
     self.headline.backgroundColor = [UIColor whiteColor];//_COLOR(0xd8, 0xd8, 0xd8);
     
-    self.btnMessage = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
+    self.btnMessage = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     [self.btnMessage setImage:ThemeImage(@"user_message2") forState:UIControlStateNormal];
     [self setRightBarButtonWithButton:self.btnMessage];
     [self.btnMessage addTarget:self action:@selector(doBtnNoticeList:) forControlEvents:UIControlEventTouchUpInside];
