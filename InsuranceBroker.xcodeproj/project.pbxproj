@@ -416,6 +416,7 @@
 		86EECDF71CF5827C00BBAF11 /* ProductDetailWebVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86EECDF61CF5827C00BBAF11 /* ProductDetailWebVC.xib */; };
 		86EECDFA1CF583DB00BBAF11 /* NetWorkHandler+privateLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECDF91CF583DB00BBAF11 /* NetWorkHandler+privateLetter.m */; };
 		86EECDFD1CF59C5A00BBAF11 /* ProductListSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECDFC1CF59C5A00BBAF11 /* ProductListSelectVC.m */; };
+		86EECE001CF68E3900BBAF11 /* SelectInsuredVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECDFF1CF68E3900BBAF11 /* SelectInsuredVC.m */; };
 		86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */; };
 		86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */; };
 		86F0142A1C8682E400A3C68E /* BillDetailInfoFromOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014291C8682E400A3C68E /* BillDetailInfoFromOrderVC.m */; };
@@ -1220,6 +1221,8 @@
 		86EECDF91CF583DB00BBAF11 /* NetWorkHandler+privateLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+privateLetter.m"; sourceTree = "<group>"; };
 		86EECDFB1CF59C5A00BBAF11 /* ProductListSelectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListSelectVC.h; sourceTree = "<group>"; };
 		86EECDFC1CF59C5A00BBAF11 /* ProductListSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListSelectVC.m; sourceTree = "<group>"; };
+		86EECDFE1CF68E3900BBAF11 /* SelectInsuredVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectInsuredVC.h; sourceTree = "<group>"; };
+		86EECDFF1CF68E3900BBAF11 /* SelectInsuredVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectInsuredVC.m; sourceTree = "<group>"; };
 		86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromSubVC.h; sourceTree = "<group>"; };
 		86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailInfoFromSubVC.m; sourceTree = "<group>"; };
 		86F014251C8682A000A3C68E /* BillDetailInfoWithdrawVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoWithdrawVC.h; sourceTree = "<group>"; };
@@ -2170,6 +2173,8 @@
 				86A26E701C44F5E10073FFFC /* AgentStrategyViewController.m */,
 				86A504081C4CCE730032A901 /* SelectCustomerVC.h */,
 				86A504091C4CCE730032A901 /* SelectCustomerVC.m */,
+				86EECDFE1CF68E3900BBAF11 /* SelectInsuredVC.h */,
+				86EECDFF1CF68E3900BBAF11 /* SelectInsuredVC.m */,
 				86248EF01CC6220E00F1B493 /* ProductListVC.h */,
 				86248EF11CC6220E00F1B493 /* ProductListVC.m */,
 				86EECDFB1CF59C5A00BBAF11 /* ProductListSelectVC.h */,
@@ -3359,6 +3364,7 @@
 				86F2DA9D1C7FE81D0088B783 /* ProductSettingTableViewCell.m in Sources */,
 				86A5040A1C4CCE730032A901 /* SelectCustomerVC.m in Sources */,
 				86C3BCBE1C2E933600F98E80 /* IQUIWindow+Hierarchy.m in Sources */,
+				86EECE001CF68E3900BBAF11 /* SelectInsuredVC.m in Sources */,
 				86A504911C4F62830032A901 /* NewCustomerVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

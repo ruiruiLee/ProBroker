@@ -7,17 +7,30 @@
 //
 
 #import "ProductDetailWebVC.h"
+#import "define.h"
+#import "SBJson.h"
+#import "SelectCustomerVC.h"
 
 @implementation ProductDetailWebVC
 
-- (void) handleBtnClicked:(id) sender//直接投保
+- (void) NotifyToSelectCustomer
 {
-    
+    if(self.infoModel.type == InsuredType1){
+        NSDictionary *dic = [InsuredInfoModel dictionaryFromeModel:self.infoModel];
+        SBJsonWriter *writer = [[SBJsonWriter alloc] init];
+        NSString *string = [writer stringWithObject:dic];
+        NSString *result = [NSString stringWithFormat:@"noticeCustomerInfo('%@');", string];
+        
+        [self.webview stringByEvaluatingJavaScriptFromString:result];
+    }else{
+        [self handleSelectCustomer];
+    }
 }
 
-- (void) handleSelectCustomer:(id)sender//选择客户
+- (void) handleSelectCustomer//选择客户
 {
-    
+    SelectCustomerVC *vc = [[SelectCustomerVC alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

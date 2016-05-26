@@ -41,4 +41,12 @@
     }
 }
 
+- (void) selectCustomer
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToSelectCustomer)])
+    {
+        [self.delegate NotifyToSelectCustomer];
+    }
+}
+
 @end

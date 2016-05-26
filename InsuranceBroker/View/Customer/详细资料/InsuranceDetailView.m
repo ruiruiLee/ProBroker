@@ -671,7 +671,6 @@
 - (void) setData:(NSArray *)data
 {
     _data = data;
-    _selectIdx = [data count] -1;
     [self.tableviewNoCar reloadData];
 }
 

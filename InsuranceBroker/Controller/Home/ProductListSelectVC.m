@@ -14,6 +14,8 @@
 
 @interface ProductListSelectVC ()
 
+@property (nonatomic, strong) InsuredInfoModel *infoModel;
+
 @end
 
 @implementation ProductListSelectVC
@@ -30,6 +32,8 @@
 
 - (void) loadDataWithLimitVal:(InsuredInfoModel *) model
 {
+    self.infoModel = model;
+    
     [ProgressHUD show:nil];
     NSString *method = @"/web/common/getDicts.xhtml?dictType=insuranceType&limitVal=1";
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
@@ -53,6 +57,9 @@
     web.type = enumShareTypeShare;
     if(m.productImg != nil)
         web.shareImgArray = [NSArray arrayWithObject:m.productImg];
+    
+    self.infoModel.productId = m.productAttrId;//添加产品id
+    web.infoModel = self.infoModel;//选中的被保人信息
     
     web.shareContent = m.productIntro;
     web.shareTitle = m.productTitle;

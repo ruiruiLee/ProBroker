@@ -7,7 +7,10 @@
 //
 
 #import "WebViewController.h"
+#import "InsuredInfoModel.h"
 
 @interface ProductDetailWebVC : WebViewController
+
+@property (nonatomic, strong) InsuredInfoModel *infoModel;//被保人信息
 
 @end

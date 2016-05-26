@@ -671,10 +671,8 @@
     //先选择被保人的情况
     ProductListSelectVC *vc = [[ProductListSelectVC alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
-    InsuredInfoModel *infoModel = [[InsuredInfoModel alloc] init];
+    InsuredInfoModel *infoModel = [InsuredInfoModel initFromInsuredUserInfoModel:model];
     infoModel.type = InsuredType1;
-    infoModel.customerId = self.data.customerId;
-    infoModel.insuredId = model.insuredId;
     [vc loadDataWithLimitVal:infoModel];
 }
 
