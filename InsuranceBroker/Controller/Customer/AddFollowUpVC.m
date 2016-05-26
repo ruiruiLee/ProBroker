@@ -337,7 +337,25 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
+    if(textView == self.tfview){
+        NSInteger TEXT_LEN = 200;
+        NSInteger number = [textView.text length];
+        if (number > TEXT_LEN && textView.markedTextRange == nil) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"字符个数不能大于200" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+            self.tfview.text = [textView.text substringToIndex:TEXT_LEN];
+        }
+    }
+    
     if(self.tfAdd == textView){
+        NSInteger TEXT_LEN = 100;
+        NSInteger number = [textView.text length];
+        if (number > TEXT_LEN && textView.markedTextRange == nil) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"字符个数不能大于100" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+            [alert show];
+            self.tfAdd.text = [textView.text substringToIndex:TEXT_LEN];
+        }
+        
         CGSize size = [textView.text boundingRectWithSize:CGSizeMake(ScreenWidth - 158, INT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:textView.font} context:nil].size;//[textView.text sizeWithFont:textView.font constrainedToSize:CGSizeMake(ScreenWidth - 158, INT_MAX)];
         if(size.height > 36)
             size.height = 36;
@@ -347,5 +365,24 @@
     }
     [self isHasModify];
 }
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if(textView == self.tfview){
+        if (textView.text.length >= 200  && [text length] > range.length) {
+            return NO;
+        }
+        
+        return YES;
+    }
+    else{
+        if (textView.text.length >= 100 ) {
+            return NO;
+        }
+        
+        return YES;
+    }
+}
+
 
 @end

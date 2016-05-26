@@ -147,6 +147,9 @@
     else if (model.shareSource == 4){
         cell.imageFromV.image = ThemeImage(@"mail_talk");
     }
+    else if (model.shareSource == 5){
+        cell.imageFromV.image = ThemeImage(@"huodong");
+    }
 
     return cell;
 }

@@ -13,6 +13,8 @@
 #import "TagObjectModel.h"
 #import "ProvienceSelectVC.h"
 
+#define TEXT_LEN 100
+
 @interface CustomerInfoEditVC ()
 
 @property (nonatomic, strong) NSArray *tagList;
@@ -49,9 +51,10 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex == 0){
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    if(alertView.tag != 1000)
+        if(buttonIndex == 0){
+            [self.navigationController popViewControllerAnimated:YES];
+        }
 }
 
 - (BOOL) resignFirstResponder
@@ -81,7 +84,7 @@
     [self.onwerTag.textfield.textfield addTarget:self action:@selector(textChangeAction:) forControlEvents:UIControlEventEditingChanged];
     
     self.tvRemarks.delegate = self;
-    self.tvRemarks.placeholder = @"备注(25个字符)";
+    self.tvRemarks.placeholder = @"添加备注";
     
     self.viewHConstraint.constant = ScreenWidth;
     NSArray *array = nil;
@@ -458,10 +461,27 @@
 //动态计算textview的高度
 - (void)textViewDidChange:(UITextView *)textView
 {
+    NSInteger number = [textView.text length];
+    if (number > TEXT_LEN && textView.markedTextRange == nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"字符个数不能大于100" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        textView.text = [textView.text substringToIndex:TEXT_LEN];
+        alert.tag = 1000;
+    }
+    
     CGSize size = [textView sizeThatFits:CGSizeMake(CGRectGetWidth(textView.frame), MAXFLOAT)];
     self.remarkCellVConstraint.constant = size.height + 22;
     if(size.height <= 34)
         self.remarkCellVConstraint.constant = 56;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if (textView.text.length >= TEXT_LEN  && [text length] > range.length) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 - (NSString *) formatPhoneNum:(NSString *) phoneNum
