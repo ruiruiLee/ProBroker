@@ -168,6 +168,7 @@
 
 - (IBAction)doBtnSelectSex:(id)sender
 {
+    [self resignFirstResponder];
     UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"选择性别" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"男" otherButtonTitles:@"女", nil];
     [action showInView:self.view];
     action.tag = 1000;
