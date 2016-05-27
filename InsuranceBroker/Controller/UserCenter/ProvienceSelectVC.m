@@ -78,15 +78,18 @@
         vc.selectIdx = indexPath.row;
         vc.proviendemodel = model;
     }else{
-        CustomerCitySelectVC *vc = [[CustomerCitySelectVC alloc] initWithNibName:nil bundle:nil];
-        vc.selectArea = self.selectArea;
-        vc._edit = self._edit;
-        [self.navigationController pushViewController:vc animated:YES];
-        vc.selectIdx = indexPath.row;
-        ProviendeModel *model = [[ProviendeModel alloc] init];
-        model.provinceId = self.selectArea.liveProvinceId;
-        model.provinceName = self.selectArea.liveProvince;
-        vc.proviendemodel = model;
+        if(self.selectArea.liveProvinceId != nil)
+        {
+            CustomerCitySelectVC *vc = [[CustomerCitySelectVC alloc] initWithNibName:nil bundle:nil];
+            vc.selectArea = self.selectArea;
+            vc._edit = self._edit;
+            [self.navigationController pushViewController:vc animated:YES];
+            vc.selectIdx = indexPath.row;
+            ProviendeModel *model = [[ProviendeModel alloc] init];
+            model.provinceId = self.selectArea.liveProvinceId;
+            model.provinceName = self.selectArea.liveProvince;
+            vc.proviendemodel = model;
+        }
     }
 }
 

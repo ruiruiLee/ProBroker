@@ -68,6 +68,30 @@
     }
 }
 
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    if(indexPath.section == 1){
+        CityModel *citymodel = [self.data objectAtIndex:indexPath.row];
+        [self modifyAddress:citymodel];
+    }else{
+        if(self.selectArea.liveCityId != nil){
+            NSArray *vcarray = self.navigationController.viewControllers;
+            UIViewController *vc = nil;
+            for (int i = 0; i < [vcarray count]; i++) {
+                UIViewController *temp = [vcarray objectAtIndex:i];
+                if([temp isKindOfClass:[CustomerInfoEditVC class]]){
+                    vc = temp;
+                    break;
+                }
+            }
+            
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+    }
+}
+
 - (void) modifyAddress:(CityModel *)citymodel
 {
 

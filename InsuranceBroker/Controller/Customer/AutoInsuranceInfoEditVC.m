@@ -1162,9 +1162,14 @@
     if(flag)
         result = flag;
     NSString *no = [self getCarCertString];//self.tfNo.text;
-    flag = [self checkValueChange:no text:model.carNo];
-    if(flag)
-        result = flag;
+    if([no length] == 1 && (model.carNo == nil || [model.carNo length] == 0))
+        flag = NO;
+    else{
+        flag = [self checkValueChange:no text:model.carNo];
+        if(flag)
+            result = flag;
+    }
+
     if(model != nil){
         if(model.newCarNoStatus == self.btnNoNo.selected){
             result = YES;

@@ -159,13 +159,17 @@
         vc.selectIdx = indexPath.row;
         vc.proviendemodel = model;
     }else{
-        CitySelectedVC *vc = [[CitySelectedVC alloc] initWithNibName:nil bundle:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-        vc.selectIdx = indexPath.row;
-        ProviendeModel *model = [[ProviendeModel alloc] init];
-        model.provinceId = [UserInfoModel shareUserInfoModel].liveProvinceId;
-        model.provinceName = [UserInfoModel shareUserInfoModel].liveProvince;
-        vc.proviendemodel = model;
+        UserInfoModel *model  = [UserInfoModel shareUserInfoModel];
+        if(model.liveProvince != nil)
+        {
+            CitySelectedVC *vc = [[CitySelectedVC alloc] initWithNibName:nil bundle:nil];
+            [self.navigationController pushViewController:vc animated:YES];
+            vc.selectIdx = indexPath.row;
+            ProviendeModel *model1 = [[ProviendeModel alloc] init];
+            model1.provinceId = [UserInfoModel shareUserInfoModel].liveProvinceId;
+            model1.provinceName = [UserInfoModel shareUserInfoModel].liveProvince;
+            vc.proviendemodel = model1;
+        }
     }
 }
 

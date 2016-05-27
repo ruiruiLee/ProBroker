@@ -157,8 +157,25 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    CityModel *citymodel = [self.data objectAtIndex:indexPath.row];
-    [self modifyAddress:citymodel];
+    if(indexPath.section == 1){
+        CityModel *citymodel = [self.data objectAtIndex:indexPath.row];
+        [self modifyAddress:citymodel];
+    }else{
+        UserInfoModel *model  = [UserInfoModel shareUserInfoModel];
+        if(model.liveCity != nil){
+            NSArray *vcarray = self.navigationController.viewControllers;
+            UIViewController *vc = nil;
+            for (int i = 0; i < [vcarray count]; i++) {
+                UIViewController *temp = [vcarray objectAtIndex:i];
+                if([temp isKindOfClass:[UserInfoEditVC class]]){
+                    vc = temp;
+                    break;
+                }
+            }
+            
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+    }
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
