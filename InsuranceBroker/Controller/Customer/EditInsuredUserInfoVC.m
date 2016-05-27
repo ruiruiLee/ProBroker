@@ -46,6 +46,16 @@
     self.tfSex.text = [Util getSexStringWithSex:model.insuredSex];
     self.selectRelationTypeIdx = [self getSelectIndexWithRelationValue:model.relationType];
     self.sex = model.insuredSex;
+    
+    if([self.insuredModel.relationTypeName isEqualToString:@"本人"]){
+        self.btnRelation.userInteractionEnabled = NO;
+        self.tfRelation.userInteractionEnabled = NO;
+        self.rightArraw.hidden = YES;
+    }else{
+        self.btnRelation.userInteractionEnabled = YES;
+        self.tfRelation.userInteractionEnabled = YES;
+        self.rightArraw.hidden = NO;
+    }
     [self isModify];
 }
 

@@ -69,9 +69,7 @@
 - (void) loadVisitDictionary
 {
     [ProgressHUD show:nil];
-    NSArray *array = @[@"customerRelationType"];
-    NSString *method = @"/web/common/getDictCustom.xhtml?dictType=['customerRelationType']";
-    method = [NSString stringWithFormat:method, [NetWorkHandler objectToJson:array]];
+    NSString *method = @"/web/common/getDicts.xhtml?dictType=customerRelationType&limitVal=1";
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
     __weak InsuredUserInfoEditVC *weakself = self;
     [handle getWithMethod:method BaseUrl:Base_Uri Params:nil Completion:^(int code, id content) {

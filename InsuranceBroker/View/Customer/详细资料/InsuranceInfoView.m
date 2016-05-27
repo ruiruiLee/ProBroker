@@ -75,7 +75,7 @@
     [self addSubview:lbExplain];
     lbExplain.textAlignment = NSTextAlignmentCenter;
     
-    lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
+    lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT_B(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
     [self addSubview:lbTitle];
     
     lbSepLine = [[SepLineLabel alloc] initWithFrame:CGRectZero];//[ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];

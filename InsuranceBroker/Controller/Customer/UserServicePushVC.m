@@ -135,16 +135,16 @@
     cell.lbType.text = model.insuranceType;
     cell.lbActive.text = model.cooperationSource;
 
-    if(model.shareSource == 1 ){
+    if(model.shareSource == 3 ){
         cell.imageFromV.image = ThemeImage(@"wechat_talk");
     }
-    else if (model.shareSource == 2){
+    else if (model.shareSource == 4){
         cell.imageFromV.image = ThemeImage(@"qq_talk");
     }
-    else if (model.shareSource == 3){
+    else if (model.shareSource == 9){
         cell.imageFromV.image = ThemeImage(@"wechat_pengyouquan");
     }
-    else if (model.shareSource == 4){
+    else if (model.shareSource == 6){
         cell.imageFromV.image = ThemeImage(@"mail_talk");
     }
     else if (model.shareSource == 5){

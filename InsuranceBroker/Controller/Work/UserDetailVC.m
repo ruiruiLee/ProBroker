@@ -14,8 +14,11 @@
 #import "ProductInfoModel.h"
 #import "CommissionSetTableViewCell.h"
 #import "NetWorkHandler+setSpecialtyUserProductRatio.h"
+#import "NetWorkHandler+privateLetter.h"
 #import "MyTeamsVC.h"
 #import <MessageUI/MessageUI.h>
+#import "UUInputAccessoryView.h"
+#import "IQKeyboardManager.h"
 
 
 @interface UserDetailVC ()<MFMessageComposeViewControllerDelegate, PickViewDelegate>
@@ -70,6 +73,19 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //    _wasKeyboardManagerEnabled = [[IQKeyboardManager sharedManager] isEnabled];
+    [[IQKeyboardManager sharedManager] setEnable:NO];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
 }
 
 - (void) viewDidLayoutSubviews
@@ -250,8 +266,31 @@
 
 - (IBAction) doBtnEmail:(UIButton *)sender
 {
-    NSArray *array = [NSArray arrayWithObject:self.userinfo.phone];
-    [self showMessageView:array title:@"" body:@""];
+//    NSArray *array = [NSArray arrayWithObject:self.userinfo.phone];
+//    [self showMessageView:array title:@"" body:@""];
+    UIKeyboardType type = UIKeyboardTypeDefault;
+    NSString *content = @"";
+    
+    [UUInputAccessoryView showKeyboardType:type
+                                   content:content
+                                     Block:^(NSString *contentStr)
+     {
+         if (contentStr.length == 0) return ;
+         UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+         NSString *senderName = [Util getUserName:model];
+         if(!senderName)
+             senderName = model.phone;
+         NSString *title = [NSString stringWithFormat:@"%@给你发了一条私信", senderName];
+         [NetWorkHandler requestToPostPrivateLetter:self.userinfo.userId title:title content:contentStr senderId:model.userId senderName:senderName Completion:^(int code, id content) {
+             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+             if(code == 200){
+                 [Util showAlertMessage:@"消息发送成功！"];
+             }
+             else{
+                 [Util showAlertMessage:@"消息发送失败！"];
+             }
+         }];
+     }];
 }
 
 - (IBAction) doBtnIncomeStatistics:(id)sender

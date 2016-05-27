@@ -21,6 +21,7 @@
 #import "BackGroundView.h"
 #import "UUInputAccessoryView.h"
 #import "NetWorkHandler+privateLetter.h"
+#import "IQKeyboardManager.h"
 
 @interface MyTeamInfoVC () <HMPopUpViewDelegate, BackGroundViewDelegate>
 {
@@ -159,6 +160,19 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    //    _wasKeyboardManagerEnabled = [[IQKeyboardManager sharedManager] isEnabled];
+    [[IQKeyboardManager sharedManager] setEnable:NO];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
 }
 
 - (void) doBtnShowProductInfo:(UIButton *)sender
@@ -521,6 +535,12 @@
          NSString *title = [NSString stringWithFormat:@"%@给你发了一条私信", senderName];
          [NetWorkHandler requestToPostPrivateLetter:self.parentModel.parentUserId title:title content:contentStr senderId:model.userId senderName:senderName Completion:^(int code, id content) {
              [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+             if(code == 200){
+                 [Util showAlertMessage:@"消息发送成功！"];
+             }
+             else{
+                 [Util showAlertMessage:@"消息发送失败！"];
+             }
          }];
      }];
 }

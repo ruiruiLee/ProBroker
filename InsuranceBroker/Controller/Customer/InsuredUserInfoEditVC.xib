@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InsuredUserInfoEditVC">
             <connections>
+                <outlet property="btnRelation" destination="eCn-NP-Uha" id="Ian-bN-WYg"/>
+                <outlet property="rightArraw" destination="sIQ-Rw-Lcc" id="R46-IJ-kpc"/>
                 <outlet property="tfCert" destination="O1U-pR-s7X" id="rc6-hY-qWL"/>
                 <outlet property="tfEmail" destination="aKG-WU-RrV" id="vOL-WI-Hle"/>
                 <outlet property="tfMobile" destination="HtM-1Y-chg" id="dpN-sh-hgg"/>

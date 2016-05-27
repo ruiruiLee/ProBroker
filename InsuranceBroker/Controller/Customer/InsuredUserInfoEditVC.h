@@ -22,6 +22,8 @@
 @property (nonatomic, strong) IBOutlet UITextField *tfName;
 @property (nonatomic, strong) IBOutlet UITextField *tfCert;
 @property (nonatomic, strong) IBOutlet UITextField *tfRelation;
+@property (nonatomic, strong) IBOutlet UIButton *btnRelation;
+@property (nonatomic, strong) IBOutlet UIImageView *rightArraw;
 
 @property (nonatomic, strong) MenuViewController *menuView;
 

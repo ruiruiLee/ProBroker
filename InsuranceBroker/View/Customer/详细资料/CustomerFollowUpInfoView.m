@@ -80,7 +80,7 @@
         cell.logoImgV.image = ThemeImage(@"qq_talk");
     }
     else if ([model.visitTypeId isEqualToString:@"5"]){
-        cell.logoImgV.image = ThemeImage(@"message_talk");
+        cell.logoImgV.image = ThemeImage(@"huodong");
     }
     else if ([model.visitTypeId isEqualToString:@"6"]){
         cell.logoImgV.image = ThemeImage(@"mail_talk");

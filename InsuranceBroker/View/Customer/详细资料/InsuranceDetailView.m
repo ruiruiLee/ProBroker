@@ -35,7 +35,7 @@
         sepView.backgroundColor = SepLine_color;
         [self addSubview:sepView];
         
-        UILabel *lbTitleNoCar = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
+        UILabel *lbTitleNoCar = [ViewFactory CreateLabelViewWithFont:_FONT_B(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
         [self addSubview:lbTitleNoCar];
         lbTitleNoCar.text = @"个险资料";
         
@@ -121,6 +121,7 @@
         [self.tableview registerNib:[UINib nibWithNibName:@"InsuranceTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
         self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.lbTitle.text = @"车险资料";
+        self.lbTitle.font = _FONT_B(15);
         [self.btnEdit setImage:ThemeImage(@"edit_profile") forState:UIControlStateNormal];
         [self.btnEdit setTitle:@"详情" forState:UIControlStateNormal];
         [self.btnEdit setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];

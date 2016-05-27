@@ -21,7 +21,7 @@
 {
     self = [super initWithFrame:frame];
     if(self){
-        self.lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
+        self.lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT_B(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
         [self addSubview:self.lbTitle];
         
         btnEdit = [[LeftImgButton alloc] initWithFrame:CGRectZero];
