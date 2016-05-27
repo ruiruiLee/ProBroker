@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "MenuViewController.h"
+#import "HighNightBgButton.h"
 
 @interface InsuredUserInfoEditVC : BaseViewController<UIActionSheetDelegate, UITextFieldDelegate, MenuDelegate>
 

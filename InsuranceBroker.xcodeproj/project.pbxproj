@@ -417,6 +417,7 @@
 		86EECDFA1CF583DB00BBAF11 /* NetWorkHandler+privateLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECDF91CF583DB00BBAF11 /* NetWorkHandler+privateLetter.m */; };
 		86EECDFD1CF59C5A00BBAF11 /* ProductListSelectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECDFC1CF59C5A00BBAF11 /* ProductListSelectVC.m */; };
 		86EECE001CF68E3900BBAF11 /* SelectInsuredVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECDFF1CF68E3900BBAF11 /* SelectInsuredVC.m */; };
+		86EECE031CF70FC200BBAF11 /* ProvienceSelectedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86EECE021CF70FC200BBAF11 /* ProvienceSelectedView.m */; };
 		86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */; };
 		86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014261C8682A000A3C68E /* BillDetailInfoWithdrawVC.m */; };
 		86F0142A1C8682E400A3C68E /* BillDetailInfoFromOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F014291C8682E400A3C68E /* BillDetailInfoFromOrderVC.m */; };
@@ -1223,6 +1224,8 @@
 		86EECDFC1CF59C5A00BBAF11 /* ProductListSelectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListSelectVC.m; sourceTree = "<group>"; };
 		86EECDFE1CF68E3900BBAF11 /* SelectInsuredVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectInsuredVC.h; sourceTree = "<group>"; };
 		86EECDFF1CF68E3900BBAF11 /* SelectInsuredVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectInsuredVC.m; sourceTree = "<group>"; };
+		86EECE011CF70FC200BBAF11 /* ProvienceSelectedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProvienceSelectedView.h; sourceTree = "<group>"; };
+		86EECE021CF70FC200BBAF11 /* ProvienceSelectedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProvienceSelectedView.m; sourceTree = "<group>"; };
 		86F014221C86823C00A3C68E /* BillDetailInfoFromSubVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoFromSubVC.h; sourceTree = "<group>"; };
 		86F014231C86823C00A3C68E /* BillDetailInfoFromSubVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BillDetailInfoFromSubVC.m; sourceTree = "<group>"; };
 		86F014251C8682A000A3C68E /* BillDetailInfoWithdrawVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BillDetailInfoWithdrawVC.h; sourceTree = "<group>"; };
@@ -2527,6 +2530,8 @@
 				8625B0431C3E70BF00312B98 /* ZHPickView.m */,
 				86A26EA91C4796700073FFFC /* PlaceholderTextView.h */,
 				86A26EAA1C4796700073FFFC /* PlaceholderTextView.m */,
+				86EECE011CF70FC200BBAF11 /* ProvienceSelectedView.h */,
+				86EECE021CF70FC200BBAF11 /* ProvienceSelectedView.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -3152,6 +3157,7 @@
 				8625AF941C32862C00312B98 /* QRCodeVC.m in Sources */,
 				86C3BB121C228D6F00F98E80 /* LoadMoreTableFooterView.m in Sources */,
 				86EECDFD1CF59C5A00BBAF11 /* ProductListSelectVC.m in Sources */,
+				86EECE031CF70FC200BBAF11 /* ProvienceSelectedView.m in Sources */,
 				86A26E9D1C4665C90073FFFC /* NetWorkHandler+queryForInsuranceOffersList.m in Sources */,
 				86A504AB1C4FB4D40032A901 /* NetWorkHandler+saveOrUpdateUserBackCard.m in Sources */,
 				868C7CC41C969AC600B7617A /* ImageLayoutView.m in Sources */,

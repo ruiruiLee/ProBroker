@@ -24,10 +24,11 @@
 #import "UIButton+WebCache.h"
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
 #import "NetWorkHandler+queryForProductList.h"
+#import "ProvienceSelectedView.h"
 
 #define explain @"＊优快保提供以下三种报价方式\n \n   1 续保车辆 只需填写［车牌号］(或传行驶证照片) 并选择［上年度保险］，就可精准报价。\n \n   2 上传车主［行驶证正本］清晰照片(或填写行驶证明细）可快速报价，此报价可能与真实价格存在一点偏差，成交最终以真实价格为准。\n \n   3  上传车主［行驶证正本］和［身份证正面］清晰照片(或输入身份证号码)进行精准报价。 \n \n＊ 注：客户确认投保后，应保监会规定需要补齐所有证件照片方可出单（在客户资料界面可补齐照片）。"
 
-@interface AutoInsuranceInfoEditVC ()<MenuDelegate, ZHPickViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
+@interface AutoInsuranceInfoEditVC ()<MenuDelegate, ZHPickViewDelegate, UITextFieldDelegate, UIScrollViewDelegate, ProvienceSelectedViewDelegate>
 {
     NSInteger _perInsurCompany;
     NSArray *_insurCompanyArray;
@@ -56,6 +57,7 @@
 
 @implementation AutoInsuranceInfoEditVC
 @synthesize btnQuote;
+@synthesize lbProvience;
 
 - (void) handleLeftBarButtonClicked:(id)sender
 {
@@ -158,6 +160,23 @@
     self.lbShow.attributedText = [self getInsuranceRules:explain];
     self.btnHowOrder.titleLabel.font = _FONT_B(13);
     
+    UIView *leftBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
+    
+    lbProvience = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 30)];
+    lbProvience.backgroundColor = [UIColor clearColor];
+    lbProvience.font = _FONT(14);
+    lbProvience.textAlignment = NSTextAlignmentCenter;
+    lbProvience.textColor = _COLOR(0x21, 0x21, 0x21);
+    UIImageView *imagev = [[UIImageView alloc] initWithFrame:CGRectMake(20, 14, 10, 6)];
+    [leftBgView addSubview:imagev];
+    imagev.image = ThemeImage(@"open_arrow");
+    [leftBgView addSubview:lbProvience];
+    self.btnProvience = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    [leftBgView addSubview:self.btnProvience];
+    [self.btnProvience addTarget:self action:@selector(selectNewProvience:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.tfNo.leftView = leftBgView;
+    self.tfNo.leftViewMode = UITextFieldViewModeAlways;
     
     self.title = @"车辆信息";
 //    [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
@@ -224,6 +243,14 @@
     [self.btnNoNo setImage:ThemeImage(@"select") forState:UIControlStateSelected];
     self.btnChange.selected = YES;
     [self doBtnInfoChange:self.btnChange];
+}
+
+- (void) selectNewProvience:(id)sender
+{
+    ProvienceSelectedView *view = [[ProvienceSelectedView alloc] init];
+    [self.view.window addSubview:view];
+    view.delegate = self;
+    [view show];
 }
 
 - (NSMutableAttributedString *) getInsuranceRules:(NSString *) str{
@@ -750,6 +777,7 @@
     if(model){
         self.tfName.text = model.carOwnerName;
         self.tfNo.text = [self getCarCertNum:model.carNo];//model.carNo;
+        self.lbProvience.text = [self getCarCertLocation:model.carNo];
         if(model.newCarNoStatus == 0){
             self.btnNoNo.selected = YES;
             self.tfNo.enabled = NO;
@@ -1225,14 +1253,14 @@
 
 - (NSString *) getCarCertNum:(NSString *) cert
 {
-//    return [cert substringFromIndex:1];
-    return cert;
+    return [cert substringFromIndex:1];
+//    return cert;
 }
 
 - (NSString *) getCarCertString
 {
     NSString *num = _tfNo.text;
-    return [NSString stringWithFormat:@"%@%@", @"", num];
+    return [NSString stringWithFormat:@"%@%@", self.lbProvience.text, num];
 }
 
 //没有行驶证照片返回NO
@@ -1327,6 +1355,12 @@
             [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
         }
     }
+}
+
+- (void) NotifySelectedProvienceName:(NSString *) name view:(ProvienceSelectedView *) view
+{
+    self.lbProvience.text = name;
+    [self isModify];
 }
 
 @end
