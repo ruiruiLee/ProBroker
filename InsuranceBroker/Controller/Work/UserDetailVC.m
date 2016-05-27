@@ -284,13 +284,23 @@
          [NetWorkHandler requestToPostPrivateLetter:self.userinfo.userId title:title content:contentStr senderId:model.userId senderName:senderName Completion:^(int code, id content) {
              [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
              if(code == 200){
-                 [Util showAlertMessage:@"消息发送成功！"];
+                 [self performSelector:@selector(showMessageSuccess) withObject:nil afterDelay:0.5];
              }
              else{
-                 [Util showAlertMessage:@"消息发送失败！"];
+                 [self performSelector:@selector(showMessageFail) withObject:nil afterDelay:0.5];
              }
          }];
      }];
+}
+
+- (void) showMessageSuccess
+{
+    [Util showAlertMessage:@"消息发送成功！"];
+}
+
+- (void) showMessageFail
+{
+    [Util showAlertMessage:@"消息发送失败！"];
 }
 
 - (IBAction) doBtnIncomeStatistics:(id)sender
