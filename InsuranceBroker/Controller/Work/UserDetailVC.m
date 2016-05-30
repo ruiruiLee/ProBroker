@@ -264,6 +264,7 @@
     
 }
 
+//发送私信
 - (IBAction) doBtnEmail:(UIButton *)sender
 {
 //    NSArray *array = [NSArray arrayWithObject:self.userinfo.phone];
