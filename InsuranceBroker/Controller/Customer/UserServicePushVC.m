@@ -194,22 +194,25 @@
 - (void) showNoDatasImage:(UIImage *) image
 {
     if(!self.explainBgView){
-        self.explainBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, SCREEN_HEIGHT)];
-        self.imgWithNoData = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, SCREEN_HEIGHT)];
+        self.explainBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, SCREEN_HEIGHT - 64)];
+        self.imgWithNoData = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, SCREEN_HEIGHT - 64)];
         self.imgWithNoData.image = image;
         self.imgWithNoData.contentMode = UIViewContentModeScaleToFill;
         [self.explainBgView addSubview:self.imgWithNoData];
         [self.view addSubview:self.explainBgView];
         
-        UIButton *btnAdd = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 182, 40)];
+        HighNightBgButton *btnAdd = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 200, 41)];
         [self.explainBgView addSubview:btnAdd];
-        btnAdd.backgroundColor = _COLOR(0xf9, 0x15, 0x0a);
-        btnAdd.layer.cornerRadius = 4;
-        [btnAdd setTitle:@"分享获客" forState:UIControlStateNormal];
-        [btnAdd setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btnAdd.titleLabel.font = _FONT(17);
+        [btnAdd setImage:ThemeImage(@"fenxianghuoke_btnbg") forState:UIControlStateNormal];
+//        btnAdd.backgroundColor = _COLOR(0xf9, 0x15, 0x0a);
+//        btnAdd.layer.borderWidth = 0.5;
+//        btnAdd.layer.borderColor = [UIColor whiteColor].CGColor;
+//        btnAdd.layer.cornerRadius = 1;
+//        [btnAdd setTitle:@"分享获客" forState:UIControlStateNormal];
+//        [btnAdd setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        btnAdd.titleLabel.font = _FONT(17);
         [btnAdd addTarget:self action:@selector(doBtnShared:) forControlEvents:UIControlEventTouchUpInside];
-        btnAdd.center = CGPointMake(self.explainBgView.center.x, self.explainBgView.frame.size.height * 2/3 + 34);
+        btnAdd.center = CGPointMake(self.explainBgView.center.x, self.explainBgView.frame.size.height * 7/8);
     }
 }
 
