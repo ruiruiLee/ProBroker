@@ -192,19 +192,22 @@
 {
     ProductDetailWebVC *web = [IBUIFactory CreateProductDetailWebVC];
     web.title = m.productTitle;
-    web.type = enumShareTypeShare;
+//    web.type = enumShareTypeShare;
     if(m.productImg != nil)
         web.shareImgArray = [NSArray arrayWithObject:m.productImg];
     
-    InsuredInfoModel *infoModel = [[InsuredInfoModel alloc] init];
-    infoModel.type = InsuredType2;
-    infoModel.productId = m.productAttrId;
-    web.infoModel = infoModel;
+//    InsuredInfoModel *infoModel = [[InsuredInfoModel alloc] init];
+//    infoModel.type = InsuredType2;
+//    infoModel.productId = m.productAttrId;
+//    web.infoModel = infoModel;
+//    
+//    CustomerDetailModel *customerDetail = [[CustomerDetailModel alloc] init];
+//    web.customerDetail = customerDetail;
     
     web.shareContent = m.productIntro;
     web.shareTitle = m.productTitle;
     [self.navigationController pushViewController:web animated:YES];
-    [web loadHtmlFromUrlWithUserId:m.clickAddr];
+    [web loadHtmlFromUrlWithUserId:m.clickAddr productId:m.productAttrId];
 
 }
 

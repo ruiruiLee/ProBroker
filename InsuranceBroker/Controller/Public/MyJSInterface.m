@@ -49,4 +49,18 @@
     }
 }
 
+- (void) selectInsured
+{
+    if(self .delegate && [self.delegate respondsToSelector:@selector(NotifyToSelectInsured)]){
+        [self.delegate NotifyToSelectInsured];
+    }
+}
+
+- (void) initCustomer
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToInitCustomerInfo)]){
+        [self.delegate NotifyToInitCustomerInfo];
+    }
+}
+
 @end

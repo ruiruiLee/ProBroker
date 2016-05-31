@@ -7,6 +7,7 @@
 //
 
 #import "CustomerDetailModel.h"
+#import "define.h"
 
 @implementation CustomerDetailModel
 
@@ -92,6 +93,26 @@
 {
     _insuredArray = insuredArray;
     self.isLoadInsuredList = YES;
+}
+
+- (NSDictionary *) objectToDictionary
+{
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [Util setValueForKeyWithDic:dic value:self.userId key:@"userId"];
+    [Util setValueForKeyWithDic:dic value:self.customerId key:@"customerId"];
+    [Util setValueForKeyWithDic:dic value:self.customerName key:@"customerName"];
+    [Util setValueForKeyWithDic:dic value:self.customerPhone key:@"customerPhone"];
+    [Util setValueForKeyWithDic:dic value:self.customerTel key:@"customerTel"];
+    [Util setValueForKeyWithDic:dic value:self.headImg key:@"headImg"];
+    [Util setValueForKeyWithDic:dic value:self.cardNumber key:@"cardNumber"];
+    [Util setValueForKeyWithDic:dic value:[NSNumber numberWithInt:self.customerSex] key:@"customerSex"];
+    [Util setValueForKeyWithDic:dic value:self.liveProvinceName key:@"liveProvinceName"];
+    [Util setValueForKeyWithDic:dic value:self.liveCityName key:@"liveCityName"];
+    [Util setValueForKeyWithDic:dic value:self.liveAreaName key:@"liveAreaName"];
+    [Util setValueForKeyWithDic:dic value:self.customerMemo key:@"customerMemo"];
+    [Util setValueForKeyWithDic:dic value:self.customerEmail key:@"customerEmail"];
+    
+    return dic;
 }
 
 @end

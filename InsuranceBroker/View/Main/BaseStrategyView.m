@@ -258,9 +258,8 @@
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     
     [self.handler requestToQueryForProductAttrPageList:page limit:LIMIT sidx:@"P_ProductAttr.seqNo" sord:@"asc" filters:filters userId:[UserInfoModel shareUserInfoModel].userId insuranceType:self.category completion:^(int code, id content) {
-        [self refreshTable];
-        [self loadMoreDataToTable];
        //[self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+        [self performSelector:@selector(resetTable) withObject:nil afterDelay:0.25];
         if(code == 200){
             if(page == 0)
                 [self.data removeAllObjects];
@@ -270,6 +269,12 @@
             [self.pulltable reloadData];
         }
     }];
+}
+
+- (void) resetTable
+{
+    [self refreshTable];
+    [self loadMoreDataToTable];
 }
 
 - (NSDictionary *) getRulesByField:(NSString *) field op:(NSString *) op data:(NSString *) data

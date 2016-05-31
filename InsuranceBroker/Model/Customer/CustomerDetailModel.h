@@ -60,5 +60,6 @@
 @property (nonatomic, assign) BOOL isLoadInsuredList;//
 
 - (NSString *) getCustomerLabelString;
+- (NSDictionary *) objectToDictionary;
 
 @end

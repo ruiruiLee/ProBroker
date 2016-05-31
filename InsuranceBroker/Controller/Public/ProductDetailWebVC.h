@@ -8,9 +8,13 @@
 
 #import "WebViewController.h"
 #import "InsuredInfoModel.h"
+#import "CustomerDetailModel.h"
 
 @interface ProductDetailWebVC : WebViewController
 
 @property (nonatomic, strong) InsuredInfoModel *infoModel;//被保人信息
+@property (nonatomic, strong) CustomerDetailModel *customerDetail;
+
+- (void) loadHtmlFromUrlWithUserId:(NSString *) url productId:(NSString *)productId;
 
 @end

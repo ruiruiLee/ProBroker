@@ -75,6 +75,14 @@
     }
 }
 
+- (void) showServiceBadge:(BOOL) flag
+{
+    if(flag)
+        self.btnMyService.imageView.badgeView.badgeValue = 1;
+    else
+        self.btnMyService.imageView.badgeView.badgeValue = 1;
+}
+
 - (void) NotifyLogin:(NSNotification *) notify
 {
     [self loadDatas];

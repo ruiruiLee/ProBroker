@@ -673,7 +673,7 @@
     [self.navigationController pushViewController:vc animated:YES];
     InsuredInfoModel *infoModel = [InsuredInfoModel initFromInsuredUserInfoModel:model];
     infoModel.type = InsuredType1;
-    [vc loadDataWithLimitVal:infoModel];
+    [vc loadDataWithLimitVal:infoModel customerDetail:self.data];
 }
 
 //添加非车险客户资料

@@ -11,6 +11,7 @@
 #import "define.h"
 #import "NetWorkHandler+queryForPageList.h"
 #import "NetWorkHandler+queryForCustomerCarPageList.h"
+#import "NetWorkHandler+queryCustomerBaseInfo.h"
 #import "CarInfoModel.h"
 #import "BackGroundView.h"
 #import "OrderWebVC.h"
@@ -30,6 +31,7 @@
 
 @implementation SelectCustomerVC
 @synthesize searchbar;
+@synthesize delegate;
 
 - (void) dealloc
 {
@@ -152,13 +154,26 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    [ProgressHUD show:nil];
     CustomerInfoModel *model = [self.data objectAtIndex:indexPath.row];
+    [ProgressHUD show:nil];
     
-    SelectInsuredVC *insuredVC = [[SelectInsuredVC alloc] initWithNibName:nil bundle:nil];
-    insuredVC.title = [NSString stringWithFormat:@"%@的被保人对象", model.customerName];
-    insuredVC.customerId = model.customerId;
-    [self.navigationController pushViewController:insuredVC animated:YES];
+    [NetWorkHandler requestToQueryCustomerBaseInfo:model.customerId carInfo:@"1" Completion:^(int code, id content) {
+        [ProgressHUD dismiss];
+        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+        if(code == 200){
+            CustomerDetailModel *date = (CustomerDetailModel*)[CustomerDetailModel modelFromDictionary:[content objectForKey:@"data"]];
+            if(delegate && [delegate respondsToSelector:@selector(NotifyCustomerSelectedWithModel:vc:)]){
+                [delegate NotifyCustomerSelectedWithModel:date vc:self];
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    }];
+    
+    
+//    SelectInsuredVC *insuredVC = [[SelectInsuredVC alloc] initWithNibName:nil bundle:nil];
+//    insuredVC.title = [NSString stringWithFormat:@"%@的被保人对象", model.customerName];
+//    insuredVC.customerId = model.customerId;
+//    [self.navigationController pushViewController:insuredVC animated:YES];
     
 //    CustomerDetailVC *detail = [IBUIFactory CreateCustomerDetailViewController];
 //    [self.navigationController pushViewController:detail animated:YES];
