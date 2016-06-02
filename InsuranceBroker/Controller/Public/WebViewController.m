@@ -11,12 +11,11 @@
 #import "NetWorkHandler+initOrderShare.h"
 #import "EGOCache.h"
 #import "KGStatusBar.h"
-#import "MyJSInterface.h"
 #import "IQKeyboardManager.h"
 #import "AppDelegate.h"
 #import "RootViewController.h"
 
-@interface WebViewController ()<MyJSInterfaceDelegate>
+@interface WebViewController ()
 
 @end
 
@@ -205,7 +204,7 @@
     }
     else{
         self.urlpath = [NSString stringWithFormat:@"%@?userId=%@", url, [UserInfoModel shareUserInfoModel].userId];
-        self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1", url, [UserInfoModel shareUserInfoModel].userId];
+        self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, [UserInfoModel shareUserInfoModel].uuid];
     }
     
     if(self.webview){

@@ -23,7 +23,9 @@
 #import "EasyJSWebView.h"
 #import "EasyJSWebView+JavaScriptAlert.h"
 
-@interface WebViewController : BaseViewController <PopViewDelegate, NJKWebViewProgressDelegate, UIWebViewDelegate>
+#import "MyJSInterface.h"
+
+@interface WebViewController : BaseViewController <PopViewDelegate, NJKWebViewProgressDelegate, UIWebViewDelegate, MyJSInterfaceDelegate>
 {
     NJKWebViewProgressView *_progressView;
     NJKWebViewProgress *_progressProxy;

@@ -476,7 +476,7 @@
     }
 
     
-    NSString *carTradeStatus = @"0";
+    NSString *carTradeStatus = @"1";
     NSString *carTradeTime = nil;
     if(_changeNameIdx == 0){
         carTradeStatus = @"1";
@@ -1267,7 +1267,11 @@
 - (NSString *) getCarCertString
 {
     NSString *num = _tfNo.text;
-    return [NSString stringWithFormat:@"%@%@", self.lbProvience.text, num];
+    NSString *provience = self.lbProvience.text;
+    if(provience == nil)
+        provience = @"";
+    NSString *carNo = [NSString stringWithFormat:@"%@%@", provience, num];
+    return carNo;
 }
 
 //没有行驶证照片返回NO
