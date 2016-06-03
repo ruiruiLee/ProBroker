@@ -47,19 +47,19 @@
                         <rect key="frame" x="137" y="30" width="30" height="30"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="24" id="H8V-vC-bt2"/>
-                            <constraint firstAttribute="height" constant="24" id="Xlo-ba-En2"/>
+                            <constraint firstAttribute="width" constant="18" id="H8V-vC-bt2"/>
+                            <constraint firstAttribute="height" constant="18" id="Xlo-ba-En2"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="voW-Xe-E90">
-                        <rect key="frame" x="442" y="39" width="31" height="14"/>
+                        <rect key="frame" x="442" y="38.5" width="31" height="14.5"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYN-mX-B95">
-                        <rect key="frame" x="403" y="65" width="70" height="28"/>
+                        <rect key="frame" x="403" y="65.5" width="70" height="28"/>
                         <animations/>
                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
