@@ -194,6 +194,17 @@
     if (buttonIndex == 1) {
         [[AppKeFuLib sharedInstance] deleteMessagesWith:self.groupName];
         [self.nav popViewControllerAnimated:YES];
+        
+        if([self.groupName isEqualToString:zxkf]){
+            AppContext *context = [AppContext sharedAppContext];
+            context.isZSKFHasMsg = NO;
+            [context saveData];
+        }else{
+            AppContext *context = [AppContext sharedAppContext];
+            context.isBDKFHasMsg = NO;
+            [context saveData];
+        }
+        
         UIAlertView *alertView2 = [[UIAlertView alloc] initWithTitle:@"聊天记录已清空！"
                                                             message:nil
                                                            delegate:nil

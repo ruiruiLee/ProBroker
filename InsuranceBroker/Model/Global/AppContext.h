@@ -37,6 +37,11 @@
 //推送客户
 @property (nonatomic, assign) NSInteger pushCustomerNum;//推送客户
 
+//专属客服
+@property (nonatomic, assign) BOOL isZSKFHasMsg;
+//保单客服
+@property (nonatomic, assign) BOOL isBDKFHasMsg;
+
 + (AppContext *)sharedAppContext;
 - (void)saveData;
 - (void)resetData;

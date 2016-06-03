@@ -35,6 +35,8 @@
 - (void) dealloc
 {
     [_datePicker remove];
+    AppContext *context = [AppContext sharedAppContext];
+    [context removeObserver:self forKeyPath:@"isBDKFHasMsg"];
 }
 
 - (void)viewDidLoad {
@@ -42,11 +44,17 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"报价详情";
     
+    AppContext *context = [AppContext sharedAppContext];
+    [context addObserver:self forKeyPath:@"isBDKFHasMsg" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    
     self.btnChat = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     [self.btnChat setImage:ThemeImage(@"chat") forState:UIControlStateNormal];
     [self.btnChat addTarget:self action:@selector(handleRightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self setRightBarButtonWithButton:self.btnChat];
+    self.btnChat.clipsToBounds = NO;
+    self.btnChat.imageView.clipsToBounds = NO;
 //    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
+    [self observeValueForKeyPath:@"isBDKFHasMsg" ofObject:nil change:nil context:nil];
     
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableview.scrollEnabled = NO;
@@ -61,8 +69,29 @@
     self.lbWarning.attributedText = [Util getWarningString:@"＊客户优惠 为您实际优惠客户的点数，只针对商业险，对于只购买强制交强险的客户不能享有优惠"];
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    AppContext *con= [AppContext sharedAppContext];
+    
+    if(con.isBDKFHasMsg){
+        [self showBadgeWithFlag:YES];
+    }
+    else{
+        [self showBadgeWithFlag:NO];
+    }
+}
+
+- (void) showBadgeWithFlag:(BOOL) flag
+{
+    if(flag)
+        self.btnChat.imageView.badgeView.badgeValue = 1;
+    else
+        self.btnChat.imageView.badgeView.badgeValue = 0;
+}
+
 - (void) handleRightBarButtonClicked:(id)sender
 {
+    self.btnChat.imageView.badgeView.badgeValue = 0;
     NSString * msex =@"男";
     UIImage *placeholderImage = ThemeImage(@"head_male");
     if([UserInfoModel shareUserInfoModel].sex==2){
@@ -85,10 +114,18 @@
     leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
                              forState:UIControlStateNormal];
+    [leftBarButtonItemButton addTarget:self action:@selector(doBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     // 右边按钮
     rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
 
     [rightBarButtonItemButton setImage:[UIImage imageNamed:@"garbage"] forState:UIControlStateNormal];
+}
+
+- (void) doBtnClicked:(id) sender
+{
+    AppContext *con= [AppContext sharedAppContext];
+    con.isBDKFHasMsg = NO;
+    [con saveData];
 }
 
 - (void)didReceiveMemoryWarning {

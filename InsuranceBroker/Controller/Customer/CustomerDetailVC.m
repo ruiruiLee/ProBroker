@@ -49,7 +49,20 @@
 
 - (void) dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    AppContext *context = [AppContext sharedAppContext];
+    [context removeObserver:self forKeyPath:@"isBDKFHasMsg"];
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    AppContext *con= [AppContext sharedAppContext];
+    
+    if(con.isBDKFHasMsg){
+        [self showBadgeWithFlag:YES];
+    }
+    else{
+        [self showBadgeWithFlag:NO];
+    }
 }
 
 - (void) reloadCustomerDetail:(NSNotification *) notify
@@ -87,10 +100,21 @@
     }];
 }
 
+- (void) showBadgeWithFlag:(BOOL) flag
+{
+    if(flag){
+        self.btnChat.imageView.badgeView.badgeValue = 1;
+    }
+    else
+        self.btnChat.imageView.badgeView.badgeValue = 0;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    AppContext *context = [AppContext sharedAppContext];
+    [context addObserver:self forKeyPath:@"isBDKFHasMsg" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCustomerDetail:) name:Notify_Reload_CustomerDetail object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshOrderList:) name:Notify_Refresh_OrderList object:nil];
@@ -170,7 +194,11 @@
     [self.btnChat setImage:ThemeImage(@"chat") forState:UIControlStateNormal];
     [self.btnChat addTarget:self action:@selector(handleRightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self setRightBarButtonWithButton:self.btnChat];
+    self.btnChat.clipsToBounds = NO;
+    self.btnChat.imageView.clipsToBounds = NO;
 //    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
+    
+    [self observeValueForKeyPath:@"isBDKFHasMsg" ofObject:nil change:nil context:nil];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -194,7 +222,7 @@
     leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
                               forState:UIControlStateNormal];
-//    [leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    [leftBarButtonItemButton addTarget:self action:@selector(doBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     // 右边按钮
     rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     
@@ -203,7 +231,7 @@
 
 - (void) handleRightBarButtonClicked:(id)sender
 {
-    
+    self.btnChat.imageView.badgeView.badgeValue = 0;
     NSString * msex =@"男";
     UIImage *placeholderImage = ThemeImage(@"head_male");
     if([UserInfoModel shareUserInfoModel].sex==2){
@@ -221,6 +249,12 @@
     [[OnlineCustomer sharedInstance] userInfoInit:[UserInfoModel shareUserInfoModel].realName sex:msex Province:[UserInfoModel shareUserInfoModel].liveProvince City:[UserInfoModel shareUserInfoModel].liveCity phone:[UserInfoModel shareUserInfoModel].phone headImage:placeholderImage nav:self.navigationController leftBtn:leftBarButtonItemButton rightBtn:rightBarButtonItemButton];
 }
 
+- (void) doBtnClicked:(id) sender
+{
+    AppContext *con= [AppContext sharedAppContext];
+    con.isBDKFHasMsg = NO;
+    [con saveData];
+}
 
 //拨打电话
 - (IBAction) doBtnRing:(UIButton *)sender

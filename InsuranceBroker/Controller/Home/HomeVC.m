@@ -60,6 +60,7 @@
 {
     AppContext *context = [AppContext sharedAppContext];
     [context removeObserver:self forKeyPath:@"isNewMessage"];
+    [context removeObserver:self forKeyPath:@"isZSKFHasMsg"];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -73,14 +74,24 @@
         self.btnMessage.imageView.badgeView.badgeValue = 0;
         [self.tabBarController.tabBar hideBadgeOnItemIndex:0];
     }
+    
+    if(con.isZSKFHasMsg){
+        [self showServiceBadge:YES];
+    }
+    else{
+        [self showServiceBadge:NO];
+    }
 }
 
 - (void) showServiceBadge:(BOOL) flag
 {
-    if(flag)
+    if(flag){
         self.btnMyService.imageView.badgeView.badgeValue = 1;
+//        CGRect frame = self.btnMyService.imageView.badgeView.frame;
+        self.btnMyService.imageView.badgeView.frame = CGRectMake(39.5, -2.5, 15, 15);
+    }
     else
-        self.btnMyService.imageView.badgeView.badgeValue = 1;
+        self.btnMyService.imageView.badgeView.badgeValue = 0;
 }
 
 - (void) NotifyLogin:(NSNotification *) notify
@@ -95,6 +106,7 @@
     appdelegate = [UIApplication sharedApplication].delegate;
     AppContext *context = [AppContext sharedAppContext];
     [context addObserver:self forKeyPath:@"isNewMessage" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [context addObserver:self forKeyPath:@"isZSKFHasMsg" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NotifyLogin:) name:Notify_Login object:nil];
     
     UIImageView *logoView = [[UIImageView alloc] initWithImage:ThemeImage(@"logo")];
@@ -168,8 +180,11 @@
     [titleBg addSubview:sepView3];
     sepView3.backgroundColor = SepLineColor;
     //我的客服
-    btnMyService = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:ThemeImage(@"service")];
+    btnMyService = [ViewFactory CreateButtonWithzFont:nil TextColor:nil image:nil];
+    [btnMyService setImage:ThemeImage(@"service") forState:UIControlStateNormal];
     [titleBg addSubview:btnMyService];
+    btnMyService.imageView.clipsToBounds = NO;
+    btnMyService.clipsToBounds = NO;
     [btnMyService addTarget:self action:@selector(doBtnMyService:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *sepView4 = [ViewFactory CreateView];
@@ -626,12 +641,20 @@
     leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
                              forState:UIControlStateNormal];
+    [leftBarButtonItemButton addTarget:self action:@selector(doBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
 
     rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     
    [rightBarButtonItemButton setImage:[UIImage imageNamed:@"garbage"] forState:UIControlStateNormal];
     
   }
+
+- (void) doBtnClicked:(id) sender
+{
+    AppContext *con= [AppContext sharedAppContext];
+    con.isZSKFHasMsg = NO;
+    [con saveData];
+}
 
 - (void) doBtnNewUser:(id)sender
 {

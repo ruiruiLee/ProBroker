@@ -25,6 +25,12 @@
 
 @implementation OrderDetailWebVC
 
+- (void) dealloc
+{
+    AppContext *context = [AppContext sharedAppContext];
+    [context removeObserver:self forKeyPath:@"isBDKFHasMsg"];
+}
+
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -36,15 +42,41 @@
     return self;
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    AppContext *con= [AppContext sharedAppContext];
+    
+    if(con.isBDKFHasMsg){
+        [self showBadgeWithFlag:YES];
+    }
+    else{
+        [self showBadgeWithFlag:NO];
+    }
+}
+
+- (void) showBadgeWithFlag:(BOOL) flag
+{
+    if(flag)
+        self.btnChat.imageView.badgeView.badgeValue = 1;
+    else
+        self.btnChat.imageView.badgeView.badgeValue = 0;
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    AppContext *context = [AppContext sharedAppContext];
+    [context addObserver:self forKeyPath:@"isBDKFHasMsg" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
 //    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
     self.btnChat = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     [self.btnChat setImage:ThemeImage(@"chat") forState:UIControlStateNormal];
     [self.btnChat addTarget:self action:@selector(handleRightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self setRightBarButtonWithButton:self.btnChat];
+    self.btnChat.clipsToBounds = NO;
+    self.btnChat.imageView.clipsToBounds = NO;
+    [self observeValueForKeyPath:@"isBDKFHasMsg" ofObject:nil change:nil context:nil];
 }
 
 - (void) initShareUrl:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId
@@ -201,14 +233,22 @@
     leftBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [leftBarButtonItemButton setImage:[UIImage imageNamed:@"arrow_left"]
                              forState:UIControlStateNormal];
-    //    [leftBarButtonItemButton addTarget:self action:@selector(leftBarButtonItemTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    [leftBarButtonItemButton addTarget:self action:@selector(doBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
     // 右边按钮
     rightBarButtonItemButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
      [rightBarButtonItemButton setImage:[UIImage imageNamed:@"garbage"] forState:UIControlStateNormal];
 }
 
+- (void) doBtnClicked:(id) sender
+{
+    AppContext *con= [AppContext sharedAppContext];
+    con.isBDKFHasMsg = NO;
+    [con saveData];
+}
+
 - (void) handleRightBarButtonClicked:(id)sender
 {
+    self.btnChat.imageView.badgeView.badgeValue = 0;
     NSString * msex =@"男";
     UIImage *placeholderImage = ThemeImage(@"head_male");
     if([UserInfoModel shareUserInfoModel].sex==2){

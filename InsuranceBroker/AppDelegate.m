@@ -253,6 +253,16 @@
     //接收到来自客服的消息
     if (!msgItem.isSendFromMe) {
         
+        if([msgItem.workgroupName isEqualToString:zxkf]){
+            AppContext *context = [AppContext sharedAppContext];
+            context.isZSKFHasMsg = YES;
+            [context saveData];
+        }else{
+            AppContext *context = [AppContext sharedAppContext];
+            context.isBDKFHasMsg = YES;
+            [context saveData];
+        }
+        
         //
         NSLog(@"消息时间:%@, 工作组名称:%@, 发送消息用户名:%@",
               msgItem.timestamp,

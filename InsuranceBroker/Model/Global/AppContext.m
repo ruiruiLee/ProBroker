@@ -43,6 +43,8 @@ static AppContext *context = nil;
 //                self.isRedPack = [[dic objectForKey:@"isRedPack"] boolValue];
                 self.pushCustomerNum = [[dic objectForKey:@"pushCustomerNum"] integerValue];
                 self.isNewMessage = [[dic objectForKey:@"isNewMessage"] boolValue];
+                self.isZSKFHasMsg = [[dic objectForKey:@"isZSKFHasMsg"] boolValue];
+                self.isBDKFHasMsg = [[dic objectForKey:@"isBDKFHasMsg"] boolValue];
                 self.arrayNewsTip =[dic objectForKey:@"arrayNewsTip"];
                 if(self.arrayNewsTip == nil)
                     self.arrayNewsTip = [[NSMutableArray alloc] init];
@@ -55,6 +57,8 @@ static AppContext *context = nil;
 //                self.isRedPack = NO;
                 self.pushCustomerNum = 0;
                 self.isNewMessage = NO;
+                self.isZSKFHasMsg = NO;
+                self.isBDKFHasMsg = NO;
                 self.arrayNewsTip= [NSMutableArray new];
             }
         }else{
@@ -65,6 +69,8 @@ static AppContext *context = nil;
 //            self.isRedPack = NO;
             self.pushCustomerNum = 0;
             self.isNewMessage = NO;
+            self.isZSKFHasMsg = NO;
+            self.isBDKFHasMsg = NO;
             self.arrayNewsTip= [NSMutableArray new];
         }
     }
@@ -178,7 +184,13 @@ static AppContext *context = nil;
     [dic setObject:[NSNumber numberWithInteger:self.pushCustomerNum] forKey:@"pushCustomerNum"];
     // 用于判断是否有新消息所用
     [dic setObject:[NSNumber numberWithBool:self.isNewMessage ] forKey:@"isNewMessage"];
+    [dic setObject:[NSNumber numberWithBool:self.isZSKFHasMsg ] forKey:@"isZSKFHasMsg"];
+    [dic setObject:[NSNumber numberWithBool:self.isBDKFHasMsg ] forKey:@"isBDKFHasMsg"];
     [dic setObject:self.arrayNewsTip forKey:@"arrayNewsTip"];
+    
+    NSLog(@"-----------------------------------------------");
+    NSLog(@"%@", dic);
+    NSLog(@"-----------------------------------------------");
 
     [dic writeToFile:file atomically:YES];
 }
@@ -196,6 +208,8 @@ static AppContext *context = nil;
 //    [self.arrayNewsTip removeAllObjects];
 //     [dic setObject:self.arrayNewsTip forKey:@"arrayNewsTip"];
     [dic setObject:[NSNumber numberWithInteger:self.pushCustomerNum] forKey:@"pushCustomerNum"];
+    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isZSKFHasMsg"];
+    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isBDKFHasMsg"];
     [dic writeToFile:file atomically:YES];
 }
 
@@ -213,6 +227,8 @@ static AppContext *context = nil;
 //            self.redBagId = [dic objectForKey:@"redBagId"];
 //            self.isRedPack = [[dic objectForKey:@"isRedPack"] boolValue];
             self.isNewMessage = [[dic objectForKey:@"isNewMessage"] boolValue];
+            self.isZSKFHasMsg = [[dic objectForKey:@"isZSKFHasMsg"] boolValue];
+            self.isBDKFHasMsg = [[dic objectForKey:@"isBDKFHasMsg"] boolValue];
             self.arrayNewsTip =[dic objectForKey:@"arrayNewsTip"];
             if(self.arrayNewsTip == nil)
                 self.arrayNewsTip = [[NSMutableArray alloc] init];
