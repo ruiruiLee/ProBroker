@@ -17,7 +17,7 @@
     if(self){
         _logo = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 60, 60)];
         [self addSubview:_logo];
-        _logo.clipsToBounds = YES;
+        _logo.clipsToBounds = NO;
         _logo.userInteractionEnabled = NO;
         
         
