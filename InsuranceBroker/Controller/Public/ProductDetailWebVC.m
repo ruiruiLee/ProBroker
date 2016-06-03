@@ -18,6 +18,16 @@
 
 @implementation ProductDetailWebVC
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    //    self.shareUrl = webView.request.URL.absoluteString;
+    NSString *jsonstr = [self isFirstLoad];
+    
+    if([jsonstr isEqualToString:@"true"]){
+        [self NotifyToInitCustomerInfo];
+    }
+}
+
 - (void) NotifyToSelectCustomer
 {
     SelectCustomerVC *vc = [[SelectCustomerVC alloc] initWithNibName:nil bundle:nil];
@@ -57,8 +67,8 @@
 //选择客户完成
 - (void) NotifyCustomerSelectedWithModel:(CustomerDetailModel *) model vc:(SelectCustomerVC *) vc
 {
-//    NSDictionary *dic = [self.customerDetail objectToDictionary];
     self.customerDetail = model;
+    self.infoModel = nil;
     
     NSDictionary *dic = [model objectToDictionary];
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
@@ -71,7 +81,6 @@
 //选择被保人资料
 - (void) NotifyInsuredSelectedWithModel:(InsuredUserInfoModel *) model vc:(SelectInsuredVC *) vc
 {
-//    NSDictionary *dic = [InsuredInfoModel dictionaryFromeModel:self.infoModel];
     InsuredInfoModel *insured = [InsuredInfoModel initFromInsuredUserInfoModel:model];
     self.infoModel = insured;
     NSDictionary *dic = [InsuredInfoModel dictionaryFromeModel:insured];
@@ -97,6 +106,12 @@
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
         _isLoad = YES;
     }
+}
+
+- (NSString *) isFirstLoad
+{
+    NSString *str = [self.webview stringByEvaluatingJavaScriptFromString:@"isFirstLoad();"];
+    return str;
 }
 
 @end

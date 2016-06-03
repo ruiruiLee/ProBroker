@@ -27,7 +27,7 @@
                         <rect key="frame" x="70" y="25" width="62" height="21"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="74" id="HZ0-ID-QR1"/>
+                            <constraint firstAttribute="width" constant="81" id="HZ0-ID-QR1"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
@@ -67,11 +67,11 @@
                     <constraint firstItem="0HJ-hz-WYs" firstAttribute="baseline" secondItem="X7e-YC-fXH" secondAttribute="baseline" id="FKW-Ek-n0h"/>
                     <constraint firstItem="pW7-qi-Lz9" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0HJ-hz-WYs" secondAttribute="trailing" constant="10" id="IlL-q7-1gN"/>
                     <constraint firstAttribute="trailingMargin" secondItem="pW7-qi-Lz9" secondAttribute="trailing" constant="6" id="PO0-Bk-a4j"/>
-                    <constraint firstItem="ij3-po-Qfh" firstAttribute="leading" secondItem="X7e-YC-fXH" secondAttribute="trailing" constant="50" id="S7l-xV-F9n"/>
+                    <constraint firstItem="ij3-po-Qfh" firstAttribute="leading" secondItem="X7e-YC-fXH" secondAttribute="trailing" constant="46" id="S7l-xV-F9n"/>
                     <constraint firstItem="X7e-YC-fXH" firstAttribute="centerY" secondItem="r1z-iL-fuU" secondAttribute="centerY" id="ThA-do-qTa"/>
                     <constraint firstItem="r1z-iL-fuU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="dNW-Ok-Bmi"/>
                     <constraint firstItem="r1z-iL-fuU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="eQq-g9-Y2i"/>
-                    <constraint firstItem="0HJ-hz-WYs" firstAttribute="leading" secondItem="X7e-YC-fXH" secondAttribute="trailing" constant="10" id="iu1-dA-Cce"/>
+                    <constraint firstItem="0HJ-hz-WYs" firstAttribute="leading" secondItem="X7e-YC-fXH" secondAttribute="trailing" constant="6" id="iu1-dA-Cce"/>
                     <constraint firstItem="ij3-po-Qfh" firstAttribute="baseline" secondItem="X7e-YC-fXH" secondAttribute="baseline" id="k4g-TT-ild"/>
                     <constraint firstItem="pW7-qi-Lz9" firstAttribute="centerY" secondItem="r1z-iL-fuU" secondAttribute="centerY" id="qSb-DU-eZx"/>
                 </constraints>
