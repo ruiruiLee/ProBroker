@@ -181,9 +181,8 @@
     
     self.title = @"车辆信息";
 //    [self SetRightBarButtonWithTitle:@"保存" color:_COLORa(0xff, 0x66, 0x19, 0.5) action:NO];
-    [self setRightBarButtonWithFlag:NO];
-
     
+    [self setRightBarButtonWithFlag:NO];
     self.tfDate.delegate = self;
     self.tfCert.delegate = self;
     self.tfIdenCode.delegate = self;
