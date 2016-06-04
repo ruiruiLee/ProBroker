@@ -187,10 +187,7 @@ static AppContext *context = nil;
     [dic setObject:[NSNumber numberWithBool:self.isZSKFHasMsg ] forKey:@"isZSKFHasMsg"];
     [dic setObject:[NSNumber numberWithBool:self.isBDKFHasMsg ] forKey:@"isBDKFHasMsg"];
     [dic setObject:self.arrayNewsTip forKey:@"arrayNewsTip"];
-    
-    NSLog(@"-----------------------------------------------");
-    NSLog(@"%@", dic);
-    NSLog(@"-----------------------------------------------");
+
 
     [dic writeToFile:file atomically:YES];
 }
