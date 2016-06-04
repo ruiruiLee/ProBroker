@@ -54,4 +54,6 @@
 - (void) showPopView;
 - (void) showPopView1;
 
+- (NSString *) getshareUrlWithType:(SSDKPlatformType) plattype;
+
 @end

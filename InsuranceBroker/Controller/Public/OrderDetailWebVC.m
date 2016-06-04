@@ -154,6 +154,9 @@
      * 在简单分享中，只要设置共有分享参数即可分享到任意的社交平台
      **/
     //创建分享参数
+    
+    self.shareUrl = [self getshareUrlWithType:type];
+    
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     
     if(self.shareImgArray == nil || [self.shareImgArray count] == 0){

@@ -326,6 +326,8 @@
      * 在简单分享中，只要设置共有分享参数即可分享到任意的社交平台
      **/
     //创建分享参数
+    
+    self.shareUrl = [self getshareUrlWithType:type];
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     
     if(self.shareImgArray == nil || [self.shareImgArray count] == 0)
@@ -373,6 +375,24 @@
              }
          }];
     }
+}
+
+- (NSString *) getshareUrlWithType:(SSDKPlatformType) plattype
+{
+    NSString *addtype = @"";
+    if(plattype == SSDKPlatformSubTypeWechatSession){
+        addtype = @"&shareType=3";
+    }else if (plattype == SSDKPlatformSubTypeWechatTimeline){
+        addtype = @"&shareType=9";
+    }
+    else if (plattype == SSDKPlatformSubTypeQQFriend ){
+        addtype = @"&shareType=4";
+    }
+    else if (plattype == SSDKPlatformSubTypeQZone){
+        addtype = @"&shareType=4";
+    }
+    
+    return [NSString stringWithFormat:@"%@%@", self.shareUrl, addtype];
 }
 
 @end

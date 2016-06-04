@@ -18,6 +18,11 @@
 
 @implementation ProductDetailWebVC
 
+- (void) handleRightBarButtonClicked:(id)sender
+{
+    [self showPopView];
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     //    self.shareUrl = webView.request.URL.absoluteString;
