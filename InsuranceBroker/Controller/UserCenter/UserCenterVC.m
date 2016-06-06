@@ -332,7 +332,6 @@
     //boxSize必须大于0
     int boxSize = (int)(blur * 100);
     boxSize -= (boxSize % 2) + 1;
-    NSLog(@"boxSize:%i",boxSize);
     //图像处理
     CGImageRef img = image.CGImage;
     //需要引入#import <Accelerate/Accelerate.h>

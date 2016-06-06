@@ -78,10 +78,10 @@
 
 - (void) refreshAndReloadData:(NSString *) category list:(NSMutableArray *) list
 {
+    [self.handler removeAllRequest];
+    
     self.category = category;
     self.data = list;
-    
-    [self.handler removeAllRequest];
     
     if(list == nil)
         self.data = [[NSMutableArray alloc] init];
