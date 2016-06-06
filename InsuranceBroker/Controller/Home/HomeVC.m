@@ -388,7 +388,8 @@
    
     UIImage *normal = nil;
     [self.headline reloadData];
-    [self.btnNewUser sd_setBackgroundImageWithURL:[NSURL URLWithString:_newUserModel.imgUrl] forState:UIControlStateNormal placeholderImage:normal];
+    //暂时屏蔽
+//    [self.btnNewUser sd_setBackgroundImageWithURL:[NSURL URLWithString:_newUserModel.imgUrl] forState:UIControlStateNormal placeholderImage:normal];
 //    [self.btnPlan sd_setBackgroundImageWithURL:[NSURL URLWithString:_jiHuaShu.bgImg] forState:UIControlStateNormal placeholderImage:normal];
     if([self.infoArray count] > 0){
         AnnouncementModel *chengGongZhiLu = [self.infoArray objectAtIndex:0];
