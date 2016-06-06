@@ -35,6 +35,7 @@
         if([self getIOSVersion] < 8.0){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"确认放弃保存填写资料吗？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
             [alert show];
+            alert.tag = 1000;
         }
         else{
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"警告" message:@"确认放弃保存填写资料吗？" preferredStyle:UIAlertControllerStyleAlert];
@@ -54,8 +55,20 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if(buttonIndex == 0){
-        [self.navigationController popViewControllerAnimated:YES];
+    if(alertView.tag == 1000){
+        if(buttonIndex == 0){
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }else{
+        if(buttonIndex == 0){
+            [NetWorkHandler requestToSaveOrUpdateLabel:nil labelId:self.labelModel.labelId labelStatus:-1 labelName:nil labelType:nil Completion:^(int code, id content) {
+                [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+                if(code == 200){
+                    [[TagObjectModel shareTagList] removeObject:self.labelModel];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+            }];
+        }
     }
 }
 
@@ -257,13 +270,10 @@
 - (void) doBtnDelLabel:(id) sender
 {
     [self.tfTagName resignFirstResponder];
-    [NetWorkHandler requestToSaveOrUpdateLabel:nil labelId:self.labelModel.labelId labelStatus:-1 labelName:nil labelType:nil Completion:^(int code, id content) {
-        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-        if(code == 200){
-            [[TagObjectModel shareTagList] removeObject:self.labelModel];
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-    }];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"确认删除标签吗？" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消", nil];
+    [alert show];
+    alert.tag = 1001;
 }
 
 - (void) setLabelModel:(TagObjectModel *)model
