@@ -203,7 +203,8 @@
     [btnProduct setSepLineType:NO right:NO top:YES bottom:NO];
     [btnProduct addTarget:self action:@selector(doBtnProductSelect:) forControlEvents:UIControlEventTouchUpInside];
     
-    btnPlan = [ViewFactory CreateButtonWithImage:ThemeImage(@"jihuashu")];
+    btnPlan = [ViewFactory CreateButtonWithImage:nil];
+    [btnPlan setImage:ThemeImage(@"jihuashu") forState:UIControlStateNormal];
     [contenBg addSubview:btnPlan];
     [btnPlan setSepLineType:NO right:NO top:YES bottom:NO];
     [btnPlan addTarget:self action:@selector(doBtnJiHuaShu:) forControlEvents:UIControlEventTouchUpInside];
@@ -268,7 +269,7 @@
     [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[contenBg]-0-|" options:0 metrics:nil views:views]];
     [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[newUserBg]-0-|" options:0 metrics:nil views:views]];
     [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[infoBg]-0-|" options:0 metrics:nil views:views]];
-    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scrollview]-0-[headline(40)]-0-[titleBg(100)]-0-[contenBg]-0-[newUserBg]-0-[infoBg]-0-|" options:0 metrics:nil views:views]];
+    [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[scrollview]-0-[headline(40)]-0-[titleBg(100)]-0-[contenBg]-0-[newUserBg(0)]-0-[infoBg]-0-|" options:0 metrics:nil views:views]];
     
     [bgview addConstraint:[NSLayoutConstraint constraintWithItem:scrollview attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:320 nwidth:ScreenWidth]]];
     [bgview addConstraint:[NSLayoutConstraint constraintWithItem:newUserBg attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:180 nwidth:ScreenWidth]]];
@@ -305,19 +306,19 @@
     
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeRight multiplier:1 constant:-0.5]];
-    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeTop multiplier:1 constant:0.5]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
-    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeTop multiplier:1 constant:0]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeTop multiplier:1 constant:0.5]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
     
     [newUserBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnNewUser]-0-|" options:0 metrics:nil views:views]];
     [newUserBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnNewUser]-0-|" options:0 metrics:nil views:views]];
     
     [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnDetail]-0.5-[btnCarLife]-0-|" options:0 metrics:nil views:views]];
-    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnDetail]-0-|" options:0 metrics:nil views:views]];
-    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnCarLife]-0-|" options:0 metrics:nil views:views]];
+    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0.5-[btnDetail]-0-|" options:0 metrics:nil views:views]];
+    [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0.5-[btnCarLife]-0-|" options:0 metrics:nil views:views]];
     [infoBg addConstraint:[NSLayoutConstraint constraintWithItem:btnDetail attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnCarLife attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     
     JElasticPullToRefreshLoadingViewCircle *loadingViewCircle = [[JElasticPullToRefreshLoadingViewCircle alloc] init];
