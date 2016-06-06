@@ -32,6 +32,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbMan;
 
 @property (nonatomic, strong) IBOutlet UILabel *lbManTitle;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *sepWidth;
 
 @property(nonatomic, strong) NSMutableArray *slices;
 @property(nonatomic, strong) NSArray        *sliceColors;

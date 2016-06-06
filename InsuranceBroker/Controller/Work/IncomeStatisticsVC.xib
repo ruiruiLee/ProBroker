@@ -17,6 +17,7 @@
                 <outlet property="lbTeam" destination="D2t-04-nrz" id="XwL-qP-rzt"/>
                 <outlet property="lbTeamStr" destination="j6B-1e-DU2" id="dJD-uP-YSy"/>
                 <outlet property="piechat" destination="sNq-NB-ViF" id="lDh-az-Kqf"/>
+                <outlet property="sepWidth" destination="k1S-e5-TTm" id="J9v-4m-H7S"/>
                 <outlet property="topView" destination="RGR-VS-4V4" id="vsI-sk-rqh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewHConstraint" destination="D7k-Fg-qWU" id="awl-h1-GCz"/>
@@ -37,14 +38,14 @@
                                     <rect key="frame" x="0.0" y="-200" width="600" height="415"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本月收益（元）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rY9-ag-Z5s">
-                                            <rect key="frame" x="0.0" y="220" width="600" height="14.5"/>
+                                            <rect key="frame" x="0.0" y="220" width="600" height="15"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1iI-Yg-J61">
-                                            <rect key="frame" x="0.0" y="266.5" width="600" height="0.0"/>
+                                            <rect key="frame" x="0.0" y="267" width="600" height="0.0"/>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="60"/>
@@ -52,7 +53,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你的收益已打败了0%的经纪人" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iIL-XX-azc">
-                                            <rect key="frame" x="0.0" y="346.5" width="600" height="14.5"/>
+                                            <rect key="frame" x="0.0" y="347" width="600" height="14"/>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -60,7 +61,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="累计收益：元" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYE-kU-zvb">
-                                            <rect key="frame" x="0.0" y="380.5" width="600" height="14.5"/>
+                                            <rect key="frame" x="0.0" y="381" width="600" height="14"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -89,7 +90,7 @@
                                     <rect key="frame" x="0.0" y="230" width="600" height="211"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="近6个月收益趋势（元）" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Dk-hs-E69">
-                                            <rect key="frame" x="20" y="10" width="159.5" height="18"/>
+                                            <rect key="frame" x="20" y="10" width="160" height="18"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>

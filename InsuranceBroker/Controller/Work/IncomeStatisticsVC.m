@@ -51,6 +51,7 @@
     }
     
     self.viewHConstraint.constant = ScreenWidth;
+    self.sepWidth.constant = ScreenWidth/2 - 70;
     
     self.btnMore.layer.cornerRadius = 12;
     self.btnMore.layer.borderWidth = 0.5;
