@@ -98,13 +98,14 @@
 
 - (void) loadHtmlFromUrlWithUserId:(NSString *) url productId:(NSString *)productId
 {
+    NSString *uuid = [UserInfoModel shareUserInfoModel].uuid;
     if([UserInfoModel shareUserInfoModel].userId == nil){
-        self.urlpath = [NSString stringWithFormat:@"%@?productAttrId=%@", url, productId];;
-        self.shareUrl =  [NSString stringWithFormat:@"%@?appShare=1&productAttrId=%@", url,  productId];
+        self.urlpath = [NSString stringWithFormat:@"%@?productAttrId=%@&uuid=%@", url, productId, uuid];;
+        self.shareUrl =  [NSString stringWithFormat:@"%@?appShare=1&productAttrId=%@&uuid=%@", url,  productId, uuid];
     }
     else{
-        self.urlpath = [NSString stringWithFormat:@"%@?userId=%@&productAttrId=%@", url, [UserInfoModel shareUserInfoModel].userId, productId];
-        self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1&productAttrId=%@", url, [UserInfoModel shareUserInfoModel].userId, productId];
+        self.urlpath = [NSString stringWithFormat:@"%@?userId=%@&productAttrId=%@&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, productId, uuid];
+        self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1&productAttrId=%@&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, productId, uuid];
     }
     
     if(self.webview){

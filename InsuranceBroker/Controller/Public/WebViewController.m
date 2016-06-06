@@ -203,7 +203,7 @@
         self.shareUrl =  url;
     }
     else{
-        self.urlpath = [NSString stringWithFormat:@"%@?userId=%@", url, [UserInfoModel shareUserInfoModel].userId];
+        self.urlpath = [NSString stringWithFormat:@"%@?userId=%@&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, [UserInfoModel shareUserInfoModel].uuid];
         self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, [UserInfoModel shareUserInfoModel].uuid];
     }
     
