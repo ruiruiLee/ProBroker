@@ -208,7 +208,7 @@
         if(model.visitType == nil)
             cell.lbStatus.text = @"";
         cell.lbTimr.text = [Util getShowingTime:model.updatedAt];//@"今天 19:08";
-        if(!model.isAgentCreate)
+        if(model.isAgentCreate == 4)
         {
             cell.logoImage.hidden = NO;
         }else{

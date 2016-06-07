@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSString *customerName;
 @property (nonatomic, strong) NSString *visitType;
 @property (nonatomic, strong) NSDate *createdAt;
-@property (nonatomic, assign) BOOL isAgentCreate;
+@property (nonatomic, assign) NSInteger isAgentCreate;
 @property (nonatomic, strong) NSArray *customerLabel;
 @property (nonatomic, strong) NSArray *customerLabelId;
 @property (nonatomic, assign) NSInteger bindType;

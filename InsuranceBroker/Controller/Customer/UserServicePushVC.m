@@ -130,11 +130,17 @@
     SharedCustomerModel *model = [self.data objectAtIndex:indexPath.row];
 
     cell.lbName.text = model.name;
+    if(model.name == nil)
+        cell.lbName.text = model.phone;
     [cell.logoImageV sd_setImageWithURL:[NSURL URLWithString:model.headerUrl] placeholderImage:ThemeImage(@"customer_head")];
     cell.lbTime.text = [Util getShowingTime:model.createdAt];
     cell.lbType.text = model.insuranceType;
     cell.lbActive.text = model.cooperationSource;
 
+    cell.imageFromV.hidden = NO;
+    cell.logoWConstraint.constant = 18;
+    cell.logoSepConstraint.constant = 4;
+    
     if(model.shareSource == 3 ){
         cell.imageFromV.image = ThemeImage(@"wechat_talk");
     }
@@ -149,6 +155,10 @@
     }
     else if (model.shareSource == 5){
         cell.imageFromV.image = ThemeImage(@"huodong");
+    }else{
+        cell.imageFromV.hidden = YES;
+        cell.logoWConstraint.constant = 0;
+        cell.logoSepConstraint.constant = 0;
     }
 
     return cell;

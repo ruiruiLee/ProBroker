@@ -76,17 +76,17 @@
 
 + (NSNumber *) transformToInt:(NSString *) string
 {
-    return [NSNumber numberWithBool:[string integerValue]];//[string boolValue];
+    return [NSNumber numberWithInteger:[string integerValue]];//[string boolValue];
 }
 
 + (NSString *) transformToString:(NSNumber*) value
 {
-    return [NSString stringWithFormat:@"%d", [value boolValue]];
+    return [NSString stringWithFormat:@"%d", [value integerValue]];
 }
 
 + (NSValueTransformer *)isAgentCreateJSONTransformer {
     return [MTLValueTransformer reversibleTransformerWithForwardBlock:^id(NSString *string) {
-        return [CustomerInfoModel transformTobool:string];
+        return [CustomerInfoModel transformToInt:string];
     } reverseBlock:^id(NSNumber *value) {
         return [CustomerInfoModel transformToString:value];
     }];
