@@ -128,6 +128,11 @@
         return;
     }
     
+    if(relationType == nil){
+        [Util showAlertMessage:@"请选择被保人和投保人关系"];
+        return;
+    }
+    
     [NetWorkHandler requestToSaveOrUpdateCustomerInsuredCardNumber:cert
                                                         customerId:self.customerId
                                                       insuredEmail:email
