@@ -45,6 +45,8 @@
     SelectInsuredVC *vc = [[SelectInsuredVC alloc] initWithNibName:nil bundle:nil];
     vc.delegate = self;
     vc.customerId = self.customerDetail.customerId;
+    if(self.infoModel)
+        [vc setSelectedInsuredId:self.infoModel.insuredId];
     vc.title = [NSString stringWithFormat:@"%@的被保人列表", self.customerDetail.customerName];
     [self.navigationController pushViewController:vc animated:YES];
 }

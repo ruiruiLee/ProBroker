@@ -26,8 +26,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setRightBarButtonWithImage:ThemeImage(@"add")];
     
     [self.pulltable registerNib:[UINib nibWithNibName:@"InsureInfoListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NotifyRefreshInsuredList:) name:Notify_Refresh_Insured_list object:nil];
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) NotifyRefreshInsuredList:(NSNotification *) notify
+{
+    [self refresh2Loaddata];
+}
+
+- (void) handleRightBarButtonClicked:(id)sender
+{
+    InsuredUserInfoEditVC *vc = [IBUIFactory CreateInsuredUserInfoEditVC];
+    vc.title = @"被保人信息";
+    vc.customerId = self.customerId;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void) setSelectedInsuredId:(NSString *) insuredId
+{
+    _insuredId = insuredId;
+    [self initSelectedIndex];
+}
+
+- (void) initSelectedIndex
+{
+    _selectIdx = 0;
+    for (int i = 0 ; i < [self.data count]; i++) {
+        InsuredUserInfoModel *model = [self.data objectAtIndex:i];
+        if(_insuredId && [_insuredId isEqualToString:model.insuredId]){
+            _selectIdx = i;
+        }
+    }
+    
+    [self.pulltable reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,6 +93,8 @@
             NSArray *array = [InsuredUserInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
             [self.data addObjectsFromArray:array];
             self.total = [[[content objectForKey:@"data"] objectForKey:@"total"] integerValue];
+            
+            [self initSelectedIndex];
         }
         
         [self.pulltable reloadData];

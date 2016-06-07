@@ -18,8 +18,13 @@
 @end
 
 @interface SelectInsuredVC : BasePullTableVC
+{
+    NSString *_insuredId;
+}
 
 @property (nonatomic, strong) NSString *customerId;
 @property (nonatomic, weak) id<SelectInsuredVCDelegate> delegate;
+
+- (void) setSelectedInsuredId:(NSString *) insuredId;
 
 @end
