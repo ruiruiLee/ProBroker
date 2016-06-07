@@ -149,6 +149,8 @@
         NSDictionary* notificationPayload = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
         if (notificationPayload)
         {
+            [self pushGetCoustomerNum:notificationPayload];
+
             [self NotificationRedDisplay:notificationPayload];
             
             [self performSelector:@selector(pushDetailPage:) withObject:notificationPayload afterDelay:1.0];
@@ -328,7 +330,7 @@
 
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     //[UIApplication sharedApplication].applicationIconBadgeNumber=0;
-    
+    [self pushGetCoustomerNum:userInfo];
     // 程序在运行中接收到推送
     if (application.applicationState == UIApplicationStateActive)
     {
@@ -343,15 +345,29 @@
     }
 }
 
+//mt ＝1   交易类
+//mt＝2 客户相关类（获客，客户跟进）
+//mt＝ 3  通知消息类
+//mt＝ 4 私信
+
+// 推送获客 数字提示
+- (void) pushGetCoustomerNum:(NSDictionary *) userInfo{
+      NSInteger mt = [[userInfo objectForKey:@"mt"] integerValue];
+    if(mt==2){
+        AppContext *context = [AppContext sharedAppContext];
+        context.pushCustomerNum = [[userInfo objectForKey:@"hk"] integerValue];
+        [context saveData];
+    }
+
+}
 //推送消息提示小红点
 - (void) NotificationRedDisplay:(NSDictionary *) userInfo{
       NSInteger mt = [[userInfo objectForKey:@"mt"] integerValue];
       NSInteger ct = [[userInfo objectForKey:@"ct"] integerValue];
       AppContext *context = [AppContext sharedAppContext];
-    if(mt == 1){
+    if(mt != 2){
       [context changeNewsTip:ct display:YES];
     }
-    
  }
 
 -(void) pushDetailPage: (id)dic

@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 #import "define.h"
-#import "NoticeListVC.h"
+//#import "NoticeListVC.h"
 #import "AppDelegate.h"
 
 @interface RootViewController ()
@@ -137,37 +137,50 @@
     AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
     NSString *appicon = appdelegate.appIcon;
     
-    [CMNavBarNotificationView notifyWithText:[dic objectForKey:@"title"]
-                                      detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]
-                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appicon]]]
+    [CMNavBarNotificationView notifyWithText:[[dic objectForKey:@"aps"] objectForKey:@"category"]
+                                      detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appicon]]]
                                  andDuration:5.0
                                   msgparams:dic];
     
 }
 
+//mt ＝1   交易类
+//mt＝2 客户相关类（获客，客户跟进）
+//mt＝ 3  通知消息类
+//mt＝ 4 私信
 -(void) pushtoController:(NSDictionary *)info
 {
+     if([homevc login]==NO){
+         return;
+     }
     NSInteger mt = [[info objectForKey:@"mt"] integerValue];
-    if(mt == 1){
-        if([homevc login]){
-            self.selectedIndex = 0;
-            selectVC = homevc;
-            [selectVC.navigationController popToRootViewControllerAnimated:NO];
-            NoticeListVC *vc = [[NoticeListVC alloc] initWithNibName:nil bundle:nil];
-            vc.hidesBottomBarWhenPushed = YES;
-            [homevc.navigationController pushViewController:vc animated:YES];
-        }
+    
+    if (mt == 1){  // 进入保单列表页面
+       
     }
-    else if (mt == 3){
-        if([customervc login]){
-            self.selectedIndex = 1;
-            selectVC = customervc;
-        }
-    }else if (mt == 4){
+    else if(mt == 2){  // 刷新客户列表界面
+       self.selectedIndex = 1 ;
+       selectVC = customervc;
+           // [selectVC.navigationController popToRootViewControllerAnimated:NO];
+//            NoticeListVC *vc = [[NoticeListVC alloc] initWithNibName:nil bundle:nil];
+//            vc.hidesBottomBarWhenPushed = YES;
+//            [homevc.navigationController pushViewController:vc animated:YES];
+    }
+    else if (mt == 3){  // 进入消息详情
         WebViewController *web = [IBUIFactory CreateWebViewController];
         web.hidesBottomBarWhenPushed = YES;
-        web.title = [info objectForKey:@"title"];
+        web.title =  [[info objectForKey:@"aps"] objectForKey:@"category"];
         web.type = enumShareTypeShare;
+        web.shareTitle = web.title;
+        [selectVC.navigationController pushViewController:web animated:YES];
+        
+        [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", [info objectForKey:@"p"]]];
+
+    }else if (mt == 4){  // 进入私信详情
+        WebViewController *web = [IBUIFactory CreateWebViewController];
+        web.hidesBottomBarWhenPushed = YES;
+        web.title =  [[info objectForKey:@"aps"] objectForKey:@"category"];
+        web.type = enumShareTypeNo;
         web.shareTitle = web.title;
         [selectVC.navigationController pushViewController:web animated:YES];
         

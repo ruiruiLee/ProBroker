@@ -53,8 +53,6 @@ static AppContext *context = nil;
                 self.userInfoDic = [[NSMutableDictionary alloc] init];
                 self.isLogin = NO;
                 self.firstLaunch = NO;
-//                self.redBagId = nil;
-//                self.isRedPack = NO;
                 self.pushCustomerNum = 0;
                 self.isNewMessage = NO;
                 self.isZSKFHasMsg = NO;
@@ -65,8 +63,6 @@ static AppContext *context = nil;
             self.userInfoDic = [[NSMutableDictionary alloc] init];
             self.isLogin = NO;
             self.firstLaunch = NO;
-//            self.redBagId = nil;
-//            self.isRedPack = NO;
             self.pushCustomerNum = 0;
             self.isNewMessage = NO;
             self.isZSKFHasMsg = NO;
@@ -178,9 +174,6 @@ static AppContext *context = nil;
     
     [dic setObject:[NSNumber numberWithBool:self.isLogin] forKey:@"isLogin"];
     [dic setObject:[NSNumber numberWithBool:self.firstLaunch] forKey:@"firstLaunch"];
-//    if(self.redBagId)
-//        [dic setObject:self.redBagId forKey:@"redPackdate"];
-//    [dic setObject:[NSNumber numberWithBool:self.isRedPack] forKey:@"isRedPack"];
     [dic setObject:[NSNumber numberWithInteger:self.pushCustomerNum] forKey:@"pushCustomerNum"];
     // 用于判断是否有新消息所用
     [dic setObject:[NSNumber numberWithBool:self.isNewMessage ] forKey:@"isNewMessage"];
