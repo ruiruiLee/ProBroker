@@ -105,13 +105,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InsuranceBroker/Root/RootViewController.m"
-            timestampString = "485695219.715862"
+            filePath = "InsuranceBroker/Model/Global/AppContext.m"
+            timestampString = "486975457.788783"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "-pushtoController:"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "-removeData"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
