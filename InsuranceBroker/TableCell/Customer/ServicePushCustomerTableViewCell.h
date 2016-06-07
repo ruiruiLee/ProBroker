@@ -24,6 +24,9 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) IBOutlet UILabel *lbTime;
 @property (nonatomic, strong) IBOutlet UIButton *btnApply;
 
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *logoWConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *logoSepConstraint;
+
 - (void) setCustomerFrom:(enumCustomerFrom) type;
 
 @end
