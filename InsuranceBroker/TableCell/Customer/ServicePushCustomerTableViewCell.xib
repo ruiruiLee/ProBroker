@@ -19,8 +19,8 @@
                         <rect key="frame" x="20" y="35" width="60" height="60"/>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="FGu-Vx-uLy"/>
-                            <constraint firstAttribute="width" constant="60" id="ZUI-ol-yfA"/>
+                            <constraint firstAttribute="height" constant="55" id="FGu-Vx-uLy"/>
+                            <constraint firstAttribute="width" constant="55" id="ZUI-ol-yfA"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zrw-Gp-tll">

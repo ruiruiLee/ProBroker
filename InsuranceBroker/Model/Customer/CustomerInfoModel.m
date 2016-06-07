@@ -49,7 +49,8 @@
              @"bindType": @"bindType",
              @"bindStatus": @"bindStatus",
              @"updatedAt": @"updatedAt",
-             @"headImg": @"headImg"
+             @"headImg": @"headImg",
+             @"customerPhone": @"customerPhone"
              };
 }
 

@@ -111,7 +111,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 88.f;
+    return 78.f;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -132,7 +132,7 @@
     cell.lbName.text = model.name;
     if(model.name == nil)
         cell.lbName.text = model.phone;
-    [cell.logoImageV sd_setImageWithURL:[NSURL URLWithString:model.headerUrl] placeholderImage:ThemeImage(@"customer_head")];
+    [cell.logoImageV sd_setImageWithURL:[NSURL URLWithString:model.headerUrl] placeholderImage:ThemeImage(@"user_head")];
     cell.lbTime.text = [Util getShowingTime:model.createdAt];
     cell.lbType.text = model.insuranceType;
     cell.lbActive.text = model.cooperationSource;

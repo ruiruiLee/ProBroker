@@ -205,7 +205,7 @@
     CGSize size = cell.photoImage.frame.size;
     [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.headImg, (int)size.width, (int)size.height)] placeholderImage:ThemeImage(@"customer_head")];
     cell.headImg = model.headImg;
-    if(!model.isAgentCreate)
+    if(model.isAgentCreate == 4)
         cell.logoImage.hidden = NO;
     else
         cell.logoImage.hidden = YES;
