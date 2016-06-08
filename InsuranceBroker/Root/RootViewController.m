@@ -10,6 +10,8 @@
 #import "define.h"
 //#import "NoticeListVC.h"
 #import "AppDelegate.h"
+#import "OrderManagerVC.h"
+#import "UITabBar+badge.h"
 
 @interface RootViewController ()
 
@@ -45,6 +47,8 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    AppContext *context = [AppContext sharedAppContext];
+    [context removeObserver:self forKeyPath:@"pushCustomerNum"];
 }
 
 - (void)tapReceivedNotificationHandler:(NSNotification *)notice
@@ -57,6 +61,19 @@
     [self pushtoController:notificationView.msgInfo];
 }
 
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    AppContext *con= [AppContext sharedAppContext];
+    if(con.pushCustomerNum > 0)
+    {
+        [self.tabBar showBadgeOnItemIndex:1];
+//        [self.tabBar showBadgeOnItemIndex:1];
+    }else{
+//        [self.tabBar hideBadgeOnItemIndex:1];
+        [self.tabBar hideBadgeOnItemIndex:1];
+    }
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -65,6 +82,9 @@
                                                  name:kCMNavBarNotificationViewTapReceivedNotification
                                                object:nil];
     self.delegate = self;
+    
+    AppContext *context = [AppContext sharedAppContext];
+    [context addObserver:self forKeyPath:@"pushCustomerNum" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
     homevc = [[HomeVC alloc] initWithNibName:@"HomeVC" bundle:nil];
     [self setUpChildControllerWith:homevc norImage:ThemeImage(@"home") selImage:ThemeImage(@"home_fill") title:@"经纪人"];
@@ -156,11 +176,16 @@
     NSInteger mt = [[info objectForKey:@"mt"] integerValue];
     
     if (mt == 1){  // 进入保单列表页面
-       
+        OrderManagerVC *vc = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
+        vc.filterString = [info objectForKey:@"p"];
+        vc.hidesBottomBarWhenPushed = YES;
+        [selectVC.navigationController pushViewController:vc animated:YES];
     }
     else if(mt == 2){  // 刷新客户列表界面
-       self.selectedIndex = 1 ;
-       selectVC = customervc;
+        [customervc.navigationController popToRootViewControllerAnimated:NO];
+        self.selectedIndex = 1;
+        selectVC = customervc;
+        [customervc.pulltable reloadData];
            // [selectVC.navigationController popToRootViewControllerAnimated:NO];
 //            NoticeListVC *vc = [[NoticeListVC alloc] initWithNibName:nil bundle:nil];
 //            vc.hidesBottomBarWhenPushed = YES;
@@ -172,6 +197,7 @@
         web.title =  [[info objectForKey:@"aps"] objectForKey:@"category"];
         web.type = enumShareTypeShare;
         web.shareTitle = web.title;
+        web.hidesBottomBarWhenPushed = YES;
         [selectVC.navigationController pushViewController:web animated:YES];
         
         [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", [info objectForKey:@"p"]]];
@@ -182,6 +208,7 @@
         web.title =  [[info objectForKey:@"aps"] objectForKey:@"category"];
         web.type = enumShareTypeNo;
         web.shareTitle = web.title;
+        web.hidesBottomBarWhenPushed = YES;
         [selectVC.navigationController pushViewController:web animated:YES];
         
         [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", [info objectForKey:@"p"]]];
