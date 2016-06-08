@@ -216,7 +216,7 @@
         [selectVC.navigationController pushViewController:web animated:YES];
         UserInfoModel *model = [UserInfoModel shareUserInfoModel];
         
-        [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:Peivate_Msg_Url, model.userId, [info objectForKey:@"p"]]];
+        [web loadHtmlFromUrl:[NSString stringWithFormat:Peivate_Msg_Url, model.userId, [info objectForKey:@"p"]]];
     }
 }
 

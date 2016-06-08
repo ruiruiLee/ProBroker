@@ -59,11 +59,24 @@
 - (void) showMessageSuccess
 {
     [Util showAlertMessage:@"消息发送成功！"];
+    [self loadHtmlFromUrl:self.urlpath];
 }
 
 - (void) showMessageFail
 {
     [Util showAlertMessage:@"消息发送失败！"];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    [self performSelector:@selector(scrollWebView) withObject:nil afterDelay:0.1];
+}
+
+- (void) scrollWebView
+{
+    NSInteger height = [[self.webview stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"] intValue];
+    NSString* javascript = [NSString stringWithFormat:@"window.scrollBy(0, %d);", height];
+    [self.webview stringByEvaluatingJavaScriptFromString:javascript];
 }
 
 @end

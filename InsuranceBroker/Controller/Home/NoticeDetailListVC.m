@@ -148,7 +148,7 @@
         web.type = enumShareTypeNo;
         web.toUserId = model.senderId;
         [self.navigationController pushViewController:web animated:YES];
-        [web loadHtmlFromUrlWithUserId:model.url];
+        [web loadHtmlFromUrl:model.url];
 
     }
     else{
