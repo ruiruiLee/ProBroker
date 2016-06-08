@@ -64,14 +64,16 @@
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     AppContext *con= [AppContext sharedAppContext];
-    UITabBarItem *item = [self.tabBar.items objectAtIndex:1];
+  
     if(con.pushCustomerNum > 0)
     {
+        self.tabBar.items[1].badgeValue= [NSString stringWithFormat:@"%ld", (long)con.pushCustomerNum ];
 //        [self.tabBar showBadgeOnItemIndex:1];
-        item.badgeValue = [NSString stringWithFormat:@"%d", con.pushCustomerNum];
-    }else{
+    }
+        else{
 //        [self.tabBar hideBadgeOnItemIndex:1];
-        item.badgeValue = nil;
+          self.tabBar.items[1].badgeValue=nil;
+
     }
 }
 
