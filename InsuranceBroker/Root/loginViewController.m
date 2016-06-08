@@ -37,6 +37,7 @@
 //    [self setBackBarButton];
     [self setRightBarButtonWithImage:ThemeImage(@"call_login_page")];
     self.lbAgreement.attributedText = [Util getAttributeString:@"点击“登录”，即表示您同意用户协议" substr:@"用户协议"];
+    [self showLabelWithFlag:NO];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -191,6 +192,18 @@
         }
 
     }];
+}
+
+- (IBAction)doBtnShowTips:(id)sender
+{
+    [self showLabelWithFlag:YES];
+}
+
+- (void) showLabelWithFlag:(BOOL) flag
+{
+    self.lbInfoTips.hidden = !flag;
+    self.lbSepLine.hidden = !flag;
+    self.lbShow.hidden = !flag;
 }
 
 @end

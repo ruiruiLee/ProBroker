@@ -13,5 +13,8 @@
 @interface loginViewController : BindPhoneNumVC
 
 @property (nonatomic, strong) IBOutlet UILabel *lbAgreement;
+@property (nonatomic, strong) IBOutlet UILabel *lbShow;
+@property (nonatomic, strong) IBOutlet UILabel *lbSepLine;
+@property (nonatomic, strong) IBOutlet UILabel *lbInfoTips;
 
 @end

@@ -53,22 +53,24 @@
 
 - (void) NotifyToInitCustomerInfo
 {
-    //先初始化保险人信息
-    NSDictionary *dic1 = [self.customerDetail objectToDictionary];
-    
-    SBJsonWriter *writer1 = [[SBJsonWriter alloc] init];
-    NSString *string1 = [writer1 stringWithObject:dic1];
-    NSString *result1 = [NSString stringWithFormat:@"noticeCustomerInfo('%@');", string1];
-    
-    [self.webview stringByEvaluatingJavaScriptFromString:result1];
-    
-    //在初始化被保人信息
-    NSDictionary *dic2 = [InsuredInfoModel dictionaryFromeModel:self.infoModel];
-    SBJsonWriter *writer2 = [[SBJsonWriter alloc] init];
-    NSString *string2 = [writer2 stringWithObject:dic2];
-    NSString *result2 = [NSString stringWithFormat:@"noticeInsuredInfo('%@');", string2];
-
-    [self.webview stringByEvaluatingJavaScriptFromString:result2];
+    if(self.customerDetail){
+        //先初始化保险人信息
+        NSDictionary *dic1 = [self.customerDetail objectToDictionary];
+        
+        SBJsonWriter *writer1 = [[SBJsonWriter alloc] init];
+        NSString *string1 = [writer1 stringWithObject:dic1];
+        NSString *result1 = [NSString stringWithFormat:@"noticeCustomerInfo('%@');", string1];
+        
+        [self.webview stringByEvaluatingJavaScriptFromString:result1];
+        
+        //在初始化被保人信息
+        NSDictionary *dic2 = [InsuredInfoModel dictionaryFromeModel:self.infoModel];
+        SBJsonWriter *writer2 = [[SBJsonWriter alloc] init];
+        NSString *string2 = [writer2 stringWithObject:dic2];
+        NSString *result2 = [NSString stringWithFormat:@"noticeInsuredInfo('%@');", string2];
+        
+        [self.webview stringByEvaluatingJavaScriptFromString:result2];
+    }
 }
 
 //选择客户完成
@@ -120,6 +122,35 @@
 {
     NSString *str = [self.webview stringByEvaluatingJavaScriptFromString:@"isFirstLoad();"];
     return str;
+}
+
+#pragma delegate
+- (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag
+{
+    switch (tag) {
+        case 0:
+        {
+            [self simplyShare:SSDKPlatformSubTypeWechatSession];
+        }
+            break;
+        case 1:
+        {
+            [self simplyShare:SSDKPlatformSubTypeWechatTimeline];
+        }
+            break;
+        case 2:
+        {
+            [self simplyShare:SSDKPlatformSubTypeQQFriend];
+        }
+            break;
+        case 3:
+        {
+            [self simplyShare:SSDKPlatformSubTypeQZone];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 @end
