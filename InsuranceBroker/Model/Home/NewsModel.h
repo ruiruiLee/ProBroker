@@ -21,4 +21,6 @@
 @property (nonatomic, assign) NSInteger keyType;
 @property (nonatomic, strong) NSString *keyId;
 
+@property (nonatomic, strong) NSString *senderId;
+
 @end

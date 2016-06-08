@@ -144,15 +144,12 @@
     }
     else if (model.keyType == 2){//私信
         PrivateMsgVC *web = [IBUIFactory CreatePrivateMsgVC];
-        web.news = model;
         web.title = model.title;
         web.type = enumShareTypeNo;
+        web.toUserId = model.senderId;
         [self.navigationController pushViewController:web animated:YES];
-        if(model.url == nil){
-            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid]];
-        }else{
-            [web loadHtmlFromUrlWithUserId:model.url];
-        }
+        [web loadHtmlFromUrlWithUserId:model.url];
+
     }
     else{
         if(model.isRedirect){

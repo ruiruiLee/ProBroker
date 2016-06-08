@@ -34,6 +34,7 @@
     model.keyId = [dictionary objectForKey:@"keyId"];
     model.keyType = [[dictionary objectForKey:@"keyType"] integerValue];
     model.url = [dictionary objectForKey:@"url"];
+    model.senderId = [dictionary objectForKey:@"senderId"];
     
     return model;
 }

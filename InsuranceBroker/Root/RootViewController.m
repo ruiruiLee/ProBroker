@@ -206,15 +206,17 @@
         [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", [info objectForKey:@"p"]]];
 
     }else if (mt == 4){  // 进入私信详情
-        WebViewController *web = [IBUIFactory CreateWebViewController];
+        PrivateMsgVC *web = [IBUIFactory CreatePrivateMsgVC];
         web.hidesBottomBarWhenPushed = YES;
         web.title =  [[info objectForKey:@"aps"] objectForKey:@"category"];
         web.type = enumShareTypeNo;
         web.shareTitle = web.title;
+        web.toUserId = [info objectForKey:@"p"];
         web.hidesBottomBarWhenPushed = YES;
         [selectVC.navigationController pushViewController:web animated:YES];
+        UserInfoModel *model = [UserInfoModel shareUserInfoModel];
         
-        [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", [info objectForKey:@"p"]]];
+        [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:Peivate_Msg_Url, model.userId, [info objectForKey:@"p"]]];
     }
 }
 
