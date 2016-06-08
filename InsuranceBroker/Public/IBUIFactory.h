@@ -36,6 +36,7 @@
 #import "InsuredUserInfoEditVC.h"
 #import "EditInsuredUserInfoVC.h"
 #import "ProductDetailWebVC.h"
+#import "PrivateMsgVC.h"
 
 @interface IBUIFactory : NSObject
 
@@ -96,5 +97,7 @@
 + (EditInsuredUserInfoVC *) CreateEditInsuredUserInfoVC;
 
 + (ProductDetailWebVC *) CreateProductDetailWebVC;
+
++ (PrivateMsgVC *) CreatePrivateMsgVC;
 
 @end

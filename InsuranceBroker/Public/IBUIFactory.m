@@ -210,4 +210,10 @@
     return web;
 }
 
++ (PrivateMsgVC *) CreatePrivateMsgVC
+{
+    PrivateMsgVC *web = [[PrivateMsgVC alloc] initWithNibName:@"PrivateMsgVC" bundle:nil];
+    return web;
+}
+
 @end

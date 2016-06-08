@@ -167,6 +167,8 @@
 		868C7CD71C9BE91400B7617A /* CurveSellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CD61C9BE91400B7617A /* CurveSellModel.m */; };
 		868C7CDA1C9BE9DF00B7617A /* CurveEarnModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CD91C9BE9DF00B7617A /* CurveEarnModel.m */; };
 		868C7CDD1C9F8E3800B7617A /* OrderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 868C7CDC1C9F8E3800B7617A /* OrderUtil.m */; };
+		869C93581D080B76009CF369 /* PrivateMsgVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 869C93561D080B76009CF369 /* PrivateMsgVC.m */; };
+		869C93591D080B76009CF369 /* PrivateMsgVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 869C93571D080B76009CF369 /* PrivateMsgVC.xib */; };
 		86A26E351C4355220073FFFC /* NetWorkHandler+getProvinces.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26E341C4355220073FFFC /* NetWorkHandler+getProvinces.m */; };
 		86A26E381C4356540073FFFC /* ProviendeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26E371C4356540073FFFC /* ProviendeModel.m */; };
 		86A26E3B1C4356620073FFFC /* CityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A26E3A1C4356620073FFFC /* CityModel.m */; };
@@ -780,6 +782,9 @@
 		868C7CD91C9BE9DF00B7617A /* CurveEarnModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurveEarnModel.m; sourceTree = "<group>"; };
 		868C7CDB1C9F8E3800B7617A /* OrderUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderUtil.h; sourceTree = "<group>"; };
 		868C7CDC1C9F8E3800B7617A /* OrderUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderUtil.m; sourceTree = "<group>"; };
+		869C93551D080B76009CF369 /* PrivateMsgVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMsgVC.h; sourceTree = "<group>"; };
+		869C93561D080B76009CF369 /* PrivateMsgVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMsgVC.m; sourceTree = "<group>"; };
+		869C93571D080B76009CF369 /* PrivateMsgVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateMsgVC.xib; sourceTree = "<group>"; };
 		86A26E331C4355220073FFFC /* NetWorkHandler+getProvinces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+getProvinces.h"; sourceTree = "<group>"; };
 		86A26E341C4355220073FFFC /* NetWorkHandler+getProvinces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+getProvinces.m"; sourceTree = "<group>"; };
 		86A26E361C4356540073FFFC /* ProviendeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProviendeModel.h; sourceTree = "<group>"; };
@@ -1592,6 +1597,9 @@
 				86B278FE1CD31537000E5FAA /* QuickQuoteVC.h */,
 				86B278FF1CD31537000E5FAA /* QuickQuoteVC.m */,
 				86B279001CD31537000E5FAA /* QuickQuoteVC.xib */,
+				869C93551D080B76009CF369 /* PrivateMsgVC.h */,
+				869C93561D080B76009CF369 /* PrivateMsgVC.m */,
+				869C93571D080B76009CF369 /* PrivateMsgVC.xib */,
 				86A504E81C524E8F0032A901 /* OrderDetailWebVC.h */,
 				86A504E91C524E8F0032A901 /* OrderDetailWebVC.m */,
 				86A504EB1C524E9F0032A901 /* OrderDetailWebVC.xib */,
@@ -2905,6 +2913,7 @@
 				86769D231CEC1085009C7E8F /* EditInsuredUserInfoVC.xib in Resources */,
 				8650658D1C1E6BC800429EAE /* Assets.xcassets in Resources */,
 				86A5043B1C4E37E30032A901 /* ShareSDK.bundle in Resources */,
+				869C93591D080B76009CF369 /* PrivateMsgVC.xib in Resources */,
 				86A504371C4E37E30032A901 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				86A5048D1C4F52320032A901 /* BackGroundView.xib in Resources */,
 				865066211C2154C200429EAE /* WebViewController.xib in Resources */,
@@ -3249,6 +3258,7 @@
 				86AD9ACB1CAE735D00389428 /* NetWorkHandler+queryForProductList.m in Sources */,
 				8654CD7F1C312CE100411C54 /* SBJsonParser.m in Sources */,
 				8625AFDE1C37713000312B98 /* PotentialPlayersVC.m in Sources */,
+				869C93581D080B76009CF369 /* PrivateMsgVC.m in Sources */,
 				8654CD871C312CE100411C54 /* SBJsonTokeniser.m in Sources */,
 				8612F4151CE4828D0045340F /* JElasticPullToRefreshView.m in Sources */,
 				86A504AE1C4FB7D30032A901 /* NetWorkHandler+getBacks.m in Sources */,

@@ -137,10 +137,22 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     NewsModel *model = [[_newsArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    if(model.keyType == 1){
+    if(model.keyType == 1){//订单信息
         OrderManagerVC *vc = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
         vc.filterString = model.keyId;
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    else if (model.keyType == 2){//私信
+        PrivateMsgVC *web = [IBUIFactory CreatePrivateMsgVC];
+        web.news = model;
+        web.title = model.title;
+        web.type = enumShareTypeNo;
+        [self.navigationController pushViewController:web animated:YES];
+        if(model.url == nil){
+            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid]];
+        }else{
+            [web loadHtmlFromUrlWithUserId:model.url];
+        }
     }
     else{
         if(model.isRedirect){
