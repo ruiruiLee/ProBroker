@@ -48,6 +48,8 @@
              [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
              if(code == 200){
                  [self performSelector:@selector(showMessageSuccess) withObject:nil afterDelay:0.5];
+                 NSString *string = [NSString stringWithFormat:@"writeLetter('%@')", contentStr];
+                 [self.webview stringByEvaluatingJavaScriptFromString:string];
              }
              else{
                  [self performSelector:@selector(showMessageFail) withObject:nil afterDelay:0.5];
@@ -59,7 +61,7 @@
 - (void) showMessageSuccess
 {
     [Util showAlertMessage:@"消息发送成功！"];
-    [self loadHtmlFromUrl:self.urlpath];
+//    [self loadHtmlFromUrl:self.urlpath];
 }
 
 - (void) showMessageFail
@@ -69,12 +71,13 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    [self performSelector:@selector(scrollWebView) withObject:nil afterDelay:0.1];
+    [self performSelector:@selector(scrollWebView) withObject:nil afterDelay:0.6];
 }
 
 - (void) scrollWebView
 {
-    NSInteger height = [[self.webview stringByEvaluatingJavaScriptFromString:@"document.body.offsetHeight;"] intValue];
+//    CGFloat offset = self.webview.scrollView.contentSize.height;
+    NSInteger height = [[self.webview stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight;"] intValue];
     NSString* javascript = [NSString stringWithFormat:@"window.scrollBy(0, %d);", height];
     [self.webview stringByEvaluatingJavaScriptFromString:javascript];
 }
