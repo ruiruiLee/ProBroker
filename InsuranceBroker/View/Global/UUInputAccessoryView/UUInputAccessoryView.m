@@ -7,6 +7,7 @@
 //
 
 #import "UUInputAccessoryView.h"
+#import "define.h"
 
 #define UUIAV_MAIN_W    CGRectGetWidth([UIScreen mainScreen].bounds)
 #define UUIAV_MAIN_H    CGRectGetHeight([UIScreen mainScreen].bounds)
@@ -45,7 +46,7 @@
         
         UIToolbar *toolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, UUIAV_MAIN_W, UUIAV_Btn_H+2*UUIAV_Edge_Vert)];
         UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(UUIAV_Edge_Hori, UUIAV_Edge_Vert, UUIAV_MAIN_W-UUIAV_Btn_W-4*UUIAV_Edge_Hori, UUIAV_Btn_H)];
-        textView.returnKeyType = UIReturnKeyDone;
+        textView.returnKeyType = UIReturnKeySend;
         textView.enablesReturnKeyAutomatically = YES;
         textView.delegate = sharedView;
         textView.font = [UIFont systemFontOfSize:14];
@@ -55,7 +56,7 @@
         [toolbar addSubview:textView];
         
         UITextField *assistTxf = [UITextField new];
-        assistTxf.returnKeyType = UIReturnKeyDone;
+        assistTxf.returnKeyType = UIReturnKeySend;
         assistTxf.enablesReturnKeyAutomatically = YES;
         [backgroundBtn addSubview:assistTxf];
         assistTxf.inputAccessoryView = toolbar;
@@ -63,8 +64,8 @@
         UIButton *saveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         saveBtn.frame = CGRectMake(UUIAV_MAIN_W-UUIAV_Btn_W-2*UUIAV_Edge_Hori, UUIAV_Edge_Vert, UUIAV_Btn_W, UUIAV_Btn_H);
         saveBtn.backgroundColor = [UIColor clearColor];
-        [saveBtn setTitle:@"确定" forState:UIControlStateNormal];
-        [saveBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [saveBtn setTitle:@"发送" forState:UIControlStateNormal];
+        [saveBtn setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
         [saveBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         [saveBtn addTarget:sharedView action:@selector(saveContent) forControlEvents:UIControlEventTouchUpInside];
         [toolbar addSubview:saveBtn];
