@@ -44,7 +44,7 @@
          if(!senderName)
              senderName = model.phone;
          NSString *title = [NSString stringWithFormat:@"%@给你发了一条私信", senderName];
-         [NetWorkHandler requestToPostPrivateLetter:@"" title:title content:contentStr senderId:model.userId senderName:senderName Completion:^(int code, id content) {
+         [NetWorkHandler requestToPostPrivateLetter:self.toUserId title:title content:contentStr senderId:model.userId senderName:senderName Completion:^(int code, id content) {
              [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
              if(code == 200){
                  [self performSelector:@selector(showMessageSuccess) withObject:nil afterDelay:0.5];

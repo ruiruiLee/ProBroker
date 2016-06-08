@@ -11,6 +11,6 @@
 
 @interface PrivateMsgVC : WebViewController
 
-@property (nonatomic, strong) NewsModel *news;
+@property (nonatomic, strong) NSString *toUserId;
 
 @end
