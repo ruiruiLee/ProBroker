@@ -80,6 +80,13 @@
     }
 
 }
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [self displayGuests];
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];

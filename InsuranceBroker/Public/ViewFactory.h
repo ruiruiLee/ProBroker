@@ -23,7 +23,7 @@
  */
 + (HighNightBgButton *) CreateButtonWithzFont:(UIFont *) font TextColor:(UIColor *)color image:(UIImage *) image;
 
-+ (SepLineButton *) CreateButtonWithImage:(UIImage *) image;
++ (HighNightBgButton *) CreateButtonWithImage:(UIImage *) image;
 
 /**
  标准化view

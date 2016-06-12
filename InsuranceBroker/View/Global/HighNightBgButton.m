@@ -28,6 +28,8 @@
     [self addObserver:self forKeyPath:@"highlighted" options:NSKeyValueObservingOptionNew context:NULL];
     
 //    [self setExclusiveTouch:YES];
+//    [self setShowsTouchWhenHighlighted:YES];
+    self.adjustsImageWhenHighlighted = NO;
     
     _mask = [[UIView alloc] initWithFrame:self.bounds];
     [self addSubview:_mask];
@@ -43,7 +45,6 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-//    [self setNeedsDisplay];
     if([[change objectForKey:@"new"] boolValue]){
         _mask.hidden = NO;
     }

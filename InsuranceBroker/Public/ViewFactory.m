@@ -28,20 +28,21 @@
 + (HighNightBgButton *) CreateButtonWithzFont:(UIFont *) font TextColor:(UIColor *)color image:(UIImage *) image
 {
     HighNightBgButton *btn = [[HighNightBgButton alloc] initWithFrame:CGRectZero];
-    btn.backgroundColor = [UIColor whiteColor];
     [btn setBackgroundImage:image forState:UIControlStateNormal];
     [btn setTitleColor:color forState:UIControlStateNormal];
     btn.titleLabel.font = font;
     btn.translatesAutoresizingMaskIntoConstraints = NO;
+    btn.backgroundColor = [UIColor whiteColor];
     
     return btn;
 }
 
-+ (SepLineButton *) CreateButtonWithImage:(UIImage *) image
++ (HighNightBgButton *) CreateButtonWithImage:(UIImage *) image
 {
-    SepLineButton *btn = [[SepLineButton alloc] initWithFrame:CGRectZero];
+    HighNightBgButton *btn = [[HighNightBgButton alloc] initWithFrame:CGRectZero];
     btn.backgroundColor = [UIColor whiteColor];
-    [btn setBackgroundImage:image forState:UIControlStateNormal];
+//    [btn setBackgroundImage:image forState:UIControlStateNormal];
+    [btn setImage:image forState:UIControlStateNormal];
     btn.translatesAutoresizingMaskIntoConstraints = NO;
     
     return btn;

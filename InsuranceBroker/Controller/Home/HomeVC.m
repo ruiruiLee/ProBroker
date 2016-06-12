@@ -200,13 +200,10 @@
     
     btnProduct = [ViewFactory CreateButtonWithImage:ThemeImage(@"product")];
     [contenBg addSubview:btnProduct];
-    [btnProduct setSepLineType:NO right:NO top:YES bottom:NO];
     [btnProduct addTarget:self action:@selector(doBtnProductSelect:) forControlEvents:UIControlEventTouchUpInside];
     
-    btnPlan = [ViewFactory CreateButtonWithImage:nil];
-    [btnPlan setImage:ThemeImage(@"jihuashu") forState:UIControlStateNormal];
+    btnPlan = [ViewFactory CreateButtonWithImage:ThemeImage(@"jihuashu")];
     [contenBg addSubview:btnPlan];
-    [btnPlan setSepLineType:NO right:NO top:YES bottom:NO];
     [btnPlan addTarget:self action:@selector(doBtnJiHuaShu:) forControlEvents:UIControlEventTouchUpInside];
     
     imgBroker = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -216,7 +213,6 @@
     
     btnBroker = [ViewFactory CreateButtonWithImage:imgNormal];
     [contenBg addSubview:btnBroker];
-    [btnBroker setSepLineType:NO right:NO top:YES bottom:NO];
     [btnBroker addTarget:self action:@selector(doBtnAgentStrategy:) forControlEvents:UIControlEventTouchUpInside];
     
     imgService = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -226,7 +222,6 @@
     
     btnService = [ViewFactory CreateButtonWithImage:imgNormal];
     [contenBg addSubview:btnService];
-    [btnService setSepLineType:NO right:NO top:YES bottom:NO];
     [btnService addTarget:self action:@selector(doBtnFuWuZhiCheng:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *newUserBg = [[UIView alloc] initWithFrame:CGRectZero];
@@ -235,7 +230,6 @@
     
     btnNewUser = [ViewFactory CreateButtonWithImage:imgNormal];
     [newUserBg addSubview:btnNewUser];
-    [btnNewUser setSepLineType:NO right:NO top:YES bottom:NO];
     [btnNewUser addTarget:self action:@selector(doBtnNewUser:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView *infoBg = [[UIView alloc] initWithFrame:CGRectZero];
@@ -245,12 +239,11 @@
     
     btnDetail = [ViewFactory CreateButtonWithImage:imgNormal];
     [infoBg addSubview:btnDetail];
-    [btnDetail setSepLineType:NO right:NO top:YES bottom:NO];
     [btnDetail addTarget:self action:@selector(doBtnDuSheBaoXian:) forControlEvents:UIControlEventTouchUpInside];
     
     btnCarLife = [ViewFactory CreateButtonWithImage:imgNormal];
     [infoBg addSubview:btnCarLife];
-    [btnCarLife setSepLineType:NO right:NO top:YES bottom:NO];
+//    [btnCarLife setSepLineType:NO right:NO top:YES bottom:NO];
     [btnCarLife addTarget:self action:@selector(doBtnCarLife:) forControlEvents:UIControlEventTouchUpInside];
     
     

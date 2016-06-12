@@ -35,19 +35,19 @@
 @property (nonatomic, strong) HeadlineView *headline;
 //@property (nonatomic, strong) UIView *adView;
 
-@property (nonatomic, strong) SepLineButton *btnProduct;//产品目录
-@property (nonatomic, strong) SepLineButton *btnPlan;//计划书
-@property (nonatomic, strong) SepLineButton *btnBroker;//经纪人成长之路
-@property (nonatomic, strong) SepLineButton *btnService;//服务支撑
+@property (nonatomic, strong) HighNightBgButton *btnProduct;//产品目录
+@property (nonatomic, strong) HighNightBgButton *btnPlan;//计划书
+@property (nonatomic, strong) HighNightBgButton *btnBroker;//经纪人成长之路
+@property (nonatomic, strong) HighNightBgButton *btnService;//服务支撑
 
 @property (nonatomic, strong) HighNightBgButton *btnMyService;//我的客服
 
 
-@property (nonatomic, strong) SepLineButton *btnDetail;//毒舌保险
-@property (nonatomic, strong) SepLineButton *btnCarLife;//互联网车生活
+@property (nonatomic, strong) HighNightBgButton *btnDetail;//毒舌保险
+@property (nonatomic, strong) HighNightBgButton *btnCarLife;//互联网车生活
 
 //底部图片跳转页面
-@property (nonatomic, strong) SepLineButton *btnNewUser;
+@property (nonatomic, strong) HighNightBgButton *btnNewUser;
 
 @property (nonatomic, strong) HighNightBgButton *btnMessage;
 
