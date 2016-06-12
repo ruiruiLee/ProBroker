@@ -56,4 +56,7 @@
 
 - (NSString *) getshareUrlWithType:(SSDKPlatformType) plattype;
 
+- (void) loadWebString;
+- (void)addWebCache:(NSURLRequest *)request;
+
 @end

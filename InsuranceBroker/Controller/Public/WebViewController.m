@@ -125,7 +125,11 @@
 {
     [super viewDidAppear:animated];
     [[IQKeyboardManager sharedManager] setEnable:NO];
+    [self loadWebString];
+}
 
+- (void) loadWebString
+{
     if(!_isLoad){
         if(_urlpath != nil){
             
@@ -133,9 +137,9 @@
             if (cacheDatas !=nil) { // 直接加在缓存
                 NSString *datastr = [[NSString alloc] initWithData:cacheDatas encoding:NSUTF8StringEncoding];
                 [ _webview loadHTMLString:datastr baseURL:[NSURL URLWithString:self.urlpath]];
-                }
+            }
             else{  //请求服务器资源
-           
+                
                 NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlpath]];
                 [self addWebCache:request]; // 加缓存并加载
             }
@@ -144,8 +148,6 @@
         }
     }
 }
-
-
 
 - (void)addWebCache:(NSURLRequest *)request{
   
