@@ -167,14 +167,19 @@
 
 
 -(void) pushActivetoController:(id)dic{
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-    NSString *appicon = appdelegate.appIcon;
     
+    UINavigationController *nav =[self.viewControllers objectAtIndex:0];
+    if ([nav.topViewController isKindOfClass:[PrivateMsgVC class]]&&[[dic objectForKey:@"mt"] integerValue]==4)
+    {
+         [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil];
+        
+    }else{
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
     [CMNavBarNotificationView notifyWithText:[[dic objectForKey:@"aps"] objectForKey:@"category"]
-                                      detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appicon]]]
+                                      detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
                                  andDuration:5.0
                                   msgparams:dic];
-    
+    }
 }
 
 //mt ＝1   交易类
@@ -215,17 +220,13 @@
         [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", [info objectForKey:@"p"]]];
 
     }else if (mt == 4){  // 进入私信详情
-        NSArray *vcarray = self.selectVC.navigationController.viewControllers;
-        PrivateMsgVC *vc = nil;
-        for (int i = 0; i < [vcarray count]; i++) {
-            UIViewController *temp = [vcarray objectAtIndex:i];
-            if([temp isKindOfClass:[PrivateMsgVC class]]){
-                vc = (PrivateMsgVC*)temp;
-                break;
-            }
-        }
-        
-        if(vc == nil){
+
+        UINavigationController *nav =[self.viewControllers objectAtIndex:0];
+        if ([nav.topViewController isKindOfClass:[PrivateMsgVC class]]&&mt==4)
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil];
+            
+        }else{
             PrivateMsgVC *web = [IBUIFactory CreatePrivateMsgVC];
             web.hidesBottomBarWhenPushed = YES;
             web.title =  [[info objectForKey:@"aps"] objectForKey:@"category"];
@@ -237,10 +238,8 @@
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
             
             [web loadHtmlFromUrl:[NSString stringWithFormat:Peivate_Msg_Url, model.userId, [info objectForKey:@"p"]]];
-        }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil];
-        }
-    }
+          }
+       }
 }
 
 @end

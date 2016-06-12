@@ -33,8 +33,7 @@
 
 - (void) reloadData
 {
-    NSString *string = [NSString stringWithFormat:@"loadData()"];
-    [self.webview stringByEvaluatingJavaScriptFromString:string];
+    [self.webview stringByEvaluatingJavaScriptFromString:@"loadData();"];
 }
 
 - (void)didReceiveMemoryWarning {
