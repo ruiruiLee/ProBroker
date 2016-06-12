@@ -131,6 +131,7 @@
         [self  handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             [self.userinfo setDetailContentWithDictionary1:[content objectForKey:@"data"]];
+            self.userinfo.userId = [[content objectForKey:@"data"] objectForKey:@"userId"];
             [self resetViews];
         }
     }];
