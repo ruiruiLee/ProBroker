@@ -63,20 +63,23 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    [self displayGuests];
+}
+
+-(void)displayGuests{
     AppContext *con= [AppContext sharedAppContext];
-  
     if(con.pushCustomerNum > 0)
     {
         self.tabBar.items[1].badgeValue= [NSString stringWithFormat:@"%ld", (long)con.pushCustomerNum ];
-//        [self.tabBar showBadgeOnItemIndex:1];
+        //        [self.tabBar showBadgeOnItemIndex:1];
     }
-        else{
-//        [self.tabBar hideBadgeOnItemIndex:1];
-          self.tabBar.items[1].badgeValue=nil;
+    else{
+        //        [self.tabBar hideBadgeOnItemIndex:1];
+        self.tabBar.items[1].badgeValue=nil;
+        
+    }
 
-    }
 }
-
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -85,7 +88,7 @@
                                                  name:kCMNavBarNotificationViewTapReceivedNotification
                                                object:nil];
     self.delegate = self;
-    
+   
     AppContext *context = [AppContext sharedAppContext];
     [context addObserver:self forKeyPath:@"pushCustomerNum" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
@@ -177,7 +180,9 @@
          return;
      }
     NSInteger mt = [[info objectForKey:@"mt"] integerValue];
-    
+    NSInteger ct = [[info objectForKey:@"ct"] integerValue];
+    AppContext *context = [AppContext sharedAppContext];
+    [context changeNewsTip:ct display:NO];
     if (mt == 1){  // 进入保单列表页面
         OrderManagerVC *vc = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
         vc.filterString = [info objectForKey:@"p"];
@@ -189,10 +194,7 @@
         self.selectedIndex = 1;
         selectVC = customervc;
         [customervc.pulltable reloadData];
-           // [selectVC.navigationController popToRootViewControllerAnimated:NO];
-//            NoticeListVC *vc = [[NoticeListVC alloc] initWithNibName:nil bundle:nil];
-//            vc.hidesBottomBarWhenPushed = YES;
-//            [homevc.navigationController pushViewController:vc animated:YES];
+
     }
     else if (mt == 3){  // 进入消息详情
         WebViewController *web = [IBUIFactory CreateWebViewController];
