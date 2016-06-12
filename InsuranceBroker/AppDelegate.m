@@ -331,10 +331,10 @@
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     //[UIApplication sharedApplication].applicationIconBadgeNumber=0;
     [self pushGetCoustomerNum:userInfo];
+    [self NotificationRedDisplay:userInfo];
     // 程序在运行中接收到推送
     if (application.applicationState == UIApplicationStateActive)
     {
-        [self NotificationRedDisplay:userInfo];
         [root pushActivetoController:userInfo];
     }
     else  //程序在后台中接收到推送
@@ -349,7 +349,6 @@
 //mt＝2 客户相关类（获客，客户跟进）
 //mt＝ 3  通知消息类
 //mt＝ 4 私信
-
 // 推送获客 数字提示
 - (void) pushGetCoustomerNum:(NSDictionary *) userInfo{
       NSInteger mt = [[userInfo objectForKey:@"mt"] integerValue];
@@ -364,8 +363,8 @@
 - (void) NotificationRedDisplay:(NSDictionary *) userInfo{
       NSInteger mt = [[userInfo objectForKey:@"mt"] integerValue];
       NSInteger ct = [[userInfo objectForKey:@"ct"] integerValue];
-      AppContext *context = [AppContext sharedAppContext];
     if(mt != 2){
+    AppContext *context = [AppContext sharedAppContext];
       [context changeNewsTip:ct display:YES];
     }
  }

@@ -177,7 +177,9 @@
          return;
      }
     NSInteger mt = [[info objectForKey:@"mt"] integerValue];
-    
+    NSInteger ct = [[info objectForKey:@"ct"] integerValue];
+    AppContext *context = [AppContext sharedAppContext];
+    [context changeNewsTip:ct display:NO];
     if (mt == 1){  // 进入保单列表页面
         OrderManagerVC *vc = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
         vc.filterString = [info objectForKey:@"p"];
@@ -189,10 +191,7 @@
         self.selectedIndex = 1;
         selectVC = customervc;
         [customervc.pulltable reloadData];
-           // [selectVC.navigationController popToRootViewControllerAnimated:NO];
-//            NoticeListVC *vc = [[NoticeListVC alloc] initWithNibName:nil bundle:nil];
-//            vc.hidesBottomBarWhenPushed = YES;
-//            [homevc.navigationController pushViewController:vc animated:YES];
+
     }
     else if (mt == 3){  // 进入消息详情
         WebViewController *web = [IBUIFactory CreateWebViewController];
