@@ -63,20 +63,23 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    [self displayGuests];
+}
+
+-(void)displayGuests{
     AppContext *con= [AppContext sharedAppContext];
-  
     if(con.pushCustomerNum > 0)
     {
         self.tabBar.items[1].badgeValue= [NSString stringWithFormat:@"%ld", (long)con.pushCustomerNum ];
-//        [self.tabBar showBadgeOnItemIndex:1];
+        //        [self.tabBar showBadgeOnItemIndex:1];
     }
-        else{
-//        [self.tabBar hideBadgeOnItemIndex:1];
-          self.tabBar.items[1].badgeValue=nil;
+    else{
+        //        [self.tabBar hideBadgeOnItemIndex:1];
+        self.tabBar.items[1].badgeValue=nil;
+        
+    }
 
-    }
 }
-
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -85,7 +88,7 @@
                                                  name:kCMNavBarNotificationViewTapReceivedNotification
                                                object:nil];
     self.delegate = self;
-    
+   
     AppContext *context = [AppContext sharedAppContext];
     [context addObserver:self forKeyPath:@"pushCustomerNum" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
