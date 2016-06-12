@@ -208,17 +208,31 @@
         [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", [info objectForKey:@"p"]]];
 
     }else if (mt == 4){  // 进入私信详情
-        PrivateMsgVC *web = [IBUIFactory CreatePrivateMsgVC];
-        web.hidesBottomBarWhenPushed = YES;
-        web.title =  [[info objectForKey:@"aps"] objectForKey:@"category"];
-        web.type = enumShareTypeNo;
-        web.shareTitle = web.title;
-        web.toUserId = [info objectForKey:@"p"];
-        web.hidesBottomBarWhenPushed = YES;
-        [selectVC.navigationController pushViewController:web animated:YES];
-        UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+        NSArray *vcarray = self.selectVC.navigationController.viewControllers;
+        PrivateMsgVC *vc = nil;
+        for (int i = 0; i < [vcarray count]; i++) {
+            UIViewController *temp = [vcarray objectAtIndex:i];
+            if([temp isKindOfClass:[PrivateMsgVC class]]){
+                vc = (PrivateMsgVC*)temp;
+                break;
+            }
+        }
         
-        [web loadHtmlFromUrl:[NSString stringWithFormat:Peivate_Msg_Url, model.userId, [info objectForKey:@"p"]]];
+        if(vc == nil){
+            PrivateMsgVC *web = [IBUIFactory CreatePrivateMsgVC];
+            web.hidesBottomBarWhenPushed = YES;
+            web.title =  [[info objectForKey:@"aps"] objectForKey:@"category"];
+            web.type = enumShareTypeNo;
+            web.shareTitle = web.title;
+            web.toUserId = [info objectForKey:@"p"];
+            web.hidesBottomBarWhenPushed = YES;
+            [selectVC.navigationController pushViewController:web animated:YES];
+            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+            
+            [web loadHtmlFromUrl:[NSString stringWithFormat:Peivate_Msg_Url, model.userId, [info objectForKey:@"p"]]];
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil];
+        }
     }
 }
 

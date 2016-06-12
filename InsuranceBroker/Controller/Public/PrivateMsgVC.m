@@ -17,11 +17,24 @@
 
 @implementation PrivateMsgVC
 
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    [self setRightBarButtonWithImage:ThemeImage(@"team_msg")];
     [self SetRightBarButtonWithTitle:@"回复" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:Notify_Msg_Reload object:nil];
+}
+
+- (void) reloadData
+{
+    NSString *string = [NSString stringWithFormat:@"loadData()"];
+    [self.webview stringByEvaluatingJavaScriptFromString:string];
 }
 
 - (void)didReceiveMemoryWarning {
