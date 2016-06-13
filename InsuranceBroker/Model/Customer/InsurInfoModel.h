@@ -41,6 +41,7 @@
 
 @property (nonatomic, strong) NSString *planTypeName;
 @property (nonatomic, strong) NSString *planOfferId;
+@property (nonatomic, strong) NSString *planTypeName_;
 
 @property (nonatomic, strong) NSString *productLogo;
 

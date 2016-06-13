@@ -76,7 +76,7 @@
         carNo = @"";
     cell.lbName.text = [NSString stringWithFormat:@"%@  %@", model.customerName, carNo];
     cell.lbPlate.text = @"";
-    cell.lbContent.text = model.planTypeName;//[Util getStringByPlanType:model.planType];
+    cell.lbContent.text = model.planTypeName_;//[Util getStringByPlanType:model.planType];
     cell.lbUpdateTime.text = [Util getTimeString:model.updatedAt];
     
     cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];

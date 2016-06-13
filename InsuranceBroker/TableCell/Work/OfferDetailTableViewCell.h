@@ -24,4 +24,6 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnAdd;
 @property (nonatomic, strong) IBOutlet UIButton *btnReduce;
 
+@property (nonatomic, strong) IBOutlet UILabel *lbIsReNew;
+
 @end

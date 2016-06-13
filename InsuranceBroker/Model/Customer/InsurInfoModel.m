@@ -51,6 +51,7 @@
     model.orderOfferPrintStatus = [[dictionary objectForKey:@"orderOfferPrintStatus"] integerValue];
     model.orderOfferGatherStatus = [[dictionary objectForKey:@"orderOfferGatherStatus"] boolValue];
     model.orderImgType = [[dictionary objectForKey:@"orderImgType"] integerValue];
+    model.planTypeName_ = [dictionary objectForKey:@"planTypeName_"];
     
     return model;
 }

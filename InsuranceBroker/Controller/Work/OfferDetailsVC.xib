@@ -33,7 +33,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TkB-6n-xGX">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="537.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="538"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="保单报价(元)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s81-ya-B4o">
                                     <rect key="frame" x="29" y="179" width="86" height="21"/>

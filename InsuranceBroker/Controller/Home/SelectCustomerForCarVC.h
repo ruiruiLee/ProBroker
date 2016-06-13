@@ -21,4 +21,6 @@
 @property (nonatomic, strong) UISearchBar *searchbar;
 @property (nonatomic, weak) id<SelectCustomerForCarVCDelegate> delegate;
 
+@property (nonatomic, strong) NSString *selectProductId;
+
 @end

@@ -135,12 +135,20 @@
                                 <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fI6-HV-ijM">
+                                <rect key="frame" x="176" y="16" width="42" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" red="1" green="0.40000000000000002" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="68o-Wa-fVS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="05o-7J-hgr" secondAttribute="trailing" constant="10" id="14M-Nc-UVt"/>
                             <constraint firstItem="rVC-C4-ZFR" firstAttribute="top" secondItem="0S4-Js-IfH" secondAttribute="bottom" constant="10" id="1sI-ya-2Sw"/>
+                            <constraint firstItem="fI6-HV-ijM" firstAttribute="leading" secondItem="05o-7J-hgr" secondAttribute="trailing" id="20a-xn-LC6"/>
                             <constraint firstItem="RbD-eS-ZG7" firstAttribute="leading" secondItem="vSm-BG-UwH" secondAttribute="leading" constant="82" id="2sL-DZ-Zyx"/>
                             <constraint firstItem="dup-Oy-DoS" firstAttribute="top" secondItem="vSm-BG-UwH" secondAttribute="top" id="30U-Ir-tbG"/>
                             <constraint firstItem="mJP-P4-075" firstAttribute="top" secondItem="dup-Oy-DoS" secondAttribute="bottom" constant="10" id="3bf-NZ-ZMs"/>
@@ -151,6 +159,8 @@
                             <constraint firstItem="Eml-hm-5Jy" firstAttribute="centerY" secondItem="dA1-MZ-AQu" secondAttribute="centerY" id="B2Y-tB-TYd"/>
                             <constraint firstItem="05o-7J-hgr" firstAttribute="leading" secondItem="mJP-P4-075" secondAttribute="trailing" constant="10" id="Exm-6i-WT4"/>
                             <constraint firstItem="RbD-eS-ZG7" firstAttribute="centerY" secondItem="dA1-MZ-AQu" secondAttribute="centerY" id="F0k-G7-PzH"/>
+                            <constraint firstItem="fI6-HV-ijM" firstAttribute="centerY" secondItem="05o-7J-hgr" secondAttribute="centerY" id="Ha6-w9-qvJ"/>
+                            <constraint firstItem="68o-Wa-fVS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fI6-HV-ijM" secondAttribute="trailing" constant="10" id="Ie0-bt-IVo"/>
                             <constraint firstAttribute="trailing" secondItem="Dm3-QI-e7X" secondAttribute="trailing" id="JzO-QU-1JA"/>
                             <constraint firstItem="dA1-MZ-AQu" firstAttribute="top" secondItem="rVC-C4-ZFR" secondAttribute="bottom" constant="14" id="Myn-Zg-EBh"/>
                             <constraint firstItem="68o-Wa-fVS" firstAttribute="leading" secondItem="L8R-W2-Zcj" secondAttribute="leading" constant="-25" id="Of3-5p-ttH"/>
@@ -210,6 +220,7 @@
                 <outlet property="btnAdd" destination="T2t-ZK-kcT" id="hVT-Zl-fvs"/>
                 <outlet property="btnReduce" destination="RbD-eS-ZG7" id="cCp-Y9-m5U"/>
                 <outlet property="lbGain" destination="L8R-W2-Zcj" id="aXD-PF-ofq"/>
+                <outlet property="lbIsReNew" destination="fI6-HV-ijM" id="nyW-Db-N2m"/>
                 <outlet property="lbName" destination="05o-7J-hgr" id="V6I-Kc-uhd"/>
                 <outlet property="lbNoRebate" destination="pmr-jR-dEB" id="Cfp-nC-Jj8"/>
                 <outlet property="lbPrice" destination="68o-Wa-fVS" id="oNA-F1-LSJ"/>

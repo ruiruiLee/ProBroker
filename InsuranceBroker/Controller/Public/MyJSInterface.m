@@ -51,7 +51,7 @@
 
 - (void) selectInsured
 {
-    if(self .delegate && [self.delegate respondsToSelector:@selector(NotifyToSelectInsured)]){
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToSelectInsured)]){
         [self.delegate NotifyToSelectInsured];
     }
 }
@@ -60,6 +60,13 @@
 {
     if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToInitCustomerInfo)]){
         [self.delegate NotifyToInitCustomerInfo];
+    }
+}
+
+- (void) callInsurance:(NSString *) productAttrId
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToSelectCustomerForCar:)]){
+        [self.delegate NotifyToSelectCustomerForCar:productAttrId];
     }
 }
 

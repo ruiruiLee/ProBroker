@@ -33,6 +33,7 @@
 @property (nonatomic, assign) CGFloat allotBonusRatio;
 @property (nonatomic, assign) CGFloat levelRatio;
 @property (nonatomic, assign) CGFloat planUserAllot;
+@property (nonatomic, strong) NSString *planTypeName_;
 
 @property (nonatomic, assign) BOOL isRatioSubmit;
 

@@ -17,6 +17,7 @@
 - (void) NotifyToSelectCustomer;//获取用户信息
 - (void) NotifyToSelectInsured;//获取被保人信息
 - (void) NotifyToInitCustomerInfo;//初始化数据
+- (void) NotifyToSelectCustomerForCar:(NSString *) productAttrId;
 
 @end
 
@@ -35,5 +36,7 @@
 - (void) selectInsured;//被保人
 
 - (void) initCustomer;//数据初始化
+
+- (void) callInsurance:(NSString *) productAttrId;//车险
 
 @end

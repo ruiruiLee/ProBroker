@@ -11,6 +11,7 @@
 #import "SBJson.h"
 #import "SelectCustomerVC.h"
 #import "SelectInsuredVC.h"
+#import "SelectCustomerForCarVC.h"
 
 @interface ProductDetailWebVC ()<SelectInsuredVCDelegate, SelectCustomerVCDelegate>
 
@@ -151,6 +152,13 @@
         default:
             break;
     }
+}
+
+- (void) NotifyToSelectCustomerForCar:(NSString *) productAttrId
+{
+    SelectCustomerForCarVC *vc = [[SelectCustomerForCarVC alloc] initWithNibName:nil bundle:nil];
+    vc.selectProductId = productAttrId;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

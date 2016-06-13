@@ -59,6 +59,7 @@
     model.levelRatio = [[dictionary objectForKey:@"levelRatio"] floatValue];
     model.allotBonusRatio = [[dictionary objectForKey:@"allotBonusRatio"] floatValue];
     model.planUserAllot = [[dictionary objectForKey:@"planUserAllot"] floatValue];
+    model.planTypeName_ = [dictionary objectForKey:@"planTypeName_"];
     
     return model;
 }

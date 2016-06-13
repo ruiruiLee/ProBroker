@@ -230,6 +230,12 @@
     cell.lbtruePrice.attributedText = [self getPlanUkbPriceAttbuteString:[NSString stringWithFormat:@"支付价：%.2f", model.planUkbPrice] sub:[NSString stringWithFormat:@"%.2f", model.planUkbPrice]];
     [cell.photo sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:Normal_Image];
     
+    if(model.planTypeName_ && [model.planTypeName_ length] > 0){
+        cell.lbIsReNew.text = [NSString stringWithFormat:@"(%@)", model.planTypeName_];
+    }else{
+        cell.lbIsReNew.text = @"";
+    }
+    
     if(model.businessPrice == 0){
         cell.btnAdd.hidden = YES;
         cell.btnReduce.hidden = YES;
