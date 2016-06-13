@@ -48,6 +48,8 @@
     UIImage *newCert;
     
     NSString *_travelCard1;
+    
+    NSString *_productId;
 }
 
 @property (nonatomic, strong) InsurCompanySelectVC *menuView;
@@ -1254,13 +1256,16 @@
 
 - (NSString *) getCarCertLocation:(NSString *) cert
 {
+    if(cert == nil || [cert length] < 1)
+        return @"川";
     return [cert substringToIndex:1];
 }
 
 - (NSString *) getCarCertNum:(NSString *) cert
 {
+    if(cert == nil || [cert length] < 1)
+        return @"";
     return [cert substringFromIndex:1];
-//    return cert;
 }
 
 - (NSString *) getCarCertString
@@ -1269,6 +1274,10 @@
     NSString *provience = self.lbProvience.text;
     if(provience == nil)
         provience = @"";
+    if(num == nil || [num length] == 0){
+        num = @"";
+        provience = @"";
+    }
     NSString *carNo = [NSString stringWithFormat:@"%@%@", provience, num];
     return carNo;
 }
@@ -1371,6 +1380,11 @@
 {
     self.lbProvience.text = name;
     [self isModify];
+}
+
+- (void) initWithProductId:(NSString *) product
+{
+    _productId = product;
 }
 
 @end

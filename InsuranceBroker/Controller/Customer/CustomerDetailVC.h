@@ -48,6 +48,8 @@
 
 - (void) loadDetailWithCustomerId:(NSString *)customerId;
 
+- (void) initWithProductId:(NSString *) product;
+
 - (IBAction) doBtnRing:(UIButton *)sender;
 - (IBAction) doBtnEmail:(UIButton *)sender;
 

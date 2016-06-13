@@ -57,6 +57,13 @@
     [self.tfEmail addTarget:self action:@selector(textChangeAction:) forControlEvents:UIControlEventEditingChanged];
     [self.tfName addTarget:self action:@selector(textChangeAction:) forControlEvents:UIControlEventEditingChanged];
     
+    if(self.customerDetail){
+        if(self.customerDetail.customerPhone)
+            self.tfMobile.text = self.customerDetail.customerPhone;
+        if(self.customerDetail.customerEmail)
+            self.tfEmail.text = self.customerDetail.customerEmail;
+    }
+    
     self.viewHConstraint.constant = ScreenWidth;
     
     _selectRelationTypeIdx = -1;
@@ -251,12 +258,12 @@
     }
     
     //电话
-    if( [mobile length] > 0){
+    if( [mobile length] > 0 && ![mobile isEqualToString:self.customerDetail.customerPhone]){
         back = YES;
     }
     
     //邮件
-    if([email length] > 0 ){
+    if([email length] > 0 && ![email isEqualToString:self.customerDetail.customerEmail] ){
         back = YES;
     }
     

@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 #import "MenuViewController.h"
 #import "HighNightBgButton.h"
+#import "CustomerDetailModel.h"
 
 @interface InsuredUserInfoEditVC : BaseViewController<UIActionSheetDelegate, UITextFieldDelegate, MenuDelegate>
 
@@ -33,6 +34,8 @@
 @property (nonatomic, assign) NSInteger sex;
 
 @property (nonatomic, strong) NSString *customerId;
+
+@property (nonatomic, strong) CustomerDetailModel *customerDetail;
 
 - (BOOL) isModify;
 

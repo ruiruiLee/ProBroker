@@ -27,6 +27,9 @@
 #import "ProductListSelectVC.h"
 
 @interface CustomerDetailVC ()<BaseInsuranceInfoDelegate, InsuranceInfoViewDelegate, MFMessageComposeViewControllerDelegate>
+{
+    NSString *_productId;
+}
 
 @property (nonatomic, strong) CustomerDetailModel *data;
 @property (nonatomic, strong) NSString *customerId;
@@ -719,6 +722,7 @@
         vc.customerId = self.customerinfoModel.customerId;
     else
         vc.customerId = self.customerId;
+    vc.customerDetail = self.data;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -923,6 +927,9 @@
     }
 }
 
-
+- (void) initWithProductId:(NSString *) product
+{
+    _productId = product;
+}
 
 @end

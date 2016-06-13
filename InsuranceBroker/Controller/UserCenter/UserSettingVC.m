@@ -17,6 +17,7 @@
 #import "HighNightBgButton.h"
 #import "AppDelegate.h"
 #import "AppKeFuLib.h"
+#import "OnlineCustomer.h"
 
 @interface UserSettingVC ()
 
@@ -129,7 +130,7 @@
         switch (indexPath.row) {
             case 0:
             {
-                cell.textLabel.text = @"功能介绍";
+                cell.textLabel.text = @"常见问题";
             }
                 break;
             case 1:
@@ -172,16 +173,20 @@
             case 0:
             {
 //                cell.textLabel.text = @"功能介绍";
-                NSArray *coverImageNames = @[@"guide1",@"guide2",@"guide3",@"guide4"];
-                // Example 2 自定义登陆按钮
-                self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:coverImageNames button:nil];
+//                NSArray *coverImageNames = @[@"guide1",@"guide2",@"guide3",@"guide4"];
+//                // Example 2 自定义登陆按钮
+//                self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:coverImageNames button:nil];
+//                
+//                [((AppDelegate*)([UIApplication sharedApplication].delegate)).window addSubview:self.introductionView.view];
+//                __weak UserSettingVC *weakself = self;
+//                self.introductionView.didSelectedEnter = ^() {
+//                    [weakself.introductionView.view removeFromSuperview];
+//                    weakself.introductionView = nil;
+//                };
                 
-                [((AppDelegate*)([UIApplication sharedApplication].delegate)).window addSubview:self.introductionView.view];
-                __weak UserSettingVC *weakself = self;
-                self.introductionView.didSelectedEnter = ^() {
-                    [weakself.introductionView.view removeFromSuperview];
-                    weakself.introductionView = nil;
-                };
+                [[AppKeFuLib sharedInstance] pushFAQViewController:self.navigationController
+                                                 withWorkgroupName:faq
+                                          hidesBottomBarWhenPushed:YES];
             }
                 break;
             case 1:

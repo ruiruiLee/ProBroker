@@ -103,5 +103,6 @@ typedef enum : NSUInteger {
 - (IBAction)doButtonEditNo:(UIButton *)sender;
 - (IBAction)doButtonHowToWrite:(UIButton *)sender;
 - (void) loadCarInfoWithCustomerId:(NSString *) customerCarId;
+- (void) initWithProductId:(NSString *) product;
 
 @end
