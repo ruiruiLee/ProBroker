@@ -385,12 +385,12 @@
     NSRange range = [string rangeOfString:sub];
     
     [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:range];
-    [attstr addAttribute:NSForegroundColorAttributeName value:_COLOR(0x21, 0x21, 0x21) range:range];
+//    [attstr addAttribute:NSForegroundColorAttributeName value:_COLOR(0x21, 0x21, 0x21) range:range];
 //    [attstr addAttribute:NSFontAttributeName value:_FONT(10) range:NSMakeRange([string length] - 3, 3)];
     
-    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
+//    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
 
-    [attstr addAttributes:attribtDic range:range];
+//    [attstr addAttributes:attribtDic range:range];
     return attstr;
 }
 
