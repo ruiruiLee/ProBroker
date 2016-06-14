@@ -163,11 +163,10 @@
     [NetWorkHandler loginWithPhone:self.tfMobile.text openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:remarkName privilege:[dic objectForKey:@"privilege"] unionid:[dic objectForKey:@"unionid"] province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:nil parentPhone:(NSString *)phoneNum Completion:^(int code, id content) {
         //[self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 505){
-            
             SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-            
             view.delegate = self;
             [[UIApplication sharedApplication].keyWindow addSubview:view];
+            
         }else if (code == 200){
             NSDictionary *data = [content objectForKey:@"data"];
             UserInfoModel *userinfo = [UserInfoModel shareUserInfoModel];
