@@ -10,6 +10,7 @@
 #import "NetWorkHandler+queryCustomerInsuredInfo.h"
 #import "define.h"
 #import "DictModel.h"
+#import "NetWorkHandler+saveOrUpdateCustomerInsured.h"
 
 @implementation EditInsuredUserInfoVC
 
@@ -65,6 +66,76 @@
     
     [self submitWithInsuredId:self.insuredModel.insuredId];
 }
+
+- (void) submitWithInsuredId:(NSString *) insuredId
+{
+    [self isModify];
+    
+    NSString *name = self.tfName.text;
+    NSString *cert = self.tfCert.text;
+    NSString *mobile = self.tfMobile.text;
+    NSString *email = self.tfEmail.text;
+    NSString *relationType = nil;
+    if(self.selectRelationTypeIdx >= 0){
+        DictModel *model = [self.relatrionArray objectAtIndex:self.selectRelationTypeIdx];
+        relationType = model.dictValue;
+    }else{
+        relationType = self.insuredModel.relationType;
+    }
+    
+    if( [name length] == 0){
+        [Util showAlertMessage:@"被保人姓名不能为空！"];
+        return;
+    }
+    
+    mobile = [self formatPhoneNum:mobile];
+    if([mobile length] > 0){
+        if(![Util isMobilePhoeNumber:mobile] && ![Util checkPhoneNumInput:mobile]){
+            [Util showAlertMessage:@"客户联系电话不正确"];
+            return;
+        }
+    }
+    
+    if([email length] > 0 && ![Util validateEmail:email]){
+        [Util showAlertMessage:@"电子邮箱不正确"];
+        return;
+    }
+    
+    BOOL flag = [Util validateIdentityCard:cert];
+    
+    if([cert length] > 0 && !flag){
+        [Util showAlertMessage:@"身份证号输入不正确"];
+        return;
+    }
+    
+    if(relationType == nil){
+        [Util showAlertMessage:@"请选择被保人和投保人关系"];
+        return;
+    }
+    
+    [NetWorkHandler requestToSaveOrUpdateCustomerInsuredCardNumber:cert
+                                                        customerId:self.customerId
+                                                      insuredEmail:email
+                                                         insuredId:insuredId
+                                                       insuredMemo:nil
+                                                       insuredName:name
+                                                      insuredPhone:mobile
+                                                        insuredSex:self.sex
+                                                     insuredStatus:1
+                                                          liveAddr:nil
+                                                        liveAreaId:nil
+                                                        liveCityId:nil
+                                                    liveProvinceId:nil
+                                                      relationType:relationType
+                                                        Completion:^(int code, id content) {
+                                                            [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+                                                            if(code == 200){
+                                                                [self.navigationController popViewControllerAnimated:YES];
+                                                                [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Refresh_Insured_list object:nil userInfo:nil];
+                                                            }
+                                                        }];
+}
+
 
 - (BOOL) isModify
 {
