@@ -185,7 +185,14 @@
     cell.lbNo.text = model.insuranceOrderNo;
     cell.lbName.text = model.customerName;
     cell.lbPlate.text = model.carNo;
-    cell.lbContent.text = model.planTypeName_;//[Util getStringByPlanType:model.planType];
+    
+    CGFloat width = [model.carNo sizeWithAttributes:@{NSFontAttributeName:cell.lbPlate.font}].width;
+    if(model.carNo && [model.carNo length] > 0)
+        cell.width.constant = width + 2;
+    else
+        cell.width.constant = 0;
+    if(model.planTypeName_ && [model.planTypeName_ length] > 0)
+        cell.lbContent.text = [NSString stringWithFormat:@"（%@）", model.planTypeName_];//[Util getStringByPlanType:model.planType];
     [cell.phoneNum setTitle:model.customerPhone forState:UIControlStateNormal];
     cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
 //    [OrderUtil setPolicyStatusWithCell:cell orderOfferStatus:model.orderOfferStatus orderOfferStatusStr:model.orderOfferStatusStr orderOfferPrintStatus:model.orderOfferPrintStatus];
