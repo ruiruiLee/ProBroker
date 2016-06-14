@@ -93,6 +93,10 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yPl-In-35a">
                                         <rect key="frame" x="99" y="59" width="130" height="27"/>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="10" id="iGO-KB-DWB"/>
+                                            <constraint firstAttribute="height" constant="14" id="nof-yV-qK0"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -127,8 +131,8 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="oAD-g4-AaW" firstAttribute="centerY" secondItem="yPl-In-35a" secondAttribute="centerY" id="0kG-k1-opd"/>
                                     <constraint firstItem="oa7-FA-hKG" firstAttribute="leading" secondItem="LRA-Bs-hlQ" secondAttribute="trailing" constant="10" id="3wW-cu-E9p"/>
+                                    <constraint firstItem="oAD-g4-AaW" firstAttribute="baseline" secondItem="yPl-In-35a" secondAttribute="baseline" id="D0T-RA-3Wa"/>
                                     <constraint firstItem="XyM-bh-Zep" firstAttribute="centerY" secondItem="LRA-Bs-hlQ" secondAttribute="centerY" id="IUu-4K-h6R"/>
                                     <constraint firstItem="oAD-g4-AaW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="yPl-In-35a" secondAttribute="trailing" constant="10" id="QTj-2B-7g4"/>
                                     <constraint firstItem="LRA-Bs-hlQ" firstAttribute="top" secondItem="fw8-Us-mOR" secondAttribute="top" constant="-2" id="W6k-jo-iQR"/>
