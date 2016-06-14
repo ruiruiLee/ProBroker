@@ -74,9 +74,15 @@
     NSString *carNo = model.carNo;
     if(carNo == nil)
         carNo = @"";
-    cell.lbName.text = [NSString stringWithFormat:@"%@  %@", model.customerName, carNo];
-    cell.lbPlate.text = @"";
-    cell.lbContent.text = model.planTypeName_;//[Util getStringByPlanType:model.planType];
+    cell.lbName.text = [NSString stringWithFormat:@"%@", model.customerName];
+    cell.lbPlate.text = carNo;
+    CGFloat width = [model.carNo sizeWithAttributes:@{NSFontAttributeName:cell.lbPlate.font}].width;
+    if(carNo == nil || [carNo length] == 0)
+        cell.width.constant = 0;
+    else
+        cell.width.constant = width + 2;
+    if(model.planTypeName_ && [model.planTypeName_ length] > 0)
+        cell.lbContent.text = [NSString stringWithFormat:@"（%@）", model.planTypeName_];
     cell.lbUpdateTime.text = [Util getTimeString:model.updatedAt];
     
     cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];

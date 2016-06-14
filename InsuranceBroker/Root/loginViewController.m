@@ -13,6 +13,7 @@
 #import "NetWorkHandler+login.h"
 #import "SetTeamLeaderPhoneView.h"
 #import "IQKeyboardManager.h"
+#import "NetWorkHandler+newUser.h"
 
 
 @interface loginViewController ()<SetTeamLeaderPhoneViewDelegate>
@@ -109,7 +110,7 @@
             [currentInstallation addUniqueObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
             [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
             [currentInstallation saveInBackground];
-                  }
+            }
         else{   // 登陆失败
             if(code<0){
                 [KGStatusBar showErrorWithStatus:@"无法连接网络，请检查网络设置！"];
@@ -163,11 +164,10 @@
     [NetWorkHandler loginWithPhone:self.tfMobile.text openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:remarkName privilege:[dic objectForKey:@"privilege"] unionid:[dic objectForKey:@"unionid"] province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:nil parentPhone:(NSString *)phoneNum Completion:^(int code, id content) {
         //[self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 505){
-            
             SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-            
             view.delegate = self;
             [[UIApplication sharedApplication].keyWindow addSubview:view];
+            
         }else if (code == 200){
             NSDictionary *data = [content objectForKey:@"data"];
             UserInfoModel *userinfo = [UserInfoModel shareUserInfoModel];
@@ -180,7 +180,11 @@
             AVInstallation *currentInstallation = [AVInstallation currentInstallation];
             [currentInstallation addUniqueObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
             [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
-            [currentInstallation saveInBackground];
+            [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                [NetWorkHandler requestToRequestNewUser:userinfo.userId Completion:^(int code, id content) {
+                    [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+                }];
+            }];
         }
         else{   // 登陆失败
             if(code<0){
