@@ -313,7 +313,8 @@
             self.headerView.lbTag.text = [self.data getCustomerLabelString];
             [self.headerView.photoImageV sd_setImageWithURL:[NSURL URLWithString:self.data.headImg] placeholderImage:ThemeImage(@"user_head")];
             [self setCarInfo];
-            [self doBtnSelectDetailInfoView:self.btnInfo];
+            if([_selectedView isKindOfClass:[InsuranceDetailView class]])
+                [self doBtnSelectDetailInfoView:self.btnInfo];
             if(self.customerinfoModel){
                 self.customerinfoModel.detailModel = self.data;
                 self.customerinfoModel.customerName = self.data.customerName;
@@ -433,6 +434,7 @@
     return rule;
 }
 
+//
 - (void) setCarInfo
 {
     _insuranceDetailView.carInfo = self.data.carInfo;
@@ -441,6 +443,7 @@
 }
 
 #pragma CustomDetailHeaderViewDelegate
+//点击事件进入客户资料编辑页面
 - (void) NotifyToEditUserInfo:(CustomDetailHeaderView*) sender
 {
     if(self.data){
@@ -453,6 +456,7 @@
     }
 }
 
+//投保资料，线索进展，保单信息按钮点击事件
 - (void) doBtnSelectDetailInfoView:(UIButton *)sender
 {
     self.btnInfo.selected = NO;
@@ -530,6 +534,7 @@
     }
 }
 
+//黄线移动位置
 - (void) focusLineMovieTo:(CGRect) rect
 {
     [UIView animateWithDuration:0.25 animations:^{
@@ -539,6 +544,7 @@
     }];
 }
 
+//重置view的高度
 - (void) resetContetHeight:(BaseInsuranceInfo*) view
 {
     _selectedView = view;
