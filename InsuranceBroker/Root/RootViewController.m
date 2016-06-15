@@ -182,6 +182,20 @@
     }
 }
 
+- (void) setSelectedIndex:(NSUInteger)selectedIndex
+{
+    [super setSelectedIndex:selectedIndex];
+    if(selectedIndex == 0){
+        selectVC = homevc;
+    }
+    else if (selectedIndex == 1){
+        selectVC = customervc;
+    }
+    else if (selectedIndex == 2){
+        selectVC = usercentervc;
+    }
+}
+
 //mt ＝1   交易类
 //mt＝2 客户相关类（获客，客户跟进）
 //mt＝ 3  通知消息类
@@ -216,6 +230,7 @@
         web.shareTitle = web.title;
         web.hidesBottomBarWhenPushed = YES;
         [selectVC.navigationController pushViewController:web animated:YES];
+        NSLog(@"%@", selectVC);
         
         [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", [info objectForKey:@"p"]]];
 
