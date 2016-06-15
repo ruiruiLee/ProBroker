@@ -309,6 +309,8 @@
             if([model.dictValue isEqualToString:value])
                 return i;
         }
+        
+        return -2;
     }
     return -1;
 }
