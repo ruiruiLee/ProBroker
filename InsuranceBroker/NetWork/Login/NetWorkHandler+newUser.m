@@ -11,11 +11,12 @@
 
 @implementation NetWorkHandler (newUser)
 
-+ (void) requestToRequestNewUser:(NSString *) userId Completion:(Completion)completion
++ (void) requestToRequestNewUser:(NSString *) userId nickName:(NSString *) nickName Completion:(Completion)completion
 {
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:pramas value:userId key:@"userId"];
+    [Util setValueForKeyWithDic:pramas value:nickName key:@"nickName"];
     
     [handle postWithMethod:@"/api/news/notice/newUser" BaseUrl:SERVER_ADDRESS Params:pramas Completion:completion];
 }

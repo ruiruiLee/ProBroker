@@ -181,7 +181,7 @@
             [currentInstallation addUniqueObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
             [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
             [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                [NetWorkHandler requestToRequestNewUser:userinfo.userId Completion:^(int code, id content) {
+                [NetWorkHandler requestToRequestNewUser:userinfo.userId nickName:remarkName Completion:^(int code, id content) {
                     [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
                 }];
             }];

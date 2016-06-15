@@ -10,6 +10,6 @@
 
 @interface NetWorkHandler (newUser)
 
-+ (void) requestToRequestNewUser:(NSString *) userId Completion:(Completion)completion;
++ (void) requestToRequestNewUser:(NSString *) userId nickName:(NSString *) nickName Completion:(Completion)completion;
 
 @end
