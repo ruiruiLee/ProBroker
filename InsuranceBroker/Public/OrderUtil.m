@@ -114,6 +114,8 @@
 
 + (NSMutableAttributedString *) attstringWithString:(NSString *) string range:(NSRange) range font:(UIFont *) font color:(UIColor *)color
 {
+    if(string == nil)
+        string = @"";
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
     
     [attributedString addAttribute:NSForegroundColorAttributeName value:color range:range];

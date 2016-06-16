@@ -377,23 +377,23 @@
 //获取保单信息列表
 - (void) loadInsurPageList:(NSInteger) offset
 {
-    if(self.data.carInfo == nil){
-        [_policyListView endAnimation];
-        [_insuranceView endAnimation];
-        return;
-    }
+//    if(self.data.carInfo == nil){
+//        [_policyListView endAnimation];
+//        [_insuranceView endAnimation];
+//        return;
+//    }
     
     NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
     NSMutableArray *rules = [[NSMutableArray alloc] init];
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:@"1"]];
+//    [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:@"1"]];
     [rules addObject:[self getRulesByField:@"customerId" op:@"eq" data:self.customerId]];
     [rules addObject:[self getRulesByField:@"userId" op:@"eq" data:user.userId]];
-    [rules addObject:[self getRulesByField:@"customerCarId" op:@"eq" data:self.data.carInfo.customerCarId]];
+//    [rules addObject:[self getRulesByField:@"customerCarId" op:@"eq" data:self.data.carInfo.customerCarId]];
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     
-    [NetWorkHandler requestToQueryForCustomerInsurPageList:@"1"
+    [NetWorkHandler requestToQueryForCustomerInsurPageList:nil
                                                     offset:offset
                                                      limit:LIMIT
                                                       sord:@"desc"

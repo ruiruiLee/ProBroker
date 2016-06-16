@@ -119,7 +119,7 @@
                                         <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyM-bh-Zep" customClass="LeftImgButtonLeft">
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XyM-bh-Zep" customClass="LeftImgButtonLeft">
                                         <rect key="frame" x="458" y="13" width="70" height="22"/>
                                         <animations/>
                                         <constraints>
@@ -202,6 +202,7 @@
             <connections>
                 <outlet property="btnStatus" destination="XyM-bh-Zep" id="4ZM-EU-Kcr"/>
                 <outlet property="contentBg" destination="GiV-Ho-hcm" id="qV4-J8-Swu"/>
+                <outlet property="contentWidth" destination="iGO-KB-DWB" id="GVO-HS-00y"/>
                 <outlet property="lbContent" destination="yPl-In-35a" id="zbx-p5-VB6"/>
                 <outlet property="lbName" destination="LRA-Bs-hlQ" id="lYR-74-xbJ"/>
                 <outlet property="lbNo" destination="ZLd-rq-dmd" id="Uqf-HV-H64"/>

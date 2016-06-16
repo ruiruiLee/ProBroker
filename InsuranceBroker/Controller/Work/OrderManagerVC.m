@@ -107,7 +107,7 @@
     [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
     NSMutableArray *rules = [[NSMutableArray alloc] init];
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:@"1"]];
+//    [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:@"1"]];
     [rules addObject:[self getRulesByField:@"userId" op:@"eq" data:user.userId]];
     [rules addObject:[self getRulesByField:@"customerName" op:@"cn" data:filterString]];
     [rules addObject:[self getRulesByField:@"customerPhone" op:@"cn" data:filterString]];
@@ -115,7 +115,7 @@
     [rules addObject:[self getRulesByField:@"insuranceOrderNo" op:@"cn" data:filterString]];
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     
-    [NetWorkHandler requestToQueryForCustomerInsurPageList:@"1"
+    [NetWorkHandler requestToQueryForCustomerInsurPageList:nil
                                                     offset:offset
                                                      limit:LIMIT
                                                       sord:@"desc"
@@ -183,23 +183,61 @@
     InsurInfoModel *model = [array objectAtIndex:indexPath.row];
     
     cell.lbNo.text = model.insuranceOrderNo;
-    cell.lbName.text = model.customerName;
-    cell.lbPlate.text = model.carNo;
     
-    CGFloat width = [model.carNo sizeWithAttributes:@{NSFontAttributeName:cell.lbPlate.font}].width;
-    if(model.carNo && [model.carNo length] > 0)
-        cell.width.constant = width + 2;
-    else
-        cell.width.constant = 0;
-    if(model.planTypeName_ && [model.planTypeName_ length] > 0)
-        cell.lbContent.text = [NSString stringWithFormat:@"（%@）", model.planTypeName_];//[Util getStringByPlanType:model.planType];
-    [cell.phoneNum setTitle:model.customerPhone forState:UIControlStateNormal];
-    cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
-//    [OrderUtil setPolicyStatusWithCell:cell orderOfferStatus:model.orderOfferStatus orderOfferStatusStr:model.orderOfferStatusStr orderOfferPrintStatus:model.orderOfferPrintStatus];
-    [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
+    if(model.insuranceType == 1){
+        cell.lbName.text = model.customerName;
+        cell.lbPlate.text = model.carNo;
+        cell.lbPlate.font = _FONT(13);
+        
+        CGFloat width = [model.carNo sizeWithAttributes:@{NSFontAttributeName:cell.lbPlate.font}].width;
+        if(model.carNo && [model.carNo length] > 0)
+            cell.width.constant = width + 2;
+        else
+            cell.width.constant = 0;
+        if(model.planTypeName_ && [model.planTypeName_ length] > 0){
+            cell.lbContent.text = [NSString stringWithFormat:@"（%@）", model.planTypeName_];//[Util getStringByPlanType:model.planType];
+            cell.contentWidth.constant = 52;
+        }
+        else{
+            cell.lbContent.text = @"";
+            cell.contentWidth.constant = 10;
+        }
+        
+        
+        [cell.phoneNum setTitle:model.customerPhone forState:UIControlStateNormal];
+        cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
+        [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
+    }else{
+        cell.lbName.attributedText = [self getAttributeString:[NSString stringWithFormat:@"投保人:%@", model.customerName] subString:@"投保人:"];
+        cell.lbPlate.font = _FONT(13);
+        NSString *insuredName = [NSString stringWithFormat:@"被保人:%@", model.insuredName];
+        CGFloat width = [insuredName sizeWithAttributes:@{NSFontAttributeName:cell.lbPlate.font}].width;
+        if(insuredName && [insuredName length] > 0)
+            cell.width.constant = width + 2;
+        else
+            cell.width.constant = 0;
+        cell.lbPlate.attributedText = [self getAttributeString:insuredName subString:@"被保人:"];
+
+        cell.lbContent.text = @"";
+        cell.contentWidth.constant = 10;
+        [cell.phoneNum setTitle:model.customerPhone forState:UIControlStateNormal];
+//        cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
+        cell.lbStatus.text = model.orderOfferStatusMsg;
+        [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
+    }
+    
     [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];
     
     return cell;
+}
+
+- (NSMutableAttributedString *) getAttributeString:(NSString *) string subString:(NSString *) subString
+{
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
+    NSRange range = [string rangeOfString:subString];
+    [attString addAttribute:NSFontAttributeName value:_FONT(11) range:range];
+    [attString addAttribute:NSForegroundColorAttributeName value:_COLOR(0x75, 0x75, 0x75) range:range];
+    return attString;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -317,7 +355,6 @@
 {
     return UITableViewCellEditingStyleDelete; //每行左边会出现红的删除按钮
 }
-
 
 - (void) initData
 {

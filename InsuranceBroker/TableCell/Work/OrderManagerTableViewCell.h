@@ -24,5 +24,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbStatus;
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *width;//车牌
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *contentWidth;//续保
 
 @end

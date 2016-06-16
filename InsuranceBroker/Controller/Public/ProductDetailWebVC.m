@@ -12,6 +12,7 @@
 #import "SelectCustomerVC.h"
 #import "SelectInsuredVC.h"
 #import "SelectCustomerForCarVC.h"
+#import "RootViewController.h"
 
 @interface ProductDetailWebVC ()<SelectInsuredVCDelegate, SelectCustomerVCDelegate>
 
@@ -159,6 +160,20 @@
     SelectCustomerForCarVC *vc = [[SelectCustomerForCarVC alloc] initWithNibName:nil bundle:nil];
     vc.selectProductId = productAttrId;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void) NotifyCloseWindow
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Refresh_OrderList object:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Add_NewCustomer object:nil];
+    [self performSelector:@selector(turnToCustomerPage) withObject:nil afterDelay:0.1];
+}
+
+- (void) turnToCustomerPage
+{
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    delegate.root.selectedIndex = 1;
 }
 
 @end

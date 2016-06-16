@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="683" height="177"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="683" height="176.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="683" height="177"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UNs-aP-njd">
@@ -87,7 +87,7 @@
                                 <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gvk-Cg-Osq" customClass="LeftImgButtonLeft">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gvk-Cg-Osq" customClass="LeftImgButtonLeft">
                                 <rect key="frame" x="584" y="7" width="1" height="22"/>
                                 <animations/>
                                 <constraints>
@@ -171,6 +171,7 @@
             <connections>
                 <outlet property="btnStatus" destination="Gvk-Cg-Osq" id="fFx-OY-e4g"/>
                 <outlet property="contentBg" destination="lZx-QG-3Ka" id="hfI-qD-obh"/>
+                <outlet property="contentWidth" destination="Z7g-6F-k1R" id="CJn-Je-N4X"/>
                 <outlet property="lbContent" destination="BkQ-jY-wqe" id="6Gb-Op-4QW"/>
                 <outlet property="lbName" destination="lsH-UA-ExD" id="kSL-Gn-3vz"/>
                 <outlet property="lbNo" destination="3mY-R5-bqE" id="uMy-kc-kcD"/>

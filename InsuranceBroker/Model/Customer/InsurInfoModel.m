@@ -52,6 +52,10 @@
     model.orderOfferGatherStatus = [[dictionary objectForKey:@"orderOfferGatherStatus"] boolValue];
     model.orderImgType = [[dictionary objectForKey:@"orderImgType"] integerValue];
     model.planTypeName_ = [dictionary objectForKey:@"planTypeName_"];
+    model.gxTitle = [dictionary objectForKey:@"gxTitle"];
+    model.insuredName = [dictionary objectForKey:@"insuredName"];
+    model.expireDate = [InsurInfoModel dateFromString:[dictionary objectForKey:@"expireDate"]];
+    model.fcreateDate = [InsurInfoModel dateFromString:[dictionary objectForKey:@"fcreateDate"]];
     
     return model;
 }

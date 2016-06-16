@@ -71,27 +71,66 @@
     
     InsurInfoModel *model = [self.data objectAtIndex:indexPath.row];
     cell.lbNo.text = model.insuranceOrderNo;
-    NSString *carNo = model.carNo;
-    if(carNo == nil)
-        carNo = @"";
-    cell.lbName.text = [NSString stringWithFormat:@"%@", model.customerName];
-    cell.lbPlate.text = carNo;
-    CGFloat width = [model.carNo sizeWithAttributes:@{NSFontAttributeName:cell.lbPlate.font}].width;
-    if(carNo == nil || [carNo length] == 0)
-        cell.width.constant = 0;
-    else
-        cell.width.constant = width + 2;
-    if(model.planTypeName_ && [model.planTypeName_ length] > 0)
-        cell.lbContent.text = [NSString stringWithFormat:@"（%@）", model.planTypeName_];
     cell.lbUpdateTime.text = [Util getTimeString:model.updatedAt];
-    
-    cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
-//    [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatus:model.orderOfferStatus orderOfferStatusStr:model.orderOfferStatusStr orderOfferPrintStatus:model.orderOfferPrintStatus];
-    [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
-    
-    [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];
+    if(model.insuranceType == 1){
+        NSString *carNo = model.carNo;
+        if(carNo == nil)
+            carNo = @"";
+        cell.lbName.text = [NSString stringWithFormat:@"%@", model.customerName];
+        cell.lbPlate.text = carNo;
+        CGFloat width = [model.carNo sizeWithAttributes:@{NSFontAttributeName:cell.lbPlate.font}].width;
+        if(carNo == nil || [carNo length] == 0)
+            cell.width.constant = 0;
+        else
+            cell.width.constant = width + 2;
+        if(model.planTypeName_ && [model.planTypeName_ length] > 0)
+            cell.lbContent.text = [NSString stringWithFormat:@"（%@）", model.planTypeName_];
+        else
+            cell.lbContent.text = @"";
+        
+        if(model.planTypeName_ && [model.planTypeName_ length] > 0)
+            cell.contentWidth.constant = 52;
+        else
+            cell.contentWidth.constant = 10;
+        
+        cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
+        [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
+        
+        [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];
+    }
+    else{
+        NSString *carNo = model.carNo;
+        if(carNo == nil)
+            carNo = @"";
+        cell.lbName.attributedText = [self getAttributeString:[NSString stringWithFormat:@"投保人:%@", model.customerName] subString:@"投保人:"];
+        cell.lbPlate.font = _FONT(13);
+        NSString *insuredName = [NSString stringWithFormat:@"被保人:%@", model.insuredName];
+        CGFloat width = [insuredName sizeWithAttributes:@{NSFontAttributeName:cell.lbPlate.font}].width;
+        if(insuredName && [insuredName length] > 0)
+            cell.width.constant = width + 2;
+        else
+            cell.width.constant = 0;
+        cell.lbPlate.attributedText = [self getAttributeString:insuredName subString:@"被保人:"];
+        
+        cell.lbContent.text = @"";
+        cell.contentWidth.constant = 10;
+        
+        cell.lbStatus.text = model.orderOfferStatusMsg;
+        [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
+        
+        [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];
+    }
     
     return cell;
+}
+
+- (NSMutableAttributedString *) getAttributeString:(NSString *) string subString:(NSString *) subString
+{
+    NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:string];
+    NSRange range = [string rangeOfString:subString];
+    [attString addAttribute:NSFontAttributeName value:_FONT(11) range:range];
+    [attString addAttribute:NSForegroundColorAttributeName value:_COLOR(0x75, 0x75, 0x75) range:range];
+    return attString;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

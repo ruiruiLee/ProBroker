@@ -33,6 +33,10 @@
 @property (nonatomic, assign) float orderOfferRatio;//":"0"; //折扣率 - 成功后才维护值
 @property (nonatomic, assign) float orderOfferPayPrice;//":"0"; //实际支付价 - 成功后才维护值
 @property (nonatomic, strong) NSString *customerName;//":"长得帅"; //经纪人姓名
+@property (nonatomic, strong) NSString *insuredName;//被保人姓名
+@property (nonatomic, strong) NSDate *expireDate;//保单生效日期
+@property (nonatomic, strong) NSDate *fcreateDate;//到期时间
+@property (nonatomic, strong) NSString *gxTitle;
 @property (nonatomic, strong) NSString *customerPhone;//电话
 @property (nonatomic, strong) NSString *carNo;//":"川A11111"; //投保车牌号
 @property (nonatomic, strong) NSString *respAddr;//;":"/car_insur/car_insur_plan.html?orderId=0f5e240754e143bd97bb083041634987"; //点击地址，参数什么的都拼接好了，没有参数不跳转
