@@ -70,11 +70,9 @@
     AppContext *con= [AppContext sharedAppContext];
     if(con.pushCustomerNum > 0)
     {
-        self.tabBar.items[1].badgeValue= [NSString stringWithFormat:@"%ld", (long)con.pushCustomerNum ];
-        //        [self.tabBar showBadgeOnItemIndex:1];
+        self.tabBar.items[1].badgeValue= [NSString stringWithFormat:@"%ld", (long)con.pushCustomerNum];
     }
     else{
-        //        [self.tabBar hideBadgeOnItemIndex:1];
         self.tabBar.items[1].badgeValue=nil;
         
     }

@@ -927,9 +927,16 @@
         str = [NSString stringWithFormat:@"%@&orderId=%@", str, self.orderId];
     }
     
+    if(self.selectProModel){
+        if(self.selectProModel.productAttrId)
+            str = [NSString stringWithFormat:@"%@&productId=%@", str, self.selectProModel.productAttrId];
+        if(self.selectProModel.compCode)
+            str = [NSString stringWithFormat:@"%@&compCode=%@", str, self.selectProModel.compCode];
+    }
+    
     web.title = @"报价";
     [self.navigationController pushViewController:web animated:YES];
-    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.customerModel.customerId, customerCarId, str];
+    NSString *url = [NSString stringWithFormat:CAR_INSUR_PLAN, Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.customerModel.customerId, customerCarId, str];
     [web loadHtmlFromUrl:url];
 }
 

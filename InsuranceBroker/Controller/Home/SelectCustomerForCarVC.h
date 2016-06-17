@@ -7,6 +7,7 @@
 //
 
 #import "BasePullTableVC.h"
+#import "productAttrModel.h"
 
 @class SelectCustomerForCarVC;
 @class CustomerDetailModel;
@@ -21,6 +22,6 @@
 @property (nonatomic, strong) UISearchBar *searchbar;
 @property (nonatomic, weak) id<SelectCustomerForCarVCDelegate> delegate;
 
-@property (nonatomic, strong) NSString *selectProductId;
+@property (nonatomic, strong) productAttrModel *selectProModel;//选中的产品
 
 @end

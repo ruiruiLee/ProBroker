@@ -36,6 +36,7 @@
     model.seqNo = [dictionary objectForKey:@"seqNo"];
     model.showPrice = [dictionary objectForKey:@"showPrice"];
     model.productMaxRatio = [dictionary objectForKey:@"productMaxRatio"];
+    model.compCode = [dictionary objectForKey:@"compCode"];
     
     return model;
 }

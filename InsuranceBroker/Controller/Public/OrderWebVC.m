@@ -56,6 +56,7 @@
 
 - (void) loadHtmlFromUrl:(NSString *) url
 {
+    NSLog(@"%@", url);
     self.urlpath = url;
     if(self.webview)
         [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];

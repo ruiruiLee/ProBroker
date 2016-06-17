@@ -14,6 +14,7 @@
 #import "IQKeyboardManager.h"
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "SBJsonParser.h"
 
 @interface WebViewController ()
 
@@ -395,6 +396,14 @@
     }
     
     return [NSString stringWithFormat:@"%@%@", self.shareUrl, addtype];
+}
+
+- (NSDictionary *) getShareInfo
+{
+    NSString *str = [self.webview stringByEvaluatingJavaScriptFromString:@"getShareInfo();"];
+    SBJsonParser *_parser = [[SBJsonParser alloc] init];
+    NSDictionary *dic = [_parser objectWithString:str];
+    return dic;
 }
 
 @end

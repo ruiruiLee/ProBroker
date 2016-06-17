@@ -52,5 +52,6 @@
 @property (nonatomic, assign) BOOL orderOfferGatherStatus;
 
 @property (nonatomic, assign) NSInteger orderImgType;
+@property (nonatomic, strong) NSString *clickUrl;//订单详情地址
 
 @end

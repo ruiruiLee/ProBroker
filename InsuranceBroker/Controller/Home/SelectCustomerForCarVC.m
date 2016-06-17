@@ -154,25 +154,6 @@
     
     CustomerInfoModel *model = [self.data objectAtIndex:indexPath.row];
     [ProgressHUD show:nil];
-    
-//    [NetWorkHandler requestToQueryCustomerBaseInfo:model.customerId carInfo:@"1" Completion:^(int code, id content) {
-//        [ProgressHUD dismiss];
-//        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-//        if(code == 200){
-//            CustomerDetailModel *date = (CustomerDetailModel*)[CustomerDetailModel modelFromDictionary:[content objectForKey:@"data"]];
-//            if(delegate && [delegate respondsToSelector:@selector(NotifyCustomerSelectedWithModel:vc:)]){
-//                [delegate NotifyCustomerSelectedWithModel:date vc:self];
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }
-//        }
-//    }];
-
-//    CustomerDetailVC *detail = [IBUIFactory CreateCustomerDetailViewController];
-//    [self.navigationController pushViewController:detail animated:YES];
-//    detail.customerinfoModel = model;
-//    [self performSelector:@selector(showProgressHUD) withObject:nil afterDelay:0.2];
-//    [detail performSelector:@selector(loadDetailWithCustomerId:) withObject:model.customerId afterDelay:0.2];
-//    [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.8];
 
     [self loadCarInfo:model.customerId Completion:^(int code, id content) {
         [ProgressHUD dismiss];
@@ -189,16 +170,24 @@
                     if(car.carInsurStatus1 && car.carInsurCompId1 != nil){
                         str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", car.carInsurCompId1];
                     }
+                    
+                    if(self.selectProModel){
+                        if(self.selectProModel.productAttrId)
+                            str = [NSString stringWithFormat:@"%@&productId=%@", str, self.selectProModel.productAttrId];
+                        if(self.selectProModel.compCode)
+                            str = [NSString stringWithFormat:@"%@&compCode=%@", str, self.selectProModel.compCode];
+                    }
 
                     OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
                     web.title = @"报价";
                     [self.navigationController pushViewController:web animated:YES];
-                    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, model.customerId, car.customerCarId, str];
+                    NSString *url = [NSString stringWithFormat:CAR_INSUR_PLAN, Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, model.customerId, car.customerCarId, str];
                     [web loadHtmlFromUrl:url];
                 }else{
                     CustomerDetailVC *detail = [IBUIFactory CreateCustomerDetailViewController];
                     [self.navigationController pushViewController:detail animated:YES];
                     detail.customerinfoModel = model;
+                    detail.selectProModel = self.selectProModel;
                     [self performSelector:@selector(showProgressHUD) withObject:nil afterDelay:0.2];
                     [detail performSelector:@selector(loadDetailWithCustomerId:) withObject:model.customerId afterDelay:0.2];
                     [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.8];
@@ -208,6 +197,7 @@
                 CustomerDetailVC *detail = [IBUIFactory CreateCustomerDetailViewController];
                 [self.navigationController pushViewController:detail animated:YES];
                 detail.customerinfoModel = model;
+                detail.selectProModel = self.selectProModel;
                 [self performSelector:@selector(showProgressHUD) withObject:nil afterDelay:0.2];
                 [detail performSelector:@selector(loadDetailWithCustomerId:) withObject:model.customerId afterDelay:0.2];
                 [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.8];

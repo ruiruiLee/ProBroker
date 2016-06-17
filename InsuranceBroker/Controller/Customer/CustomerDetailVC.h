@@ -14,6 +14,7 @@
 #import "CustomerFollowUpInfoView.h"
 
 #import "CustomerInfoModel.h"
+#import "productAttrModel.h"
 
 @interface CustomerDetailVC : BaseViewController<CustomDetailHeaderViewDelegate>
 {
@@ -45,6 +46,8 @@
 @property (nonatomic, strong) CustomerInfoModel *customerinfoModel;
 
 @property (nonatomic, strong) HighNightBgButton *btnChat;
+
+@property (nonatomic, strong) productAttrModel *selectProModel;//选中的产品
 
 - (void) loadDetailWithCustomerId:(NSString *)customerId;
 

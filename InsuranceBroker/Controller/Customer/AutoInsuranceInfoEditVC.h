@@ -12,6 +12,7 @@
 #import "LeftImgButton.h"
 #import "HBImageViewList.h"
 #import "ReactiveButton.h"
+#import "productAttrModel.h"
 
 typedef enum : NSUInteger {
     enumAddPhotoTypeNone,
@@ -99,6 +100,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, assign) addPhotoType type;
 @property (nonatomic, strong) NSString *orderId;
 @property (nonatomic, assign) InsuranceType insType;
+
+@property (nonatomic, strong) productAttrModel *selectProModel;//选中的产品
 
 - (IBAction)doButtonEditNo:(UIButton *)sender;
 - (IBAction)doButtonHowToWrite:(UIButton *)sender;

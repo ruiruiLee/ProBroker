@@ -597,42 +597,53 @@
 {
     if(sender == _policyListView){
         InsurInfoModel *model = [self.data.insurArray objectAtIndex:idx];
-        NSInteger orderOfferStatus = model.orderOfferStatus;
         
-        if (orderOfferStatus == 4 || orderOfferStatus == 5 || orderOfferStatus == 6 || orderOfferStatus == 7 || orderOfferStatus == 8){
-            OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
-            web.insModel = model;
-            web.title = @"报价详情";
-            web.type = enumShareTypeShare;
-            if(model.productLogo){
-                web.shareImgArray = [NSArray arrayWithObject:model.productLogo];
+        if(model.insuranceType == 1){
+            NSInteger orderOfferStatus = model.orderOfferStatus;
+            
+            if (orderOfferStatus == 4 || orderOfferStatus == 5 || orderOfferStatus == 6 || orderOfferStatus == 7 || orderOfferStatus == 8){
+                OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
+                web.insModel = model;
+                web.title = @"报价详情";
+                web.type = enumShareTypeShare;
+                if(model.productLogo){
+                    web.shareImgArray = [NSArray arrayWithObject:model.productLogo];
+                }
+                UserInfoModel *user = [UserInfoModel shareUserInfoModel];
+                web.shareTitle = [NSString stringWithFormat:@"我是%@，我是优快保自由经纪人。这是为您定制的投保方案报价，请查阅。电话%@", user.realName, user.phone];
+                [self.navigationController pushViewController:web animated:YES];
+                [web initShareUrl:model.insuranceOrderUuid insuranceType:@"1" planOfferId:model.planOfferId];
+                if(model.planOfferId){
+                    NSString *url = [NSString stringWithFormat:@"%@?insuranceType=%@&orderId=%@&planOfferId=%@", model.clickUrl, @"1", model.insuranceOrderUuid, model.planOfferId];
+                    [web loadHtmlFromUrl:url];
+                }else
+                {
+                    NSString *url = [NSString stringWithFormat:@"%@?insuranceType=%@&orderId=%@", model.clickUrl, @"1", model.insuranceOrderUuid];
+                    [web loadHtmlFromUrl:url];
+                }
             }
-            UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-            web.shareTitle = [NSString stringWithFormat:@"我是%@，我是优快保自由经纪人。这是为您定制的投保方案报价，请查阅。电话%@", user.realName, user.phone];
-            [self.navigationController pushViewController:web animated:YES];
-            [web initShareUrl:model.insuranceOrderUuid insuranceType:@"1" planOfferId:model.planOfferId];
-            if(model.planOfferId){
-                NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", model.insuranceOrderUuid, model.planOfferId];
-                [web loadHtmlFromUrl:url];
-            }else
-            {
-                NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@", Base_Uri, @"1", model.insuranceOrderUuid];
+            else if (orderOfferStatus == 3){
+                OfferDetailsVC *vc = [IBUIFactory CreateOfferDetailsViewController];
+                vc.orderId = model.insuranceOrderUuid;
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
+                web.insModel = model;
+                web.title = @"报价详情";
+                [self.navigationController pushViewController:web animated:YES];
+                NSString *url = [NSString stringWithFormat:@"%@?insuranceType=%@&orderId=%@", model.clickUrl, @"1", model.insuranceOrderUuid];
                 [web loadHtmlFromUrl:url];
             }
-        }
-        else if (orderOfferStatus == 3){
-            OfferDetailsVC *vc = [IBUIFactory CreateOfferDetailsViewController];
-            vc.orderId = model.insuranceOrderUuid;
-            [self.navigationController pushViewController:vc animated:YES];
         }else{
-            OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
-            web.insModel = model;
-            web.title = @"报价详情";
+            ProductDetailWebVC *web = [IBUIFactory CreateProductDetailWebVC];
+            web.title = @"保单详情";
             [self.navigationController pushViewController:web animated:YES];
-            NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@", Base_Uri, @"1", model.insuranceOrderUuid];
+            NSString *url = [NSString stringWithFormat:@"%@?orderId=%@", model.clickUrl, model.insuranceOrderUuid];
             [web loadHtmlFromUrl:url];
         }
+    
     }
+    
 }
 
 //客户跟进加载更多
@@ -835,6 +846,7 @@
     AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
     [self.navigationController pushViewController:vc animated:YES];
     vc.customerId = self.customerId;
+    vc.selectProModel = self.selectProModel;
     vc.customerModel = self.data;
 }
 
@@ -922,13 +934,22 @@
         OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
         web.title = @"报价";
         [self.navigationController pushViewController:web animated:YES];
-        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.data.customerId, self.data.carInfo.customerCarId, str];
+        
+        if(self.selectProModel){
+            if(self.selectProModel.productAttrId)
+                str = [NSString stringWithFormat:@"%@&productId=%@", str, self.selectProModel.productAttrId];
+            if(self.selectProModel.compCode)
+                str = [NSString stringWithFormat:@"%@&compCode=%@", str, self.selectProModel.compCode];
+        }
+        
+        NSString *url = [NSString stringWithFormat:CAR_INSUR_PLAN, Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.data.customerId, self.data.carInfo.customerCarId, str];
         [web loadHtmlFromUrl:url];
     }else{
 
         AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
         [self.navigationController pushViewController:vc animated:YES];
         vc.customerId = self.customerId;
+        vc.selectProModel = self.selectProModel;
         vc.customerModel = self.data;
     }
 }

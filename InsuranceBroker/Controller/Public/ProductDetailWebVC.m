@@ -158,7 +158,7 @@
 - (void) NotifyToSelectCustomerForCar:(NSString *) productAttrId
 {
     SelectCustomerForCarVC *vc = [[SelectCustomerForCarVC alloc] initWithNibName:nil bundle:nil];
-    vc.selectProductId = productAttrId;
+    vc.selectProModel = self.selectProModel;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -174,6 +174,68 @@
 {
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     delegate.root.selectedIndex = 1;
+}
+
+/**
+ *  简单分享
+ */
+- (void)simplyShare:(SSDKPlatformType) type
+{
+    /**
+     * 在简单分享中，只要设置共有分享参数即可分享到任意的社交平台
+     **/
+    //创建分享参数
+    
+    NSDictionary *object = [self getShareInfo];
+    if(object == nil){
+        [super simplyShare:type];
+    }else{
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        NSString *url = [object objectForKey:@"url"];
+        url = [NSString stringWithFormat:@"%@&userId=%@&appShare=1&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, [UserInfoModel shareUserInfoModel].uuid];
+        NSMutableArray *imgArray = [[NSMutableArray alloc] init];
+        NSString *flagImg = [object objectForKey:@"flagImg"];
+        if(flagImg)
+            [imgArray addObject:flagImg];
+        
+        if(imgArray == nil || [imgArray count] == 0)
+        {
+            AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+            if(appdelegate.appIcon)
+                [imgArray addObject:appdelegate.appIcon];
+        }
+        
+        
+        if (self.shareImgArray) {
+            
+            [shareParams SSDKSetupShareParamsByText:[object objectForKey:@"content"]
+                                             images:imgArray
+                                                url:[NSURL URLWithString:url]
+                                              title:[object objectForKey:@"title"]
+                                               type:SSDKContentTypeAuto];
+            
+            //进行分享
+            [ShareSDK share:type
+                 parameters:shareParams
+             onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                 
+                 switch (state) {
+                     case SSDKResponseStateSuccess:
+                     {
+                         [KGStatusBar showSuccessWithStatus:@"分享成功"];
+                         break;
+                     }
+                     case SSDKResponseStateFail:
+                     {
+                         [KGStatusBar showSuccessWithStatus:@"分享失败"];
+                         break;
+                     }
+                     default:
+                         break;
+                 }
+             }];
+        }
+    }
 }
 
 @end

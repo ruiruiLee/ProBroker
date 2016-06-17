@@ -59,4 +59,6 @@
 - (void) loadWebString;
 - (void)addWebCache:(NSURLRequest *)request;
 
+- (NSDictionary *) getShareInfo;
+
 @end

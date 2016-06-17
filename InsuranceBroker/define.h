@@ -103,4 +103,6 @@
 
 #define FormatImage(imageUrl,imageWidth,imageHeight) [NSString stringWithFormat:@"%@?imageView/1/w/%d/h/%d", imageUrl,imageWidth * 2,imageHeight * 2]
 
+#define CAR_INSUR_PLAN @"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@"
+
 #endif /* define_h */

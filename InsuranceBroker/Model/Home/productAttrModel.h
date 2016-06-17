@@ -21,5 +21,6 @@
 @property (nonatomic, strong) NSString *seqNo;
 @property (nonatomic, strong) NSString *showPrice;//价格
 @property (nonatomic, strong) NSString *productMaxRatio;
+@property (nonatomic, strong) NSString *compCode;
 
 @end
