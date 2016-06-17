@@ -91,4 +91,6 @@
 - (void) loadDetail:(Completion) completion;
 - (void) setDetailContentWithDictionary1:(NSDictionary *) dic;
 
+- (UserInfoModel *) initWithUserId:(NSString *) userId;
+
 @end

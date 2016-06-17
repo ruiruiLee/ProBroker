@@ -40,6 +40,28 @@
     [self removeObserver:self forKeyPath:@"userId"];
 }
 
+- (UserInfoModel *) initWithUserId:(NSString *) userId
+{
+    self = [super init];
+    if(self){
+        self.userId = userId;
+        [self addObserver:self forKeyPath:@"userId" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+        
+        self.isLogin = NO;
+        
+        self.isRegister = NO;
+        self.mobileFlag = YES;
+        self.webFlag = NO;
+        self.sex = 1;
+        self.leader = 0;
+        self.cardVerifiy = 1;
+        self.userType = 4;
+        self.possessTeamStatus = NO;
+    }
+    
+    return self;
+}
+
 - (id) init
 {
     self = [super init];

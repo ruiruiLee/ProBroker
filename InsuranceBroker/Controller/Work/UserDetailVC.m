@@ -44,7 +44,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.userinfo =  [[UserInfoModel alloc] init];
+    self.userinfo =  [[UserInfoModel alloc] initWithUserId:self.brokerInfo.userId];
     UIImage *placeholderImage = ThemeImage(@"head_male");
 //    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.brokerInfo.headerImg] placeholderImage:placeholderImage];
     CGSize size = self.photo.frame.size;
@@ -131,7 +131,7 @@
         [self  handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             [self.userinfo setDetailContentWithDictionary1:[content objectForKey:@"data"]];
-            self.userinfo.userId = [[content objectForKey:@"data"] objectForKey:@"userId"];
+//            self.userinfo.userId = [[content objectForKey:@"data"] objectForKey:@"userId"];
             [self resetViews];
         }
     }];

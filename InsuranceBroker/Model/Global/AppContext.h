@@ -45,7 +45,7 @@
 + (AppContext *)sharedAppContext;
 - (void)saveData;
 - (void)resetData;
-- (void) loadData;
+- (void)loadData;
 - (void)removeData;
 - (BOOL)judgeDisplay:(NSInteger)category;  // 判断是否有新的消息 好显示红点
 - (void)SaveNewsTip:(NSArray*) arrayNew; // 存储类别显示红点信息
