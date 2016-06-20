@@ -345,6 +345,10 @@
     if([keyPath isEqualToString:@"userId"]){
         [self performSelector:@selector(queryUserInfo) withObject:nil afterDelay:0.1];
 //        [self performSelector:@selector(loadLastNewsTip) withObject:nil afterDelay:0.1];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            [[UserInfoModel shareUserInfoModel] loadLastNewsTip];
+        });
     }
 }
 
