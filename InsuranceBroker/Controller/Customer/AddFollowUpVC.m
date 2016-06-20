@@ -112,6 +112,9 @@
     [self textViewDidChange:self.tfAdd];
     
     [self loadVisitDictionary];
+    if(self.visitModel){
+        [self setVisitModel:self.visitModel];
+    }
     
 }
 
@@ -296,7 +299,16 @@
 - (void) setVisitModel:(VisitInfoModel *)model
 {
     _visitModel = model;
-    self.view.userInteractionEnabled = NO;
+//    self.view.userInteractionEnabled = NO;
+    self.tfview.editable = NO;
+    self.btnStatus.userInteractionEnabled = NO;
+    self.btnTime.userInteractionEnabled = NO;
+    self.btnWay.userInteractionEnabled = NO;
+    self.tfAdd.userInteractionEnabled = NO;
+    self.tfStatus.userInteractionEnabled = NO;
+    self.tfTIme.userInteractionEnabled = NO;
+    self.tfWay.userInteractionEnabled = NO;
+    
     self.tfview.text = model.visitMemo;
     self.tfAdd.text = model.visitAddr;
     self.tfStatus.text = model.visitProgress;
@@ -356,7 +368,8 @@
             self.tfAdd.text = [textView.text substringToIndex:TEXT_LEN];
         }
         
-        CGSize size = [textView.text boundingRectWithSize:CGSizeMake(ScreenWidth - 158, INT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:textView.font} context:nil].size;//[textView.text sizeWithFont:textView.font constrainedToSize:CGSizeMake(ScreenWidth - 158, INT_MAX)];
+        UIFont *font = _FONT(15);
+        CGSize size = [textView.text boundingRectWithSize:CGSizeMake(ScreenWidth - 158, INT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:font} context:nil].size;//[textView.text sizeWithFont:textView.font constrainedToSize:CGSizeMake(ScreenWidth - 158, INT_MAX)];
         if(size.height > 36)
             size.height = 36;
         if(size.height < 10)
