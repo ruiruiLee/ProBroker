@@ -330,7 +330,7 @@
      **/
     //创建分享参数
     
-    self.shareUrl = [self getshareUrlWithType:type];
+    NSString *url = [self getshareUrlWithType:type];
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     
     if(self.shareImgArray == nil || [self.shareImgArray count] == 0)
@@ -347,7 +347,7 @@
         
         [shareParams SSDKSetupShareParamsByText:self.shareContent
                                          images:self.shareImgArray
-                                            url:[NSURL URLWithString:self.shareUrl]
+                                            url:[NSURL URLWithString:url]
                                           title:self.shareTitle
                                            type:SSDKContentTypeAuto];
         

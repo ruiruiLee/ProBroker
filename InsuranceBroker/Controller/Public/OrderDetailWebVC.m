@@ -155,8 +155,6 @@
      **/
     //创建分享参数
     
-    self.shareUrl = [self getshareUrlWithType:type];
-    
     NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
     
     if(self.shareImgArray == nil || [self.shareImgArray count] == 0){
