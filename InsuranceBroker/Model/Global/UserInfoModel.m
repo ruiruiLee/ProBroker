@@ -302,6 +302,44 @@
 
 }
 
+- (void) queryCustomerCount:(Completion) completion
+{
+    if(self.userId == nil || [self.userId length] == 0){
+        if(completion){
+            completion(-1, nil);
+        }
+        return;
+    }
+    
+    [NetWorkHandler requestToPushCustomerCount:self.userId completion:^(int code, id content) {
+        completion(code, content);
+    }];
+}
+
+- (void) loadCustomerCount
+{
+    [self queryCustomerCount:^(int code, id content) {
+        if(code == 200){
+            AppContext *context = [AppContext sharedAppContext];
+            context.pushCustomerNum = [[content objectForKey:@"data"] integerValue];
+            [context saveData];
+        }else if (code == 504){
+            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+            model.isLogin = NO;
+            [[AppContext sharedAppContext] removeData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
+            
+            [AVUser logOut];  //清除缓存用户对象
+            
+            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
+            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
+            [currentInstallation saveInBackground];
+            [self login];
+        }
+    }];
+}
+
 #pragma 登录
 - (BOOL) login
 {
@@ -348,6 +386,7 @@
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             [[UserInfoModel shareUserInfoModel] loadLastNewsTip];
+            [[UserInfoModel shareUserInfoModel] loadCustomerCount];
         });
     }
 }

@@ -197,7 +197,7 @@ static AppContext *context = nil;
 //    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isNewMessage"];
     [self.arrayNewsTip removeAllObjects];
     [dic setObject:self.arrayNewsTip forKey:@"arrayNewsTip"];
-    [dic setObject:[NSNumber numberWithInteger:self.pushCustomerNum] forKey:@"pushCustomerNum"];
+    [dic setObject:[NSNumber numberWithInteger:0] forKey:@"pushCustomerNum"];
     [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isZSKFHasMsg"];
     [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isBDKFHasMsg"];
     [dic writeToFile:file atomically:YES];
