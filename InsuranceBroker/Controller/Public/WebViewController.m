@@ -189,7 +189,7 @@
 {
     NSString *url = webView.request.URL.absoluteString;
     if(![url isEqualToString:self.urlpath])
-        self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1", url, [UserInfoModel shareUserInfoModel].userId];
+        self.shareUrl = [NSString stringWithFormat:@"%@&userId=%@&appShare=1", url, [UserInfoModel shareUserInfoModel].userId];
 }
 
 

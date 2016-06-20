@@ -111,6 +111,7 @@
 		862CD3421C5C8CFE0056D2EA /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 862CD3401C5C8CFE0056D2EA /* ProgressHUD.m */; };
 		86398CA81D027F4B007D5B40 /* SelectCustomerForCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86398CA71D027F4B007D5B40 /* SelectCustomerForCarVC.m */; };
 		863DF1401D1011FF00AEB6A9 /* NetWorkHandler+newUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 863DF13F1D1011FF00AEB6A9 /* NetWorkHandler+newUser.m */; };
+		863DF1481D17FFDF00AEB6A9 /* EditAbleTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 863DF1471D17FFDF00AEB6A9 /* EditAbleTextView.m */; };
 		86493FFC1C745E1300121BD1 /* SJAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 86493FFB1C745E1300121BD1 /* SJAvatarBrowser.m */; };
 		865065821C1E6BC800429EAE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 865065811C1E6BC800429EAE /* main.m */; };
 		865065851C1E6BC800429EAE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 865065841C1E6BC800429EAE /* AppDelegate.m */; };
@@ -672,6 +673,8 @@
 		86398CA71D027F4B007D5B40 /* SelectCustomerForCarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCustomerForCarVC.m; sourceTree = "<group>"; };
 		863DF13E1D1011FF00AEB6A9 /* NetWorkHandler+newUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+newUser.h"; sourceTree = "<group>"; };
 		863DF13F1D1011FF00AEB6A9 /* NetWorkHandler+newUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+newUser.m"; sourceTree = "<group>"; };
+		863DF1461D17FFDF00AEB6A9 /* EditAbleTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAbleTextView.h; sourceTree = "<group>"; };
+		863DF1471D17FFDF00AEB6A9 /* EditAbleTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAbleTextView.m; sourceTree = "<group>"; };
 		86493FFA1C745E1300121BD1 /* SJAvatarBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJAvatarBrowser.h; sourceTree = "<group>"; };
 		86493FFB1C745E1300121BD1 /* SJAvatarBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJAvatarBrowser.m; sourceTree = "<group>"; };
 		8650657D1C1E6BC800429EAE /* InsuranceBroker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsuranceBroker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2105,6 +2108,8 @@
 				86248F231CD05A0E00F1B493 /* ReactiveButton.m */,
 				86B279031CD8798A000E5FAA /* UITabBar+badge.h */,
 				86B279041CD8798A000E5FAA /* UITabBar+badge.m */,
+				863DF1461D17FFDF00AEB6A9 /* EditAbleTextView.h */,
+				863DF1471D17FFDF00AEB6A9 /* EditAbleTextView.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -3099,6 +3104,7 @@
 				86A26E7C1C4518370073FFFC /* PosterModel.m in Sources */,
 				86A26E6D1C44E2CE0073FFFC /* DetailAccountTableViewCell.m in Sources */,
 				86C3BBF91C2C133C00F98E80 /* InsuranceInfoView.m in Sources */,
+				863DF1481D17FFDF00AEB6A9 /* EditAbleTextView.m in Sources */,
 				8625B0241C3D0BF700312B98 /* NetWorkHandler+queryUserInfo.m in Sources */,
 				86A5049F1C4FA3670032A901 /* NetWorkHandler+queryForWechatUserPageList.m in Sources */,
 				86F014241C86823C00A3C68E /* BillDetailInfoFromSubVC.m in Sources */,

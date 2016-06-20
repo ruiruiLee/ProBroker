@@ -8,6 +8,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddFollowUpVC">
             <connections>
                 <outlet property="addVConstraint" destination="9H1-rL-ygr" id="QCj-SH-NtM"/>
+                <outlet property="btnStatus" destination="egl-Gj-YC5" id="xFG-Ub-Lwk"/>
+                <outlet property="btnTime" destination="ETB-Ez-k1S" id="0b3-iu-aso"/>
+                <outlet property="btnWay" destination="zec-eR-w3K" id="k57-jw-eLF"/>
                 <outlet property="tfAdd" destination="G7Y-X9-q4t" id="yIg-jP-7mL"/>
                 <outlet property="tfStatus" destination="Yf3-Ne-GYw" id="Glv-Tr-RD0"/>
                 <outlet property="tfTIme" destination="Ehd-AV-RVI" id="Jaf-Gx-ICf"/>
@@ -38,7 +41,7 @@
                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t94-Un-Wa3">
                                     <rect key="frame" x="0.0" y="22" width="600" height="113"/>
                                     <subviews>
-                                        <textView opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0pt-Jk-hSx" customClass="PlaceholderTextView">
+                                        <textView opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0pt-Jk-hSx" customClass="EditAbleTextView">
                                             <rect key="frame" x="20" y="8" width="560" height="97"/>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

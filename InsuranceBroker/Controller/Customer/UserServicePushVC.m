@@ -196,6 +196,10 @@
             [[AppContext sharedAppContext] saveData];
             [self.data removeObject:model];
             [self.tableview reloadData];
+            [KGStatusBar showErrorWithStatus:@"获客成功，请返回客户列表查看！"];
+            if([self.data count] == 0){
+                [self.navigationController popViewControllerAnimated:YES];
+            }
         }
 
     }];
