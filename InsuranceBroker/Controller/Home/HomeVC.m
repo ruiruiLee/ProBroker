@@ -290,7 +290,7 @@
     [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnPlan]-0-[imgService]-0-|" options:0 metrics:nil views:views]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnProduct attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnPlan attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:imgBroker attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
-    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnService attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnService attribute:NSLayoutAttributeWidth multiplier:1 constant:0.5]];
     
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnProduct attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:180 nwidth:ScreenWidth]]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnPlan attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:180 nwidth:ScreenWidth]]];
@@ -300,7 +300,7 @@
     
 //    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
 //    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeRight multiplier:1 constant:-0.5]];
-    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeTop multiplier:1 constant:0.5]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeTop multiplier:1 constant:0.25]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:imgBroker attribute:NSLayoutAttributeBottom multiplier:1 constant:0]];
 //    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeLeft multiplier:1 constant:0]];
 //    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeRight multiplier:1 constant:0]];
@@ -314,7 +314,7 @@
     [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnDetail]-0.5-[btnCarLife]-0-|" options:0 metrics:nil views:views]];
     [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0.5-[btnDetail]-0-|" options:0 metrics:nil views:views]];
     [infoBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0.5-[btnCarLife]-0-|" options:0 metrics:nil views:views]];
-    [infoBg addConstraint:[NSLayoutConstraint constraintWithItem:btnDetail attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnCarLife attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [infoBg addConstraint:[NSLayoutConstraint constraintWithItem:btnDetail attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnCarLife attribute:NSLayoutAttributeWidth multiplier:1 constant:0.25]];
     
     JElasticPullToRefreshLoadingViewCircle *loadingViewCircle = [[JElasticPullToRefreshLoadingViewCircle alloc] init];
     loadingViewCircle.tintColor = [UIColor whiteColor];
