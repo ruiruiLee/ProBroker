@@ -374,7 +374,7 @@
             size.height = 36;
         if(size.height < 10)
             size.height = 18;
-        self.addVConstraint.constant = size.height + 16;
+        self.addVConstraint.constant = size.height + 16 + 1;
     }
     [self isHasModify];
 }
