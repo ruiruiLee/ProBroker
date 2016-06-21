@@ -12,6 +12,7 @@
 #import <ContactsUI/ContactsUI.h>
 #import "define.h"
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
+#import "SelectCustomerVC.h"
 
 @interface NewCustomerVC ()<CNContactPickerDelegate, ABPeoplePickerNavigationControllerDelegate>
 
@@ -175,13 +176,19 @@
                                                           
                                                           [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Reload_CustomerDetail object:nil];
                                                       }
-                                                      [self.navigationController popViewControllerAnimated:NO];
-                                                      CustomerDetailVC *vc = [IBUIFactory CreateCustomerDetailViewController];
-                                                      vc.hidesBottomBarWhenPushed = YES;
-                                                      [self.presentvc.navigationController pushViewController:vc animated:YES];
+                                                      if([self.presentvc isKindOfClass:[SelectCustomerVC class]]){
+                                                          [self.navigationController popViewControllerAnimated:YES];
+                                                      }
+                                                      else{
+                                                          [self.navigationController popViewControllerAnimated:NO];
+                                                          
+                                                          CustomerDetailVC *vc = [IBUIFactory CreateCustomerDetailViewController];
+                                                          vc.hidesBottomBarWhenPushed = YES;
+                                                          [self.presentvc.navigationController pushViewController:vc animated:YES];
 //                                                      vc.customerModel = self.data;
 //                                                      vc.customerId = self.data.customerId;
-                                                      [vc performSelector:@selector(loadDetailWithCustomerId:) withObject:[content objectForKey:@"data"] afterDelay:0.2];
+                                                          [vc performSelector:@selector(loadDetailWithCustomerId:) withObject:[content objectForKey:@"data"] afterDelay:0.2];
+                                                      }
                                                   }
                                               }];
 }
