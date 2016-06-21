@@ -66,7 +66,7 @@
     
     UIButton *btnDetail = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 24)];
     [btnDetail setTitle:@"提现说明" forState:UIControlStateNormal];
-    btnDetail.layer.cornerRadius = 10;
+    btnDetail.layer.cornerRadius = 12;
     btnDetail.layer.borderWidth = 0.5;
     btnDetail.layer.borderColor = _COLOR(0xff, 0x66, 0x19).CGColor;
     [btnDetail setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
