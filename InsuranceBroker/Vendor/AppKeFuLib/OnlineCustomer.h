@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import  <UIKit/UIKit.h>
-//#define kefuUrl = @"http://admin.appkefu.com/AppKeFu/admin/assets/avatar/"
+#define kefuUrl  @"http://admin.appkefu.com/AppKeFu/admin/assets/avatar/"
 #define bjkf @"policy"
 #define zxkf @"business"
 #define faq @"product"

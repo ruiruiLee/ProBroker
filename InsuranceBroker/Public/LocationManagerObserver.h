@@ -17,6 +17,7 @@
 @property (nonatomic, assign) double lon;
 @property (nonatomic, retain) CLLocationManager * locationManager ;
 @property (nonatomic, copy) NSString* currentCity ;
+@property (nonatomic, copy) NSString* currentArea ;
 @property (nonatomic, copy) NSString* currentDetailAdrress ;
 
 + (LocationManagerObserver *)sharedInstance;

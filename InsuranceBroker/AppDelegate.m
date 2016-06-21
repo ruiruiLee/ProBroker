@@ -254,7 +254,9 @@
     
     //接收到来自客服的消息
     if (!msgItem.isSendFromMe) {
-        
+
+        NSString * kefu = [NSString stringWithFormat:@"%@%@.jpg",kefuUrl,msgItem.username];
+        [OnlineCustomer sharedInstance].KefuAvatarImage =[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:kefu]]];
         if([msgItem.workgroupName isEqualToString:zxkf]){
             AppContext *context = [AppContext sharedAppContext];
             context.isZSKFHasMsg = YES;
@@ -272,20 +274,20 @@
               msgItem.username);
         
         //文本消息
-        if (KFMessageTypeText == msgItem.messageType) {
-            
-            NSLog(@"文本消息内容：%@", msgItem.messageContent);
-        }
-        //图片消息
-        else if (KFMessageTypeImageHTTPURL == msgItem.messageType)
-        {
-            NSLog(@"图片消息内容：%@", msgItem.messageContent);
-        }
-        //语音消息
-        else if (KFMessageTypeSoundHTTPURL == msgItem.messageType)
-        {
-            NSLog(@"语音消息内容：%@", msgItem.messageContent);
-        }
+//        if (KFMessageTypeText == msgItem.messageType) {
+//            
+//            NSLog(@"文本消息内容：%@", msgItem.messageContent);
+//        }
+//        //图片消息
+//        else if (KFMessageTypeImageHTTPURL == msgItem.messageType)
+//        {
+//            NSLog(@"图片消息内容：%@", msgItem.messageContent);
+//        }
+//        //语音消息
+//        else if (KFMessageTypeSoundHTTPURL == msgItem.messageType)
+//        {
+//            NSLog(@"语音消息内容：%@", msgItem.messageContent);
+//        }
     }
 }
 
