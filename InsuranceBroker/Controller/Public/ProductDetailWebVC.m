@@ -27,13 +27,54 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    //    self.shareUrl = webView.request.URL.absoluteString;
+    self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    
     NSString *jsonstr = [self isFirstLoad];
     
     if([jsonstr isEqualToString:@"true"]){
         [self NotifyToInitCustomerInfo];
     }
 }
+
+//-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+//{
+//    //如果跳转的网址跟当前界面生成时的网址一样 就不在本页面处理.push一个新的页面
+//    if (![request.URL.absoluteString isEqualToString:self.urlpath]) {
+////        ProductDetailWebVC *webviewVC = [IBUIFactory CreateProductDetailWebVC];
+////        webviewVC.urlpath =  request.URL.absoluteString;
+////        [self.navigationController pushViewController:webviewVC animated:YES];
+//        
+//        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStyleBordered target:self action:@selector(handleLeftBarButtonClicked:)];
+//        UIImage *image = [ThemeImage(@"arrow_left") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//        backItem.image = image;
+//        
+//        UIButton *btnShut = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 32, 24)];
+//        [btnShut setTitle:@"关闭" forState:UIControlStateNormal];
+//        [btnShut setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
+//        btnShut.titleLabel.font = _FONT(15);
+//        [btnShut addTarget:self action:@selector(doBtnShutClicked:) forControlEvents:UIControlEventTouchUpInside];
+//        UIBarButtonItem *shut = [[UIBarButtonItem alloc] initWithCustomView:btnShut];
+//        
+//        [self.navigationItem setLeftBarButtonItems:@[backItem, shut]];
+//        
+//        return YES;
+//    }else
+//        return  YES;
+//}
+//
+//- (void) handleLeftBarButtonClicked:(id)sender
+//{
+//    if (self.webview.canGoBack) {
+//        [self.webview goBack];//返回前一画面
+//    }else{
+//        [self.navigationController popViewControllerAnimated:YES];
+//    }
+//}
+//
+//- (void) doBtnShutClicked:(UIButton *) sender
+//{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 - (void) NotifyToSelectCustomer
 {

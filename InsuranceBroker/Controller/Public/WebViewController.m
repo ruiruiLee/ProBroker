@@ -187,6 +187,8 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    
     NSString *url = webView.request.URL.absoluteString;
     if(![url isEqualToString:self.urlpath])
         self.shareUrl = [NSString stringWithFormat:@"%@&userId=%@&appShare=1", url, [UserInfoModel shareUserInfoModel].userId];
