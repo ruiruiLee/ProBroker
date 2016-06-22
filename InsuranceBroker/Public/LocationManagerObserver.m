@@ -84,7 +84,7 @@
                                                  placemark.subLocality,
                                                    placemark.thoroughfare,
                                                    placemark.subThoroughfare);
-                
+                 _currentArea =placemark.administrativeArea;
                  _currentCity= !placemark.locality?placemark.administrativeArea:placemark.locality;
                  _currentDetailAdrress =[NSString stringWithFormat:@"%@%@%@%@%@%@", placemark.administrativeArea,
                   !placemark.subAdministrativeArea?@"":placemark.subAdministrativeArea,
