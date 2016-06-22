@@ -69,6 +69,7 @@
         [self.tableview setLayoutMargins:insets];
     }
     
+    //去掉设置产品折扣
     self.tableVConstraint.constant = 0;
 }
 
