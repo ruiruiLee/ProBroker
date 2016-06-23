@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "OrderManagerVC.h"
 #import "UITabBar+badge.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @interface RootViewController ()
 
@@ -167,11 +168,32 @@
 -(void) pushActivetoController:(id)dic{
     
     UINavigationController *nav =[self.viewControllers objectAtIndex:0];
-    if ([nav.topViewController isKindOfClass:[PrivateMsgVC class]]&&[[dic objectForKey:@"mt"] integerValue]==4)
+    NSInteger mt = [[dic objectForKey:@"mt"] integerValue];
+    if ([nav.topViewController isKindOfClass:[PrivateMsgVC class]]&&mt==4)
     {
          [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil];
         
-    }else{
+    }else if (504 == mt){
+        NSInteger ct = [[dic objectForKey:@"ct"] integerValue];
+        if (504 == ct) {
+            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+            model.isLogin = NO;
+            [[AppContext sharedAppContext] removeData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
+
+            [AVUser logOut];  //清除缓存用户对象
+
+            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
+            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
+            [currentInstallation saveInBackground];
+            
+            loginViewController *vc = [IBUIFactory CreateLoginViewController];
+            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:naVC animated:NO completion:nil];
+        }
+    }
+    else{
     AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
     [CMNavBarNotificationView notifyWithText:[[dic objectForKey:@"aps"] objectForKey:@"category"]
                                       detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
