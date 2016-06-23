@@ -174,6 +174,13 @@
          [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil];
         
     }else if (504 == mt){
+        
+        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+        [CMNavBarNotificationView notifyWithText:[[dic objectForKey:@"aps"] objectForKey:@"category"]
+                                          detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                     andDuration:5.0
+                                       msgparams:dic];
+        
         NSInteger ct = [[dic objectForKey:@"ct"] integerValue];
         if (504 == ct) {
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
@@ -275,6 +282,33 @@
             [web loadHtmlFromUrl:[NSString stringWithFormat:Peivate_Msg_Url, model.userId, [info objectForKey:@"p"]]];
           }
        }
+    else if( 504 == mt)
+    {
+        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+        [CMNavBarNotificationView notifyWithText:[[info objectForKey:@"aps"] objectForKey:@"category"]
+                                          detail:[[info objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                     andDuration:5.0
+                                       msgparams:info];
+        
+        NSInteger ct = [[info objectForKey:@"ct"] integerValue];
+        if (504 == ct) {
+            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+            model.isLogin = NO;
+            [[AppContext sharedAppContext] removeData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
+            
+            [AVUser logOut];  //清除缓存用户对象
+            
+            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
+            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
+            [currentInstallation saveInBackground];
+            
+            loginViewController *vc = [IBUIFactory CreateLoginViewController];
+            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:naVC animated:NO completion:nil];
+        }
+    }
 }
 
 @end
