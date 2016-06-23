@@ -41,6 +41,10 @@
 	self.delegate = self.proxyDelegate;
 }
 
+-(BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+    return NO;
+}
+
 - (void) setDelegate:(id<UIWebViewDelegate>)delegate{
 	if (delegate != self.proxyDelegate){
 		self.proxyDelegate.realDelegate = delegate;
