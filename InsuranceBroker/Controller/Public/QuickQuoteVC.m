@@ -38,6 +38,9 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     //    self.shareUrl = webView.request.URL.absoluteString;
+    
+    self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    
     NSString *url = webView.request.URL.absoluteString;
     if(![url isEqualToString:self.urlpath])
         self.shareUrl = [NSString stringWithFormat:@"%@&appShare=1", url];

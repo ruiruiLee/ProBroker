@@ -27,7 +27,8 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    //    self.shareUrl = webView.request.URL.absoluteString;
+    self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    
     NSString *jsonstr = [self isFirstLoad];
     
     if([jsonstr isEqualToString:@"true"]){

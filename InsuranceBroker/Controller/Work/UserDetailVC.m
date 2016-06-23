@@ -58,7 +58,7 @@
     [self.tableview registerNib:[UINib nibWithNibName:@"CommissionSetTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     self.tableview.scrollEnabled = NO;
     [self  loadData];
-    [self loadCommissionInfo];
+//    [self loadCommissionInfo];
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 16, 0, 16);
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     self.tableview.separatorColor = SepLineColor;
@@ -68,6 +68,9 @@
     if ([self.tableview respondsToSelector:@selector(setLayoutMargins:)]) {
         [self.tableview setLayoutMargins:insets];
     }
+    
+    //去掉设置产品折扣
+    self.tableVConstraint.constant = 0;
 }
 
 - (void)didReceiveMemoryWarning {
