@@ -192,6 +192,12 @@
             UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:naVC animated:NO completion:nil];
         }
+        
+        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+        [CMNavBarNotificationView notifyWithText:[[dic objectForKey:@"aps"] objectForKey:@"category"]
+                                          detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                     andDuration:5.0
+                                       msgparams:dic];
     }
     else{
     AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
@@ -220,6 +226,7 @@
 //mt＝2 客户相关类（获客，客户跟进）
 //mt＝ 3  通知消息类
 //mt＝ 4 私信
+//mt = 504  服务器禁止访问的推送
 -(void) pushtoController:(NSDictionary *)info
 {
      if([homevc login]==NO){
@@ -275,6 +282,33 @@
             [web loadHtmlFromUrl:[NSString stringWithFormat:Peivate_Msg_Url, model.userId, [info objectForKey:@"p"]]];
           }
        }
+    else if( 504 == mt)
+    {
+        NSInteger ct = [[info objectForKey:@"ct"] integerValue];
+        if (504 == ct) {
+            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+            model.isLogin = NO;
+            [[AppContext sharedAppContext] removeData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
+            
+            [AVUser logOut];  //清除缓存用户对象
+            
+            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
+            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
+            [currentInstallation saveInBackground];
+            
+            loginViewController *vc = [IBUIFactory CreateLoginViewController];
+            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:naVC animated:NO completion:nil];
+        }
+        
+        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+        [CMNavBarNotificationView notifyWithText:[[info objectForKey:@"aps"] objectForKey:@"category"]
+                                          detail:[[info objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                     andDuration:5.0
+                                       msgparams:info];
+    }
 }
 
 @end
