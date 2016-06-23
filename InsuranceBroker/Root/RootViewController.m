@@ -174,13 +174,6 @@
          [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil];
         
     }else if (504 == mt){
-        
-        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-        [CMNavBarNotificationView notifyWithText:[[dic objectForKey:@"aps"] objectForKey:@"category"]
-                                          detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
-                                     andDuration:5.0
-                                       msgparams:dic];
-        
         NSInteger ct = [[dic objectForKey:@"ct"] integerValue];
         if (504 == ct) {
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
@@ -199,6 +192,12 @@
             UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:naVC animated:NO completion:nil];
         }
+        
+        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+        [CMNavBarNotificationView notifyWithText:[[dic objectForKey:@"aps"] objectForKey:@"category"]
+                                          detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                     andDuration:5.0
+                                       msgparams:dic];
     }
     else{
     AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
@@ -227,6 +226,7 @@
 //mt＝2 客户相关类（获客，客户跟进）
 //mt＝ 3  通知消息类
 //mt＝ 4 私信
+//mt = 504  服务器禁止访问的推送
 -(void) pushtoController:(NSDictionary *)info
 {
      if([homevc login]==NO){
@@ -284,12 +284,6 @@
        }
     else if( 504 == mt)
     {
-        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-        [CMNavBarNotificationView notifyWithText:[[info objectForKey:@"aps"] objectForKey:@"category"]
-                                          detail:[[info objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
-                                     andDuration:5.0
-                                       msgparams:info];
-        
         NSInteger ct = [[info objectForKey:@"ct"] integerValue];
         if (504 == ct) {
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
@@ -308,6 +302,12 @@
             UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:naVC animated:NO completion:nil];
         }
+        
+        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+        [CMNavBarNotificationView notifyWithText:[[info objectForKey:@"aps"] objectForKey:@"category"]
+                                          detail:[[info objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                     andDuration:5.0
+                                       msgparams:info];
     }
 }
 
