@@ -155,7 +155,7 @@
     if(model.productMaxRatio != nil)
         cell.lbRate.text = [self attstringwithRate:model.productMaxRatio];
     else
-        cell.lbRate.text = [self attstringwithRate:@"0"];
+        cell.lbRate.text = @"";//[self attstringwithRate:@"0"];
     
     if(indexPath.row < [_data count] - 1)
         cell.sepHeight.constant = 15;
