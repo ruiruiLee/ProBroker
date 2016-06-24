@@ -351,6 +351,7 @@
 //mt＝2 客户相关类（获客，客户跟进）
 //mt＝ 3  通知消息类
 //mt＝ 4 私信
+//mt = 504  服务器禁止访问的推送
 // 推送获客 数字提示
 - (void) pushGetCoustomerNum:(NSDictionary *) userInfo{
       NSInteger mt = [[userInfo objectForKey:@"mt"] integerValue];
