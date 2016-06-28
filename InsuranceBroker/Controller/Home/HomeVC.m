@@ -198,11 +198,13 @@
     contenBg.translatesAutoresizingMaskIntoConstraints = NO;
     [bgview addSubview:contenBg];
     
-    btnProduct = [ViewFactory CreateButtonWithImage:ThemeImage(@"product")];
+    btnProduct = [ViewFactory CreateButtonWithImage:nil];
+    [btnProduct setBackgroundImage:ThemeImage(@"product") forState:UIControlStateNormal];
     [contenBg addSubview:btnProduct];
     [btnProduct addTarget:self action:@selector(doBtnProductSelect:) forControlEvents:UIControlEventTouchUpInside];
     
-    btnPlan = [ViewFactory CreateButtonWithImage:ThemeImage(@"jihuashu")];
+    btnPlan = [ViewFactory CreateButtonWithImage:nil];
+    [btnPlan setBackgroundImage:ThemeImage(@"jihuashu") forState:UIControlStateNormal];
     [contenBg addSubview:btnPlan];
     [btnPlan addTarget:self action:@selector(doBtnJiHuaShu:) forControlEvents:UIControlEventTouchUpInside];
     

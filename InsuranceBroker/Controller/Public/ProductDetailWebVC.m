@@ -45,6 +45,10 @@
 
 - (void) NotifyToSelectInsured
 {
+    if(!self.customerDetail){
+        [Util showAlertMessage:@"请先选择投保人！"];
+        return;
+    }
     SelectInsuredVC *vc = [[SelectInsuredVC alloc] initWithNibName:nil bundle:nil];
     vc.delegate = self;
     vc.customerId = self.customerDetail.customerId;
