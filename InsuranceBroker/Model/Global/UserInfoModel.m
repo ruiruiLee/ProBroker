@@ -285,6 +285,9 @@
             AppContext *context = [AppContext sharedAppContext];
             [context SaveNewsTip:[NSArray arrayWithArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
         }else if (code == 504){
+            
+            [Util showAlertMessage:[content objectForKey:@"msg"]];
+            
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
             model.isLogin = NO;
             [[AppContext sharedAppContext] removeData];
