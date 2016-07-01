@@ -20,10 +20,25 @@
 
 @implementation NoticeListVC
 
+- (void) dealloc
+{
+    AppContext *context = [AppContext sharedAppContext];
+    [context removeObserver:self forKeyPath:@"isNewMessage"];
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    [self.tableview reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"消息公告";
+    
+    AppContext *context = [AppContext sharedAppContext];
+    [context addObserver:self forKeyPath:@"isNewMessage" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];

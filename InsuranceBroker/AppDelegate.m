@@ -334,6 +334,7 @@
     //[UIApplication sharedApplication].applicationIconBadgeNumber=0;
     [self pushGetCoustomerNum:userInfo];
     [self NotificationRedDisplay:userInfo];
+    NSLog(@"%@", userInfo);
     // 程序在运行中接收到推送
     if (application.applicationState == UIApplicationStateActive)
     {
@@ -366,7 +367,7 @@
 - (void) NotificationRedDisplay:(NSDictionary *) userInfo{
       NSInteger mt = [[userInfo objectForKey:@"mt"] integerValue];
       NSInteger ct = [[userInfo objectForKey:@"ct"] integerValue];
-    if(mt != 2){
+    if(mt != 2 && mt != 504){
     AppContext *context = [AppContext sharedAppContext];
       [context changeNewsTip:ct display:YES];
     }

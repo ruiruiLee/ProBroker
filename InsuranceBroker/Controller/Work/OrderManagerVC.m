@@ -337,11 +337,11 @@
             if(code == 200){
                 [self.data removeObject:model];
                 [self initData];
-                [self.pulltable reloadData];
                 self.total--;
                 if(self.total <0)
                     self.total = 0;
             }
+            [self.pulltable reloadData];
         }];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {

@@ -678,8 +678,8 @@
                     self.customerinfoModel.detailModel.insurTotal = 0;
                 }
                 [self resetContetHeight:_selectedView];
-                [_policyListView.tableview reloadData];
             }
+            [_policyListView.tableview reloadData];
         }];
     }
     else if (sender == _insuranceDetailView){}
