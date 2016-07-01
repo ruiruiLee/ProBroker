@@ -320,6 +320,11 @@
     //推送功能打开时, 注册当前的设备, 同时记录用户活跃, 方便进行有针对的推送
     [AVOSCloud handleRemoteNotificationsWithDeviceToken:deviceToken];
     
+    AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+    [currentInstallation addUniqueObject:@"ykbbrokerAllUser4" forKey:@"channels"];
+    [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    }];
+    
     //在线客服同步deviceToken便于离线消息推送, 同时必须在管理后台上传 .pem文件才能生效
     [[AppKeFuLib sharedInstance] uploadDeviceToken:deviceToken];
 }
