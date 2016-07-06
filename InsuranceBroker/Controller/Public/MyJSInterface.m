@@ -27,6 +27,14 @@
     }
 }
 
+- (void) shareUrl:(NSString *) pramas
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyShareWindow)])
+    {
+        [self.delegate NotifyShareWindow];
+    }
+}
+
 - (void) againParamsMap:(NSString *) pramas
 {
     if([pramas isKindOfClass:[NSString class]]){

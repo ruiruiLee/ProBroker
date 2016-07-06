@@ -29,6 +29,8 @@
 
 - (void) shareUrl;
 
+- (void) shareUrl:(NSString *) pramas;
+
 - (void) againParamsMap:(NSDictionary *) pramas;
 
 - (void) selectCustomer;//客户
