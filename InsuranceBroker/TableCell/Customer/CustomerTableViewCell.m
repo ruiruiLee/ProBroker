@@ -38,7 +38,7 @@
 
 - (IBAction) doBtnShowLImage:(UIButton *) sender
 {
-    if(self.headImg){
+    if(self.headImg && [self.headImg length] > 0){
         NSMutableArray *array = [[NSMutableArray alloc] init];
         NSMutableArray *small = [[NSMutableArray alloc] init];
         [Util addImagePath:self.headImg pathArray:array smallImage:self.photoImage.image imageArray:small];

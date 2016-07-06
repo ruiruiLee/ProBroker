@@ -32,6 +32,8 @@
     model.customerPhone = [dictionary objectForKey:@"customerPhone"];
     model.customerTel = [dictionary objectForKey:@"customerTel"];
     model.headImg = [dictionary objectForKey:@"headImg"];
+    if([model.headImg length] == 0)
+        model.headImg = nil;
     model.cardNumber = [dictionary objectForKey:@"cardNumber"];
     model.cardNumberImg1 = [dictionary objectForKey:@"cardNumberImg1"];
     model.cardNumberImg2 = [dictionary objectForKey:@"cardNumberImg2"];

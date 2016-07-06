@@ -310,8 +310,8 @@
 
 - (void) appendData:(NSArray *) list
 {
-    NSError *error = nil;
-    NSArray *array = [MTLJSONAdapter modelsOfClass:CustomerInfoModel.class fromJSONArray:list error:&error];
+//    NSError *error = nil;
+    NSArray *array = [CustomerInfoModel modelArrayFromArray:list];//[MTLJSONAdapter modelsOfClass:CustomerInfoModel.class fromJSONArray:list error:&error];
     self.data = array;
 }
 

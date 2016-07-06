@@ -325,8 +325,8 @@
                 model.customerName = self.data.customerName;
                 model.customerId = self.data.customerId;
                 model.isAgentCreate = 1;
-                model.customerLabel = self.data.customerLabel;
-                model.customerLabelId = self.data.customerLabelId;
+//                model.customerLabel = self.data.customerLabel;
+//                model.customerLabelId = self.data.customerLabelId;
                 model.headImg = self.data.headImg;
                 self.customerinfoModel = model;
             }

@@ -6,18 +6,19 @@
 //  Copyright © 2016年 LiuZach. All rights reserved.
 //
 
-#import "Mantle.h"
+//#import "Mantle.h"
+#import "BaseModel.h"
 #import "CustomerDetailModel.h"
 
-@interface CustomerInfoModel : MTLModel <MTLJSONSerializing>
+@interface CustomerInfoModel : BaseModel//MTLModel <MTLJSONSerializing>
 
 @property (nonatomic, strong) NSString *customerId;
 @property (nonatomic, strong) NSString *customerName;
 @property (nonatomic, strong) NSString *visitType;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, assign) NSInteger isAgentCreate;
-@property (nonatomic, strong) NSArray *customerLabel;
-@property (nonatomic, strong) NSArray *customerLabelId;
+//@property (nonatomic, strong) NSArray *customerLabel;
+//@property (nonatomic, strong) NSArray *customerLabelId;
 @property (nonatomic, assign) NSInteger bindType;
 @property (nonatomic, assign) BOOL bindStatus;
 @property (nonatomic, strong) NSDate *updatedAt;
