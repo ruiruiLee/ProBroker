@@ -109,6 +109,10 @@
 		8625F8F71C897728001569BE /* SalesStatisticsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625F8F61C897728001569BE /* SalesStatisticsModel.m */; };
 		862CD3411C5C8CFE0056D2EA /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 862CD33E1C5C8CFE0056D2EA /* ProgressHUD.bundle */; };
 		862CD3421C5C8CFE0056D2EA /* ProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 862CD3401C5C8CFE0056D2EA /* ProgressHUD.m */; };
+		862D00A21D2BB2B50067D71B /* WXApiRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 862D00A11D2BB2B50067D71B /* WXApiRequestHandler.m */; };
+		862D00A51D2BB2F20067D71B /* WXApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 862D00A41D2BB2F20067D71B /* WXApiManager.m */; };
+		862D00A81D2BB30B0067D71B /* SendMessageToWXReq+requestWithTextOrMediaMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 862D00A71D2BB30B0067D71B /* SendMessageToWXReq+requestWithTextOrMediaMessage.m */; };
+		862D00AB1D2BB3170067D71B /* WXMediaMessage+messageConstruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 862D00AA1D2BB3170067D71B /* WXMediaMessage+messageConstruct.m */; };
 		86398CA81D027F4B007D5B40 /* SelectCustomerForCarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86398CA71D027F4B007D5B40 /* SelectCustomerForCarVC.m */; };
 		863DF1401D1011FF00AEB6A9 /* NetWorkHandler+newUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 863DF13F1D1011FF00AEB6A9 /* NetWorkHandler+newUser.m */; };
 		863DF1481D17FFDF00AEB6A9 /* EditAbleTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 863DF1471D17FFDF00AEB6A9 /* EditAbleTextView.m */; };
@@ -669,6 +673,14 @@
 		862CD33E1C5C8CFE0056D2EA /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		862CD33F1C5C8CFE0056D2EA /* ProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressHUD.h; sourceTree = "<group>"; };
 		862CD3401C5C8CFE0056D2EA /* ProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressHUD.m; sourceTree = "<group>"; };
+		862D00A01D2BB2B50067D71B /* WXApiRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiRequestHandler.h; sourceTree = "<group>"; };
+		862D00A11D2BB2B50067D71B /* WXApiRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiRequestHandler.m; sourceTree = "<group>"; };
+		862D00A31D2BB2F20067D71B /* WXApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiManager.h; sourceTree = "<group>"; };
+		862D00A41D2BB2F20067D71B /* WXApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXApiManager.m; sourceTree = "<group>"; };
+		862D00A61D2BB30B0067D71B /* SendMessageToWXReq+requestWithTextOrMediaMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SendMessageToWXReq+requestWithTextOrMediaMessage.h"; sourceTree = "<group>"; };
+		862D00A71D2BB30B0067D71B /* SendMessageToWXReq+requestWithTextOrMediaMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SendMessageToWXReq+requestWithTextOrMediaMessage.m"; sourceTree = "<group>"; };
+		862D00A91D2BB3170067D71B /* WXMediaMessage+messageConstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WXMediaMessage+messageConstruct.h"; sourceTree = "<group>"; };
+		862D00AA1D2BB3170067D71B /* WXMediaMessage+messageConstruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WXMediaMessage+messageConstruct.m"; sourceTree = "<group>"; };
 		86398CA61D027F4B007D5B40 /* SelectCustomerForCarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCustomerForCarVC.h; sourceTree = "<group>"; };
 		86398CA71D027F4B007D5B40 /* SelectCustomerForCarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCustomerForCarVC.m; sourceTree = "<group>"; };
 		863DF13E1D1011FF00AEB6A9 /* NetWorkHandler+newUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+newUser.h"; sourceTree = "<group>"; };
@@ -1397,6 +1409,21 @@
 			path = ProgressHUD;
 			sourceTree = "<group>";
 		};
+		862D009F1D2BB2AA0067D71B /* WeChatPay */ = {
+			isa = PBXGroup;
+			children = (
+				862D00A31D2BB2F20067D71B /* WXApiManager.h */,
+				862D00A41D2BB2F20067D71B /* WXApiManager.m */,
+				862D00A01D2BB2B50067D71B /* WXApiRequestHandler.h */,
+				862D00A11D2BB2B50067D71B /* WXApiRequestHandler.m */,
+				862D00A61D2BB30B0067D71B /* SendMessageToWXReq+requestWithTextOrMediaMessage.h */,
+				862D00A71D2BB30B0067D71B /* SendMessageToWXReq+requestWithTextOrMediaMessage.m */,
+				862D00A91D2BB3170067D71B /* WXMediaMessage+messageConstruct.h */,
+				862D00AA1D2BB3170067D71B /* WXMediaMessage+messageConstruct.m */,
+			);
+			path = WeChatPay;
+			sourceTree = "<group>";
+		};
 		865065741C1E6BC800429EAE = {
 			isa = PBXGroup;
 			children = (
@@ -1480,6 +1507,7 @@
 		865065B51C1EA29900429EAE /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				862D009F1D2BB2AA0067D71B /* WeChatPay */,
 				CF2C88C81CE47FB7001B6FFF /* AppKeFuLib */,
 				8654CD641C312CE100411C54 /* SBJson */,
 				86C3BC9B1C2E933600F98E80 /* IQKeyBoardManager */,
@@ -3265,6 +3293,7 @@
 				8625B00C1C3BA14F00312B98 /* NetWorkHandler+queryForLabelPageList.m in Sources */,
 				86C3BCC51C2E933600F98E80 /* IQToolbar.m in Sources */,
 				86C3BBDB1C2AA1E400F98E80 /* CustomerInfoEditVC.m in Sources */,
+				862D00A21D2BB2B50067D71B /* WXApiRequestHandler.m in Sources */,
 				8654CA561C310E7F00411C54 /* UserInfoModel.m in Sources */,
 				86AD9ACB1CAE735D00389428 /* NetWorkHandler+queryForProductList.m in Sources */,
 				8654CD7F1C312CE100411C54 /* SBJsonParser.m in Sources */,
@@ -3360,6 +3389,7 @@
 				861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */,
 				86EECD9E1CF2A6CE00BBAF11 /* MBProgressHUD.m in Sources */,
 				8612F4251CE9B6270045340F /* CustomerCitySelectVC.m in Sources */,
+				862D00A81D2BB30B0067D71B /* SendMessageToWXReq+requestWithTextOrMediaMessage.m in Sources */,
 				86C3BC1B1C2CE0EB00F98E80 /* CustomerFollowUpInfoView.m in Sources */,
 				86769D2E1CEEE897009C7E8F /* NetWorkHandler+shareCustomerList.m in Sources */,
 				86A26EA01C4666850073FFFC /* InsurOffersInfoModel.m in Sources */,
@@ -3385,6 +3415,7 @@
 				86A26E8B1C452EF30073FFFC /* NetWorkHandler+news.m in Sources */,
 				868C7CC71C969AC600B7617A /* ObjImageDataInfo.m in Sources */,
 				868C7CC51C969AC600B7617A /* NSImageUtil.m in Sources */,
+				862D00AB1D2BB3170067D71B /* WXMediaMessage+messageConstruct.m in Sources */,
 				86A504811C4F27950032A901 /* split.c in Sources */,
 				CF608EEF1C58A13900DC10CA /* OBGradientView.m in Sources */,
 				86C3BC151C2CE05000F98E80 /* InsuranceDetailView.m in Sources */,
@@ -3394,6 +3425,7 @@
 				86A505061C52612E0032A901 /* EasyJSWebView+JavaScriptAlert.m in Sources */,
 				86A504471C4E5A790032A901 /* AppInfoView.m in Sources */,
 				86EECDEF1CF543C300BBAF11 /* UUInputAccessoryView.m in Sources */,
+				862D00A51D2BB2F20067D71B /* WXApiManager.m in Sources */,
 				8654CD7E1C312CE100411C54 /* NSObject+SBJson.m in Sources */,
 				86F2DA9D1C7FE81D0088B783 /* ProductSettingTableViewCell.m in Sources */,
 				86A5040A1C4CCE730032A901 /* SelectCustomerVC.m in Sources */,

@@ -11,6 +11,7 @@
 #import "ParentInfoModel.h"
 #import "UserInfoModel.h"
 #import "CarInfoModel.h"
+#import "WXApiRequestHandler.h"
 
 @interface Util : NSObject
 
@@ -90,5 +91,7 @@
 + (BOOL) validateEmail:(NSString *)email;
 
 + (void) addImagePath:(NSString *) path pathArray:(NSMutableArray *) pathArray smallImage:(UIImage *) small imageArray:(NSMutableArray *) imageArray;
+
++ (void) weChatPay;
 
 @end
