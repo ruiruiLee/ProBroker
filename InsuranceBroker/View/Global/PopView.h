@@ -12,11 +12,14 @@
 
 @protocol PopViewDelegate <NSObject>
 
-- (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag;
+- (void) HandleItemSelect:(PopView *) view selectImageName:(NSString *) imageName;
 
 @end
 
 @interface PopView : UIView
+{
+    NSArray *imageArrays;
+}
 
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UIView *view;

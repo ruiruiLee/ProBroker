@@ -132,33 +132,6 @@
 }
 
 #pragma delegate
-- (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag
-{
-    switch (tag) {
-        case 0:
-        {
-            [self simplyShare:SSDKPlatformSubTypeWechatSession];
-        }
-            break;
-        case 1:
-        {
-            [self simplyShare:SSDKPlatformSubTypeWechatTimeline];
-        }
-            break;
-        case 2:
-        {
-            [self simplyShare:SSDKPlatformSubTypeQQFriend];
-        }
-            break;
-        case 3:
-        {
-            [self simplyShare:SSDKPlatformSubTypeQZone];
-        }
-            break;
-        default:
-            break;
-    }
-}
 
 - (void) NotifyToSelectCustomerForCar:(NSString *) productAttrId
 {
@@ -179,6 +152,47 @@
 {
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     delegate.root.selectedIndex = 1;
+}
+
+#pragma MyJSInterfaceDelegate
+- (void) NotifyShareWindowWithPrama:(NSDictionary *)dic
+{
+    if(dic == nil){
+        [self handleRightBarButtonClicked:nil];
+    }else{
+        NSString *shareRange = [dic objectForKey:@"shareRange"];
+        NSArray *array = [shareRange componentsSeparatedByString:@","];
+        if(array == nil || [array count] == 0)
+            [self handleRightBarButtonClicked:nil];
+        
+        NSMutableArray *imgArray = [[NSMutableArray alloc] init];
+        NSMutableArray *nameArray = [[NSMutableArray alloc] init];
+        for (int i = 0; i < [array count]; i++) {
+            NSInteger num = [[array objectAtIndex:i] integerValue];
+            if(num == 3){
+                [imgArray addObject:@"wechat"];
+                [nameArray addObject:@"微信好友"];
+            }
+            else if (num == 9){
+                [imgArray addObject:@"moments"];
+                [nameArray addObject:@"朋友圈"];
+            }
+            else if (num == 4){
+                [imgArray addObject:@"qq"];
+                [nameArray addObject:@"QQ好友"];
+                [imgArray addObject:@"qzone"];
+                [nameArray addObject:@"QQ空间"];
+            }
+        }
+        
+        if(!self.popview){
+            self.popview = [[PopView alloc] initWithImageArray:imgArray nameArray:nameArray];
+            [self.view.window addSubview:self.popview];
+            self.popview.delegate = self;
+        }
+        
+        [self.popview show];
+    }
 }
 
 /**
@@ -213,10 +227,13 @@
         
         if (self.shareImgArray) {
             
-            [shareParams SSDKSetupShareParamsByText:[object objectForKey:@"content"]
+            NSString *content = [object objectForKey:@"content"];
+            NSString *title = [object objectForKey:@"title"];
+            NSURL *Uri = [NSURL URLWithString:url];
+            [shareParams SSDKSetupShareParamsByText:content
                                              images:imgArray
-                                                url:[NSURL URLWithString:url]
-                                              title:[object objectForKey:@"title"]
+                                                url:Uri
+                                              title:title
                                                type:SSDKContentTypeAuto];
             
             //进行分享

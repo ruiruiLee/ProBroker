@@ -38,6 +38,8 @@
         
         CGFloat ox = step;
         
+        imageArrays = images;
+        
         for (int i = 0; i < [names count]; i++) {
             
             AppInfoView *control = [[AppInfoView alloc] initWithFrame:CGRectMake(ox, 20, 80, 80)];
@@ -79,9 +81,9 @@
     } completion:^(BOOL finished) {
         self.hidden = YES;
         
-        if(delegate && [delegate respondsToSelector:@selector(HandleItemSelect:withTag:)])
+        if(delegate && [delegate respondsToSelector:@selector(HandleItemSelect:selectImageName:)])
         {
-            [delegate HandleItemSelect:self withTag:tag - 1000];
+            [delegate HandleItemSelect:self selectImageName:[imageArrays objectAtIndex:tag - 1000]];
         }
         
     }];

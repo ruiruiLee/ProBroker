@@ -36,7 +36,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
         _urlPath = nil;
-        tagNum = -1;
     }
     
     return self;
@@ -97,49 +96,18 @@
             self.phone = [[content objectForKey:@"data"] objectForKey:@"phone"];
             if([[content objectForKey:@"data"] objectForKey:@"imgUrl"])
                 self.shareImgArray = [NSArray arrayWithObject:[[content objectForKey:@"data"] objectForKey:@"imgUrl"]];
-            if(tagNum >= 0)
-                [self HandleItemSelect:nil withTag:tagNum];
+            if(selectImgName != nil)
+                [self HandleItemSelect:nil selectImageName:selectImgName];
         }
     }];
 }
 
-#pragma delegate
-- (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag
+//#pragma delegate
+- (void) HandleItemSelect:(PopView *) view selectImageName:(NSString *) imageName
 {
-    tagNum = tag;
+    selectImgName = imageName;
     if(_urlPath != nil){
-        if(self.type == enumShareTypeToCustomer){
-            if(tag == 0)
-                [self simplyShare:SSDKPlatformSubTypeWechatSession];
-            else{
-                [self simplyShare:SSDKPlatformTypeSMS];
-            }
-        }else if (self.type == enumShareTypeShare){
-            switch (tag) {
-                case 0:
-                {
-                    [self simplyShare:SSDKPlatformSubTypeWechatSession];
-                }
-                    break;
-                case 1:
-                {
-                    [self simplyShare:SSDKPlatformSubTypeWechatTimeline];
-                }
-                    break;
-                case 2:
-                {
-                    [self simplyShare:SSDKPlatformSubTypeQQFriend];
-                }
-                    break;
-                case 3:
-                {
-                    [self simplyShare:SSDKPlatformSubTypeQZone];
-                }
-                    break;
-                default:
-                    break;
-            }
-        }
+        [super HandleItemSelect:view selectImageName:imageName];
     }else{
         [self loadUrl];
     }
@@ -224,7 +192,7 @@
     return str;
 }
 
-- (void) NotifyShareWindow
+- (void) NotifyShareWindowWithPrama:(NSDictionary *)dic
 {
     [self showPopView];
 }

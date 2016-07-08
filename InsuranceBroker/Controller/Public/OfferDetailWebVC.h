@@ -15,7 +15,7 @@
     NSString *_urlPath;
     NSString *_insuranceType;
     NSString *_planOfferId;
-    NSInteger tagNum;
+    NSString *selectImgName;
 }
 
 @property (nonatomic, strong) NSString *orderId;

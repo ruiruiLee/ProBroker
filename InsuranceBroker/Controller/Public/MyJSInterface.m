@@ -21,17 +21,22 @@
 
 - (void) shareUrl
 {
-    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyShareWindow)])
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyShareWindowWithPrama:)])
     {
-        [self.delegate NotifyShareWindow];
+        [self.delegate NotifyShareWindowWithPrama:nil];
     }
 }
 
 - (void) shareUrl:(NSString *) pramas
 {
-    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyShareWindow)])
+    NSDictionary *object = nil;
+    if(pramas != nil){
+        SBJsonParser *_parser = [[SBJsonParser alloc] init];
+        object = [_parser objectWithString:pramas];
+    }
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyShareWindowWithPrama:)])
     {
-        [self.delegate NotifyShareWindow];
+        [self.delegate NotifyShareWindowWithPrama:object];
     }
 }
 

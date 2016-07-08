@@ -48,7 +48,6 @@
 - (void) loadHtmlFromUrlWithUserId:(NSString *) url;
 - (void) loadHtmlFromUrlWithUuId:(NSString *) url;
 - (void) simplyShare:(SSDKPlatformType) type;
-- (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag;
 //- (void) initShareUrl:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId;
 
 - (void) showPopView;

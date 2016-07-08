@@ -80,7 +80,7 @@
 }
 
 #pragma MyJSInterfaceDelegate
-- (void) NotifyShareWindow
+- (void) NotifyShareWindowWithPrama:(NSDictionary *)dic
 {
     [self handleRightBarButtonClicked:nil];
 }
@@ -286,40 +286,57 @@
 
 
 #pragma delegate
-- (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag
+//- (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag
+//{
+//    if(self.type == enumShareTypeToCustomer){
+//        if(tag == 0)
+//            [self simplyShare:SSDKPlatformSubTypeWechatSession];
+//        else{
+//            [self simplyShare:SSDKPlatformTypeSMS];
+//        }
+//    }else if (self.type == enumShareTypeShare){
+//        switch (tag) {
+//            case 0:
+//            {
+//                [self simplyShare:SSDKPlatformSubTypeWechatSession];
+//            }
+//                break;
+//            case 1:
+//            {
+//                [self simplyShare:SSDKPlatformSubTypeWechatTimeline];
+//            }
+//                break;
+//            case 2:
+//            {
+//                [self simplyShare:SSDKPlatformSubTypeQQFriend];
+//            }
+//                break;
+//            case 3:
+//            {
+//                [self simplyShare:SSDKPlatformSubTypeQZone];
+//            }
+//                break;
+//            default:
+//                break;
+//        }
+//    }
+//}
+
+- (void) HandleItemSelect:(PopView *) view selectImageName:(NSString *)imageName
 {
-    if(self.type == enumShareTypeToCustomer){
-        if(tag == 0)
-            [self simplyShare:SSDKPlatformSubTypeWechatSession];
-        else{
-            [self simplyShare:SSDKPlatformTypeSMS];
-        }
-    }else if (self.type == enumShareTypeShare){
-        switch (tag) {
-            case 0:
-            {
-                [self simplyShare:SSDKPlatformSubTypeWechatSession];
-            }
-                break;
-            case 1:
-            {
-                [self simplyShare:SSDKPlatformSubTypeWechatTimeline];
-            }
-                break;
-            case 2:
-            {
-                [self simplyShare:SSDKPlatformSubTypeQQFriend];
-            }
-                break;
-            case 3:
-            {
-                [self simplyShare:SSDKPlatformSubTypeQZone];
-            }
-                break;
-            default:
-                break;
-        }
+    if([imageName isEqualToString:@"wechat"])
+        [self simplyShare:SSDKPlatformSubTypeWechatSession];
+    else if ([imageName isEqualToString:@"moments"]){
+        [self simplyShare:SSDKPlatformSubTypeWechatTimeline];
     }
+    else if ([imageName isEqualToString:@"qq"]){
+        [self simplyShare:SSDKPlatformSubTypeQQFriend];
+    }
+    else if ([imageName isEqualToString:@"qzone"]){
+        [self simplyShare:SSDKPlatformSubTypeQZone];
+    }
+    else if ([imageName isEqualToString:@"share_message"])
+        [self simplyShare:SSDKPlatformTypeSMS];
 }
 
 /**

@@ -97,7 +97,7 @@
     [self performSelector:@selector(turnToCustomerPage) withObject:nil afterDelay:0.1];
 }
 
-- (void) NotifyShareWindow
+- (void) NotifyShareWindowWithPrama:(NSDictionary *)dic
 {
     [self handleRightBarButtonClicked:nil];
 }

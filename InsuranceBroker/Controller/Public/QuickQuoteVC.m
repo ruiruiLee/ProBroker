@@ -73,12 +73,12 @@
     [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", appdelegate.exactQuoteNewsId]];
 }
 
-- (void) NotifyShareWindow
+- (void) NotifyShareWindowWithPrama:(NSDictionary *)dic
 {
     [self showPopView];
 }
 
-- (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag
+- (void) HandleItemSelect:(PopView *) view selectImageName:(NSString *)imageName
 {
 
     NSString *jsonstr = [self getShareContent];
@@ -101,30 +101,7 @@
         self.shareTitle = [dic objectForKey:@"title"];
     }
     
-    switch (tag) {
-        case 0:
-        {
-            [self simplyShare:SSDKPlatformSubTypeWechatSession];
-        }
-            break;
-        case 1:
-        {
-            [self simplyShare:SSDKPlatformSubTypeWechatTimeline];
-        }
-            break;
-        case 2:
-        {
-            [self simplyShare:SSDKPlatformSubTypeQQFriend];
-        }
-            break;
-        case 3:
-        {
-            [self simplyShare:SSDKPlatformSubTypeQZone];
-        }
-            break;
-        default:
-            break;
-    }
+    [super HandleItemSelect:view selectImageName:imageName];
 }
 
 - (NSString *) getShareContent
