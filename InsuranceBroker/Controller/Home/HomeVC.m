@@ -610,9 +610,9 @@
     [popview show];
 }
 
-- (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag
+- (void) HandleItemSelect:(PopView *) view selectImageName:(NSString *) imageName
 {
-    if(tag == 0){
+    if([imageName isEqualToString:@"service_ring"]){
         NSString *num = [[NSString alloc] initWithFormat:@"tel://%@",ServicePhone]; //而这个方法则打电话前先弹框  是否打电话 然后打完电话之后回到程序中
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:num]];
