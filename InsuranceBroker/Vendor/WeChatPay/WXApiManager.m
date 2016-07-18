@@ -22,6 +22,7 @@
 
 - (void)dealloc {
     self.delegate = nil;
+    [super dealloc];
 }
 
 #pragma mark - WXApiDelegate
@@ -45,22 +46,25 @@
             [_delegate managerDidRecvAddCardResponse:addCardResp];
         }
     }else if([resp isKindOfClass:[PayResp class]]){
+        
+        
         //支付返回结果，实际支付结果需要去微信服务器端查询
         NSString *strMsg,*strTitle = [NSString stringWithFormat:@"支付结果"];
-        
         switch (resp.errCode) {
-            case WXSuccess:
-                strMsg = @"支付结果：成功！";
-                NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
-                break;
-                
-            default:
-                strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr];
-                NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
-                break;
+            case WXSuccess: strMsg = @"支付结果：成功！"; break;
+            case WXErrCodeCommon: strMsg = @"普通错误类型！"; break;
+            case WXErrCodeUserCancel: strMsg = @"用户取消！"; break;
+            case WXErrCodeSentFail: strMsg = @"发送失败！"; break;
+            case WXErrCodeAuthDeny: strMsg = @"授权失败"; break;
+            case WXErrCodeUnsupport: strMsg = @"微信不支持"; break;
+            default: strMsg = [NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr]; break;
         }
+        
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
+        [alert release];
+        NSLog(@"retcode = %d, retstr = %@", resp.errCode,resp.errStr);
+
     }
 
 }

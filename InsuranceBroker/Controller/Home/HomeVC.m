@@ -26,6 +26,7 @@
 #import "ServiceSelectView.h"
 #import "OnlineCustomer.h"
 #import "UIScrollView+JElasticPullToRefresh.h"
+#import "PayUtil.h"
 
 @interface HomeVC ()<MJBannnerPlayerDeledage, PopViewDelegate>
 {
