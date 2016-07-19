@@ -18,6 +18,7 @@
 - (void) NotifyToSelectInsured;//获取被保人信息
 - (void) NotifyToInitCustomerInfo;//初始化数据
 - (void) NotifyToSelectCustomerForCar:(NSString *) productAttrId;
+- (void) NotifyToPay:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId;
 
 @end
 
@@ -40,5 +41,7 @@
 - (void) initCustomer;//数据初始化
 
 - (void) callInsurance:(NSString *) productAttrId;//车险
+
+- (void) pay:(NSString *) pramas;//付款
 
 @end

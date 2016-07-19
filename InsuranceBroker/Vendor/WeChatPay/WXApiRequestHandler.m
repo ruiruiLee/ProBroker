@@ -194,7 +194,7 @@
 }
 
 + (BOOL)addCardsToCardPackage:(NSArray *)cardItems {
-    AddCardToWXCardPackageReq *req = [[AddCardToWXCardPackageReq alloc] init];
+    AddCardToWXCardPackageReq *req = [[[AddCardToWXCardPackageReq alloc] init] autorelease];
     req.cardAry = cardItems;
     return [WXApi sendReq:req];
 }
@@ -203,7 +203,7 @@
                        State:(NSString *)state
                       OpenID:(NSString *)openID
             InViewController:(UIViewController *)viewController {
-    SendAuthReq* req = [[SendAuthReq alloc] init];
+    SendAuthReq* req = [[[SendAuthReq alloc] init] autorelease];
     req.scope = scope; // @"post_timeline,sns"
     req.state = state;
     req.openID = openID;
@@ -218,7 +218,7 @@
                         tousrname:(NSString *)tousrname
                            ExtMsg:(NSString *)extMsg {
     [WXApi registerApp:appID withDescription:description];
-    JumpToBizWebviewReq *req = [[JumpToBizWebviewReq alloc]init];
+    JumpToBizWebviewReq *req = [[[JumpToBizWebviewReq alloc]init]autorelease];
     req.tousrname = tousrname;
     req.extMsg = extMsg;
     req.webType = WXMPWebviewType_Ad;
@@ -252,7 +252,7 @@
                     NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
                     
                     //调起微信支付
-                    PayReq* req             = [[PayReq alloc] init];
+                    PayReq* req             = [[[PayReq alloc] init]autorelease];
                     req.partnerId           = [dict objectForKey:@"partnerid"];
                     req.prepayId            = [dict objectForKey:@"prepayid"];
                     req.nonceStr            = [dict objectForKey:@"noncestr"];

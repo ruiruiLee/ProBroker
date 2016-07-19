@@ -12,7 +12,7 @@
 
 @protocol PopViewDelegate <NSObject>
 
-- (void) HandleItemSelect:(PopView *) view selectImageName:(NSString *) imageName;
+- (void) HandleItemSelect:(PopView *) view selectImageName:(NSString *) imageName;//分享使用
 
 @end
 

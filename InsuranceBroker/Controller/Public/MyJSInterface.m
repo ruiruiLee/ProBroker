@@ -83,4 +83,18 @@
     }
 }
 
+- (void) pay:(NSString *) pramas
+{
+    if([pramas isKindOfClass:[NSString class]]){
+        SBJsonParser *_parser = [[SBJsonParser alloc] init];
+        NSDictionary *result = [_parser objectWithString:pramas];
+        NSString *planOfferId = [result objectForKey:@"planOfferId"];
+        NSString *orderId = [result objectForKey:@"orderId"];
+        NSString *insuranceType = [result objectForKey:@"insuranceType"];
+        if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToPay:insuranceType:planOfferId:)]){
+            [self.delegate NotifyToPay:orderId insuranceType:insuranceType planOfferId:planOfferId];
+        }
+    }
+}
+
 @end

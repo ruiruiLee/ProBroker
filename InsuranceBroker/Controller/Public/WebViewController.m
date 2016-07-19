@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 #import "SBJsonParser.h"
+#import "PayTypeSelectedVC.h"
 
 @interface WebViewController ()
 
@@ -88,6 +89,16 @@
 - (void) NotifyCloseWindow
 {
     
+}
+
+//支付接口
+- (void) NotifyToPay:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId
+{
+    PayTypeSelectedVC *vc = [[PayTypeSelectedVC alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+    vc.orderId = orderId;
+    vc.insuranceType = insuranceType;
+    vc.planOfferId = planOfferId;
 }
 
 - (void) NotifyToReSubmitCarInfo:(NSString *) orderId customerId:(NSString *) customerId customerCarId:(NSString *) customerCarId
@@ -192,6 +203,19 @@
     NSString *url = webView.request.URL.absoluteString;
     if(![url isEqualToString:self.urlpath])
         self.shareUrl = [NSString stringWithFormat:@"%@&userId=%@&appShare=1", url, [UserInfoModel shareUserInfoModel].userId];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSURL *url = request.URL;
+    NSString *uri = url.absoluteString;
+    if([uri rangeOfString:@"lastpage=true"].length > 0 && ![uri isEqualToString:self.urlpath]){
+        WebViewController *vc = [IBUIFactory CreateWebViewController];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc loadHtmlFromUrl:uri];
+        return NO;
+    }
+    return YES;
 }
 
 

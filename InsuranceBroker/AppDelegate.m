@@ -77,6 +77,8 @@
         
     }];
     
+    [WXApi registerApp:@"wx4d5be0425a7a8af0"];
+    
     //设置AVOSCloud
     [AVOSCloud setApplicationId:AVOSCloudAppID clientKey:AVOSCloudAppKey];
     
@@ -163,6 +165,56 @@
 
 
     return YES;
+}
+
+-(void)onReq:(BaseReq *)req{
+    
+}
+
+-(void)onResp:(BaseResp *)resp{
+    NSString *strTitle;
+    if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
+        strTitle = [NSString stringWithFormat:@"发送媒体消息结果"];
+    }
+    if ([resp isKindOfClass:[PayResp class]]) {
+        strTitle = [NSString stringWithFormat:@"支付结果"];
+        switch (resp.errCode) {
+            case WXSuccess:
+            {
+                NSLog(@"支付结果: 成功!");
+            }
+                break;
+            case WXErrCodeCommon:
+            { //签名错误、未注册APPID、项目设置APPID不正确、注册的APPID与设置的不匹配、其他异常等
+                
+                NSLog(@"支付结果: 失败!");
+            }
+                break;
+            case WXErrCodeUserCancel:
+            { //用户点击取消并返回
+                
+            }
+                break;
+            case WXErrCodeSentFail:
+            { //发送失败
+                NSLog(@"发送失败");
+            }
+                break;
+            case WXErrCodeUnsupport:
+            { //微信不支持
+                NSLog(@"微信不支持");
+            }
+                break;
+            case WXErrCodeAuthDeny:
+            { //授权失败
+                NSLog(@"授权失败");
+            }
+                break;
+            default:
+                break;
+        }
+        //------------------------
+    }
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {

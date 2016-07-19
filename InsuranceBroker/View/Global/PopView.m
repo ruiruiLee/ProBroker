@@ -80,7 +80,6 @@
         bgView.frame = CGRectMake(0, SCREEN_HEIGHT, ScreenWidth, ViewHeight);
     } completion:^(BOOL finished) {
         self.hidden = YES;
-        
         if(delegate && [delegate respondsToSelector:@selector(HandleItemSelect:selectImageName:)])
         {
             [delegate HandleItemSelect:self selectImageName:[imageArrays objectAtIndex:tag - 1000]];
