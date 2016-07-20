@@ -96,6 +96,7 @@
 #define Notify_Refresh_Insured_list @"Notify_Refresh_Insured_list"
 #define Notify_Service_Info_Received @"Notify_Service_Info_Received"
 #define Notify_Msg_Reload @"Notify_Msg_Reload"
+#define Notify_Pay_Success @"Notify_Pay_Success"
 
 #define QR_ADDRESS @"http://ukb.weixin.car517.com/app_download/specialty_agent_app_download.html"
 #define ServicePhone @"4000803939"

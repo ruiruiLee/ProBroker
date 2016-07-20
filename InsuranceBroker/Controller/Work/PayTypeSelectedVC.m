@@ -27,17 +27,22 @@
 
 @property (nonatomic, strong) NSArray *data;
 
+@property (nonatomic, strong) UILabel *lbTitle;
+@property (nonatomic, strong) UILabel *lbAmount;
+
 @end
 
 @implementation PayTypeSelectedVC
 @synthesize tableview;
 @synthesize btnPay;
+@synthesize lbTitle;
+@synthesize lbAmount;
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     
-    self.title = @"选择支付方式";
+    self.title = @"确认支付";
     selectedIdx = 0;
     
     [self loadData];
@@ -51,7 +56,7 @@
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             self.data = [PayConfDataModel modelArrayFromArray:[content objectForKey:@"data"]];
-            self.tableHeight.constant = [self.data count] * 50;
+            self.tableHeight.constant = [self.data count] * 52;
         }
         
         [tableview reloadData];
@@ -62,6 +67,40 @@
 
 - (void) initSubViews
 {
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.view addSubview:headerView];
+    headerView.backgroundColor = [UIColor whiteColor];
+    headerView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    UILabel *lbOrderAmount = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x75, 0x75, 0x75)];
+    [headerView addSubview:lbOrderAmount];
+    lbOrderAmount.text = @"订单总价：";
+    
+    lbAmount = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:[UIColor redColor]];
+    [headerView addSubview:lbAmount];
+    lbAmount.text = [NSString stringWithFormat:@"%@元", self.totalFee];
+    
+    SepLineLabel *lbLine = [[SepLineLabel alloc] initWithFrame:CGRectZero];
+    lbLine.translatesAutoresizingMaskIntoConstraints = NO;
+    [headerView addSubview:lbLine];
+    
+    lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x75, 0x75, 0x75)];
+    [headerView addSubview:lbTitle];
+    lbTitle.text = self.titleName;
+    
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectZero];
+    titleView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:titleView];
+    titleView.backgroundColor = [UIColor whiteColor];
+    
+    UILabel *lbTitleText = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
+    [titleView addSubview:lbTitleText];
+    lbTitleText.text = @"选择支付方式";
+    
+    SepLineLabel *lbLine1 = [[SepLineLabel alloc] initWithFrame:CGRectZero];
+    lbLine1.translatesAutoresizingMaskIntoConstraints = NO;
+    [titleView addSubview:lbLine1];
+    
     tableview = [[UITableView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:tableview];
     tableview.delegate = self;
@@ -94,15 +133,27 @@
     btnPay.layer.cornerRadius = 6;
     [btnPay addTarget:self action:@selector(doBtnPay:) forControlEvents:UIControlEventTouchUpInside];
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(tableview, btnPay);
+    NSDictionary *views = NSDictionaryOfVariableBindings(tableview, btnPay, lbOrderAmount, lbTitle, lbLine, lbAmount, headerView, titleView, lbTitleText, lbLine1);
     
     self.hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[tableview]-0-|" options:0 metrics:nil views:views];
     [self.view addConstraints:self.hConstraints];
-    self.vConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[tableview]-60-[btnPay(40)]->=0-|" options:0 metrics:nil views:views];
+    self.vConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[headerView(93)]-15-[titleView(47)]-0-[tableview]-50-[btnPay(40)]->=0-|" options:0 metrics:nil views:views];
     [self.view addConstraints:self.vConstraints];
     self.tableHeight = [NSLayoutConstraint constraintWithItem:tableview attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
     [self.view addConstraint:self.tableHeight];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[btnPay]-20-|" options:0 metrics:nil views:views]];
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[lbTitle]-20-|" options:0 metrics:nil views:views]];
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[lbLine]-16-|" options:0 metrics:nil views:views]];
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[lbOrderAmount]-6-[lbAmount]-20-|" options:0 metrics:nil views:views]];
+    
+    [headerView addConstraint:[NSLayoutConstraint constraintWithItem:lbAmount attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbOrderAmount attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
+    
+    [headerView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbOrderAmount]-0-[lbOrderAmount(46)]-0-[lbLine(1)]-0-[lbTitle(46)]-0-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[headerView]-0-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[titleView]-0-|" options:0 metrics:nil views:views]];
+    [titleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbTitleText(46)]-0-[lbLine1(1)]-0-|" options:0 metrics:nil views:views]];
+    [titleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[lbLine1]-16-|" options:0 metrics:nil views:views]];
+    [titleView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[lbTitleText]-16-|" options:0 metrics:nil views:views]];
 }
 
 #pragma UITableViewDataSource UITableViewDelegate
@@ -113,7 +164,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50.f;
+    return 52.f;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

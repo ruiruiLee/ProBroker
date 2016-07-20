@@ -20,5 +20,7 @@
 @property (nonatomic, strong) NSString *orderId;//订单id
 @property (nonatomic, strong) NSString *insuranceType;//险种
 @property (nonatomic, strong) NSString *planOfferId;//报价
+@property (nonatomic, strong) NSString *totalFee;//总价
+@property (nonatomic, strong) NSString *titleName;//产品名称
 
 @end

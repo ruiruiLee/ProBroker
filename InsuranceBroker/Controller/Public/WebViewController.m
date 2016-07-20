@@ -41,9 +41,16 @@
     return self;
 }
 
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePaySuccess) name:Notify_Pay_Success object:nil];
     
     MyJSInterface* interface = [MyJSInterface new];
     interface.delegate = self;
@@ -92,13 +99,15 @@
 }
 
 //支付接口
-- (void) NotifyToPay:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId
+- (void) NotifyToPay:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId titleName:(NSString *)titleName totalFee:(NSString *)totalFee
 {
     PayTypeSelectedVC *vc = [[PayTypeSelectedVC alloc] initWithNibName:nil bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
     vc.orderId = orderId;
     vc.insuranceType = insuranceType;
     vc.planOfferId = planOfferId;
+    vc.totalFee = totalFee;
+    vc.titleName = titleName;
 }
 
 - (void) NotifyToReSubmitCarInfo:(NSString *) orderId customerId:(NSString *) customerId customerCarId:(NSString *) customerCarId
@@ -447,6 +456,11 @@
     SBJsonParser *_parser = [[SBJsonParser alloc] init];
     NSDictionary *dic = [_parser objectWithString:str];
     return dic;
+}
+
+- (void) handlePaySuccess
+{
+    [self.webview stringByEvaluatingJavaScriptFromString:@"paySuccess();"];
 }
 
 @end

@@ -125,8 +125,9 @@
         NSArray *coverImageNames = @[@"guide1",@"guide2",@"guide3",@"guide4"];
         // Example 2 自定义登陆按钮
         UIButton *enterButton = [UIButton new];
-        [enterButton setBackgroundColor:[UIColor redColor]];
-        [enterButton setTitle:NSLocalizedString(@"立刻体验", nil) forState:UIControlStateNormal];
+        [enterButton setImage:ThemeImage(@"liketiyan") forState:UIControlStateNormal];
+//        [enterButton setBackgroundColor:[UIColor redColor]];
+//        [enterButton setTitle:NSLocalizedString(@"立刻体验", nil) forState:UIControlStateNormal];
         self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:nil button:enterButton];
         
         [self.window addSubview:self.introductionView.view];
@@ -182,6 +183,7 @@
             case WXSuccess:
             {
                 NSLog(@"支付结果: 成功!");
+                [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Pay_Success object:nil];
             }
                 break;
             case WXErrCodeCommon:

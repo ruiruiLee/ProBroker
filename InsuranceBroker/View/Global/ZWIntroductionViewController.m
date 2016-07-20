@@ -46,7 +46,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = _COLOR(250, 250, 250);
+    self.view.backgroundColor = _COLOR(252, 226, 89);
     
     [self addBackgroundViews];
     
@@ -54,13 +54,13 @@
     self.pagingScrollView.delegate = self;
     self.pagingScrollView.pagingEnabled = YES;
     self.pagingScrollView.showsHorizontalScrollIndicator = NO;
-    self.pagingScrollView.backgroundColor = _COLOR(250, 250, 250);
+    self.pagingScrollView.backgroundColor = _COLOR(252, 226, 89);
     
     [self.view addSubview:self.pagingScrollView];
     
     self.pageControl = [[UIPageControl alloc] initWithFrame:[self frameOfPageControl]];
     self.pageControl.pageIndicatorTintColor = [UIColor grayColor];
-    self.pageControl.currentPageIndicatorTintColor = _COLOR(0xff, 0x66, 0x19);
+    self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];//_COLOR(0xff, 0x66, 0x19);
     [self.view addSubview:self.pageControl];
     
     if (!self.enterButton) {
@@ -120,7 +120,7 @@
 
 - (CGRect)frameOfPageControl
 {
-    return CGRectMake(0, self.view.bounds.size.height - 30, self.view.bounds.size.width, 30);
+    return CGRectMake(0, self.view.bounds.size.height - 40, self.view.bounds.size.width, 30);
 }
 
 - (CGRect)frameOfEnterButton
@@ -212,7 +212,7 @@
 - (UIImageView*)scrollViewPage:(NSString*)imageName
 {
     UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
     CGSize size = {[[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height};
     imageView.frame = CGRectMake(imageView.frame.origin.x, imageView.frame.origin.y, size.width, size.height);
     return imageView;
