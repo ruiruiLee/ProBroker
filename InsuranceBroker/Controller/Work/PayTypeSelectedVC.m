@@ -221,6 +221,8 @@
                                 //WEIXIN
                                 [self payInWX:dict];
                                 
+                            }else{
+                                [KGStatusBar showErrorWithStatus:[content objectForKey:@"msg"]];
                             }
                             
                             [ProgressHUD dismiss];
