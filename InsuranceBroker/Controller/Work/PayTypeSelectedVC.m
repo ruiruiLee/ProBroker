@@ -38,15 +38,27 @@
 @synthesize lbTitle;
 @synthesize lbAmount;
 
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePaySuccess) name:Notify_Pay_Success object:nil];
     
     self.title = @"确认支付";
     selectedIdx = 0;
     
     [self loadData];
     [self initSubViews];
+}
+
+- (void) handlePaySuccess
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) loadData

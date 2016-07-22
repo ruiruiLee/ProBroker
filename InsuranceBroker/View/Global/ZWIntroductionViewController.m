@@ -127,7 +127,7 @@
 {
     CGSize size = self.enterButton.bounds.size;
     if (CGSizeEqualToSize(size, CGSizeZero)) {
-        size = CGSizeMake(self.view.frame.size.width * 0.6, 40);
+        size = CGSizeMake(124, 34);
     }
     return CGRectMake(self.view.frame.size.width / 2 - size.width / 2, self.pageControl.frame.origin.y - size.height, size.width, size.height);
 }

@@ -7,6 +7,7 @@
 //
 
 #import "WXApiManager.h"
+#import "define.h"
 
 @implementation WXApiManager
 
@@ -51,7 +52,11 @@
         //支付返回结果，实际支付结果需要去微信服务器端查询
         NSString *strMsg,*strTitle = [NSString stringWithFormat:@"支付结果"];
         switch (resp.errCode) {
-            case WXSuccess: strMsg = @"支付结果：成功！"; break;
+            case WXSuccess: {
+                strMsg = @"支付结果：成功！";
+                [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Pay_Success object:nil];
+            }
+                break;
             case WXErrCodeCommon: strMsg = @"普通错误类型！"; break;
             case WXErrCodeUserCancel: strMsg = @"用户取消！"; break;
             case WXErrCodeSentFail: strMsg = @"发送失败！"; break;
