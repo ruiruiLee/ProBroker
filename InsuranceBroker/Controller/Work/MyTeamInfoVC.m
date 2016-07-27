@@ -208,11 +208,11 @@
     if(tableView == self.productTable)
         return 1;
     else{
-        if([UserInfoModel shareUserInfoModel].possessTeamStatus){
+//        if([UserInfoModel shareUserInfoModel].possessTeamStatus){
             return 2;
-        }
-        else
-            return 1;
+//        }
+//        else
+//            return 1;
     }
 }
 

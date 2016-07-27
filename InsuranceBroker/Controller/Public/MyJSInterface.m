@@ -100,4 +100,11 @@
     }
 }
 
+- (void) canGoBack:(BOOL) flag
+{
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyWebCanReturnPrev:)]){
+        [self.delegate NotifyWebCanReturnPrev:flag];
+    }
+}
+
 @end

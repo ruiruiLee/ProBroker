@@ -168,16 +168,18 @@
 
     [array addObject:[NSNumber numberWithFloat:self.statmodel.monthOrderTotalSuccessEarn]];
     [array addObject:[NSNumber numberWithFloat:self.statmodel.monthOrderTotalTcEarn]];
+    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthOtherTotalEarn]];
 //    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInRedPack]];
 //    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInLeader]];
     self.slices = array;
 
     self.lbSaleStr.text = [Util getDecimalStyle:self.statmodel.monthOrderTotalSuccessEarn];
     self.lbTeamStr.text = [Util getDecimalStyle:self.statmodel.monthOrderTotalTcEarn];
+    self.lbManStr.text = [Util getDecimalStyle:self.statmodel.monthOtherTotalEarn];
 //    self.lbRedStr.text = [Util getDecimalStyle:self.statmodel.monthInRedPack];
 //    self.lbManStr.text = [Util getDecimalStyle:self.statmodel.monthInLeader];
     
-    self.piechat.lbAmount.text = [Util getDecimalStyle:self.statmodel.monthOrderTotalSuccessEarn + self.statmodel.monthOrderTotalTcEarn];
+    self.piechat.lbAmount.text = [Util getDecimalStyle:self.statmodel.monthOrderTotalSuccessEarn + self.statmodel.monthOrderTotalTcEarn + self.statmodel.monthOtherTotalEarn];
     
     [self.piechat reloadData];
     

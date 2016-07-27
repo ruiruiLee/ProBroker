@@ -18,6 +18,7 @@
                           totalFee:(NSString *) totalFee
                               body:(NSString *) body
                            baseUrl:(NSString *) baseUrl
+                           payType:(NSString *) payType
                         Completion:(Completion)completion
 {
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
@@ -29,6 +30,7 @@
     [Util setValueForKeyWithDic:pramas value:openId key:@"openId"];
     [Util setValueForKeyWithDic:pramas value:outTradeNo key:@"outTradeNo"];
     [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:payOrderType] key:@"payOrderType"];
+    [Util setValueForKeyWithDic:pramas value:payType key:@"payType"];
     
     [handle postWithMethod:baseUrl BaseUrl:@"" Params:pramas Completion:completion];
 }

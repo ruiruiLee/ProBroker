@@ -36,6 +36,7 @@
             [icon addObject:appdelegate.appIcon];
         self.shareImgArray = icon;
         _isLoad = false;
+        _isReturnPrevWeb = NO;
     }
     
     return self;
@@ -85,6 +86,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) handleLeftBarButtonClicked:(id)sender
+{
+    if(!_isReturnPrevWeb && [self.webview canGoBack]){
+        [self.webview goBack];
+    }else{
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 #pragma MyJSInterfaceDelegate
@@ -154,6 +164,7 @@
     if(!_isLoad){
         if(_urlpath != nil){
             
+//            [_webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlpath]]];
             id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:self.urlpath]];
             if (cacheDatas !=nil) { // 直接加在缓存
                 NSString *datastr = [[NSString alloc] initWithData:cacheDatas encoding:NSUTF8StringEncoding];
@@ -462,5 +473,11 @@
 {
     [self.webview stringByEvaluatingJavaScriptFromString:@"paySuccess();"];
 }
+
+- (void) NotifyWebCanReturnPrev:(BOOL)flag
+{
+    _isReturnPrevWeb = flag;
+}
+
 
 @end

@@ -21,7 +21,7 @@
 
 - (NSString*)urlEncodedString:(NSString *)string
 {
-    NSString * encodedString = (NSString*) CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)string, NULL, (__bridge CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8 ));
+    NSString * encodedString = (__bridge_transfer  NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)string, NULL, (__bridge CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8 );
     
     return encodedString;
 }
@@ -29,9 +29,9 @@
 
 - (NSString *)formatPrivateKey:(NSString *)privateKey {
     const char *pstr = [privateKey UTF8String];
-    NSUInteger len = [privateKey length];
+    int len = (int)[privateKey length];
     NSMutableString *result = [NSMutableString string];
-    [result appendString:@"-----BEGIN PRIVATE KEY-----\n"];
+    [result appendString:@"-----BEGIN RSA PRIVATE KEY-----\n"];
     int index = 0;
 	int count = 0;
     while (index < len) {
@@ -48,7 +48,7 @@
         }
         index++;
     }
-    [result appendString:@"\n-----END PRIVATE KEY-----"];
+    [result appendString:@"\n-----END RSA PRIVATE KEY-----"];
     return result;
 }
 

@@ -19,6 +19,7 @@
 - (void) NotifyToInitCustomerInfo;//初始化数据
 - (void) NotifyToSelectCustomerForCar:(NSString *) productAttrId;
 - (void) NotifyToPay:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId titleName:(NSString *) titleName totalFee:(NSString *) totalFee;
+- (void) NotifyWebCanReturnPrev:(BOOL) flag;
 
 @end
 
@@ -43,5 +44,7 @@
 - (void) callInsurance:(NSString *) productAttrId;//车险
 
 - (void) pay:(NSString *) pramas;//付款
+
+- (void) canGoBack:(BOOL) flag;//是否允许返回上一节web页面
 
 @end

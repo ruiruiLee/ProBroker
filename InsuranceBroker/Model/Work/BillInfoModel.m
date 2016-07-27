@@ -77,6 +77,8 @@
         self.insuranceOrderUuid = [dictionary objectForKey:@"insuranceOrderUuid"];
     self.userName = [dictionary objectForKey:@"userName"];
     self.sellPrice = [[dictionary objectForKey:@"sellPrice"] floatValue];
+    if([dictionary objectForKey:@"clickUrl"])
+        self.clickUrl = [dictionary objectForKey:@"clickUrl"];
 }
 
 @end

@@ -59,7 +59,8 @@ int base64_self_test( int verbose );
 }
 #endif
 
-#import "CommonInfo.h"
+#import <UIKit/UIKit.h>
+
 
 @interface Base64 : NSObject
 

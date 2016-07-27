@@ -13,12 +13,55 @@
 #import "SelectInsuredVC.h"
 #import "SelectCustomerForCarVC.h"
 #import "RootViewController.h"
+#import "ProductListVC.h"
 
 @interface ProductDetailWebVC ()<SelectInsuredVCDelegate, SelectCustomerVCDelegate>
 
 @end
 
 @implementation ProductDetailWebVC
+
+- (void) viewDidLoad
+{
+    [super viewDidLoad];
+}
+
+- (void) handleCloseButtonClicked:(UIButton *) sender
+{
+    NSArray *vcarray = self.navigationController.viewControllers;
+    UIViewController *vc = nil;
+    for (int i = 0; i < [vcarray count]; i++) {
+        UIViewController *temp = [vcarray objectAtIndex:i];
+        if([temp isKindOfClass:[ProductListVC class]]){
+            vc = temp;
+            break;
+        }
+    }
+    
+    [self.navigationController popToViewController:vc animated:YES];
+}
+
+//- (void) loadWebString
+//{
+//    if(!_isLoad){
+//        if(self.urlpath != nil){
+//            
+//            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
+////            id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:self.urlpath]];
+////            if (cacheDatas !=nil) { // 直接加在缓存
+////                NSString *datastr = [[NSString alloc] initWithData:cacheDatas encoding:NSUTF8StringEncoding];
+////                [ _webview loadHTMLString:datastr baseURL:[NSURL URLWithString:self.urlpath]];
+////            }
+////            else{  //请求服务器资源
+////
+////                NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlpath]];
+////                [self addWebCache:request]; // 加缓存并加载
+////            }
+//            
+//            _isLoad = YES;
+//        }
+//    }
+//}
 
 - (void) handleRightBarButtonClicked:(id)sender
 {
@@ -145,15 +188,47 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Refresh_OrderList object:nil];
     
     [self.navigationController popToRootViewControllerAnimated:YES];
-//    [self.navigationController popViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Add_NewCustomer object:nil];
-//    [self performSelector:@selector(turnToCustomerPage) withObject:nil afterDelay:0.1];
+    [self handleCloseButtonClicked:nil];
 }
 
 - (void) turnToCustomerPage
 {
     AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     delegate.root.selectedIndex = 1;
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSURL *url = request.URL;
+    NSString *uri = url.absoluteString;
+    if([uri rangeOfString:@"lastpage=true"].length > 0 && ![uri isEqualToString:self.urlpath]){
+        ProductDetailWebVC *vc = [IBUIFactory CreateProductDetailWebVC];
+        [self.navigationController pushViewController:vc animated:YES];
+        [vc loadHtmlFromUrl:uri];
+        [vc performSelector:@selector(initCloseButton) withObject:nil afterDelay:0.2];
+        return NO;
+    }
+    return YES;
+}
+
+- (void) initCloseButton
+{
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStyleBordered target:self action:@selector(handleLeftBarButtonClicked:)];
+    UIImage *image = [ThemeImage(@"arrow_left") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    backItem.image = image;
+    [backItem setTarget:self];
+    
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 32)];
+    [button setTitle:@"关闭" forState:UIControlStateNormal];
+    [button setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
+    button.titleLabel.font = _FONT(16);
+    UIBarButtonItem *closeItem=[[UIBarButtonItem alloc] initWithCustomView:button];
+    [button addTarget:self action:@selector(handleCloseButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    NSArray *array = [NSArray arrayWithObjects:backItem, closeItem, nil];
+    [[self navigationItem] setLeftBarButtonItems:array];
 }
 
 #pragma MyJSInterfaceDelegate
