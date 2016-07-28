@@ -290,6 +290,12 @@
     
     [[AlipaySDK defaultService] payOrder:orderString fromScheme:@"alipayPayIBroker" callback:^(NSDictionary *resultDic) {
         NSLog(@"reslut = %@",resultDic);
+        if([[resultDic objectForKey:@"resultStatus"] integerValue] == 9000){
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Pay_Success object:nil];
+            [Util showAlertMessage:@"支付结果：成功！"];
+        }
+        else
+            [Util showAlertMessage:@"支付失败"];
     }];
 }
 
