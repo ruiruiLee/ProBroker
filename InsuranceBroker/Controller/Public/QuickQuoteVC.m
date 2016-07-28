@@ -39,7 +39,8 @@
 {
     //    self.shareUrl = webView.request.URL.absoluteString;
     
-    self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    if(self.title == nil)
+        self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     
     NSString *url = webView.request.URL.absoluteString;
     if(![url isEqualToString:self.urlpath])

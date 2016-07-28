@@ -22,6 +22,7 @@
 #import "UUInputAccessoryView.h"
 #import "NetWorkHandler+privateLetter.h"
 #import "IQKeyboardManager.h"
+#import "LeftImgButton.h"
 
 @interface MyTeamInfoVC () <HMPopUpViewDelegate, BackGroundViewDelegate>
 {
@@ -47,6 +48,17 @@
     // Do any additional setup after loading the view.inviteUser
     [self.pulltable registerNib:[UINib nibWithNibName:@"TeamItemTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
     [self.pulltable registerNib:[UINib nibWithNibName:@"TeamListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    
+    UIButton *btnDetail = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 24)];
+    [btnDetail setTitle:@"关于团队" forState:UIControlStateNormal];
+    btnDetail.layer.cornerRadius = 12;
+    btnDetail.layer.borderWidth = 0.5;
+    btnDetail.layer.borderColor = _COLOR(0xff, 0x66, 0x19).CGColor;
+    [btnDetail setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
+    btnDetail.titleLabel.font = _FONT(12);
+    //        btnDetail.backgroundColor = _COLOR(0xff, 0x66, 0x1a);
+    [self setRightBarButtonWithButton:btnDetail];
+//    [btnDetail addTarget:self action:@selector(doAboutTeam:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void) initHeaderView
@@ -111,9 +123,10 @@
     self.pulltable.pullDelegate = self;
     self.pulltable.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.pulltable.translatesAutoresizingMaskIntoConstraints = NO;
-    self.pulltable.backgroundColor = [UIColor clearColor];
+    self.pulltable.backgroundColor = [UIColor whiteColor];
     
     self.pulltable.tableFooterView = [[UIView alloc] init];
+    self.pulltable.tableFooterView.backgroundColor = [UIColor whiteColor];
     
     UIEdgeInsets insets = UIEdgeInsetsMake(0, 20, 0, 20);
     self.pulltable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
@@ -154,7 +167,12 @@
 - (void) handleRightBarButtonClicked:(id)sender
 {
     [self resignFirstResponder];
-    [super handleRightBarButtonClicked:sender];
+//    [super handleRightBarButtonClicked:sender];
+    WebViewController *web = [IBUIFactory CreateWebViewController];
+    web.title = @"关于团队";
+    NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", ABOUT_TEAM];
+    [web loadHtmlFromUrl:url];
+    [self.navigationController pushViewController:web animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -266,7 +284,6 @@
         NSString *deq = @"productcell";
         ProductSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
         if(!cell){
-//            cell = [[ProductSettingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
             NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"ProductSettingTableViewCell" owner:nil options:nil];
             cell = [nibs lastObject];
         }
@@ -440,19 +457,32 @@
     UILabel *lbAmount = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
     [view addSubview:lbAmount];
     lbAmount.textAlignment = NSTextAlignmentRight;
+    
+    LeftImgButton *button = [[LeftImgButton alloc] initWithFrame:CGRectZero];
+    [button setImage:ThemeImage(@"add_icon") forState:UIControlStateNormal];
+    [button setTitle:@"邀请" forState:UIControlStateNormal];
+    [button setTitleColor:_COLOR(0x21, 0x21, 0x21) forState:UIControlStateNormal];
+    button.titleLabel.font = _FONT(15);
+    button.translatesAutoresizingMaskIntoConstraints = NO;
+    [view addSubview:button];
+    [button addTarget:self action:@selector(doBtnInvite:) forControlEvents:UIControlEventTouchUpInside];
+    
     if(section == 0){
-        lbTitle.text = @"我的团长";
+        lbTitle.text = @"邀请人";
         imgV.image = ThemeImage(@"wodetuanzhang");
         lbAmount.text = @"";
+        button.hidden = YES;
     }
     else{
         lbTitle.text = @"我的队员";
         imgV.image = ThemeImage(@"my_team");
-        lbAmount.text = [NSString stringWithFormat:@"共%d人", (int)[self.data count]];
+        lbAmount.text = [NSString stringWithFormat:@"(共%d人)", (int)[self.data count]];
+        button.hidden = NO;
     }
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbAmount, imgV);
-    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[imgV(25)]-4-[lbTitle]->=10-[lbAmount]-20-|" options:0 metrics:nil views:views]];
+    NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbAmount, imgV, button);
+    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[imgV(25)]-4-[lbTitle]-6-[lbAmount]->=10-[button(56)]-20-|" options:0 metrics:nil views:views]];
+    [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[button(40)]->=0-|" options:0 metrics:nil views:views]];
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbTitle(40)]->=0-|" options:0 metrics:nil views:views]];
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[imgV(18)]->=0-|" options:0 metrics:nil views:views]];
     [view addConstraint:[NSLayoutConstraint constraintWithItem:lbAmount attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
@@ -464,6 +494,12 @@
     }
     
     return view;
+}
+
+- (void) doBtnInvite:(UIButton *)sender
+{
+    [self resignFirstResponder];
+    [super handleRightBarButtonClicked:sender];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

@@ -58,8 +58,9 @@
     [self setRightBarButtonWithImage:ThemeImage(@"inviteUser")];
 
     [self.pulltable registerNib:[UINib nibWithNibName:@"TeamListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
-    self.pulltable.backgroundColor = [UIColor clearColor];
+    self.pulltable.backgroundColor = [UIColor whiteColor];
     self.pulltable.tableFooterView = [[UIView alloc] init];
+    self.pulltable.tableFooterView.backgroundColor = [UIColor whiteColor];
     
     [self initHeaderView];
 }

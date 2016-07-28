@@ -70,7 +70,8 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    if(self.title == nil)
+        self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     
     NSString *jsonstr = [self isFirstLoad];
     
