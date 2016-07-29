@@ -14,6 +14,7 @@
 @interface UserDetailVC : BaseViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *scHConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *scVConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *tableVConstraint;
 @property (nonatomic, strong) IBOutlet GradientView *gradientView;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollview;

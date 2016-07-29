@@ -476,7 +476,7 @@
     else{
         lbTitle.text = @"我的队员";
         imgV.image = ThemeImage(@"my_team");
-        lbAmount.text = [NSString stringWithFormat:@"(共%d人)", (int)[self.data count]];
+        lbAmount.text = [NSString stringWithFormat:@"(共%d人)", self.total];
         button.hidden = NO;
     }
     
