@@ -115,7 +115,12 @@
         cell.lbContent.text = @"";
         cell.contentWidth.constant = 10;
         
-        cell.lbStatus.text = model.orderOfferStatusMsg;
+//        cell.lbStatus.text = model.orderOfferStatusMsg;
+        if(model.orderOfferPayPrice > 0){
+            NSString *string = [NSString stringWithFormat:@"价格:¥%.2f", model.orderOfferPayPrice];
+            cell.lbStatus.attributedText = [OrderUtil attstringWithString:string range:NSMakeRange(3, [string length] - 3) font:_FONT(18) color:_COLOR(0xf4, 0x43, 0x36)];
+        }else
+            cell.lbStatus.text = @"";
         [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
         
         [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];

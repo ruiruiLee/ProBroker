@@ -222,7 +222,13 @@
         cell.contentWidth.constant = 10;
         [cell.phoneNum setTitle:model.customerPhone forState:UIControlStateNormal];
 //        cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
-        cell.lbStatus.text = model.orderOfferStatusMsg;
+//        cell.lbStatus.text = model.orderOfferStatusMsg;
+        if(model.orderOfferPayPrice > 0){
+            NSString *string = [NSString stringWithFormat:@"价格:¥%.2f", model.orderOfferPayPrice];
+            cell.lbStatus.attributedText = [OrderUtil attstringWithString:string range:NSMakeRange(3, [string length] - 3) font:_FONT(18) color:_COLOR(0xf4, 0x43, 0x36)];
+        }
+        else
+            cell.lbStatus.text = @"";
         [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
     }
     

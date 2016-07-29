@@ -57,7 +57,7 @@
         web.title = @"报价详情";
         [self.navigationController pushViewController:web animated:YES];
 //        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@", Base_Uri, @"1", self.billInfo.insuranceOrderUuid];
-        NSString *uri = [NSString stringWithFormat:@"%@&appShare=1", self.billInfo.clickUrl];
+        NSString *uri = [NSString stringWithFormat:@"%@&appShare=1&id=%@", self.billInfo.clickUrl, self.billInfo.insuranceOrderUuid];
         [web loadHtmlFromUrl:uri];
         
     }
