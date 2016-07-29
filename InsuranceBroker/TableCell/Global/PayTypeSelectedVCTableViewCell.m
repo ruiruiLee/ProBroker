@@ -16,7 +16,7 @@
     
     [self.btnSelect setImage:ThemeImage(@"unselect_point") forState:UIControlStateNormal];
     [self.btnSelect setImage:ThemeImage(@"select_point") forState:UIControlStateSelected];
-    self.btnSelect.userInteractionEnabled = YES;
+    self.btnSelect.userInteractionEnabled = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
