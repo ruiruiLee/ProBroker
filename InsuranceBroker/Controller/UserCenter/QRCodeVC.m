@@ -49,7 +49,10 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     
-    NSString *url = [NSString stringWithFormat:@"%@?userId=%@&appShare=1", QR_ADDRESS, [UserInfoModel shareUserInfoModel].userId];
+    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    NewUserModel *model = appdelegate.workBanner;
+    
+    NSString *url = [NSString stringWithFormat:@"%@?uuid=%@&appShare=1", model.url, [UserInfoModel shareUserInfoModel].uuid];
     
     self.imgQR.image = [QRCodeGenerator qrImageForString:url imageSize:self.imgQR.bounds.size.width];
 }

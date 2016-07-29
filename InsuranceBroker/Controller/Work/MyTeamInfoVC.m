@@ -630,7 +630,7 @@
 
 - (void) notifyToAddNewCustomer:(BackGroundView *) view
 {
-    [self handleRightBarButtonClicked:nil];
+    [self doBtnInvite:nil];
 }
 
 @end
