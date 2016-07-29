@@ -110,9 +110,9 @@
     [context addObserver:self forKeyPath:@"isZSKFHasMsg" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NotifyLogin:) name:Notify_Login object:nil];
     
-//    UIImageView *logoView = [[UIImageView alloc] initWithImage:ThemeImage(@"logo")];
-//    self.navigationItem.titleView = logoView;
-    self.title = @"优快保经纪人";
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:ThemeImage(@"logo")];
+    self.navigationItem.titleView = logoView;
+//    self.title = @"优快保经纪人";
     [self setLeftBarButtonWithImage:nil];
 
     [self initSubViews];
@@ -438,6 +438,7 @@
         if(model.imgUrl != nil)
             vc.shareImgArray = [NSArray arrayWithObject:model.imgUrl];
         vc.shareTitle = model.title;
+        vc.shareContent = model.content;
         [self.navigationController pushViewController:vc animated:YES];
         if(model.url == nil){
             [vc loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.pid]];

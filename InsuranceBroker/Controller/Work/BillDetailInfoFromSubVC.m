@@ -54,7 +54,7 @@
     
     if(indexPath.row == 0){
         WebViewController *web = [IBUIFactory CreateWebViewController];
-        web.title = @"报价详情";
+        web.title = @"保单详情";
         [self.navigationController pushViewController:web animated:YES];
         NSString *uri = [NSString stringWithFormat:@"%@&appShare=1&id=%@", self.billInfo.clickUrl, self.billInfo.insuranceOrderUuid];
         [web loadHtmlFromUrl:uri];
