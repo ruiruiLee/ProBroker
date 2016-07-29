@@ -438,6 +438,7 @@
         if(model.imgUrl != nil)
             vc.shareImgArray = [NSArray arrayWithObject:model.imgUrl];
         vc.shareTitle = model.title;
+        vc.shareContent = model.content;
         [self.navigationController pushViewController:vc animated:YES];
         if(model.url == nil){
             [vc loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.pid]];

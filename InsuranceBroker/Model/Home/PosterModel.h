@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString *title;//": "jQuery怎么简单去获取一个div的高度啊",
 @property (nonatomic, strong) NSString *url;//": "xxxx_",  //点击海报重定向
 @property (nonatomic, strong) NSString *imgUrl;//": "http://ac-0PyuKjNl.clouddn.com/9c218bc5c42df7053297.jpg",   //海报图片
+@property (nonatomic, strong) NSString *content;
 @property (nonatomic, assign) BOOL isRedirect;//": 1   //是否可转入到新闻详细页面
 
 @end

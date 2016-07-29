@@ -19,6 +19,7 @@
     model.url = [dictionary objectForKey:@"url"];
     model.imgUrl = [dictionary objectForKey:@"imgUrl"];
     model.isRedirect = [[dictionary objectForKey:@"isRedirect"] boolValue];
+    model.content = [dictionary objectForKey:@"content"];
     
     return model;
 }
