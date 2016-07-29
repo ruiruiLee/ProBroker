@@ -14,6 +14,8 @@ typedef void(^Completion) (int code, id content);
 @interface NetWorkHandler : NSObject
 {
     NSMutableString       * _urlstring;
+    
+    NSMutableArray *_reqArray;
 }
 
 //@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;

@@ -32,6 +32,7 @@ static NetWorkHandler *networkmanager;
     if(self){
         [ProjectDefine shareProjectDefine];
         self.manager = [AFHTTPSessionManager manager];
+        _reqArray = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -66,7 +67,7 @@ static NetWorkHandler *networkmanager;
     
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
-    [self.manager GET:path parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+    NSURLSessionDataTask *req = [self.manager GET:path parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *result = nil;
@@ -83,6 +84,7 @@ static NetWorkHandler *networkmanager;
         
         [ProjectDefine removeRequestTag:Tag];
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [_reqArray removeObject:task];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"请求URL：%@ \n请求方法:%@ \n请求参数：%@\n 请求结果：%@\n==================================", url, method, params, error);
         [ProjectDefine removeRequestTag:Tag];
@@ -93,7 +95,10 @@ static NetWorkHandler *networkmanager;
         [self handleResponse:dic Completion:completion];
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [_reqArray removeObject:task];
     }];
+    
+    [_reqArray addObject:req];
 }
 
 -(NSMutableString *) ConvertCachKeyString:(NSString*)strUrl{
@@ -173,7 +178,7 @@ static NetWorkHandler *networkmanager;
 
     NSMutableURLRequest *request = [self.manager.requestSerializer requestWithMethod:@"POST" URLString:path parameters:params error:nil];
     
-    [self.manager POST:path parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+    NSURLSessionDataTask *req = [self.manager POST:path parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [ProjectDefine removeRequestTag:Tag];
@@ -193,6 +198,8 @@ static NetWorkHandler *networkmanager;
         [self handleResponse:result Completion:completion];
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [_reqArray removeObject:task];
+        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [ProjectDefine removeRequestTag:Tag];
         NSLog(@"请求URL：%@ \n请求方法:%@ \n请求参数：%@\n 请求结果：%@\n==================================", url, method, params, error);
@@ -206,7 +213,10 @@ static NetWorkHandler *networkmanager;
             [self handleResponse:cacheDatas Completion:completion];
         
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+        [_reqArray removeObject:task];
     }];
+    
+    [_reqArray addObject:req];
 }
 
 - (void) handleResponse:(NSDictionary *)result Completion:(Completion)completion {
@@ -270,7 +280,13 @@ static NetWorkHandler *networkmanager;
 
 - (void) removeAllRequest
 {
-    [self.manager.operationQueue cancelAllOperations];
+//    [self.manager.operationQueue cancelAllOperations];
+    for (int i = 0 ; i < [_reqArray count]; i++) {
+        NSURLSessionDataTask *task = [_reqArray objectAtIndex:i];
+        [task cancel];
+    }
+    
+    [_reqArray removeAllObjects];
 }
 
 @end
