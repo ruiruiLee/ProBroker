@@ -81,7 +81,7 @@
 //ids
 #define ABOUT_US @"56ce5b0fc24aa800545a216d"//关于我们
 #define User_Agreement @"56ce5b3e71cfe40054072829"//用户协议
-#define ABOUT_TEAM @"56ce5b81128fe142471e1432"//关于团队
+#define ABOUT_TEAM @"56ce6522efa631df62c0ca74"//关于团队
 #define INCOME_LOW @"56ce5c10efa631df62c08493"//收益太低
 #define Withdrawal_Instructions @"56ce5c29c24aa800520e1b82"//提现说明
 

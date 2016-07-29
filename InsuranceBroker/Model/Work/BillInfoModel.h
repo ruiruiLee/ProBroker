@@ -33,6 +33,8 @@
 @property (nonatomic, strong) NSString *insuranceOrderNo;//": "201602011445245910"
 @property (nonatomic, strong) NSString *insuranceOrderUuid;
 
+@property (nonatomic, strong) NSString *clickUrl;//
+
 //
 @property (nonatomic, assign) CGFloat sellPrice;
 @property (nonatomic, strong) NSString *userName;

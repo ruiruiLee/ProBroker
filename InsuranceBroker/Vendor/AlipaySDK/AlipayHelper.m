@@ -63,18 +63,18 @@
     //将商品信息赋予AlixPayOrder的成员变量
     Order *order = [[Order alloc] init];
     order.partner = partner;
-    order.seller = seller;
-    order.tradeNO = product.orderId; //订单ID（由商家自行制定）
-    order.productName =  product.subject; //商品标题
-    order.productDescription = product.body; //商品描述
-    order.amount = [NSString stringWithFormat:@"%.2f",product.price]; //商品价格
+    order.sellerID = seller;
+    order.outTradeNO = product.orderId; //订单ID（由商家自行制定）
+    order.subject =  product.subject; //商品标题
+    order.body = product.body; //商品描述
+    order.totalFee = [NSString stringWithFormat:@"%.2f",product.price]; //商品价格
     order.notifyURL =  @"http://www.xxx.com"; //回调URL
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";
     order.inputCharset = @"utf-8";
     order.itBPay = @"30m";
-    order.showUrl = @"m.alipay.com";
+    order.showURL = @"m.alipay.com";
     
     //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
     NSString *appScheme = @"alipayPayDemo";

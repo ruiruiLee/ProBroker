@@ -14,6 +14,7 @@
 #include "bio.h"
 #include "sha.h"
 #include <string.h>
+#import <UIKit/UIKit.h>
 
 
 int rsa_sign_with_private_key_pem(char *message, int message_length
@@ -139,7 +140,7 @@ void rsaVerifyString(NSString *stringToVerify, NSString *signature, NSString *pu
     int messageLength = (int)[stringToVerify lengthOfBytesUsingEncoding:NSUTF8StringEncoding];
     NSData *signatureData = dataFromBase64String(signature);
     unsigned char *sig = (unsigned char *)[signatureData bytes];
-    unsigned int sig_len = (unsigned int)[signatureData length];
+    unsigned int sig_len = (int)[signatureData length];
     char *filePath = (char *)[publicKeyFilePath cStringUsingEncoding:NSUTF8StringEncoding];
     int verify_ok = rsa_verify_with_public_key_pem((char *)message, messageLength
                                                    , sig, sig_len

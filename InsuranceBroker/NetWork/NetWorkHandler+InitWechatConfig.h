@@ -17,6 +17,7 @@
                           totalFee:(NSString *) totalFee
                               body:(NSString *) body
                            baseUrl:(NSString *) baseUrl
+                           payType:(NSString *) payType
                         Completion:(Completion)completion;
 
 @end

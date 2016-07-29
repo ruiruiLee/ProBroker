@@ -19,6 +19,10 @@
 #import "WXApi.h"
 #import "CommonInfo.h"
 #import "DataMD5.h"
+#import "Order.h"
+#import "DataSigner.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import <Foundation/Foundation.h>
 
 @interface PayTypeSelectedVC ()\
 {
@@ -211,51 +215,46 @@
 {
     if(selectedIdx < [self.data count]){
         PayConfDataModel *model = [self.data objectAtIndex:selectedIdx];
-        if([model.payValue integerValue] == 2){
-            [ProgressHUD show:nil];
-            [NetWorkHandler requestToInsurancePay:self.orderId insuranceType:self.insuranceType planOfferId:self.planOfferId payType:model.payValue helpInsure:@"1" Completion:^(int code, id content) {
-                [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-                if(code == 200){
-                    //                NSDictionary *dic = [content objectForKey:@"data"];
-                    if([model.payValue integerValue] == 2){
-                        //WEIXIN
-                        NSString *totalFee = [[content objectForKey:@"data"] objectForKey:@"totalFee"];
-                        NSString *body = [[content objectForKey:@"data"] objectForKey:@"body"];
-                        NSInteger payOrderType = [[[content objectForKey:@"data"] objectForKey:@"payOrderType"] integerValue];
-                        NSString *outTradeNo = [[content objectForKey:@"data"] objectForKey:@"outTradeNo"];
-                        NSString *baseUrl = [[content objectForKey:@"data"] objectForKey:@"unifyPayInitUrl"];
-                        
-                        [NetWorkHandler requestToInitWechatConfig:@"appPay" payOrderType:payOrderType outTradeNo:outTradeNo openId:nil totalFee:totalFee body:body baseUrl:baseUrl Completion:^(int code, id content) {
-                            //                        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-                            if([[content objectForKey:@"state"] integerValue] == 1){
-                                // 添加调起数据
-                                NSDictionary *dict = [content objectForKey:@"data"];
-                                //WEIXIN
+        [ProgressHUD show:nil];
+        [NetWorkHandler requestToInsurancePay:self.orderId insuranceType:self.insuranceType planOfferId:self.planOfferId payType:model.payValue helpInsure:@"1" Completion:^(int code, id content) {
+            [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+            if(code == 200){
+                NSDictionary *dic = [content objectForKey:@"data"];
+                    //WEIXIN
+                    NSString *totalFee = [[content objectForKey:@"data"] objectForKey:@"totalFee"];
+                    NSString *body = [[content objectForKey:@"data"] objectForKey:@"body"];
+                    NSInteger payOrderType = [[[content objectForKey:@"data"] objectForKey:@"payOrderType"] integerValue];
+                    NSString *outTradeNo = [[content objectForKey:@"data"] objectForKey:@"outTradeNo"];
+                    NSString *baseUrl = [[content objectForKey:@"data"] objectForKey:@"unifyPayInitUrl"];
+                    
+                    [NetWorkHandler requestToInitWechatConfig:@"appPay" payOrderType:payOrderType outTradeNo:outTradeNo openId:nil totalFee:totalFee body:body baseUrl:baseUrl payType:model.payValue Completion:^(int code, id content) {
+                        //                        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+                        if([[content objectForKey:@"state"] integerValue] == 1){
+                            // 添加调起数据
+                            NSDictionary *dict = [content objectForKey:@"data"];
+                            //WEIXIN
+                            if([model.payValue integerValue] == 2){
                                 [self payInWX:dict];
-                                
+                            }
+                            else if ([model.payValue integerValue] == 3){
+                                //ZHI FU BAO
+                                [self payInAli:dict];
+                                [ProgressHUD dismiss];
                             }else{
-                                [KGStatusBar showErrorWithStatus:[content objectForKey:@"msg"]];
+                                [ProgressHUD dismiss];
                             }
                             
-                            [ProgressHUD dismiss];
-                        }];
-                    }
-                    //                else if ([model.payValue integerValue] == 3){
-                    //                    //ZHI FU BAO
-                    ////                    [self payInAli:dic];
-                    //                    [Util showAlertMessage:@"暂不支持支付宝支付！"];
-                    //                    [ProgressHUD dismiss];
-                    //                }else{
-                    //                    [ProgressHUD dismiss];
-                    //                }
-                }
-                else{
-                    [ProgressHUD dismiss];
-                }
-            }];
-        }else if ([model.payValue integerValue] == 3){
-            [Util showAlertMessage:@"暂不支持支付宝支付！"];
-        }
+                        }else{
+                            [KGStatusBar showErrorWithStatus:[content objectForKey:@"msg"]];
+                        }
+                        
+                        [ProgressHUD dismiss];
+                    }];
+            }
+            else{
+                [ProgressHUD dismiss];
+            }
+        }];
     }
 }
 
@@ -277,38 +276,26 @@
 
 - (void) payInAli:(NSDictionary *) dict
 {
-    
-    NSString *totalFee = [[dict objectForKey:@"data"] objectForKey:@"totalFee"];
-    NSString *body = [[dict objectForKey:@"data"] objectForKey:@"body"];
-//    NSInteger payOrderType = [[[dict objectForKey:@"data"] objectForKey:@"payOrderType"] integerValue];
-//    NSString *outTradeNo = [[dict objectForKey:@"data"] objectForKey:@"outTradeNo"];
-//    NSString *baseUrl = [[dict objectForKey:@"data"] objectForKey:@"unifyPayInitUrl"];
-    
-    // 添加商品信息
-    Product *product = [Product new];
-    product.orderId = self.orderId;
-    product.subject = @"PayDemo_AliPayTest_subject";
-    product.body = body;
-    product.price = [totalFee integerValue];
+    NSString *aliSignType = [dict objectForKey:@"aliSignType"];
+    NSString *aliOrderInfo = [dict objectForKey:@"aliOrderInfo"];
+    NSString *privateKey = [dict objectForKey:@"aliPrivateKey"];
     
     
-    // 调起支付宝客户端
-    [[AlipayHelper shared] alipay:product block:^(NSDictionary *result) {
-        // 返回结果
-        NSString *message = @"";
-        switch([[result objectForKey:@"resultStatus"] integerValue])
-        {
-            case 9000:message = @"订单支付成功";break;
-            case 8000:message = @"正在处理中";break;
-            case 4000:message = @"订单支付失败";break;
-            case 6001:message = @"用户中途取消";break;
-            case 6002:message = @"网络连接错误";break;
-            default:message = @"未知错误";
+    id<DataSigner> signer = CreateRSADataSigner(privateKey);
+    NSString *signedString = [signer signString:aliOrderInfo];
+    
+    NSString *orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+                   aliOrderInfo, signedString, aliSignType];
+    
+    
+    [[AlipaySDK defaultService] payOrder:orderString fromScheme:@"alipayPayIBroker" callback:^(NSDictionary *resultDic) {
+        NSLog(@"reslut = %@",resultDic);
+        if([[resultDic objectForKey:@"resultStatus"] integerValue] == 9000){
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Pay_Success object:nil];
+            [Util showAlertMessage:@"支付结果：成功！"];
         }
-        
-        UIAlertController *aalert = [UIAlertController alertControllerWithTitle:nil message:message preferredStyle:UIAlertControllerStyleAlert];
-        [aalert addAction:[UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleCancel handler:nil]];
-        [self presentViewController:aalert animated:YES completion:nil];
+        else
+            [Util showAlertMessage:@"支付失败"];
     }];
 }
 

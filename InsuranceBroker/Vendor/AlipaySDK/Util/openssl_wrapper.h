@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "CommonInfo.h"
+#import <UIKit/UIKit.h>
 
 int rsa_sign_with_private_key_pem(char *message, int message_length
                                   , unsigned char *signature, unsigned int *signature_length

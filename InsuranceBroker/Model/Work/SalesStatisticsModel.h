@@ -45,5 +45,6 @@
 @property (nonatomic, assign) CGFloat monthOrderTotalTcEarn;//": "0.00",//提层
 @property (nonatomic, assign) CGFloat monthRedPackTotalEarn;//": "0.00",//红包
 @property (nonatomic, assign) CGFloat monthOrderTotalGlEarn;//": "0.00",//管理津贴
+@property (nonatomic, assign) CGFloat monthOtherTotalEarn;//其他收入
 
 @end

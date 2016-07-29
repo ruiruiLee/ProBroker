@@ -31,6 +31,7 @@
     NJKWebViewProgress *_progressProxy;
     
     BOOL _isLoad;
+    BOOL _isReturnPrevWeb;
 }
 
 @property (nonatomic, strong) IBOutlet EasyJSWebView *webview;

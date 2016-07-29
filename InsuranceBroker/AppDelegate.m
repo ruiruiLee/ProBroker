@@ -23,10 +23,10 @@
 #import "AppKeFuLib.h"
 #import "OnlineCustomer.h"
 #import "WXApiManager.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate (WXApiDelegate)
 
-@property (nonatomic, strong) ZWIntroductionViewController *introductionView;
 
 @end
 
@@ -173,7 +173,21 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
-    return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    if([url.absoluteString rangeOfString:@"alipayPayIBroker"].length > 0)
+    {
+        if ([url.host isEqualToString:@"safepay"]) {
+            [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+                if([[resultDic objectForKey:@"resultStatus"] integerValue] == 9000){
+                    [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Pay_Success object:nil];
+                    [Util showAlertMessage:@"支付结果：成功！"];
+                }
+                else
+                    [Util showAlertMessage:[resultDic objectForKey:@"memo"]];
+            }];
+        }
+        return YES;
+    }else
+        return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
 }
 
 // 在线客服

@@ -53,6 +53,7 @@
     }];
     
     self.scHConstraint.constant = ScreenWidth;
+    self.scVConstraint.constant = SCREEN_HEIGHT - 64;
     self.photo.layer.cornerRadius = 27.5;
     self.photo.clipsToBounds = YES;
     [self.tableview registerNib:[UINib nibWithNibName:@"CommissionSetTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];

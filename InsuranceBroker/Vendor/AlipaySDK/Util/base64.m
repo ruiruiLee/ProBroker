@@ -175,6 +175,7 @@ int base64_decode( unsigned char *dst, int *dlen,
     }
 
     *dlen = (int)(p - dst);
+
     return( 0 );
 }
 

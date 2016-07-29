@@ -122,12 +122,14 @@
     }
     cell.lbTitle.text = model.title;
     cell.lbContent.text = model.content;
-    NSString *path = FormatImage_1(model.imgUrl,(int) ScreenWidth - 40, 97);
+    CGFloat w = ScreenWidth - 40;
+    CGFloat h = (ScreenWidth - 40) / 3;
+    NSString *path = FormatImage_1(model.imgUrl,(int) w, (int) h);
     [cell.photoImgV sd_setImageWithURL:[NSURL URLWithString:path] placeholderImage:Normal_Image];
     if(model.imgUrl == nil && [model.imgUrl length] == 0){
         cell.imgVConstraint.constant = 0.1;
     }else{
-        cell.imgVConstraint.constant = 100;
+        cell.imgVConstraint.constant = h;
     }
     
     return cell;
@@ -154,12 +156,12 @@
     else{
         if(model.isRedirect){
             WebViewController *web = [IBUIFactory CreateWebViewController];
-            web.title = model.title;
-            web.type = enumShareTypeShare;
-            web.shareTitle = model.title;
-            web.shareContent = model.content;
-            if(model.imgUrl != nil)
-                web.shareImgArray = [NSArray arrayWithObject:model.imgUrl];
+//            web.title = model.title;
+            web.type = enumShareTypeNo;
+//            web.shareTitle = model.title;
+//            web.shareContent = model.content;
+//            if(model.imgUrl != nil)
+//                web.shareImgArray = [NSArray arrayWithObject:model.imgUrl];
             [self.navigationController pushViewController:web animated:YES];
             if(model.url == nil){
                 [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid]];

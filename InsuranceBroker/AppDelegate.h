@@ -9,11 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "NewUserModel.h"
 @class RootViewController;
+@class ZWIntroductionViewController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) RootViewController *root;
+@property (nonatomic, strong) ZWIntroductionViewController *introductionView;
 
 @property (nonatomic,strong) NewUserModel *customerBanner;
 @property (nonatomic, strong) NewUserModel *workBanner;
