@@ -70,7 +70,7 @@
         
         UIButton *btnApplicant = [[UIButton alloc] init];
         [self addSubview:btnApplicant];
-        [btnApplicant setTitle:@"立即\n投保" forState:UIControlStateNormal];
+        [btnApplicant setTitle:@"个险\n投保" forState:UIControlStateNormal];
         btnApplicant.translatesAutoresizingMaskIntoConstraints = NO;
         btnApplicant.layer.cornerRadius = 27;
         btnApplicant.backgroundColor = _COLOR(0xff, 0x66, 0x19);
