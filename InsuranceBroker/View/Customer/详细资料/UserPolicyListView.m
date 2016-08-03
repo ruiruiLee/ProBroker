@@ -97,6 +97,9 @@
         [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
         
         [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];
+        
+        cell.statusImgV.hidden = YES;
+        cell.btnStatus.hidden = NO;
     }
     else{
         NSString *carNo = model.carNo;
@@ -124,6 +127,24 @@
         [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
         
         [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];
+        
+        cell.statusImgV.hidden = NO;
+        cell.btnStatus.hidden = NO;
+        
+        //1等待生效，2保单生效，3保单过期
+        if(model.gxbzStatus == 2){
+            cell.statusImgV.image = ThemeImage(@"orderValued");
+            cell.btnStatus.hidden = YES;
+        }
+        else if (model.gxbzStatus == 3){
+            cell.statusImgV.image = ThemeImage(@"orderExpressed");
+            cell.btnStatus.hidden = YES;
+        }
+        else{
+            cell.statusImgV.hidden = YES;
+//            cell.statusImgV.image = ThemeImage(@"orderExpressed");
+//            cell.btnStatus.hidden = YES;
+        }
     }
     
     return cell;

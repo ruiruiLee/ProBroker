@@ -12,13 +12,13 @@
             <rect key="frame" x="0.0" y="0.0" width="554" height="188"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="554" height="188"/>
+                <rect key="frame" x="0.0" y="0.0" width="554" height="187.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G6I-aU-t68">
                         <rect key="frame" x="20" y="13" width="520" height="161"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEi-6m-X1T" customClass="SepLineLabel">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEi-6m-X1T" customClass="SepLineLabel">
                                 <rect key="frame" x="10" y="30" width="514" height="1"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -169,6 +169,14 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Aqu-OC-6n0">
+                                <rect key="frame" x="446" y="32" width="70" height="70"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="YmU-r4-gBG"/>
+                                    <constraint firstAttribute="height" constant="70" id="kwL-61-lPp"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -179,10 +187,12 @@
                             <constraint firstItem="hDL-Td-Ljh" firstAttribute="leading" secondItem="G6I-aU-t68" secondAttribute="leading" id="NQt-Ie-l5G"/>
                             <constraint firstItem="hDL-Td-Ljh" firstAttribute="top" secondItem="G6I-aU-t68" secondAttribute="top" id="TI4-he-IIg"/>
                             <constraint firstItem="HEi-6m-X1T" firstAttribute="top" secondItem="hDL-Td-Ljh" secondAttribute="bottom" id="e3c-Yj-4e8"/>
+                            <constraint firstItem="Aqu-OC-6n0" firstAttribute="top" secondItem="G6I-aU-t68" secondAttribute="topMargin" constant="24" id="hgd-SP-Ii5"/>
                             <constraint firstItem="GiV-Ho-hcm" firstAttribute="leading" secondItem="G6I-aU-t68" secondAttribute="leading" id="i1c-0k-cnZ"/>
                             <constraint firstAttribute="bottom" secondItem="GiV-Ho-hcm" secondAttribute="bottom" id="l7O-rb-r5v"/>
                             <constraint firstItem="GiV-Ho-hcm" firstAttribute="top" secondItem="hDL-Td-Ljh" secondAttribute="bottom" constant="1" id="of4-zH-HMQ"/>
                             <constraint firstAttribute="trailing" secondItem="GiV-Ho-hcm" secondAttribute="trailing" id="sFy-kR-MP7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Aqu-OC-6n0" secondAttribute="trailing" id="tn6-Ct-frd"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -191,8 +201,10 @@
                 <constraints>
                     <constraint firstItem="G6I-aU-t68" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="5SO-xk-pTP"/>
                     <constraint firstItem="G6I-aU-t68" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="7Ws-jB-O7D"/>
+                    <constraint firstItem="G6I-aU-t68" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="G0b-df-u14"/>
                     <constraint firstAttribute="trailingMargin" secondItem="G6I-aU-t68" secondAttribute="trailing" constant="10" id="GXT-Uz-ybp"/>
                     <constraint firstAttribute="bottomMargin" secondItem="G6I-aU-t68" secondAttribute="bottom" constant="5" id="Sr9-Pk-EF2"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="G6I-aU-t68" secondAttribute="trailing" constant="20" id="mQn-rP-bcb"/>
                 </constraints>
                 <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
             </tableViewCellContentView>
@@ -210,6 +222,7 @@
                 <outlet property="lbStatus" destination="oAD-g4-AaW" id="kNz-TF-DFG"/>
                 <outlet property="logoImgV" destination="fw8-Us-mOR" id="Sze-46-rDH"/>
                 <outlet property="phoneNum" destination="RBK-9c-xvN" id="4Q8-aZ-3UP"/>
+                <outlet property="statusImgV" destination="Aqu-OC-6n0" id="ENW-w3-g4v"/>
                 <outlet property="width" destination="zH4-0r-HZy" id="wRW-8T-pxs"/>
             </connections>
             <point key="canvasLocation" x="368" y="323"/>

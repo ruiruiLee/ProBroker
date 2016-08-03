@@ -207,6 +207,8 @@
         [cell.phoneNum setTitle:model.customerPhone forState:UIControlStateNormal];
         cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
         [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
+        cell.statusImgV.hidden = YES;
+        cell.btnStatus.hidden = NO;
     }else{
         cell.lbName.attributedText = [self getAttributeString:[NSString stringWithFormat:@"投保人:%@", model.customerName] subString:@"投保人:"];
         cell.lbPlate.font = _FONT(13);
@@ -230,6 +232,22 @@
         else
             cell.lbStatus.text = @"";
         [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
+        
+        cell.statusImgV.hidden = NO;
+        cell.btnStatus.hidden = NO;
+        
+        //1等待生效，2保单生效，3保单过期
+        if(model.gxbzStatus == 2){
+            cell.statusImgV.image = ThemeImage(@"orderValued");
+            cell.btnStatus.hidden = YES;
+        }
+        else if (model.gxbzStatus == 3){
+            cell.statusImgV.image = ThemeImage(@"orderExpressed");
+            cell.btnStatus.hidden = YES;
+        }
+        else{
+            cell.statusImgV.hidden = YES;
+        }
     }
     
     [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];

@@ -57,6 +57,7 @@
     model.expireDate = [InsurInfoModel dateFromString:[dictionary objectForKey:@"expireDate"]];
     model.fcreateDate = [InsurInfoModel dateFromString:[dictionary objectForKey:@"fcreateDate"]];
     model.clickUrl = [dictionary objectForKey:@"clickUrl"];
+    model.gxbzStatus = [[dictionary objectForKey:@"gxbzStatus"] integerValue];
     
     return model;
 }

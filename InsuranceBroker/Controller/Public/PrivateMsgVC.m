@@ -10,6 +10,7 @@
 #import "define.h"
 #import "UUInputAccessoryView.h"
 #import "NetWorkHandler+privateLetter.h"
+#import "CMNavBarNotificationView.h"
 
 @interface PrivateMsgVC ()
 
@@ -28,12 +29,24 @@
 //    [self setRightBarButtonWithImage:ThemeImage(@"team_msg")];
     [self SetRightBarButtonWithTitle:@"回复" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData) name:Notify_Msg_Reload object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData:) name:Notify_Msg_Reload object:nil];
 }
 
-- (void) reloadData
+- (void) reloadData:(NSNotification *) notify
 {
     [self.webview stringByEvaluatingJavaScriptFromString:@"loadData();"];
+    
+    
+    NSDictionary *userinfo = notify.userInfo;
+    
+    NSString *userId =  [userinfo objectForKey:@"p"];
+    if(![userId isEqualToString:self.toUserId]){
+        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+        [CMNavBarNotificationView notifyWithText:[[userinfo objectForKey:@"aps"] objectForKey:@"category"]
+                                          detail:[[userinfo objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                     andDuration:5.0
+                                       msgparams:userinfo];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

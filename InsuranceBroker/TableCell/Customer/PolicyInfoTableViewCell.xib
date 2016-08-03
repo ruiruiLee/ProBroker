@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="683" height="177"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="683" height="177"/>
+                <rect key="frame" x="0.0" y="0.0" width="683" height="176.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UNs-aP-njd">
@@ -154,13 +154,23 @@
                             </mask>
                         </variation>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z5T-py-mLR">
+                        <rect key="frame" x="221" y="25" width="240" height="128"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="1LD-nG-umB"/>
+                            <constraint firstAttribute="width" constant="70" id="HcA-rh-bEM"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <animations/>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="lZx-QG-3Ka" secondAttribute="trailing" constant="20" id="Bx0-fb-wnk"/>
                     <constraint firstItem="lZx-QG-3Ka" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="20" id="G7S-Pl-aJI"/>
+                    <constraint firstItem="Z5T-py-mLR" firstAttribute="top" secondItem="UNs-aP-njd" secondAttribute="top" constant="35" id="OmW-Vl-c1q"/>
                     <constraint firstItem="UNs-aP-njd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="ej3-e9-NPf"/>
                     <constraint firstItem="UNs-aP-njd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="hmw-WC-3gO"/>
+                    <constraint firstItem="Z5T-py-mLR" firstAttribute="trailing" secondItem="lZx-QG-3Ka" secondAttribute="trailing" id="mg5-R6-Usi"/>
                     <constraint firstItem="lZx-QG-3Ka" firstAttribute="top" secondItem="UNs-aP-njd" secondAttribute="bottom" id="tbJ-3D-4O7"/>
                     <constraint firstAttribute="trailingMargin" secondItem="UNs-aP-njd" secondAttribute="trailing" id="zxb-fN-td6"/>
                 </constraints>
@@ -179,6 +189,7 @@
                 <outlet property="lbStatus" destination="w0b-yA-bOH" id="AZv-aj-rbJ"/>
                 <outlet property="lbUpdateTime" destination="Ewj-zb-myT" id="Mhe-TO-8xQ"/>
                 <outlet property="logoImgV" destination="70k-A3-buH" id="fo6-tA-aC2"/>
+                <outlet property="statusImgV" destination="Z5T-py-mLR" id="r3t-HC-b9h"/>
                 <outlet property="width" destination="tYH-5O-2Hr" id="4QL-RN-qLj"/>
             </connections>
             <point key="canvasLocation" x="494.5" y="312.5"/>

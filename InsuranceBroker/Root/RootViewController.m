@@ -59,7 +59,7 @@
     {
         NSLog( @"Received touch for notification with text: %@", ((CMNavBarNotificationView *)notice.object).textLabel.text );
     }
-    [self pushtoController:notificationView.msgInfo];
+    [self pushtoControllerByTap:notificationView.msgInfo];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -171,7 +171,7 @@
     NSInteger mt = [[dic objectForKey:@"mt"] integerValue];
     if ([nav.topViewController isKindOfClass:[PrivateMsgVC class]]&&mt==4)
     {
-         [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil];
+         [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil userInfo:dic];
         
     }else if (504 == mt){
         NSInteger ct = [[dic objectForKey:@"ct"] integerValue];
@@ -266,7 +266,7 @@
         UINavigationController *nav =[self.viewControllers objectAtIndex:0];
         if ([nav.topViewController isKindOfClass:[PrivateMsgVC class]]&&mt==4)
         {
-            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil userInfo:info];
             
         }else{
             PrivateMsgVC *web = [IBUIFactory CreatePrivateMsgVC];
@@ -282,6 +282,90 @@
             [web loadHtmlFromUrl:[NSString stringWithFormat:Peivate_Msg_Url, model.userId, [info objectForKey:@"p"]]];
           }
        }
+    else if( 504 == mt)
+    {
+        NSInteger ct = [[info objectForKey:@"ct"] integerValue];
+        if (504 == ct) {
+            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+            model.isLogin = NO;
+            [[AppContext sharedAppContext] removeData];
+            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
+            
+            [AVUser logOut];  //清除缓存用户对象
+            
+            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
+            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
+            [currentInstallation saveInBackground];
+            
+            loginViewController *vc = [IBUIFactory CreateLoginViewController];
+            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+            [self presentViewController:naVC animated:NO completion:nil];
+        }
+        
+        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+        [CMNavBarNotificationView notifyWithText:[[info objectForKey:@"aps"] objectForKey:@"category"]
+                                          detail:[[info objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                     andDuration:5.0
+                                       msgparams:info];
+    }
+}
+
+-(void) pushtoControllerByTap:(NSDictionary *)info
+{
+    if([homevc login]==NO){
+        return;
+    }
+    NSInteger mt = [[info objectForKey:@"mt"] integerValue];
+    NSInteger ct = [[info objectForKey:@"ct"] integerValue];
+    AppContext *context = [AppContext sharedAppContext];
+    [context changeNewsTip:ct display:NO];
+    if (mt == 1){  // 进入保单列表页面
+        OrderManagerVC *vc = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
+        vc.filterString = [info objectForKey:@"p"];
+        vc.hidesBottomBarWhenPushed = YES;
+        [selectVC.navigationController pushViewController:vc animated:YES];
+    }
+    else if(mt == 2){  // 刷新客户列表界面
+        [customervc.navigationController popToRootViewControllerAnimated:NO];
+        self.selectedIndex = 1;
+        selectVC = customervc;
+        [customervc.pulltable reloadData];
+        
+    }
+    else if (mt == 3){  // 进入消息详情
+        WebViewController *web = [IBUIFactory CreateWebViewController];
+        web.hidesBottomBarWhenPushed = YES;
+        web.title =  [[info objectForKey:@"aps"] objectForKey:@"category"];
+        web.type = enumShareTypeShare;
+        web.shareTitle = web.title;
+        web.hidesBottomBarWhenPushed = YES;
+        [selectVC.navigationController pushViewController:web animated:YES];
+        NSLog(@"%@", selectVC);
+        
+        [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", [info objectForKey:@"p"]]];
+        
+    }else if (mt == 4){  // 进入私信详情
+        
+        UINavigationController *nav =[self.viewControllers objectAtIndex:0];
+        //        if ([nav.topViewController isKindOfClass:[PrivateMsgVC class]]&&mt==4)
+        //        {
+        //            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil userInfo:info];
+        //
+        //        }else{
+        PrivateMsgVC *web = [IBUIFactory CreatePrivateMsgVC];
+        web.hidesBottomBarWhenPushed = YES;
+        web.title =  [[info objectForKey:@"aps"] objectForKey:@"category"];
+        web.type = enumShareTypeNo;
+        web.shareTitle = web.title;
+        web.toUserId = [info objectForKey:@"p"];
+        web.hidesBottomBarWhenPushed = YES;
+        [selectVC.navigationController pushViewController:web animated:YES];
+        UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+        
+        [web loadHtmlFromUrl:[NSString stringWithFormat:Peivate_Msg_Url, model.userId, [info objectForKey:@"p"]]];
+        //          }
+    }
     else if( 504 == mt)
     {
         NSInteger ct = [[info objectForKey:@"ct"] integerValue];

@@ -54,4 +54,6 @@
 @property (nonatomic, assign) NSInteger orderImgType;
 @property (nonatomic, strong) NSString *clickUrl;//订单详情地址
 
+@property (nonatomic, assign) NSInteger gxbzStatus;//个险保障状态；1等待生效，2保单生效，3保单过期
+
 @end
