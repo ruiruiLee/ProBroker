@@ -30,6 +30,7 @@
     model.title = [dictionary objectForKey:@"title"];
     model.isRedirect = [[dictionary objectForKey:@"isRedirect"] boolValue];
     model.url = [dictionary objectForKey:@"url"];
+    model.content = [dictionary objectForKey:@"content"];
     
     return model;
 }

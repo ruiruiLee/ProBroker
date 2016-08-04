@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSString *title;//": "光棍光棍个",
 @property (nonatomic, assign) BOOL isRedirect;//": 1
 @property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *content;
 
 @end

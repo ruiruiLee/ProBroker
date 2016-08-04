@@ -469,6 +469,7 @@
             web.title = model.title;
             web.type = enumShareTypeShare;
             web.shareTitle = model.title;
+            web.shareContent = model.content;
             [self.navigationController pushViewController:web animated:YES];
             
             if(model.url == nil){
