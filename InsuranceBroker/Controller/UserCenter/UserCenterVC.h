@@ -23,14 +23,15 @@
 @property (nonatomic, strong) IBOutlet UserNameEditButton *btNameEdit;
 @property (nonatomic, strong) IBOutlet UserCenterHeaderBgView *gradientView;
 @property (nonatomic, strong) IBOutlet UILabel *lbCertificate;
-//@property (nonatomic, strong) IBOutlet UILabel *lbName;
-//@property (nonatomic, strong) IBOutlet TopImageButton *btnUserType;
 
 //
-@property (nonatomic, strong) IBOutlet UILabel *lbMonthOrderSuccessNums;//上月完成
-@property (nonatomic, strong) IBOutlet UILabel *lbTotalOrderSuccessNums;
+@property (nonatomic, strong) IBOutlet UILabel *lbMonthOrderSuccessNums;//车险本月保费
+@property (nonatomic, strong) IBOutlet UILabel *lbTotalOrderSuccessNums;//个险本月单量
+@property (nonatomic, strong) IBOutlet UILabel *lbPersonalMonthOrderSuccessNums;//个险本月保费
+@property (nonatomic, strong) IBOutlet UILabel *lbPersonalTotalOrderSuccessNums;//个险本月单量
 @property (nonatomic, strong) IBOutlet UILabel *lbMonthOrderEarn;//总订单收益;
-@property (nonatomic, strong) IBOutlet UILabel *lbOrderEarn;//总订单收益;
+@property (nonatomic, strong) IBOutlet UILabel *lbOrderEarn;//累计收益;
+@property (nonatomic, strong) IBOutlet UILabel *lbTotalOrderCount;//总订单数
 @property (nonatomic, strong) IBOutlet UILabel *lbUserInvite;
 @property (nonatomic, strong) IBOutlet UILabel *lbTeamTotal;
 @property (nonatomic, strong) IBOutlet UILabel *lbNowMonthOrderCount;

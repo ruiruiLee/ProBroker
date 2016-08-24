@@ -42,7 +42,7 @@
         CGFloat oy = sep;
         
         for (int i = 0; i < 4; i++) {
-            oy = sep + (sep + 32) * i;
+            oy = sep + (sep + 32) * i + 8;
             for (int j = 0; j < 8; j++) {
                 if(i == 3 && j == 7)
                     break;

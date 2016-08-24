@@ -218,6 +218,9 @@
         [ProgressHUD show:nil];
         [NetWorkHandler requestToInsurancePay:self.orderId insuranceType:self.insuranceType planOfferId:self.planOfferId payType:model.payValue helpInsure:@"1" Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+            if(code == 9999 ){
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
             if(code == 200){
                 NSDictionary *dic = [content objectForKey:@"data"];
                     //WEIXIN

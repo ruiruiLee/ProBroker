@@ -216,4 +216,24 @@
     return web;
 }
 
++ (AutoInsuranceStep1VC *) CreateAutoInsuranceStep1VC
+{
+    AutoInsuranceStep1VC *vc = [[AutoInsuranceStep1VC alloc] initWithNibName:@"AutoInsuranceStep1VC" bundle:nil];
+    return vc;
+}
+
+
++ (AutoInsuranceStep2VC *) CreateAutoInsuranceStep2VC
+{
+    AutoInsuranceStep2VC *vc = [[AutoInsuranceStep2VC alloc] initWithNibName:@"AutoInsuranceStep2VC" bundle:nil];
+    return vc;
+}
+
+
++ (MotorcycleTypeSelectedVC *) CreateMotorcycleTypeSelectedVC
+{
+    MotorcycleTypeSelectedVC *vc = [[MotorcycleTypeSelectedVC alloc] initWithNibName:@"MotorcycleTypeSelectedVC" bundle:nil];
+    return vc;
+}
+
 @end

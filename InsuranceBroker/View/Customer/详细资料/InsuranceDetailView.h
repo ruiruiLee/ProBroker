@@ -32,6 +32,9 @@
     
     
     NSInteger _selectIdx;
+    
+    
+    UIScrollView *_scrollView;
 }
 
 @property (nonatomic, strong) CarInfoModel *carInfo;

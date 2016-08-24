@@ -23,6 +23,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"个险产品目录";
     // Do any additional setup after loading the view.
 }
 

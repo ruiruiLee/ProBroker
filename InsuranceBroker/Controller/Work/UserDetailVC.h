@@ -22,8 +22,12 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbMobile;
 @property (nonatomic, strong) IBOutlet UIImageView *photo;
 @property (nonatomic, strong) IBOutlet UILabel *lbSubNum;
-@property (nonatomic, strong) IBOutlet UILabel *lbMonthOrderSuccessNums;//上月完成
-@property (nonatomic, strong) IBOutlet UILabel *lbTotalOrderSuccessNums;
+@property (nonatomic, strong) IBOutlet UILabel *lbMonthOrderSuccessNums;//车险本月保费
+@property (nonatomic, strong) IBOutlet UILabel *lbTotalOrderSuccessNums;//车险本月单量
+@property (nonatomic, strong) IBOutlet UILabel *lbPersonalMonthOrderSuccessNums;//个险本月保费
+@property (nonatomic, strong) IBOutlet UILabel *lbPersonalTotalOrderSuccessNums;//个险本月单量
+@property (nonatomic, strong) IBOutlet UILabel *lbTotalOrderCount;//总订单数
+
 @property (nonatomic, strong) IBOutlet UILabel *lbMonthOrderEarn;//总订单收益;
 @property (nonatomic, strong) IBOutlet UILabel *lbOrderEarn;//总订单收益;
 @property (nonatomic, strong) IBOutlet UITableView *tableview;

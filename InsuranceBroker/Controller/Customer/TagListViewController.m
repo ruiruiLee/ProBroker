@@ -39,6 +39,8 @@
     [self.tableview registerNib:[UINib nibWithNibName:@"TagListViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     [self.tableview setSeparatorColor:SepLineColor];
     self.tableview.backgroundColor = [UIColor clearColor];
+    self.tableview.tableFooterView = [[UIView alloc] init];
+    self.tableview.tableFooterView.backgroundColor = [UIColor whiteColor];
 //    if([[TagObjectModel shareTagList] count] == 0){
         [self loadData];
 //    }else{

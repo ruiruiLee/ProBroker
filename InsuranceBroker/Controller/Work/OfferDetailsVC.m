@@ -296,7 +296,10 @@
 //    }
     [_datePicker show];
     _datePicker.tag = sender.tag;
-    [_datePicker setCurrentSelectIdx:model.planUkbRatio - model.productMinRatio];
+    NSInteger idx = model.planUkbRatio - model.productMinRatio;
+    if(idx < 0)
+        idx = 0;
+    [_datePicker setCurrentSelectIdx:idx];
     
     [UIView animateWithDuration:0.25 animations:^{
         CGFloat y = self.tableview.frame.origin.y + 50;//包含picker toolbar的50像素

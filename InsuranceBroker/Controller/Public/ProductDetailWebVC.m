@@ -63,6 +63,12 @@
 //    }
 //}
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.webview stringByEvaluatingJavaScriptFromString:@"paySuccess();"];
+}
+
 - (void) handleRightBarButtonClicked:(id)sender
 {
     [self showPopView];
@@ -289,7 +295,10 @@
     }else{
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
         NSString *url = [object objectForKey:@"url"];
-        url = [NSString stringWithFormat:@"%@&userId=%@&appShare=1&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, [UserInfoModel shareUserInfoModel].uuid];
+        if([url rangeOfString:@"?"].length > 0)
+            url = [NSString stringWithFormat:@"%@&userId=%@&appShare=1&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, [UserInfoModel shareUserInfoModel].uuid];
+        else
+            url = [NSString stringWithFormat:@"%@?userId=%@&appShare=1&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, [UserInfoModel shareUserInfoModel].uuid];
         NSMutableArray *imgArray = [[NSMutableArray alloc] init];
         NSString *flagImg = [object objectForKey:@"flagImg"];
         if(flagImg)

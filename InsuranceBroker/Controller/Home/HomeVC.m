@@ -27,6 +27,7 @@
 #import "OnlineCustomer.h"
 #import "UIScrollView+JElasticPullToRefresh.h"
 #import "PayUtil.h"
+#import "PersonalProductListVC.h"
 
 @interface HomeVC ()<MJBannnerPlayerDeledage, PopViewDelegate>
 {
@@ -492,7 +493,8 @@
     ProductListVC *vc = [[ProductListVC alloc] initWithNibName:nil bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
-    [vc loadData];
+//    [vc loadData];
+    [vc performSelector:@selector(loadData) withObject:nil afterDelay:0.1];
 }
 
 - (void) doBtnNoticeList:(id) sender
@@ -559,12 +561,18 @@
 
 - (void) doBtnJiHuaShu:(id) sender
 {
-    AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
+//    AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    vc.category = _jiHuaShu.category;
+//    vc.title = _jiHuaShu.title;
+//    vc.totalModel = _jiHuaShu;
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    PersonalProductListVC *vc = [[PersonalProductListVC alloc] initWithNibName:nil bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
-    vc.category = _jiHuaShu.category;
-    vc.title = _jiHuaShu.title;
-    vc.totalModel = _jiHuaShu;
+    vc.title = @"个险产品列表";
     [self.navigationController pushViewController:vc animated:YES];
+    [vc loadData];
 }
 
 - (void) doBtnFuWuZhiCheng:(id) sender
@@ -691,14 +699,19 @@
 
 - (void) doBtnQuote:(id) sender
 {
-    QuickQuoteVC *web = [IBUIFactory CreateQuickQuoteVC];
-    web.hidesBottomBarWhenPushed = YES;
-    web.title = @"快速算价";
-    web.type = enumShareTypeNo;
-    web.shareTitle = @"算价方案";
-    [self.navigationController pushViewController:web animated:YES];
+//    QuickQuoteVC *web = [IBUIFactory CreateQuickQuoteVC];
+//    web.hidesBottomBarWhenPushed = YES;
+//    web.title = @"快速算价";
+//    web.type = enumShareTypeNo;
+//    web.shareTitle = @"算价方案";
+//    [self.navigationController pushViewController:web animated:YES];
+//    
+//    [web loadHtmlFromUrlWithUserId:_quoteUrl];
     
-    [web loadHtmlFromUrlWithUserId:_quoteUrl];
+    AutoInsuranceStep1VC *vc = [IBUIFactory CreateAutoInsuranceStep1VC];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.title = @"车险算价";
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

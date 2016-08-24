@@ -406,6 +406,13 @@
 		86C3BCC71C2E933600F98E80 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BCBB1C2E933600F98E80 /* IQKeyboardManager.bundle */; };
 		86C3BCCB1C2E999300F98E80 /* loginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C3BCC91C2E999300F98E80 /* loginViewController.m */; };
 		86C3BCCC1C2E999300F98E80 /* loginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86C3BCCA1C2E999300F98E80 /* loginViewController.xib */; };
+		86CAC5631D61A6F30045AF37 /* PersonalProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CAC5621D61A6F30045AF37 /* PersonalProductListVC.m */; };
+		86CAC5671D62F1670045AF37 /* AutoInsuranceStep1VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CAC5651D62F1670045AF37 /* AutoInsuranceStep1VC.m */; };
+		86CAC5681D62F1670045AF37 /* AutoInsuranceStep1VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86CAC5661D62F1670045AF37 /* AutoInsuranceStep1VC.xib */; };
+		86CAC56C1D62F19C0045AF37 /* AutoInsuranceStep2VC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CAC56A1D62F19C0045AF37 /* AutoInsuranceStep2VC.m */; };
+		86CAC56D1D62F19C0045AF37 /* AutoInsuranceStep2VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86CAC56B1D62F19C0045AF37 /* AutoInsuranceStep2VC.xib */; };
+		86CAC5711D6557450045AF37 /* MotorcycleTypeSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CAC56F1D6557450045AF37 /* MotorcycleTypeSelectedVC.m */; };
+		86CAC5721D6557450045AF37 /* MotorcycleTypeSelectedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86CAC5701D6557450045AF37 /* MotorcycleTypeSelectedVC.xib */; };
 		86CC8C451CB3AE3600362AD0 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C441CB3AE3600362AD0 /* BaseTableViewCell.m */; };
 		86CC8C541CB3D04500362AD0 /* HighNightBgButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C531CB3D04500362AD0 /* HighNightBgButton.m */; };
 		86CC8C5A1CB79FFF00362AD0 /* TeamItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C581CB79FFF00362AD0 /* TeamItemTableViewCell.m */; };
@@ -1243,6 +1250,17 @@
 		86C3BCC81C2E999300F98E80 /* loginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = loginViewController.h; sourceTree = "<group>"; };
 		86C3BCC91C2E999300F98E80 /* loginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = loginViewController.m; sourceTree = "<group>"; };
 		86C3BCCA1C2E999300F98E80 /* loginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = loginViewController.xib; sourceTree = "<group>"; };
+		86CAC5611D61A6F30045AF37 /* PersonalProductListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProductListVC.h; sourceTree = "<group>"; };
+		86CAC5621D61A6F30045AF37 /* PersonalProductListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProductListVC.m; sourceTree = "<group>"; };
+		86CAC5641D62F1670045AF37 /* AutoInsuranceStep1VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoInsuranceStep1VC.h; sourceTree = "<group>"; };
+		86CAC5651D62F1670045AF37 /* AutoInsuranceStep1VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoInsuranceStep1VC.m; sourceTree = "<group>"; };
+		86CAC5661D62F1670045AF37 /* AutoInsuranceStep1VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoInsuranceStep1VC.xib; sourceTree = "<group>"; };
+		86CAC5691D62F19C0045AF37 /* AutoInsuranceStep2VC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoInsuranceStep2VC.h; sourceTree = "<group>"; };
+		86CAC56A1D62F19C0045AF37 /* AutoInsuranceStep2VC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoInsuranceStep2VC.m; sourceTree = "<group>"; };
+		86CAC56B1D62F19C0045AF37 /* AutoInsuranceStep2VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoInsuranceStep2VC.xib; sourceTree = "<group>"; };
+		86CAC56E1D6557450045AF37 /* MotorcycleTypeSelectedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotorcycleTypeSelectedVC.h; sourceTree = "<group>"; };
+		86CAC56F1D6557450045AF37 /* MotorcycleTypeSelectedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotorcycleTypeSelectedVC.m; sourceTree = "<group>"; };
+		86CAC5701D6557450045AF37 /* MotorcycleTypeSelectedVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MotorcycleTypeSelectedVC.xib; sourceTree = "<group>"; };
 		86CC8C431CB3AE3600362AD0 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		86CC8C441CB3AE3600362AD0 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		86CC8C521CB3D04500362AD0 /* HighNightBgButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighNightBgButton.h; sourceTree = "<group>"; };
@@ -2384,6 +2402,15 @@
 				86769D1F1CEC106B009C7E8F /* EditInsuredUserInfoVC.h */,
 				86769D201CEC106B009C7E8F /* EditInsuredUserInfoVC.m */,
 				86769D221CEC1085009C7E8F /* EditInsuredUserInfoVC.xib */,
+				86CAC5641D62F1670045AF37 /* AutoInsuranceStep1VC.h */,
+				86CAC5651D62F1670045AF37 /* AutoInsuranceStep1VC.m */,
+				86CAC5661D62F1670045AF37 /* AutoInsuranceStep1VC.xib */,
+				86CAC5691D62F19C0045AF37 /* AutoInsuranceStep2VC.h */,
+				86CAC56A1D62F19C0045AF37 /* AutoInsuranceStep2VC.m */,
+				86CAC56B1D62F19C0045AF37 /* AutoInsuranceStep2VC.xib */,
+				86CAC56E1D6557450045AF37 /* MotorcycleTypeSelectedVC.h */,
+				86CAC56F1D6557450045AF37 /* MotorcycleTypeSelectedVC.m */,
+				86CAC5701D6557450045AF37 /* MotorcycleTypeSelectedVC.xib */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -2410,6 +2437,8 @@
 				86398CA71D027F4B007D5B40 /* SelectCustomerForCarVC.m */,
 				86248EF01CC6220E00F1B493 /* ProductListVC.h */,
 				86248EF11CC6220E00F1B493 /* ProductListVC.m */,
+				86CAC5611D61A6F30045AF37 /* PersonalProductListVC.h */,
+				86CAC5621D61A6F30045AF37 /* PersonalProductListVC.m */,
 				86EECDFB1CF59C5A00BBAF11 /* ProductListSelectVC.h */,
 				86EECDFC1CF59C5A00BBAF11 /* ProductListSelectVC.m */,
 				86B279131CDCB2DD000E5FAA /* CustomerServiceVC.h */,
@@ -3302,6 +3331,7 @@
 				86769D231CEC1085009C7E8F /* EditInsuredUserInfoVC.xib in Resources */,
 				8650658D1C1E6BC800429EAE /* Assets.xcassets in Resources */,
 				86A5043B1C4E37E30032A901 /* ShareSDK.bundle in Resources */,
+				86CAC56D1D62F19C0045AF37 /* AutoInsuranceStep2VC.xib in Resources */,
 				869C93591D080B76009CF369 /* PrivateMsgVC.xib in Resources */,
 				86A504371C4E37E30032A901 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				86A5048D1C4F52320032A901 /* BackGroundView.xib in Resources */,
@@ -3313,6 +3343,7 @@
 				8625AFD81C34F4DB00312B98 /* IncomeStatisticsVC.xib in Resources */,
 				86C3BB3B1C23AE9A00F98E80 /* InfoTipsCell.xib in Resources */,
 				86F2DA841C7704400088B783 /* CommissionSetTableViewCell.xib in Resources */,
+				86CAC5681D62F1670045AF37 /* AutoInsuranceStep1VC.xib in Resources */,
 				86C3BB1B1C228D6F00F98E80 /* whiteArrow.png in Resources */,
 				86A504F81C5257440032A901 /* easyjs-inject.js in Resources */,
 				86C3BBAF1C29073900F98E80 /* MyLuckyMoneyVC.xib in Resources */,
@@ -3331,6 +3362,7 @@
 				8612F42D1CE9C5C20045340F /* InsureInfoListTableViewCell.xib in Resources */,
 				86F2DA7F1C75F25B0088B783 /* UserDetailVC.xib in Resources */,
 				86EECDF71CF5827C00BBAF11 /* ProductDetailWebVC.xib in Resources */,
+				86CAC5721D6557450045AF37 /* MotorcycleTypeSelectedVC.xib in Resources */,
 				86A26EE11C48F1F20073FFFC /* ModifyPhoneNumVC.xib in Resources */,
 				8625AFA11C32A59600312B98 /* NoticeListTableViewCell.xib in Resources */,
 				86A504EC1C524E9F0032A901 /* OrderDetailWebVC.xib in Resources */,
@@ -3510,6 +3542,7 @@
 				86C3BB2F1C22C42D00F98E80 /* UIView+MGBadgeView.m in Sources */,
 				868C7CA91C92CFAD00B7617A /* SepLineLabel.m in Sources */,
 				86A26E8E1C4531290073FFFC /* NewsModel.m in Sources */,
+				86CAC5671D62F1670045AF37 /* AutoInsuranceStep1VC.m in Sources */,
 				86A26EDC1C48E2C90073FFFC /* NetWorkHandler+modifyUserInfo.m in Sources */,
 				86EECDF21CF5511B00BBAF11 /* InsuredInfoModel.m in Sources */,
 				86C3BB6E1C242DFC00F98E80 /* UserCenterVC.m in Sources */,
@@ -3589,6 +3622,7 @@
 				865065BD1C1EB1ED00429EAE /* UINavigationBar+Awesome.m in Sources */,
 				86A26E851C4528A40073FFFC /* NetWorkHandler+announcement.m in Sources */,
 				86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */,
+				86CAC5711D6557450045AF37 /* MotorcycleTypeSelectedVC.m in Sources */,
 				86A26E881C452A5B0073FFFC /* AnnouncementModel.m in Sources */,
 				8612F4171CE4828D0045340F /* UIView+JElasticPullToRefresh.m in Sources */,
 				86D3D9A21CBCD7AF00276AC0 /* UserCenterHeaderBgView.m in Sources */,
@@ -3717,6 +3751,7 @@
 				86769D211CEC106B009C7E8F /* EditInsuredUserInfoVC.m in Sources */,
 				8625AFEF1C38FF9E00312B98 /* IncomeWithdrawVC.m in Sources */,
 				86F2E3641D3CC594002FCE75 /* DataMD5.m in Sources */,
+				86CAC5631D61A6F30045AF37 /* PersonalProductListVC.m in Sources */,
 				8612F4131CE4828D0045340F /* JElasticPullToRefreshLoadingView.m in Sources */,
 				8612F4301CEB155B0045340F /* NetWorkHandler+queryForInsuredPageList.m in Sources */,
 				86C3BC0E1C2CDFE500F98E80 /* BaseInsuranceInfo.m in Sources */,
@@ -3771,6 +3806,7 @@
 				8654CA5A1C31243B00411C54 /* NSString+MD5.m in Sources */,
 				86C3BBAE1C29073900F98E80 /* MyLuckyMoneyVC.m in Sources */,
 				86248F201CCDFA6A00F1B493 /* ProductListTableViewCell.m in Sources */,
+				86CAC56C1D62F19C0045AF37 /* AutoInsuranceStep2VC.m in Sources */,
 				86F2E3431D3787F1002FCE75 /* PayUtil.m in Sources */,
 				8625AF9C1C32A36900312B98 /* NoticeListVC.m in Sources */,
 				86A5047F1C4F27950032A901 /* qrspec.c in Sources */,

@@ -17,6 +17,7 @@
 
 @property (nonatomic, strong) BaseStrategyView *contentView;
 @property (nonatomic, strong)  NSArray *dataList;
+@property (nonatomic, strong) NSArray *array;
 
 - (void) loadData;//直接获取所有的产品
 

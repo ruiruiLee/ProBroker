@@ -83,16 +83,19 @@
 {
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     
-    self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSellEarn];
-    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", (int)model.nowMonthOrderSuccessNums];
+    self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
+    self.lbPersonalMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
+    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", (int)model.car_now_zcgdds];//车险本月单量
+    self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", (int)model.nocar_now_zcgdds];//个险本月单量
 //    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSuccessEarn];
 //    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderTotalSuccessEarn];
-    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowUserTotalMoney];
-    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.userTotalMoney];
+    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.now_zsy];
+    self.lbOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.zsy];//累计收益;
+    self.lbTotalOrderCount.text = [NSString stringWithFormat:@"%d", model.zcgdds];//总订单数
     
-    self.lbUserInvite.text = [NSString stringWithFormat:@"%d人", (int)model.teamInviteNums];
-    self.lbTeamTotal.text = [NSString stringWithFormat:@"%d人", (int)model.teamTotalNums];
-    self.lbNowMonthOrderCount.text = [NSString stringWithFormat:@"%d", (int)model.nowMonthOrderSuccessNums];
+//    self.lbUserInvite.text = [NSString stringWithFormat:@"%d人", 100];
+//    self.lbTeamTotal.text = [NSString stringWithFormat:@"%d人", 300];
+//    self.lbNowMonthOrderCount.text = [NSString stringWithFormat:@"%d", 200];//
     
     [self.btNameEdit setTitle:model.nickname forState:UIControlStateNormal];
     UIImage *placeholderImage = ThemeImage(@"head_male");

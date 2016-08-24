@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"产品目录";
+    self.title = @"车险产品目录";
     [self initSubviews];
 }
 
@@ -49,25 +49,39 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(headerView, contentView);
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[contentView]-0-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[headerView]-0-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[headerView(40)]-0-[contentView]-0-|" options:0 metrics:nil views:views]];
+    
+    self.array = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[headerView(40)]-0-[contentView]-0-|" options:0 metrics:nil views:views];
+    [self.view addConstraints:self.array];
     
 }
 
 - (void) loadData
 {
-    [ProgressHUD show:nil];
-    NSString *method = @"/web/common/getDicts.xhtml?dictType=insuranceType";
-    NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
-    __weak ProductListVC *weakself = self;
-    [handle getWithMethod:method BaseUrl:Base_Uri Params:nil Completion:^(int code, id content) {
-        [ProgressHUD dismiss];
-        [weakself handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-        if(code == 200){
-            self.dataList = [DictModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
-            if([self.dataList count] > 0)
-                [self initMenus];
-        }
-    }];
+//    [ProgressHUD show:nil];
+//    NSString *method = @"/web/common/getDicts.xhtml?dictType=insuranceType";
+//    NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
+//    __weak ProductListVC *weakself = self;
+//    [handle getWithMethod:method BaseUrl:Base_Uri Params:nil Completion:^(int code, id content) {
+//        [ProgressHUD dismiss];
+//        [weakself handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+//        if(code == 200){
+//            self.dataList = [DictModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
+//            if([self.dataList count] > 0)
+//                [self initMenus];
+//        }
+//    }];
+    
+    for (int i = 0; i < 1; i++) {
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        [self.productList addObject:array];
+    }
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(headerView, contentView);
+    [self.view removeConstraints:self.array];
+    self.array = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[headerView(0)]-0-[contentView]-0-|" options:0 metrics:nil views:views];
+    [self.view addConstraints:self.array];
+    
+    [contentView refreshAndReloadData:@"1" list:[self.productList objectAtIndex:0]];
 }
 
 - (void) initMenus

@@ -102,8 +102,8 @@
 {
     self.lbName.text = [Util getUserName:self.userinfo];//self.userinfo.nickname;
     self.lbMobile.text = self.userinfo.phone;
-    self.lbSubNum.text = [NSString stringWithFormat:@"%d人", self.userinfo.teamTotalNums];
-    if(self.userinfo.teamTotalNums > 0)
+    self.lbSubNum.text = [NSString stringWithFormat:@"%d人", self.userinfo.ztdrs];
+    if(self.userinfo.ztdrs > 0)
         self.rightArraw.hidden = NO;
     else
         self.rightArraw.hidden = YES;
@@ -120,13 +120,16 @@
     
     UserInfoModel *model = self.userinfo;
     
-    self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSellEarn];
-    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", model.nowMonthOrderSuccessNums];
+    self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
+    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", model.car_now_zcgdds];//车险本月单量
+    self.lbPersonalMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
+    self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", model.nocar_now_zcgdds];//个险本月单量
 //    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSuccessEarn];
 //    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderTotalSuccessEarn];
     
-    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowUserTotalMoney];
-    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.userTotalMoney];
+    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowUserTotalMoney];//本月收益
+    self.lbOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.userTotalMoney];//累计收益
+    self.lbTotalOrderCount.text = @"10";//累计订单数
 }
 
 - (void) loadData
@@ -244,12 +247,12 @@
 #pragma ACTION
 - (IBAction)doBtnTeams:(id)sender
 {
-    if(self.userinfo.teamTotalNums > 0){
+    if(self.userinfo.ztdrs > 0){
         MyTeamsVC *vc = [[MyTeamsVC alloc] initWithNibName:nil bundle:nil];
         vc.hidesBottomBarWhenPushed = YES;
         vc.userid = self.brokerInfo.userId;
         vc.title = [NSString stringWithFormat:@"%@的团队", [Util getUserNameWithModel:self.brokerInfo]];
-        vc.total = self.userinfo.teamTotalNums;
+        vc.total = self.userinfo.ztdrs;
         vc.toptitle = @"他的队员";
         vc.name = [Util getUserNameWithModel:self.brokerInfo];//self.brokerInfo.userName;
         [self.navigationController pushViewController:vc animated:YES];

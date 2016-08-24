@@ -59,6 +59,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyToInsertPushCustomer:) name:Notify_Insert_Customer object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyToRemoveCustomer:) name:Notify_Logout object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyToRefreshCustomer:) name:Notify_Login object:nil];
+    self.pulltable.backgroundColor = [UIColor whiteColor];
+    self.pulltable.tableFooterView = [[UIView alloc] init];
+    self.pulltable.tableFooterView.backgroundColor = [UIColor whiteColor];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -165,7 +168,7 @@
 {
     if([self.data count] == 0){
         if(!_addview){
-            _addview = [[BackGroundView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 2 / 5, ScreenWidth, 100)];
+            _addview = [[BackGroundView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 2 / 5 + 6, ScreenWidth, 100)];
             _addview.delegate = self;
         }else{
             [_addview removeFromSuperview];
