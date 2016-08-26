@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 
 @class CustomerCarInfoModel;
+@class productAttrModel;
 
 @interface AutoInsuranceStep2VC : BaseViewController
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewWidth;
@@ -24,6 +25,8 @@
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *lbTransferDateHeight;
                              
 @property (nonatomic, strong) CustomerCarInfoModel *carInfoModel;
+
+@property (nonatomic, strong) productAttrModel *selectProModel;//选中的产品
 
 
 @end

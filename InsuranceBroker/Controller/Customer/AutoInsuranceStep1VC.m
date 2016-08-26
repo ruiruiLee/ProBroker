@@ -207,6 +207,7 @@
                 AutoInsuranceStep2VC *vc = [IBUIFactory CreateAutoInsuranceStep2VC];
                 vc.title = @"车辆信息";
                 vc.carInfoModel = model;
+                vc.selectProModel = self.selectProModel;
                 [self.navigationController pushViewController:vc animated:YES];
             }
         }];

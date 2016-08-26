@@ -9,6 +9,8 @@
 #import "BaseViewController.h"
 #import "HighNightBgButton.h"
 
+@class productAttrModel;
+
 @interface AutoInsuranceStep1VC : BaseViewController
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewWidth;
@@ -22,5 +24,7 @@
 
 @property (nonatomic, strong) HighNightBgButton *btnProvience;//省简称
 @property (nonatomic, strong) UILabel *lbProvience;
+
+@property (nonatomic, strong) productAttrModel *selectProModel;//选中的产品
 
 @end

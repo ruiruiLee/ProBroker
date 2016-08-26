@@ -185,7 +185,13 @@
 
 - (void) NotifyToSelectCustomerForCar:(NSString *) productAttrId
 {
-    SelectCustomerForCarVC *vc = [[SelectCustomerForCarVC alloc] initWithNibName:nil bundle:nil];
+//    SelectCustomerForCarVC *vc = [[SelectCustomerForCarVC alloc] initWithNibName:nil bundle:nil];
+//    vc.selectProModel = self.selectProModel;
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    AutoInsuranceStep1VC *vc = [IBUIFactory CreateAutoInsuranceStep1VC];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.title = @"车险算价";
     vc.selectProModel = self.selectProModel;
     [self.navigationController pushViewController:vc animated:YES];
 }

@@ -16,7 +16,7 @@
 #import "IBUIFactory.h"
 #import "OrderWebVC.h"
 
-@interface AutoInsuranceStep2VC ()<ZHPickViewDelegate, MotorcycleTypeSelectedVCDelegate>
+@interface AutoInsuranceStep2VC ()<ZHPickViewDelegate, MotorcycleTypeSelectedVCDelegate, UITextFieldDelegate>
 {
     ZHPickView *_datePicker1;
     NSDate *_changNameDate;
@@ -44,7 +44,7 @@
     self.tfMotorCode.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
     self.tfMotorCode.text = self.carInfoModel.carEngineNo;
-    self.tfModel.text = self.carInfoModel.carBrandName;
+    self.tfModel.text = self.carInfoModel.carTypeNo;
     self.tfRegisterDate.text = [Util getDayString:self.carInfoModel.carRegTime];
     self.lbTransferDate.text = [Util getDayString:self.carInfoModel.carTradeTime];
     [self.btnLisence sd_setBackgroundImageWithURL:[NSURL URLWithString:self.carInfoModel.travelCard1] forState:UIControlStateNormal placeholderImage:ThemeImage(@"drivingLicenseBg")];
@@ -213,51 +213,56 @@
     if(!result)
         return;
     
-    NSString *carRegTime = self.tfRegisterDate.text;//注册日期
-    NSString *carEngineNo = self.tfMotorCode.text;////发动机号
-    NSString *carShelfNo = self.tfIdenCode.text;//识别码
-    NSString *carTypeNo = self.tfModel.text;//品牌型号
-    NSString *carTradeTime = self.lbTransferDate.text;//
-    BOOL carTradeStatus = self.switchTransfer.on;
-    
-    [ProgressHUD show:@"正在上传数据..."];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-        NSString *filePahe = nil;
-        if(newLisence != nil){
-            filePahe = [self fileupMothed:newLisence];
-            if (filePahe==nil) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [ProgressHUD showError:@"图片上传失败"];
-                });
-                
-                return ;
-            }
-        }
+    if([self isModify]){
+        NSString *carRegTime = self.tfRegisterDate.text;//注册日期
+        NSString *carEngineNo = self.tfMotorCode.text;////发动机号
+        NSString *carShelfNo = self.tfIdenCode.text;//识别码
+        NSString *carTypeNo = self.tfModel.text;//品牌型号
+        NSString *carTradeTime = self.lbTransferDate.text;//
+        BOOL carTradeStatus = self.switchTransfer.on;
         
-        [NetWorkHandler requestToGetAndSaveCustomerCar:@"2" userId:[UserInfoModel shareUserInfoModel].userId carNo:self.carInfoModel.carNo newCarNoStatus:self.carInfoModel.newCarNoStatus carOwnerName:self.carInfoModel.carOwnerName carOwnerCard:self.carInfoModel.carOwnerCard carShelfNo:carShelfNo carBrandName:nil carTypeNo:carTypeNo carEngineNo:carEngineNo carRegTime:carRegTime carTradeStatus:[[NSNumber numberWithBool:carTradeStatus] stringValue] carTradeTime:carTradeTime travelCard1:filePahe Completion:^(int code, id content) {
-            
-            [ProgressHUD dismiss];
-            [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-            if(code == 200){
-                [ProgressHUD showSuccess:@"保存成功"];
-                
-                CustomerCarInfoModel *model = (CustomerCarInfoModel*)[CustomerCarInfoModel modelFromDictionary:[content objectForKey:@"data"]];
-                model.newCarNoStatus = self.carInfoModel.newCarNoStatus;
-                
-                self.carInfoModel = model;
-                
-                [self car_insur_plan:model.customerCarId];
-            }
-            else{
-                [ProgressHUD showSuccess:@"保存失败"];
-            }
-            
-            
-            
-        }];
+        [ProgressHUD show:@"正在上传数据..."];
         
-    });
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            NSString *filePahe = nil;
+            if(newLisence != nil){
+                filePahe = [self fileupMothed:newLisence];
+                if (filePahe==nil) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [ProgressHUD showError:@"图片上传失败"];
+                    });
+                    
+                    return ;
+                }
+            }
+            
+            [NetWorkHandler requestToGetAndSaveCustomerCar:@"2" userId:[UserInfoModel shareUserInfoModel].userId carNo:self.carInfoModel.carNo newCarNoStatus:self.carInfoModel.newCarNoStatus carOwnerName:self.carInfoModel.carOwnerName carOwnerCard:self.carInfoModel.carOwnerCard carShelfNo:carShelfNo carBrandName:nil carTypeNo:carTypeNo carEngineNo:carEngineNo carRegTime:carRegTime carTradeStatus:[[NSNumber numberWithBool:carTradeStatus] stringValue] carTradeTime:carTradeTime travelCard1:filePahe Completion:^(int code, id content) {
+                
+                [ProgressHUD dismiss];
+                [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+                if(code == 200){
+                    [ProgressHUD showSuccess:@"保存成功"];
+                    
+                    CustomerCarInfoModel *model = (CustomerCarInfoModel*)[CustomerCarInfoModel modelFromDictionary:[content objectForKey:@"data"]];
+                    model.newCarNoStatus = self.carInfoModel.newCarNoStatus;
+                    
+                    self.carInfoModel = model;
+                    
+                    [self car_insur_plan:model.customerCarId];
+                }
+                else{
+                    [ProgressHUD showSuccess:@"保存失败"];
+                }
+                
+                
+                
+            }];
+            
+        });
+    }
+    else{
+        [self car_insur_plan:self.carInfoModel.customerCarId];
+    }
 }
 
 - (void) car_insur_plan:(NSString *) customerCarId
@@ -269,10 +274,10 @@
 //        str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", self.customerModel.carInfo.carInsurCompId1];
 //    }
     
-//    if(self.selectProModel){
-//        if(self.selectProModel.productAttrId)
-//            str = [NSString stringWithFormat:@"%@&productId=%@", str, self.selectProModel.productAttrId];
-//    }
+    if(self.selectProModel){
+        if(self.selectProModel.productAttrId)
+            str = [NSString stringWithFormat:@"%@&productId=%@", str, self.selectProModel.productAttrId];
+    }
     
     web.title = @"报价";
     [self.navigationController pushViewController:web animated:YES];
@@ -297,58 +302,27 @@
         }
     }
     
-    if(newLisence)
+    if(newLisence || (self.carInfoModel.travelCard1 != nil && [self.carInfoModel.travelCard1 length] > 0))
         return YES;
     else{
-        BOOL flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carEngineNo];
+        BOOL flag = [self showMessage:@"车辆信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carEngineNo];
         if(flag){
             return NO;
         }
-        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carShelfNo];
+        flag = [self showMessage:@"车辆信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carShelfNo];
         if(flag){
             return NO;
         }
-        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carTypeNo];
+        flag = [self showMessage:@"车辆信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carTypeNo];
         if(flag){
             return NO;
         }
-        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carRegTime];
+        flag = [self showMessage:@"车辆信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carRegTime];
         if(flag){
             return NO;
         }
         
     }
-    
-//    BOOL isCarInfo = NO;
-//    if(self.btnReSubmit.selected || ([self isNilValue:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && (([self isNilValue:carNo] && [Util validateCarNo:carNo]) || self.btnNoNo.selected))){
-//        isCarInfo = YES;
-//        return YES;
-//    }
-//    
-//    if(!self.btnReSubmit.selected){
-//        if(!self.btnNoNo.selected){
-//            if(![Util validateCarNo:carNo]){
-//                //                [Util showAlertMessage:@"请填写正确的车牌号或上传行驶证！"];
-//                return result;
-//            }
-//        }
-//        BOOL flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carEngineNo];
-//        if(flag){
-//            return result;
-//        }
-//        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carShelfNo];
-//        if(flag){
-//            return result;
-//        }
-//        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carTypeNo];
-//        if(flag){
-//            return result;
-//        }
-//        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carRegTime];
-//        if(flag){
-//            return result;
-//        }
-//    }
     
     return YES;
 }
@@ -382,6 +356,60 @@
         return NO;
     }else
         return YES;
+}
+
+//value 控件中的值
+- (BOOL) checkValueChange:(NSString *) value text:(NSString *) text
+{
+    BOOL flag = NO;
+    if(text == nil)
+        text = @"";
+    if(value != nil){
+        if(![value isEqualToString:text])
+            flag = YES;
+    }
+    
+    return flag;
+}
+
+- (BOOL) isModify
+{
+    CustomerCarInfoModel *model = self.carInfoModel;
+    BOOL result = NO;
+    BOOL carTradeStatus = self.switchTransfer.on;
+
+    NSString *date = self.tfRegisterDate.text;
+    BOOL flag = [self checkValueChange:date text:[Util getDayString:model.carRegTime]];
+    if(flag)
+        result = flag;
+    NSString *modelStr = self.tfModel.text;
+    flag = [self checkValueChange:modelStr text:model.carTypeNo];
+    if(flag)
+        result = flag;
+    NSString *idenCode = self.tfIdenCode.text;
+    flag = [self checkValueChange:idenCode text:model.carShelfNo];
+    if(flag)
+        result = flag;
+    NSString *motorCode = self.tfMotorCode.text;
+    flag = [self checkValueChange:motorCode text:model.carEngineNo];
+    if(flag)
+        result = flag;
+    
+    //是否过户
+    if( model != nil && (model.carTradeStatus != carTradeStatus + 1)){
+        result = YES;
+    }
+    
+    //过户日起
+    if(model.carTradeTime != nil){
+        if(![[Util getDayString:model.carTradeTime] isEqualToString:[Util getDayString:_changNameDate]])
+            result = YES;
+    }else{
+        if(_changNameDate != nil)
+            result = YES;
+    }
+    
+    return result;
 }
 
 @end
