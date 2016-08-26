@@ -75,7 +75,7 @@
 //根据订单方案类型获取说明
 + (NSString *) getStringByPlanType:(NSInteger) planType;
 
-+ (NSString *) getDecimalStyle:(CGFloat) num;
++ (NSString *) getDecimalStyle:(double) num;
 
 + (NSMutableAttributedString *)getWarningString:(NSString*) string;
 + (NSMutableAttributedString *)getAttributeString:(NSString*) string substr:(NSString *)substr;

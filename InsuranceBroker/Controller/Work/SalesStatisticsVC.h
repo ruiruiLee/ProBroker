@@ -10,6 +10,11 @@
 #import "GradientView.h"
 #import "LineChartView.h"
 
+typedef enum : NSUInteger {
+    EnumSalesTypeCar,
+    EnumSalesTypeNoCar,
+} SalesType;
+
 @interface SalesStatisticsVC : BaseViewController
 
 @property (nonatomic, strong) UIView *explainBgView;
@@ -24,5 +29,7 @@
 
 @property (nonatomic, strong) IBOutlet LineChartView *chatview1;//近6月销售趋势
 @property (nonatomic, strong) NSString *userId;
+
+@property (nonatomic, assign) SalesType saleType;
 
 @end

@@ -73,7 +73,7 @@
 //@property (nonatomic, assign) CGFloat orderTotalSellEarn;//总成功订单销售额
 
 //@property (nonatomic, assign) NSInteger nowMonthOrderSuccessNums;//月成功订单数
-@property (nonatomic, assign) CGFloat nowMonthOrderSuccessEarn;//月成功订单收益
+@property (nonatomic, assign) double nowMonthOrderSuccessEarn;//月成功订单收益
 //@property (nonatomic, assign) CGFloat nowMonthOrderSellEarn;//月成功订单销售额
 @property (nonatomic, assign) CGFloat nowUserTotalMoney;//当前月收益 +直接收益+提层+管理津贴+红包
 
@@ -86,29 +86,29 @@
 
 
 ///add 2016-8-19
-@property (nonatomic, assign) CGFloat car_now_zcgddbf;//": "0",//车险当前月总成功订单保费
+@property (nonatomic, assign) double car_now_zcgddbf;//": "0",//车险当前月总成功订单保费
 @property (nonatomic, assign) NSInteger car_now_zcgdds;//": "0",//车险当前月总成功订单数
-@property (nonatomic, assign) CGFloat car_now_zcgddsy;//": "0",//车险当前月总成功订单收益
-@property (nonatomic, assign) CGFloat car_now_zcgddxse;//": "0",//车险当前月总成功订单销售额
+@property (nonatomic, assign) double car_now_zcgddsy;//": "0",//车险当前月总成功订单收益
+@property (nonatomic, assign) double car_now_zcgddxse;//": "0",//车险当前月总成功订单销售额
 
-@property (nonatomic, assign) CGFloat nocar_now_zcgddbf;//": "0",//非车险当前月总成功订单保费
+@property (nonatomic, assign) double nocar_now_zcgddbf;//": "0",//非车险当前月总成功订单保费
 @property (nonatomic, assign) NSInteger nocar_now_zcgdds;//": "0",//非车险当前月总成功订单数
-@property (nonatomic, assign) CGFloat nocar_now_zcgddsy;//": "0",//非车险当前月总成功订单收益
-@property (nonatomic, assign) CGFloat nocar_now_zcgddxse;//": "0",//非车险当前月总成功订单销售额
+@property (nonatomic, assign) double nocar_now_zcgddsy;//": "0",//非车险当前月总成功订单收益
+@property (nonatomic, assign) double nocar_now_zcgddxse;//": "0",//非车险当前月总成功订单销售额
 
-@property (nonatomic, assign) CGFloat now_zcgddbf;//": "0",//当前月总成功订单保费
-@property (nonatomic, assign) NSInteger now_zcgdds;//": "0",//当前月总成功订单数
-@property (nonatomic, assign) CGFloat now_zcgddsy;//": "0",//当前月总成功订单收益
-@property (nonatomic, assign) CGFloat now_zcgddxse;//": "0",//当前月总成功订单销售额
-@property (nonatomic, assign) CGFloat now_zsy;//": "0",//当前月总收益
-@property (nonatomic, assign) NSInteger now_ztdrs;//": "0",//当前月团队人数
+@property (nonatomic, assign) double now_zcgddbf;//": "0",//当前月总成功订单保费
+@property (nonatomic, assign) long long now_zcgdds;//": "0",//当前月总成功订单数
+@property (nonatomic, assign) double now_zcgddsy;//": "0",//当前月总成功订单收益
+@property (nonatomic, assign) double now_zcgddxse;//": "0",//当前月总成功订单销售额
+@property (nonatomic, assign) double now_zsy;//": "0",//当前月总收益
+@property (nonatomic, assign) long long now_ztdrs;//": "0",//当前月团队人数
 
-@property (nonatomic, assign) CGFloat zcgddbf;//": "0",//总成功订单保费
-@property (nonatomic, assign) NSInteger zcgdds;//": "0",//总成功订单数
-@property (nonatomic, assign) CGFloat zcgddsy;//": "0",//总成功订单收益
-@property (nonatomic, assign) CGFloat zcgddxse;//": "0",//总成功订单销售额
-@property (nonatomic, assign) CGFloat zsy;//": "0",//总收益
-@property (nonatomic, assign) NSInteger ztdrs;//": "0"//总团队人数
+@property (nonatomic, assign) double zcgddbf;//": "0",//总成功订单保费
+@property (nonatomic, assign) long long zcgdds;//": "0",//总成功订单数
+@property (nonatomic, assign) double zcgddsy;//": "0",//总成功订单收益
+@property (nonatomic, assign) double zcgddxse;//": "0",//总成功订单销售额
+@property (nonatomic, assign) double zsy;//": "0",//总收益
+@property (nonatomic, assign) long long ztdrs;//": "0"//总团队人数
 
 + (UserInfoModel *) shareUserInfoModel;
 - (void) setContentWithDictionary:(NSDictionary *) dic;//isLogin单独修改

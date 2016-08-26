@@ -628,12 +628,12 @@
     return @"";
 }
 
-+ (NSString *) getDecimalStyle:(CGFloat) num
++ (NSString *) getDecimalStyle:(double) num
 {
     NSNumberFormatter *numFormatter = [[NSNumberFormatter alloc] init];
 //    [numFormatter setNumberStyle:kCFNumberFormatterDecimalStyle];
     [numFormatter setPositiveFormat:@"###,##0.00;"];
-    return [numFormatter stringFromNumber:[NSNumber numberWithFloat:num]];
+    return [numFormatter stringFromNumber:[NSNumber numberWithDouble:num]];
 }
 
 + (NSMutableAttributedString *)getWarningString:(NSString*) string

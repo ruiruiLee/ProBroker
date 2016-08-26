@@ -110,6 +110,7 @@
     [context addObserver:self forKeyPath:@"isNewMessage" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [context addObserver:self forKeyPath:@"isZSKFHasMsg" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NotifyLogin:) name:Notify_Login object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(NotifyRefreshData:) name:Notify_Refresh_Home object:nil];
     
     UIImageView *logoView = [[UIImageView alloc] initWithImage:ThemeImage(@"logo")];
     self.navigationItem.titleView = logoView;
@@ -131,7 +132,6 @@
 //    [self config];
     
     [self loadDatas];
-    
 }
 
 - (void) initSubViews
@@ -297,8 +297,8 @@
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:imgBroker attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnService attribute:NSLayoutAttributeWidth multiplier:1 constant:0.5]];
     
-    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnProduct attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:180 nwidth:ScreenWidth]]];
-    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnPlan attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:180 nwidth:ScreenWidth]]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnProduct attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:122 nwidth:ScreenWidth]]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnPlan attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:122 nwidth:ScreenWidth]]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:440 nwidth:ScreenWidth]]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnService attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:[Util getHeightByWidth:750 height:440 nwidth:ScreenWidth]]];
     
@@ -336,6 +336,11 @@
     self.scroll.delegate = self;
 }
 
+- (void) NotifyRefreshData:(NSNotification *) notify
+{
+    [self loadDatas];
+}
+
 #pragma mark - EGORefreshTableHeaderDelegate
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
@@ -355,7 +360,6 @@
             _headlineArray = [HeadlineModel modelArrayFromArray:[d objectForKey:@"headlines"]];
             _newUserModel = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"newUser"]];
             _jiHuaShu = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"jiHuaShu"]];
-            _quoteUrl = [d objectForKey:@"quoteUrl"];
             appdelegate.customerBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"customerBanner"]];
             appdelegate.workBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"workBanner"]];
             appdelegate.inviteBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"friendBanner"]];
@@ -364,6 +368,7 @@
             appdelegate.appIcon = [commonImg objectForKey:@"appIcon"];
             appdelegate.chexianimg = [commonImg objectForKey:@"cheXian"];
             appdelegate.lineCustomer = [commonImg objectForKey:@"lineCustomer"];
+            appdelegate.quoteUrl =[d objectForKey:@"quoteUrl"];
             self.infoArray = [AnnouncementModel modelArrayFromArray:[d objectForKey:@"gongLue"]];
             [self initData];
         }

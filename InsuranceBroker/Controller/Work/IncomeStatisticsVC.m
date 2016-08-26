@@ -11,7 +11,7 @@
 #import "DetailAccountVC.h"
 #import "NetWorkHandler+queryStatistics.h"
 #import "SalesStatisticsModel.h"
-#import "CurveEarnModel.h"
+#import "CurveSellModel.h"
 
 @interface IncomeStatisticsVC ()
 
@@ -122,19 +122,11 @@
 
 - (void) loadData
 {
-//    [NetWorkHandler requestToQueryStatistics:self.userId Completion:^(int code, id content) {
-//        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-//        if(code == 200){
-//            self.statmodel = (StatisticsModel*)[StatisticsModel modelFromDictionary:[[content objectForKey:@"data"] objectForKey:@"statistics"]];
-//            self.curveArray = [CurveModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"curve"]];
-//            [self initData];
-//        }
-//    }];
     [NetWorkHandler requestToQueryStatistics:self.userId monthPieChart:@"1" curveEarn6Month:@"1" curveSell30Day:nil curveSell6Month:nil Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             self.statmodel = (SalesStatisticsModel*)[SalesStatisticsModel modelFromDictionary:[[content objectForKey:@"data"] objectForKey:@"statistics"]];
-            self.curveArray = [CurveEarnModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"curveEarn6Month"]];
+            self.curveArray = [CurveSellModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"curveData6Month"]];
             [self initData];
         }
     }];
@@ -154,32 +146,28 @@
 
 - (void) initData
 {
-    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计收益：%@元", [Util getDecimalStyle:self.statmodel.userTotalMoney]];
-    self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.nowUserTotalMoney]];
-//    self.lbEarnings.text = [NSString stringWithFormat:@"你的收益已打败了%d%@的经纪人", (int)self.statmodel.monthTotalRatio, @"%"];
+    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计收益：%@元", [Util getDecimalStyle:self.statmodel.zsy]];
+    self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.now_zsy]];
+
     if([[UserInfoModel shareUserInfoModel].userId isEqualToString:self.userId])
-        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的收益已打败了 %.1f%@ 的经纪人", self.statmodel.totalEarnBeatRatio, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.totalEarnBeatRatio, @"%"]];
+        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的收益已打败了 %.1f%@ 的经纪人", self.statmodel.now_zcgddsy_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.now_zcgddsy_jbl, @"%"]];
     else
-        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"他的收益已打败了 %.1f%@ 的经纪人", self.statmodel.totalEarnBeatRatio, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.totalEarnBeatRatio, @"%"]];
+        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"他的收益已打败了 %.1f%@ 的经纪人", self.statmodel.now_zcgddsy_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.now_zcgddsy_jbl, @"%"]];
     
     [self initDataWithArray:self.curveArray];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
 
-    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthOrderTotalSuccessEarn]];
-    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthOrderTotalTcEarn]];
-    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthOtherTotalEarn]];
-//    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInRedPack]];
-//    [array addObject:[NSNumber numberWithFloat:self.statmodel.monthInLeader]];
+    [array addObject:[NSNumber numberWithDouble:self.statmodel.month_zcgddsy]];
+    [array addObject:[NSNumber numberWithDouble:self.statmodel.month_ztcsy]];
+    [array addObject:[NSNumber numberWithDouble:self.statmodel.month_othersy]];
     self.slices = array;
 
-    self.lbSaleStr.text = [Util getDecimalStyle:self.statmodel.monthOrderTotalSuccessEarn];
-    self.lbTeamStr.text = [Util getDecimalStyle:self.statmodel.monthOrderTotalTcEarn];
-    self.lbManStr.text = [Util getDecimalStyle:self.statmodel.monthOtherTotalEarn];
-//    self.lbRedStr.text = [Util getDecimalStyle:self.statmodel.monthInRedPack];
-//    self.lbManStr.text = [Util getDecimalStyle:self.statmodel.monthInLeader];
+    self.lbSaleStr.text = [Util getDecimalStyle:self.statmodel.month_zcgddsy];
+    self.lbTeamStr.text = [Util getDecimalStyle:self.statmodel.month_ztcsy];
+    self.lbManStr.text = [Util getDecimalStyle:self.statmodel.month_othersy];
     
-    self.piechat.lbAmount.text = [Util getDecimalStyle:self.statmodel.monthOrderTotalSuccessEarn + self.statmodel.monthOrderTotalTcEarn + self.statmodel.monthOtherTotalEarn];
+    self.piechat.lbAmount.text = [Util getDecimalStyle:self.statmodel.month_zcgddsy + self.statmodel.month_ztcsy + self.statmodel.month_othersy];
     
     [self.piechat reloadData];
     
@@ -193,10 +181,10 @@
 
 - (void)initDataWithArray:(NSArray*)array
 {
-    CGFloat max = 0;
+    double max = 0;
     for (int i = 0; i < [array count]; i++) {
-        CurveEarnModel *model = [array objectAtIndex:i];
-        int o = (int)model.monthOrderTotalSuccessEarn;
+        CurveSellModel *model = [array objectAtIndex:i];
+        double o = model.month_zcgddsy;//(int)model.monthOrderTotalSuccessEarn;
         if(o > max)
             max = o;
     }
@@ -235,9 +223,9 @@
         
         int j = 1;
         for(int i = 0; i < [array count]; i++){
-            CurveEarnModel *model = [array objectAtIndex:i];
+            CurveSellModel *model = [array objectAtIndex:i];
             [arr addObject:@(j)];
-            NSString *lp = [NSString stringWithFormat:@"%f", model.monthOrderTotalSuccessEarn];
+            NSString *lp = [[NSNumber numberWithDouble:model.month_zcgddsy] stringValue];//[NSString stringWithFormat:@"%f", model.monthOrderTotalSuccessEarn];
             [arr2 addObject:lp];
             [arr3 addObject:[NSString stringWithFormat:@"%@月", model.monthStr]];
             

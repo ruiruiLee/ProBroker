@@ -18,6 +18,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnCertImage;
 @property (nonatomic, strong) IBOutlet UIButton *btnSubmit;
 @property (nonatomic, strong) IBOutlet UISwitch *switchCert;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *bannerHeight;
 
 @property (nonatomic, strong) HighNightBgButton *btnProvience;//省简称
 @property (nonatomic, strong) UILabel *lbProvience;

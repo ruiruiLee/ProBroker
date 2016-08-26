@@ -223,7 +223,7 @@
     
     self.cardVerifiyMsg = [dic objectForKey:@"cardVerifiyMsg"];
 //    self.nowMonthOrderSuccessNums = [[dic objectForKey:@"nowMonthOrderSuccessNums"] integerValue];
-    self.nowMonthOrderSuccessEarn = [[dic objectForKey:@"nowMonthOrderSuccessEarn"] floatValue];
+//    self.nowMonthOrderSuccessEarn = [[dic objectForKey:@"nowMonthOrderSuccessEarn"] doubleValue];
 //    self.orderTotalSuccessNums = [[dic objectForKey:@"orderTotalSuccessNums"] integerValue];
 //    self.orderTotalSuccessEarn = [[dic objectForKey:@"orderTotalSuccessEarn"] floatValue];
 //    self.orderTotalSellEarn = [[dic objectForKey:@"orderTotalSellEarn"] floatValue];
@@ -233,26 +233,26 @@
     self.nowUserTotalMoney = [[dic objectForKey:@"nowUserTotalMoney"] floatValue];
     self.userTotalMoney = [[dic objectForKey:@"userTotalMoney"] floatValue];
     self.possessTeamStatus = [[dic objectForKey:@"possessTeamStatus"] boolValue];
-    self.car_now_zcgddbf = [[dic objectForKey:@"car_now_zcgddbf"] floatValue];
+    self.car_now_zcgddbf = [[dic objectForKey:@"car_now_zcgddbf"] doubleValue];
     self.car_now_zcgdds = [[dic objectForKey:@"car_now_zcgdds"] integerValue];
-    self.car_now_zcgddsy = [[dic objectForKey:@"car_now_zcgddsy"] floatValue];
-    self.car_now_zcgddxse = [[dic objectForKey:@"car_now_zcgddxse"] floatValue];
-    self.nocar_now_zcgddbf = [[dic objectForKey:@"nocar_now_zcgddbf"] floatValue];
+    self.car_now_zcgddsy = [[dic objectForKey:@"car_now_zcgddsy"] doubleValue];
+    self.car_now_zcgddxse = [[dic objectForKey:@"car_now_zcgddxse"] doubleValue];
+    self.nocar_now_zcgddbf = [[dic objectForKey:@"nocar_now_zcgddbf"] doubleValue];
     self.nocar_now_zcgdds = [[dic objectForKey:@"nocar_now_zcgdds"] integerValue];
-    self.nocar_now_zcgddsy = [[dic objectForKey:@"nocar_now_zcgddsy"] floatValue];
-    self.nocar_now_zcgddxse = [[dic objectForKey:@"nocar_now_zcgddxse"] floatValue];
-    self.now_zcgddbf = [[dic objectForKey:@"now_zcgddbf"] floatValue];
-    self.now_zcgdds = [[dic objectForKey:@"now_zcgdds"] integerValue];
-    self.now_zcgddsy = [[dic objectForKey:@"now_zcgddsy"] floatValue];
-    self.now_zcgddxse = [[dic objectForKey:@"now_zcgddxse"] floatValue];
-    self.now_zsy = [[dic objectForKey:@"now_zsy"] floatValue];
-    self.now_ztdrs = [[dic objectForKey:@"now_ztdrs"] integerValue];
-    self.zcgddbf = [[dic objectForKey:@"zcgddbf"] floatValue];
-    self.zcgdds = [[dic objectForKey:@"zcgdds"] floatValue];
-    self.zcgddsy = [[dic objectForKey:@"zcgddsy"] floatValue];
-    self.zcgddxse = [[dic objectForKey:@"zcgddxse"] floatValue];
-    self.zsy = [[dic objectForKey:@"zsy"] floatValue];
-    self.ztdrs = [[dic objectForKey:@"ztdrs"] integerValue];
+    self.nocar_now_zcgddsy = [[dic objectForKey:@"nocar_now_zcgddsy"] doubleValue];
+    self.nocar_now_zcgddxse = [[dic objectForKey:@"nocar_now_zcgddxse"] doubleValue];
+    self.now_zcgddbf = [[dic objectForKey:@"now_zcgddbf"] doubleValue];
+    self.now_zcgdds = [[dic objectForKey:@"now_zcgdds"] longLongValue];
+    self.now_zcgddsy = [[dic objectForKey:@"now_zcgddsy"] doubleValue];
+    self.now_zcgddxse = [[dic objectForKey:@"now_zcgddxse"] doubleValue];
+    self.now_zsy = [[dic objectForKey:@"now_zsy"] doubleValue];
+    self.now_ztdrs = [[dic objectForKey:@"now_ztdrs"] longLongValue];
+    self.zcgddbf = [[dic objectForKey:@"zcgddbf"] doubleValue];
+    self.zcgdds = [[dic objectForKey:@"zcgdds"] longLongValue];
+    self.zcgddsy = [[dic objectForKey:@"zcgddsy"] doubleValue];
+    self.zcgddxse = [[dic objectForKey:@"zcgddxse"] doubleValue];
+    self.zsy = [[dic objectForKey:@"zsy"] doubleValue];
+    self.ztdrs = [[dic objectForKey:@"ztdrs"] longLongValue];
 }
 
 - (void) queryUserInfo

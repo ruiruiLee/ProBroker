@@ -29,6 +29,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
         self.title = @"销售统计";
+        
+        self.saleType = EnumSalesTypeCar;
     }
     
     return self;
@@ -61,7 +63,7 @@
         [self initData];
         if(code == 200){
             self.statmodel = (SalesStatisticsModel*)[SalesStatisticsModel modelFromDictionary:[[content objectForKey:@"data"] objectForKey:@"statistics"]];
-            self.curveSell6Month = [CurveSellModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"curveSell6Month"]];
+            self.curveSell6Month = [CurveSellModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"curveData6Month"]];
             self.curveArray = [SalesModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"curveSell30Day"]];
             [self initData];
         }
@@ -71,12 +73,33 @@
 
 - (void) initData
 {
-    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计销售额：%@元", [Util getDecimalStyle:self.statmodel.orderTotalSellEarn]];
-    self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.nowMonthOrderSellEarn]];
-    if([[UserInfoModel shareUserInfoModel].userId isEqualToString:self.userId])
-        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的销售额已打败了 %.1f%@ 的经纪人", self.statmodel.totalSellBeatRatio, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.totalSellBeatRatio, @"%"]];
+    if(self.saleType == EnumSalesTypeCar)
+        [self initDataCar];
     else
-        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"他的销售额已打败了 %.1f%@ 的经纪人", self.statmodel.totalSellBeatRatio, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.totalSellBeatRatio, @"%"]];
+        [self initDataNoCar];
+}
+
+- (void) initDataCar
+{
+    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计销售额：%@元", [Util getDecimalStyle:self.statmodel.car_zcgddxse]];
+    self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.car_now_zcgddbf]];
+    if([[UserInfoModel shareUserInfoModel].userId isEqualToString:self.userId])
+        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的销售额已打败了 %.1f%@ 的经纪人", self.statmodel.car_now_zcgddbf_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.car_now_zcgddbf_jbl, @"%"]];
+    else
+        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"他的销售额已打败了 %.1f%@ 的经纪人", self.statmodel.car_now_zcgddbf_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.car_now_zcgddbf_jbl, @"%"]];
+    
+    [self initDataWithArray:self.curveArray];
+    [self initStatisticsDataWithArray:self.curveSell6Month];
+}
+
+- (void) initDataNoCar
+{
+    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计销售额：%@元", [Util getDecimalStyle:self.statmodel.nocar_zcgddxse]];
+    self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.nocar_now_zcgddbf]];
+    if([[UserInfoModel shareUserInfoModel].userId isEqualToString:self.userId])
+        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的销售额已打败了 %.1f%@ 的经纪人", self.statmodel.nocar_now_zcgddbf_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.nocar_now_zcgddbf_jbl, @"%"]];
+    else
+        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"他的销售额已打败了 %.1f%@ 的经纪人", self.statmodel.nocar_now_zcgddbf_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.nocar_now_zcgddbf_jbl, @"%"]];
     
     [self initDataWithArray:self.curveArray];
     [self initStatisticsDataWithArray:self.curveSell6Month];
@@ -84,10 +107,17 @@
 
 - (void)initDataWithArray:(NSArray*)array
 {
-    CGFloat max = 0;
+    double max = 0;
     for (int i = 0; i < [array count]; i++) {
         SalesModel *model = [array objectAtIndex:i];
-        int o = (int)model.dayOrderTotalSellEarn;
+        double o = 0;//(int)model.dayOrderTotalSellEarn;
+        if(self.saleType == EnumSalesTypeCar)
+        {
+            o = model.car_day_zcgddbf;
+        }
+        else{
+            o = model.nocar_day_zcgddbf;
+        }
         if(o > max)
             max = o;
     }
@@ -129,7 +159,14 @@
         for(int i = 0; i < [array count]; i++){
             SalesModel *model = [array objectAtIndex:i];
             [arr addObject:@(j)];
-            NSString *lp = [NSString stringWithFormat:@"%d", (int)model.dayOrderTotalSellEarn];
+            NSString *lp = @"";//[NSString stringWithFormat:@"%d", (int)model.dayOrderTotalSellEarn];
+            if(self.saleType == EnumSalesTypeCar)
+            {
+                lp = [[NSNumber numberWithDouble:model.car_day_zcgddbf] stringValue];
+            }
+            else{
+                lp = [[NSNumber numberWithDouble:model.nocar_day_zcgddbf] stringValue];
+            }
             [arr2 addObject:lp];
             if((i+1)%5 == 0)
                 [arr3 addObject:[NSString stringWithFormat:@"%@日", model.dayStr]];
@@ -146,7 +183,7 @@
         
         d1.getData = ^(NSUInteger item) {
             float x = [arr[item] floatValue];
-            float y = [arr2[item] floatValue];
+            double y = [arr2[item] doubleValue];
             y = y / ystep ;
             NSString *label1 = arr3[item];
             NSString *label2 = arr4[item];
@@ -161,12 +198,21 @@
 
 - (void)initStatisticsDataWithArray:(NSArray*)array
 {
-    CGFloat max = 0;
-    NSInteger max1 = 0;
+    double max = 0;
+    long long max1 = 0;
     for (int i = 0; i < [array count]; i++) {
         CurveSellModel *model = [array objectAtIndex:i];
-        int o = (int)model.monthOrderTotalSellEarn;
-        int o1 = model.monthOrderTotalSuccessNums;
+        double o = 0;//(int)model.monthOrderTotalSellEarn;
+        long long o1 = 0;//model.monthOrderTotalSuccessNums;
+        if(self.saleType == EnumSalesTypeCar){
+            o = model.car_month_zcgddbf;
+            o1 = model.car_month_zcgdds;
+        }
+        else
+        {
+            o = model.nocar_month_zcgddbf;
+            o1 = model.nocar_month_zcgdds;
+        }
         if(o > max)
             max = o;
         if(o1 > max1)
@@ -174,7 +220,7 @@
     }
     
     NSInteger ystep = 0;
-    NSInteger ystep1 = 0;
+    long long ystep1 = 0;
     if( ((int)max % 5) == 0 )
         ystep = max / 5;
     else
@@ -230,7 +276,14 @@
         for(int i = 0; i < [array count]; i++){
             CurveSellModel *model = [array objectAtIndex:i];
             [arr addObject:@(j)];
-            NSString *lp = [NSString stringWithFormat:@"%d", (int)model.monthOrderTotalSellEarn];
+            NSString *lp = @"";//[NSString stringWithFormat:@"%d", (int)model.monthOrderTotalSellEarn];
+            if(self.saleType == EnumSalesTypeCar)
+            {
+                lp = [[NSNumber numberWithDouble:model.car_month_zcgddbf] stringValue];
+            }
+            else{
+                lp = [[NSNumber numberWithDouble:model.nocar_month_zcgddbf] stringValue];
+            }
             [arr2 addObject:lp];
             [arr3 addObject:[NSString stringWithFormat:@"%@月", model.monthStr]];
 
@@ -245,7 +298,7 @@
         
         d1.getData = ^(NSUInteger item) {
             float x = [arr[item] floatValue];
-            float y = [arr2[item] floatValue];
+            double y = [arr2[item] doubleValue];
             y = y / ystep ;
             NSString *label1 = arr3[item];
             NSString *label2 = arr4[item];
@@ -274,7 +327,14 @@
         for(int i = 0; i < [array count]; i++){
             CurveSellModel *model = [array objectAtIndex:i];
             [arr addObject:@(j)];
-            NSString *lp = [NSString stringWithFormat:@"%d", (int)model.monthOrderTotalSuccessNums];
+            NSString *lp = @"";//[NSString stringWithFormat:@"%d", (int)model.monthOrderTotalSuccessNums];
+            if(self.saleType == EnumSalesTypeCar)
+            {
+                lp = [[NSNumber numberWithLongLong:model.car_month_zcgdds] stringValue];
+            }
+            else{
+                lp = [[NSNumber numberWithLongLong:model.nocar_month_zcgdds] stringValue];
+            }
             [arr2 addObject:lp];
             [arr3 addObject:[NSString stringWithFormat:@"%@月", model.monthStr]];
             

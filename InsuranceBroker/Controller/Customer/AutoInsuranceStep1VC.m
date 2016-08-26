@@ -10,6 +10,9 @@
 #import "define.h"
 #import "ProvienceSelectedView.h"
 #import "AutoInsuranceStep2VC.h"
+#import "AppDelegate.h"
+#import "CustomerCarInfoModel.h"
+#import "NetWorkHandler+getAndSaveCustomerCar.h"
 
 @interface AutoInsuranceStep1VC ()<ProvienceSelectedViewDelegate>
 
@@ -19,14 +22,24 @@
 @synthesize lbProvience;
 @synthesize btnProvience;
 
+- (void) dealloc
+{
+//    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+//    [appdelegate removeObserver:self forKeyPath:@"quoteUrl"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+//    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+//    [appdelegate addObserver:self forKeyPath:@"quoteUrl" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
     self.viewWidth.constant = ScreenWidth;
     self.btnCertImage.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
     self.btnCertImage.layer.borderWidth = 0.5;
     self.btnSubmit.layer.cornerRadius = 4;
+    self.tfCardNum.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
     UIView *leftBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
     
@@ -48,7 +61,40 @@
     self.tfCardNum.leftViewMode = UITextFieldViewModeAlways;
     
     [self.switchCert setOn:NO];
+    
+    self.bannerHeight.constant = [Util getHeightByWidth:750 height:330 nwidth:ScreenWidth];
 }
+
+- (IBAction)doBtnQuickQuote:(id)sender
+{
+    NSString *_quoteUrl = ((AppDelegate *) [UIApplication sharedApplication].delegate).quoteUrl;
+    if(_quoteUrl != nil){
+        QuickQuoteVC *web = [IBUIFactory CreateQuickQuoteVC];
+        web.hidesBottomBarWhenPushed = YES;
+        web.title = @"快速算价";
+        web.type = enumShareTypeNo;
+        web.shareTitle = @"算价方案";
+        [self.navigationController pushViewController:web animated:YES];
+        
+        [web loadHtmlFromUrlWithUserId:_quoteUrl];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Refresh_Home object:nil];
+        [Util showAlertMessage:@"正在初始化快速算价数据，请稍后再试！"];
+    }
+}
+
+//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+//{
+//    NSString *_quoteUrl = ((AppDelegate *) [UIApplication sharedApplication].delegate).quoteUrl;
+//    QuickQuoteVC *web = [IBUIFactory CreateQuickQuoteVC];
+//    web.hidesBottomBarWhenPushed = YES;
+//    web.title = @"快速算价";
+//    web.type = enumShareTypeNo;
+//    web.shareTitle = @"算价方案";
+//    [self.navigationController pushViewController:web animated:YES];
+//    
+//    [web loadHtmlFromUrlWithUserId:_quoteUrl];
+//}
 
 - (BOOL) resignFirstResponder
 {
@@ -110,13 +156,62 @@
 
 - (IBAction)doBtnSubmit:(id)sender
 {
-    AutoInsuranceStep2VC *vc = [IBUIFactory CreateAutoInsuranceStep2VC];
-    vc.title = @"车辆信息";
-    [self.navigationController pushViewController:vc animated:YES];
-    
     NSString *name = self.tfName.text;
-    NSString *certNum = self.tfCert.text;
+    if(name == nil || [name length] == 0){
+        [Util showAlertMessage:@"车主姓名不能为空！"];
+        return;
+    }
+//    NSString *certNum = self.tfCert.text;
+//    if ([Util validateIdentityCard:certNum]) {
+//        [Util showAlertMessage:@"身份证号不正确，请重新输入！"];
+//        return;
+//    }
+    BOOL newCarNoStatus = self.switchCert.on;
+    
     NSString *cardNum = [self getCarCertString];
+    cardNum = [cardNum uppercaseString];
+    cardNum = [cardNum stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    if(!newCarNoStatus){
+        if (![Util validateCarNo:cardNum]) {
+            [Util showAlertMessage:@"车牌号不正确，请重新输入！"];
+            return;
+        }
+    }
+    else{
+        cardNum = nil;
+    }
+    
+    if(newCarNoStatus){
+        AutoInsuranceStep2VC *vc = [IBUIFactory CreateAutoInsuranceStep2VC];
+        vc.title = @"车辆信息";
+        CustomerCarInfoModel *model = [[CustomerCarInfoModel alloc] init];
+        model.newCarNoStatus = !newCarNoStatus;
+        model.carOwnerName = name;
+        vc.carInfoModel = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else{
+        [ProgressHUD show:nil];
+        
+        [NetWorkHandler requestToGetAndSaveCustomerCar:@"1" userId:[UserInfoModel shareUserInfoModel].userId carNo:cardNum newCarNoStatus:!newCarNoStatus carOwnerName:name carOwnerCard:nil carShelfNo:nil carBrandName:nil carTypeNo:nil carEngineNo:nil carRegTime:nil carTradeStatus:nil carTradeTime:nil travelCard1:nil Completion:^(int code, id content) {
+            
+            [ProgressHUD dismiss];
+            
+            [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+            if(code == 200){
+                
+                CustomerCarInfoModel *model = (CustomerCarInfoModel*)[CustomerCarInfoModel modelFromDictionary:[content objectForKey:@"data"]];
+                model.newCarNoStatus = !newCarNoStatus;
+                
+                AutoInsuranceStep2VC *vc = [IBUIFactory CreateAutoInsuranceStep2VC];
+                vc.title = @"车辆信息";
+                vc.carInfoModel = model;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }];
+    }
+    
 }
 
 #pragma ACTION

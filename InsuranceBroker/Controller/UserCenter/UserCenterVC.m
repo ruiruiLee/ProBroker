@@ -83,15 +83,15 @@
 {
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     
-    self.lbMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
-    self.lbPersonalMonthOrderSuccessNums.text = [NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
+    self.lbMonthOrderSuccessNums.text = [Util getDecimalStyle:model.car_now_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
+    self.lbPersonalMonthOrderSuccessNums.text = [Util getDecimalStyle:model.nocar_now_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
     self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", (int)model.car_now_zcgdds];//车险本月单量
     self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", (int)model.nocar_now_zcgdds];//个险本月单量
 //    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSuccessEarn];
 //    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderTotalSuccessEarn];
-    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.now_zsy];
-    self.lbOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.zsy];//累计收益;
-    self.lbTotalOrderCount.text = [NSString stringWithFormat:@"%d", model.zcgdds];//总订单数
+    self.lbMonthOrderEarn.text = [Util getDecimalStyle:model.now_zsy];//[NSString stringWithFormat:@"%.2f", model.now_zsy];
+    self.lbOrderEarn.text = [Util getDecimalStyle:model.zsy];//[NSString stringWithFormat:@"%.2f", model.zsy];//累计收益;
+    self.lbTotalOrderCount.text = [[NSNumber numberWithLongLong:model.zcgdds] stringValue];//[NSString stringWithFormat:@"%d", model.zcgdds];//总订单数
     
 //    self.lbUserInvite.text = [NSString stringWithFormat:@"%d人", 100];
 //    self.lbTeamTotal.text = [NSString stringWithFormat:@"%d人", 300];
@@ -261,8 +261,19 @@
     NSLog(@"finish ===============");
     SalesStatisticsVC *vc = [IBUIFactory CreateSalesStatisticsViewController];
     vc.hidesBottomBarWhenPushed = YES;
+    vc.saleType = EnumSalesTypeCar;
     vc.userId = [UserInfoModel shareUserInfoModel].userId;
-    vc.title = [NSString stringWithFormat:@"我的销售统计"];
+    vc.title = [NSString stringWithFormat:@"我的车险销售统计"];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)doSalesNoCar:(id)sender
+{
+    SalesStatisticsVC *vc = [IBUIFactory CreateSalesStatisticsViewController];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.saleType = EnumSalesTypeNoCar;
+    vc.userId = [UserInfoModel shareUserInfoModel].userId;
+    vc.title = [NSString stringWithFormat:@"我的个险销售统计"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

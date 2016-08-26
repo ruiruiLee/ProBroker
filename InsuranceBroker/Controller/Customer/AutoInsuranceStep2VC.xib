@@ -58,7 +58,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfd-Pp-Rus">
-                                    <rect key="frame" x="0.0" y="184" width="600" height="301"/>
+                                    <rect key="frame" x="0.0" y="184" width="600" height="251"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ro-zJ-c8U" customClass="BaseLineView">
                                             <rect key="frame" x="16" y="0.0" width="568" height="50"/>
@@ -122,8 +122,8 @@
                                                 <constraint firstItem="Kbq-W3-pMh" firstAttribute="leading" secondItem="67U-Ju-NXD" secondAttribute="trailing" constant="10" id="uV4-4M-IDE"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AWP-G9-O5S" customClass="BaseLineView">
-                                            <rect key="frame" x="16" y="100" width="568" height="50"/>
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AWP-G9-O5S" customClass="BaseLineView">
+                                            <rect key="frame" x="16" y="100" width="568" height="0.0"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="车型" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfY-f6-Bjx">
                                                     <rect key="frame" x="0.0" y="16" width="30" height="18"/>
@@ -142,7 +142,7 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="right_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="eqs-lL-GgE">
-                                                    <rect key="frame" x="552" y="17" width="16" height="16"/>
+                                                    <rect key="frame" x="552" y="-8" width="16" height="16"/>
                                                     <animations/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wCn-yN-sHH" customClass="HighNightBgButton">
@@ -162,7 +162,7 @@
                                                 <constraint firstItem="cZG-Yd-Vd2" firstAttribute="leading" secondItem="qfY-f6-Bjx" secondAttribute="trailing" constant="10" id="CxR-GT-bSl"/>
                                                 <constraint firstItem="qfY-f6-Bjx" firstAttribute="leading" secondItem="AWP-G9-O5S" secondAttribute="leading" id="HRY-mM-kMB"/>
                                                 <constraint firstAttribute="trailing" secondItem="eqs-lL-GgE" secondAttribute="trailing" id="LqO-Rp-cuA"/>
-                                                <constraint firstAttribute="height" constant="50" id="MY8-Cq-Aei"/>
+                                                <constraint firstAttribute="height" id="MY8-Cq-Aei"/>
                                                 <constraint firstAttribute="trailing" secondItem="wCn-yN-sHH" secondAttribute="trailing" id="OCk-Dl-7sR"/>
                                                 <constraint firstAttribute="bottom" secondItem="wCn-yN-sHH" secondAttribute="bottom" id="ZGq-dH-XY2"/>
                                                 <constraint firstItem="eqs-lL-GgE" firstAttribute="centerY" secondItem="qfY-f6-Bjx" secondAttribute="centerY" id="bmk-va-YQi"/>
@@ -171,7 +171,7 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NA9-C8-a2f" customClass="BaseLineView">
-                                            <rect key="frame" x="16" y="200" width="568" height="50"/>
+                                            <rect key="frame" x="16" y="150" width="568" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heh-rX-M42">
                                                     <rect key="frame" x="0.0" y="16" width="60" height="18"/>
@@ -219,9 +219,9 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wH-Tz-vEL" customClass="BaseLineView">
-                                            <rect key="frame" x="16" y="250" width="568" height="50"/>
+                                            <rect key="frame" x="16" y="200" width="568" height="50"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否一年内过户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQ7-vm-MSy">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否过户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQ7-vm-MSy">
                                                     <rect key="frame" x="0.0" y="16" width="105" height="18"/>
                                                     <animations/>
                                                     <constraints>
@@ -251,7 +251,7 @@
                                             </constraints>
                                         </view>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OIJ-Yj-olG" customClass="BaseLineView">
-                                            <rect key="frame" x="16" y="300" width="568" height="0.0"/>
+                                            <rect key="frame" x="16" y="250" width="568" height="0.0"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="过户日期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7gt-E2-PxQ">
                                                     <rect key="frame" x="0.0" y="17" width="60" height="18"/>
@@ -395,6 +395,9 @@
                             <state key="normal" title="下一步">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="doBtnSubmit:" destination="-1" eventType="touchUpInside" id="fZq-63-XGf"/>
+                            </connections>
                         </button>
                     </subviews>
                     <animations/>

@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AutoInsuranceStep1VC">
             <connections>
+                <outlet property="bannerHeight" destination="9Eh-SB-9yV" id="qNn-Hk-Jmq"/>
                 <outlet property="btnCertImage" destination="Uey-3E-Kmb" id="1kW-mD-P2j"/>
                 <outlet property="btnSubmit" destination="qqO-Em-szj" id="cpq-Ua-qPm"/>
                 <outlet property="switchCert" destination="gdY-Jh-BB0" id="iEX-vs-wvc"/>
@@ -28,16 +29,20 @@
                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hBy-wl-tB5">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="499"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J29-1b-0jN">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="160"/>
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J29-1b-0jN">
+                                    <rect key="frame" x="113" y="-3" width="375" height="165"/>
                                     <animations/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="160" id="9Eh-SB-9yV"/>
                                     </constraints>
+                                    <state key="normal" image="quickQuote"/>
+                                    <connections>
+                                        <action selector="doBtnQuickQuote:" destination="-1" eventType="touchUpInside" id="dlY-CN-b0L"/>
+                                    </connections>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBV-jQ-Nvo">
-                                    <rect key="frame" x="0.0" y="170" width="600" height="150"/>
+                                    <rect key="frame" x="0.0" y="170" width="600" height="100"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="csQ-b4-uJ6" customClass="BaseLineView">
                                             <rect key="frame" x="16" y="0.0" width="568" height="50"/>
@@ -125,8 +130,8 @@
                                                 <constraint firstItem="ZbE-UM-J2d" firstAttribute="leading" secondItem="51y-hs-hPA" secondAttribute="leading" id="jW8-xl-Zrp"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRE-5n-VMY">
-                                            <rect key="frame" x="16" y="100" width="568" height="50"/>
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRE-5n-VMY">
+                                            <rect key="frame" x="16" y="100" width="568" height="0.0"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="身份证" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALF-9c-Ftd">
                                                     <rect key="frame" x="0.0" y="14" width="45" height="21"/>
@@ -139,7 +144,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="车主身份证号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R8a-Cn-mwv">
-                                                    <rect key="frame" x="55" y="7" width="431" height="36"/>
+                                                    <rect key="frame" x="55" y="-18" width="431" height="36"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="36" id="Oe6-um-PkA"/>
@@ -147,8 +152,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uey-3E-Kmb" customClass="HighNightBgButton">
-                                                    <rect key="frame" x="496" y="0.0" width="72" height="50"/>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uey-3E-Kmb" customClass="HighNightBgButton">
+                                                    <rect key="frame" x="496" y="0.0" width="72" height="0.0"/>
                                                     <animations/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="72" id="jQS-9O-QTY"/>
@@ -171,7 +176,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="Uey-3E-Kmb" secondAttribute="bottom" id="dAU-8f-DMl"/>
                                                 <constraint firstItem="R8a-Cn-mwv" firstAttribute="centerY" secondItem="ALF-9c-Ftd" secondAttribute="centerY" id="uLx-fp-7Re"/>
                                                 <constraint firstAttribute="trailing" secondItem="Uey-3E-Kmb" secondAttribute="trailing" id="uXG-jB-D4l"/>
-                                                <constraint firstAttribute="height" constant="50" id="yPA-vg-XEI"/>
+                                                <constraint firstAttribute="height" id="yPA-vg-XEI"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -191,7 +196,7 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前只支持9座以下非营运私家车" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kw-Lz-gPl">
-                                    <rect key="frame" x="16" y="330" width="568" height="20"/>
+                                    <rect key="frame" x="16" y="280" width="568" height="20"/>
                                     <animations/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="yr0-Yv-vsc"/>
@@ -271,5 +276,6 @@
     </objects>
     <resources>
         <image name="certLogo" width="72" height="50"/>
+        <image name="quickQuote" width="375" height="165"/>
     </resources>
 </document>

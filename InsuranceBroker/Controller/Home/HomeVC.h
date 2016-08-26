@@ -24,8 +24,6 @@
     //newuser
     NewUserModel *_newUserModel;
 //    AnnouncementModel *_jiHuaShu;
-    
-    NSString *_quoteUrl;
 }
 
 @property (nonatomic, strong) UIScrollView *scrollview;

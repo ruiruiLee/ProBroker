@@ -413,6 +413,8 @@
 		86CAC56D1D62F19C0045AF37 /* AutoInsuranceStep2VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86CAC56B1D62F19C0045AF37 /* AutoInsuranceStep2VC.xib */; };
 		86CAC5711D6557450045AF37 /* MotorcycleTypeSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CAC56F1D6557450045AF37 /* MotorcycleTypeSelectedVC.m */; };
 		86CAC5721D6557450045AF37 /* MotorcycleTypeSelectedVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86CAC5701D6557450045AF37 /* MotorcycleTypeSelectedVC.xib */; };
+		86CAC5751D6E983C0045AF37 /* NetWorkHandler+getAndSaveCustomerCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CAC5741D6E983C0045AF37 /* NetWorkHandler+getAndSaveCustomerCar.m */; };
+		86CAC5781D6ED1BC0045AF37 /* CustomerCarInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CAC5771D6ED1BC0045AF37 /* CustomerCarInfoModel.m */; };
 		86CC8C451CB3AE3600362AD0 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C441CB3AE3600362AD0 /* BaseTableViewCell.m */; };
 		86CC8C541CB3D04500362AD0 /* HighNightBgButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C531CB3D04500362AD0 /* HighNightBgButton.m */; };
 		86CC8C5A1CB79FFF00362AD0 /* TeamItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CC8C581CB79FFF00362AD0 /* TeamItemTableViewCell.m */; };
@@ -1261,6 +1263,10 @@
 		86CAC56E1D6557450045AF37 /* MotorcycleTypeSelectedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MotorcycleTypeSelectedVC.h; sourceTree = "<group>"; };
 		86CAC56F1D6557450045AF37 /* MotorcycleTypeSelectedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MotorcycleTypeSelectedVC.m; sourceTree = "<group>"; };
 		86CAC5701D6557450045AF37 /* MotorcycleTypeSelectedVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MotorcycleTypeSelectedVC.xib; sourceTree = "<group>"; };
+		86CAC5731D6E983C0045AF37 /* NetWorkHandler+getAndSaveCustomerCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+getAndSaveCustomerCar.h"; sourceTree = "<group>"; };
+		86CAC5741D6E983C0045AF37 /* NetWorkHandler+getAndSaveCustomerCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+getAndSaveCustomerCar.m"; sourceTree = "<group>"; };
+		86CAC5761D6ED1BC0045AF37 /* CustomerCarInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerCarInfoModel.h; sourceTree = "<group>"; };
+		86CAC5771D6ED1BC0045AF37 /* CustomerCarInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerCarInfoModel.m; sourceTree = "<group>"; };
 		86CC8C431CB3AE3600362AD0 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
 		86CC8C441CB3AE3600362AD0 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
 		86CC8C521CB3D04500362AD0 /* HighNightBgButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighNightBgButton.h; sourceTree = "<group>"; };
@@ -1967,6 +1973,8 @@
 				86769D331CEF1365009C7E8F /* NetWorkHandler+shareCustomerAccept.m */,
 				86769D351CEF137B009C7E8F /* NetWorkHandler+shareCustomerReject.h */,
 				86769D361CEF137B009C7E8F /* NetWorkHandler+shareCustomerReject.m */,
+				86CAC5731D6E983C0045AF37 /* NetWorkHandler+getAndSaveCustomerCar.h */,
+				86CAC5741D6E983C0045AF37 /* NetWorkHandler+getAndSaveCustomerCar.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -2561,6 +2569,8 @@
 				86769D251CEC13D4009C7E8F /* InsuredUserInfoModel.m */,
 				86769D2F1CEEEEBE009C7E8F /* SharedCustomerModel.h */,
 				86769D301CEEEEBE009C7E8F /* SharedCustomerModel.m */,
+				86CAC5761D6ED1BC0045AF37 /* CustomerCarInfoModel.h */,
+				86CAC5771D6ED1BC0045AF37 /* CustomerCarInfoModel.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -3554,6 +3564,7 @@
 				86C3BCC11C2E933600F98E80 /* IQSegmentedNextPrevious.m in Sources */,
 				86769D261CEC13D4009C7E8F /* InsuredUserInfoModel.m in Sources */,
 				8625B03C1C3E3D0F00312B98 /* NetWorkHandler+saveOrUpdateCustomerVisits.m in Sources */,
+				86CAC5751D6E983C0045AF37 /* NetWorkHandler+getAndSaveCustomerCar.m in Sources */,
 				86A504EF1C5254B80032A901 /* NetWorkHandler+queryOrderShareInfo.m in Sources */,
 				86A5047B1C4F27950032A901 /* mask.c in Sources */,
 				86A504FB1C5257440032A901 /* EasyJSWebViewProxyDelegate.m in Sources */,
@@ -3653,6 +3664,7 @@
 				868C7CC21C969AC600B7617A /* HBImageScroller.m in Sources */,
 				86A504221C4D04970032A901 /* OffersModel.m in Sources */,
 				86248F0C1CCDB9FD00F1B493 /* LightMenuBarView.m in Sources */,
+				86CAC5781D6ED1BC0045AF37 /* CustomerCarInfoModel.m in Sources */,
 				86F2DA901C79889F0088B783 /* PickView.m in Sources */,
 				86A26ED51C47DC200073FFFC /* CarAddInfoTableCell.m in Sources */,
 				86C3BBD81C2A97F200F98E80 /* ContactSelectVC.m in Sources */,
@@ -3985,8 +3997,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jin Song (XH3LJ4ST9D)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jin Song (XH3LJ4ST9D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4054,7 +4066,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c2945127-bbe8-4860-ab38-202af74969cd";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
@@ -4068,8 +4080,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jin Song (XH3LJ4ST9D)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jin Song (XH3LJ4ST9D)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -4137,7 +4149,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c2945127-bbe8-4860-ab38-202af74969cd";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 			};

@@ -8,6 +8,8 @@
 
 #import "BaseViewController.h"
 
+@class CustomerCarInfoModel;
+
 @interface AutoInsuranceStep2VC : BaseViewController
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewWidth;
 @property (nonatomic, strong) IBOutlet UIButton *btnSubmit;
@@ -20,6 +22,8 @@
 @property (nonatomic, strong) IBOutlet UITextField *lbTransferDate;//过户时间
 @property (nonatomic, strong) IBOutlet UITextField *tfRegisterDate;//注册日期
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *lbTransferDateHeight;
+                             
+@property (nonatomic, strong) CustomerCarInfoModel *carInfoModel;
 
 
 @end

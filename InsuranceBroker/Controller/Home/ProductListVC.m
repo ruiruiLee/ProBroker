@@ -50,7 +50,7 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[contentView]-0-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[headerView]-0-|" options:0 metrics:nil views:views]];
     
-    self.array = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[headerView(40)]-0-[contentView]-0-|" options:0 metrics:nil views:views];
+    self.array = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[headerView(50)]-0-[contentView]-0-|" options:0 metrics:nil views:views];
     [self.view addConstraints:self.array];
     
 }
@@ -87,7 +87,7 @@
 - (void) initMenus
 {
     if(!menuBar){
-        menuBar = [[LightMenuBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40) andStyle:LightMenuBarStyleItem];
+        menuBar = [[LightMenuBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50) andStyle:LightMenuBarStyleItem];
         menuBar.delegate = self;
         menuBar.bounces = YES;
         menuBar.selectedItemIndex = 0;

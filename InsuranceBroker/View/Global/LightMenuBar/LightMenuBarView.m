@@ -104,7 +104,7 @@
     titleNormalColor = [self colorFromCode:0x2d2d2d];
     sepColor = [UIColor clearColor];
     
-    titleFont = _FONT_B(15);
+    titleFont = _FONT_B(20);
     
     //< TODO, ugly code, any better solution here ?
     

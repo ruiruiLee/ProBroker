@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSString *appIcon;
 @property (nonatomic, strong) NSString *lineCustomer;
 @property (nonatomic, strong) NSString *exactQuoteNewsId;
+@property (nonatomic, strong) NSString *quoteUrl;
 
 
 
