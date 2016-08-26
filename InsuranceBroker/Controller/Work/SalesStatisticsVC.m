@@ -81,12 +81,12 @@
 
 - (void) initDataCar
 {
-    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计销售额：%@元", [Util getDecimalStyle:self.statmodel.car_zcgddxse]];
+    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计保费：%@元", [Util getDecimalStyle:self.statmodel.car_zcgddxse]];
     self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.car_now_zcgddbf]];
     if([[UserInfoModel shareUserInfoModel].userId isEqualToString:self.userId])
-        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的销售额已打败了 %.1f%@ 的经纪人", self.statmodel.car_now_zcgddbf_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.car_now_zcgddbf_jbl, @"%"]];
+        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的保费已打败了 %.1f%@ 的经纪人", self.statmodel.car_now_zcgddbf_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.car_now_zcgddbf_jbl, @"%"]];
     else
-        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"他的销售额已打败了 %.1f%@ 的经纪人", self.statmodel.car_now_zcgddbf_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.car_now_zcgddbf_jbl, @"%"]];
+        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"他的保费已打败了 %.1f%@ 的经纪人", self.statmodel.car_now_zcgddbf_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.car_now_zcgddbf_jbl, @"%"]];
     
     [self initDataWithArray:self.curveArray];
     [self initStatisticsDataWithArray:self.curveSell6Month];
@@ -94,12 +94,12 @@
 
 - (void) initDataNoCar
 {
-    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计销售额：%@元", [Util getDecimalStyle:self.statmodel.nocar_zcgddxse]];
+    self.lbEarningsCount.text = [NSString stringWithFormat:@"累计保费：%@元", [Util getDecimalStyle:self.statmodel.nocar_zcgddxse]];
     self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.nocar_now_zcgddbf]];
     if([[UserInfoModel shareUserInfoModel].userId isEqualToString:self.userId])
-        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的销售额已打败了 %.1f%@ 的经纪人", self.statmodel.nocar_now_zcgddbf_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.nocar_now_zcgddbf_jbl, @"%"]];
+        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的保费已打败了 %.1f%@ 的经纪人", self.statmodel.nocar_now_zcgddbf_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.nocar_now_zcgddbf_jbl, @"%"]];
     else
-        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"他的销售额已打败了 %.1f%@ 的经纪人", self.statmodel.nocar_now_zcgddbf_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.nocar_now_zcgddbf_jbl, @"%"]];
+        self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"他的保费已打败了 %.1f%@ 的经纪人", self.statmodel.nocar_now_zcgddbf_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.nocar_now_zcgddbf_jbl, @"%"]];
     
     [self initDataWithArray:self.curveArray];
     [self initStatisticsDataWithArray:self.curveSell6Month];

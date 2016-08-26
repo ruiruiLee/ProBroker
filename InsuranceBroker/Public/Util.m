@@ -632,7 +632,7 @@
 {
     NSNumberFormatter *numFormatter = [[NSNumberFormatter alloc] init];
 //    [numFormatter setNumberStyle:kCFNumberFormatterDecimalStyle];
-    [numFormatter setPositiveFormat:@"###,##0.00;"];
+    [numFormatter setPositiveFormat:@"###,##0.0;"];
     return [numFormatter stringFromNumber:[NSNumber numberWithDouble:num]];
 }
 
