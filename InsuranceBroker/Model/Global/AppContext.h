@@ -37,6 +37,7 @@
 - (void)resetData;
 - (void)loadData;
 - (void)removeData;
+- (void)UpdateNewsTipTime:(long long )datenew category:(NSInteger)category;//更新某个类别的本地时间戳，防止比对出现红点显示
 - (BOOL)judgeDisplay:(NSInteger)category;  // 判断是否有新的消息 好显示红点
 - (void)SaveNewsTip:(NSArray*) arrayNew; // 存储类别显示红点信息
 - (void)changeNewsTip:(NSInteger)category display:(BOOL)display; // 点击后显示或者取消红点
