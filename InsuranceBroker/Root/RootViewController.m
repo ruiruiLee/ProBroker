@@ -177,7 +177,7 @@
         NSInteger ct = [[dic objectForKey:@"ct"] integerValue];
         if (504 == ct) {
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            model.isLogin = NO;
+            model.uuid = nil;
             [[AppContext sharedAppContext] removeData];
             [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
 
@@ -287,7 +287,7 @@
         NSInteger ct = [[info objectForKey:@"ct"] integerValue];
         if (504 == ct) {
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            model.isLogin = NO;
+            model.uuid = nil;
             [[AppContext sharedAppContext] removeData];
             [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
             
@@ -371,7 +371,7 @@
         NSInteger ct = [[info objectForKey:@"ct"] integerValue];
         if (504 == ct) {
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            model.isLogin = NO;
+            model.uuid = nil;
             [[AppContext sharedAppContext] removeData];
             [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
             

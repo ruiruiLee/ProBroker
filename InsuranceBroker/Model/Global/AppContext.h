@@ -17,19 +17,9 @@
 
 @property(nonatomic, strong)NSString *docDir;
 
-
+@property(nonatomic, copy)NSString *uuid;
 @property(nonatomic, copy) NSMutableDictionary *userInfoDic;
-@property (nonatomic, assign) BOOL isLogin;
 @property (nonatomic, assign) BOOL firstLaunch;
-
-//@property (nonatomic, strong) NSString *redBagId;//最后一个红包的id
-//@property (nonatomic, assign) BOOL isRedPack;//是否标红
-
-//我的消息
-//@property (nonatomic, assign) BOOL isHasNotice;//通知消息
-//@property (nonatomic, assign) BOOL isHasNewPolicy;//新政策
-//@property (nonatomic, assign) BOOL isHasTradingMsg;//交易消息
-//@property (nonatomic, assign) BOOL isHasIncentivePolicy;//激励政策
 
 @property (nonatomic, assign) BOOL isNewMessage;
 @property (nonatomic, retain) NSMutableArray* arrayNewsTip;

@@ -309,7 +309,7 @@
 - (BOOL) login
 {
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    if(!user.isLogin){
+    if(!user.uuid){
 //        if([WXApi isWXAppInstalled]){
 //            WXLoginVC *vc  = [IBUIFactory CreateWXLoginViewController];
 //            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -334,7 +334,6 @@
 //        
 //        if (code == 504){  // 不允许登录弹回到登录界面
 //            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-//            model.isLogin = NO;
 //            [[AppContext sharedAppContext] removeData];
 //            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
 //            
