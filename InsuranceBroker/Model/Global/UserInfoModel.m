@@ -112,7 +112,7 @@
     NSMutableDictionary *dictionary = [self dictionaryWithObject:self];
     AppContext *context = [AppContext sharedAppContext];
     context.userInfoDic = dictionary;
-    context.uuid = self.uuid;
+   // context.uuid = self.uuid;
     [context saveData];
 }
 
@@ -152,7 +152,6 @@
     NSMutableDictionary *dictionary = [self dictionaryWithObject:self];
     AppContext *context = [AppContext sharedAppContext];
     context.userInfoDic = dictionary;
-    context.uuid = self.uuid;
 //    if([context.redBagId longLongValue] < [self.redBagId longLongValue])
 //        context.isRedPack = YES;
 //    context.redBagId = self.redBagId;
