@@ -106,6 +106,24 @@ static AppContext *context = nil;
     [UIApplication sharedApplication].applicationIconBadgeNumber=self.isNewMessage?1:0;
     [self saveData];
 }
+
+- (void)UpdateNewsTipTime:(long long )datenew category:(NSInteger)category {
+    int i=0;
+    for (NSDictionary *dic in _arrayNewsTip) {
+        
+        if ([[dic objectForKey:@"category"] integerValue]==category)
+            // 有消息更新
+             {
+                [dic setValue: [NSNumber numberWithBool:false] forKey:@"isNew"];
+                [dic setValue:[NSNumber numberWithLongLong:datenew] forKey:@"lastNewsDt"];
+                  [_arrayNewsTip replaceObjectAtIndex: i withObject:dic];
+                  [self saveData];
+                 break;
+            }
+        i++;
+    }
+}
+
 // 存储类别显示红点信息
 - (void)SaveNewsTip:(NSArray*) arrayNew{
     if (_arrayNewsTip.count==0) {
@@ -138,7 +156,6 @@ static AppContext *context = nil;
                if (datenew>dateold) {
                 
                    [dic setValue: [NSNumber numberWithBool:true]   forKey:@"isNew"];
-//                   [dic setValue: [NSNumber numberWithLong:datenew]   forKey:@"lastNewsDt"];
                    [dic setValue:[NSNumber numberWithLongLong:datenew] forKey:@"lastNewsDt"];
                    displayMsg = YES;
                 }
@@ -190,9 +207,9 @@ static AppContext *context = nil;
  
 //    [self.arrayNewsTip removeAllObjects];
 //    [dic setObject:self.arrayNewsTip forKey:@"arrayNewsTip"];
-//    [dic setObject:[NSNumber numberWithInteger:0] forKey:@"pushCustomerNum"];
-//    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isZSKFHasMsg"];
-//    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isBDKFHasMsg"];
+    [dic setObject:[NSNumber numberWithInteger:0] forKey:@"pushCustomerNum"];
+    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isZSKFHasMsg"];
+    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isBDKFHasMsg"];
     [dic writeToFile:file atomically:YES];
 }
 
