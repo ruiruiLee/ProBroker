@@ -51,6 +51,11 @@
     [self.switchTransfer setOn:self.carInfoModel.carTradeStatus - 1 animated:YES];
     
     self.tfIdenCode.text = self.carInfoModel.carShelfNo;
+    
+    self.tfIdenCode.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.tfModel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.tfMotorcycleType.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    self.tfMotorCode.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
 }
 
 - (void)didReceiveMemoryWarning {
