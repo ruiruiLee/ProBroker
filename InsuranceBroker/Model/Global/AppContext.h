@@ -17,7 +17,6 @@
 
 @property(nonatomic, strong)NSString *docDir;
 
-@property(nonatomic, copy)NSString *uuid;
 @property(nonatomic, copy) NSMutableDictionary *userInfoDic;
 @property (nonatomic, assign) BOOL firstLaunch;
 

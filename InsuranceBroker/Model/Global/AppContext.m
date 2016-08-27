@@ -36,7 +36,7 @@ static AppContext *context = nil;
             NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:file];
             if (dic != nil) {
                 self.userInfoDic = [[NSMutableDictionary alloc] initWithDictionary:[dic objectForKey:@"userInfoDic"]];
-                self.uuid = [self.userInfoDic objectForKey:@"uuid"];
+               // self.uuid = [self.userInfoDic objectForKey:@"uuid"];
                 self.firstLaunch = [[dic objectForKey:@"firstLaunch"] boolValue];
                 self.pushCustomerNum = [[dic objectForKey:@"pushCustomerNum"] integerValue];
                 self.isNewMessage = [[dic objectForKey:@"isNewMessage"] boolValue];
@@ -48,7 +48,6 @@ static AppContext *context = nil;
             }
             else{
                 self.userInfoDic = [[NSMutableDictionary alloc] init];
-                self.uuid=nil;
                 self.firstLaunch = NO;
                 self.pushCustomerNum = 0;
                 self.isNewMessage = NO;
@@ -58,7 +57,6 @@ static AppContext *context = nil;
             }
         }else{
             self.userInfoDic = [[NSMutableDictionary alloc] init];
-            self.uuid=nil;
             self.firstLaunch = NO;
             self.pushCustomerNum = 0;
             self.isNewMessage = NO;
@@ -222,7 +220,6 @@ static AppContext *context = nil;
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:file];
         if (dic != nil) {
             self.userInfoDic = [[NSMutableDictionary alloc] initWithDictionary:[dic objectForKey:@"userInfoDic"]];
-            self.uuid = [self.userInfoDic objectForKey:@"uuid"];
             self.firstLaunch = [[dic objectForKey:@"firstLaunch"] boolValue];
             self.isNewMessage = [[dic objectForKey:@"isNewMessage"] boolValue];
             self.isZSKFHasMsg = [[dic objectForKey:@"isZSKFHasMsg"] boolValue];
