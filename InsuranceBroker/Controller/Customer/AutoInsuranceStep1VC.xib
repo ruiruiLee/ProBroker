@@ -195,7 +195,7 @@
                                         <constraint firstItem="51y-hs-hPA" firstAttribute="leading" secondItem="XBV-jQ-Nvo" secondAttribute="leading" constant="16" id="yLg-oO-nLF"/>
                                     </constraints>
                                 </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="目前只支持9座以下非营运私家车" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kw-Lz-gPl">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="为了匹配车辆信息，请正确输入车牌和车主姓名" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kw-Lz-gPl">
                                     <rect key="frame" x="16" y="280" width="568" height="20"/>
                                     <animations/>
                                     <constraints>
@@ -233,14 +233,14 @@
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tsf-fg-yPD">
-                    <rect key="frame" x="0.0" y="540" width="600" height="60"/>
+                    <rect key="frame" x="0.0" y="536" width="600" height="64"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqO-Em-szj" customClass="HighNightBgButton">
-                            <rect key="frame" x="16" y="12" width="568" height="36"/>
+                            <rect key="frame" x="16" y="12" width="568" height="40"/>
                             <animations/>
                             <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.1019607843" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="36" id="XZN-sj-RBE"/>
+                                <constraint firstAttribute="height" constant="40" id="XZN-sj-RBE"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <state key="normal" title="立即算价">
@@ -258,7 +258,7 @@
                         <constraint firstAttribute="trailing" secondItem="qqO-Em-szj" secondAttribute="trailing" constant="16" id="GMx-KV-ptU"/>
                         <constraint firstItem="qqO-Em-szj" firstAttribute="centerY" secondItem="Tsf-fg-yPD" secondAttribute="centerY" id="dbG-QF-oIh"/>
                         <constraint firstItem="qqO-Em-szj" firstAttribute="leading" secondItem="Tsf-fg-yPD" secondAttribute="leading" constant="16" id="psr-X5-3Sb"/>
-                        <constraint firstAttribute="height" constant="60" id="qrA-BZ-Y87"/>
+                        <constraint firstAttribute="height" constant="64" id="qrA-BZ-Y87"/>
                     </constraints>
                 </view>
             </subviews>

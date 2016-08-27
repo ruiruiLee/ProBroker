@@ -9,9 +9,11 @@
             <connections>
                 <outlet property="btnLisence" destination="0Yt-sZ-VT0" id="DbY-2u-QM6"/>
                 <outlet property="btnSubmit" destination="e41-MR-LJk" id="hrQ-MN-7Ul"/>
+                <outlet property="lbRegisterDateString" destination="heh-rX-M42" id="UK7-Gg-seS"/>
                 <outlet property="lbTransferDate" destination="40G-Vz-onA" id="IK2-l9-yS8"/>
                 <outlet property="lbTransferDateHeight" destination="5vI-Vc-QxS" id="pew-ab-Aea"/>
                 <outlet property="switchTransfer" destination="ODk-cI-BOd" id="ur4-QI-bdw"/>
+                <outlet property="switchTransferHeight" destination="gCy-Xf-7VU" id="kSE-B7-I37"/>
                 <outlet property="tfIdenCode" destination="Q1E-V2-uJ6" id="uTN-hA-dc9"/>
                 <outlet property="tfModel" destination="Kbq-W3-pMh" id="bwE-qT-K6n"/>
                 <outlet property="tfMotorCode" destination="owC-8W-jhh" id="1HW-de-Ac2"/>
@@ -29,8 +31,8 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cXf-qL-RYx">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
                     <subviews>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ko7-YK-gHe">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ko7-YK-gHe">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="465"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGy-b1-Goe">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="184"/>
@@ -218,7 +220,7 @@
                                                 <constraint firstAttribute="height" constant="50" id="up7-hf-DHG"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wH-Tz-vEL" customClass="BaseLineView">
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wH-Tz-vEL" customClass="BaseLineView">
                                             <rect key="frame" x="16" y="200" width="568" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否过户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQ7-vm-MSy">
@@ -359,15 +361,32 @@
                                         <constraint firstItem="3Ro-zJ-c8U" firstAttribute="top" secondItem="yfd-Pp-Rus" secondAttribute="top" id="qHg-DJ-pNa"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RtR-Ne-JlJ" customClass="LeftImgButton">
+                                    <rect key="frame" x="0.0" y="439" width="100" height="22"/>
+                                    <animations/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="22" id="VF9-yO-y2l"/>
+                                        <constraint firstAttribute="width" constant="100" id="dpe-hb-b9e"/>
+                                    </constraints>
+                                    <state key="normal" title="如何填写" image="faq_car_profile">
+                                        <color key="titleColor" red="1" green="0.40000000000000002" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="doButtonHowToWrite:" destination="-1" eventType="touchUpInside" id="hrC-Kc-Uf8"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <animations/>
                             <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstItem="yfd-Pp-Rus" firstAttribute="leading" secondItem="ko7-YK-gHe" secondAttribute="leading" id="7dq-OZ-v1W"/>
                                 <constraint firstAttribute="trailing" secondItem="zGy-b1-Goe" secondAttribute="trailing" id="Qv8-km-bfQ"/>
+                                <constraint firstAttribute="trailing" secondItem="RtR-Ne-JlJ" secondAttribute="trailing" constant="16" id="SK2-q9-TKa"/>
+                                <constraint firstItem="RtR-Ne-JlJ" firstAttribute="top" secondItem="yfd-Pp-Rus" secondAttribute="bottom" constant="4" id="U6F-59-jb6"/>
                                 <constraint firstItem="zGy-b1-Goe" firstAttribute="leading" secondItem="ko7-YK-gHe" secondAttribute="leading" id="ZMP-4y-40m"/>
+                                <constraint firstAttribute="bottom" secondItem="RtR-Ne-JlJ" secondAttribute="bottom" constant="4" id="Za1-rL-40s"/>
                                 <constraint firstAttribute="trailing" secondItem="yfd-Pp-Rus" secondAttribute="trailing" id="baj-Oz-YQh"/>
-                                <constraint firstAttribute="bottom" secondItem="yfd-Pp-Rus" secondAttribute="bottom" id="evY-V5-Xgg"/>
+                                <constraint firstAttribute="bottom" secondItem="yfd-Pp-Rus" secondAttribute="bottom" constant="30" id="evY-V5-Xgg"/>
                                 <constraint firstItem="zGy-b1-Goe" firstAttribute="top" secondItem="ko7-YK-gHe" secondAttribute="top" id="gNO-uT-OIV"/>
                                 <constraint firstAttribute="width" constant="600" id="nna-A5-N73"/>
                                 <constraint firstItem="yfd-Pp-Rus" firstAttribute="top" secondItem="zGy-b1-Goe" secondAttribute="bottom" id="x9X-k0-GlD"/>
@@ -383,14 +402,14 @@
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVN-Q9-nXw">
-                    <rect key="frame" x="0.0" y="540" width="600" height="60"/>
+                    <rect key="frame" x="0.0" y="536" width="600" height="64"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e41-MR-LJk" customClass="HighNightBgButton">
                             <rect key="frame" x="18" y="23" width="566" height="36"/>
                             <animations/>
                             <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.098039215686274508" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="36" id="vqP-0x-Aas"/>
+                                <constraint firstAttribute="height" constant="40" id="vqP-0x-Aas"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <state key="normal" title="下一步">
@@ -406,7 +425,7 @@
                     <constraints>
                         <constraint firstItem="e41-MR-LJk" firstAttribute="centerX" secondItem="CVN-Q9-nXw" secondAttribute="centerX" id="6OR-fI-FMS"/>
                         <constraint firstItem="e41-MR-LJk" firstAttribute="leading" secondItem="CVN-Q9-nXw" secondAttribute="leading" constant="18" id="AL6-mJ-BKh"/>
-                        <constraint firstAttribute="height" constant="60" id="wE0-fa-9Yu"/>
+                        <constraint firstAttribute="height" constant="64" id="wE0-fa-9Yu"/>
                         <constraint firstItem="e41-MR-LJk" firstAttribute="centerY" secondItem="CVN-Q9-nXw" secondAttribute="centerY" id="xny-f2-3no"/>
                         <constraint firstAttribute="trailing" secondItem="e41-MR-LJk" secondAttribute="trailing" constant="16" id="yLd-sD-HDH"/>
                     </constraints>
@@ -427,6 +446,7 @@
     </objects>
     <resources>
         <image name="drivingLicenseBg" width="235" height="164"/>
+        <image name="faq_car_profile" width="16" height="16"/>
         <image name="right_arrow" width="16" height="16"/>
     </resources>
 </document>

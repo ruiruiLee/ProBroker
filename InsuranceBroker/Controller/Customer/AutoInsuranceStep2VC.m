@@ -56,6 +56,17 @@
     self.tfModel.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     self.tfMotorcycleType.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     self.tfMotorCode.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
+    
+    if(self.carInfoModel.newCarNoStatus){
+        [self.btnLisence sd_setBackgroundImageWithURL:[NSURL URLWithString:self.carInfoModel.travelCard1] forState:UIControlStateNormal placeholderImage:ThemeImage(@"fapiao")];
+        self.switchTransferHeight.constant = 0;
+        self.lbRegisterDateString.text = @"购车日期";
+        self.tfRegisterDate.placeholder = @"请选择购车日期";
+        [self.switchTransfer setOn:NO animated:YES];
+    }
+    else{
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -241,7 +252,7 @@
                 }
             }
             
-            [NetWorkHandler requestToGetAndSaveCustomerCar:@"2" userId:[UserInfoModel shareUserInfoModel].userId carNo:self.carInfoModel.carNo newCarNoStatus:self.carInfoModel.newCarNoStatus carOwnerName:self.carInfoModel.carOwnerName carOwnerCard:self.carInfoModel.carOwnerCard carShelfNo:carShelfNo carBrandName:nil carTypeNo:carTypeNo carEngineNo:carEngineNo carRegTime:carRegTime carTradeStatus:[[NSNumber numberWithBool:carTradeStatus] stringValue] carTradeTime:carTradeTime travelCard1:filePahe Completion:^(int code, id content) {
+            [NetWorkHandler requestToGetAndSaveCustomerCar:@"2" userId:[UserInfoModel shareUserInfoModel].userId carNo:self.carInfoModel.carNo newCarNoStatus:!self.carInfoModel.newCarNoStatus carOwnerName:self.carInfoModel.carOwnerName carOwnerCard:self.carInfoModel.carOwnerCard carShelfNo:carShelfNo carBrandName:nil carTypeNo:carTypeNo carEngineNo:carEngineNo carRegTime:carRegTime carTradeStatus:[[NSNumber numberWithBool:carTradeStatus + 1] stringValue] carTradeTime:carTradeTime travelCard1:filePahe Completion:^(int code, id content) {
                 
                 [ProgressHUD dismiss];
                 [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
@@ -414,7 +425,37 @@
             result = YES;
     }
     
+    if(newLisence)
+        result = YES;
+    
     return result;
+}
+
+- (IBAction)doButtonHowToWrite:(UIButton *)sender
+{
+    [self resignFirstResponder];
+    
+    if(self.carInfoModel.newCarNoStatus){
+        NSArray *urlArray = @[ThemeImage(@"price_img")];
+        _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
+        [_imageList addImages:urlArray];
+        [self.view.window addSubview:_imageList];
+    }
+    else{
+        NSArray *urlArray = @[ThemeImage(@"license_img")];
+        _imageList = [[HBImageViewList alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        [_imageList addTarget:self tapOnceAction:@selector(dismissImageAction:)];
+        [_imageList addImages:urlArray];
+        [self.view.window addSubview:_imageList];
+    }
+}
+
+-(void)dismissImageAction:(UIImageView*)sender
+{
+    NSLog(@"dismissImageAction");
+    [_imageList removeFromSuperview];
+    _imageList = nil;
 }
 
 @end
