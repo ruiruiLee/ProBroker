@@ -489,6 +489,9 @@
 		86F2E3601D38DEDF002FCE75 /* PayTypeSelectedVCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2E35E1D38DEDF002FCE75 /* PayTypeSelectedVCTableViewCell.m */; };
 		86F2E3611D38DEDF002FCE75 /* PayTypeSelectedVCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F2E35F1D38DEDF002FCE75 /* PayTypeSelectedVCTableViewCell.xib */; };
 		86F2E3641D3CC594002FCE75 /* DataMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2E3631D3CC594002FCE75 /* DataMD5.m */; };
+		86F973E61D717F3F00A36359 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973E51D717F3F00A36359 /* HMSegmentedControl.m */; };
+		86F973EA1D717F5400A36359 /* THSegmentedPager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973E81D717F5400A36359 /* THSegmentedPager.m */; };
+		86F973ED1D71839800A36359 /* ProductListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973EC1D71839800A36359 /* ProductListViewController.m */; };
 		86FC492A1C756ECA0031B435 /* SetTeamLeaderPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */; };
 		86FC492E1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */; };
 		CF2C88CF1CE47FB7001B6FFF /* AppKeFuResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF2C88CA1CE47FB7001B6FFF /* AppKeFuResources.bundle */; };
@@ -1480,6 +1483,13 @@
 		86F2E35F1D38DEDF002FCE75 /* PayTypeSelectedVCTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PayTypeSelectedVCTableViewCell.xib; sourceTree = "<group>"; };
 		86F2E3621D3CC594002FCE75 /* DataMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataMD5.h; sourceTree = "<group>"; };
 		86F2E3631D3CC594002FCE75 /* DataMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataMD5.m; sourceTree = "<group>"; };
+		86F973E41D717F3F00A36359 /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		86F973E51D717F3F00A36359 /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		86F973E71D717F5400A36359 /* THSegmentedPager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSegmentedPager.h; sourceTree = "<group>"; };
+		86F973E81D717F5400A36359 /* THSegmentedPager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THSegmentedPager.m; sourceTree = "<group>"; };
+		86F973E91D717F5400A36359 /* THSegmentedPageViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSegmentedPageViewControllerDelegate.h; sourceTree = "<group>"; };
+		86F973EB1D71839800A36359 /* ProductListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListViewController.h; sourceTree = "<group>"; };
+		86F973EC1D71839800A36359 /* ProductListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListViewController.m; sourceTree = "<group>"; };
 		86FC49281C756ECA0031B435 /* SetTeamLeaderPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTeamLeaderPhoneView.h; sourceTree = "<group>"; };
 		86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTeamLeaderPhoneView.m; sourceTree = "<group>"; };
 		86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetTeamLeaderPhoneView.xib; sourceTree = "<group>"; };
@@ -1695,6 +1705,7 @@
 		865065B51C1EA29900429EAE /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				86F973E31D717F2C00A36359 /* HMSegmentedControl */,
 				86F2E33A1D3779AA002FCE75 /* XMLDictionary */,
 				86F2E3311D377744002FCE75 /* JSONFommater */,
 				86F2E2BC1D37773B002FCE75 /* AlipaySDK */,
@@ -2451,6 +2462,8 @@
 				86EECDFC1CF59C5A00BBAF11 /* ProductListSelectVC.m */,
 				86B279131CDCB2DD000E5FAA /* CustomerServiceVC.h */,
 				86B279141CDCB2DD000E5FAA /* CustomerServiceVC.m */,
+				86F973EB1D71839800A36359 /* ProductListViewController.h */,
+				86F973EC1D71839800A36359 /* ProductListViewController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -3130,6 +3143,18 @@
 			path = XMLDictionary;
 			sourceTree = "<group>";
 		};
+		86F973E31D717F2C00A36359 /* HMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				86F973E71D717F5400A36359 /* THSegmentedPager.h */,
+				86F973E81D717F5400A36359 /* THSegmentedPager.m */,
+				86F973E91D717F5400A36359 /* THSegmentedPageViewControllerDelegate.h */,
+				86F973E41D717F3F00A36359 /* HMSegmentedControl.h */,
+				86F973E51D717F3F00A36359 /* HMSegmentedControl.m */,
+			);
+			path = HMSegmentedControl;
+			sourceTree = "<group>";
+		};
 		CF2C88C81CE47FB7001B6FFF /* AppKeFuLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -3558,6 +3583,7 @@
 				86C3BB6E1C242DFC00F98E80 /* UserCenterVC.m in Sources */,
 				86C3BC181C2CE0A700F98E80 /* UserPolicyListView.m in Sources */,
 				86C3BBCB1C2A5E1A00F98E80 /* BaseTableViewController.m in Sources */,
+				86F973EA1D717F5400A36359 /* THSegmentedPager.m in Sources */,
 				86A26EBE1C47CF1A0073FFFC /* InsuranceCompanyModel.m in Sources */,
 				861DF9411CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m in Sources */,
 				865066201C2154C200429EAE /* WebViewController.m in Sources */,
@@ -3599,6 +3625,7 @@
 				8625AFFC1C3A19ED00312B98 /* WXLoginVC.m in Sources */,
 				86C3BCC21C2E933600F98E80 /* IQTextView.m in Sources */,
 				865065C01C1EB36E00429EAE /* BaseViewController.m in Sources */,
+				86F973E61D717F3F00A36359 /* HMSegmentedControl.m in Sources */,
 				8625AF821C321E5B00312B98 /* OrderManagerTableViewCell.m in Sources */,
 				8625AF7E1C3164A700312B98 /* OrderManagerVC.m in Sources */,
 				8612F4161CE4828D0045340F /* UIScrollView+JElasticPullToRefresh.m in Sources */,
@@ -3757,6 +3784,7 @@
 				8625B0441C3E70BF00312B98 /* ZHPickView.m in Sources */,
 				86C3BBC11C297D4900F98E80 /* EditTagVC.m in Sources */,
 				86EECDF51CF5826A00BBAF11 /* ProductDetailWebVC.m in Sources */,
+				86F973ED1D71839800A36359 /* ProductListViewController.m in Sources */,
 				86A504DB1C51D3250032A901 /* CurveModel.m in Sources */,
 				8625AFA01C32A59600312B98 /* NoticeListTableViewCell.m in Sources */,
 				86C3BBE61C2ACF4200F98E80 /* OnwerTagView.m in Sources */,

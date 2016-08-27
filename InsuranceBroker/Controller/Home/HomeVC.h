@@ -15,6 +15,8 @@
 #import "AnnouncementModel.h"
 #import "SepLineButton.h"
 
+#import "DictModel.h"
+
 @interface HomeVC : BaseViewController<HeadlineViewDelegate, UIScrollViewDelegate>
 {
     //ad
