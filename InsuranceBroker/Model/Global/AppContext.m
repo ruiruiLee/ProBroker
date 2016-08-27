@@ -14,7 +14,6 @@ static AppContext *context = nil;
 
 @synthesize docDir;
 @synthesize userInfoDic;
-@synthesize isLogin;
 
 + (AppContext *) sharedAppContext
 {
@@ -37,10 +36,8 @@ static AppContext *context = nil;
             NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:file];
             if (dic != nil) {
                 self.userInfoDic = [[NSMutableDictionary alloc] initWithDictionary:[dic objectForKey:@"userInfoDic"]];
-                self.isLogin = [[dic objectForKey:@"isLogin"] boolValue];
+                self.uuid = [self.userInfoDic objectForKey:@"uuid"];
                 self.firstLaunch = [[dic objectForKey:@"firstLaunch"] boolValue];
-//                self.redBagId = [dic objectForKey:@"redBagId"];
-//                self.isRedPack = [[dic objectForKey:@"isRedPack"] boolValue];
                 self.pushCustomerNum = [[dic objectForKey:@"pushCustomerNum"] integerValue];
                 self.isNewMessage = [[dic objectForKey:@"isNewMessage"] boolValue];
                 self.isZSKFHasMsg = [[dic objectForKey:@"isZSKFHasMsg"] boolValue];
@@ -51,7 +48,7 @@ static AppContext *context = nil;
             }
             else{
                 self.userInfoDic = [[NSMutableDictionary alloc] init];
-                self.isLogin = NO;
+                self.uuid=nil;
                 self.firstLaunch = NO;
                 self.pushCustomerNum = 0;
                 self.isNewMessage = NO;
@@ -61,7 +58,7 @@ static AppContext *context = nil;
             }
         }else{
             self.userInfoDic = [[NSMutableDictionary alloc] init];
-            self.isLogin = NO;
+            self.uuid=nil;
             self.firstLaunch = NO;
             self.pushCustomerNum = 0;
             self.isNewMessage = NO;
@@ -172,7 +169,6 @@ static AppContext *context = nil;
     else
         [dic setObject:@{} forKey:@"userInfoDic"];
     
-    [dic setObject:[NSNumber numberWithBool:self.isLogin] forKey:@"isLogin"];
     [dic setObject:[NSNumber numberWithBool:self.firstLaunch] forKey:@"firstLaunch"];
     [dic setObject:[NSNumber numberWithInteger:self.pushCustomerNum] forKey:@"pushCustomerNum"];
     // 用于判断是否有新消息所用
@@ -190,16 +186,13 @@ static AppContext *context = nil;
     NSString *file = [docDir stringByAppendingPathComponent:@"data.plist"];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     [dic setObject:@{} forKey:@"userInfoDic"];
-    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isLogin"];
     [dic setObject:[NSNumber numberWithBool:self.firstLaunch] forKey:@"firstLaunch"];
-    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isRedPack"];
-
-//    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isNewMessage"];
-    [self.arrayNewsTip removeAllObjects];
-    [dic setObject:self.arrayNewsTip forKey:@"arrayNewsTip"];
-    [dic setObject:[NSNumber numberWithInteger:0] forKey:@"pushCustomerNum"];
-    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isZSKFHasMsg"];
-    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isBDKFHasMsg"];
+ 
+//    [self.arrayNewsTip removeAllObjects];
+//    [dic setObject:self.arrayNewsTip forKey:@"arrayNewsTip"];
+//    [dic setObject:[NSNumber numberWithInteger:0] forKey:@"pushCustomerNum"];
+//    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isZSKFHasMsg"];
+//    [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isBDKFHasMsg"];
     [dic writeToFile:file atomically:YES];
 }
 
@@ -212,10 +205,8 @@ static AppContext *context = nil;
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:file];
         if (dic != nil) {
             self.userInfoDic = [[NSMutableDictionary alloc] initWithDictionary:[dic objectForKey:@"userInfoDic"]];
-            self.isLogin = [[dic objectForKey:@"isLogin"] boolValue];
+            self.uuid = [self.userInfoDic objectForKey:@"uuid"];
             self.firstLaunch = [[dic objectForKey:@"firstLaunch"] boolValue];
-//            self.redBagId = [dic objectForKey:@"redBagId"];
-//            self.isRedPack = [[dic objectForKey:@"isRedPack"] boolValue];
             self.isNewMessage = [[dic objectForKey:@"isNewMessage"] boolValue];
             self.isZSKFHasMsg = [[dic objectForKey:@"isZSKFHasMsg"] boolValue];
             self.isBDKFHasMsg = [[dic objectForKey:@"isBDKFHasMsg"] boolValue];

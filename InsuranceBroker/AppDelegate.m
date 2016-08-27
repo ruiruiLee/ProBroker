@@ -141,8 +141,7 @@
     }
     
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    if(!user.isLogin){
-        
+    if(!user.uuid){
         loginViewController *vc = [IBUIFactory CreateLoginViewController];
         UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
         [root presentViewController:naVC animated:NO completion:nil];

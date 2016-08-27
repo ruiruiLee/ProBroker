@@ -273,7 +273,7 @@
 - (void) logout:(UIButton *) sender
 {
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-    model.isLogin = NO;
+    model.uuid = nil;
     [[AppContext sharedAppContext] removeData];
     [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
     
@@ -292,7 +292,7 @@
 - (BOOL) login
 {
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    if(!user.isLogin){
+    if(!user.uuid){
         loginViewController *vc = [IBUIFactory CreateLoginViewController];
         UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
         AppDelegate *appdelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;

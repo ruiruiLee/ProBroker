@@ -100,7 +100,6 @@
         }else if (code == 200){ // 直接登陆成功
             NSDictionary *data = [content objectForKey:@"data"];
             UserInfoModel *userinfo = [UserInfoModel shareUserInfoModel];
-            userinfo.isLogin = YES;
             [userinfo setContentWithDictionary:data];
             [userinfo queryUserInfo];
             [self handleLeftBarButtonClicked:nil];
@@ -171,7 +170,6 @@
         }else if (code == 200){
             NSDictionary *data = [content objectForKey:@"data"];
             UserInfoModel *userinfo = [UserInfoModel shareUserInfoModel];
-            userinfo.isLogin = YES;
             [userinfo setContentWithDictionary:data];
             [userinfo queryUserInfo];
             [self handleLeftBarButtonClicked:nil];

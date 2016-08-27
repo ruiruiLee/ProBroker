@@ -47,8 +47,6 @@
         self.userId = userId;
         [self addObserver:self forKeyPath:@"userId" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
         
-        self.isLogin = NO;
-        
         self.isRegister = NO;
         self.mobileFlag = YES;
         self.webFlag = NO;
@@ -69,8 +67,6 @@
         
         [self addObserver:self forKeyPath:@"userId" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
         
-        self.isLogin = NO;
-        
         self.isRegister = NO;
         self.mobileFlag = YES;
         self.webFlag = NO;
@@ -87,7 +83,6 @@
 {
     AppContext *context = [AppContext sharedAppContext];
     [context loadData];
-    self.isLogin = context.isLogin;
     [self setContentWithDictionary:context.userInfoDic];
 }
 
@@ -112,30 +107,12 @@
     self.userId = [dic objectForKey:@"userId"];
     self.possessTeamStatus = [[dic objectForKey:@"possessTeamStatus"] boolValue];
     self.uuid = [dic objectForKey:@"uuid"];
-    
-//    self.cardNumber = [dic objectForKey:@"cardNumber"];
-//    self.cardNumberImg1 = [dic objectForKey:@"cardNumberImg1"];
-//    self.cardNumberImg2 = [dic objectForKey:@"cardNumberImg2"];
-//    self.verifiyTime = [UserInfoModel dateFromString:[dic objectForKey:@"verifiyTime"]];
-//    self.status = [[dic objectForKey:@"status"] integerValue];
-//    self.cardProvinceId = [dic objectForKey:@"cardProvinceId"];
-//    self.cardCityId = [dic objectForKey:@"cardCityId"];
-//    self.cardAreaId = [dic objectForKey:@"cardAreaId"];
-//    self.isSupport = [[dic objectForKey:@"isSupport"] integerValue];
-//    self.maxCustomer = [[dic objectForKey:@"maxCustomer"] integerValue];
-//    self.layerNum = [[dic objectForKey:@"layerNum"] integerValue];
-//    self.lowerNum = [[dic objectForKey:@"lowerNum"] integerValue];
-//    self.brokerEarnings = [[dic objectForKey:@"brokerEarnings"] integerValue];
-//    self.redbagEarnings = [[dic objectForKey:@"redbagEarnings"] integerValue];
-//    self.orderNums = [[dic objectForKey:@"orderNums"] integerValue];
-//    self.liveAreaId = [dic objectForKey:@"liveAreaId"];
-//    self.liveAddr = [dic objectForKey:@"liveAddr"];
-//    self.createdAt = [UserInfoModel dateFromString:[dic objectForKey:@"createdAt"]];
+
     
     NSMutableDictionary *dictionary = [self dictionaryWithObject:self];
     AppContext *context = [AppContext sharedAppContext];
     context.userInfoDic = dictionary;
-    context.isLogin = self.isLogin;
+    context.uuid = self.uuid;
     [context saveData];
 }
 
@@ -175,7 +152,7 @@
     NSMutableDictionary *dictionary = [self dictionaryWithObject:self];
     AppContext *context = [AppContext sharedAppContext];
     context.userInfoDic = dictionary;
-    context.isLogin = self.isLogin;
+    context.uuid = self.uuid;
 //    if([context.redBagId longLongValue] < [self.redBagId longLongValue])
 //        context.isRedPack = YES;
 //    context.redBagId = self.redBagId;
@@ -264,7 +241,7 @@
             [self setDetailContentWithDictionary:[content objectForKey:@"data"]];
         }else if (code == 504){
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            model.isLogin = NO;
+            model.uuid = nil;
             [[AppContext sharedAppContext] removeData];
             [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
             
@@ -309,7 +286,7 @@
             [Util showAlertMessage:[content objectForKey:@"msg"]];
             
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            model.isLogin = NO;
+            model.uuid = nil;
             [[AppContext sharedAppContext] removeData];
             [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
             
@@ -348,7 +325,7 @@
             [context saveData];
         }else if (code == 504){
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            model.isLogin = NO;
+            model.uuid = nil;
             [[AppContext sharedAppContext] removeData];
             [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
             
@@ -367,7 +344,7 @@
 - (BOOL) login
 {
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    if(!user.isLogin){
+    if(!user.uuid){
         loginViewController *vc = [IBUIFactory CreateLoginViewController];
         UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
         

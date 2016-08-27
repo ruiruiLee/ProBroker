@@ -186,7 +186,7 @@
 - (BOOL) login
 {
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    if(!user.isLogin){
+    if(!user.uuid){
 //        if([WXApi isWXAppInstalled]){
 //            WXLoginVC *vc  = [IBUIFactory CreateWXLoginViewController];
 //            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
@@ -210,7 +210,7 @@
     if(code != 200){
         if (code == 504){   // 需要重新登陆，服务器端过期失效
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            model.isLogin = NO;
+            model.uuid = nil;
             [[AppContext sharedAppContext] removeData];
             [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
             

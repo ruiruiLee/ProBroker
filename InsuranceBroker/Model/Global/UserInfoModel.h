@@ -32,7 +32,6 @@
 @property (nonatomic, assign) NSInteger cardVerifiy;//实名验证状态，1未认证 ，2认证成功 3，认证失败
 @property (nonatomic, assign) NSInteger userType;////经纪人类型，1自由经纪人、2坐席经纪人、3平台管理人
 
-@property (nonatomic, assign) BOOL isLogin;//0:未登录 1:登录
 
 //addinfo
 
@@ -111,7 +110,7 @@
 @property (nonatomic, assign) long long ztdrs;//": "0"//总团队人数
 
 + (UserInfoModel *) shareUserInfoModel;
-- (void) setContentWithDictionary:(NSDictionary *) dic;//isLogin单独修改
+- (void) setContentWithDictionary:(NSDictionary *) dic;
 - (void) queryUserInfo;//获取经纪人信息详情
 - (void) loadLastNewsTip; // 获取经纪人是否有未读的新消息
 - (void) loadCustomerCount;
