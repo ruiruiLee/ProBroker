@@ -300,6 +300,8 @@
 - (NSString *) attstringwithRate:(NSString *) rate
 {
     NSString *string = [NSString stringWithFormat:@"推广费:%@", rate];
+    if(rate == nil || [rate length] == 0)
+        return @"";
     return string;
 }
 

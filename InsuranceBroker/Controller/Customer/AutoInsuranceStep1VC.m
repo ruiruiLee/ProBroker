@@ -186,7 +186,8 @@
         AutoInsuranceStep2VC *vc = [IBUIFactory CreateAutoInsuranceStep2VC];
         vc.title = @"车辆信息";
         CustomerCarInfoModel *model = [[CustomerCarInfoModel alloc] init];
-        model.newCarNoStatus = !newCarNoStatus;
+        model.newCarNoStatus = newCarNoStatus;
+        model.carTradeStatus = NO;
         model.carOwnerName = name;
         vc.carInfoModel = model;
         [self.navigationController pushViewController:vc animated:YES];
@@ -202,7 +203,7 @@
             if(code == 200){
                 
                 CustomerCarInfoModel *model = (CustomerCarInfoModel*)[CustomerCarInfoModel modelFromDictionary:[content objectForKey:@"data"]];
-                model.newCarNoStatus = !newCarNoStatus;
+                model.newCarNoStatus = newCarNoStatus;
                 
                 AutoInsuranceStep2VC *vc = [IBUIFactory CreateAutoInsuranceStep2VC];
                 vc.title = @"车辆信息";

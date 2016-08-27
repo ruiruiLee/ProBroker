@@ -7,11 +7,17 @@
 //
 
 #import "BaseViewController.h"
+#import "HBImageViewList.h"
 
 @class CustomerCarInfoModel;
 @class productAttrModel;
 
 @interface AutoInsuranceStep2VC : BaseViewController
+{
+    HBImageViewList *_imageList;
+}
+
+
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewWidth;
 @property (nonatomic, strong) IBOutlet UIButton *btnSubmit;
 @property (nonatomic, strong) IBOutlet UISwitch *switchTransfer;
@@ -23,6 +29,8 @@
 @property (nonatomic, strong) IBOutlet UITextField *lbTransferDate;//过户时间
 @property (nonatomic, strong) IBOutlet UITextField *tfRegisterDate;//注册日期
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *lbTransferDateHeight;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *switchTransferHeight;
+@property (nonatomic, strong) IBOutlet UILabel *lbRegisterDateString;
                              
 @property (nonatomic, strong) CustomerCarInfoModel *carInfoModel;
 
