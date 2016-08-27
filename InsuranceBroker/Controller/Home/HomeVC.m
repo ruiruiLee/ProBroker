@@ -29,6 +29,9 @@
 #import "PayUtil.h"
 #import "PersonalProductListVC.h"
 
+#import "ProductListViewController.h"
+#import "THSegmentedPager.h"
+
 @interface HomeVC ()<MJBannnerPlayerDeledage, PopViewDelegate>
 {
     AppDelegate *appdelegate;
@@ -493,15 +496,6 @@
     return [_headlineArray count];
 }
 
-- (void)doBtnProductSelect:(id)sender
-{
-    ProductListVC *vc = [[ProductListVC alloc] initWithNibName:nil bundle:nil];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-//    [vc loadData];
-    [vc performSelector:@selector(loadData) withObject:nil afterDelay:0.1];
-}
-
 - (void) doBtnNoticeList:(id) sender
 {
 
@@ -566,18 +560,53 @@
 
 - (void) doBtnJiHuaShu:(id) sender
 {
-//    AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
+//    PersonalProductListVC *vc = [[PersonalProductListVC alloc] initWithNibName:nil bundle:nil];
 //    vc.hidesBottomBarWhenPushed = YES;
-//    vc.category = _jiHuaShu.category;
-//    vc.title = _jiHuaShu.title;
-//    vc.totalModel = _jiHuaShu;
+//    vc.title = @"个险产品列表";
 //    [self.navigationController pushViewController:vc animated:YES];
-    
-    PersonalProductListVC *vc = [[PersonalProductListVC alloc] initWithNibName:nil bundle:nil];
+//    [vc loadData];
+
+        [ProgressHUD show:nil];
+        NSString *method = @"/web/common/getDicts.xhtml?dictType=insuranceType&limitVal=1";
+        NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
+        __weak HomeVC *weakself = self;
+        [handle getWithMethod:method BaseUrl:Base_Uri Params:nil Completion:^(int code, id content) {
+            [ProgressHUD dismiss];
+//            [weakself handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+            if(code == 200){
+                NSArray *dataList = [DictModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
+                
+                THSegmentedPager *vc = [[THSegmentedPager alloc] initWithNibName:nil bundle:nil];
+                vc.title = @"个险产品列表";
+                vc.hidesBottomBarWhenPushed = YES;
+                
+                NSMutableArray *pages = [NSMutableArray new];
+                for (int i = 0; i < [dataList count]; i++) {
+                    // Create a new view controller and pass suitable data.
+                    
+                    DictModel *model = [dataList objectAtIndex:i];
+                    
+                    ProductListViewController *pagedViewController = [[ProductListViewController alloc] initWithNibName:nil bundle:nil];
+                    [pagedViewController setViewTitle:model.dictName];
+                    pagedViewController.category = model.dictValue;
+                    [pages addObject:pagedViewController];
+                }
+                [vc setPages:pages];
+                
+                [self.navigationController pushViewController:vc animated:YES];
+            }else{
+                [Util showAlertMessage:[NSString stringWithFormat:@"%@, 请稍候再试!", @"获取个险产品数据失败"]];
+            }
+        }];
+}
+
+- (void)doBtnProductSelect:(id)sender
+{
+    ProductListViewController *vc = [[ProductListViewController alloc] initWithNibName:nil bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
-    vc.title = @"个险产品列表";
+    vc.title = @"车险产品列表";
+    vc.category = @"1";
     [self.navigationController pushViewController:vc animated:YES];
-    [vc loadData];
 }
 
 - (void) doBtnFuWuZhiCheng:(id) sender
