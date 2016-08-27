@@ -368,6 +368,7 @@
                                         <constraint firstAttribute="height" constant="22" id="VF9-yO-y2l"/>
                                         <constraint firstAttribute="width" constant="100" id="dpe-hb-b9e"/>
                                     </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <state key="normal" title="如何填写" image="faq_car_profile">
                                         <color key="titleColor" red="1" green="0.40000000000000002" blue="0.098039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </state>
