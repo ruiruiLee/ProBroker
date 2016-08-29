@@ -203,6 +203,8 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Add_NewCustomer object:nil];
     [self handleCloseButtonClicked:nil];
+    
+//    [self performSelector:@selector(turnToCustomerPage) withObject:nil afterDelay:0.1];
 }
 
 - (void) turnToCustomerPage
