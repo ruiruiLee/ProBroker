@@ -107,4 +107,12 @@
     }
 }
 
+- (void) updateMsgTime:(NSDictionary *) dic
+{
+    NSString *time = [dic objectForKey:@"lastNewsDt"];
+    long long t = [time longLongValue];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyLastUpdateTime:category:)])
+        [self.delegate NotifyLastUpdateTime:t category:[dic objectForKey:@"category"]];
+}
+
 @end

@@ -20,6 +20,7 @@
 - (void) NotifyToSelectCustomerForCar:(NSString *) productAttrId;
 - (void) NotifyToPay:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId titleName:(NSString *) titleName totalFee:(NSString *) totalFee;
 - (void) NotifyWebCanReturnPrev:(BOOL) flag;
+- (void) NotifyLastUpdateTime:(long long) time  category:(NSString *) category;
 
 @end
 
@@ -47,6 +48,6 @@
 
 - (void) canGoBack:(BOOL) flag;//是否允许返回上一节web页面
 
-- (void) updateMsgTime:(NSString *) tinme;
+- (void) updateMsgTime:(NSDictionary *) dic;
 
 @end
