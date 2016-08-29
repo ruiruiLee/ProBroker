@@ -125,8 +125,8 @@
     self.lbPersonalMonthOrderSuccessNums.text = [Util getDecimalStyle:model.nocar_now_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
     self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", model.nocar_now_zcgdds];//个险本月单量
     
-    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowUserTotalMoney];//本月收益
-    self.lbOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.userTotalMoney];//累计收益
+    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.now_zcgddsy];//本月收益
+    self.lbOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.zsy];//累计收益
     self.lbTotalOrderCount.text = [[NSNumber numberWithLongLong:model.zcgdds] stringValue];//累计订单数
 }
 

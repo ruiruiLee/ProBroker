@@ -206,8 +206,8 @@
 //    self.nowMonthOrderSellEarn = [[dic objectForKey:@"nowMonthOrderSellEarn"] floatValue];
 //    self.teamInviteNums = [[dic objectForKey:@"teamInviteNums"] integerValue];
 //    self.teamTotalNums = [[dic objectForKey:@"teamTotalNums"] integerValue];
-    self.nowUserTotalMoney = [[dic objectForKey:@"nowUserTotalMoney"] floatValue];
-    self.userTotalMoney = [[dic objectForKey:@"userTotalMoney"] floatValue];
+//    self.nowUserTotalMoney = [[dic objectForKey:@"nowUserTotalMoney"] floatValue];
+//    self.userTotalMoney = [[dic objectForKey:@"userTotalMoney"] floatValue];
     self.possessTeamStatus = [[dic objectForKey:@"possessTeamStatus"] boolValue];
     self.car_now_zcgddbf = [[dic objectForKey:@"car_now_zcgddbf"] doubleValue];
     self.car_now_zcgdds = [[dic objectForKey:@"car_now_zcgdds"] integerValue];
