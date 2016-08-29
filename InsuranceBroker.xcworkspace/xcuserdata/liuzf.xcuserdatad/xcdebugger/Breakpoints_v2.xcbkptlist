@@ -58,7 +58,7 @@
                   moduleName = "InsuranceBroker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/liuzf/Desktop/PROJECT/InsuranceBroker/AppDelegate.m"
-                  timestampString = "493985938.171029"
+                  timestampString = "494131590.219414"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "178"
@@ -73,7 +73,7 @@
                   moduleName = "InsuranceBroker"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/liuzf/Desktop/PROJECT/InsuranceBroker/AppDelegate.m"
-                  timestampString = "493985938.171276"
+                  timestampString = "494131590.219823"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "178"
@@ -81,6 +81,22 @@
                   offsetFromSymbolStart = "61">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "InsuranceBroker/Controller/Customer/AutoInsuranceStep2VC.m"
+            timestampString = "494132631.585687"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
+            landmarkName = "-car_insur_plan:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
