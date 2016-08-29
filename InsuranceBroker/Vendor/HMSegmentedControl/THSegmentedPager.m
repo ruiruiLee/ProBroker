@@ -101,7 +101,7 @@
     self.pageControl.textColor = _COLOR(0x21, 0x21, 0x21);
     self.pageControl.selectionIndicatorColor = _COLOR(0xff, 0x66, 0x19);
     self.pageControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
-        self.pageControl.selectedTextColor = _COLOR(0xff, 0x66, 0x19);
+    self.pageControl.selectedTextColor = _COLOR(0xff, 0x66, 0x19);
     self.pageControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe;
     self.pageControl.showVerticalDivider = YES;
 }

@@ -132,7 +132,9 @@
     self.scrollView.showsHorizontalScrollIndicator = NO;
     [self addSubview:self.scrollView];
     
-    self.font = [UIFont boldSystemFontOfSize:20];
+//    self.font = [UIFont boldSystemFontOfSize:20];
+    self.font = [UIFont systemFontOfSize:16];
+    self.selectedFont = [UIFont boldSystemFontOfSize:20];
     self.textColor = [UIColor blackColor];
     self.selectedTextColor = [UIColor blackColor];
     self.backgroundColor = [UIColor whiteColor];
@@ -218,8 +220,8 @@
     
     if (self.type == HMSegmentedControlTypeText) {
         [self.sectionTitles enumerateObjectsUsingBlock:^(id titleString, NSUInteger idx, BOOL *stop) {
-            CGFloat stringHeight = roundf([titleString sizeWithFont:self.font].height);
-            CGFloat stringWidth = roundf([titleString sizeWithFont:self.font].width);
+            CGFloat stringHeight = roundf([titleString sizeWithFont:self.selectedFont].height);
+            CGFloat stringWidth = roundf([titleString sizeWithFont:self.selectedFont].width);
             
             // Text inside the CATextLayer will appear blurry unless the rect values are rounded
             CGFloat y = roundf(CGRectGetHeight(self.frame) - self.selectionIndicatorHeight)/2 - stringHeight/2 + ((self.selectionIndicatorLocation == HMSegmentedControlSelectionIndicatorLocationUp) ? self.selectionIndicatorHeight : 0);
@@ -244,17 +246,23 @@
             }
             
             CATextLayer *titleLayer = [CATextLayer layer];
-            titleLayer.frame = rect;
-            titleLayer.font = (__bridge CFTypeRef)(self.font.fontName);
-            titleLayer.fontSize = self.font.pointSize;
+//            titleLayer.frame = rect;
+//            titleLayer.font = (__bridge CFTypeRef)(self.font.fontName);
+//            titleLayer.fontSize = self.font.pointSize;
             titleLayer.alignmentMode = kCAAlignmentCenter;
             titleLayer.string = titleString;
             titleLayer.truncationMode = kCATruncationEnd;
             
             if (self.selectedSegmentIndex == idx) {
                 titleLayer.foregroundColor = self.selectedTextColor.CGColor;
+                titleLayer.font = (__bridge CFTypeRef)(self.selectedFont.fontName);
+                titleLayer.frame = rect;
+                titleLayer.fontSize = self.selectedFont.pointSize;
             } else {
                 titleLayer.foregroundColor = self.textColor.CGColor;
+                titleLayer.font = (__bridge CFTypeRef)(self.font.fontName);
+                titleLayer.frame = CGRectMake(rect.origin.x, rect.origin.y + 2, rect.size.width, rect.size.height - 4);
+                titleLayer.fontSize = self.font.pointSize;
             }
             
             titleLayer.contentsScale = [[UIScreen mainScreen] scale];
@@ -311,7 +319,7 @@
             CGFloat imageWidth = icon.size.width;
             CGFloat imageHeight = icon.size.height;
 			
-			CGFloat stringHeight = roundf([self.sectionTitles[idx] sizeWithFont:self.font].height);
+			CGFloat stringHeight = roundf([self.sectionTitles[idx] sizeWithFont:self.selectedFont].height);
             CGFloat yOffset = roundf(CGRectGetHeight(self.frame) - self.selectionIndicatorHeight) / 2 - stringHeight / 2 + ((self.selectionIndicatorLocation == HMSegmentedControlSelectionIndicatorLocationUp) ? self.selectionIndicatorHeight : 0);
             CGFloat imageXOffset = self.segmentEdgeInset.left; // Start with edge inset
             if (self.segmentWidthStyle == HMSegmentedControlSegmentWidthStyleFixed)
@@ -353,9 +361,14 @@
                     imageLayer.contents = (id)icon.CGImage;
                 }
 				titleLayer.foregroundColor = self.selectedTextColor.CGColor;
+                titleLayer.font = (__bridge CFTypeRef)(self.selectedFont.fontName);
+                titleLayer.fontSize = self.selectedFont.pointSize;
             } else {
                 imageLayer.contents = (id)icon.CGImage;
 				titleLayer.foregroundColor = self.textColor.CGColor;
+                titleLayer.font = (__bridge CFTypeRef)(self.font.fontName);
+                titleLayer.fontSize = self.font.pointSize;
+                titleLayer.frame = CGRectMake(rect.origin.x, rect.origin.y + 2, rect.size.width, rect.size.height - 4);
             }
             
             [self.scrollView.layer addSublayer:imageLayer];
@@ -430,14 +443,14 @@
     CGFloat sectionWidth = 0.0f;
     
     if (self.type == HMSegmentedControlTypeText) {
-        CGFloat stringWidth = [[self.sectionTitles objectAtIndex:self.selectedSegmentIndex] sizeWithFont:self.font].width;
+        CGFloat stringWidth = [[self.sectionTitles objectAtIndex:self.selectedSegmentIndex] sizeWithFont:self.selectedFont].width;
         sectionWidth = stringWidth;
     } else if (self.type == HMSegmentedControlTypeImages) {
         UIImage *sectionImage = [self.sectionImages objectAtIndex:self.selectedSegmentIndex];
         CGFloat imageWidth = sectionImage.size.width;
         sectionWidth = imageWidth;
     } else if (self.type == HMSegmentedControlTypeTextImages) {
-		CGFloat stringWidth = [[self.sectionTitles objectAtIndex:self.selectedSegmentIndex] sizeWithFont:self.font].width;
+		CGFloat stringWidth = [[self.sectionTitles objectAtIndex:self.selectedSegmentIndex] sizeWithFont:self.selectedFont].width;
 		UIImage *sectionImage = [self.sectionImages objectAtIndex:self.selectedSegmentIndex];
 		CGFloat imageWidth = sectionImage.size.width;
         if (self.segmentWidthStyle == HMSegmentedControlSegmentWidthStyleFixed) {
@@ -526,7 +539,7 @@
 #if  __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
             CGFloat stringWidth = [titleString sizeWithAttributes:@{NSFontAttributeName: self.font}].width + self.segmentEdgeInset.left + self.segmentEdgeInset.right;
 #else
-            CGFloat stringWidth = [titleString sizeWithFont:self.font].width + self.segmentEdgeInset.left + self.segmentEdgeInset.right;
+            CGFloat stringWidth = [titleString sizeWithFont:self.selectedFont].width + self.segmentEdgeInset.left + self.segmentEdgeInset.right;
 #endif
             [mutableSegmentWidths addObject:[NSNumber numberWithFloat:stringWidth]];
         }
@@ -552,9 +565,9 @@
         int i = 0;
         for (NSString *titleString in self.sectionTitles) {
 #if  __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
-            CGFloat stringWidth = [titleString sizeWithAttributes:@{NSFontAttributeName: self.font}].width + self.segmentEdgeInset.right;
+            CGFloat stringWidth = [titleString sizeWithAttributes:@{NSFontAttributeName: self.selectedFont}].width + self.segmentEdgeInset.right;
 #else
-            CGFloat stringWidth = [titleString sizeWithFont:self.font].width + self.segmentEdgeInset.right;
+            CGFloat stringWidth = [titleString sizeWithFont:self.selectedFont].width + self.segmentEdgeInset.right;
 #endif
             UIImage *sectionImage = [self.sectionImages objectAtIndex:i];
             CGFloat imageWidth = sectionImage.size.width + self.segmentEdgeInset.left;
