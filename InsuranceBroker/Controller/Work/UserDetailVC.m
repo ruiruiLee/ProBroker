@@ -291,6 +291,11 @@
          [NetWorkHandler requestToPostPrivateLetter:self.userinfo.userId title:title content:contentStr senderId:model.userId senderName:senderName Completion:^(int code, id content) {
              [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
              if(code == 200){
+                 
+                long long datenew = [[content objectForKey:@"lastNewsDt"] longLongValue];
+                
+                  // 加入本地文件
+                 [[AppContext sharedAppContext]UpdateNewsTipTime:datenew category: [[content objectForKey:@"category"] integerValue]];
                  [self performSelector:@selector(showMessageSuccess) withObject:nil afterDelay:0.5];
              }
              else{

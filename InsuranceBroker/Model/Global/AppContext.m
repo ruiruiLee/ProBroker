@@ -36,7 +36,7 @@ static AppContext *context = nil;
             NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:file];
             if (dic != nil) {
                 self.userInfoDic = [[NSMutableDictionary alloc] initWithDictionary:[dic objectForKey:@"userInfoDic"]];
-               // self.uuid = [self.userInfoDic objectForKey:@"uuid"];
+                userId = [[self.userInfoDic objectForKey:@"userId"]integerValue];
                 self.firstLaunch = [[dic objectForKey:@"firstLaunch"] boolValue];
                 self.pushCustomerNum = [[dic objectForKey:@"pushCustomerNum"] integerValue];
                 self.isNewMessage = [[dic objectForKey:@"isNewMessage"] boolValue];
@@ -72,7 +72,9 @@ static AppContext *context = nil;
 // 判断该类别是否显示红点
 - (BOOL)judgeDisplay:(NSInteger)category{
     for (NSDictionary *dic in self.arrayNewsTip) {
-        if (category==[[dic objectForKey:@"category"] integerValue]) {
+      if ([[dic objectForKey:@"category"] integerValue]==category&&
+                [[dic objectForKey:@"userId"] integerValue]== userId)
+        {
              return [[dic objectForKey:@"isNew"] boolValue];
         }
      }
@@ -84,7 +86,9 @@ static AppContext *context = nil;
     int i=0;
     for (NSMutableDictionary *dicOld in _arrayNewsTip){
         
-        if (category==[[dicOld objectForKey:@"category"] integerValue]){
+      if ([[dicOld objectForKey:@"category"] integerValue]==category&&
+                [[dicOld objectForKey:@"userId"] integerValue]== userId)
+         {
             NSMutableDictionary *dic= [NSMutableDictionary dictionaryWithDictionary:dicOld];
             [dic setValue:[NSNumber numberWithBool:display] forKey:@"isNew"];
             [_arrayNewsTip replaceObjectAtIndex: i withObject:dic];
@@ -109,12 +113,23 @@ static AppContext *context = nil;
     int i=0;
     for (NSDictionary *dic in _arrayNewsTip) {
         
-        if ([[dic objectForKey:@"category"] integerValue]==category)
+        if ([[dic objectForKey:@"category"] integerValue]==category&&
+            [[dic objectForKey:@"userId"] integerValue]== userId)
             // 有消息更新
              {
                 [dic setValue: [NSNumber numberWithBool:false] forKey:@"isNew"];
                 [dic setValue:[NSNumber numberWithLongLong:datenew] forKey:@"lastNewsDt"];
                   [_arrayNewsTip replaceObjectAtIndex: i withObject:dic];
+                 // 判断外面是否显示红点
+                 BOOL displayMsg =NO;
+                 for (NSDictionary *dic in _arrayNewsTip) {
+                     if ([[dic objectForKey:@"isNew"] boolValue]) {
+                         displayMsg = YES;
+                         break;
+                     }
+                 }
+                 self.isNewMessage = displayMsg;
+                 [UIApplication sharedApplication].applicationIconBadgeNumber=self.isNewMessage?1:0;
                   [self saveData];
                  break;
             }
@@ -145,8 +160,13 @@ static AppContext *context = nil;
         NSMutableDictionary *dic= [NSMutableDictionary dictionaryWithDictionary:dicNew];
         for (NSDictionary *dicOld in _arrayNewsTip) {
 
+            NSLog(@"%ld", [[dicOld objectForKey:@"userId"] integerValue]);
             if ([[dicNew objectForKey:@"category"] integerValue]==
-                 [[dicOld objectForKey:@"category"] integerValue])
+                 [[dicOld objectForKey:@"category"] integerValue]&&
+                [[dicNew objectForKey:@"userId"] integerValue]==
+                 [[dicOld objectForKey:@"userId"] integerValue]
+                )
+             
                 // 有消息更新
             {
                long long datenew = [[dicNew objectForKey:@"lastNewsDt"] longLongValue];
@@ -220,6 +240,7 @@ static AppContext *context = nil;
         NSDictionary *dic = [NSDictionary dictionaryWithContentsOfFile:file];
         if (dic != nil) {
             self.userInfoDic = [[NSMutableDictionary alloc] initWithDictionary:[dic objectForKey:@"userInfoDic"]];
+            userId = [[self.userInfoDic objectForKey:@"userId"]integerValue];
             self.firstLaunch = [[dic objectForKey:@"firstLaunch"] boolValue];
             self.isNewMessage = [[dic objectForKey:@"isNewMessage"] boolValue];
             self.isZSKFHasMsg = [[dic objectForKey:@"isZSKFHasMsg"] boolValue];
