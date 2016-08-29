@@ -109,7 +109,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if ([self.pages count]>0) {
+    
+    if ([self.pages count]>0 && [self.pageViewController.viewControllers count] == 0) {
         [self.pageViewController setViewControllers:@[self.pages[0]]
                                           direction:UIPageViewControllerNavigationDirectionForward
                                            animated:NO
