@@ -108,6 +108,11 @@
     
 }
 
+- (void) NotifyLastUpdateTime:(long long) time category:(NSString *)category
+{
+    [[AppContext sharedAppContext]UpdateNewsTipTime:time category: [category integerValue]];
+}
+
 //支付接口
 - (void) NotifyToPay:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId titleName:(NSString *)titleName totalFee:(NSString *)totalFee
 {

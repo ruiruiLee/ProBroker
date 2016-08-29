@@ -13,7 +13,7 @@
 #import "SelectInsuredVC.h"
 #import "SelectCustomerForCarVC.h"
 #import "RootViewController.h"
-#import "ProductListVC.h"
+#import "THSegmentedPager.h"
 
 @interface ProductDetailWebVC ()<SelectInsuredVCDelegate, SelectCustomerVCDelegate>
 
@@ -32,7 +32,7 @@
     UIViewController *vc = nil;
     for (int i = 0; i < [vcarray count]; i++) {
         UIViewController *temp = [vcarray objectAtIndex:i];
-        if([temp isKindOfClass:[ProductListVC class]]){
+        if([temp isKindOfClass:[THSegmentedPager class]]){
             vc = temp;
             break;
         }
@@ -205,11 +205,6 @@
     [self handleCloseButtonClicked:nil];
     
 //    [self performSelector:@selector(turnToCustomerPage) withObject:nil afterDelay:0.1];
-}
-
-- (void) NotifyLastUpdateTime:(long long) time category:(NSString *)category
-{
-    [[AppContext sharedAppContext]UpdateNewsTipTime:time category: [category integerValue]];
 }
 
 - (void) turnToCustomerPage

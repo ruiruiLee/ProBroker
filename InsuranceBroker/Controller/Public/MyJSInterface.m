@@ -107,12 +107,16 @@
     }
 }
 
-- (void) updateMsgTime:(NSDictionary *) dic
+- (void) updateMsgTime:(NSString *) string
 {
-    NSString *time = [dic objectForKey:@"lastNewsDt"];
-    long long t = [time longLongValue];
-    if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyLastUpdateTime:category:)])
-        [self.delegate NotifyLastUpdateTime:t category:[dic objectForKey:@"category"]];
+    if([string isKindOfClass:[NSString class]]){
+        SBJsonParser *_parser = [[SBJsonParser alloc] init];
+        NSDictionary *result = [_parser objectWithString:string];
+        NSString *time = [result objectForKey:@"lastNewsDt"];
+        long long t = [time longLongValue];
+        if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyLastUpdateTime:category:)])
+            [self.delegate NotifyLastUpdateTime:t category:[result objectForKey:@"category"]];
+    }
 }
 
 @end
