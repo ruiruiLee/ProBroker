@@ -36,7 +36,7 @@
                                     <constraints>
                                         <constraint firstAttribute="height" constant="160" id="9Eh-SB-9yV"/>
                                     </constraints>
-                                    <state key="normal" image="quickQuote"/>
+                                    <state key="normal" backgroundImage="quickQuote"/>
                                     <connections>
                                         <action selector="doBtnQuickQuote:" destination="-1" eventType="touchUpInside" id="dlY-CN-b0L"/>
                                     </connections>

@@ -163,6 +163,7 @@
     self.btnHowOrder.titleLabel.font = _FONT_B(13);
     
     UIView *leftBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
+    leftBgView.backgroundColor = _COLOR(249, 234, 222);
     
     lbProvience = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 29)];
     lbProvience.backgroundColor = [UIColor clearColor];
@@ -170,7 +171,7 @@
     lbProvience.textAlignment = NSTextAlignmentCenter;
     lbProvience.textColor = _COLOR(0x21, 0x21, 0x21);
     lbProvience.text = @"川";
-    UIImageView *imagev = [[UIImageView alloc] initWithFrame:CGRectMake(20, 14, 10, 6)];
+    UIImageView *imagev = [[UIImageView alloc] initWithFrame:CGRectMake(20, 12, 10, 6)];
     [leftBgView addSubview:imagev];
     imagev.image = ThemeImage(@"open_arrow");
     [leftBgView addSubview:lbProvience];
