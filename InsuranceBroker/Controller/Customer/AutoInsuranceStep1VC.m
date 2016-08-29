@@ -43,6 +43,9 @@
     
     UIView *leftBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
     leftBgView.backgroundColor = _COLOR(249, 234, 222);
+    leftBgView.layer.cornerRadius = 3;
+    leftBgView.layer.borderWidth = 0.5;
+    leftBgView.layer.borderColor = _COLOR(0xff, 0x76, 0x29).CGColor;
     
     lbProvience = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 29)];
     lbProvience.backgroundColor = [UIColor clearColor];

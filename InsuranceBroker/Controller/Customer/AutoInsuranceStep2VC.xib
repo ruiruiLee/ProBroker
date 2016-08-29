@@ -75,7 +75,7 @@
                                                     <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入车辆识别代码" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q1E-V2-uJ6">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入17位车辆识别代码" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q1E-V2-uJ6">
                                                     <rect key="frame" x="70" y="10" width="498" height="30"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -137,7 +137,7 @@
                                                     <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="选择车型" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cZG-Yd-Vd2">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="只需要输入英文和数字" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cZG-Yd-Vd2">
                                                     <rect key="frame" x="70" y="10" width="472" height="30"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
