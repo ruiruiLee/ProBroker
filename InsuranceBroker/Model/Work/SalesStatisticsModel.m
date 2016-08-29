@@ -52,6 +52,9 @@
     model.car_zcgddxse = [[dictionary objectForKey:@"car_zcgddxse"] doubleValue];
     model.nocar_zcgddxse = [[dictionary objectForKey:@"nocar_zcgddxse"] doubleValue];
     
+    model.car_zcgddbf = [[dictionary objectForKey:@"car_zcgddbf"] doubleValue];
+    model.nocar_zcgddbf = [[dictionary objectForKey:@"nocar_zcgddbf"] doubleValue];
+    
     return model;
 }
 
