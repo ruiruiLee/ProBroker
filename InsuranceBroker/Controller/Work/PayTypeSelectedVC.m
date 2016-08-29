@@ -222,8 +222,6 @@
                 [self.navigationController popToRootViewControllerAnimated:YES];
             }
             if(code == 200){
-                    NSDictionary *dic = [content objectForKey:@"data"];
-                    //WEIXIN
                     NSString *totalFee = [[content objectForKey:@"data"] objectForKey:@"totalFee"];
                     NSString *body = [[content objectForKey:@"data"] objectForKey:@"body"];
                     NSInteger payOrderType = [[[content objectForKey:@"data"] objectForKey:@"payOrderType"] integerValue];
