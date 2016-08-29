@@ -47,4 +47,6 @@
 
 - (void) canGoBack:(BOOL) flag;//是否允许返回上一节web页面
 
+- (void) updateMsgTime:(NSString *) tinme;
+
 @end
