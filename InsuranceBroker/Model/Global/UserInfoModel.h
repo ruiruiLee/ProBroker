@@ -55,7 +55,7 @@
 @property (nonatomic, strong) NSString *liveAddr;//":"四川省成都市青羊区京城小区" //居住地址
 
 @property (nonatomic, strong) NSString *qrcodeAddr;//":""//二维码地址
-@property (nonatomic, assign) NSInteger monthOrderSuccessNums;//":0//上月成功订单
+//@property (nonatomic, assign) NSInteger monthOrderSuccessNums;//":0//上月成功订单
 //@property (nonatomic, assign) NSInteger orderSuccessNums;//":0//总订单数总订单数
 //@property (nonatomic, assign) CGFloat monthOrderEarn;//":0//上月成功订单收益
 //@property (nonatomic, assign) CGFloat orderEarn;//":0//总订单收益

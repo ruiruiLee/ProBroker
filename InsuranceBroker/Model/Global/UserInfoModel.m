@@ -195,7 +195,7 @@
     self.createdAt = [UserInfoModel dateFromString:[dic objectForKey:@"createdAt"]];
     
     self.qrcodeAddr = [dic objectForKey:@"qrcodeAddr"];
-    self.monthOrderSuccessNums = [[dic objectForKey:@"monthOrderSuccessNums"] integerValue];
+//    self.monthOrderSuccessNums = [[dic objectForKey:@"monthOrderSuccessNums"] integerValue];
     
     self.cardVerifiyMsg = [dic objectForKey:@"cardVerifiyMsg"];
 //    self.nowMonthOrderSuccessNums = [[dic objectForKey:@"nowMonthOrderSuccessNums"] integerValue];
