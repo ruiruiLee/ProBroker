@@ -11,12 +11,11 @@
 @interface AppContext : NSObject
 {
     NSString *docDir;
-
+    NSInteger userId;
     NSMutableDictionary *userInfoDic;
 }
 
 @property(nonatomic, strong)NSString *docDir;
-
 @property(nonatomic, copy) NSMutableDictionary *userInfoDic;
 @property (nonatomic, assign) BOOL firstLaunch;
 
