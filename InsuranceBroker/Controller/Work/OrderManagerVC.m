@@ -184,6 +184,8 @@
     
     cell.lbNo.text = model.insuranceOrderNo;
     
+    cell.statusWidth.constant = 80;
+    
     if(model.insuranceType == 1){
         cell.lbName.text = model.customerName;
         cell.lbPlate.text = model.carNo;
@@ -235,6 +237,13 @@
         
         cell.statusImgV.hidden = NO;
         cell.btnStatus.hidden = NO;
+        
+        cell.statusWidth.constant = 80;
+        CGFloat statusWidth = [model.orderOfferStatusStr sizeWithAttributes:@{NSFontAttributeName:cell.btnStatus.titleLabel.font}].width;
+        if(statusWidth + 26 > 80)
+            cell.statusWidth.constant = statusWidth + 26;
+        else
+            cell.statusWidth.constant = 80;
         
         //1等待生效，2保单生效，3保单过期
         if(model.gxbzStatus == 2){

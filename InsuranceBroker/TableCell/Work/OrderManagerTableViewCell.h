@@ -26,5 +26,6 @@
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *width;//车牌
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *contentWidth;//续保
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *statusWidth;//交易状态宽度
 
 @end

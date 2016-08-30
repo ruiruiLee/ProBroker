@@ -223,6 +223,7 @@
                 <outlet property="logoImgV" destination="fw8-Us-mOR" id="Sze-46-rDH"/>
                 <outlet property="phoneNum" destination="RBK-9c-xvN" id="4Q8-aZ-3UP"/>
                 <outlet property="statusImgV" destination="Aqu-OC-6n0" id="ENW-w3-g4v"/>
+                <outlet property="statusWidth" destination="8BB-PY-Izd" id="eGJ-iU-5vw"/>
                 <outlet property="width" destination="zH4-0r-HZy" id="wRW-8T-pxs"/>
             </connections>
             <point key="canvasLocation" x="368" y="323"/>

@@ -93,6 +93,8 @@
         else
             cell.contentWidth.constant = 10;
         
+        cell.statusWidth.constant = 80;
+        
         cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
         [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
         
@@ -130,6 +132,14 @@
         
         cell.statusImgV.hidden = NO;
         cell.btnStatus.hidden = NO;
+        
+        
+        cell.statusWidth.constant = 80;
+        CGFloat statusWidth = [model.orderOfferStatusStr sizeWithAttributes:@{NSFontAttributeName:cell.btnStatus.titleLabel.font}].width;
+        if(statusWidth + 26 > 80)
+            cell.statusWidth.constant = statusWidth + 26;
+        else
+            cell.statusWidth.constant = 80;
         
         //1等待生效，2保单生效，3保单过期
         if(model.gxbzStatus == 2){
