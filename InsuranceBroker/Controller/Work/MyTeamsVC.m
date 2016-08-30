@@ -104,6 +104,11 @@
 //    footview.image = ThemeImage(@"shadow");
     footview.userInteractionEnabled = YES;
     
+    UIImageView *imgV = [[UIImageView alloc] init];
+    [footview addSubview:imgV];
+    imgV.image = ThemeImage(@"my_team");
+    imgV.translatesAutoresizingMaskIntoConstraints = NO;
+    
     UILabel *lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
     [footview addSubview:lbTitle];
     lbTitle.text = self.toptitle;
@@ -112,10 +117,13 @@
     [footview addSubview:lbAmount];
     lbAmount.textAlignment = NSTextAlignmentRight;
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbAmount);
-    [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]->=10-[lbAmount]-20-|" options:0 metrics:nil views:views]];
+    NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbAmount, imgV);
+//    [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lbTitle]->=10-[lbAmount]-20-|" options:0 metrics:nil views:views]];
     [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbTitle]-0-|" options:0 metrics:nil views:views]];
     [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lbAmount]-0-|" options:0 metrics:nil views:views]];
+    [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-16-[imgV(25)]-6-[lbTitle]-6-[lbAmount]-20-|" options:0 metrics:nil views:views]];
+    [footview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[imgV(18)]->=0-|" options:0 metrics:nil views:views]];
+    [footview addConstraint:[NSLayoutConstraint constraintWithItem:imgV attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     
     if(self.total > 0)
     {

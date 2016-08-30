@@ -161,6 +161,8 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if([self.data count] == 0)
+        return 1;
     return 2;
 }
 
@@ -274,15 +276,47 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 15)];
-    view.image = ThemeImage(@"shadow");
-    return view;
-
+    if(section == 0){
+        UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 15)];
+        view.image = ThemeImage(@"shadow");
+        return view;
+    }else{
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 45)];
+        UIImageView *imgv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 15)];
+        imgv.image = ThemeImage(@"shadow");
+        imgv.translatesAutoresizingMaskIntoConstraints = NO;
+        [view addSubview:imgv];
+        
+        UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectZero];
+        lbTitle.text = @"客户数量";
+        lbTitle.translatesAutoresizingMaskIntoConstraints = NO;
+        lbTitle.textColor = _COLOR(0x75, 0x75, 0x75);
+        lbTitle.font = _FONT(12);
+        [view addSubview:lbTitle];
+        
+        UILabel *lbCount= [[UILabel alloc] initWithFrame:CGRectZero];
+        lbCount.translatesAutoresizingMaskIntoConstraints = NO;
+        lbCount.textColor = _COLOR(0x75, 0x75, 0x75);
+        lbCount.font = _FONT(12);
+        lbCount.text = [NSString stringWithFormat:@"%d人", self.total];
+        [view addSubview:lbCount];
+        
+        NSDictionary *views = NSDictionaryOfVariableBindings(imgv, lbTitle, lbCount);
+        [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imgv]-0-|" options:0 metrics:nil views:views]];
+        [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-12-[lbTitle]->=10-[lbCount]-12-|" options:0 metrics:nil views:views]];
+        [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[imgv(15)]-0-[lbTitle]-0-|" options:0 metrics:nil views:views]];
+        [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[imgv(15)]-0-[lbCount]-0-|" options:0 metrics:nil views:views]];
+        
+        return view;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 15;
+    if(section == 0)
+        return 15;
+    else
+        return 45;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
