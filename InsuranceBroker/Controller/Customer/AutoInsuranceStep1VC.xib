@@ -78,7 +78,7 @@
                                                         <constraint firstAttribute="height" constant="36" id="3GM-1Z-srm"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
                                                 </textField>
                                             </subviews>
                                             <animations/>
