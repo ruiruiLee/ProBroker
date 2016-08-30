@@ -235,7 +235,9 @@
     NSInteger mt = [[info objectForKey:@"mt"] integerValue];
     NSInteger ct = [[info objectForKey:@"ct"] integerValue];
     AppContext *context = [AppContext sharedAppContext];
-    [context changeNewsTip:ct display:NO];
+     long long datenew = [[info objectForKey:@"lastNewsDt"] longLongValue];
+     [context UpdateNewsTipTime:datenew category:ct];
+    //[context changeNewsTip:ct display:NO];
     if (mt == 1){  // 进入保单列表页面
         OrderManagerVC *vc = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
         vc.filterString = [info objectForKey:@"p"];
@@ -319,7 +321,9 @@
     NSInteger mt = [[info objectForKey:@"mt"] integerValue];
     NSInteger ct = [[info objectForKey:@"ct"] integerValue];
     AppContext *context = [AppContext sharedAppContext];
-    [context changeNewsTip:ct display:NO];
+   // [context changeNewsTip:ct display:NO];
+    long long datenew = [[info objectForKey:@"lastNewsDt"] longLongValue];
+    [context UpdateNewsTipTime:datenew category:ct];
     if (mt == 1){  // 进入保单列表页面
         OrderManagerVC *vc = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
         vc.filterString = [info objectForKey:@"p"];

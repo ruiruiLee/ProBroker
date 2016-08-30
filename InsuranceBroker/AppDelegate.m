@@ -155,7 +155,7 @@
         {
             [self pushGetCoustomerNum:notificationPayload];
 
-            [self NotificationRedDisplay:notificationPayload];
+            //[self NotificationRedDisplay:notificationPayload];
             
             [self performSelector:@selector(pushDetailPage:) withObject:notificationPayload afterDelay:1.0];
             [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
@@ -364,7 +364,7 @@
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     //[UIApplication sharedApplication].applicationIconBadgeNumber=0;
     [self pushGetCoustomerNum:userInfo];
-    [self NotificationRedDisplay:userInfo];
+   // [self NotificationRedDisplay:userInfo];
     NSLog(@"%@", userInfo);
     // 程序在运行中接收到推送
     if (application.applicationState == UIApplicationStateActive)
@@ -399,7 +399,7 @@
       NSInteger mt = [[userInfo objectForKey:@"mt"] integerValue];
       NSInteger ct = [[userInfo objectForKey:@"ct"] integerValue];
     if(mt != 2 && mt != 504){
-    AppContext *context = [AppContext sharedAppContext];
+      AppContext *context = [AppContext sharedAppContext];
       [context changeNewsTip:ct display:YES];
     }
  }
