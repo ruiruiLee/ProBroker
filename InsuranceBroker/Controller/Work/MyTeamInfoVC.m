@@ -380,10 +380,10 @@
             cell.lbName.text = [Util getUserNameWithModel:model];//model.userName;
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbStatus.font = _FONT(10);
-            cell.lbStatus.attributedText = [self getOrderDetailString:model.nowMonthOrderSellEarn orderValue:model.dayOrderTotalSellEarn];
+            cell.lbStatus.attributedText = [self getOrderDetailString:model.month_zcgddbf orderValue:model.day_zcgddbf];
             cell.lbSubStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbSubStatus.font = _FONT(10);
-            cell.lbSubStatus.attributedText = [self getOrderAmount:model.dayOrderTotalTrtbNums offer:model.dayOrderTotalOfferNums];
+            cell.lbSubStatus.attributedText = [self getOrderAmount:model.month_zbjcs offer:model.day_zbjcs];
             cell.btnRemark.hidden = NO;
             cell.btnRemark.tag = 100 + indexPath.row;
             cell.lbSubStatus.hidden = NO;
