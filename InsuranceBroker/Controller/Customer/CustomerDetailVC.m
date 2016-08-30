@@ -369,6 +369,8 @@
                                                          
                                                          if(self.data.visitTotal == [self.data.visitAttay count]){
                                                              _followUpView.footer.hidden = YES;
+                                                         }else{
+                                                             _followUpView.footer.hidden = NO;
                                                          }
                                                      }
                                                  }];
@@ -419,6 +421,8 @@
             
             if(self.data.insurTotal == [self.data.insurArray count]){
                 _policyListView.footer .hidden = YES;
+            }else{
+                _policyListView.footer .hidden = NO;
             }
         }
     }];
