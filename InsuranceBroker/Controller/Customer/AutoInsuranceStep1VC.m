@@ -41,11 +41,14 @@
     self.btnSubmit.layer.cornerRadius = 4;
     self.tfCardNum.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
     
-    UIView *leftBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
-    leftBgView.backgroundColor = _COLOR(249, 234, 222);
-    leftBgView.layer.cornerRadius = 3;
-    leftBgView.layer.borderWidth = 0.5;
-    leftBgView.layer.borderColor = _COLOR(0xff, 0x76, 0x29).CGColor;
+    UIView *leftBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
+    
+    UIView *bgview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
+    [leftBgView addSubview:bgview];
+    bgview.backgroundColor = _COLOR(249, 234, 222);
+    bgview.layer.cornerRadius = 3;
+    bgview.layer.borderWidth = 0.5;
+    bgview.layer.borderColor = _COLOR(0xff, 0x76, 0x29).CGColor;
     
     lbProvience = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 29)];
     lbProvience.backgroundColor = [UIColor clearColor];
@@ -54,11 +57,11 @@
     lbProvience.textColor = _COLOR(0x21, 0x21, 0x21);
     lbProvience.text = @"川";
     UIImageView *imagev = [[UIImageView alloc] initWithFrame:CGRectMake(20, 12, 10, 6)];
-    [leftBgView addSubview:imagev];
+    [bgview addSubview:imagev];
     imagev.image = ThemeImage(@"open_arrow");
-    [leftBgView addSubview:lbProvience];
+    [bgview addSubview:lbProvience];
     self.btnProvience = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [leftBgView addSubview:self.btnProvience];
+    [bgview addSubview:self.btnProvience];
     [self.btnProvience addTarget:self action:@selector(selectNewProvience:) forControlEvents:UIControlEventTouchUpInside];
     
     self.tfCardNum.leftView = leftBgView;

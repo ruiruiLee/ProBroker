@@ -162,11 +162,13 @@
     self.lbShow.attributedText = [self getInsuranceRules:explain];
     self.btnHowOrder.titleLabel.font = _FONT_B(13);
     
-    UIView *leftBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
-    leftBgView.backgroundColor = _COLOR(249, 234, 222);
-    leftBgView.layer.cornerRadius = 3;
-    leftBgView.layer.borderWidth = 0.5;
-    leftBgView.layer.borderColor = _COLOR(0xff, 0x76, 0x29).CGColor;
+    UIView *leftBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
+    UIView *bgview1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 36, 30)];
+    [leftBgView addSubview:bgview1];
+    bgview1.backgroundColor = _COLOR(249, 234, 222);
+    bgview1.layer.cornerRadius = 3;
+    bgview1.layer.borderWidth = 0.5;
+    bgview1.layer.borderColor = _COLOR(0xff, 0x76, 0x29).CGColor;
     
     lbProvience = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 20, 29)];
     lbProvience.backgroundColor = [UIColor clearColor];
@@ -175,11 +177,11 @@
     lbProvience.textColor = _COLOR(0x21, 0x21, 0x21);
     lbProvience.text = @"川";
     UIImageView *imagev = [[UIImageView alloc] initWithFrame:CGRectMake(20, 12, 10, 6)];
-    [leftBgView addSubview:imagev];
+    [bgview1 addSubview:imagev];
     imagev.image = ThemeImage(@"open_arrow");
-    [leftBgView addSubview:lbProvience];
+    [bgview1 addSubview:lbProvience];
     self.btnProvience = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    [leftBgView addSubview:self.btnProvience];
+    [bgview1 addSubview:self.btnProvience];
     [self.btnProvience addTarget:self action:@selector(selectNewProvience:) forControlEvents:UIControlEventTouchUpInside];
     
     self.tfNo.leftView = leftBgView;
