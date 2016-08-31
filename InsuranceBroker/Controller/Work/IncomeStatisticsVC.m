@@ -147,7 +147,7 @@
 - (void) initData
 {
     self.lbEarningsCount.text = [NSString stringWithFormat:@"累计收益：%@元", [Util getDecimalStyle:self.statmodel.zsy]];
-    self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.now_zcgddsy]];
+    self.lbIncome.text = [NSString stringWithFormat:@"%@", [Util getDecimalStyle:self.statmodel.now_zsy]];
 
     if([[UserInfoModel shareUserInfoModel].userId isEqualToString:self.userId])
         self.lbEarnings.attributedText = [self getAttbuteString:[NSString stringWithFormat:@"你的收益已打败了 %.1f%@ 的经纪人", self.statmodel.now_zcgddsy_jbl, @"%"] sub:[NSString stringWithFormat:@"%.1f%@", self.statmodel.now_zcgddsy_jbl, @"%"]];
