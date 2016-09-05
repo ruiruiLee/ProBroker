@@ -225,7 +225,7 @@
         for(int i = 0; i < [array count]; i++){
             CurveSellModel *model = [array objectAtIndex:i];
             [arr addObject:@(j)];
-            NSString *lp = [[NSNumber numberWithDouble:model.month_zcgddsy] stringValue];//[NSString stringWithFormat:@"%f", model.monthOrderTotalSuccessEarn];
+            NSString *lp = [[NSNumber numberWithDouble:model.month_zsy] stringValue];//[NSString stringWithFormat:@"%f", model.monthOrderTotalSuccessEarn];
             [arr2 addObject:lp];
             [arr3 addObject:[NSString stringWithFormat:@"%@月", model.monthStr]];
             
