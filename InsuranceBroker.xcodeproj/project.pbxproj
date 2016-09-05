@@ -492,6 +492,10 @@
 		86F973E61D717F3F00A36359 /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973E51D717F3F00A36359 /* HMSegmentedControl.m */; };
 		86F973EA1D717F5400A36359 /* THSegmentedPager.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973E81D717F5400A36359 /* THSegmentedPager.m */; };
 		86F973ED1D71839800A36359 /* ProductListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973EC1D71839800A36359 /* ProductListViewController.m */; };
+		86F973F71D7D4FCD00A36359 /* LMDropdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973F31D7D4FCD00A36359 /* LMDropdownView.m */; };
+		86F973F81D7D4FCD00A36359 /* UIImage+LMImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973F61D7D4FCD00A36359 /* UIImage+LMImage.m */; };
+		86F973FC1D7D502700A36359 /* LMDefaultMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973FA1D7D502700A36359 /* LMDefaultMenuItemCell.m */; };
+		86F973FD1D7D502700A36359 /* LMDefaultMenuItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F973FB1D7D502700A36359 /* LMDefaultMenuItemCell.xib */; };
 		86FC492A1C756ECA0031B435 /* SetTeamLeaderPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */; };
 		86FC492E1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */; };
 		CF2C88CF1CE47FB7001B6FFF /* AppKeFuResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF2C88CA1CE47FB7001B6FFF /* AppKeFuResources.bundle */; };
@@ -1490,6 +1494,13 @@
 		86F973E91D717F5400A36359 /* THSegmentedPageViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = THSegmentedPageViewControllerDelegate.h; sourceTree = "<group>"; };
 		86F973EB1D71839800A36359 /* ProductListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListViewController.h; sourceTree = "<group>"; };
 		86F973EC1D71839800A36359 /* ProductListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductListViewController.m; sourceTree = "<group>"; };
+		86F973F21D7D4FCD00A36359 /* LMDropdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMDropdownView.h; sourceTree = "<group>"; };
+		86F973F31D7D4FCD00A36359 /* LMDropdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMDropdownView.m; sourceTree = "<group>"; };
+		86F973F51D7D4FCD00A36359 /* UIImage+LMImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LMImage.h"; sourceTree = "<group>"; };
+		86F973F61D7D4FCD00A36359 /* UIImage+LMImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LMImage.m"; sourceTree = "<group>"; };
+		86F973F91D7D502700A36359 /* LMDefaultMenuItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMDefaultMenuItemCell.h; sourceTree = "<group>"; };
+		86F973FA1D7D502700A36359 /* LMDefaultMenuItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMDefaultMenuItemCell.m; sourceTree = "<group>"; };
+		86F973FB1D7D502700A36359 /* LMDefaultMenuItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMDefaultMenuItemCell.xib; sourceTree = "<group>"; };
 		86FC49281C756ECA0031B435 /* SetTeamLeaderPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTeamLeaderPhoneView.h; sourceTree = "<group>"; };
 		86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTeamLeaderPhoneView.m; sourceTree = "<group>"; };
 		86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetTeamLeaderPhoneView.xib; sourceTree = "<group>"; };
@@ -2280,6 +2291,7 @@
 		86C3BB241C22C3FC00F98E80 /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				86F973F11D7D4FCD00A36359 /* LMDropdownView */,
 				86EECDEC1CF543C300BBAF11 /* UUInputAccessoryView */,
 				86EECD951CF2A2A400BBAF11 /* JZAlbumViewController */,
 				8612F4071CE4828D0045340F /* JElasticPullToRefresh */,
@@ -3155,6 +3167,28 @@
 			path = HMSegmentedControl;
 			sourceTree = "<group>";
 		};
+		86F973F11D7D4FCD00A36359 /* LMDropdownView */ = {
+			isa = PBXGroup;
+			children = (
+				86F973F91D7D502700A36359 /* LMDefaultMenuItemCell.h */,
+				86F973FA1D7D502700A36359 /* LMDefaultMenuItemCell.m */,
+				86F973FB1D7D502700A36359 /* LMDefaultMenuItemCell.xib */,
+				86F973F21D7D4FCD00A36359 /* LMDropdownView.h */,
+				86F973F31D7D4FCD00A36359 /* LMDropdownView.m */,
+				86F973F41D7D4FCD00A36359 /* Vender */,
+			);
+			path = LMDropdownView;
+			sourceTree = "<group>";
+		};
+		86F973F41D7D4FCD00A36359 /* Vender */ = {
+			isa = PBXGroup;
+			children = (
+				86F973F51D7D4FCD00A36359 /* UIImage+LMImage.h */,
+				86F973F61D7D4FCD00A36359 /* UIImage+LMImage.m */,
+			);
+			path = Vender;
+			sourceTree = "<group>";
+		};
 		CF2C88C81CE47FB7001B6FFF /* AppKeFuLib */ = {
 			isa = PBXGroup;
 			children = (
@@ -3368,6 +3402,7 @@
 				86A5043B1C4E37E30032A901 /* ShareSDK.bundle in Resources */,
 				86CAC56D1D62F19C0045AF37 /* AutoInsuranceStep2VC.xib in Resources */,
 				869C93591D080B76009CF369 /* PrivateMsgVC.xib in Resources */,
+				86F973FD1D7D502700A36359 /* LMDefaultMenuItemCell.xib in Resources */,
 				86A504371C4E37E30032A901 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				86A5048D1C4F52320032A901 /* BackGroundView.xib in Resources */,
 				865066211C2154C200429EAE /* WebViewController.xib in Resources */,
@@ -3609,6 +3644,7 @@
 				8625AFE21C37B4D300312B98 /* OfferDetailsVC.m in Sources */,
 				86F2DA831C7704400088B783 /* CommissionSetTableViewCell.m in Sources */,
 				86248F0B1CCDB9FD00F1B493 /* LightMenuBar.m in Sources */,
+				86F973F71D7D4FCD00A36359 /* LMDropdownView.m in Sources */,
 				8625B0181C3BCA1D00312B98 /* NetWorkHandler+saveOrUpdateCustomerLabel.m in Sources */,
 				86A504FA1C5257440032A901 /* EasyJSWebView.m in Sources */,
 				86F2E32A1D37773C002FCE75 /* DataSigner.m in Sources */,
@@ -3842,6 +3878,7 @@
 				86769D2E1CEEE897009C7E8F /* NetWorkHandler+shareCustomerList.m in Sources */,
 				86A26EA01C4666850073FFFC /* InsurOffersInfoModel.m in Sources */,
 				86493FFC1C745E1300121BD1 /* SJAvatarBrowser.m in Sources */,
+				86F973FC1D7D502700A36359 /* LMDefaultMenuItemCell.m in Sources */,
 				86A5041F1C4CDCB30032A901 /* GMDCircleLoader.m in Sources */,
 				8654CA5A1C31243B00411C54 /* NSString+MD5.m in Sources */,
 				86C3BBAE1C29073900F98E80 /* MyLuckyMoneyVC.m in Sources */,
@@ -3858,6 +3895,7 @@
 				8654CD881C312CE100411C54 /* SBJsonUTF8Stream.m in Sources */,
 				86C3BB2E1C22C42D00F98E80 /* HeadlineView.m in Sources */,
 				86F2E32F1D37773C002FCE75 /* RSADataSigner.m in Sources */,
+				86F973F81D7D4FCD00A36359 /* UIImage+LMImage.m in Sources */,
 				86A504DE1C51E9710032A901 /* NetWorkHandler+queryUserNowAdvanceMoney.m in Sources */,
 				86C3BBD41C2A60C500F98E80 /* TagListViewCell.m in Sources */,
 				86A26F0A1C4A29CB0073FFFC /* UIKit+DrawingHelpers.m in Sources */,

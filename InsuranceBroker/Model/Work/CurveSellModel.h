@@ -23,5 +23,6 @@
 @property (nonatomic, assign) double nocar_month_zcgddbf;//历史月非车险总成功订单保费
 @property (nonatomic, assign) long long nocar_month_zcgdds;//历史月非车险总成功订单数
 @property (nonatomic, assign) double nocar_month_zcgddsy;//历史月非车险总成功订单收益
+@property (nonatomic, assign) double month_zsy;//月收益趋势字段
 
 @end

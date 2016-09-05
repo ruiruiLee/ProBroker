@@ -37,6 +37,7 @@
     model.nocar_month_zcgddbf = [[dictionary objectForKey:@"nocar_month_zcgddbf"] doubleValue];
     model.nocar_month_zcgdds = [[dictionary objectForKey:@"nocar_month_zcgdds"] longLongValue];
     model.nocar_month_zcgddsy = [[dictionary objectForKey:@"nocar_month_zcgddsy"] doubleValue];
+    model.month_zsy = [[dictionary objectForKey:@"month_zsy"] doubleValue];
     
 //    model.monthOrderTotalSuccessNums = [[dictionary objectForKey:@"monthOrderTotalSuccessNums"] integerValue];
 //    model.monthOrderTotalSellEarn = [[dictionary objectForKey:@"monthOrderTotalSellEarn"] integerValue];
