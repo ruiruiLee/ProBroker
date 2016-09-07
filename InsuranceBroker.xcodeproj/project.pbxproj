@@ -496,6 +496,7 @@
 		86F973F81D7D4FCD00A36359 /* UIImage+LMImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973F61D7D4FCD00A36359 /* UIImage+LMImage.m */; };
 		86F973FC1D7D502700A36359 /* LMDefaultMenuItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973FA1D7D502700A36359 /* LMDefaultMenuItemCell.m */; };
 		86F973FD1D7D502700A36359 /* LMDefaultMenuItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F973FB1D7D502700A36359 /* LMDefaultMenuItemCell.xib */; };
+		86F974001D7FC6E200A36359 /* MyOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973FF1D7FC6E200A36359 /* MyOrderVC.m */; };
 		86FC492A1C756ECA0031B435 /* SetTeamLeaderPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */; };
 		86FC492E1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */; };
 		CF2C88CF1CE47FB7001B6FFF /* AppKeFuResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF2C88CA1CE47FB7001B6FFF /* AppKeFuResources.bundle */; };
@@ -1501,6 +1502,8 @@
 		86F973F91D7D502700A36359 /* LMDefaultMenuItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMDefaultMenuItemCell.h; sourceTree = "<group>"; };
 		86F973FA1D7D502700A36359 /* LMDefaultMenuItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMDefaultMenuItemCell.m; sourceTree = "<group>"; };
 		86F973FB1D7D502700A36359 /* LMDefaultMenuItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LMDefaultMenuItemCell.xib; sourceTree = "<group>"; };
+		86F973FE1D7FC6E200A36359 /* MyOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderVC.h; sourceTree = "<group>"; };
+		86F973FF1D7FC6E200A36359 /* MyOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderVC.m; sourceTree = "<group>"; };
 		86FC49281C756ECA0031B435 /* SetTeamLeaderPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTeamLeaderPhoneView.h; sourceTree = "<group>"; };
 		86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTeamLeaderPhoneView.m; sourceTree = "<group>"; };
 		86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetTeamLeaderPhoneView.xib; sourceTree = "<group>"; };
@@ -2525,6 +2528,8 @@
 				8654CD931C314E1900411C54 /* WorkMainVC.xib */,
 				8625AF7C1C3164A700312B98 /* OrderManagerVC.h */,
 				8625AF7D1C3164A700312B98 /* OrderManagerVC.m */,
+				86F973FE1D7FC6E200A36359 /* MyOrderVC.h */,
+				86F973FF1D7FC6E200A36359 /* MyOrderVC.m */,
 				8625AFDF1C37B4D300312B98 /* OfferDetailsVC.h */,
 				8625AFE01C37B4D300312B98 /* OfferDetailsVC.m */,
 				8625AFE11C37B4D300312B98 /* OfferDetailsVC.xib */,
@@ -3857,6 +3862,7 @@
 				86769D311CEEEEBE009C7E8F /* SharedCustomerModel.m in Sources */,
 				86A26E3B1C4356620073FFFC /* CityModel.m in Sources */,
 				86F2E3521D38CAE3002FCE75 /* PayTypeSelectedVC.m in Sources */,
+				86F974001D7FC6E200A36359 /* MyOrderVC.m in Sources */,
 				86C3BCC31C2E933600F98E80 /* IQBarButtonItem.m in Sources */,
 				8625B0151C3BC9BC00312B98 /* NetWorkHandler+saveOrUpdateLabel.m in Sources */,
 				86F2E32D1D37773C002FCE75 /* NSDataEx.m in Sources */,

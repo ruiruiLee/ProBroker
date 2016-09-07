@@ -29,14 +29,17 @@
 
 @property (strong, nonatomic) UITableView *menuTableView;
 @property (strong, nonatomic) LMDropdownView *dropdownView;
-@property (assign, nonatomic) NSInteger currentMapTypeIndex;
-@property (strong, nonatomic) NSArray *mapTypes;
 
 @end
 
 @implementation OrderManagerVC
 @synthesize searchbar;
 @synthesize filterString;
+
+- (NSString *)viewControllerTitle
+{
+    return self.viewTitle ? self.viewTitle : self.title;
+}
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -61,24 +64,24 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"我的保单";
+//    self.title = @"我的保单";
     
-//    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
-//    self.navigationItem.titleView = titleView;
-//    
-//    
-//    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 160, 22)];
-//    lb.text = @"我的保单";
-//    lb.font = _FONT_B(18);
-//    lb.textAlignment = NSTextAlignmentCenter;
-//    [titleView addSubview:lb];
-//    UIImageView *image = [[UIImageView alloc] initWithImage:ThemeImage(@"xialaliebiao")];
-//    image.frame = CGRectMake(70, 24, 19, 16);
-//    [titleView addSubview:image];
-//    
-//    HighNightBgButton *btn = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
-//    [titleView addSubview:btn];
-//    [btn addTarget:self action:@selector(doBtnSelectOrderStatus:) forControlEvents:UIControlEventTouchUpInside];
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
+    self.navigationItem.titleView = titleView;
+    
+    
+    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 160, 22)];
+    lb.text = @"我的保单";
+    lb.font = _FONT_B(18);
+    lb.textAlignment = NSTextAlignmentCenter;
+    [titleView addSubview:lb];
+    UIImageView *image = [[UIImageView alloc] initWithImage:ThemeImage(@"xialaliebiao")];
+    image.frame = CGRectMake(70, 24, 19, 16);
+    [titleView addSubview:image];
+    
+    HighNightBgButton *btn = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
+    [titleView addSubview:btn];
+    [btn addTarget:self action:@selector(doBtnSelectOrderStatus:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void) doBtnSelectOrderStatus:(id) sender
@@ -177,7 +180,8 @@
     [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
     NSMutableArray *rules = [[NSMutableArray alloc] init];
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-//    [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:@"1"]];
+    if(self.insuranceType)
+        [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:self.insuranceType]];
     [rules addObject:[self getRulesByField:@"userId" op:@"eq" data:user.userId]];
     [rules addObject:[self getRulesByField:@"customerName" op:@"cn" data:filterString]];
     [rules addObject:[self getRulesByField:@"customerPhone" op:@"cn" data:filterString]];

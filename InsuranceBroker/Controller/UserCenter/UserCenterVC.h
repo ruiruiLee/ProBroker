@@ -32,6 +32,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbMonthOrderEarn;//总订单收益;
 @property (nonatomic, strong) IBOutlet UILabel *lbOrderEarn;//累计收益;
 @property (nonatomic, strong) IBOutlet UILabel *lbTotalOrderCount;//总订单数
+@property (nonatomic, strong) IBOutlet UILabel *lbCarTotalOrderCount;//总订单数
+@property (nonatomic, strong) IBOutlet UILabel *lbNoCarTotalOrderCount;//总订单数
 @property (nonatomic, strong) IBOutlet UILabel *lbUserInvite;
 @property (nonatomic, strong) IBOutlet UILabel *lbTeamTotal;
 @property (nonatomic, strong) IBOutlet UILabel *lbNowMonthOrderCount;
