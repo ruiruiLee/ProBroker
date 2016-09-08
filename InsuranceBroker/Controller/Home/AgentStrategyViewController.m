@@ -13,16 +13,22 @@
 #import "NewsModel.h"
 #import "UIButton+WebCache.h"
 
-@interface AgentStrategyViewController ()
+@interface AgentStrategyViewController ()<UISearchBarDelegate>
+
+@property (nonatomic, strong) UISearchBar *searchbar;
+@property (nonatomic, strong) NSString *filterString;
 
 @end
 
 @implementation AgentStrategyViewController
 @synthesize bannerImageView;
 @synthesize totalModel;
+@synthesize searchbar;
+@synthesize filterString;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     [self.pulltable registerNib:[UINib nibWithNibName:@"AgentStrategyTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     
@@ -39,9 +45,38 @@
     }
 }
 
+- (void) initSubViews
+{
+    searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    searchbar.placeholder = @"搜索";
+    searchbar.showsCancelButton = YES;
+    searchbar.returnKeyType = UIReturnKeySearch;
+    searchbar.delegate = self;
+    self.pulltable.tableHeaderView = searchbar;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma UISearchBarDelegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchbar resignFirstResponder];
+    filterString = searchbar.text;
+    self.pageNum = 0;
+    [self loadDataInPages:self.pageNum];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [searchbar resignFirstResponder];
+    searchbar.text = @"";
+    filterString = @"";
+    self.pageNum = 0;
+    [self loadDataInPages:self.pageNum];
 }
 
 - (void) doButtonClicked:(UIButton *)sender

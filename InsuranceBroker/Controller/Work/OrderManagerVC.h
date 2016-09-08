@@ -7,10 +7,17 @@
 //
 
 #import "BasePullTableVC.h"
+#import "THSegmentedPageViewControllerDelegate.h"
 
-@interface OrderManagerVC : BasePullTableVC
+@interface OrderManagerVC : BasePullTableVC <THSegmentedPageViewControllerDelegate>
 
 @property (nonatomic, strong) UISearchBar *searchbar;
 @property (nonatomic, strong) NSString *filterString;
+@property(nonatomic,strong)NSString *viewTitle;
+
+@property (nonatomic, strong) NSString *insuranceType;
+
+@property (assign, nonatomic) NSInteger currentMapTypeIndex;
+@property (strong, nonatomic) NSArray *mapTypes;
 
 @end

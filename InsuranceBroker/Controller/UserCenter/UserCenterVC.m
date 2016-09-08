@@ -17,6 +17,8 @@
 #import "OrderManagerVC.h"
 #import <Accelerate/Accelerate.h>
 
+#import "MyOrderVC.h"
+
 @implementation UserCenterVC
 
 - (void) dealloc
@@ -26,7 +28,15 @@
     [model removeObserver:self forKeyPath:@"cardVerifiy"];
     [model removeObserver:self forKeyPath:@"sex"];
     [model removeObserver:self forKeyPath:@"nickname"];
-    [model removeObserver:self forKeyPath:@"nowMonthOrderSuccessNums"];
+    [model removeObserver:self forKeyPath:@"car_now_zcgddbf"];
+    [model removeObserver:self forKeyPath:@"nocar_now_zcgddbf"];
+    
+    [model removeObserver:self forKeyPath:@"car_now_zcgdds"];
+    [model removeObserver:self forKeyPath:@"nocar_now_zcgdds"];
+    [model removeObserver:self forKeyPath:@"now_zsy"];
+    [model removeObserver:self forKeyPath:@"zsy"];
+    
+    
     AppContext *context = [AppContext sharedAppContext];
     [context removeObserver:self forKeyPath:@"isRedPack"];
 }
@@ -47,7 +57,7 @@
     self.lbRedLogo.layer.cornerRadius = 4;
     self.redFlagConstraint.constant = -((ScreenWidth - 320)/2 + 50);
     
-    self.lbOrderEarn.textColor = Subhead_Color;
+//    self.lbOrderEarn.textColor = Subhead_Color;
     self.lbTotalOrderSuccessNums.textColor = Subhead_Color;
     self.lbUserInvite.textColor = Subhead_Color;
     self.lbTeamTotal.textColor = Subhead_Color;
@@ -62,7 +72,14 @@
     [model addObserver:self forKeyPath:@"sex" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [model addObserver:self forKeyPath:@"nickname" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [context addObserver:self forKeyPath:@"isRedPack" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-    [model addObserver:self forKeyPath:@"nowMonthOrderSuccessNums" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [model addObserver:self forKeyPath:@"car_now_zcgddbf" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    
+    
+    [model addObserver:self forKeyPath:@"nocar_now_zcgddbf" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [model addObserver:self forKeyPath:@"car_now_zcgdds" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [model addObserver:self forKeyPath:@"nocar_now_zcgdds" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [model addObserver:self forKeyPath:@"now_zsy" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [model addObserver:self forKeyPath:@"zsy" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
     JElasticPullToRefreshLoadingViewCircle *loadingViewCircle = [[JElasticPullToRefreshLoadingViewCircle alloc] init];
     loadingViewCircle.tintColor = [UIColor whiteColor];
@@ -91,11 +108,10 @@
 //    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderTotalSuccessEarn];
     self.lbMonthOrderEarn.text = [Util getDecimalStyle:model.now_zsy];//[NSString stringWithFormat:@"%.2f", model.now_zsy];
     self.lbOrderEarn.text = [Util getDecimalStyle:model.zsy];//[NSString stringWithFormat:@"%.2f", model.zsy];//累计收益;
-    self.lbTotalOrderCount.text = [[NSNumber numberWithLongLong:model.zcgdds] stringValue];//[NSString stringWithFormat:@"%d", model.zcgdds];//总订单数
+//    self.lbTotalOrderCount.text = [[NSNumber numberWithLongLong:model.zcgdds] stringValue];//[NSString stringWithFormat:@"%d", model.zcgdds];//总订单数
     
-//    self.lbUserInvite.text = [NSString stringWithFormat:@"%d人", 100];
-//    self.lbTeamTotal.text = [NSString stringWithFormat:@"%d人", 300];
-//    self.lbNowMonthOrderCount.text = [NSString stringWithFormat:@"%d", 200];//
+    self.lbCarTotalOrderCount.text = [[NSNumber numberWithLongLong:10000] stringValue];//车险累计
+    self.lbNoCarTotalOrderCount.text = [[NSNumber numberWithLongLong:10000] stringValue];//非车险累计
     
     [self.btNameEdit setTitle:model.nickname forState:UIControlStateNormal];
     UIImage *placeholderImage = ThemeImage(@"head_male");
@@ -250,8 +266,15 @@
 
 - (IBAction)managerOrder:(id)sender
 {
-    OrderManagerVC *vc = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
+//    MyOrderVC *vc = [[MyOrderVC alloc] initWithNibName:nil bundle:nil];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    MyOrderVC *vc = [[MyOrderVC alloc] initWithNibName:nil bundle:nil];
+    vc.title = @"我的保单列表";
     vc.hidesBottomBarWhenPushed = YES;
+    [vc initMenus];
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
