@@ -65,7 +65,7 @@
 - (void) loadDataInPages:(NSInteger)page
 {
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-    [NetWorkHandler requestToNews:self.category userId:model.userId offset:page limit:LIMIT completion:^(int code, id content) {
+    [NetWorkHandler requestToNews:self.category userId:model.userId offset:page limit:LIMIT keyValue:nil completion:^(int code, id content) {
         [self refreshTable];
         [self loadMoreDataToTable];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];

@@ -15,6 +15,7 @@
                 userId:(NSString *) userId
                 offset:(NSInteger) offset
                  limit:(NSInteger) limit
+              keyValue:(NSString *) keyValue
             completion:(Completion)completion
 {
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
@@ -24,6 +25,7 @@
     [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:offset] key:@"offset"];
     [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:limit] key:@"limit"];
     [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:4] key:@"appType"];
+    [Util setValueForKeyWithDic:pramas value:keyValue key:@"keyValue"];
     
     [handle postWithMethod:@"/api/news/category/news" BaseUrl:SERVER_ADDRESS Params:pramas Completion:completion];
 }

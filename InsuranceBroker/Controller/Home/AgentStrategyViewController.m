@@ -82,7 +82,7 @@
 {
     [searchbar resignFirstResponder];
     searchbar.text = @"";
-    filterString = @"";
+    filterString = nil;
     self.pageNum = 0;
     [self loadDataInPages:self.pageNum];
 }
@@ -105,7 +105,7 @@
  */
 - (void) loadDataInPages:(NSInteger)page
 {
-    [NetWorkHandler requestToNews:self.category userId:[UserInfoModel shareUserInfoModel].userId offset:page limit:LIMIT completion:^(int code, id content) {
+    [NetWorkHandler requestToNews:self.category userId:[UserInfoModel shareUserInfoModel].userId offset:page limit:LIMIT keyValue:filterString completion:^(int code, id content) {
         [self refreshTable];
         [self loadMoreDataToTable];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];

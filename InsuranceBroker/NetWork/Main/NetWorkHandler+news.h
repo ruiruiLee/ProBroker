@@ -21,6 +21,7 @@
                 userId:(NSString *) userId
                 offset:(NSInteger) offset
                  limit:(NSInteger) limit
+              keyValue:(NSString *) keyValue
             completion:(Completion)completion;
 
 @end
