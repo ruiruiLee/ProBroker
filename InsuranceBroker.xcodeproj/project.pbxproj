@@ -4144,7 +4144,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c2945127-bbe8-4860-ab38-202af74969cd";
+				PROVISIONING_PROFILE = "43eb3709-a487-4f44-b87f-8fdc6faf105d";
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
@@ -4227,7 +4227,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c2945127-bbe8-4860-ab38-202af74969cd";
+				PROVISIONING_PROFILE = "43eb3709-a487-4f44-b87f-8fdc6faf105d";
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 			};
