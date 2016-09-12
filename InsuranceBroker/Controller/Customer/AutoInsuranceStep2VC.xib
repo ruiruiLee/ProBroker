@@ -387,7 +387,7 @@
                                                 <constraint firstAttribute="width" constant="14" id="ske-Fk-HF2"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="为了报价精确，请上传行驶证清洗照片或填写明细" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCB-8G-PEg">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="为了报价精确，请上传行驶证清晰照片或填写明细" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iCB-8G-PEg">
                                             <rect key="frame" x="47" y="0.0" width="553" height="21"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>

@@ -46,7 +46,7 @@
             AddCardToWXCardPackageResp *addCardResp = (AddCardToWXCardPackageResp *)resp;
             [_delegate managerDidRecvAddCardResponse:addCardResp];
         }
-    }else if([resp isKindOfClass:[PayResp class]]){
+    } else if([resp isKindOfClass:[PayResp class]]){
         
         
         //支付返回结果，实际支付结果需要去微信服务器端查询
@@ -69,9 +69,8 @@
         [alert show];
         [alert release];
         NSLog(@"retcode = %d, retstr = %@", resp.errCode,resp.errStr);
-
+        
     }
-
 }
 
 - (void)onReq:(BaseReq *)req {

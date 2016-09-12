@@ -15,6 +15,7 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "SepLineLabel.h"
 #import "InsuredUserInfoModel.h"
+#import "CarListVC.h"
 
 
 #define CELL_HEIGHT  56
@@ -318,17 +319,20 @@
 
 - (CGFloat) resetSubviewsFrame
 {
-    NSInteger num = [self tableView:self.tableview numberOfRowsInSection:0];
     CGFloat tableheight = 0;
-    for (int i = 0; i < num; i++) {
-        tableheight += [self tableView:self.tableview heightForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+    NSInteger section = [self.tableview numberOfSections];
+    for (int i = 0; i < section; i++) {
+        NSInteger num = [self tableView:self.tableview numberOfRowsInSection:i];
+        for (int i = 0; i < num; i++) {
+            tableheight += [self tableView:self.tableview heightForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
     }
     
     tableheight += [self tableView:self.tableviewNoCar numberOfRowsInSection:0] * CELL_HEIGHT;
     self.tableVConstraint.constant = [self tableView:self.tableviewNoCar numberOfRowsInSection:0] * CELL_HEIGHT;
 
     
-    return tableheight + 147 + 68 + _footView.frame.size.height;
+    return tableheight + 147 + 68 + _footView.frame.size.height + 50;
 }
 
 - (void) doEditButtonClicked:(UIButton *)sender
@@ -340,10 +344,18 @@
 
 #pragma UITableViewDataSource UITableViewDelegate
 
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     if(tableView != tableviewNoCar)
         return 2;
+    else
+        return 1;
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if(tableView != tableviewNoCar)
+        return 1;
     else
         return [self.data count];
 }
@@ -387,14 +399,14 @@
             cell = [nibs lastObject];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSInteger row = indexPath.row;
+        NSInteger section = indexPath.section;
         
-        cell.imgV1.tag = 100 + row * 2;
-        cell.imgV2.tag = 100 + row * 2 + 1;
+        cell.imgV1.tag = 100 + section * 2;
+        cell.imgV2.tag = 100 + section * 2 + 1;
         [cell.imgV1 addTarget:self action:@selector(doBtnAddImage:) forControlEvents:UIControlEventTouchUpInside];
         [cell.imgV2 addTarget:self action:@selector(doBtnAddImage:) forControlEvents:UIControlEventTouchUpInside];
         
-        if(row == 0){
+        if(section == 0){
             [self setCellData:cell title:@"行驶证" value:@"(正本／副本)" content:_carInfo.carNo img1:self.carInfo.travelCard1 placeholderImage1:@"driveLisence1" img2:self.carInfo.travelCard2 placeholderImage2:@"driveLisence2"];
             if(driveLisence1 != nil){
                 [cell.imgV1 setImage:driveLisence1 forState:UIControlStateNormal];
@@ -403,7 +415,7 @@
                 [cell.imgV2 setImage:driveLisence2 forState:UIControlStateNormal];
             }
         }
-        else if (row == 1){
+        else if (section == 1){
             [self setCellData:cell title:@"车主身份证" value:@"(正面／反面)" content:_carInfo.carOwnerCard img1:self.carInfo.carOwnerCard1 placeholderImage1:@"cert1" img2:self.carInfo.carOwnerCard2 placeholderImage2:@"cert2"];
             if(cert1 != nil){
                 [cell.imgV1 setImage:cert1 forState:UIControlStateNormal];
@@ -469,6 +481,35 @@
             [self.delegate NotifyHandleInsuranceInfoClicked:self idx:indexPath.row];
         }
     }
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(tableView != tableviewNoCar){
+        if(section == 1)
+            return 50.f;
+    }
+    
+    return 0;
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if(tableView != tableviewNoCar){
+        if(section == 1){
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
+            
+            HighNightBgButton *btnMore = [[HighNightBgButton alloc] initWithFrame:CGRectMake(ScreenWidth - 102, 10, 87, 30)];
+            [btnMore setBackgroundImage:ThemeImage(@"btnMoreCar") forState:UIControlStateNormal];
+            [view addSubview:btnMore];
+            [btnMore addTarget:self action:@selector(doBtnMoreCar:) forControlEvents:UIControlEventTouchUpInside];
+            
+            return view;
+        }
+            
+    }
+    
+    return nil;
 }
 
 - (void) setCarInfo:(CarInfoModel *)model
@@ -643,7 +684,6 @@
 
 -(void)dismissImageAction:(UIImageView*)sender
 {
-    NSLog(@"dismissImageAction");
     [_imageList removeFromSuperview];
     _imageList = nil;
 }
@@ -673,6 +713,11 @@
 {
     _data = data;
     [self.tableviewNoCar reloadData];
+}
+
+- (IBAction)doBtnMoreCar:(UIButton *)sender{
+    CarListVC *vc = [[CarListVC alloc] initWithNibName:nil bundle:nil];
+    [self.pVc.navigationController pushViewController:vc animated:YES];
 }
 
 @end

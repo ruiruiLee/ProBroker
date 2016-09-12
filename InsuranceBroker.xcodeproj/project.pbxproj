@@ -113,6 +113,9 @@
 		863DF1401D1011FF00AEB6A9 /* NetWorkHandler+newUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 863DF13F1D1011FF00AEB6A9 /* NetWorkHandler+newUser.m */; };
 		863DF1481D17FFDF00AEB6A9 /* EditAbleTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 863DF1471D17FFDF00AEB6A9 /* EditAbleTextView.m */; };
 		86493FFC1C745E1300121BD1 /* SJAvatarBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 86493FFB1C745E1300121BD1 /* SJAvatarBrowser.m */; };
+		864EFBC01D82B82400CEC6F8 /* CarListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 864EFBBF1D82B82400CEC6F8 /* CarListVC.m */; };
+		864EFBC41D86538C00CEC6F8 /* AppKeFuResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 864EFBC21D86538C00CEC6F8 /* AppKeFuResources.bundle */; };
+		864EFBC51D86538C00CEC6F8 /* libAppKeFuLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 864EFBC31D86538C00CEC6F8 /* libAppKeFuLib.a */; };
 		865065821C1E6BC800429EAE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 865065811C1E6BC800429EAE /* main.m */; };
 		865065851C1E6BC800429EAE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 865065841C1E6BC800429EAE /* AppDelegate.m */; };
 		8650658D1C1E6BC800429EAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8650658C1C1E6BC800429EAE /* Assets.xcassets */; };
@@ -499,8 +502,6 @@
 		86F974001D7FC6E200A36359 /* MyOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F973FF1D7FC6E200A36359 /* MyOrderVC.m */; };
 		86FC492A1C756ECA0031B435 /* SetTeamLeaderPhoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */; };
 		86FC492E1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */; };
-		CF2C88CF1CE47FB7001B6FFF /* AppKeFuResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CF2C88CA1CE47FB7001B6FFF /* AppKeFuResources.bundle */; };
-		CF2C88D01CE47FB7001B6FFF /* libAppKeFuLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF2C88CB1CE47FB7001B6FFF /* libAppKeFuLib.a */; };
 		CF2C88D11CE47FB7001B6FFF /* OnlineCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF2C88CD1CE47FB7001B6FFF /* OnlineCustomer.m */; };
 		CF608EE71C589C2900DC10CA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EE61C589C2900DC10CA /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CF608EEC1C58A12E00DC10CA /* CMNavBarNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EEB1C58A12E00DC10CA /* CMNavBarNotificationView.m */; };
@@ -729,6 +730,11 @@
 		863DF1471D17FFDF00AEB6A9 /* EditAbleTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAbleTextView.m; sourceTree = "<group>"; };
 		86493FFA1C745E1300121BD1 /* SJAvatarBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SJAvatarBrowser.h; sourceTree = "<group>"; };
 		86493FFB1C745E1300121BD1 /* SJAvatarBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SJAvatarBrowser.m; sourceTree = "<group>"; };
+		864EFBBE1D82B82400CEC6F8 /* CarListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarListVC.h; sourceTree = "<group>"; };
+		864EFBBF1D82B82400CEC6F8 /* CarListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarListVC.m; sourceTree = "<group>"; };
+		864EFBC11D86538C00CEC6F8 /* AppKeFuLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppKeFuLib.h; sourceTree = "<group>"; };
+		864EFBC21D86538C00CEC6F8 /* AppKeFuResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppKeFuResources.bundle; sourceTree = "<group>"; };
+		864EFBC31D86538C00CEC6F8 /* libAppKeFuLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppKeFuLib.a; sourceTree = "<group>"; };
 		8650657D1C1E6BC800429EAE /* InsuranceBroker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsuranceBroker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		865065811C1E6BC800429EAE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		865065831C1E6BC800429EAE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1507,9 +1513,6 @@
 		86FC49281C756ECA0031B435 /* SetTeamLeaderPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTeamLeaderPhoneView.h; sourceTree = "<group>"; };
 		86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTeamLeaderPhoneView.m; sourceTree = "<group>"; };
 		86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetTeamLeaderPhoneView.xib; sourceTree = "<group>"; };
-		CF2C88C91CE47FB7001B6FFF /* AppKeFuLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppKeFuLib.h; sourceTree = "<group>"; };
-		CF2C88CA1CE47FB7001B6FFF /* AppKeFuResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppKeFuResources.bundle; sourceTree = "<group>"; };
-		CF2C88CB1CE47FB7001B6FFF /* libAppKeFuLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppKeFuLib.a; sourceTree = "<group>"; };
 		CF2C88CC1CE47FB7001B6FFF /* OnlineCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineCustomer.h; sourceTree = "<group>"; };
 		CF2C88CD1CE47FB7001B6FFF /* OnlineCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineCustomer.m; sourceTree = "<group>"; };
 		CF608EE51C589C2900DC10CA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
@@ -1546,7 +1549,6 @@
 				865066071C1FB36E00429EAE /* AdSupport.framework in Frameworks */,
 				86F2E3261D37773C002FCE75 /* libcrypto.a in Frameworks */,
 				865066051C1FB35E00429EAE /* libz.1.2.5.tbd in Frameworks */,
-				CF2C88D01CE47FB7001B6FFF /* libAppKeFuLib.a in Frameworks */,
 				86A5043C1C4E37E30032A901 /* ShareSDK.framework in Frameworks */,
 				86A5043D1C4E37E30032A901 /* ShareSDKConnector.framework in Frameworks */,
 				865065FD1C1FAE6000429EAE /* libc++.tbd in Frameworks */,
@@ -1554,6 +1556,7 @@
 				86A5043F1C4E37E30032A901 /* ShareSDKInterfaceAdapter.framework in Frameworks */,
 				86A5043E1C4E37E30032A901 /* ShareSDKExtension.framework in Frameworks */,
 				86F2E3271D37773C002FCE75 /* libssl.a in Frameworks */,
+				864EFBC51D86538C00CEC6F8 /* libAppKeFuLib.a in Frameworks */,
 				E9335367AF4BBFA55372CBCC /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2445,6 +2448,8 @@
 				86CAC56E1D6557450045AF37 /* MotorcycleTypeSelectedVC.h */,
 				86CAC56F1D6557450045AF37 /* MotorcycleTypeSelectedVC.m */,
 				86CAC5701D6557450045AF37 /* MotorcycleTypeSelectedVC.xib */,
+				864EFBBE1D82B82400CEC6F8 /* CarListVC.h */,
+				864EFBBF1D82B82400CEC6F8 /* CarListVC.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -3197,9 +3202,9 @@
 		CF2C88C81CE47FB7001B6FFF /* AppKeFuLib */ = {
 			isa = PBXGroup;
 			children = (
-				CF2C88C91CE47FB7001B6FFF /* AppKeFuLib.h */,
-				CF2C88CA1CE47FB7001B6FFF /* AppKeFuResources.bundle */,
-				CF2C88CB1CE47FB7001B6FFF /* libAppKeFuLib.a */,
+				864EFBC11D86538C00CEC6F8 /* AppKeFuLib.h */,
+				864EFBC21D86538C00CEC6F8 /* AppKeFuResources.bundle */,
+				864EFBC31D86538C00CEC6F8 /* libAppKeFuLib.a */,
 				CF2C88CC1CE47FB7001B6FFF /* OnlineCustomer.h */,
 				CF2C88CD1CE47FB7001B6FFF /* OnlineCustomer.m */,
 			);
@@ -3412,7 +3417,6 @@
 				86A5048D1C4F52320032A901 /* BackGroundView.xib in Resources */,
 				865066211C2154C200429EAE /* WebViewController.xib in Resources */,
 				86A26E6E1C44E2CE0073FFFC /* DetailAccountTableViewCell.xib in Resources */,
-				CF2C88CF1CE47FB7001B6FFF /* AppKeFuResources.bundle in Resources */,
 				86C3BB1A1C228D6F00F98E80 /* grayArrow@2x.png in Resources */,
 				86A26E761C44F7BB0073FFFC /* AgentStrategyTableViewCell.xib in Resources */,
 				8625AFD81C34F4DB00312B98 /* IncomeStatisticsVC.xib in Resources */,
@@ -3425,6 +3429,7 @@
 				86A504401C4E37E30032A901 /* ShareSDKUI.bundle in Resources */,
 				8625AF831C321E5B00312B98 /* OrderManagerTableViewCell.xib in Resources */,
 				86C3BB191C228D6F00F98E80 /* grayArrow.png in Resources */,
+				864EFBC41D86538C00CEC6F8 /* AppKeFuResources.bundle in Resources */,
 				8625AF7B1C315D6600312B98 /* DeatilTextTableviewCell.xib in Resources */,
 				86A26F1D1C4B60D70073FFFC /* CustomerCallStatisticsVC.xib in Resources */,
 				8625AFE31C37B4D300312B98 /* OfferDetailsVC.xib in Resources */,
@@ -3638,6 +3643,7 @@
 				86248EE11CBF7E1600F1B493 /* BaseNavigationController.m in Sources */,
 				8625AF991C329E7D00312B98 /* DashSepView.m in Sources */,
 				86C3BC041C2C205D00F98E80 /* PolicyInfoTableViewCell.m in Sources */,
+				864EFBC01D82B82400CEC6F8 /* CarListVC.m in Sources */,
 				86A5040D1C4CD16D0032A901 /* CTPopOutMenu.m in Sources */,
 				86A504F91C5257440032A901 /* EasyJSDataFunction.m in Sources */,
 				86C3BB3F1C23C27700F98E80 /* Util.m in Sources */,

@@ -31,9 +31,24 @@
     
     // Do any additional setup after loading the view.
     [self.pulltable registerNib:[UINib nibWithNibName:@"AgentStrategyTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+}
+
+- (void) initSubViews
+{
+    [super initSubViews];
+    
+    UIView *headerview= [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    
+    searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    searchbar.placeholder = @"搜索";
+    searchbar.showsCancelButton = YES;
+    searchbar.returnKeyType = UIReturnKeySearch;
+    searchbar.delegate = self;
+    [headerview addSubview:searchbar];
+    
     
     if(self.totalModel.bannerImg){
-        bannerImageView = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, [Util getHeightByWidth:3 height:1 nwidth:ScreenWidth])];
+        bannerImageView = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 40, ScreenWidth, [Util getHeightByWidth:3 height:1 nwidth:ScreenWidth])];
         [bannerImageView addTarget:self action:@selector(doButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [bannerImageView sd_setBackgroundImageWithURL:[NSURL URLWithString:self.totalModel.bannerImg] forState:UIControlStateNormal placeholderImage:Normal_Image];
         
@@ -41,18 +56,11 @@
             bannerImageView.userInteractionEnabled = NO;
         }
         
-        self.pulltable.tableHeaderView = bannerImageView;
+        headerview.frame = CGRectMake(0, 0, ScreenWidth, 40 + [Util getHeightByWidth:3 height:1 nwidth:ScreenWidth]);
+        [headerview addSubview:bannerImageView];
     }
-}
-
-- (void) initSubViews
-{
-    searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
-    searchbar.placeholder = @"搜索";
-    searchbar.showsCancelButton = YES;
-    searchbar.returnKeyType = UIReturnKeySearch;
-    searchbar.delegate = self;
-    self.pulltable.tableHeaderView = searchbar;
+    
+    self.pulltable.tableHeaderView = headerview;
 }
 
 - (void)didReceiveMemoryWarning {

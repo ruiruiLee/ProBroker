@@ -18,10 +18,18 @@
 @implementation UserPolicyListView
 @synthesize footer;
 
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (id) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if(self){
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePaySuccess) name:Notify_Pay_Success object:nil];
+        
         [self.tableview registerNib:[UINib nibWithNibName:@"PolicyInfoTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
         self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.lbTitle.text = @"保单信息";
@@ -45,6 +53,11 @@
         [self startAnimation];
         [self.delegate NotifyToRefresh:self];
     }
+}
+
+- (void) handlePaySuccess
+{
+    [self doEditButtonClicked:nil];
 }
 
 #pragma UITableViewDataSource UITableViewDelegate

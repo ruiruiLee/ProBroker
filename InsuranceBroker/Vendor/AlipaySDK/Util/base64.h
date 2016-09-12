@@ -7,6 +7,8 @@
 #define XYSSL_ERR_BASE64_INVALID_CHARACTER              -0x0012
 #define XYSSL_ERR_BASE64_BUFFER_TOO_SMALL               -0x0010
 
+#import <UIKit/UIKit.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -58,8 +60,6 @@ int base64_self_test( int verbose );
 #ifdef __cplusplus
 }
 #endif
-
-#import <UIKit/UIKit.h>
 
 
 @interface Base64 : NSObject

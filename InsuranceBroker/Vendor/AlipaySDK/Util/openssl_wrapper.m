@@ -14,7 +14,6 @@
 #include "bio.h"
 #include "sha.h"
 #include <string.h>
-#import <UIKit/UIKit.h>
 
 
 int rsa_sign_with_private_key_pem(char *message, int message_length

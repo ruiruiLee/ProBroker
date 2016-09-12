@@ -27,13 +27,13 @@
     NSMutableArray *pages = [NSMutableArray new];
         
     OrderManagerVC *chexian = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
-    [chexian setViewTitle:@"车险"];
     chexian.insuranceType = @"1";
+    [chexian setViewTitle:@"车险"];
     [pages addObject:chexian];
     
     OrderManagerVC *gexian = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
-    [gexian setViewTitle:@"个险"];
     gexian.insuranceType = @"2";
+    [gexian setViewTitle:@"个险"];
     [pages addObject:gexian];
     
     [self setPages:pages];

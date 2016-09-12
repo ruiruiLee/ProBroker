@@ -92,6 +92,6 @@
 
 + (void) addImagePath:(NSString *) path pathArray:(NSMutableArray *) pathArray smallImage:(UIImage *) small imageArray:(NSMutableArray *) imageArray;
 
-+ (void) weChatPay;
+//+ (void) weChatPay;
 
 @end

@@ -144,8 +144,9 @@
     [self.tfIdenCode addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.tfDate addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.tfCert addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventEditingChanged];
-    self.btnCert.layer.borderWidth = 1;
-    self.btnCert.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
+//    self.btnCert.layer.borderWidth = 1;
+//    self.btnCert.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
+    self.btnCert.layer.cornerRadius = 3;
     [self.btnCert addTarget:self action:@selector(btnPhotoPressed:) forControlEvents:UIControlEventTouchUpInside];
     _changeNameArray = [[NSMutableArray alloc] init];
     DictModel *model = [[DictModel alloc] init];

@@ -36,6 +36,11 @@
 @synthesize searchbar;
 @synthesize filterString;
 
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (NSString *)viewControllerTitle
 {
     return self.viewTitle ? self.viewTitle : self.title;
@@ -45,6 +50,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
+        
+        self.insuranceType = @"1";
+        
         filterString = @"";
         
         self.mapTypes = @[@{@"orderOfferStatus": @"-1", @"name":@"全部保单"}, @{@"orderOfferStatus": @"1", @"name":@"等待报价"}, @{@"orderOfferStatus": @"2", @"name":@"报价失败"}, @{@"orderOfferStatus": @"3", @"name":@"报价完成"}, @{@"orderOfferStatus": @"4,6", @"name":@"出单配送"}, @{@"orderOfferStatus": @"7", @"name":@"交易失败"}, @{@"orderOfferStatus": @"8", @"name":@"交易成功"}, @{@"orderOfferStatus": @"9", @"name":@"保单过期"}, @{@"orderOfferStatus": @"10", @"name":@"核保失败"}];
@@ -66,6 +74,8 @@
     
 //    self.title = @"我的保单";
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePaySuccess) name:Notify_Pay_Success object:nil];
+    
     UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
     self.navigationItem.titleView = titleView;
     
@@ -82,6 +92,11 @@
     HighNightBgButton *btn = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
     [titleView addSubview:btn];
     [btn addTarget:self action:@selector(doBtnSelectOrderStatus:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void) handlePaySuccess
+{
+    [self refresh2Loaddata];
 }
 
 - (void) doBtnSelectOrderStatus:(id) sender

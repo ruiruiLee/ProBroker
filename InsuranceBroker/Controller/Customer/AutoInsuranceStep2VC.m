@@ -67,11 +67,39 @@
     else{
         
     }
+    
+    UIButton *btnDetail = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 24)];
+    [btnDetail setTitle:@"快速算价" forState:UIControlStateNormal];
+    btnDetail.layer.cornerRadius = 12;
+    btnDetail.layer.borderWidth = 0.5;
+    btnDetail.layer.borderColor = _COLOR(0xff, 0x66, 0x19).CGColor;
+    [btnDetail setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
+    btnDetail.titleLabel.font = _FONT(12);
+    //        btnDetail.backgroundColor = _COLOR(0xff, 0x66, 0x1a);
+    [self setRightBarButtonWithButton:btnDetail];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) handleRightBarButtonClicked:(id)sender
+{
+    NSString *_quoteUrl = ((AppDelegate *) [UIApplication sharedApplication].delegate).quoteUrl;
+    if(_quoteUrl != nil){
+        QuickQuoteVC *web = [IBUIFactory CreateQuickQuoteVC];
+        web.hidesBottomBarWhenPushed = YES;
+        web.title = @"快速算价";
+        web.type = enumShareTypeNo;
+        web.shareTitle = @"算价方案";
+        [self.navigationController pushViewController:web animated:YES];
+        
+        [web loadHtmlFromUrlWithUserId:_quoteUrl];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Refresh_Home object:nil];
+        [Util showAlertMessage:@"正在初始化快速算价数据，请稍后再试！"];
+    }
 }
 
 - (BOOL) resignFirstResponder

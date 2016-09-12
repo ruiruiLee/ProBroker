@@ -41,46 +41,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InsuranceBroker/AppDelegate.m"
-            timestampString = "491821463.78176"
+            filePath = "InsuranceBroker/View/Customer/&#x8be6;&#x7ec6;&#x8d44;&#x6599;/UserPolicyListView.m"
+            timestampString = "495345780.583953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "-application:openURL:sourceApplication:annotation:"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "-handlePaySuccess"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[AppDelegate application:openURL:sourceApplication:annotation:]"
-                  moduleName = "InsuranceBroker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/liuzf/Desktop/PROJECT/InsuranceBroker/AppDelegate.m"
-                  timestampString = "494935264.704368"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "178"
-                  endingLineNumber = "178"
-                  offsetFromSymbolStart = "346">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__64-[AppDelegate application:openURL:sourceApplication:annotation:]_block_invoke"
-                  moduleName = "InsuranceBroker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/liuzf/Desktop/PROJECT/InsuranceBroker/AppDelegate.m"
-                  timestampString = "494935264.704776"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "178"
-                  endingLineNumber = "178"
-                  offsetFromSymbolStart = "61">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

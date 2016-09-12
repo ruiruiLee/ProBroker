@@ -739,12 +739,12 @@
         
 }
 
-+ (void) weChatPay
-{
-    NSString *res = [WXApiRequestHandler jumpToBizPay];
-    if( ![@"" isEqual:res] ){
-        [Util showAlertMessage:@"支付失败"];
-    }
-}
+//+ (void) weChatPay
+//{
+//    NSString *res = [WXApiRequestHandler jumpToBizPay];
+//    if( ![@"" isEqual:res] ){
+//        [Util showAlertMessage:@"支付失败"];
+//    }
+//}
 
 @end
