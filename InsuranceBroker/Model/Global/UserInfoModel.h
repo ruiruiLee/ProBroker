@@ -108,6 +108,8 @@
 @property (nonatomic, assign) double zcgddxse;//": "0",//总成功订单销售额
 @property (nonatomic, assign) double zsy;//": "0",//总收益
 @property (nonatomic, assign) long long ztdrs;//": "0"//总团队人数
+@property (nonatomic, assign) long long car_zcgdds;////总车险成功订单数
+@property (nonatomic, assign) long long nocar_zcgdds;//总非车险成功订单数
 
 + (UserInfoModel *) shareUserInfoModel;
 - (void) setContentWithDictionary:(NSDictionary *) dic;

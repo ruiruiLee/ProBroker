@@ -33,6 +33,9 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableview;
 @property (nonatomic, strong) IBOutlet UIImageView *rightArraw;
 
+@property (nonatomic, strong) IBOutlet UILabel *lbTotalCarSuccessNums;
+@property (nonatomic, strong) IBOutlet UILabel *lbTotalNoCarSuccessNums;
+
 @property (nonatomic, strong) BrokerInfoModel *brokerInfo;
 
 @end

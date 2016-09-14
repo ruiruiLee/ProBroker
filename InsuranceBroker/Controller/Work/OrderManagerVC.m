@@ -213,13 +213,14 @@
     [rules addObject:[self getRulesByField:@"customerPhone" op:@"cn" data:filterString]];
     [rules addObject:[self getRulesByField:@"carNo" op:@"cn" data:filterString]];
     [rules addObject:[self getRulesByField:@"insuranceOrderNo" op:@"cn" data:filterString]];
+    NSString *gxbzStatus = nil;
     if(_currentMapTypeIndex > 0){
         NSDictionary *dic = [self.mapTypes objectAtIndex:_currentMapTypeIndex];
         NSString *orderOfferStatus = [dic objectForKey:@"orderOfferStatus"];
         [rules addObject:[self getRulesByField:@"orderOfferStatus" op:@"in" data:orderOfferStatus]];
         NSString *orderOfferEmsStatus = [dic objectForKey:@"orderOfferEmsStatus"];
         NSString *orderOfferPrintStatus = [dic objectForKey:@"orderOfferPrintStatus"];
-        NSString *gxbzStatus = [dic objectForKey:@"gxbzStatus"];
+        gxbzStatus = [dic objectForKey:@"gxbzStatus"];
         if(orderOfferPrintStatus){
             [rules addObject:[self getRulesByField:@"orderOfferPrintStatus" op:@"in" data:orderOfferPrintStatus]];
         }
@@ -228,9 +229,9 @@
             [rules addObject:[self getRulesByField:@"orderOfferEmsStatus" op:@"in" data:orderOfferEmsStatus]];
         }
         
-        if(gxbzStatus){
-            [rules addObject:[self getRulesByField:@"gxbzStatus" op:@"eq" data:gxbzStatus]];
-        }
+//        if(gxbzStatus){
+//            [rules addObject:[self getRulesByField:@"gxbzStatus" op:@"eq" data:gxbzStatus]];
+//        }
     }
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     
@@ -239,6 +240,7 @@
                                                      limit:LIMIT
                                                       sord:@"desc"
                                                    filters:filters
+                                                gxbzStatus:gxbzStatus
                                                 Completion:^(int code, id content) {
                                                     [self refreshTable];
                                                     [self loadMoreDataToTable];

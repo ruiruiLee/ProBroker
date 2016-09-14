@@ -398,6 +398,7 @@
                                                      limit:LIMIT
                                                       sord:@"desc"
                                                    filters:filters
+                                                gxbzStatus:nil
                                                 Completion:^(int code, id content) {
         [_policyListView endAnimation];
         [_insuranceView endAnimation];

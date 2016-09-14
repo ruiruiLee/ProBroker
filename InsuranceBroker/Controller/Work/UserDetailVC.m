@@ -128,6 +128,8 @@
     self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.now_zsy];//本月收益
     self.lbOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.zsy];//累计收益
     self.lbTotalOrderCount.text = [[NSNumber numberWithLongLong:model.zcgdds] stringValue];//累计订单数
+    self.lbTotalCarSuccessNums.text = [NSString stringWithFormat:@"%@", [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue]];
+    self.lbTotalNoCarSuccessNums.text = [NSString stringWithFormat:@"%@", [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue]];
 }
 
 - (void) loadData

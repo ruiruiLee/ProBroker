@@ -229,6 +229,9 @@
     self.zcgddxse = [[dic objectForKey:@"zcgddxse"] doubleValue];
     self.zsy = [[dic objectForKey:@"zsy"] doubleValue];
     self.ztdrs = [[dic objectForKey:@"ztdrs"] longLongValue];
+    
+    self.car_zcgdds = [[dic objectForKey:@"car_zcgdds"] longLongValue];
+    self.nocar_zcgdds = [[dic objectForKey:@"nocar_zcgdds"] longLongValue];
 }
 
 - (void) queryUserInfo

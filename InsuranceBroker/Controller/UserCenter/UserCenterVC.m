@@ -110,8 +110,8 @@
     self.lbOrderEarn.text = [Util getDecimalStyle:model.zsy];//[NSString stringWithFormat:@"%.2f", model.zsy];//累计收益;
 //    self.lbTotalOrderCount.text = [[NSNumber numberWithLongLong:model.zcgdds] stringValue];//[NSString stringWithFormat:@"%d", model.zcgdds];//总订单数
     
-    self.lbCarTotalOrderCount.text = [[NSNumber numberWithLongLong:10000] stringValue];//车险累计
-    self.lbNoCarTotalOrderCount.text = [[NSNumber numberWithLongLong:10000] stringValue];//非车险累计
+    self.lbCarTotalOrderCount.text = [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue];//车险累计
+    self.lbNoCarTotalOrderCount.text = [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue];//非车险累计
     
     [self.btNameEdit setTitle:model.nickname forState:UIControlStateNormal];
     UIImage *placeholderImage = ThemeImage(@"head_male");

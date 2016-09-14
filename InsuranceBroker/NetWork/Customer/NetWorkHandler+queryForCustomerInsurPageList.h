@@ -33,6 +33,7 @@ sord: "desc"
                                           limit:(NSInteger) limit
                                            sord:(NSString *) sord
                                         filters:(NSDictionary *) filters
+                                     gxbzStatus:(NSString *) gxbzStatus
                                      Completion:(Completion)completion;
 
 @end

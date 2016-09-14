@@ -59,6 +59,12 @@
     }];
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.pulltable reloadData];
+}
+
 - (void) appendData:(NSArray *) list
 {
     if(self.pageNum == 0)

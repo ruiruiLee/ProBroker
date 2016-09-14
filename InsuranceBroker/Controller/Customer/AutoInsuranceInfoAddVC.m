@@ -297,7 +297,24 @@
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             CarInfoModel *model = (CarInfoModel*)[CarInfoModel modelFromDictionary:[content objectForKey:@"data"]];
-            self.carInfo = model;
+            self.carInfo.carNo = model.carNo;
+            self.carInfo.carTypeNo = model.carTypeNo;
+            self.carInfo.carShelfNo = model.carShelfNo;
+            self.carInfo.carEngineNo = model.carEngineNo;
+            self.carInfo.carOwnerName = model.carOwnerName;
+            self.carInfo.carOwnerCard = model.carOwnerCard;
+            self.carInfo.carOwnerPhone = model.carOwnerPhone;
+            self.carInfo.carRegTime = model.carRegTime;
+            self.carInfo.travelCard1 = model.travelCard1;
+            self.carInfo.travelCard2 = model.travelCard2;
+            self.carInfo.carInsurCompId1 = model.carInsurCompId1;
+            self.carInfo.newCarNoStatus = model.newCarNoStatus;
+            self.carInfo.carTradeStatus = model.carTradeStatus;
+            //
+            self.carInfo.carOwnerCard1 = model.carOwnerCard1;
+            self.carInfo.carOwnerCard2 = model.carOwnerCard2;
+
+            
             self.customerModel.carInfo = model;
             [self fillTheData];
         }
@@ -719,8 +736,8 @@
 - (void) setCarInfo:(CarInfoModel *)carInfo
 {
     _carInfo = carInfo;
-    if(self.carInfo != nil)
-        [self loadCarInfoWithCustomerId:self.carInfo.customerCarId];
+//    if(self.carInfo != nil)
+//        [self loadCarInfoWithCustomerId:self.carInfo.customerCarId];
     
     [self fillTheData];
 }
