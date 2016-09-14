@@ -20,4 +20,7 @@
 @property (assign, nonatomic) NSInteger currentMapTypeIndex;
 @property (strong, nonatomic) NSArray *mapTypes;
 
+- (void) initMapTypesForCar;
+- (void) initMapTypesForNoCar;
+
 @end

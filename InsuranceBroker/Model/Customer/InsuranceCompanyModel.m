@@ -14,7 +14,11 @@
 {
     NSMutableArray *result = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < [array count]; i++) {
+    NSInteger count = 3;
+    if([array count] <= 3)
+        count = [array count];
+    
+    for (int i = 0; i < count; i++) {
         NSDictionary *dic = [array objectAtIndex:i];
         [result addObject:[InsuranceCompanyModel modelFromDictionary:dic]];
     }

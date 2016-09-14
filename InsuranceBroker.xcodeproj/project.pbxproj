@@ -116,6 +116,12 @@
 		864EFBC01D82B82400CEC6F8 /* CarListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 864EFBBF1D82B82400CEC6F8 /* CarListVC.m */; };
 		864EFBC41D86538C00CEC6F8 /* AppKeFuResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 864EFBC21D86538C00CEC6F8 /* AppKeFuResources.bundle */; };
 		864EFBC51D86538C00CEC6F8 /* libAppKeFuLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 864EFBC31D86538C00CEC6F8 /* libAppKeFuLib.a */; };
+		864EFBCE1D86919F00CEC6F8 /* CarListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 864EFBCC1D86919F00CEC6F8 /* CarListTableViewCell.m */; };
+		864EFBCF1D86919F00CEC6F8 /* CarListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864EFBCD1D86919F00CEC6F8 /* CarListTableViewCell.xib */; };
+		864EFBD31D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 864EFBD11D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.m */; };
+		864EFBD41D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864EFBD21D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.xib */; };
+		864EFBD71D88FAB500CEC6F8 /* NetWorkHandler+customerCarTop.m in Sources */ = {isa = PBXBuildFile; fileRef = 864EFBD61D88FAB500CEC6F8 /* NetWorkHandler+customerCarTop.m */; };
+		864EFBDA1D8935AE00CEC6F8 /* MyPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 864EFBD91D8935AE00CEC6F8 /* MyPageViewController.m */; };
 		865065821C1E6BC800429EAE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 865065811C1E6BC800429EAE /* main.m */; };
 		865065851C1E6BC800429EAE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 865065841C1E6BC800429EAE /* AppDelegate.m */; };
 		8650658D1C1E6BC800429EAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8650658C1C1E6BC800429EAE /* Assets.xcassets */; };
@@ -735,6 +741,16 @@
 		864EFBC11D86538C00CEC6F8 /* AppKeFuLib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppKeFuLib.h; sourceTree = "<group>"; };
 		864EFBC21D86538C00CEC6F8 /* AppKeFuResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AppKeFuResources.bundle; sourceTree = "<group>"; };
 		864EFBC31D86538C00CEC6F8 /* libAppKeFuLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libAppKeFuLib.a; sourceTree = "<group>"; };
+		864EFBCB1D86919F00CEC6F8 /* CarListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarListTableViewCell.h; sourceTree = "<group>"; };
+		864EFBCC1D86919F00CEC6F8 /* CarListTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarListTableViewCell.m; sourceTree = "<group>"; };
+		864EFBCD1D86919F00CEC6F8 /* CarListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CarListTableViewCell.xib; sourceTree = "<group>"; };
+		864EFBD01D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoInsuranceInfoAddVC.h; sourceTree = "<group>"; };
+		864EFBD11D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoInsuranceInfoAddVC.m; sourceTree = "<group>"; };
+		864EFBD21D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AutoInsuranceInfoAddVC.xib; sourceTree = "<group>"; };
+		864EFBD51D88FAB500CEC6F8 /* NetWorkHandler+customerCarTop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+customerCarTop.h"; sourceTree = "<group>"; };
+		864EFBD61D88FAB500CEC6F8 /* NetWorkHandler+customerCarTop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+customerCarTop.m"; sourceTree = "<group>"; };
+		864EFBD81D8935AE00CEC6F8 /* MyPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPageViewController.h; sourceTree = "<group>"; };
+		864EFBD91D8935AE00CEC6F8 /* MyPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPageViewController.m; sourceTree = "<group>"; };
 		8650657D1C1E6BC800429EAE /* InsuranceBroker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InsuranceBroker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		865065811C1E6BC800429EAE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		865065831C1E6BC800429EAE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -2003,6 +2019,8 @@
 				86769D361CEF137B009C7E8F /* NetWorkHandler+shareCustomerReject.m */,
 				86CAC5731D6E983C0045AF37 /* NetWorkHandler+getAndSaveCustomerCar.h */,
 				86CAC5741D6E983C0045AF37 /* NetWorkHandler+getAndSaveCustomerCar.m */,
+				864EFBD51D88FAB500CEC6F8 /* NetWorkHandler+customerCarTop.h */,
+				864EFBD61D88FAB500CEC6F8 /* NetWorkHandler+customerCarTop.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -2433,6 +2451,9 @@
 				86C3BC3E1C2E37A700F98E80 /* AutoInsuranceInfoEditVC.h */,
 				86C3BC3F1C2E37A700F98E80 /* AutoInsuranceInfoEditVC.m */,
 				86C3BC401C2E37A700F98E80 /* AutoInsuranceInfoEditVC.xib */,
+				864EFBD01D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.h */,
+				864EFBD11D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.m */,
+				864EFBD21D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.xib */,
 				8612F4341CEB23830045340F /* InsuredUserInfoEditVC.h */,
 				8612F4351CEB23830045340F /* InsuredUserInfoEditVC.m */,
 				8612F4371CEB23940045340F /* InsuredUserInfoEditVC.xib */,
@@ -2535,6 +2556,8 @@
 				8625AF7D1C3164A700312B98 /* OrderManagerVC.m */,
 				86F973FE1D7FC6E200A36359 /* MyOrderVC.h */,
 				86F973FF1D7FC6E200A36359 /* MyOrderVC.m */,
+				864EFBD81D8935AE00CEC6F8 /* MyPageViewController.h */,
+				864EFBD91D8935AE00CEC6F8 /* MyPageViewController.m */,
 				8625AFDF1C37B4D300312B98 /* OfferDetailsVC.h */,
 				8625AFE01C37B4D300312B98 /* OfferDetailsVC.m */,
 				8625AFE11C37B4D300312B98 /* OfferDetailsVC.xib */,
@@ -2731,6 +2754,9 @@
 				86769D271CEEB00C009C7E8F /* ServicePushCustomerTableViewCell.h */,
 				86769D281CEEB00C009C7E8F /* ServicePushCustomerTableViewCell.m */,
 				86769D291CEEB00C009C7E8F /* ServicePushCustomerTableViewCell.xib */,
+				864EFBCB1D86919F00CEC6F8 /* CarListTableViewCell.h */,
+				864EFBCC1D86919F00CEC6F8 /* CarListTableViewCell.m */,
+				864EFBCD1D86919F00CEC6F8 /* CarListTableViewCell.xib */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -3398,6 +3424,7 @@
 				86F2DA9E1C7FE81D0088B783 /* ProductSettingTableViewCell.xib in Resources */,
 				8625AF961C32864200312B98 /* QRCodeVC.xib in Resources */,
 				8625AFF01C38FF9E00312B98 /* IncomeWithdrawVC.xib in Resources */,
+				864EFBD41D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.xib in Resources */,
 				8625AFE81C37C8D500312B98 /* OfferDetailTableViewCell.xib in Resources */,
 				86C3BBA21C28EDCA00F98E80 /* UserCenterVC.xib in Resources */,
 				86C3BB341C22C47400F98E80 /* InfoTipsView.xib in Resources */,
@@ -3448,6 +3475,7 @@
 				86A504EC1C524E9F0032A901 /* OrderDetailWebVC.xib in Resources */,
 				86A26EEB1C4905210073FFFC /* CustomerTagTableCell.xib in Resources */,
 				86C3BBD51C2A60C500F98E80 /* TagListViewCell.xib in Resources */,
+				864EFBCF1D86919F00CEC6F8 /* CarListTableViewCell.xib in Resources */,
 				86C3BBAA1C28FD4600F98E80 /* UserInfoEditVC.xib in Resources */,
 				862CD3411C5C8CFE0056D2EA /* ProgressHUD.bundle in Resources */,
 				86C3BB1C1C228D6F00F98E80 /* whiteArrow@2x.png in Resources */,
@@ -3668,6 +3696,8 @@
 				8654CD811C312CE100411C54 /* SBJsonStreamParserAccumulator.m in Sources */,
 				86A505091C52717A0032A901 /* LeftImgButtonLeft.m in Sources */,
 				868C7CD31C9A4F7600B7617A /* TeamListTableViewCell.m in Sources */,
+				864EFBD71D88FAB500CEC6F8 /* NetWorkHandler+customerCarTop.m in Sources */,
+				864EFBDA1D8935AE00CEC6F8 /* MyPageViewController.m in Sources */,
 				86C3BBA01C28E02F00F98E80 /* SubView.m in Sources */,
 				8625AFFC1C3A19ED00312B98 /* WXLoginVC.m in Sources */,
 				86C3BCC21C2E933600F98E80 /* IQTextView.m in Sources */,
@@ -3710,6 +3740,7 @@
 				86CAC5711D6557450045AF37 /* MotorcycleTypeSelectedVC.m in Sources */,
 				86A26E881C452A5B0073FFFC /* AnnouncementModel.m in Sources */,
 				8612F4171CE4828D0045340F /* UIView+JElasticPullToRefresh.m in Sources */,
+				864EFBCE1D86919F00CEC6F8 /* CarListTableViewCell.m in Sources */,
 				86D3D9A21CBCD7AF00276AC0 /* UserCenterHeaderBgView.m in Sources */,
 				86C3BB2C1C22C42D00F98E80 /* AnimationButton.m in Sources */,
 				86F2E2BB1D3776EE002FCE75 /* WXMediaMessage+messageConstruct.m in Sources */,
@@ -3801,6 +3832,7 @@
 				86C3BB741C242E3E00F98E80 /* CustomerMainVC.m in Sources */,
 				865066241C21550500429EAE /* IBUIFactory.m in Sources */,
 				86A504D51C51CE7B0032A901 /* NetWorkHandler+queryUserBillPageList.m in Sources */,
+				864EFBD31D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.m in Sources */,
 				8654CD8C1C31350D00411C54 /* ProjectDefine.m in Sources */,
 				86A504BA1C4FCA060032A901 /* RedPackModel.m in Sources */,
 				86F2DA871C7715360088B783 /* NetWorkHandler+querySpecialtyUserInfo.m in Sources */,

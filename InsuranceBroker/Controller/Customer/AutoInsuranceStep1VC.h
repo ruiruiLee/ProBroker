@@ -8,10 +8,14 @@
 
 #import "BaseViewController.h"
 #import "HighNightBgButton.h"
+#import "InsurCompanySelectVC.h"
 
 @class productAttrModel;
 
-@interface AutoInsuranceStep1VC : BaseViewController
+@interface AutoInsuranceStep1VC : BaseViewController<MenuDelegate>
+{
+    NSInteger _perInsurCompany;
+}
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewWidth;
 @property (nonatomic, strong) IBOutlet UITextField *tfCardNum;
@@ -21,10 +25,13 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnSubmit;
 @property (nonatomic, strong) IBOutlet UISwitch *switchCert;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *bannerHeight;
+@property (nonatomic, strong) IBOutlet UILabel *lbPCompany;
 
 @property (nonatomic, strong) HighNightBgButton *btnProvience;//省简称
 @property (nonatomic, strong) UILabel *lbProvience;
 
 @property (nonatomic, strong) productAttrModel *selectProModel;//选中的产品
+
+@property (nonatomic, strong) InsurCompanySelectVC *menuView;
 
 @end

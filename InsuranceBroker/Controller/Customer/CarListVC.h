@@ -7,7 +7,15 @@
 //
 
 #import "BasePullTableVC.h"
+#import "BackGroundView.h"
+#import "CustomerDetailModel.h"
 
-@interface CarListVC : BasePullTableVC
+@interface CarListVC : BasePullTableVC<BackGroundViewDelegate>
+{
+    BackGroundView *_addview;
+}
+
+@property (nonatomic, strong) NSString *customerId;
+@property (nonatomic, strong) CustomerDetailModel *customerModel;
 
 @end

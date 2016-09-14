@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSDate *carTradeTime;//车辆过户日期
 @property (nonatomic, assign) NSInteger carTradeStatus;//车辆过户状态；1未过户，2过户
 @property (nonatomic, strong) NSString *travelCard1;//行驶证正本
+@property (nonatomic, strong) NSString *productId;
 
 @property (nonatomic, assign) BOOL newCarNoStatus;
 

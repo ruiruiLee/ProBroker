@@ -127,10 +127,8 @@
 
 - (void) NotifyToReSubmitCarInfo:(NSString *) orderId customerId:(NSString *) customerId customerCarId:(NSString *) customerCarId
 {
-//    [self.navigationController popToRootViewControllerAnimated:NO];
     _isLoad = YES;
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-//    BaseViewController *vc = delegate.root.selectVC;
     
     AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
     vc.insType = enumReInsurance;
@@ -143,6 +141,7 @@
     model.carInfo.customerId = customerId;
     model.customerId = customerId;
     vc.customerModel = model;
+    vc.carInfo = model.carInfo;
     vc.hidesBottomBarWhenPushed = YES;
     [delegate.root.selectVC.navigationController pushViewController:vc animated:YES];
 }

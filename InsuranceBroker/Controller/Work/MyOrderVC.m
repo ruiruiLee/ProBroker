@@ -29,11 +29,13 @@
     OrderManagerVC *chexian = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
     chexian.insuranceType = @"1";
     [chexian setViewTitle:@"车险"];
+    [chexian initMapTypesForCar];
     [pages addObject:chexian];
     
     OrderManagerVC *gexian = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
     gexian.insuranceType = @"2";
     [gexian setViewTitle:@"个险"];
+    [gexian initMapTypesForNoCar];
     [pages addObject:gexian];
     
     [self setPages:pages];
@@ -58,7 +60,7 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[pageControl(50)]-0-[contentContainer]-0-|" options:0 metrics:nil views:views]];
     
     
-    self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    self.pageViewController = [[MyPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.view.frame = CGRectMake(0, 0, self.contentContainer.frame.size.width, self.contentContainer.frame.size.height);
     [self.pageViewController setDataSource:self];
     [self.pageViewController setDelegate:self];
@@ -97,6 +99,10 @@
     [btn addTarget:self action:@selector(doBtnSelectOrderStatus:) forControlEvents:UIControlEventTouchUpInside];
     
     [self  initSubViews];
+    
+    for (UIGestureRecognizer *recognizer in self.pageViewController.gestureRecognizers) {
+        recognizer.enabled = NO;
+    }
 
 }
 

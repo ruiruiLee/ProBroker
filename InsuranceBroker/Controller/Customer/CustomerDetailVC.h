@@ -49,6 +49,9 @@
 
 @property (nonatomic, strong) productAttrModel *selectProModel;//选中的产品
 
+
+@property (nonatomic, strong) CustomerDetailModel *data;
+
 - (void) loadDetailWithCustomerId:(NSString *)customerId;
 
 - (void) initWithProductId:(NSString *) product;

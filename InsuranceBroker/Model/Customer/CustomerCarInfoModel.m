@@ -33,6 +33,7 @@
         model.carTradeStatus = 1;
     model.travelCard1 = [dictionary objectForKey:@"travelCard1"];
     model.carTradeTime = [BaseModel dateFromString:[dictionary objectForKey:@"carTradeTime"]];
+    model.productId = [dictionary objectForKey:@"productId"];
     
     return model;
 }

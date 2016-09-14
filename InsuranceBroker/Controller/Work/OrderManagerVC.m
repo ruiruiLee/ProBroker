@@ -54,12 +54,23 @@
         self.insuranceType = @"1";
         
         filterString = @"";
-        
-        self.mapTypes = @[@{@"orderOfferStatus": @"-1", @"name":@"全部保单"}, @{@"orderOfferStatus": @"1", @"name":@"等待报价"}, @{@"orderOfferStatus": @"2", @"name":@"报价失败"}, @{@"orderOfferStatus": @"3", @"name":@"报价完成"}, @{@"orderOfferStatus": @"4,6", @"name":@"出单配送"}, @{@"orderOfferStatus": @"7", @"name":@"交易失败"}, @{@"orderOfferStatus": @"8", @"name":@"交易成功"}, @{@"orderOfferStatus": @"9", @"name":@"保单过期"}, @{@"orderOfferStatus": @"10", @"name":@"核保失败"}];
-        self.currentMapTypeIndex = 0;
     }
     
     return self;
+}
+
+- (void) initMapTypesForCar
+{
+    self.mapTypes = @[@{@"orderOfferStatus": @"-1", @"name":@"全部保单"}, @{@"orderOfferStatus": @"1", @"name":@"等待报价"}, @{@"orderOfferStatus": @"2", @"name":@"报价失败"}, @{@"orderOfferStatus": @"3", @"name":@"报价完成"}, @{@"orderOfferStatus": @"4,6", @"name":@"核保出单", @"orderOfferEmsStatus":@"0", @"orderOfferPrintStatus":@"0,1,2"},@{@"orderOfferStatus": @"4,6", @"name":@"正在配送", @"orderOfferEmsStatus":@"1,2", @"orderOfferPrintStatus":@"2"},@{@"orderOfferStatus": @"4,6", @"name":@"客户签收", @"orderOfferEmsStatus":@"3", @"orderOfferPrintStatus":@"2"}, @{@"orderOfferStatus": @"8", @"name":@"交易完成"}];
+    
+    self.currentMapTypeIndex = 0;
+}
+
+- (void) initMapTypesForNoCar
+{
+    self.mapTypes = @[@{@"orderOfferStatus": @"-1", @"name":@"全部保单"}, @{@"orderOfferStatus": @"3", @"name":@"等待支付"}, @{@"orderOfferStatus": @"8", @"name":@"等待生效", @"gxbzStatus":@"1"}, @{@"orderOfferStatus": @"8", @"name":@"保单生效",@"gxbzStatus":@"2"}, @{@"orderOfferStatus": @"8", @"name":@"保单过期", @"gxbzStatus":@"3"}];
+    
+    self.currentMapTypeIndex = 0;
 }
 
 - (void) handleLeftBarButtonClicked:(id)sender
@@ -203,8 +214,23 @@
     [rules addObject:[self getRulesByField:@"carNo" op:@"cn" data:filterString]];
     [rules addObject:[self getRulesByField:@"insuranceOrderNo" op:@"cn" data:filterString]];
     if(_currentMapTypeIndex > 0){
-        NSString *orderOfferStatus = [[self.mapTypes objectAtIndex:_currentMapTypeIndex] objectForKey:@"orderOfferStatus"];
-        [rules addObject:[self getRulesByField:@"orderOfferStatus" op:@"eq" data:orderOfferStatus]];
+        NSDictionary *dic = [self.mapTypes objectAtIndex:_currentMapTypeIndex];
+        NSString *orderOfferStatus = [dic objectForKey:@"orderOfferStatus"];
+        [rules addObject:[self getRulesByField:@"orderOfferStatus" op:@"in" data:orderOfferStatus]];
+        NSString *orderOfferEmsStatus = [dic objectForKey:@"orderOfferEmsStatus"];
+        NSString *orderOfferPrintStatus = [dic objectForKey:@"orderOfferPrintStatus"];
+        NSString *gxbzStatus = [dic objectForKey:@"gxbzStatus"];
+        if(orderOfferPrintStatus){
+            [rules addObject:[self getRulesByField:@"orderOfferPrintStatus" op:@"in" data:orderOfferPrintStatus]];
+        }
+        
+        if(orderOfferEmsStatus){
+            [rules addObject:[self getRulesByField:@"orderOfferEmsStatus" op:@"in" data:orderOfferEmsStatus]];
+        }
+        
+        if(gxbzStatus){
+            [rules addObject:[self getRulesByField:@"gxbzStatus" op:@"eq" data:gxbzStatus]];
+        }
     }
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     

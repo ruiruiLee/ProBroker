@@ -13,8 +13,14 @@
 #import "AppDelegate.h"
 #import "CustomerCarInfoModel.h"
 #import "NetWorkHandler+getAndSaveCustomerCar.h"
+#import "NetWorkHandler+queryForProductList.h"
+#import "InsuranceCompanyModel.h"
+#import "OrderWebVC.h"
 
 @interface AutoInsuranceStep1VC ()<ProvienceSelectedViewDelegate>
+{
+    NSArray *_insurCompanyArray;
+}
 
 @end
 
@@ -70,6 +76,24 @@
     [self.switchCert setOn:NO];
     
     self.bannerHeight.constant = [Util getHeightByWidth:750 height:330 nwidth:ScreenWidth];
+    
+    [self loadInsurCompany];
+    
+    _perInsurCompany = -1;
+}
+
+- (void) loadInsurCompany
+{
+    [ProgressHUD show:nil];
+    [NetWorkHandler requestToQueryForProductList:@"1" Completion:^(int code, id content) {
+        [ProgressHUD dismiss];
+        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+        
+        if(code == 200){
+            _insurCompanyArray = [InsuranceCompanyModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
+        }
+        
+    }];
 }
 
 - (IBAction)doBtnQuickQuote:(id)sender
@@ -202,7 +226,11 @@
     else{
         [ProgressHUD show:nil];
         
-        [NetWorkHandler requestToGetAndSaveCustomerCar:@"1" userId:[UserInfoModel shareUserInfoModel].userId carNo:cardNum newCarNoStatus:!newCarNoStatus carOwnerName:name carOwnerCard:nil carShelfNo:nil carBrandName:nil carTypeNo:nil carEngineNo:nil carRegTime:nil carTradeStatus:nil carTradeTime:nil travelCard1:nil Completion:^(int code, id content) {
+        NSString *productId = nil;
+        if(_perInsurCompany >= 0)
+            productId = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:_perInsurCompany]).productId;
+        
+        [NetWorkHandler requestToGetAndSaveCustomerCar:@"1" userId:[UserInfoModel shareUserInfoModel].userId carNo:cardNum newCarNoStatus:!newCarNoStatus carOwnerName:name carOwnerCard:nil carShelfNo:nil carBrandName:nil carTypeNo:nil carEngineNo:nil carRegTime:nil carTradeStatus:nil carTradeTime:nil travelCard1:nil productId:productId Completion:^(int code, id content) {
             
             [ProgressHUD dismiss];
             
@@ -212,15 +240,40 @@
                 CustomerCarInfoModel *model = (CustomerCarInfoModel*)[CustomerCarInfoModel modelFromDictionary:[content objectForKey:@"data"]];
                 model.newCarNoStatus = newCarNoStatus;
                 
-                AutoInsuranceStep2VC *vc = [IBUIFactory CreateAutoInsuranceStep2VC];
-                vc.title = @"车辆信息";
-                vc.carInfoModel = model;
-                vc.selectProModel = self.selectProModel;
-                [self.navigationController pushViewController:vc animated:YES];
+                if(_perInsurCompany > 0){
+                    [self car_insur_plan:model.customerCarId customerId:model.customerId];
+                }
+                else{
+                    AutoInsuranceStep2VC *vc = [IBUIFactory CreateAutoInsuranceStep2VC];
+                    vc.title = @"车辆信息";
+                    vc.carInfoModel = model;
+                    vc.selectProModel = self.selectProModel;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
             }
         }];
     }
     
+}
+
+- (void) car_insur_plan:(NSString *) customerCarId customerId:(NSString *) customerId
+{
+    OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
+    
+    NSString *str = @"";
+    //    if(self.customerModel.carInfo.carInsurStatus1 && self.customerModel.carInfo.carInsurCompId1 != nil){
+    //        str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", self.customerModel.carInfo.carInsurCompId1];
+    //    }
+    
+    if(self.selectProModel){
+        if(self.selectProModel.productAttrId)
+            str = [NSString stringWithFormat:@"%@&productId=%@", str, self.selectProModel.productAttrId];
+    }
+    
+    web.title = @"报价";
+    [self.navigationController pushViewController:web animated:YES];
+    NSString *url = [NSString stringWithFormat:CAR_INSUR_PLAN, Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, customerId, customerCarId, str];
+    [web loadHtmlFromUrl:url];
 }
 
 #pragma ACTION
@@ -278,5 +331,49 @@
         self.tfCardNum.userInteractionEnabled = YES;
     }
 }
+
+- (IBAction)menuChange:(UIButton *)sender {
+    [self resignFirstResponder];
+    
+    if(_insurCompanyArray == nil){
+        [self loadInsurCompany];
+        return;
+    }
+    
+    if (!_menuView) {
+        NSArray *titles = @[];
+        _menuView = [[InsurCompanySelectVC alloc]initWithTitles:titles];
+        _menuView.menuDelegate = self;
+        
+    }
+    
+    _menuView.titleArray = _insurCompanyArray;
+    _menuView.title = @"上一次投保公司";
+    _menuView.selectIdx = _perInsurCompany;
+    
+    [_menuView show:self.view];
+    [_menuView.btnCancel addTarget:self action:@selector(cancelSelectPCompany:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void) cancelSelectPCompany:(UIButton *)sender
+{
+    _perInsurCompany = -1;
+    self.lbPCompany.text = @"未选择";
+    [_menuView hide];
+    
+}
+
+-(void)menuViewController:(MenuViewController *)menu AtIndex:(NSUInteger)index
+{
+    [menu hide];
+    
+    _perInsurCompany = index;
+    self.lbPCompany.text = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:index]).productName;
+}
+-(void)menuViewControllerDidCancel:(MenuViewController *)menu
+{
+    [menu hide];
+}
+
 
 @end

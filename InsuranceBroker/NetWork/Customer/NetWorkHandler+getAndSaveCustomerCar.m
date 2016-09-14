@@ -25,6 +25,7 @@
                          carTradeStatus:(NSString *) carTradeStatus
                            carTradeTime:(NSString *) carTradeTime
                             travelCard1:(NSString *) travelCard1
+                              productId:(NSString *) productId
                              Completion:(Completion)completion
 {
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
@@ -66,6 +67,7 @@
     if([carEngineNo length] == 0)
         carEngineNo = nil;
     [Util setValueForKeyWithDic:pramas value:carEngineNo key:@"carEngineNo"];
+    [Util setValueForKeyWithDic:pramas value:productId key:@"productId"];
     
     [handle postWithMethod:@"/web/customer/getAndSaveCustomerCar.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }

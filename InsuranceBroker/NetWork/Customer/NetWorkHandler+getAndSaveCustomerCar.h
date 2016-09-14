@@ -46,6 +46,7 @@
                          carTradeStatus:(NSString *) carTradeStatus
                            carTradeTime:(NSString *) carTradeTime
                             travelCard1:(NSString *) travelCard1
+                              productId:(NSString *) productId
                              Completion:(Completion)completion;
 
 @end

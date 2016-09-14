@@ -10,6 +10,7 @@
 #import "HMSegmentedControl.h"
 
 #import "LMDropdownView.h"
+#import "MyPageViewController.h"
 
 @interface MyOrderVC : BaseViewController <UIPageViewControllerDataSource,UIPageViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -17,7 +18,7 @@
 @property (strong, nonatomic) HMSegmentedControl *pageControl;
 @property (strong, nonatomic) UIView *contentContainer;
 
-@property (strong, nonatomic)UIPageViewController *pageViewController;
+@property (strong, nonatomic)MyPageViewController *pageViewController;
 
 @property (strong, nonatomic) UITableView *menuTableView;
 @property (strong, nonatomic) LMDropdownView *dropdownView;

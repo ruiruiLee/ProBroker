@@ -280,7 +280,7 @@
                 }
             }
             
-            [NetWorkHandler requestToGetAndSaveCustomerCar:@"2" userId:[UserInfoModel shareUserInfoModel].userId carNo:self.carInfoModel.carNo newCarNoStatus:!self.carInfoModel.newCarNoStatus carOwnerName:self.carInfoModel.carOwnerName carOwnerCard:self.carInfoModel.carOwnerCard carShelfNo:carShelfNo carBrandName:nil carTypeNo:carTypeNo carEngineNo:carEngineNo carRegTime:carRegTime carTradeStatus:[[NSNumber numberWithBool:carTradeStatus + 1] stringValue] carTradeTime:carTradeTime travelCard1:filePahe Completion:^(int code, id content) {
+            [NetWorkHandler requestToGetAndSaveCustomerCar:@"2" userId:[UserInfoModel shareUserInfoModel].userId carNo:self.carInfoModel.carNo newCarNoStatus:!self.carInfoModel.newCarNoStatus carOwnerName:self.carInfoModel.carOwnerName carOwnerCard:self.carInfoModel.carOwnerCard carShelfNo:carShelfNo carBrandName:nil carTypeNo:carTypeNo carEngineNo:carEngineNo carRegTime:carRegTime carTradeStatus:[[NSNumber numberWithBool:carTradeStatus + 1] stringValue] carTradeTime:carTradeTime travelCard1:filePahe productId:self.carInfoModel.productId Completion:^(int code, id content) {
                 
                 [ProgressHUD dismiss];
                 [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];

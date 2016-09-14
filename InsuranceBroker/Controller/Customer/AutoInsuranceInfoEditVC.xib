@@ -41,17 +41,6 @@
                 <outlet property="topVConstraint" destination="CHl-km-LNy" id="hWv-eQ-iAI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="view1" destination="8Za-H7-mhZ" id="dUJ-yK-9oB"/>
-                <outlet property="view2" destination="Ht5-MD-Gr8" id="kvt-qq-Q2Z"/>
-                <outlet property="view2VConstraint" destination="eJC-1e-eze" id="QCb-Zp-iqt"/>
-                <outlet property="view3" destination="3Uf-0m-g1d" id="blI-1T-uPJ"/>
-                <outlet property="view3VConstraint" destination="Ygn-0e-fpD" id="rNb-eU-VaQ"/>
-                <outlet property="view4" destination="8fw-HH-CBo" id="zsM-IX-QM5"/>
-                <outlet property="view5" destination="Nny-Gq-8OA" id="kuo-Se-1vo"/>
-                <outlet property="view5VConstraint" destination="NPR-KM-aRN" id="IWY-pn-dgI"/>
-                <outlet property="view6" destination="Mi9-7e-qNS" id="mCE-HW-n0X"/>
-                <outlet property="view6VConstraint" destination="SoP-nw-7HV" id="jmR-ia-38B"/>
-                <outlet property="view7" destination="EZA-qe-f1s" id="eB2-Ho-IaD"/>
-                <outlet property="view7VConstraint" destination="VNb-Mw-7Ho" id="l4p-ij-7rf"/>
                 <outlet property="viewHConstraint" destination="F3c-5v-SeG" id="aDA-lw-kN5"/>
             </connections>
         </placeholder>
@@ -213,7 +202,7 @@
                                                                     <rect key="frame" x="16" y="8" width="568" height="182"/>
                                                                     <subviews>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1B-nY-nfe">
-                                                                            <rect key="frame" x="166" y="10" width="235" height="164"/>
+                                                                            <rect key="frame" x="167" y="10" width="235" height="164"/>
                                                                             <animations/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="164" id="iaA-Vg-LXZ"/>
@@ -554,7 +543,7 @@
                                                     <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入车牌号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PA7-9O-2X7">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="车牌号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PA7-9O-2X7">
                                                     <rect key="frame" x="80" y="6" width="386" height="30"/>
                                                     <animations/>
                                                     <constraints>
@@ -697,7 +686,7 @@
                                                     </constraints>
                                                     <color key="textColor" red="0.45882352941176469" green="0.45882352941176469" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="alphabet"/>
                                                 </textField>
                                             </subviews>
                                             <animations/>

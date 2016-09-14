@@ -16,6 +16,7 @@
 #import "SepLineLabel.h"
 #import "InsuredUserInfoModel.h"
 #import "CarListVC.h"
+#import "CustomerDetailVC.h"
 
 
 #define CELL_HEIGHT  56
@@ -332,7 +333,7 @@
     self.tableVConstraint.constant = [self tableView:self.tableviewNoCar numberOfRowsInSection:0] * CELL_HEIGHT;
 
     
-    return tableheight + 147 + 68 + _footView.frame.size.height + 50;
+    return tableheight + 147 + 68 + _footView.frame.size.height + 40;
 }
 
 - (void) doEditButtonClicked:(UIButton *)sender
@@ -487,7 +488,7 @@
 {
     if(tableView != tableviewNoCar){
         if(section == 1)
-            return 50.f;
+            return 40.f;
     }
     
     return 0;
@@ -497,12 +498,16 @@
 {
     if(tableView != tableviewNoCar){
         if(section == 1){
-            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
             
-            HighNightBgButton *btnMore = [[HighNightBgButton alloc] initWithFrame:CGRectMake(ScreenWidth - 102, 10, 87, 30)];
+            HighNightBgButton *btnMore = [[HighNightBgButton alloc] initWithFrame:CGRectMake(ScreenWidth - 97, 5, 87, 30)];
             [btnMore setBackgroundImage:ThemeImage(@"btnMoreCar") forState:UIControlStateNormal];
             [view addSubview:btnMore];
             [btnMore addTarget:self action:@selector(doBtnMoreCar:) forControlEvents:UIControlEventTouchUpInside];
+            
+//            UIView *bg = [[UIView alloc] initWithFrame:CGRectMake(0, 40, ScreenWidth, 15)];
+//            bg.backgroundColor = SepLine_color;
+//            [view addSubview:bg];
             
             return view;
         }
@@ -717,6 +722,8 @@
 
 - (IBAction)doBtnMoreCar:(UIButton *)sender{
     CarListVC *vc = [[CarListVC alloc] initWithNibName:nil bundle:nil];
+    vc.customerId = self.customerInfo.customerId;
+    vc.customerModel = ((CustomerDetailVC *)self.pVc).data;
     [self.pVc.navigationController pushViewController:vc animated:YES];
 }
 

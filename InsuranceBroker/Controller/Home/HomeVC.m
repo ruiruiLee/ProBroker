@@ -203,6 +203,7 @@
     UIView *contenBg = [[UIView alloc] initWithFrame:CGRectZero];
     contenBg.translatesAutoresizingMaskIntoConstraints = NO;
     [bgview addSubview:contenBg];
+    contenBg.backgroundColor = SepLineColor;
     
     btnProduct = [ViewFactory CreateButtonWithImage:nil];
     [btnProduct setBackgroundImage:ThemeImage(@"product") forState:UIControlStateNormal];
@@ -292,11 +293,11 @@
     [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView0 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:sepView1 attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     [titleBg addConstraint:[NSLayoutConstraint constraintWithItem:sepView4 attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:sepView1 attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     
-    [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnProduct]-0-[btnPlan]-0-|" options:0 metrics:nil views:views]];
+    [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btnProduct]-0.5-[btnPlan]-0-|" options:0 metrics:nil views:views]];
     [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[imgBroker]-0-[imgService]-0-|" options:0 metrics:nil views:views]];
-    [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnProduct]-0-[imgBroker]-0-|" options:0 metrics:nil views:views]];
-    [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnPlan]-0-[imgService]-0-|" options:0 metrics:nil views:views]];
-    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnProduct attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnPlan attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
+    [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0.5-[btnProduct]-0-[imgBroker]-0-|" options:0 metrics:nil views:views]];
+    [contenBg addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0.5-[btnPlan]-0-[imgService]-0-|" options:0 metrics:nil views:views]];
+    [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnProduct attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnPlan attribute:NSLayoutAttributeWidth multiplier:1 constant:0.5]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:imgBroker attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:imgService attribute:NSLayoutAttributeWidth multiplier:1 constant:0]];
     [contenBg addConstraint:[NSLayoutConstraint constraintWithItem:btnBroker attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:btnService attribute:NSLayoutAttributeWidth multiplier:1 constant:0.5]];
     

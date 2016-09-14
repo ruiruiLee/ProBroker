@@ -30,8 +30,6 @@
 {
     NSString *_productId;
 }
-
-@property (nonatomic, strong) CustomerDetailModel *data;
 @property (nonatomic, strong) NSString *customerId;
 
 @end
@@ -852,6 +850,7 @@
     vc.customerId = self.customerId;
     vc.selectProModel = self.selectProModel;
     vc.customerModel = self.data;
+    vc.carInfo = self.data.carInfo;
 }
 
 //添加车险资料
@@ -861,6 +860,7 @@
     [self.navigationController pushViewController:vc animated:YES];
     vc.customerId = self.customerId;
     vc.customerModel = self.data;
+    vc.carInfo = self.data.carInfo;
 }
 
 - (void) NotifyToSubmitCustomerHeadImg:(UIImage *) image
@@ -955,6 +955,7 @@
         vc.customerId = self.customerId;
         vc.selectProModel = self.selectProModel;
         vc.customerModel = self.data;
+        vc.carInfo = self.data.carInfo;
     }
 }
 
