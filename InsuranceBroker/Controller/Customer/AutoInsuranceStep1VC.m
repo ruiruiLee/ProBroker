@@ -240,7 +240,7 @@
                 CustomerCarInfoModel *model = (CustomerCarInfoModel*)[CustomerCarInfoModel modelFromDictionary:[content objectForKey:@"data"]];
                 model.newCarNoStatus = newCarNoStatus;
                 
-                if(_perInsurCompany > 0){
+                if(_perInsurCompany >= 0){
                     [self car_insur_plan:model.customerCarId customerId:model.customerId];
                 }
                 else{
