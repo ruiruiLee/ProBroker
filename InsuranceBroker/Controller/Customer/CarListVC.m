@@ -24,7 +24,7 @@
     
     self.title = @"车辆列表";
     
-    [self setRightBarButtonWithImage:ThemeImage(@"add")];
+    [self setRightBarButtonWithImage:ThemeImage(@"addCar")];
     self.pulltable.backgroundColor = [UIColor whiteColor];
     self.pulltable.tableFooterView = [[UIView alloc] init];
     self.pulltable.tableFooterView.backgroundColor = [UIColor whiteColor];

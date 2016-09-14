@@ -239,9 +239,10 @@
                 
                 CustomerCarInfoModel *model = (CustomerCarInfoModel*)[CustomerCarInfoModel modelFromDictionary:[content objectForKey:@"data"]];
                 model.newCarNoStatus = newCarNoStatus;
+                model.productId = productId;
                 
                 if(_perInsurCompany >= 0){
-                    [self car_insur_plan:model.customerCarId customerId:model.customerId];
+                    [self car_insur_plan:model.customerCarId mnodel:model];
                 }
                 else{
                     AutoInsuranceStep2VC *vc = [IBUIFactory CreateAutoInsuranceStep2VC];
@@ -256,14 +257,14 @@
     
 }
 
-- (void) car_insur_plan:(NSString *) customerCarId customerId:(NSString *) customerId
+- (void) car_insur_plan:(NSString *) customerCarId mnodel:(CustomerCarInfoModel *) model
 {
     OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
     
     NSString *str = @"";
-    //    if(self.customerModel.carInfo.carInsurStatus1 && self.customerModel.carInfo.carInsurCompId1 != nil){
-    //        str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", self.customerModel.carInfo.carInsurCompId1];
-    //    }
+    if( model.productId != nil){
+        str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", model.productId];
+    }
     
     if(self.selectProModel){
         if(self.selectProModel.productAttrId)
@@ -272,7 +273,7 @@
     
     web.title = @"报价";
     [self.navigationController pushViewController:web animated:YES];
-    NSString *url = [NSString stringWithFormat:CAR_INSUR_PLAN, Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, customerId, customerCarId, str];
+    NSString *url = [NSString stringWithFormat:CAR_INSUR_PLAN, Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, model.customerId, customerCarId, str];
     [web loadHtmlFromUrl:url];
 }
 
