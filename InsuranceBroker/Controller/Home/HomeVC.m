@@ -363,7 +363,7 @@
             _adArray = [PosterModel modelArrayFromArray:[d objectForKey:@"poster"]];
             _headlineArray = [HeadlineModel modelArrayFromArray:[d objectForKey:@"headlines"]];
             _newUserModel = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"newUser"]];
-            _jiHuaShu = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"jiHuaShu"]];
+//            _jiHuaShu = (AnnouncementModel*)[AnnouncementModel modelFromDictionary:[d objectForKey:@"jiHuaShu"]];
             appdelegate.customerBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"customerBanner"]];
             appdelegate.workBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"workBanner"]];
             appdelegate.inviteBanner = (NewUserModel*)[NewUserModel modelFromDictionary:[d objectForKey:@"friendBanner"]];
@@ -374,6 +374,16 @@
             appdelegate.lineCustomer = [commonImg objectForKey:@"lineCustomer"];
             appdelegate.quoteUrl =[d objectForKey:@"quoteUrl"];
             self.infoArray = [AnnouncementModel modelArrayFromArray:[d objectForKey:@"gongLue"]];
+            
+            @try {
+                _jiHuaShu = [self.infoArray objectAtIndex:1];
+            }
+            @catch (NSException *exception) {
+                
+            }
+            @finally {
+                
+            }
             [self initData];
         }
     }];
