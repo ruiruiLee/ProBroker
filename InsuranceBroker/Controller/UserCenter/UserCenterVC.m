@@ -273,7 +273,7 @@
     MyOrderVC *vc = [[MyOrderVC alloc] initWithNibName:nil bundle:nil];
     vc.title = @"我的保单列表";
     vc.hidesBottomBarWhenPushed = YES;
-    [vc initMenus];
+//    [vc initMenus];
     
     [self.navigationController pushViewController:vc animated:YES];
 }

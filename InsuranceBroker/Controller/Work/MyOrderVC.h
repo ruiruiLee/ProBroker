@@ -12,13 +12,22 @@
 #import "LMDropdownView.h"
 #import "MyPageViewController.h"
 
-@interface MyOrderVC : BaseViewController <UIPageViewControllerDataSource,UIPageViewControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@class OrderManagerVC;
+
+@interface MyOrderVC : BaseViewController <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+{
+    UIViewController *_currentVC;
+    
+    OrderManagerVC *_firstVC;
+    OrderManagerVC *_secondVC;
+}
 
 @property (strong, nonatomic)NSMutableArray *pages;
 @property (strong, nonatomic) HMSegmentedControl *pageControl;
 @property (strong, nonatomic) UIView *contentContainer;
 
-@property (strong, nonatomic)MyPageViewController *pageViewController;
+//@property (strong, nonatomic)MyPageViewController *pageViewController;
 
 @property (strong, nonatomic) UITableView *menuTableView;
 @property (strong, nonatomic) LMDropdownView *dropdownView;
