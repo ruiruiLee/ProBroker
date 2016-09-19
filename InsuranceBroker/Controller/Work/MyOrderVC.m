@@ -75,9 +75,6 @@
     //设置默认显示在容器View的内容
     [self.contentContainer addSubview:_firstVC.view];
     
-    NSLog(@"%@",NSStringFromCGRect(self.contentContainer.frame));
-    NSLog(@"%@",NSStringFromCGRect(_firstVC.view.frame));
-    
     _currentVC = _firstVC;
 }
 
