@@ -59,7 +59,7 @@
                                 <constraint firstAttribute="height" constant="40" id="Jx4-en-Pt8"/>
                                 <constraint firstAttribute="width" constant="90" id="LOx-cG-V7u"/>
                             </constraints>
-                            <state key="normal" title="获取验证码">
+                            <state key="normal">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>

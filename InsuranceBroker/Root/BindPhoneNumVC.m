@@ -59,6 +59,8 @@
     self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
     self.btnSubmit.enabled = NO;
     self.btnSubmit.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
+    
+    [self.btnGetCaptcha setTitle:@"获取验证码" forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -133,10 +135,10 @@
 
 - (void) btnGainVerifyCode:(id)sender
 {
-    [_tfMobile resignFirstResponder];
-    [_tfCaptcha resignFirstResponder];
-    _btnGetCaptcha.enabled = NO;
-    _btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
+    [self.tfMobile resignFirstResponder];
+    [self.tfCaptcha resignFirstResponder];
+    self.btnGetCaptcha.enabled = NO;
+    self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
     NSString *phone = _tfMobile.text;
     [AVOSCloud requestSmsCodeWithPhoneNumber:phone callback:^(BOOL succeeded, NSError *error) {
         if(succeeded){
@@ -145,20 +147,20 @@
         }else{
             if([error localizedDescription].length>0)
                [KGStatusBar showErrorWithStatus:[error localizedDescription]];
-            [_btnGetCaptcha setTitle:@"重取验证码" forState:UIControlStateNormal];
-            _btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
-            _btnGetCaptcha.enabled = YES;
+            [self.btnGetCaptcha setTitle:@"重取验证码" forState:UIControlStateNormal];
+            self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
+            self.btnGetCaptcha.enabled = YES;
         }
     }];
 }
 
 - (void) btnLoginUseVerifyCode:(id)sender
 {
-    [_tfMobile resignFirstResponder];
-    [_tfCaptcha resignFirstResponder];
+    [self.tfMobile resignFirstResponder];
+    [self.tfCaptcha resignFirstResponder];
     
-    NSString *verifyCode = _tfCaptcha.text;
-    NSString *phone = _tfMobile.text;
+    NSString *verifyCode = self.tfCaptcha.text;
+    NSString *phone = self.tfMobile.text;
     [ProgressHUD show:nil];
     [self loginWithDictionary:self.wxDic phone:phone smCode:verifyCode];
 }
@@ -174,13 +176,20 @@
 - (void)timerObserver
 {
     _count --;
-    [_btnGetCaptcha setTitle:[NSString stringWithFormat:@"%ld秒", (long)_count] forState:UIControlStateNormal];
+//    [self.btnGetCaptcha setTitle:str forState:UIControlStateNormal];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSString *str = [[NSNumber numberWithInteger:_count] stringValue];
+        self.btnGetCaptcha.enabled = YES;
+        [self.btnGetCaptcha setTitle:str forState:UIControlStateNormal];
+        self.btnGetCaptcha.enabled = NO;
+    });
+    
     if(_count == 0){
         [_timerOutTimer invalidate];
-        [_btnGetCaptcha setTitle:@"重取验证码" forState:UIControlStateNormal];
-        _btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
-        _btnGetCaptcha.enabled = YES;
-        _tfCaptcha.text = @"";
+        [self.btnGetCaptcha setTitle:@"重取验证码" forState:UIControlStateNormal];
+        self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
+        self.btnGetCaptcha.enabled = YES;
+        self.tfCaptcha.text = @"";
     }
 }
 

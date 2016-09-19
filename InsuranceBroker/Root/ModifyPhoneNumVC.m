@@ -19,6 +19,8 @@
     [super viewDidLoad];
     
     [self setBackBarButton];
+    
+    [self.btnGetCaptcha setTitle:@"获取验证码" forState:UIControlStateNormal];
 }
 
 - (BOOL) resignFirstResponder
