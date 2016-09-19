@@ -956,6 +956,7 @@
         [web loadHtmlFromUrl:url];
     }else{
 
+        [Util showAlertMessage:@"请选择车辆上年投保信息或完善车辆资料！"];
         AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
         [self.navigationController pushViewController:vc animated:YES];
         vc.customerId = self.customerId;
