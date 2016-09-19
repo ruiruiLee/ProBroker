@@ -110,13 +110,18 @@
         self.btnChat.imageView.badgeView.badgeValue = 0;
 }
 
+- (void) refreshCarList:(NSNotification *) notify
+{
+    [_insuranceDetailView.tableview reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     AppContext *context = [AppContext sharedAppContext];
     [context addObserver:self forKeyPath:@"isBDKFHasMsg" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCarList:) name:Notify_Refresh_Car_list object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadCustomerDetail:) name:Notify_Reload_CustomerDetail object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshOrderList:) name:Notify_Refresh_OrderList object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshInsuredList:) name:Notify_Refresh_Insured_list object:nil];

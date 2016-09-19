@@ -94,6 +94,7 @@
 #define Notify_Login @"Notify_Login"
 #define Notify_Refresh_OrderList @"Notify_Refresh_OrderList"
 #define Notify_Refresh_Insured_list @"Notify_Refresh_Insured_list"
+#define Notify_Refresh_Car_list @"Notify_Refresh_Car_list"
 #define Notify_Service_Info_Received @"Notify_Service_Info_Received"
 #define Notify_Msg_Reload @"Notify_Msg_Reload"
 #define Notify_Pay_Success @"Notify_Pay_Success"

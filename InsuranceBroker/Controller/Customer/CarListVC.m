@@ -174,7 +174,7 @@
         
     }];
     self.customerModel.carInfo = model;
-    
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Refresh_Car_list object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
