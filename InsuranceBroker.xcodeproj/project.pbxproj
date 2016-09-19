@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		597D7E5789BC3332070BDA27 /* libPods-InsuranceBroker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AF8283F46B3009E59005D0FB /* libPods-InsuranceBroker.a */; };
 		8612F4131CE4828D0045340F /* JElasticPullToRefreshLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40A1CE4828D0045340F /* JElasticPullToRefreshLoadingView.m */; };
 		8612F4141CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40C1CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.m */; };
 		8612F4151CE4828D0045340F /* JElasticPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40E1CE4828D0045340F /* JElasticPullToRefreshView.m */; };
@@ -516,7 +517,6 @@
 		CF608EF91C58A43D00DC10CA /* KGStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EF81C58A43D00DC10CA /* KGStatusBar.m */; };
 		CF608EFD1C5A330F00DC10CA /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CF608EFB1C5A330F00DC10CA /* NetManager.m */; };
 		CF677E341C97EB4D00128F1B /* MJBannnerPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CF677E331C97EB4D00128F1B /* MJBannnerPlayer.m */; };
-		E9335367AF4BBFA55372CBCC /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 03AB914CAC81E099C3474FBB /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -537,8 +537,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		03AB914CAC81E099C3474FBB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		39658BE0FF776730306DC2D4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8612F4081CE4828D0045340F /* JElasticPullToRefreshConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JElasticPullToRefreshConstants.h; sourceTree = "<group>"; };
 		8612F4091CE4828D0045340F /* JElasticPullToRefreshLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JElasticPullToRefreshLoadingView.h; sourceTree = "<group>"; };
 		8612F40A1CE4828D0045340F /* JElasticPullToRefreshLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JElasticPullToRefreshLoadingView.m; sourceTree = "<group>"; };
@@ -1529,6 +1527,7 @@
 		86FC49281C756ECA0031B435 /* SetTeamLeaderPhoneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTeamLeaderPhoneView.h; sourceTree = "<group>"; };
 		86FC49291C756ECA0031B435 /* SetTeamLeaderPhoneView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTeamLeaderPhoneView.m; sourceTree = "<group>"; };
 		86FC492D1C756F8B0031B435 /* SetTeamLeaderPhoneView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetTeamLeaderPhoneView.xib; sourceTree = "<group>"; };
+		AF8283F46B3009E59005D0FB /* libPods-InsuranceBroker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InsuranceBroker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF2C88CC1CE47FB7001B6FFF /* OnlineCustomer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlineCustomer.h; sourceTree = "<group>"; };
 		CF2C88CD1CE47FB7001B6FFF /* OnlineCustomer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlineCustomer.m; sourceTree = "<group>"; };
 		CF608EE51C589C2900DC10CA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Reachability/Reachability.h; sourceTree = "<group>"; };
@@ -1545,7 +1544,8 @@
 		CF608EFC1C5A330F00DC10CA /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetManager.h; path = Reachability/NetManager.h; sourceTree = "<group>"; };
 		CF677E321C97EB4D00128F1B /* MJBannnerPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJBannnerPlayer.h; sourceTree = "<group>"; };
 		CF677E331C97EB4D00128F1B /* MJBannnerPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJBannnerPlayer.m; sourceTree = "<group>"; };
-		DFE808A7D7A93EC82240AE11 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		CF998909FBF90581FCFF8B9B /* Pods-InsuranceBroker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InsuranceBroker.release.xcconfig"; path = "Pods/Target Support Files/Pods-InsuranceBroker/Pods-InsuranceBroker.release.xcconfig"; sourceTree = "<group>"; };
+		EB0C272454B0B29DE5B3D311 /* Pods-InsuranceBroker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InsuranceBroker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InsuranceBroker/Pods-InsuranceBroker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1573,7 +1573,7 @@
 				86A5043E1C4E37E30032A901 /* ShareSDKExtension.framework in Frameworks */,
 				86F2E3271D37773C002FCE75 /* libssl.a in Frameworks */,
 				864EFBC51D86538C00CEC6F8 /* libAppKeFuLib.a in Frameworks */,
-				E9335367AF4BBFA55372CBCC /* libPods.a in Frameworks */,
+				597D7E5789BC3332070BDA27 /* libPods-InsuranceBroker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1594,11 +1594,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4379BE53848FFE17BCDF4E6D /* Pods */ = {
+		3670ED302694B12C947D9E62 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				39658BE0FF776730306DC2D4 /* Pods.debug.xcconfig */,
-				DFE808A7D7A93EC82240AE11 /* Pods.release.xcconfig */,
+				EB0C272454B0B29DE5B3D311 /* Pods-InsuranceBroker.debug.xcconfig */,
+				CF998909FBF90581FCFF8B9B /* Pods-InsuranceBroker.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1661,8 +1661,8 @@
 				865065A41C1E6BC800429EAE /* InsuranceBrokerUITests */,
 				8650657E1C1E6BC800429EAE /* Products */,
 				865065B31C1E7F9C00429EAE /* framework */,
-				4379BE53848FFE17BCDF4E6D /* Pods */,
 				D1F40C377712D00EF47C11DD /* Frameworks */,
+				3670ED302694B12C947D9E62 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3292,7 +3292,7 @@
 				865065FE1C1FAE7400429EAE /* CoreTelephony.framework */,
 				865065FC1C1FAE6000429EAE /* libc++.tbd */,
 				865065FA1C1FAE3400429EAE /* libsqlite3.tbd */,
-				03AB914CAC81E099C3474FBB /* libPods.a */,
+				AF8283F46B3009E59005D0FB /* libPods-InsuranceBroker.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3304,12 +3304,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 865065AA1C1E6BC800429EAE /* Build configuration list for PBXNativeTarget "InsuranceBroker" */;
 			buildPhases = (
-				FEBB05E1D0C1451FAA00949F /* Check Pods Manifest.lock */,
+				D480924BF80EE250A990D382 /* [CP] Check Pods Manifest.lock */,
 				865065791C1E6BC800429EAE /* Sources */,
 				8650657A1C1E6BC800429EAE /* Frameworks */,
 				8650657B1C1E6BC800429EAE /* Resources */,
-				51D467FCA30B38A732CB8D55 /* Copy Pods Resources */,
-				FB11EE312ABC3EEAE6A06463 /* Embed Pods Frameworks */,
+				3A9E65A6E8A26A767EE354FE /* [CP] Embed Pods Frameworks */,
+				A7B42C4CA9044AB9D4E4C3CD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3520,44 +3520,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		51D467FCA30B38A732CB8D55 /* Copy Pods Resources */ = {
+		3A9E65A6E8A26A767EE354FE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InsuranceBroker/Pods-InsuranceBroker-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FB11EE312ABC3EEAE6A06463 /* Embed Pods Frameworks */ = {
+		A7B42C4CA9044AB9D4E4C3CD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-InsuranceBroker/Pods-InsuranceBroker-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FEBB05E1D0C1451FAA00949F /* Check Pods Manifest.lock */ = {
+		D480924BF80EE250A990D382 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4102,7 +4102,7 @@
 		};
 		865065AB1C1E6BC800429EAE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 39658BE0FF776730306DC2D4 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = EB0C272454B0B29DE5B3D311 /* Pods-InsuranceBroker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -4185,7 +4185,7 @@
 		};
 		865065AC1C1E6BC800429EAE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFE808A7D7A93EC82240AE11 /* Pods.release.xcconfig */;
+			baseConfigurationReference = CF998909FBF90581FCFF8B9B /* Pods-InsuranceBroker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

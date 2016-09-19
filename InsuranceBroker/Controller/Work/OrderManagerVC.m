@@ -206,13 +206,16 @@
     [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
     NSMutableArray *rules = [[NSMutableArray alloc] init];
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    if(self.insuranceType)
+    if([self.insuranceType isEqualToString:@"1"])
         [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:self.insuranceType]];
+    else
+        [rules addObject:[self getRulesByField:@"insuranceType" op:@"ne" data:@"1"]];
+    
     [rules addObject:[self getRulesByField:@"userId" op:@"eq" data:user.userId]];
     [rules addObject:[self getRulesByField:@"customerName" op:@"cn" data:filterString]];
     [rules addObject:[self getRulesByField:@"customerPhone" op:@"cn" data:filterString]];
     [rules addObject:[self getRulesByField:@"carNo" op:@"cn" data:filterString]];
-    [rules addObject:[self getRulesByField:@"insuranceOrderNo" op:@"cn" data:filterString]];
+//    [rules addObject:[self getRulesByField:@"insuranceOrderNo" op:@"cn" data:filterString]];
     NSString *gxbzStatus = nil;
     if(_currentMapTypeIndex > 0){
         NSDictionary *dic = [self.mapTypes objectAtIndex:_currentMapTypeIndex];
