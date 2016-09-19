@@ -176,13 +176,10 @@
 - (void)timerObserver
 {
     _count --;
-//    [self.btnGetCaptcha setTitle:str forState:UIControlStateNormal];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSString *str = [[NSNumber numberWithInteger:_count] stringValue];
-        self.btnGetCaptcha.enabled = YES;
-        [self.btnGetCaptcha setTitle:str forState:UIControlStateNormal];
-        self.btnGetCaptcha.enabled = NO;
-    });
+    NSString *str = [[NSNumber numberWithInteger:_count] stringValue];
+    self.btnGetCaptcha.enabled = YES;
+    [self.btnGetCaptcha setTitle:str forState:UIControlStateNormal];
+    self.btnGetCaptcha.enabled = NO;
     
     if(_count == 0){
         [_timerOutTimer invalidate];
