@@ -446,6 +446,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BIM-7q-pGL" customClass="HighNightBgButton">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="84"/>
                                                     <animations/>
+                                                    <connections>
+                                                        <action selector="doBtnIncomeStatistics:" destination="-1" eventType="touchUpInside" id="fj3-Qu-OAH"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <animations/>
