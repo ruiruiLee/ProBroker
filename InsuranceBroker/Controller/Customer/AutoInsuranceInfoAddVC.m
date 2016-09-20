@@ -558,7 +558,7 @@
                 if(filePahe1 != nil){
                     model.carOwnerCard1 = filePahe1;
                 }
-                
+                [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Refresh_Car_list object:nil];
                 if(completion){
                     completion(code, content);
                 }

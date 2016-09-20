@@ -18,6 +18,11 @@
 
 @implementation CarListVC
 
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -28,8 +33,14 @@
     self.pulltable.backgroundColor = [UIColor whiteColor];
     self.pulltable.tableFooterView = [[UIView alloc] init];
     self.pulltable.tableFooterView.backgroundColor = [UIColor whiteColor];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCarList:) name:Notify_Refresh_Car_list object:nil];
     
     [self.pulltable registerNib:[UINib nibWithNibName:@"CarListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+}
+
+- (void) refreshCarList:(NSNotification *) notify
+{
+    [self refresh2Loaddata];
 }
 
 - (void) handleRightBarButtonClicked:(id)sender
@@ -174,6 +185,7 @@
         
     }];
     self.customerModel.carInfo = model;
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Refresh_Car_list object:nil];
     [self.navigationController popViewControllerAnimated:YES];
 }

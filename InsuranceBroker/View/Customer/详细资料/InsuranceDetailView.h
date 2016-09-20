@@ -16,11 +16,6 @@
 {
     UIButton *addImgButton;
     
-    UIImage *driveLisence1;
-    UIImage *driveLisence2;
-    UIImage *cert1;
-    UIImage *cert2;
-    
     HBImageViewList *_imageList;
     
     UIView *_footView;

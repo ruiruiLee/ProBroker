@@ -409,21 +409,9 @@
         
         if(section == 0){
             [self setCellData:cell title:@"行驶证" value:@"(正本／副本)" content:_carInfo.carNo img1:self.carInfo.travelCard1 placeholderImage1:@"driveLisence1" img2:self.carInfo.travelCard2 placeholderImage2:@"driveLisence2"];
-            if(driveLisence1 != nil){
-                [cell.imgV1 setImage:driveLisence1 forState:UIControlStateNormal];
-            }
-            if(driveLisence2 != nil){
-                [cell.imgV2 setImage:driveLisence2 forState:UIControlStateNormal];
-            }
         }
         else if (section == 1){
             [self setCellData:cell title:@"车主身份证" value:@"(正面／反面)" content:_carInfo.carOwnerCard img1:self.carInfo.carOwnerCard1 placeholderImage1:@"cert1" img2:self.carInfo.carOwnerCard2 placeholderImage2:@"cert2"];
-            if(cert1 != nil){
-                [cell.imgV1 setImage:cert1 forState:UIControlStateNormal];
-            }
-            if(cert2 != nil){
-                [cell.imgV2 setImage:cert2 forState:UIControlStateNormal];
-            }
         } ;
         
         return cell;
@@ -596,22 +584,18 @@
         
         UIImage *new = [Util scaleToSize:image scaledToSize:CGSizeMake(1500, 1500)];
         
-        [addImgButton setImage:new forState:UIControlStateNormal];
+        [addImgButton setBackgroundImage:new forState:UIControlStateNormal];
          NSInteger tag = addImgButton.tag - 100;
         if(tag == 0){
-            driveLisence1 = new;
             [self saveOrUpdateCustomerCar:new travelCard2:nil];
         }
         else if (tag == 1){
-            driveLisence2 = new;
             [self saveOrUpdateCustomerCar:nil travelCard2:new];
         }
         else if (tag ==2 ){
-            cert1 = new;
             [self saveOrUpdateCustomer:new cert2:nil];
         }
         else{
-            cert2 = new;
             [self saveOrUpdateCustomer:nil cert2:new];
         }
     }];
