@@ -4139,6 +4139,7 @@
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/AppKeFuLib",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/AlipaySDK",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -4222,6 +4223,7 @@
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/AppKeFuLib",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/AlipaySDK",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
