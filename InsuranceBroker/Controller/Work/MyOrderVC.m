@@ -170,9 +170,9 @@
     if ([self.menuTableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.menuTableView setSeparatorInset:insets];
     }
-    if ([self.menuTableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.menuTableView setLayoutMargins:insets];
-    }
+//    if ([self.menuTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+////        [self.menuTableView setLayoutMargins:insets];
+//    }
 }
 
 - (void) doBtnSelectOrderStatus:(id) sender
