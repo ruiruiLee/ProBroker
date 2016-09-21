@@ -10,8 +10,8 @@
 #import <ShareSDKExtension/SSEThirdPartyLoginHelper.h>
 #import "define.h"
 #import "NetWorkHandler+login.h"
-#import <AVOSCloud/AVOSCloud.h>
-#import <AVOSCloudSNS/AVOSCloudSNS.h>
+#import "AVOSCloud/AVOSCloud.h"
+//#import <AVOSCloudSNS/AVOSCloudSNS.h>
 #import "SetTeamLeaderPhoneView.h"
 
 @interface WXLoginVC () <SetTeamLeaderPhoneViewDelegate>

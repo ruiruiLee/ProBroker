@@ -8,8 +8,8 @@
 
 #import "loginViewController.h"
 #import "define.h"
-#import <AVOSCloud/AVOSCloud.h>
-#import <AVOSCloudSNS/AVOSCloudSNS.h>
+#import "AVOSCloud.h"
+//#import <AVOSCloudSNS/AVOSCloudSNS.h>
 #import "NetWorkHandler+login.h"
 #import "SetTeamLeaderPhoneView.h"
 #import "IQKeyboardManager.h"

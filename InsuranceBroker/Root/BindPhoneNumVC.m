@@ -9,8 +9,8 @@
 #import "BindPhoneNumVC.h"
 #import "define.h"
 #import "NetWorkHandler+login.h"
-#import <AVOSCloud/AVOSCloud.h>
-#import <AVOSCloudSNS/AVOSCloudSNS.h>
+#import "AVOSCloud/AVOSCloud.h"
+//#import <AVOSCloudSNS/AVOSCloudSNS.h>
 
 
 @interface BindPhoneNumVC ()

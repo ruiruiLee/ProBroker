@@ -6,11 +6,10 @@
 //  Copyright © 2016年 LiuZach. All rights reserved.
 //
 
-//#import "Mantle.h"
 #import "BaseModel.h"
 #import "CustomerDetailModel.h"
 
-@interface CustomerInfoModel : BaseModel//MTLModel <MTLJSONSerializing>
+@interface CustomerInfoModel : BaseModel
 
 @property (nonatomic, strong) NSString *customerId;
 @property (nonatomic, strong) NSString *customerName;

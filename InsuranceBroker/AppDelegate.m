@@ -8,8 +8,8 @@
 
 #import "AppDelegate.h"
 #import "define.h"
-#import <AVOSCloud/AVOSCloud.h>
-#import <AVOSCloudSNS/AVOSCloudSNS.h>
+#import "AVOSCloud/AVOSCloud.h"
+//#import <AVOSCloudSNS/AVOSCloudSNS.h>
 
 #import <ShareSDK/ShareSDK.h>
 #import "WXApi.h"

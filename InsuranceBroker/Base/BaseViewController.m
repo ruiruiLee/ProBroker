@@ -14,7 +14,7 @@
 #import "GMDCircleLoader.h"
 #import "NetManager.h"
 #import "KGStatusBar.h"
-#import <AVOSCloud/AVOSCloud.h>
+#import "AVOSCloud/AVOSCloud.h"
 #import "NetWorkHandler+initShorUrl.h"
 
 @implementation BaseViewController

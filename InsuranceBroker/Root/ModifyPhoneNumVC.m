@@ -8,8 +8,8 @@
 
 #import "ModifyPhoneNumVC.h"
 #import "NetWorkHandler+modifyUserInfo.h"
-#import <AVOSCloud/AVOSCloud.h>
-#import <AVOSCloudSNS/AVOSCloudSNS.h>
+#import "AVOSCloud.h"
+//#import <AVOSCloudSNS/AVOSCloudSNS.h>
 #import "define.h"
 
 @implementation ModifyPhoneNumVC

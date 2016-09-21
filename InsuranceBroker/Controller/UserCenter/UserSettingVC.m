@@ -10,8 +10,8 @@
 #import "define.h"
 #import "RootViewController.h"
 #import "ZWIntroductionViewController.h"
-#import <AVOSCloud/AVOSCloud.h>
-#import <AVOSCloudSNS/AVOSCloudSNS.h>
+#import "AVOSCloud/AVOSCloud.h"
+//#import <AVOSCloudSNS/AVOSCloudSNS.h>
 #import "EGOCache.h"
 #import "BaseTableViewCell.h"
 #import "HighNightBgButton.h"

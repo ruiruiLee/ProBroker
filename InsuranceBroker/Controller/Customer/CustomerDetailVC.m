@@ -20,7 +20,7 @@
 #import "NetWorkHandler+saveOrUpdateCustomerCar.h"
 //#import "NetWorkHandler+saveOrUpdateCustomer.h"
 #import "NetWorkHandler+updateCustomerHeadImg.h"
-#import <AVOSCloud/AVOSCloud.h>
+#import "AVOSCloud/AVOSCloud.h"
 #import "OnlineCustomer.h"
 #import "BaseNavigationController.h"
 #import "InsuredUserInfoModel.h"

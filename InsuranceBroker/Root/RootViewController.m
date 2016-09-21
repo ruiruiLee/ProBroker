@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 #import "OrderManagerVC.h"
 #import "UITabBar+badge.h"
-#import <AVOSCloud/AVOSCloud.h>
+#import "AVOSCloud/AVOSCloud.h"
 
 @interface RootViewController ()
 

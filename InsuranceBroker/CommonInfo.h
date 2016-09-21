@@ -17,7 +17,7 @@
 #define MAS_SHORTHAND_GLOBALS
 //#import <Masonry/Masonry.h>
 
-#import <AFNetworking/AFNetworking.h>
+#import "AFNetworking.h"
 #import "XMLDictionary.h"
 
 

@@ -14,7 +14,7 @@
 #import "WXApi.h"
 #import "productAttrModel.h"
 #import "UIImageView+WebCache.h"
-#import <AVOSCloud/AVOSCloud.h>
+#import "AVOSCloud.h"
 #import "KGStatusBar.h"
 
 @implementation BaseStrategyView

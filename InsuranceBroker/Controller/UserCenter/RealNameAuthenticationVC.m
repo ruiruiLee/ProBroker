@@ -8,7 +8,7 @@
 
 #import "RealNameAuthenticationVC.h"
 #import "define.h"
-#import <AVOSCloud/AVOSCloud.h>
+#import "AVOSCloud/AVOSCloud.h"
 #import "UIButton+WebCache.h"
 #import "NetWorkHandler+modifyUserInfo.h"
 

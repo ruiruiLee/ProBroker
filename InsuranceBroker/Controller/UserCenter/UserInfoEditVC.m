@@ -11,7 +11,7 @@
 #import "UserEditTableViewCell.h"
 #import "HMPopUpView.h"
 #import "AreaSelectedVC.h"
-#import <AVOSCloud/AVOSCloud.h>
+#import "AVOSCloud/AVOSCloud.h"
 #import "UIImageView+WebCache.h"
 #import "NetWorkHandler+modifyUserInfo.h"
 

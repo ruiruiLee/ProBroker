@@ -8,7 +8,6 @@
 
 #import "CustomerInfoModel.h"
 #import <UIKit/UIKit.h>
-#import "MTLValueTransformer.h"
 #import "SBJson.h"
 
 @implementation CustomerInfoModel

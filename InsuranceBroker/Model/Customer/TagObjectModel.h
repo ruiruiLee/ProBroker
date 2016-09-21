@@ -6,7 +6,6 @@
 //  Copyright © 2015年 LiuZach. All rights reserved.
 //
 
-//#import "Mantle.h"
 #import <UIKit/UIKit.h>
 #import "BaseModel.h"
 

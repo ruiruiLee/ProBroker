@@ -10,7 +10,7 @@
 #import "define.h"
 #import "NetWorkHandler+queryUserInfo.h"
 #import "NetWorkHandler+announcement.h"
-#import <AVOSCloud/AVOSCloud.h>
+#import "AVOSCloud/AVOSCloud.h"
 #import "AppDelegate.h"
 #import "RootViewController.h"
 
