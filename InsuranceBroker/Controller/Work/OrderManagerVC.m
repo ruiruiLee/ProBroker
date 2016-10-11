@@ -51,7 +51,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
         
-        self.insuranceType = @"1";
+//        self.insuranceType = @"1";
         
         filterString = @"";
     }
@@ -83,26 +83,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    self.title = @"我的保单";
+    self.title = @"我的保单";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePaySuccess) name:Notify_Pay_Success object:nil];
     
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
-    self.navigationItem.titleView = titleView;
-    
-    
-    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 160, 22)];
-    lb.text = @"我的保单";
-    lb.font = _FONT_B(18);
-    lb.textAlignment = NSTextAlignmentCenter;
-    [titleView addSubview:lb];
-    UIImageView *image = [[UIImageView alloc] initWithImage:ThemeImage(@"xialaliebiao")];
-    image.frame = CGRectMake(70, 24, 19, 16);
-    [titleView addSubview:image];
-    
-    HighNightBgButton *btn = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
-    [titleView addSubview:btn];
-    [btn addTarget:self action:@selector(doBtnSelectOrderStatus:) forControlEvents:UIControlEventTouchUpInside];
+//    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
+//    self.navigationItem.titleView = titleView;
+//    
+//    
+//    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 160, 22)];
+//    lb.text = @"我的保单";
+//    lb.font = _FONT_B(18);
+//    lb.textAlignment = NSTextAlignmentCenter;
+//    [titleView addSubview:lb];
+//    UIImageView *image = [[UIImageView alloc] initWithImage:ThemeImage(@"xialaliebiao")];
+//    image.frame = CGRectMake(70, 24, 19, 16);
+//    [titleView addSubview:image];
+//    
+//    HighNightBgButton *btn = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
+//    [titleView addSubview:btn];
+//    [btn addTarget:self action:@selector(doBtnSelectOrderStatus:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void) handlePaySuccess
@@ -206,7 +206,10 @@
     [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
     NSMutableArray *rules = [[NSMutableArray alloc] init];
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    if([self.insuranceType isEqualToString:@"1"])
+    if(self.insuranceType == nil){
+        
+    }
+    else if([self.insuranceType isEqualToString:@"1"])
         [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:self.insuranceType]];
     else
         [rules addObject:[self getRulesByField:@"insuranceType" op:@"ne" data:@"1"]];
@@ -215,7 +218,7 @@
     [rules addObject:[self getRulesByField:@"customerName" op:@"cn" data:filterString]];
     [rules addObject:[self getRulesByField:@"customerPhone" op:@"cn" data:filterString]];
     [rules addObject:[self getRulesByField:@"carNo" op:@"cn" data:filterString]];
-//    [rules addObject:[self getRulesByField:@"insuranceOrderNo" op:@"cn" data:filterString]];
+    [rules addObject:[self getRulesByField:@"insuranceOrderNo" op:@"cn" data:filterString]];
     NSString *gxbzStatus = nil;
     if(_currentMapTypeIndex > 0){
         NSDictionary *dic = [self.mapTypes objectAtIndex:_currentMapTypeIndex];
