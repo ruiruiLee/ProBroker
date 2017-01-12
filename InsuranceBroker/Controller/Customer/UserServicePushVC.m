@@ -29,6 +29,15 @@
 
 @implementation UserServicePushVC
 
+- (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if(self){
+        self.title = @"收益统计";
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -40,7 +49,7 @@
 
 - (void) doBtnClicked:(UIButton *)sender
 {
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     NewUserModel *model = appdelegate.customerBanner;
     if(model.isRedirect){
         WebViewController *web = [IBUIFactory CreateWebViewController];
