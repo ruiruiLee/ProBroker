@@ -117,11 +117,6 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-//    if(delegate && [delegate respondsToSelector:@selector(NotifyItemSelectIndex:view:)]){
-//        productAttrModel *model = [self.data objectAtIndex:indexPath.row];
-//        [self.delegate NotifyItemSelectIndex:model view:self];
-//    }
-    
     productAttrModel *m = [self.data objectAtIndex:indexPath.row];
     
     ProductDetailWebVC *web = [IBUIFactory CreateProductDetailWebVC];
@@ -134,25 +129,6 @@
     web.selectProModel = m;
     [self.navigationController pushViewController:web animated:YES];
     [web loadHtmlFromUrlWithUserId:m.clickAddr productId:m.productAttrId];
-
-    
-    //    NewsModel *model = [self.data objectAtIndex:indexPath.row];
-    //    if(model.isRedirect){
-    //        WebViewController *web = [IBUIFactory CreateWebViewController];
-    //        web.title = model.title;
-    //        web.type = enumShareTypeShare;
-    //        if(model.imgUrl)
-    //            web.shareImgArray = [NSArray arrayWithObject:model.imgUrl];
-    //        web.shareTitle = model.title;
-    //        web.shareContent = model.content;
-    //        [self.parentvc.navigationController pushViewController:web animated:YES];
-    ////        [web loadHtmlFromUrl:model.url];
-    //        if(model.url == nil){
-    //            [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid]];
-    //        }else{
-    //            [web loadHtmlFromUrlWithUserId:model.url];
-    //        }
-    //    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

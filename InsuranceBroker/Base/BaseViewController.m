@@ -79,18 +79,18 @@
     [self performSelector:@selector(regitserSystemAsObserver) withObject:nil afterDelay:0.5f];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    [self.navigationController.navigationBar lt_setBackgroundColor:_COLOR(255, 255, 255)];
+//    [self.navigationController.navigationBar lt_setBackgroundColor:_COLOR(255, 255, 255)];
     
-//    self.navigationController.navigationBar.barStyle = UIBaselineAdjustmentNone;
+    UIImage *image = [Util imageWithColor:[UIColor whiteColor] size:CGSizeMake(1, 1)];
+    [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     
     self.view.backgroundColor = _COLOR(0xf5, 0xf5, 0xf5);
     
     UIColor * color = _COLOR(0x21, 0x21, 0x21);
-//     NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:UITextAttributeTextColor];
     NSDictionary * dict=[NSDictionary dictionaryWithObject:color forKey:NSForegroundColorAttributeName];
-     self.navigationController.navigationBar.titleTextAttributes = dict;
+    self.navigationController.navigationBar.titleTextAttributes = dict;
     
-//    [self setBackBarButton];
     [self setLeftBarButtonWithImage:ThemeImage(@"arrow_left")];
 }
 

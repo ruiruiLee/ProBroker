@@ -371,6 +371,7 @@
     _perInsurCompany = index;
     self.lbPCompany.text = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:index]).productName;
 }
+
 -(void)menuViewControllerDidCancel:(MenuViewController *)menu
 {
     [menu hide];

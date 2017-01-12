@@ -14,6 +14,10 @@
 #import "SelectCustomerForCarVC.h"
 #import "RootViewController.h"
 #import "THSegmentedPager.h"
+#import "SBJson.h"
+//#import "Rc4.h"
+
+#import "rc4.h"
 
 @interface ProductDetailWebVC ()<SelectInsuredVCDelegate, SelectCustomerVCDelegate>
 
@@ -24,6 +28,8 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self SetRightBarButtonWithTitle:@"分享" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
 }
 
 - (void) handleCloseButtonClicked:(UIButton *) sender
@@ -41,27 +47,17 @@
     [self.navigationController popToViewController:vc animated:YES];
 }
 
-//- (void) loadWebString
-//{
-//    if(!_isLoad){
-//        if(self.urlpath != nil){
-//            
-//            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
-////            id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:self.urlpath]];
-////            if (cacheDatas !=nil) { // 直接加在缓存
-////                NSString *datastr = [[NSString alloc] initWithData:cacheDatas encoding:NSUTF8StringEncoding];
-////                [ _webview loadHTMLString:datastr baseURL:[NSURL URLWithString:self.urlpath]];
-////            }
-////            else{  //请求服务器资源
-////
-////                NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlpath]];
-////                [self addWebCache:request]; // 加缓存并加载
-////            }
-//            
-//            _isLoad = YES;
-//        }
-//    }
-//}
+- (void) loadWebString
+{
+    if(!_isLoad){
+        if(self.urlpath != nil){
+            
+            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
+            
+            _isLoad = YES;
+        }
+    }
+}
 
 - (void) viewWillAppear:(BOOL)animated
 {
@@ -185,10 +181,6 @@
 
 - (void) NotifyToSelectCustomerForCar:(NSString *) productAttrId
 {
-//    SelectCustomerForCarVC *vc = [[SelectCustomerForCarVC alloc] initWithNibName:nil bundle:nil];
-//    vc.selectProModel = self.selectProModel;
-//    [self.navigationController pushViewController:vc animated:YES];
-    
     AutoInsuranceStep1VC *vc = [IBUIFactory CreateAutoInsuranceStep1VC];
     vc.hidesBottomBarWhenPushed = YES;
     vc.title = @"车险算价";
@@ -298,9 +290,61 @@
     //创建分享参数
     
     NSDictionary *object = [self getShareInfo];
-    if(object == nil){
-        [super simplyShare:type];
-    }else{
+    if(object == nil){//众安平台;
+//        [super simplyShare:type];
+        
+        NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+        NSString *str = [self getBizContent];
+        NSString *url = [NSString stringWithFormat:@"%@&bizContent=%@", self.selectProModel.clickAddr, str];
+        NSMutableArray *imgArray = [[NSMutableArray alloc] init];
+        NSString *flagImg = self.selectProModel.productImg;
+        if(flagImg)
+            [imgArray addObject:flagImg];
+        
+        if(imgArray == nil || [imgArray count] == 0)
+        {
+            AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+            if(appdelegate.appIcon)
+                [imgArray addObject:appdelegate.appIcon];
+        }
+        
+        
+        if (self.shareImgArray) {
+            
+            NSString *content = self.selectProModel.productIntro;
+            NSString *title = self.selectProModel.productTitle;
+            NSURL *uri = [NSURL URLWithString:url];
+            [shareParams SSDKSetupShareParamsByText:content
+                                             images:imgArray
+                                                url:uri
+                                              title:title
+                                               type:SSDKContentTypeAuto];
+            
+            //进行分享
+            [ShareSDK share:type
+                 parameters:shareParams
+             onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                 
+                 switch (state) {
+                     case SSDKResponseStateSuccess:
+                     {
+                         [KGStatusBar showSuccessWithStatus:@"分享成功"];
+                         break;
+                     }
+                     case SSDKResponseStateFail:
+                     {
+                         [KGStatusBar showSuccessWithStatus:@"分享失败"];
+                         break;
+                     }
+                     default:
+                         break;
+                 }
+             }];
+        }
+        
+    }
+    else
+    {
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
         NSString *url = [object objectForKey:@"url"];
         if([url rangeOfString:@"?"].length > 0)
@@ -314,7 +358,7 @@
         
         if(imgArray == nil || [imgArray count] == 0)
         {
-            AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+            AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
             if(appdelegate.appIcon)
                 [imgArray addObject:appdelegate.appIcon];
         }
@@ -353,6 +397,23 @@
              }];
         }
     }
+}
+
+- (NSString *) getBizContent
+{
+    NSMutableDictionary *mdic = [[NSMutableDictionary alloc] init];
+    
+//    [mdic setObject:@{@"parameter1": [UserInfoModel shareUserInfoModel].userId} forKey:@"extraInfo"];
+//    [mdic setObject:@"投保人姓名" forKey:@"policyHolderUserName"];
+//    SBJsonWriter *_parser = [[SBJsonWriter alloc] init];
+//    NSString *str = [_parser stringWithObject:mdic];
+    
+    NSString *str = @"{\"policyHolderUserName\":\"投保人姓名\"}";
+    NSString *RC4 = [Rc4 HloveyRC4:str key:@"open20160501"];
+    NSData *BASE64 = [RC4 dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *str1 = [BASE64 base64EncodedStringWithOptions:0];
+    
+    return str1;//[Rc4 HloveyRC4:str key:@"open20160501"];
 }
 
 @end
