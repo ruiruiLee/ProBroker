@@ -11,13 +11,12 @@
 #import "RootViewController.h"
 #import "ZWIntroductionViewController.h"
 #import "AVOSCloud/AVOSCloud.h"
-//#import <AVOSCloudSNS/AVOSCloudSNS.h>
 #import "EGOCache.h"
 #import "BaseTableViewCell.h"
 #import "HighNightBgButton.h"
-#import "AppDelegate.h"
 #import "AppKeFuLib.h"
 #import "OnlineCustomer.h"
+#import "SRAlertView.h"
 
 @interface UserSettingVC ()
 
@@ -172,17 +171,6 @@
         switch (indexPath.row) {
             case 0:
             {
-//                cell.textLabel.text = @"功能介绍";
-//                NSArray *coverImageNames = @[@"guide1",@"guide2",@"guide3",@"guide4"];
-//                // Example 2 自定义登陆按钮
-//                self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:coverImageNames button:nil];
-//                
-//                [((AppDelegate*)([UIApplication sharedApplication].delegate)).window addSubview:self.introductionView.view];
-//                __weak UserSettingVC *weakself = self;
-//                self.introductionView.didSelectedEnter = ^() {
-//                    [weakself.introductionView.view removeFromSuperview];
-//                    weakself.introductionView = nil;
-//                };
                 
                 [[AppKeFuLib sharedInstance] pushFAQViewController:self.navigationController
                                                  withWorkgroupName:faq
@@ -213,12 +201,14 @@
                 [[AppKeFuLib sharedInstance] clearAllFileCache];
                 [[AppKeFuLib sharedInstance] deleteMessagesWith:@"policy"];
                 [[AppKeFuLib sharedInstance] deleteMessagesWith:@"business"];
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"缓存清除成功！"
-                                                                    message:nil
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"确定"
-                                                          otherButtonTitles:nil];
-                [alertView show];
+                
+                [SRAlertView sr_showAlertViewWithTitle:nil
+                                               message:@"缓存清除成功！"
+                                       leftActionTitle:@"确 定"
+                                      rightActionTitle:nil
+                                        animationStyle:AlertViewAnimationZoom
+                                          selectAction:^(AlertViewActionType actionType) {
+                                          }];
 
             }
                 break;
@@ -278,8 +268,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
     
     [self.navigationController popToRootViewControllerAnimated:NO];
-    AppDelegate *appdelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
-    appdelegate.root.selectedIndex = 0;
+    [App_Delegate root].selectedIndex = 0;
     [self login];
     
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
@@ -295,8 +284,7 @@
     if(!user.uuid){
         loginViewController *vc = [IBUIFactory CreateLoginViewController];
         UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
-        AppDelegate *appdelegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
-        [appdelegate.root presentViewController:naVC animated:NO completion:nil];
+        [[App_Delegate root] presentViewController:naVC animated:NO completion:nil];
         
         return NO;
     }else{

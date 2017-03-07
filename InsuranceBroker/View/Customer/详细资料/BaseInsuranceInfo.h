@@ -47,6 +47,8 @@
 @property (nonatomic, strong) NSLayoutConstraint *btnHConstraint;
 @property (nonatomic, strong) NSArray *contentVConstraint;
 
+@property (nonatomic, strong) NSArray *data;
+
 - (CGFloat) resetSubviewsFrame;
 
 - (void) doEditButtonClicked:(UIButton *)sender;

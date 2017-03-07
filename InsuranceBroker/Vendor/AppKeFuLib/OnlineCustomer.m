@@ -70,7 +70,7 @@
     UserAvatarImage=headImage;
     
     if(baodanLogoUrlstring == nil)
-        baodanLogoUrlstring = ((AppDelegate *)[UIApplication sharedApplication].delegate).chexianimg;
+        baodanLogoUrlstring = [App_Delegate chexianimg];
     self.baodanLogoUrlstring = baodanLogoUrlstring;
     self.baodanDetail = baodanDetail;
     self.baodanPrice = baodanPrice;

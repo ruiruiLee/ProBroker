@@ -178,7 +178,6 @@
 {
     CAKeyframeAnimation *menuBounceAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     menuBounceAnim.duration = self.animationDuration;
-    menuBounceAnim.delegate = self;
     menuBounceAnim.removedOnCompletion = NO;
     menuBounceAnim.fillMode = kCAFillModeForwards;
     menuBounceAnim.values = [self menuPositionValuesForMenuState:state];
@@ -193,7 +192,6 @@
 {
     CAKeyframeAnimation *scaleBounceAnim = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
     scaleBounceAnim.duration = self.animationDuration;
-    scaleBounceAnim.delegate = self;
     scaleBounceAnim.removedOnCompletion = NO;
     scaleBounceAnim.fillMode = kCAFillModeForwards;
     scaleBounceAnim.values = [self contentTransformValuesForMenuState:state];

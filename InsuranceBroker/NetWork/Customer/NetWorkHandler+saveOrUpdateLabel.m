@@ -31,7 +31,7 @@
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:pramas value:userId key:@"userId"];
     [Util setValueForKeyWithDic:pramas value:labelId key:@"labelId"];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:labelStatus] key:@"labelStatus"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:labelStatus] key:@"labelStatus"];
     [Util setValueForKeyWithDic:pramas value:labelName key:@"labelName"];
     [Util setValueForKeyWithDic:pramas value:labelType key:@"labelType"];
     

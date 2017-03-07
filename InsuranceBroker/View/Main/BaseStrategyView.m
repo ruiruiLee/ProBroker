@@ -134,8 +134,8 @@
     
     productAttrModel *model = [self.data objectAtIndex:indexPath.row];
     
-    [cell.logoImage sd_setImageWithURL:[NSURL URLWithString:model.productImg] placeholderImage:Normal_Image];
-    cell.lbTitle.text = model.productTitle;
+    [cell.logoImage sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:Normal_Image];
+    cell.lbTitle.text = model.productName;
     cell.lbContent.text = model.productIntro;
     if(model.productSellNums){
         cell.lbCount.hidden = NO;
@@ -251,14 +251,13 @@
  */
 - (void) loadDataInPages:(NSInteger)page
 {
-    NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
-    [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
-    NSMutableArray *rules = [[NSMutableArray alloc] init];
-    [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:self.category]];
-    [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
+//    NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
+//    [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
+//    NSMutableArray *rules = [[NSMutableArray alloc] init];
+//    [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:self.category]];
+//    [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     
-    [self.handler requestToQueryForProductAttrPageList:page limit:LIMIT sidx:@"P_ProductAttr.seqNo" sord:@"asc" filters:filters userId:[UserInfoModel shareUserInfoModel].userId insuranceType:self.category completion:^(int code, id content) {
-       //[self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+    [self.handler requestToQueryForProductAttrPageList:page limit:LIMIT filters:nil userId:[UserInfoModel shareUserInfoModel].userId uuid:[UserInfoModel shareUserInfoModel].uuid insuranceType:self.category completion:^(int code, id content) {
         [self performSelector:@selector(resetTable) withObject:nil afterDelay:0.25];
         if(code == 200){
             if(page == 0)

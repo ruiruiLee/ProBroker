@@ -18,23 +18,6 @@
 @synthesize btnAdd;
 @synthesize indicatorView;
 
-//+ (id) loadFromNib
-//{
-//    NSArray *nib = [[NSBundle mainBundle]loadNibNamed:@"InsuranceInfoView" owner:self options:nil];
-//    UIView *tmpView = [nib objectAtIndex:0];
-//    return tmpView;
-//}
-
-//- (id) initWithCoder:(NSCoder *)aDecoder
-//{
-//    self = [super initWithCoder:aDecoder];
-//    if(self){
-//        self.btnAdd.layer.cornerRadius = 3;
-//    }
-//    
-//    return self;
-//}
-
 - (id) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -55,8 +38,6 @@
     btnAdd = [[UIButton alloc] initWithFrame:CGRectZero];
     [self addSubview:btnAdd];
     btnAdd.translatesAutoresizingMaskIntoConstraints = NO;
-//    btnAdd.backgroundColor = _COLOR(0xff, 0x66, 0x19);
-//    [btnAdd setImage:[Util imageWithColor:_COLOR(0xff, 0x66, 0x19) size:<#(CGSize)#>] forState:UIControlStateNormal];
     [btnAdd setBackgroundImage:[Util imageWithColor:_COLOR(0xff, 0x66, 0x19) size:CGSizeMake(10, 10)] forState:UIControlStateNormal];
     [btnAdd setTitle:@"立即添加" forState:UIControlStateNormal];
     [btnAdd setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -78,7 +59,7 @@
     lbTitle = [ViewFactory CreateLabelViewWithFont:_FONT_B(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
     [self addSubview:lbTitle];
     
-    lbSepLine = [[SepLineLabel alloc] initWithFrame:CGRectZero];//[ViewFactory CreateLabelViewWithFont:_FONT(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
+    lbSepLine = [[SepLineLabel alloc] initWithFrame:CGRectZero];
     lbSepLine.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:lbSepLine];
     lbSepLine.backgroundColor = [UIColor clearColor];
@@ -113,10 +94,6 @@
 - (void) setType:(InsuranceInfoViewType)type
 {
     _type = type;
-//    if(type == enumInsuranceInfoViewTypePolicy)
-//        self.btnAdd.hidden = YES;
-//    else
-//        self.btnAdd.hidden = NO;
 }
 
 - (void) startAnimation

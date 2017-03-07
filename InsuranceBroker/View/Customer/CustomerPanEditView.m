@@ -84,6 +84,10 @@
         EditButton *btn = [[EditButton alloc] initWithFrame:CGRectZero];
         CustomerInfoModel *model = [userArray objectAtIndex:i];
         [btn setTitle:model.customerName forState:UIControlStateNormal];
+        if(model.customerName == nil || [model.customerName isKindOfClass:[NSNull class]] || [model.customerName length] == 0)
+        {
+            [btn setTitle:Default_Customer_Name forState:UIControlStateNormal];
+        }
 //        [btn sd_setImageWithURL:[NSURL URLWithString:model.headImg] forState:UIControlStateNormal placeholderImage:ThemeImage(@"customer_head")];
         [btn sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.headImg, Btn_width, Btn_width)] forState:UIControlStateNormal placeholderImage:ThemeImage(@"customer_head")];
         [btn setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];

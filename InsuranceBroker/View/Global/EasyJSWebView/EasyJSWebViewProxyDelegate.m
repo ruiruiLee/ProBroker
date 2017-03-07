@@ -96,10 +96,6 @@ return EasyJS.call(obj, method, Array.prototype.slice.call(arguments));\
 	[self.realDelegate webView:webView didFailLoadWithError:error];
 }
 
-//- (void)webViewDidFinishLoad:(UIWebView *)webView{
-//	[self.realDelegate webViewDidFinishLoad:webView];
-//}
-
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
 	
 	NSString *requestString = [[request URL] absoluteString];
@@ -133,7 +129,7 @@ return EasyJS.call(obj, method, Array.prototype.slice.call(arguments));\
 									  stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 			
 			NSArray* formattedArgs = [argsAsString componentsSeparatedByString:@":"];
-			for (int i = 0, j = 0, l = [formattedArgs count]; i < l; i+=2, j++){
+			for (int i = 0, j = 0; i < [formattedArgs count]; i+=2, j++){
 				NSString* type = ((NSString*) [formattedArgs objectAtIndex:i]);
 				NSString* argStr = ((NSString*) [formattedArgs objectAtIndex:i + 1]);
 				

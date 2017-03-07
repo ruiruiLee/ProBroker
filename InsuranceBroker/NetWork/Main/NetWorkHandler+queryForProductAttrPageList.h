@@ -12,11 +12,10 @@
 
 - (void) requestToQueryForProductAttrPageList:(NSInteger) offset
                                         limit:(NSInteger) limit
-                                         sidx:(NSString *) sidx
-                                         sord:(NSString *) sord
                                       filters:(NSDictionary *) filters
-                                        userId:(NSString *) userId
-                                insuranceType:(NSString*) insuranceType
+                                       userId:(NSString *) userId
+                                         uuid:(NSString *) uuid
+                                insuranceType:(NSString *) insuranceType
                                    completion:(Completion)completion;
 
 @end

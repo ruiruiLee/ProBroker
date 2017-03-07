@@ -30,7 +30,7 @@
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
     
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:insuredSex] key:@"insuredSex"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:insuredSex] key:@"insuredSex"];
     [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithBool:insuredStatus] key:@"insuredStatus"];
     [Util setValueForKeyWithDic:pramas value:cardNumber key:@"cardNumber"];
     [Util setValueForKeyWithDic:pramas value:customerId key:@"customerId"];

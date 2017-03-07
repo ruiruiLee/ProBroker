@@ -20,7 +20,6 @@
 @implementation HeadlineCell
 @synthesize indexPath;
 @synthesize lbDetail;
-//@synthesize lbTitle;
 
 + (id) loadFromNib
 {
@@ -33,9 +32,11 @@
 
 - (void) awakeFromNib
 {
+    [super awakeFromNib];
     self.lbDetail.backgroundColor = [UIColor clearColor];
-    self.lbDetail.textColor = Text_Color;
-    self.backgroundColor = [UIColor clearColor];
+    self.lbDetail.textColor = _COLOR(0x21, 0x21, 0x21);
+    self.lbDetail.font = _FONT(15);
+//    self.backgroundColor = [UIColor clearColor];
 }
 
 - (IBAction) doBtnButtonClicked:(UIButton *)sender
@@ -60,7 +61,6 @@
 
 @property (nonatomic, assign) CGFloat offset;
 
-@property (nonatomic, strong) UILabel *baseLine;
 
 @end
 
@@ -69,9 +69,6 @@
 @synthesize cellArray;
 @synthesize scrollview;
 @synthesize delegate;
-@synthesize imgTitle;
-@synthesize lbSepLine;
-@synthesize baseLine;
 
 - (void) dealloc
 {
@@ -91,21 +88,12 @@
         scrollview = [[UIScrollView alloc] initWithFrame:self.bounds];
         [self addSubview:scrollview];
         
-        lbSepLine = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:SepLineColor];
-        lbSepLine.backgroundColor = SepLineColor;
-        [self addSubview:lbSepLine];
-        
-        imgTitle = [[UIImageView alloc] initWithImage:ThemeImage(@"hot")];
-        [self addSubview:imgTitle];
-        
-        baseLine = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:SepLineColor];
-        baseLine.backgroundColor = SepLineColor;
-        [self addSubview:baseLine];
-        
         scrollview.pagingEnabled = YES;
         scrollview.scrollEnabled = NO;
         scrollview.showsHorizontalScrollIndicator = NO;
         scrollview.showsVerticalScrollIndicator = NO;
+        
+        _selectIdx = -1;
     }
     return self;
 }
@@ -133,16 +121,7 @@
         scrollview.showsHorizontalScrollIndicator = NO;
         scrollview.showsVerticalScrollIndicator = NO;
         
-        lbSepLine = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:SepLineColor];
-        lbSepLine.backgroundColor = SepLineColor;
-        [self addSubview:lbSepLine];
-        
-        baseLine = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:SepLineColor];
-        baseLine.backgroundColor = SepLineColor;
-        [self addSubview:baseLine];
-        
-        imgTitle = [[UIImageView alloc] initWithImage:ThemeImage(@"hot")];
-        [self addSubview:imgTitle];
+        _selectIdx = -1;
     }
     
     return self;
@@ -152,13 +131,7 @@
 {
     [super layoutSubviews];
     
-    CGRect frame = self.frame;
-    CGSize imgSize = imgTitle.image.size;
-    
-    imgTitle.frame = CGRectMake(16, (frame.size.height - imgSize.height)/2, imgSize.width, imgSize.height);
-    lbSepLine.frame = CGRectMake(30 + imgSize.width, 13, 0.7, frame.size.height - 26);
-    baseLine.frame = CGRectMake(0, frame.size.height - 0.6, frame.size.width, 0.6);
-    scrollview.frame = CGRectMake(44 + imgSize.width, 0, self.frame.size.width - 48 - imgSize.width, self.frame.size.height);
+    scrollview.frame = CGRectMake(0 , 0, self.frame.size.width - 0, self.frame.size.height);
     [self reset];
 }
 
@@ -189,7 +162,7 @@
         if(delegate){
             NSInteger count = [delegate numberOfRows:self];
             
-            int idx = i;
+            NSInteger idx = i;
             
             while (idx >= count) {
                 idx = idx - count;
@@ -197,6 +170,8 @@
             NSIndexPath *indexpath = [NSIndexPath indexPathForRow:idx inSection:0];
             [delegate headline:cell cellForRowAtIndexPath:indexpath];
             cell.indexPath = indexpath;
+            
+            _selectIdx = indexpath.row;
         }
     }
     
@@ -232,8 +207,6 @@
         
         oy += self.frame.size.height;
     }
-    
-//    scrollview.contentSize = CGSizeMake(scrollview.frame.size.width, self.frame.size.height * 2);
 }
 
 #pragma Action
@@ -271,6 +244,8 @@
                 NSIndexPath *indexpath = [NSIndexPath indexPathForRow:new inSection:0];
                 [delegate headline:cell cellForRowAtIndexPath:indexpath];
                 cell.indexPath = indexpath;
+                
+                _selectIdx = indexpath.row;
             }
             
             scrollview.contentOffset = CGPointMake(scrollview.contentOffset.x, scrollview.contentOffset.y - scrollview.frame.size.height);
@@ -280,6 +255,11 @@
             [self reset];
         }
     }
+}
+
+- (NSInteger) getCurrentSelectIdx
+{
+    return _selectIdx;
 }
 
 @end

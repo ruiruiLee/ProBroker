@@ -35,7 +35,6 @@
     // Do any additional setup after loading the view from its nib.
     self.title = @"快速登录";
     [self setLeftBarButtonWithNil];
-//    [self setBackBarButton];
     [self setRightBarButtonWithImage:ThemeImage(@"call_login_page")];
     self.lbAgreement.attributedText = [Util getAttributeString:@"点击“登录”，即表示您同意用户协议" substr:@"用户协议"];
     [self showLabelWithFlag:NO];
@@ -46,7 +45,6 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    _wasKeyboardManagerEnabled = [[IQKeyboardManager sharedManager] isEnabled];
     [[IQKeyboardManager sharedManager] setEnable:NO];
 }
 

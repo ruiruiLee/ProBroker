@@ -73,8 +73,7 @@
 
 - (void) handleRightBarButtonClicked:(id)sender
 {
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-    NewUserModel *model = appdelegate.workBanner;
+    NewUserModel *model = [App_Delegate workBanner];
     if(model.isRedirect){
         WebViewController *web = [IBUIFactory CreateWebViewController];
         web.title = model.title;
@@ -179,7 +178,7 @@
             }
             [self.data addObjectsFromArray:[BrokerInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
             self.total = [[[content objectForKey:@"data"] objectForKey:@"total"] integerValue];
-            lbAmount.text = [NSString stringWithFormat:@"共%d人", self.total];
+            lbAmount.text = [NSString stringWithFormat:@"共%ld人", (long)self.total];
             [self.pulltable reloadData];
         }
     }];
@@ -338,15 +337,15 @@
 
 - (NSAttributedString *) getOrderAmount:(NSInteger) insure offer:(NSInteger) offer
 {
-    NSString *sub1 = [NSString stringWithFormat:@"今日报价 %d 次, ", offer];
+    NSString *sub1 = [NSString stringWithFormat:@"今日报价 %ld 次, ", (long)offer];
     NSMutableAttributedString *mstring1 = [[NSMutableAttributedString alloc] initWithString:sub1];
-    NSRange range = [sub1 rangeOfString:[NSString stringWithFormat:@"%d", offer]];
+    NSRange range = [sub1 rangeOfString:[NSString stringWithFormat:@"%ld", (long)offer]];
     [mstring1 addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
     [mstring1 addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     
-    NSString *sub2 = [NSString stringWithFormat:@"投保 %d 单", insure];
+    NSString *sub2 = [NSString stringWithFormat:@"投保 %ld 单", (long)insure];
     NSMutableAttributedString *mstring2 = [[NSMutableAttributedString alloc] initWithString:sub2];
-    range = [sub2 rangeOfString:[NSString stringWithFormat:@"%d", insure]];
+    range = [sub2 rangeOfString:[NSString stringWithFormat:@"%ld", (long)insure]];
     [mstring2 addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:range];
     [mstring2 addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     

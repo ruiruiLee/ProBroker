@@ -49,7 +49,6 @@
 - (void) loadHtmlFromUrlWithUserId:(NSString *) url;
 - (void) loadHtmlFromUrlWithUuId:(NSString *) url;
 - (void) simplyShare:(SSDKPlatformType) type;
-//- (void) initShareUrl:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId;
 
 - (void) showPopView;
 - (void) showPopView1;
@@ -60,5 +59,9 @@
 - (void)addWebCache:(NSURLRequest *)request;
 
 - (NSDictionary *) getShareInfo;
+
+- (void) handleCloseButtonClicked:(id) handle;//关闭按钮
+
+- (void) addShutButton;
 
 @end

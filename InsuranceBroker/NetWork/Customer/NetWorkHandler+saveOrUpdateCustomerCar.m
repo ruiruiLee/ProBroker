@@ -38,6 +38,7 @@
                              carTradeTime:(NSString *) carTradeTime
                           carInsurStatus1:(NSString *) carInsurStatus1
                           carInsurCompId1:(NSString *) carInsurCompId1
+                        labourOfferStatus:(NSInteger ) labourOfferStatus
                                Completion:(Completion) completion
 {
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
@@ -69,6 +70,7 @@
     [Util setValueForKeyWithDic:pramas value:@"1" key:@"status"];
     [Util setValueForKeyWithDic:pramas value:carOwnerCard1 key:@"carOwnerCard1"];
     [Util setValueForKeyWithDic:pramas value:carOwnerCard2 key:@"carOwnerCard2"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:labourOfferStatus] key:@"labourOfferStatus"];
     
     [handle postWithMethod:@"/web/customer/saveOrUpdateCustomerCar.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }

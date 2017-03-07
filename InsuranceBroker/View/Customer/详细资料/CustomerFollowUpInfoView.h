@@ -11,7 +11,6 @@
 
 @interface CustomerFollowUpInfoView : BaseInsuranceInfo<FooterViewDelegate>
 
-@property (nonatomic, strong) NSArray *data;
 @property (nonatomic, strong) FooterView *footer;
 
 - (void) endLoadMore;

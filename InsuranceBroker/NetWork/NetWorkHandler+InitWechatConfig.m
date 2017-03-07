@@ -29,7 +29,7 @@
     [Util setValueForKeyWithDic:pramas value:totalFee key:@"totalFee"];
     [Util setValueForKeyWithDic:pramas value:openId key:@"openId"];
     [Util setValueForKeyWithDic:pramas value:outTradeNo key:@"outTradeNo"];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:payOrderType] key:@"payOrderType"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:payOrderType] key:@"payOrderType"];
     [Util setValueForKeyWithDic:pramas value:payType key:@"payType"];
     
     [handle postWithMethod:baseUrl BaseUrl:@"" Params:pramas Completion:completion];

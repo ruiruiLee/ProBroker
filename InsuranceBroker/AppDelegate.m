@@ -103,7 +103,6 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstLaunch"];
         // 第一次安装时运行打开推送
         // 引导界面展示
-        // [_rootTabController showIntroWithCrossDissolve];
         
     }
     else{
@@ -126,8 +125,6 @@
         // Example 2 自定义登陆按钮
         UIButton *enterButton = [UIButton new];
         [enterButton setImage:ThemeImage(@"liketiyan") forState:UIControlStateNormal];
-//        [enterButton setBackgroundColor:[UIColor redColor]];
-//        [enterButton setTitle:NSLocalizedString(@"立刻体验", nil) forState:UIControlStateNormal];
         self.introductionView = [[ZWIntroductionViewController alloc] initWithCoverImageNames:coverImageNames backgroundImageNames:nil button:enterButton];
         
         [self.window addSubview:self.introductionView.view];
@@ -391,6 +388,10 @@
         AppContext *context = [AppContext sharedAppContext];
         context.pushCustomerNum = [[userInfo objectForKey:@"hk"] integerValue];
         [context saveData];
+    }
+    
+    else if(mt == 1){
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Refresh_OrderList1 object:nil];
     }
 
 }

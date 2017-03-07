@@ -11,14 +11,12 @@
 #import "define.h"
 #import "NetWorkHandler+shareCustomerList.h"
 #import "CustomerInfoModel.h"
-#import "AppDelegate.h"
 #import "UIButton+WebCache.h"
 #import "SharedCustomerModel.h"
 #import "NetWorkHandler+shareCustomerAccept.h"
 #import "AgentStrategyViewController.h"
 #import "HomeVC.h"
 #import "RootViewController.h"
-#import "ShareViewController.h"
 
 @interface UserServicePushVC ()
 {
@@ -33,7 +31,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
-        self.title = @"收益统计";
+        self.title = @"分享获客";
     }
     return self;
 }
@@ -49,8 +47,7 @@
 
 - (void) doBtnClicked:(UIButton *)sender
 {
-    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    NewUserModel *model = appdelegate.customerBanner;
+    NewUserModel *model = [App_Delegate customerBanner];
     if(model.isRedirect){
         WebViewController *web = [IBUIFactory CreateWebViewController];
         web.title = model.title;
@@ -63,18 +60,6 @@
         }
     }
 }
-
-//- (void) handleRightBarButtonClicked:(id)sender
-//{
-//    BOOL flag = self.tableview.editing;
-//    if(flag){
-//        [self SetRightBarButtonWithTitle:@"编辑" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
-//        self.tableview.editing = NO;
-//    }else{
-//        [self SetRightBarButtonWithTitle:@"完成" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
-//        self.tableview.editing = YES;
-//    }
-//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -92,16 +77,6 @@
             [self.tableview reloadData];
             [AppContext sharedAppContext].pushCustomerNum = [self.data count];
             [[AppContext sharedAppContext] saveData];
-//            if([self.data count] == 0)
-//            {
-//                ShareViewController *vc = [[ShareViewController alloc] initWithNibName:nil bundle:nil];
-//                [self.view.window addSubview:vc.view];
-//                [self addChildViewController:vc];
-//                vc.view.alpha = 0;
-//                [UIView animateWithDuration:1 animations:^{
-//                    vc.view.alpha = 1;
-//                }];
-//            }
         }
 
     }];
@@ -173,25 +148,6 @@
     return cell;
 }
 
-//-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return YES;
-//}
-//
-//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return UITableViewCellEditingStyleDelete;
-//}
-//
-//-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    if (editingStyle == UITableViewCellEditingStyleDelete)
-//    {
-//        [self.data removeObjectAtIndex:indexPath.row];
-//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//    }
-//}
-
 #pragma ACTION
 - (void) doBtnAcceptClicked:(UIButton *)sender
 {
@@ -227,13 +183,6 @@
         HighNightBgButton *btnAdd = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 200, 41)];
         [self.explainBgView addSubview:btnAdd];
         [btnAdd setImage:ThemeImage(@"fenxianghuoke_btnbg") forState:UIControlStateNormal];
-//        btnAdd.backgroundColor = _COLOR(0xf9, 0x15, 0x0a);
-//        btnAdd.layer.borderWidth = 0.5;
-//        btnAdd.layer.borderColor = [UIColor whiteColor].CGColor;
-//        btnAdd.layer.cornerRadius = 1;
-//        [btnAdd setTitle:@"分享获客" forState:UIControlStateNormal];
-//        [btnAdd setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//        btnAdd.titleLabel.font = _FONT(17);
         [btnAdd addTarget:self action:@selector(doBtnShared:) forControlEvents:UIControlEventTouchUpInside];
         btnAdd.center = CGPointMake(self.explainBgView.center.x, self.explainBgView.frame.size.height * 7/8);
     }
@@ -243,8 +192,7 @@
 {
     AgentStrategyViewController *vc = [[AgentStrategyViewController alloc] initWithNibName:nil bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-    RootViewController *root = appdelegate.root;
+    RootViewController *root = [App_Delegate root];
     HomeVC *home = root.homevc;
     vc.category = home.jiHuaShu.category;
     vc.title = home.jiHuaShu.title;

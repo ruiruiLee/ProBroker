@@ -14,6 +14,7 @@
 #import "KGStatusBar.h"
 #import "OnlineCustomer.h"
 #import "BaseNavigationController.h"
+#import "OrderManagerVC.h"
 
 @interface OrderDetailWebVC ()<UIWebViewDelegate>
 {
@@ -68,7 +69,6 @@
     AppContext *context = [AppContext sharedAppContext];
     [context addObserver:self forKeyPath:@"isBDKFHasMsg" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
-//    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
     self.btnChat = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     [self.btnChat setImage:ThemeImage(@"chat") forState:UIControlStateNormal];
     [self.btnChat addTarget:self action:@selector(handleRightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -78,16 +78,27 @@
     [self observeValueForKeyPath:@"isBDKFHasMsg" ofObject:nil change:nil context:nil];
 }
 
-- (void) initShareUrl:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId
+- (void) loadWebString
+{
+    if(!_isLoad){
+        if(self.urlpath != nil){
+            
+            NSString *url = [NSString stringWithFormat:@"%@&color=ff6619", self.urlpath];
+            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+            
+            _isLoad = YES;
+        }
+    }
+}
+
+- (void) initShareUrl:(NSString *) orderId
 {
     _orderId = orderId;
-    _insuranceType = insuranceType;
-    _planOfferId = planOfferId;
 }
 
 - (void) loadUrl
 {
-    [NetWorkHandler requestToInitOrderShare:_orderId insuranceType:_insuranceType planOfferId:_planOfferId Completion:^(int code, id content) {
+    [NetWorkHandler requestToInitOrderShare:_orderId Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             _urlPath = [[content objectForKey:@"data"] objectForKey:@"url"];
@@ -100,6 +111,21 @@
                 [self HandleItemSelect:nil selectImageName:selectImgName];
         }
     }];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    if(self.title == nil)
+        self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    
+    [self performSelector:@selector(addShutButton) withObject:nil afterDelay:0.01];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    [self performSelector:@selector(addShutButton) withObject:nil afterDelay:0.01];
+    
+    return YES;
 }
 
 //#pragma delegate
@@ -127,9 +153,9 @@
     
     if(self.shareImgArray == nil || [self.shareImgArray count] == 0){
         NSMutableArray *icon = [[NSMutableArray alloc] init];
-        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-        if(appdelegate.appIcon)
-            [icon addObject:appdelegate.appIcon];
+        NSString *iconStr = [App_Delegate appIcon];
+        if(iconStr)
+            [icon addObject:iconStr];
         self.shareImgArray = icon;
     }
     
@@ -172,12 +198,6 @@
                      [KGStatusBar showSuccessWithStatus:@"分享失败"];
                      break;
                  }
-//                 case SSDKResponseStateCancel:
-//                 {
-//                     
-//                     [KGStatusBar showSuccessWithStatus:@"分享已取消"];
-//                     break;
-//                 }
                  default:
                      break;
              }
@@ -255,6 +275,20 @@
         [web loadHtmlFromUrl:urlpath];
     };
 
+}
+
+#pragma MyJSInterfaceDelegate
+- (void) notifyToOrderList:(NSString *) string
+{
+    OrderManagerVC *orderVC = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
+    orderVC.insuranceType = @"1";
+    [orderVC setViewTitle:@"车险"];
+    [orderVC initMapTypesForCar];
+    
+    NSMutableArray *array = [self.navigationController.viewControllers mutableCopy];
+    [array removeLastObject];
+    [array addObject:orderVC];
+    [self.navigationController setViewControllers:array animated:YES];
 }
 
 @end

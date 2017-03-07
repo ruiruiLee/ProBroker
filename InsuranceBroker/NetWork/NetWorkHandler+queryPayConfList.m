@@ -17,7 +17,7 @@
     
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:pramas value:payConfType key:@"payConfType"];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:payStatus] key:@"payStatus"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:payStatus] key:@"payStatus"];
     
     [handle postWithMethod:@"/web/common/queryPayConfList.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }

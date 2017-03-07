@@ -16,7 +16,10 @@
     self = [super init];
     if(self){
         
-        CGSize size = [taskname sizeWithFont:_FONT(15) constrainedToSize:CGSizeMake(ScreenWidth - 100, 1000)];
+        CGSize size = [taskname boundingRectWithSize:CGSizeMake(ScreenWidth - 100, 1000)
+                                             options:NSStringDrawingUsesLineFragmentOrigin
+                                          attributes:@{NSFontAttributeName: _FONT(15)}
+                                             context:nil].size;
         
         if(size.height > 90)
             size.height = 90;

@@ -160,7 +160,6 @@ static AppContext *context = nil;
         NSMutableDictionary *dic= [NSMutableDictionary dictionaryWithDictionary:dicNew];
         for (NSDictionary *dicOld in _arrayNewsTip) {
 
-            NSLog(@"%ld", [[dicOld objectForKey:@"userId"] integerValue]);
             if ([[dicNew objectForKey:@"category"] integerValue]==
                  [[dicOld objectForKey:@"category"] integerValue]&&
                 [[dicNew objectForKey:@"userId"] integerValue]==

@@ -61,14 +61,13 @@
 + (BOOL) dateIsNil:(NSDate *) date
 {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-//    NSDateComponents *comps = [[NSDateComponents alloc] init];
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
     NSDateComponents *comps = [calendar components:unitFlags fromDate:date];
-    int year=[comps year];
-    int month = [comps month];
-    int day = [comps day];
-    int hour = [comps hour];
-    int minute = [comps minute];
+    NSInteger year= [comps year];
+    NSInteger month = [comps month];
+    NSInteger day = [comps day];
+    NSInteger hour = [comps hour];
+    NSInteger minute = [comps minute];
     if(day == 1 && month == 1 && year == 1900 && hour == 0 && minute == 0)
     {
         return YES;

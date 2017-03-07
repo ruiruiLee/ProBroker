@@ -149,13 +149,6 @@
     return sales;
 }
 
-//客户拜访统计
-+ (CustomerCallStatisticsVC *) CreateCustomerCallStatisticsViewController
-{
-    CustomerCallStatisticsVC *customer = [[CustomerCallStatisticsVC alloc] initWithNibName:@"CustomerCallStatisticsVC" bundle:nil];
-    return customer;
-}
-
 //新建客户
 + (NewCustomerVC *) CreateNewCustomerViewController
 {
@@ -174,13 +167,6 @@
 {
     UserDetailVC *customer = [[UserDetailVC alloc] initWithNibName:@"UserDetailVC" bundle:nil];
     return customer;
-}
-
-//下线的
-+ (TeamMateIncomeStatisticsVC *) CreateTeamMateIncomeStatisticsVC
-{
-    TeamMateIncomeStatisticsVC *income = [[TeamMateIncomeStatisticsVC alloc] initWithNibName:@"TeamMateIncomeStatisticsVC" bundle:nil];
-    return income;
 }
 
 //快速算价
@@ -222,17 +208,9 @@
     return vc;
 }
 
-
-+ (AutoInsuranceStep2VC *) CreateAutoInsuranceStep2VC
++ (OurProductDetailVC *) CreateOurProductDetailVC
 {
-    AutoInsuranceStep2VC *vc = [[AutoInsuranceStep2VC alloc] initWithNibName:@"AutoInsuranceStep2VC" bundle:nil];
-    return vc;
-}
-
-
-+ (MotorcycleTypeSelectedVC *) CreateMotorcycleTypeSelectedVC
-{
-    MotorcycleTypeSelectedVC *vc = [[MotorcycleTypeSelectedVC alloc] initWithNibName:@"MotorcycleTypeSelectedVC" bundle:nil];
+    OurProductDetailVC *vc = [[OurProductDetailVC alloc] initWithNibName:@"OurProductDetailVC" bundle:nil];
     return vc;
 }
 

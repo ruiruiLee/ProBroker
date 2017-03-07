@@ -13,6 +13,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
     
     self.btnApply.layer.cornerRadius = 3;
     self.logoImageV.layer.borderWidth = 0.5;

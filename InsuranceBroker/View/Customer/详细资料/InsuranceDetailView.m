@@ -179,17 +179,12 @@
         
         lb1 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
         [_contentView addSubview:lb1];
-        lb1.attributedText = [self getInsuranceRules:@"＊优快保经纪人提供以下三种报价方式\n \n  1 上传车主［行驶证正本］清晰照片 或者 进入（详情）填写行驶证信息可快速报价，此报价可能与真实价格存在一点偏差，成交最终以真实价格为准。\n\n  2 上传车主［行驶证正本］和［身份证正面］清晰照片 进行精准报价。\n\n  3 续保车辆 只需进入（详情）填写［车牌号］(或传行驶证照片) 并选择［上年度保险］，就可精准报价。"];
+        lb1.attributedText = [self getInsuranceRules:How_To_Insu_Explain];
 
         lb1.preferredMaxLayoutWidth = ScreenWidth - 40;
         lb1.numberOfLines = 0;
-        lb2 = [ViewFactory CreateLabelViewWithFont:_FONT(12) TextColor:_COLOR(0x75, 0x75, 0x75)];
-        [_contentView addSubview:lb2];
-        lb2.preferredMaxLayoutWidth = ScreenWidth - 40;
-        lb2.attributedText = [Util getWarningString:@"＊注：客户确认投保后，应保监会规定需要补齐以上所有证件照片方可出单。优快保经纪人将保证所有证件资料仅用于车辆报价或投保，绝不用作其它用途，请放心上传。"];
-        lb2.numberOfLines = 0;
 
-        NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, _btnShut, _contentView, lb1, lb2, btnClicked, bgview, sepline, btnQuote);
+        NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, _btnShut, _contentView, lb1, btnClicked, bgview, sepline, btnQuote);
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=24-[lbTitle]-10-[_btnShut]-24-|" options:0 metrics:nil views:views]];
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90-[btnClicked]-20-|" options:0 metrics:nil views:views]];
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-24-[sepline]-24-|" options:0 metrics:nil views:views]];
@@ -197,7 +192,6 @@
         [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_contentView]-0-|" options:0 metrics:nil views:views]];
         [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[bgview]-0-|" options:0 metrics:nil views:views]];
         [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lb1]-20-|" options:0 metrics:nil views:views]];
-        [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[lb2]-20-|" options:0 metrics:nil views:views]];
         
         [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10-[bgview(54)]-0-[_contentView]-0-|" options:0 metrics:nil views:views]];
         [bgview addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btnClicked(54)]-0-|" options:0 metrics:nil views:views]];
@@ -207,7 +201,7 @@
         [_footView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[btnQuote(54)]->=0-|" options:0 metrics:nil views:views]];
         [_footView addConstraint:[NSLayoutConstraint constraintWithItem:btnQuote attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:sepline attribute:NSLayoutAttributeBottom multiplier:1 constant:-1]];
         
-        vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[lb1]-20-[lb2]-20-|" options:0 metrics:nil views:views];
+        vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[lb1]-20-|" options:0 metrics:nil views:views];
         [_contentView addConstraints:vConstraint];
         [bgview addConstraint:[NSLayoutConstraint constraintWithItem:_btnShut attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
         
@@ -257,13 +251,19 @@
     NSMutableAttributedString *attString = [[NSMutableAttributedString alloc]initWithString:str];
     NSRange range = [UnitPrice rangeOfString:@"＊"];
     [attString addAttribute:NSForegroundColorAttributeName value:_COLOR(0xf4, 0x43, 0x36) range:range];
+    
+    NSRange range1 = [UnitPrice rangeOfString:@"＊" options:NSBackwardsSearch];
+    [attString addAttribute:NSForegroundColorAttributeName value:_COLOR(0xf4, 0x43, 0x36) range:range1];
+    
     [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"1"];
     [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"2"];
-    [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"3"];
     
     [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"1"];
     [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"2"];
-    [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"3"];
+    
+    range = [UnitPrice rangeOfString:@"3" options:NSBackwardsSearch];
+    [attString addAttribute:NSFontAttributeName value:_FONT_B(13) range:range];
+    [attString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:range];
     
     [self addAttributes:attString substr:UnitPrice rootstr:@"［行驶证正本］"];
     [self addAttributes:attString substr:UnitPrice rootstr:@"［车牌号］"];
@@ -298,12 +298,12 @@
 {
     BOOL selected = _btnShut.selected;
     [_contentView removeConstraints:vConstraint];
-    NSDictionary *views = NSDictionaryOfVariableBindings( lb1, lb2);
+    NSDictionary *views = NSDictionaryOfVariableBindings( lb1);
     if(!selected){
-        vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lb1(0)]-0-[lb2(0)]-0-|" options:0 metrics:nil views:views];
+        vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[lb1(0)]-0-|" options:0 metrics:nil views:views];
     }
     else{
-        vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[lb1]-20-[lb2]-20-|" options:0 metrics:nil views:views];
+        vConstraint = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[lb1]-20-|" options:0 metrics:nil views:views];
     }
     [_contentView addConstraints:vConstraint];
     [_footView setNeedsLayout];
@@ -435,6 +435,10 @@
         
         InsuredUserInfoModel *model = [self.data objectAtIndex:row];
         cell.lbName.text = model.insuredName;
+        if(model.insuredName == nil || [model.insuredName length] == 0){
+            cell.lbName.text = Default_Customer_Name;
+        }
+        
         cell.lbRelation.text = model.relationTypeName;
         
         return cell;
@@ -489,13 +493,18 @@
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
             
             HighNightBgButton *btnMore = [[HighNightBgButton alloc] initWithFrame:CGRectMake(ScreenWidth - 97, 5, 87, 30)];
-            [btnMore setBackgroundImage:ThemeImage(@"btnMoreCar") forState:UIControlStateNormal];
+            [btnMore setTitleColor:_COLOR(0x79, 0x79, 0x79) forState:UIControlStateNormal];
+            btnMore.titleLabel.font = _FONT(15);
+            [btnMore setBackgroundImage:[Util imageWithColor:[UIColor whiteColor] size:CGSizeMake(87, 30)] forState:UIControlStateNormal];
+            if(self.customerInfo.detailModel.carNum > 1){
+                NSString *title = [NSString stringWithFormat:@"%@辆车•••", [[NSNumber numberWithInteger:self.customerInfo.detailModel.carNum] stringValue]];
+                [btnMore setTitle:title forState:UIControlStateNormal];
+            }
+            else{
+                [btnMore setTitle:@"更多•••" forState:UIControlStateNormal];
+            }
             [view addSubview:btnMore];
             [btnMore addTarget:self action:@selector(doBtnMoreCar:) forControlEvents:UIControlEventTouchUpInside];
-            
-//            UIView *bg = [[UIView alloc] initWithFrame:CGRectMake(0, 40, ScreenWidth, 15)];
-//            bg.backgroundColor = SepLine_color;
-//            [view addSubview:bg];
             
             return view;
         }
@@ -513,7 +522,7 @@
 
 - (void) doBtnAddImage:(UIButton *) sender
 {
-    int tag = sender.tag - 100;
+    NSInteger tag = sender.tag - 100;
     BOOL flag = YES;
     if(tag == 0){
         if(self.carInfo.travelCard1 == nil)
@@ -630,12 +639,12 @@
             }
             else if (addImgButton.tag == 102){
                 if(self.carInfo.carOwnerCard2 == nil)
-                    [_imageList setIndex:[array count] - 1];
+                    [_imageList setIndex:(int)array.count - 1];
                 else
-                    [_imageList setIndex: [array count] - 2];
+                    [_imageList setIndex: (int)[array count] - 2];
             }
             else{
-                [_imageList setIndex:[array count] - 1];
+                [_imageList setIndex:(int)[array count] - 1];
             }
             addImgButton = nil;
         }
@@ -700,7 +709,7 @@
 
 - (void) setData:(NSArray *)data
 {
-    _data = data;
+    [super setData:data];
     [self.tableviewNoCar reloadData];
 }
 

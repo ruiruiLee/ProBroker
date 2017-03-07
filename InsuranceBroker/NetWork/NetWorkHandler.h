@@ -18,15 +18,13 @@ typedef void(^Completion) (int code, id content);
     NSMutableArray *_reqArray;
 }
 
-//@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
 @property (nonatomic, strong) AFHTTPSessionManager *manager;
 
 + (NetWorkHandler *) shareNetWorkHandler;
 
 - (void) postWithMethod:(NSString *)method BaseUrl:(NSString *)url Params:(NSMutableDictionary *) params Completion:(Completion)completion;
 - (void) getWithMethod:(NSString *)method BaseUrl:(NSString *)url Params:(NSMutableDictionary *) params Completion:(Completion)completion;
-//+ (AFHTTPRequestOperationManager *) postWithParams:(NSString*)params Url:(NSString*)url Completion:(Completion)completion;
-//+ (AFHTTPRequestOperationManager *) getWithParams:(NSDictionary *)params Url:(NSString*)url Completion:(Completion)completion;
+- (void) getWithUrl:(NSString *) url Params:(NSMutableDictionary *) params Completion:(Completion)completion;
 
 + (NSDictionary *) getRulesByField:(NSString *) field op:(NSString *) op data:(NSString *) data;//添加过滤项
 + (NSString *) getStringWithList:(NSArray *)array;//序列化数组

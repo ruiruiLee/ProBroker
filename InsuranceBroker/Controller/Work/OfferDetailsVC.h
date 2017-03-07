@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "LeftImgButton.h"
+#import "InsurInfoModel.h"
 
 @interface OfferDetailsVC : BaseViewController<UITableViewDataSource, UITableViewDelegate>
 
@@ -30,6 +31,7 @@
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollview;
 
 @property (nonatomic, strong) NSString *orderId;
+@property (nonatomic, strong) InsurInfoModel *insurInfo;
 
 @property (nonatomic, strong) HighNightBgButton *btnChat;
 

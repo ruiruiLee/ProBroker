@@ -23,6 +23,8 @@
 
 - (void) awakeFromNib
 {
+    [super awakeFromNib];
+    
     _left = NO;
     _right = NO;
     _top = NO;

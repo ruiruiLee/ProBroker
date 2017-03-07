@@ -199,6 +199,10 @@
     ObjectButton *btn = (ObjectButton*)cell.accessoryView;
     btn.object = model;
     cell.lbName.text = model.customerName;
+    if(model.customerName == nil || [model.customerName isKindOfClass:[NSNull class]] || [model.customerName length] == 0)
+    {
+        cell.lbName.text = Default_Customer_Name;
+    }
     cell.lbStatus.text = model.visitType;
     cell.lbTimr.hidden = YES;
 //    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:ThemeImage(@"customer_head")];

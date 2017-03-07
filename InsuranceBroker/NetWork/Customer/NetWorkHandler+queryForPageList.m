@@ -19,8 +19,8 @@
 {
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:offset] key:@"offset"];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:limit] key:@"limit"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:offset] key:@"offset"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:limit] key:@"limit"];
     [Util setValueForKeyWithDic:pramas value:sord key:@"sord"];
     [Util setValueForKeyWithDic:pramas value:@"updatedAt" key:@"sidx"];
     [Util setValueForKeyWithDic:pramas value:@"1" key:@"status"];
@@ -42,8 +42,8 @@
 {
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:offset] key:@"offset"];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:limit] key:@"limit"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:offset] key:@"offset"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:limit] key:@"limit"];
     [Util setValueForKeyWithDic:pramas value:sord key:@"sord"];
     [Util setValueForKeyWithDic:pramas value:@"1" key:@"status"];
     [Util setValueForKeyWithDic:pramas value:sidx key:@"sidx"];

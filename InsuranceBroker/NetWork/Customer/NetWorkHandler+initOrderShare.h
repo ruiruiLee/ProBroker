@@ -10,6 +10,6 @@
 
 @interface NetWorkHandler (initOrderShare)
 
-+ (void) requestToInitOrderShare:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId Completion:(Completion)completion;
++ (void) requestToInitOrderShare:(NSString *) orderId Completion:(Completion)completion;
 
 @end

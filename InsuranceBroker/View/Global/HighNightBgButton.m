@@ -23,6 +23,8 @@
 
 - (void) awakeFromNib
 {
+    [super awakeFromNib];
+    
     self.clipsToBounds = YES;
     
     [self addObserver:self forKeyPath:@"highlighted" options:NSKeyValueObservingOptionNew context:NULL];

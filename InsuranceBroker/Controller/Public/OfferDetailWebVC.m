@@ -14,12 +14,15 @@
 #import "KGStatusBar.h"
 #import "OnlineCustomer.h"
 #import "BaseNavigationController.h"
+#import "OrderManagerVC.h"
 
 @interface OfferDetailWebVC ()<UIWebViewDelegate>
 {
     UIButton * leftBarButtonItemButton;
     UIButton * rightBarButtonItemButton;
 }
+
+@property (nonatomic, strong) NSString *phone;
 
 @end
 
@@ -68,7 +71,6 @@
     AppContext *context = [AppContext sharedAppContext];
     [context addObserver:self forKeyPath:@"isBDKFHasMsg" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
-//    [self setRightBarButtonWithImage:ThemeImage(@"chat")];
     self.btnChat = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
     [self.btnChat setImage:ThemeImage(@"chat") forState:UIControlStateNormal];
     [self.btnChat addTarget:self action:@selector(handleRightBarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -87,7 +89,7 @@
 
 - (void) loadUrl
 {
-    [NetWorkHandler requestToInitOrderShare:_orderId insuranceType:_insuranceType planOfferId:_planOfferId Completion:^(int code, id content) {
+    [NetWorkHandler requestToInitOrderShare:_orderId Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             _urlPath = [[content objectForKey:@"data"] objectForKey:@"url"];
@@ -113,6 +115,25 @@
     }
 }
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    [self performSelector:@selector(addShutButton) withObject:nil afterDelay:0.01];
+    
+    return YES;
+}
+
+- (void) loadWebString
+{
+    if(!_isLoad){
+        if(self.urlpath != nil){
+            
+            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@&color=ff6619", self.urlpath]]]];
+            
+            _isLoad = YES;
+        }
+    }
+}
+
 /**
  *  简单分享
  */
@@ -126,9 +147,9 @@
     
     if(self.shareImgArray == nil || [self.shareImgArray count] == 0){
         NSMutableArray *icon = [[NSMutableArray alloc] init];
-        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-        if(appdelegate.appIcon)
-            [icon addObject:appdelegate.appIcon];
+        NSString *iconStr = [App_Delegate appIcon];
+        if(iconStr)
+            [icon addObject:iconStr];
         self.shareImgArray = icon;
     }
     
@@ -136,15 +157,15 @@
         
         if(type == SSDKPlatformTypeSMS){
             NSString *jsonstr = [self getShareContent];
-            SBJsonParser *_parser = [[SBJsonParser alloc] init];
-            NSDictionary *dic = [_parser objectWithString:jsonstr];
+//            SBJsonParser *_parser = [[SBJsonParser alloc] init];
+//            NSDictionary *dic = [_parser objectWithString:jsonstr];
             NSArray *array = nil;
             if(self.phone)
                 array = [NSArray arrayWithObject:self.phone];
-            NSString *content = [dic objectForKey:@"sms"];
-            if(content == nil)
-                content = @"";
-            [shareParams SSDKSetupSMSParamsByText:content title:nil images:nil attachments:nil recipients:array type:SSDKContentTypeAuto];
+//            NSString *content = [dic objectForKey:@"sms"];
+//            if(content == nil)
+//                content = @"";
+            [shareParams SSDKSetupSMSParamsByText:jsonstr title:nil images:nil attachments:nil recipients:array type:SSDKContentTypeAuto];
         }
         else{
             [shareParams SSDKSetupShareParamsByText:self.shareContent
@@ -170,12 +191,12 @@
                      [KGStatusBar showSuccessWithStatus:@"分享失败"];
                      break;
                  }
-//                 case SSDKResponseStateCancel:
-//                 {
-//                     
-//                     [KGStatusBar showSuccessWithStatus:@"分享已取消"];
-//                     break;
-//                 }
+                 case SSDKResponseStateCancel:
+                 {
+                     
+                     [KGStatusBar showSuccessWithStatus:@"分享已取消"];
+                     break;
+                 }
                  default:
                      break;
              }
@@ -252,6 +273,20 @@
         [web loadHtmlFromUrl:urlpath];
     };
     
+}
+
+#pragma MyJSInterfaceDelegate
+- (void) notifyToOrderList:(NSString *) string
+{
+    OrderManagerVC *orderVC = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
+    orderVC.insuranceType = @"1";
+    [orderVC setViewTitle:@"车险"];
+    [orderVC initMapTypesForCar];
+    
+    NSMutableArray *array = [self.navigationController.viewControllers mutableCopy];
+    [array removeLastObject];
+    [array addObject:orderVC];
+    [self.navigationController setViewControllers:array animated:YES];
 }
 
 @end

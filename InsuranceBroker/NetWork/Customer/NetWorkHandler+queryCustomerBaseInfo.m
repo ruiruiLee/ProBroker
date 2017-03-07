@@ -18,6 +18,8 @@
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:pramas value:customerId key:@"customerId"];
     [Util setValueForKeyWithDic:pramas value:carInfo key:@"carInfo"];
+    [Util setValueForKeyWithDic:pramas value:@"updatedAt" key:@"sidx"];
+    [Util setValueForKeyWithDic:pramas value:@"desc" key:@"sord"];
     
     [handle postWithMethod:@"/web/customer/queryCustomerBaseInfo.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
     

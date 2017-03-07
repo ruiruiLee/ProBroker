@@ -11,6 +11,7 @@
 #import "define.h"
 #import "DictModel.h"
 #import "productAttrModel.h"
+#import "SBJson.h"
 
 @interface ProductListVC ()<BaseStrategyViewDelegate>
 
@@ -190,16 +191,80 @@
 
 - (void) NotifyItemSelectIndex:(productAttrModel*) m view:(BaseStrategyView *) view
 {
-    ProductDetailWebVC *web = [IBUIFactory CreateProductDetailWebVC];
-    web.title = m.productTitle;
-    if(m.productImg != nil)
-        web.shareImgArray = [NSArray arrayWithObject:m.productImg];
-    
-    web.shareContent = m.productIntro;
-    web.shareTitle = m.productTitle;
-    web.selectProModel = m;
-    [self.navigationController pushViewController:web animated:YES];
-    [web loadHtmlFromUrlWithUserId:m.clickAddr productId:m.productAttrId];
+    if(![m.uniqueFlag isEqualToString:@"100"])
+    {
+        OurProductDetailVC *web = [IBUIFactory CreateOurProductDetailVC];
+        
+        web.title = m.productName;
+        if(m.productLogo != nil)
+            web.shareImgArray = [NSArray arrayWithObject:m.productLogo];
+        
+        web.shareContent = m.productIntro;
+        web.shareTitle = m.productName;
+//        web.selectProModel = m;
+        [self.navigationController pushViewController:web animated:YES];
+        [web loadHtmlFromUrlWithUserId:m.clickAddr productId:m.productId];
+        
+    }
+    else{
+        ProductDetailWebVC *web = [IBUIFactory CreateProductDetailWebVC];
+        web.title = m.productName;
+        web.selectProModel = m;
+        if(m.productLogo != nil)
+            web.shareImgArray = [NSArray arrayWithObject:m.productLogo];
+        
+//        self.infoModel.productId = m.productAttrId;//添加产品id
+//        web.infoModel = self.infoModel;//选中的被保人信息
+//        web.customerDetail = self.customerdetail;
+        
+        web.shareContent = m.productIntro;
+        web.shareTitle = m.productName;
+        
+        NSMutableDictionary *mdic = [[NSMutableDictionary alloc] init];
+        [mdic setObject:@{@"userId": [UserInfoModel shareUserInfoModel].userId} forKey:@"extraInfo"];
+        
+        
+//        if(self.infoModel){
+//            if(self.infoModel.insuredName)
+//                [mdic setObject:self.infoModel.insuredName forKey:@"policyHolderUserName"];//投保人姓名
+//            if(self.infoModel.insuredPhone)
+//                [mdic setObject:self.infoModel.insuredPhone forKey:@"policyHolderPhone"];//投保人手机号
+//            if(self.infoModel.cardNumber){
+//                [mdic setObject:@"I" forKey:@"policyHolderCertiType"];//投保人证件类型
+//                [mdic setObject:self.infoModel.cardNumber forKey:@"policyHolderCertiNo"];//投保人证件号码
+//            }
+//        }
+        SBJsonWriter *_writer = [[SBJsonWriter alloc] init];
+        NSString *dataString = [_writer stringWithObject:mdic];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.view.userInteractionEnabled = NO;
+        
+//        NSString *url = [NSString stringWithFormat:@"http://118.123.249.87:8783/UKB.AgentNew/web/security/encryRC4.xhtml?dataString=%@&rc4key=open20160501", dataString];
+//        
+//        //    NSString * encodedUrl = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)url, NULL, NULL,  kCFStringEncodingUTF8 ));
+//        
+//        url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSString *url = [NSString stringWithFormat:@"http://118.123.249.87:8783/UKB.AgentNew/web/security/encryRC4.xhtml?"];
+        
+        url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
+        [pramas setObject:dataString forKey:@"dataString"];
+        
+        [[NetWorkHandler shareNetWorkHandler] getWithUrl:url Params:pramas Completion:^(int code, id content) {
+            self.view.userInteractionEnabled = YES;
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if(code == 1){
+                NSString *bizContent =  (NSString *) content;
+                
+                NSString *url = [NSString stringWithFormat:@"%@&bizContent=%@", m.clickAddr, bizContent];
+                
+                [self.navigationController pushViewController:web animated:YES];
+                [web loadHtmlFromUrl:url];
+            }
+        }];
+    }
 
 }
 

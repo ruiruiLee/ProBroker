@@ -11,7 +11,6 @@
 #import "NetWorkHandler+queryUserInfo.h"
 #import "NetWorkHandler+announcement.h"
 #import "AVOSCloud/AVOSCloud.h"
-#import "AppDelegate.h"
 #import "RootViewController.h"
 
 
@@ -350,8 +349,7 @@
         loginViewController *vc = [IBUIFactory CreateLoginViewController];
         UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
         
-        [((AppDelegate*)[UIApplication sharedApplication].delegate).root.navigationController presentViewController:naVC animated:NO completion:nil];
-        //        }
+        [[App_Delegate root].navigationController presentViewController:naVC animated:NO completion:nil];
         return NO;
     }else{
         return YES;

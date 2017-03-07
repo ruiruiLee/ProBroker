@@ -11,7 +11,7 @@
 @interface NJKWebViewProgressView : UIView
 @property (nonatomic) float progress;
 
-@property (nonatomic) UIView *progressBarView;
+@property (nonatomic, strong) UIView *progressBarView;
 @property (nonatomic) NSTimeInterval barAnimationDuration; // default 0.1
 @property (nonatomic) NSTimeInterval fadeAnimationDuration; // default 0.27
 @property (nonatomic) NSTimeInterval fadeOutDelay; // default 0.1

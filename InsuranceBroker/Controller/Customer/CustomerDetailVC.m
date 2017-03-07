@@ -16,9 +16,7 @@
 #import "CustomerDetailModel.h"
 #import "VisitInfoModel.h"
 #import <MessageUI/MessageUI.h>
-#import "OrderWebVC.h"
 #import "NetWorkHandler+saveOrUpdateCustomerCar.h"
-//#import "NetWorkHandler+saveOrUpdateCustomer.h"
 #import "NetWorkHandler+updateCustomerHeadImg.h"
 #import "AVOSCloud/AVOSCloud.h"
 #import "OnlineCustomer.h"
@@ -117,7 +115,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    //Do any additional setup after loading the view from its nib.
     
     AppContext *context = [AppContext sharedAppContext];
     [context addObserver:self forKeyPath:@"isBDKFHasMsg" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
@@ -128,11 +126,8 @@
     
     self.title = @"客户资料";
     
-    
-    
     [self.headerView.btnPhone addTarget:self action:@selector(doBtnRing:) forControlEvents:UIControlEventTouchUpInside];
     [self.headerView.btnMsg addTarget:self action:@selector(doBtnEmail:) forControlEvents:UIControlEventTouchUpInside];
-//    [self.headerView.photoImageV sd_setImageWithURL:[NSURL URLWithString:self.data.headImg] placeholderImage:ThemeImage(@"user_head")];
     [self.headerView.photoImageV sd_setImageWithURL:[NSURL URLWithString:FormatImage(self.data.headImg, (int)self.headerView.photoImageV.frame.size.width, (int)self.headerView.photoImageV.frame.size.height)] placeholderImage:ThemeImage(@"user_head")];
     
     self.headerView.delegate = self;
@@ -154,7 +149,16 @@
     self.btnSituation.tag = 103;
     
     if(self.data){
+        
+        self.data.isLoadInsur = NO;
+        self.data.isLoadVisit = NO;
+        self.data.isLoadInsuredList = NO;
+        
         self.headerView.lbName.text = self.data.customerName;
+        if(self.data.customerName == nil || [self.data.customerName isKindOfClass:[NSNull class]] || [self.data.customerName length] == 0)
+        {
+            self.headerView.lbName.text = Default_Customer_Name;
+        }
         self.headerView.lbMobile.text = self.data.customerPhone;
         self.headerView.lbTag.text = [self.data getCustomerLabelString];
     }
@@ -211,6 +215,10 @@
 {
     [super viewWillAppear:animated];
     self.headerView.lbName.text = self.data.customerName;
+    if(self.data.customerName == nil || [self.data.customerName isKindOfClass:[NSNull class]] || [self.data.customerName length] == 0)
+    {
+        self.headerView.lbName.text = Default_Customer_Name;
+    }
     self.headerView.lbMobile.text = self.data.customerPhone;
     self.headerView.lbTag.text = [self.data getCustomerLabelString];
     [self setCarInfo];
@@ -307,11 +315,16 @@
 - (void) loadDetailWithCustomerId:(NSString *)customerId
 {
     self.customerId = customerId;
+    
     [NetWorkHandler requestToQueryCustomerBaseInfo:customerId carInfo:@"1" Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             self.data = (CustomerDetailModel*)[CustomerDetailModel modelFromDictionary:[content objectForKey:@"data"]];
             self.headerView.lbName.text = self.data.customerName;
+            if(self.data.customerName == nil || [self.data.customerName isKindOfClass:[NSNull class]] || [self.data.customerName length] == 0)
+            {
+                self.headerView.lbName.text = Default_Customer_Name;
+            }
             self.headerView.lbMobile.text = self.data.customerPhone;
             self.headerView.lbTag.text = [self.data getCustomerLabelString];
             [self.headerView.photoImageV sd_setImageWithURL:[NSURL URLWithString:self.data.headImg] placeholderImage:ThemeImage(@"user_head")];
@@ -323,26 +336,27 @@
                 self.customerinfoModel.customerName = self.data.customerName;
             }else{
                 CustomerInfoModel *model = [[CustomerInfoModel alloc] init];
-//                self.customerinfoModel = [[CustomerInfoModel alloc] init];
                 model.detailModel = self.data;
                 model.customerName = self.data.customerName;
                 model.customerId = self.data.customerId;
                 model.isAgentCreate = 1;
-//                model.customerLabel = self.data.customerLabel;
-//                model.customerLabelId = self.data.customerLabelId;
                 model.headImg = self.data.headImg;
                 self.customerinfoModel = model;
             }
             
-            [self loadInsuredListWithCustomerId:self.data.customerId];
+            [self loadVisitList:0];
+            [self startRefresh];
+            [self loadInsurPageList:0];
+            [self loadInsuredListWithCustomerId:self.customerId];
+            
         }
     }];
 }
 
 //获取客户跟进信息
-- (void) loadVisitList
+- (void) loadVisitList:(NSInteger) offset
 {
-    NSInteger offset = [self.data.visitAttay count];
+//    NSInteger offset = [self.data.visitAttay count];
     NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
     NSMutableArray *rules = [[NSMutableArray alloc] init];
@@ -350,6 +364,8 @@
     [rules addObject:[self getRulesByField:@"userId" op:@"eq" data:user.userId]];
     [rules addObject:[self getRulesByField:@"customerId" op:@"eq" data:self.customerId]];
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
+    
+    self.data.isLoadVisit = YES;
     
     [NetWorkHandler requestToQueryForCustomerVisitsPageList:offset
                                                       limit:LIMIT
@@ -361,7 +377,7 @@
                                                          NSArray *array = [[content objectForKey:@"data"] objectForKey:@"rows"];
                                                          [self.data.visitAttay addObjectsFromArray:[VisitInfoModel modelArrayFromArray:array]];
                                                          self.data.visitTotal = [[[content objectForKey:@"data"] objectForKey:@"total"] integerValue];
-                                                         self.data.isLoadVisit = YES;
+                                                         
                                                          _followUpView.data = self.data.visitAttay;
                                                          [_followUpView.tableview reloadData];
                                                          if([_selectedView isKindOfClass:[CustomerFollowUpInfoView class]])
@@ -382,21 +398,15 @@
 //获取保单信息列表
 - (void) loadInsurPageList:(NSInteger) offset
 {
-//    if(self.data.carInfo == nil){
-//        [_policyListView endAnimation];
-//        [_insuranceView endAnimation];
-//        return;
-//    }
-    
     NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
     NSMutableArray *rules = [[NSMutableArray alloc] init];
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-//    [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:@"1"]];
     [rules addObject:[self getRulesByField:@"customerId" op:@"eq" data:self.customerId]];
     [rules addObject:[self getRulesByField:@"userId" op:@"eq" data:user.userId]];
-//    [rules addObject:[self getRulesByField:@"customerCarId" op:@"eq" data:self.data.carInfo.customerCarId]];
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
+    
+    self.data.isLoadInsur = YES;
     
     [NetWorkHandler requestToQueryForCustomerInsurPageList:nil
                                                     offset:offset
@@ -415,7 +425,6 @@
             }
             [self.data.insurArray addObjectsFromArray:[InsurInfoModel modelArrayFromArray:array]];
             self.data.insurTotal = [[[content objectForKey:@"data"] objectForKey:@"total"] integerValue];
-            self.data.isLoadInsur = YES;
             _policyListView.data = self.data.insurArray;
             [_policyListView.tableview reloadData];
             if([_selectedView isKindOfClass:[UserPolicyListView class]]){
@@ -482,7 +491,6 @@
     
     CGRect frame = self.lbFocusLine.frame;
     self.scrollOffsetConstraint.constant = 0;
-//    btnQuote.hidden = YES;
     
     switch (tag) {
         case 101:
@@ -490,18 +498,18 @@
             [self focusLineMovieTo:CGRectMake(0, frame.origin.y, ScreenWidth /3, 3)];
             _insuranceView.lbTitle.text = @"车险信息";
             _insuranceView.lbExplain.text = @"暂无新的车险信息，请添加";
-            _insuranceView.btnAdd.hidden = NO;
-            _insuranceDetailView.hidden = NO;
             _insuranceView.type = enumInsuranceInfoViewTypeInsurance;
             self.scrollOffsetConstraint.constant = 0;
-            [self resetContetHeight:_insuranceDetailView];
-//            btnQuote.hidden = NO;
             _insuranceView.indicatorView.hidden = YES;
+            [self resetContetHeight:_insuranceDetailView];
+            
+            _insuranceView.hidden = YES;
+            _insuranceDetailView.hidden = NO;
         }
             break;
         case 102:
         {
-            [self focusLineMovieTo:CGRectMake(ScreenWidth /3 * 2, frame.origin.y, ScreenWidth /3, 3)];
+            [self focusLineMovieTo:CGRectMake(ScreenWidth /3, frame.origin.y, ScreenWidth /3, 3)];
             _insuranceView.lbTitle.text = @"保单信息";
             _insuranceView.lbExplain.text = @"暂无保单信息";
             [_insuranceView.btnAdd setTitle:@"刷新" forState:UIControlStateNormal];
@@ -515,15 +523,15 @@
                 _insuranceView.btnAdd.hidden = YES;
             _policyListView.hidden = NO;
             [self resetContetHeight:_policyListView];
-            if(!self.data.isLoadInsur ){
-                [self startRefresh];
-                [self loadInsurPageList:0];
-            }
+//            if(!self.data.isLoadInsur ){
+//                [self startRefresh];
+//                [self loadInsurPageList:0];
+//            }
         }
             break;
         case 103:
         {
-            [self focusLineMovieTo:CGRectMake(ScreenWidth /3, frame.origin.y, ScreenWidth /3, 3)];
+            [self focusLineMovieTo:CGRectMake(ScreenWidth /3 * 2, frame.origin.y, ScreenWidth /3, 3)];
             _insuranceView.lbTitle.text = @"线索进展";
             _insuranceView.lbExplain.text = @"暂无新的线索进展，请添加";
             _insuranceView.btnAdd.hidden = NO;
@@ -532,9 +540,9 @@
             [self resetContetHeight:_followUpView];
             _insuranceView.indicatorView.hidden = YES;
             
-            if(!self.data.isLoadVisit){
-                [self loadVisitList];
-            }
+//            if(!self.data.isLoadVisit){
+//                [self loadVisitList];
+//            }
         }
             break;
         default:
@@ -546,7 +554,6 @@
 - (void) focusLineMovieTo:(CGRect) rect
 {
     [UIView animateWithDuration:0.25 animations:^{
-//        self.lbFocusLine.frame = rect;
         self.xfxocusxxLineOffsizeConstraint.constant = rect.origin.x;
         [self.view setNeedsLayout];
     }];
@@ -556,8 +563,8 @@
 - (void) resetContetHeight:(BaseInsuranceInfo*) view
 {
     _selectedView = view;
-    NSInteger num = [view tableView:view.tableview numberOfRowsInSection:0];
-    if(num > 0){
+    
+    if([view isKindOfClass:[InsuranceDetailView class]]){
         CGFloat viewheight = [view resetSubviewsFrame];
         CGFloat constant = self.headerVConstraint.constant + 65 + viewheight;
         if(![view isKindOfClass:[InsuranceDetailView class]])
@@ -568,24 +575,40 @@
         [view.tableview reloadData];
         view.hidden = NO;
         _insuranceView.hidden = YES;
+        _selectedView.hidden = NO;
     }else{
-        self.viewVConstraint.constant = self.headerVConstraint.constant +65 + 230;
-        self.detailVConstraint.constant = 190;
-        view.hidden = YES;
-        _insuranceView.hidden = NO;
+        NSInteger num = view.data.count;//[view tableView:view.tableview numberOfRowsInSection:0];
+        if(num > 0){
+            CGFloat viewheight = [view resetSubviewsFrame];
+            CGFloat constant = self.headerVConstraint.constant + 65 + viewheight;
+            if(![view isKindOfClass:[InsuranceDetailView class]])
+                constant += 50;
+            self.viewVConstraint.constant = constant;
+            self.detailVConstraint.constant = viewheight;
+            scrollview.contentSize = CGSizeMake(ScreenWidth, self.viewVConstraint.constant);
+            [view.tableview reloadData];
+            view.hidden = NO;
+            _insuranceView.hidden = YES;
+        }else{
+            self.viewVConstraint.constant = self.headerVConstraint.constant +65 + 230;
+            self.detailVConstraint.constant = 190;
+            view.hidden = YES;
+            _insuranceView.hidden = NO;
+        }
     }
     
     [self.view setNeedsLayout];
 }
 
 #pragma BaseInsuranceInfoDelegate
+//添加客户跟进信息
 - (void) NotifyAddFollowUpInfo:(BaseInsuranceInfo *) sender//添加客户跟进信息
 {
     if(sender == _followUpView)
         [self addFollowUp];
 }
-
-- (void) NotifyModifyInsuranceInfo:(BaseInsuranceInfo *) sender//编辑投保资料
+//编辑投保资料
+- (void) NotifyModifyInsuranceInfo:(BaseInsuranceInfo *) sender
 {
     if(sender == _insuranceDetailView)
         [self editAutoInsuranceInfo];
@@ -600,8 +623,8 @@
         vc.visitModel = [self.data.visitAttay objectAtIndex:idx];
     }
 }
-
-- (void) NotifyHandlePolicyClicked:(BaseInsuranceInfo *)sender idx:(NSInteger) idx//处理保单列表点击
+//处理保单列表点击
+- (void) NotifyHandlePolicyClicked:(BaseInsuranceInfo *)sender idx:(NSInteger) idx
 {
     if(sender == _policyListView){
         InsurInfoModel *model = [self.data.insurArray objectAtIndex:idx];
@@ -620,30 +643,29 @@
                 UserInfoModel *user = [UserInfoModel shareUserInfoModel];
                 web.shareTitle = [NSString stringWithFormat:@"我是%@，我是优快保自由经纪人。这是为您定制的投保方案报价，请查阅。电话%@", user.realName, user.phone];
                 [self.navigationController pushViewController:web animated:YES];
-                [web initShareUrl:model.insuranceOrderUuid insuranceType:@"1" planOfferId:model.planOfferId];
-                if(model.planOfferId){
-                    NSString *url = [NSString stringWithFormat:@"%@?insuranceType=%@&orderId=%@&planOfferId=%@", model.clickUrl, @"1", model.insuranceOrderUuid, model.planOfferId];
-                    [web loadHtmlFromUrl:url];
-                }else
-                {
-                    NSString *url = [NSString stringWithFormat:@"%@?insuranceType=%@&orderId=%@", model.clickUrl, @"1", model.insuranceOrderUuid];
-                    [web loadHtmlFromUrl:url];
-                }
+                [web initShareUrl:model.insuranceOrderUuid];
+                
+                NSString *url = [NSString stringWithFormat:@"%@?appId=%@&orderUuId=%@&helpInsure=1", model.clickUrl, [UserInfoModel shareUserInfoModel].uuid, model.insuranceOrderUuid];
+                [web initShareUrl:model.insuranceOrderUuid];
+                [web loadHtmlFromUrl:url];
             }
             else if (orderOfferStatus == 3){
                 OfferDetailsVC *vc = [IBUIFactory CreateOfferDetailsViewController];
                 vc.orderId = model.insuranceOrderUuid;
+                vc.insurInfo = model;
                 [self.navigationController pushViewController:vc animated:YES];
             }else{
                 OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
                 web.insModel = model;
                 web.title = @"报价详情";
                 [self.navigationController pushViewController:web animated:YES];
-                NSString *url = [NSString stringWithFormat:@"%@?insuranceType=%@&orderId=%@", model.clickUrl, @"1", model.insuranceOrderUuid];
+                
+                NSString *url = [NSString stringWithFormat:@"%@?appId=%@&orderUuId=%@&helpInsure=1", model.clickUrl, [UserInfoModel shareUserInfoModel].uuid, model.insuranceOrderUuid];
+                [web initShareUrl:model.insuranceOrderUuid];
                 [web loadHtmlFromUrl:url];
             }
         }else{
-            ProductDetailWebVC *web = [IBUIFactory CreateProductDetailWebVC];
+            WebViewController *web = [IBUIFactory CreateWebViewController];
             web.title = @"保单详情";
             [self.navigationController pushViewController:web animated:YES];
             NSString *url = [NSString stringWithFormat:@"%@?orderId=%@", model.clickUrl, model.insuranceOrderUuid];
@@ -658,7 +680,8 @@
 - (void) NotifyToLoadMoreFollowUp:(BaseInsuranceInfo *)sender
 {
     if(sender == _followUpView){
-        [self loadVisitList];
+        NSInteger offset = [self.data.insurArray count];
+        [self loadVisitList:offset];
     }
 }
 
@@ -668,7 +691,6 @@
     if(sender == _policyListView){
         NSInteger offset = [self.data.insurArray count];
         [self loadInsurPageList:offset];
-        
     }
 }
 
@@ -700,7 +722,7 @@
             [_followUpView.tableview reloadData];
             
             if(self.data.visitTotal > 0 && [self.data.visitAttay count] == 0){
-                [self loadVisitList];
+                [self loadVisitList:0];
             }else{
                 if([_selectedView isKindOfClass:[CustomerFollowUpInfoView class]]){
                     [self doBtnSelectDetailInfoView:self.btnSituation];
@@ -764,17 +786,84 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+//把服务端存储的FIELD->NULL置为本地的@“”
+- (NSString *) notNullString:(NSString *) string
+{
+    if([string isEqualToString:@"FIELD->NULL"])
+        string = @"";
+    
+    return string;
+}
+
+- (void) NotifyToRefreshSubviewFrames
+{
+    [self resetContetHeight:_selectedView];
+    [self.scrollview scrollRectToVisible:CGRectMake(0, self.viewVConstraint.constant - self.scrollview.frame.size.height, ScreenWidth, self.scrollview.frame.size.height) animated:YES];
+}
+
+//刷新按钮动画
+- (void) startRefresh
+{
+    _insuranceView.indicatorView.hidden = NO;
+    [_insuranceView startAnimation];
+}
+
+//点击按钮，刷新保单列表
+- (void) NotifyToRefresh:(BaseInsuranceInfo *)sender;//刷新保单列表
+{
+    [self startRefresh];
+    [self loadInsurPageList:0];
+}
+
+//添加客户跟进
+- (void) addFollowUp
+{
+    AddFollowUpVC *vc = [IBUIFactory CreateAddFollowUpViewController];
+    [self.navigationController pushViewController:vc animated:YES];
+    vc.customerId = self.customerId;
+    vc.customerModel = self.customerinfoModel;
+}
+
+//编辑车险资料
+- (void) editAutoInsuranceInfo
+{
+    [self addAutoInsuranceInfo];
+}
+
+//添加车险资料
+- (void) addAutoInsuranceInfo
+{
+    AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
+    [self.navigationController pushViewController:vc animated:YES];
+    vc.customerId = self.customerId;
+    vc.customerModel = self.data;
+    vc.carInfo = self.data.carInfo;
+}
+
 //上传车险资料
 - (void) NotifyToSubmitImage:(UIImage *) travelCard1 travelCard2:(UIImage *)travelCard2 image1:(UIImage *) image1 cert2:(UIImage *)image2
 {
-     [ProgressHUD show:@"正在上传"];
+    [ProgressHUD show:@"正在上传"];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSString *filePahe1 = [self fileupMothed:travelCard1];
         NSString *filePahe2 = [self fileupMothed:travelCard2];
         NSString *filePahe3 = [self fileupMothed:image1];
         NSString *filePahe4 = [self fileupMothed:image2];
         
-        [NetWorkHandler requestToSaveOrUpdateCustomerCar:self.data.carInfo.customerCarId customerId:self.data.customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:nil carShelfNo:nil carEngineNo:nil carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe1 travelCard2:filePahe2 carOwnerCard1:filePahe3 carOwnerCard2:filePahe4 carRegTime:nil newCarNoStatus:nil carTradeStatus:nil carTradeTime:nil carInsurStatus1:nil carInsurCompId1:nil Completion:^(int code, id content) {
+        NSInteger labourOfferStatus = 1;
+        NSString *carTypeNo = self.data.carInfo.carTypeNo;
+        NSString *carShelfNo = self.data.carInfo.carShelfNo;
+        NSString *carEngineNo = self.data.carInfo.carEngineNo;
+        NSString *carRegTime = [Util getDayString:self.data.carInfo.carRegTime];
+        if(filePahe1){
+            labourOfferStatus = 2;
+            carTypeNo = [Util nullString:carTypeNo];
+            carShelfNo = [Util nullString:carShelfNo];
+            carEngineNo = [Util nullString:carEngineNo];
+            carRegTime = [Util nullString:carRegTime];
+        }
+        
+        [NetWorkHandler requestToSaveOrUpdateCustomerCar:self.data.carInfo.customerCarId customerId:self.data.customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe1 travelCard2:filePahe2 carOwnerCard1:filePahe3 carOwnerCard2:filePahe4 carRegTime:carRegTime newCarNoStatus:nil carTradeStatus:nil carTradeTime:nil carInsurStatus1:nil carInsurCompId1:nil labourOfferStatus:labourOfferStatus Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             dispatch_async(dispatch_get_main_queue(),^{
                 if(code == 200){
@@ -794,6 +883,11 @@
                         model.carOwnerCard1 = filePahe3;
                     if(filePahe4 != nil)
                         model.carOwnerCard2 = filePahe4;
+                    model.carTypeNo = [self notNullString:carTypeNo];
+                    model.carShelfNo = [self notNullString:carShelfNo];
+                    model.carEngineNo = [self notNullString:carEngineNo];
+                    model.carRegTime = nil;
+                    
                     [_insuranceDetailView.tableview reloadData];
                     [ProgressHUD showSuccess:@"上传成功"];
                 }else{
@@ -819,54 +913,6 @@
     }
     
     //文字内容
-}
-
-- (void) NotifyToRefreshSubviewFrames
-{
-    [self resetContetHeight:_selectedView];
-    [self.scrollview scrollRectToVisible:CGRectMake(0, self.viewVConstraint.constant - self.scrollview.frame.size.height, ScreenWidth, self.scrollview.frame.size.height) animated:YES];
-}
-
-- (void) startRefresh
-{
-    _insuranceView.indicatorView.hidden = NO;
-    [_insuranceView startAnimation];
-}
-
-- (void) NotifyToRefresh:(BaseInsuranceInfo *)sender;//刷新保单列表
-{
-    [self startRefresh];
-    [self loadInsurPageList:0];
-}
-
-//添加客户跟进
-- (void) addFollowUp
-{
-    AddFollowUpVC *vc = [IBUIFactory CreateAddFollowUpViewController];
-    [self.navigationController pushViewController:vc animated:YES];
-    vc.customerId = self.customerId;
-    vc.customerModel = self.customerinfoModel;
-}
-
-//编辑车险资料
-- (void) editAutoInsuranceInfo
-{
-    AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
-    [self.navigationController pushViewController:vc animated:YES];
-    vc.customerId = self.customerId;
-    vc.selectProModel = self.selectProModel;
-    vc.customerModel = self.data;
-    vc.carInfo = self.data.carInfo;
-}
-
-//添加车险资料
-- (void) addAutoInsuranceInfo
-{
-    AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
-    [self.navigationController pushViewController:vc animated:YES];
-    vc.customerId = self.customerId;
-    vc.customerModel = self.data;
-    vc.carInfo = self.data.carInfo;
 }
 
 - (void) NotifyToSubmitCustomerHeadImg:(UIImage *) image
@@ -936,39 +982,21 @@
 {
     if([Util checkInfoFull:self.data.carInfo]){
         
-        NSString *str = @"";
-        if(self.customerinfoModel.detailModel.carInfo.carInsurStatus1 && self.customerinfoModel.detailModel.carInfo.carInsurCompId1 != nil){
-            str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", self.customerinfoModel.detailModel.carInfo.carInsurCompId1];
-        }
-        
-        OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
+        QuickQuoteVC *web = [IBUIFactory CreateQuickQuoteVC];
         web.title = @"报价";
         [self.navigationController pushViewController:web animated:YES];
+        NSString *url = [NSString stringWithFormat:CAR_INSUR_PLAN, CHE_XIAN_SUAN_JIA, self.data.carInfo.customerCarId, [UserInfoModel shareUserInfoModel].uuid, @""];
         
-        if(self.selectProModel){
-            if(self.selectProModel.productAttrId)
-                str = [NSString stringWithFormat:@"%@&productId=%@", str, self.selectProModel.productAttrId];
-            if(self.selectProModel.compCode)
-                str = [NSString stringWithFormat:@"%@&compCode=%@", str, self.selectProModel.compCode];
-        }
-        
-        NSString *url = [NSString stringWithFormat:CAR_INSUR_PLAN, Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.data.customerId, self.data.carInfo.customerCarId, str];
         [web loadHtmlFromUrl:url];
     }else{
 
-        [Util showAlertMessage:@"请选择车辆上年投保信息或完善车辆资料！"];
+        [Util showAlertMessage:@"请输入车牌或上传行驶证！"];
         AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
         [self.navigationController pushViewController:vc animated:YES];
         vc.customerId = self.customerId;
-        vc.selectProModel = self.selectProModel;
         vc.customerModel = self.data;
         vc.carInfo = self.data.carInfo;
     }
-}
-
-- (void) initWithProductId:(NSString *) product
-{
-    _productId = product;
 }
 
 @end

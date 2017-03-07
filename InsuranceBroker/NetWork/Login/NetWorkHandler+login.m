@@ -30,7 +30,7 @@
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:params value:phone key:@"phone"];
     [Util setValueForKeyWithDic:params value:openId key:@"openid"];
-    [Util setValueForKeyWithDic:params value:[NSNumber numberWithInt:sex] key:@"sex"];
+    [Util setValueForKeyWithDic:params value:[NSNumber numberWithInteger:sex] key:@"sex"];
     [Util setValueForKeyWithDic:params value:nickname key:@"nickname"];
     [Util setValueForKeyWithDic:params value:privilege key:@"privilege"];
     [Util setValueForKeyWithDic:params value:unionid key:@"unionid"];
@@ -65,7 +65,7 @@
     NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:params value:phone key:@"phone"];
     [Util setValueForKeyWithDic:params value:openId key:@"openid"];
-    [Util setValueForKeyWithDic:params value:[NSNumber numberWithInt:sex] key:@"sex"];
+    [Util setValueForKeyWithDic:params value:[NSNumber numberWithInteger:sex] key:@"sex"];
     [Util setValueForKeyWithDic:params value:nickname key:@"nickname"];
     [Util setValueForKeyWithDic:params value:privilege key:@"privilege"];
     [Util setValueForKeyWithDic:params value:unionid key:@"unionid"];

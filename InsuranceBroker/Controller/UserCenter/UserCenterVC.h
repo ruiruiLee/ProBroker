@@ -34,19 +34,15 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbTotalOrderCount;//总订单数
 @property (nonatomic, strong) IBOutlet UILabel *lbCarTotalOrderCount;//总订单数
 @property (nonatomic, strong) IBOutlet UILabel *lbNoCarTotalOrderCount;//总订单数
-@property (nonatomic, strong) IBOutlet UILabel *lbUserInvite;
-@property (nonatomic, strong) IBOutlet UILabel *lbTeamTotal;
 @property (nonatomic, strong) IBOutlet UILabel *lbNowMonthOrderCount;
 
-@property (nonatomic, strong) IBOutlet UILabel *lbRedLogo;
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *redFlagConstraint;
-
 //约束
-//@property (nonatomic, strong) IBOutlet NSLayoutConstraint *headVConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *headHConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *footVConstraint;
 
 @property (nonatomic, strong) IBOutlet UIButton *btnEditPhoto;
+
+@property (nonatomic, strong) IBOutlet UIView *contentView;
 
 //修改用户资料
 - (IBAction)EditUserInfo:(id)sender;
@@ -64,7 +60,7 @@
 - (IBAction)invite:(id)sender;
 
 //整体规模
-- (IBAction)scale:(id)sender;
+//- (IBAction)scale:(id)sender;
 
 //上月已经完成
 - (IBAction)finish:(id)sender;

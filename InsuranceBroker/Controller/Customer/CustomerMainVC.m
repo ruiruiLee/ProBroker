@@ -205,9 +205,11 @@
         
         CustomerInfoModel *model = [self.data objectAtIndex:indexPath.row];
         cell.lbName.text = model.customerName;
+        if(model.customerName == nil || [model.customerName isKindOfClass:[NSNull class]] || [model.customerName length] == 0)
+        {
+            cell.lbName.text = Default_Customer_Name;
+        }
         cell.lbStatus.text = model.visitType;
-//        [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headImg] placeholderImage:ThemeImage(@"customer_head")];
-//        FormatImage
         [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.headImg, (int)cell.photoImage.frame.size.width, (int)cell.photoImage.frame.size.height)] placeholderImage:ThemeImage(@"customer_head")];
         cell.headImg = model.headImg;
         if(model.visitType == nil)
@@ -234,7 +236,7 @@
             cell.lbTitle.text = @"分享获客";
             cell.lbCount.hidden = NO;
             AppContext *context = [AppContext sharedAppContext];
-            cell.lbCount.text = [NSString stringWithFormat:@"%d", context.pushCustomerNum];
+            cell.lbCount.text = [NSString stringWithFormat:@"%ld", (long)context.pushCustomerNum];
             if(context.pushCustomerNum == 0)
                 cell.lbCount.hidden = YES;
             else
@@ -298,7 +300,7 @@
         lbCount.translatesAutoresizingMaskIntoConstraints = NO;
         lbCount.textColor = _COLOR(0x75, 0x75, 0x75);
         lbCount.font = _FONT(12);
-        lbCount.text = [NSString stringWithFormat:@"%d人", self.total];
+        lbCount.text = [NSString stringWithFormat:@"%ld人", (long)self.total];
         [view addSubview:lbCount];
         
         NSDictionary *views = NSDictionaryOfVariableBindings(imgv, lbTitle, lbCount);

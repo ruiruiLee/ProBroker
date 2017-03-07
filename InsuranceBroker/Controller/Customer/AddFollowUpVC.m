@@ -14,6 +14,7 @@
 #import "ZHPickView.h"
 #import "NetWorkHandler+saveOrUpdateCustomerVisits.h"
 #import "ProgressHUD.h"
+#import "SRAlertView.h"
 
 @interface AddFollowUpVC () <MenuDelegate, ZHPickViewDelegate, UITextViewDelegate>
 {
@@ -353,8 +354,15 @@
         NSInteger TEXT_LEN = 200;
         NSInteger number = [textView.text length];
         if (number > TEXT_LEN && textView.markedTextRange == nil) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"字符个数不能大于200" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [alert show];
+
+            [SRAlertView sr_showAlertViewWithTitle:@"提 示"
+                                           message:@"字符个数不能大于200"
+                                   leftActionTitle:@"确 定"
+                                  rightActionTitle:nil
+                                    animationStyle:AlertViewAnimationZoom
+                                      selectAction:^(AlertViewActionType actionType) {
+                                      }];
+            
             self.tfview.text = [textView.text substringToIndex:TEXT_LEN];
         }
     }
@@ -363,8 +371,14 @@
         NSInteger TEXT_LEN = 100;
         NSInteger number = [textView.text length];
         if (number > TEXT_LEN && textView.markedTextRange == nil) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"字符个数不能大于100" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
-            [alert show];
+            [SRAlertView sr_showAlertViewWithTitle:@"提 示"
+                                           message:@"字符个数不能大于100"
+                                   leftActionTitle:@"确 定"
+                                  rightActionTitle:nil
+                                    animationStyle:AlertViewAnimationZoom
+                                      selectAction:^(AlertViewActionType actionType) {
+                                      }];
+            
             self.tfAdd.text = [textView.text substringToIndex:TEXT_LEN];
         }
         
@@ -389,7 +403,7 @@
         return YES;
     }
     else{
-        if (textView.text.length >= 100 ) {
+        if (textView.text.length >= 100 && [text length] > range.length) {
             return NO;
         }
         

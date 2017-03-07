@@ -33,7 +33,7 @@
 @property (nonatomic, assign) NSInteger orderOfferOrigPrice;//":"0"; //原价 - 成功后才维护值
 @property (nonatomic, assign) CGFloat orderOfferRatio;//":"0"; //折扣率 - 成功后才维护值
 @property (nonatomic, assign) CGFloat orderOfferPayPrice;//":"0"; //实际支付价 - 成功后才维护值
-@property (nonatomic, strong) NSString *customerName;//":"长得帅"; //经纪人姓名
+@property (nonatomic, strong) NSString *customerName;//":"长得帅"; //车主姓名
 @property (nonatomic, strong) NSString *carNo;//":"川A11111"; //投保车牌号
 @property (nonatomic, strong) NSArray *offersVoList;//":保单对应产品报价列表
 @property (nonatomic, strong) NSString *planTypeName;

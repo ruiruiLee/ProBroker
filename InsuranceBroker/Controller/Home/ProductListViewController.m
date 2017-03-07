@@ -15,6 +15,7 @@
 #import "productAttrModel.h"
 #import "UIImageView+WebCache.h"
 #import "AVOSCloud/AVOSCloud.h"
+#import "SBJson.h"
 
 @implementation ProductListViewController
 
@@ -42,6 +43,12 @@
     [super viewDidLoad];
     
     self.pulltable.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 #pragma UITableViewDataSource UITableViewDelegate
@@ -82,8 +89,8 @@
     
     productAttrModel *model = [self.data objectAtIndex:indexPath.row];
     
-    [cell.logoImage sd_setImageWithURL:[NSURL URLWithString:model.productImg] placeholderImage:Normal_Image];
-    cell.lbTitle.text = model.productTitle;
+    [cell.logoImage sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:Normal_Image];
+    cell.lbTitle.text = model.productName;
     cell.lbContent.text = model.productIntro;
     if(model.productSellNums){
         cell.lbCount.hidden = NO;
@@ -119,16 +126,71 @@
     
     productAttrModel *m = [self.data objectAtIndex:indexPath.row];
     
-    ProductDetailWebVC *web = [IBUIFactory CreateProductDetailWebVC];
-    web.title = m.productTitle;
-    if(m.productImg != nil)
-        web.shareImgArray = [NSArray arrayWithObject:m.productImg];
-    
-    web.shareContent = m.productIntro;
-    web.shareTitle = m.productTitle;
-    web.selectProModel = m;
-    [self.navigationController pushViewController:web animated:YES];
-    [web loadHtmlFromUrlWithUserId:m.clickAddr productId:m.productAttrId];
+    if(![m.uniqueFlag isEqualToString:@"100"])
+    {
+        OurProductDetailVC *web = [IBUIFactory CreateOurProductDetailVC];
+        
+        web.title = m.productName;
+        if(m.productLogo != nil)
+            web.shareImgArray = [NSArray arrayWithObject:m.productLogo];
+        
+        web.shareContent = m.productIntro;
+        web.shareTitle = m.productName;
+//        web.selectProModel = m;
+        [self.navigationController pushViewController:web animated:YES];
+        [web loadHtmlFromUrlWithUserId:m.clickAddr productId:m.productId];
+
+    }
+    else{
+        
+        ProductDetailWebVC *web = [IBUIFactory CreateProductDetailWebVC];
+        web.title = m.productName;
+        web.selectProModel = m;
+        if(m.productLogo != nil)
+            web.shareImgArray = [NSArray arrayWithObject:m.productLogo];
+        
+        web.shareContent = m.productIntro;
+        web.shareTitle = m.productName;
+        web.selectProModel = m;
+        
+        
+        NSMutableDictionary *mdic = [[NSMutableDictionary alloc] init];
+        [mdic setObject:@{@"userId": [UserInfoModel shareUserInfoModel].userId} forKey:@"extraInfo"];
+        
+        
+        SBJsonWriter *_writer = [[SBJsonWriter alloc] init];
+        NSString *dataString = [_writer stringWithObject:mdic];
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.view.userInteractionEnabled = NO;
+        
+//        NSString *url = [NSString stringWithFormat:@"http://118.123.249.87:8783/UKB.AgentNew/web/security/encryRC4.xhtml?dataString=%@&rc4key=open20160501", dataString];
+//        
+//        //    NSString * encodedUrl = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)url, NULL, NULL,  kCFStringEncodingUTF8 ));
+//        
+//        url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSString *url = [NSString stringWithFormat:@"http://118.123.249.87:8783/UKB.AgentNew/web/security/encryRC4.xhtml?"];
+        
+        url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
+        [pramas setObject:dataString forKey:@"dataString"];
+        
+        [pramas setObject:@"open20160501" forKey:@"key"];
+        
+        [[NetWorkHandler shareNetWorkHandler] getWithUrl:url Params:pramas Completion:^(int code, id content) {
+            self.view.userInteractionEnabled = YES;
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            if(code == 1){
+                NSString *bizContent =  (NSString *) content;
+                
+                NSString *url = [NSString stringWithFormat:@"%@&bizContent=%@", m.clickAddr, bizContent];
+                
+                [self.navigationController pushViewController:web animated:YES];
+                [web loadHtmlFromUrl:url];
+            }
+        }];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -190,13 +252,12 @@
  */
 - (void) loadDataInPages:(NSInteger)page
 {
-    NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
-    [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
-    NSMutableArray *rules = [[NSMutableArray alloc] init];
-    [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:self.category]];
-    [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
-    
-    [self.handler requestToQueryForProductAttrPageList:page limit:LIMIT sidx:@"P_ProductAttr.seqNo" sord:@"asc" filters:filters userId:[UserInfoModel shareUserInfoModel].userId insuranceType:self.category completion:^(int code, id content) {
+//    NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
+//    [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
+//    NSMutableArray *rules = [[NSMutableArray alloc] init];
+//    [rules addObject:[self getRulesByField:@"insuranceType" op:@"eq" data:self.category]];
+//    [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
+    [self.handler requestToQueryForProductAttrPageList:page limit:LIMIT filters:nil userId:[UserInfoModel shareUserInfoModel].userId uuid:[UserInfoModel shareUserInfoModel].uuid insuranceType:self.category completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         [self performSelector:@selector(resetTable) withObject:nil afterDelay:0.25];
         if(code == 200){
@@ -243,26 +304,5 @@
         return @"";
     return string;
 }
-
-//- (void) showNoDatasImage:(UIImage *) image
-//{
-//    if(!self.explainBgView){
-//        self.explainBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 80)];
-//        imgWithNoData = [[UIImageView alloc] initWithImage:image];
-//        [self.explainBgView addSubview:imgWithNoData];
-//        [self.pulltable addSubview:self.explainBgView];
-//        self.explainBgView.center = CGPointMake(ScreenWidth/2, self.pulltable.frame.size.height/2);
-//    }else{
-//        self.explainBgView.center = CGPointMake(ScreenWidth/2, self.pulltable.frame.size.height/2);
-//    }
-//}
-//
-//- (void) hidNoDatasImage
-//{
-//    [self.explainBgView removeFromSuperview];
-//    [imgWithNoData removeFromSuperview];
-//    self.explainBgView = nil;
-//    self.imgWithNoData = nil;
-//}
 
 @end

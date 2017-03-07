@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15E39d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -12,32 +13,28 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qbg-aQ-yXT" id="cnN-86-041">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                <frame key="frameInset" width="320" height="49"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qF5-Zg-ifA" userLabel="Label - Menu Item">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
-                        <animations/>
-                        <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="0.7724609375" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="0.7724609375" colorSpace="custom" customColorSpace="sRGB"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                        <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view alpha="0.30000000000000004" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lqU-Sr-PSM" userLabel="View - Bottom Line">
-                        <rect key="frame" x="0.0" y="49" width="320" height="1"/>
-                        <animations/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <frame key="frameInset" minY="49" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="btn_done" translatesAutoresizingMaskIntoConstraints="NO" id="XFV-7q-lku">
-                        <rect key="frame" x="280" y="18" width="20" height="13"/>
-                        <animations/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="btn_done" translatesAutoresizingMaskIntoConstraints="NO" id="XFV-7q-lku">
+                        <frame key="frameInset" minX="280" minY="18" width="20" height="13"/>
                     </imageView>
                 </subviews>
-                <animations/>
-                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottomMargin" secondItem="qF5-Zg-ifA" secondAttribute="bottom" constant="-8" id="6xs-0X-0ba"/>
                     <constraint firstAttribute="trailingMargin" secondItem="XFV-7q-lku" secondAttribute="trailing" constant="12" id="VFC-HZ-bpS"/>
+                    <constraint firstItem="XFV-7q-lku" firstAttribute="centerY" secondItem="qF5-Zg-ifA" secondAttribute="centerY" id="bk1-TW-U8P"/>
                     <constraint firstAttribute="bottomMargin" secondItem="lqU-Sr-PSM" secondAttribute="bottom" constant="-8" id="g3M-b9-pkL"/>
                     <constraint firstAttribute="trailingMargin" secondItem="qF5-Zg-ifA" secondAttribute="trailing" constant="-8" id="jN4-o2-nJM"/>
                     <constraint firstItem="lqU-Sr-PSM" firstAttribute="leading" secondItem="cnN-86-041" secondAttribute="leadingMargin" constant="-8" id="qGU-kn-o5u"/>
@@ -46,8 +43,7 @@
                     <constraint firstAttribute="trailingMargin" secondItem="lqU-Sr-PSM" secondAttribute="trailing" constant="-8" id="xho-2c-DrB"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="menuItemLabel" destination="qF5-Zg-ifA" id="yMB-w0-jzP"/>
                 <outlet property="selectedMarkView" destination="XFV-7q-lku" id="IqF-c0-wSp"/>
@@ -57,4 +53,9 @@
     <resources>
         <image name="btn_done" width="19" height="13"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

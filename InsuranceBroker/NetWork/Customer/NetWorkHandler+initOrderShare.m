@@ -11,14 +11,12 @@
 
 @implementation NetWorkHandler (initOrderShare)
 
-+ (void) requestToInitOrderShare:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId Completion:(Completion)completion
++ (void) requestToInitOrderShare:(NSString *) orderId Completion:(Completion)completion
 {
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
     
     [Util setValueForKeyWithDic:pramas value:orderId key:@"orderId"];
-    [Util setValueForKeyWithDic:pramas value:insuranceType key:@"insuranceType"];
-    [Util setValueForKeyWithDic:pramas value:planOfferId key:@"planOfferId"];
     
     [handle postWithMethod:@"/web/insurance/initOrderShare.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }

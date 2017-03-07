@@ -22,35 +22,6 @@
     return _pages;
 }
 
-//- (void) initMenus
-//{
-//    NSMutableArray *pages = [NSMutableArray new];
-//        
-//    OrderManagerVC *chexian = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
-//    chexian.insuranceType = @"1";
-//    [chexian setViewTitle:@"车险"];
-//    [chexian initMapTypesForCar];
-//    [pages addObject:chexian];
-//    
-//    OrderManagerVC *gexian = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
-//    gexian.insuranceType = @"2";
-//    [gexian setViewTitle:@"个险"];
-//    [gexian initMapTypesForNoCar];
-//    [pages addObject:gexian];
-//    
-//    [self setPages:pages];
-//    
-//    [self addChildViewController:chexian];
-//    [self.contentContainer addSubview:chexian.view];
-//    [chexian.view setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-//    [self addChildViewController:gexian];
-//    [self.contentContainer addSubview:gexian.view];
-//    [gexian.view setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-//    
-////    [self.view bringSubviewToFront:((UIViewController *)[self.pages objectAtIndex:0]).view];
-//    
-//}
-
 - (void)addSubControllers{
     NSMutableArray *pages = [NSMutableArray new];
     
@@ -94,15 +65,6 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[pageControl]-0-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[contentContainer]-0-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[pageControl(50)]-0-[contentContainer]-0-|" options:0 metrics:nil views:views]];
-    
-    
-//    self.pageViewController = [[MyPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-//    self.pageViewController.view.frame = CGRectMake(0, 0, self.contentContainer.frame.size.width, self.contentContainer.frame.size.height);
-//    [self.pageViewController setDataSource:self];
-//    [self.pageViewController setDelegate:self];
-//    [self.pageViewController.view setAutoresizingMask:(UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight)];
-//    [self addChildViewController:self.pageViewController];
-//    [self.contentContainer addSubview:self.pageViewController.view];
 
     
     [self.pageControl addTarget:self
@@ -144,13 +106,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-//    if ([self.pages count]>0 && [self.pageViewController.viewControllers count] == 0) {
-//        [self.pageViewController setViewControllers:@[self.pages[0]]
-//                                          direction:UIPageViewControllerNavigationDirectionForward
-//                                           animated:NO
-//                                         completion:NULL];
-//    }
+
     [self updateTitleLabels];
     
     [self.navigationController setNavigationBarHidden:NO animated:NO];
@@ -170,9 +126,6 @@
     if ([self.menuTableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.menuTableView setSeparatorInset:insets];
     }
-//    if ([self.menuTableView respondsToSelector:@selector(setLayoutMargins:)]) {
-////        [self.menuTableView setLayoutMargins:insets];
-//    }
 }
 
 - (void) doBtnSelectOrderStatus:(id) sender
@@ -190,7 +143,7 @@
     {
         self.dropdownView = [[LMDropdownView alloc] init];
         self.dropdownView.menuContentView = self.menuTableView;
-        self.dropdownView.menuBackgroundColor = _COLORa(0xff, 0xff, 0xff, 0.6);//[UIColor colorWithRed:40.0/255 green:196.0/255 blue:80.0/255 alpha:1];
+        self.dropdownView.menuBackgroundColor = _COLORa(0xff, 0xff, 0xff, 0.6);
     }
     
     // Show/hide dropdown view
@@ -247,49 +200,6 @@
     return self.pages[[self.pageControl selectedSegmentIndex]];
 }
 
-//- (void)setSelectedPageIndex:(NSUInteger)index animated:(BOOL)animated {
-//    if (index < [self.pages count]) {
-//        [self.pageControl setSelectedSegmentIndex:index animated:YES];
-//        [self.pageViewController setViewControllers:@[self.pages[index]]
-//                                          direction:UIPageViewControllerNavigationDirectionForward
-//                                           animated:animated
-//                                         completion:NULL];
-//    }
-//}
-
-//#pragma mark - UIPageViewControllerDataSource
-//
-//- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
-//{
-//    NSUInteger index = [self.pages indexOfObject:viewController];
-//    
-//    if ((index == NSNotFound) || (index == 0)) {
-//        return nil;
-//    }
-//    
-//    return self.pages[--index];
-//}
-//
-//- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
-//{
-//    NSUInteger index = [self.pages indexOfObject:viewController];
-//    
-//    if ((index == NSNotFound)||(index+1 >= [self.pages count])) {
-//        return nil;
-//    }
-//    
-//    return self.pages[++index];
-//}
-//
-//- (void)pageViewController:(UIPageViewController *)viewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
-//{
-//    if (!completed){
-//        return;
-//    }
-//    
-//    [self.pageControl setSelectedSegmentIndex:[self.pages indexOfObject:[viewController.viewControllers lastObject]] animated:YES];
-//}
-//
 #pragma mark - Callback
 
 - (void)pageControlValueChanged:(id)sender
@@ -378,13 +288,13 @@
 
 //转换子视图控制器
 - (void)transitionFromOldViewController:(UIViewController *)oldViewController toNewViewController:(UIViewController *)newViewController{
-    [self transitionFromViewController:oldViewController toViewController:newViewController duration:0.3 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:^(BOOL finished) {
-        if (finished) {
+    [self transitionFromViewController:oldViewController toViewController:newViewController duration:0 options:UIViewAnimationOptionTransitionNone animations:nil completion:^(BOOL finished) {
+//        if (finished) {
             [newViewController didMoveToParentViewController:self];
             _currentVC = newViewController;
-        }else{
-            _currentVC = oldViewController;
-        }
+//        }else{
+//            _currentVC = oldViewController;
+//        }
     }];
 }
 

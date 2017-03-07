@@ -267,9 +267,7 @@
     req.sign                = [dict objectForKey:@"paySign"];
     req.partnerId           = [dict objectForKey:@"mchId"];
     req.nonceStr            = [dict objectForKey:@"nonceStr"];
-    req.timeStamp           = [[dict objectForKey:@"timestamp"] integerValue];
-//    DataMD5 *md5 = [[DataMD5 alloc] init];
-//    req.sign=[md5 createMD5SingForPay:WeChatAppID partnerid:req.partnerId prepayid:req.prepayId package:req.package noncestr:req.nonceStr timestamp:req.timeStamp];
+    req.timeStamp           = [[dict objectForKey:@"timestamp"] unsignedIntValue];
     
     // 调起客户端
     [WXApi sendReq:req];

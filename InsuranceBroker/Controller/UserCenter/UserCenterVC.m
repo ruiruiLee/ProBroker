@@ -52,18 +52,16 @@
     self.photoImgV.clipsToBounds = YES;
     self.photoImgV.layer.cornerRadius = 45;
     self.btnEditPhoto.layer.cornerRadius = 45;
-//    self.btnEditPhoto.clipsToBounds = YES;
-    self.lbRedLogo.clipsToBounds = YES;
-    self.lbRedLogo.layer.cornerRadius = 4;
-    self.redFlagConstraint.constant = -((ScreenWidth - 320)/2 + 50);
     
-//    self.lbOrderEarn.textColor = Subhead_Color;
     self.lbTotalOrderSuccessNums.textColor = Subhead_Color;
-    self.lbUserInvite.textColor = Subhead_Color;
-    self.lbTeamTotal.textColor = Subhead_Color;
     
     self.headHConstraint.constant = ScreenWidth;
-    self.footVConstraint.constant = SCREEN_HEIGHT - 585 - 44 + 1 + 50;
+    
+    CGFloat h = SCREEN_HEIGHT - 626 - 49 + 1;
+    if(h > 0)
+        self.footVConstraint.constant = h;
+    else
+        self.footVConstraint.constant = 0;
     
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     AppContext *context = [AppContext sharedAppContext];
@@ -104,11 +102,8 @@
     self.lbPersonalMonthOrderSuccessNums.text = [Util getDecimalStyle:model.nocar_now_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
     self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", (int)model.car_now_zcgdds];//车险本月单量
     self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", (int)model.nocar_now_zcgdds];//个险本月单量
-//    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.nowMonthOrderSuccessEarn];
-//    self.lbOrderEarn.text = [NSString stringWithFormat:@"累计收益：%.2f元", model.orderTotalSuccessEarn];
     self.lbMonthOrderEarn.text = [Util getDecimalStyle:model.now_zsy];//[NSString stringWithFormat:@"%.2f", model.now_zsy];
     self.lbOrderEarn.text = [Util getDecimalStyle:model.zsy];//[NSString stringWithFormat:@"%.2f", model.zsy];//累计收益;
-//    self.lbTotalOrderCount.text = [[NSNumber numberWithLongLong:model.zcgdds] stringValue];//[NSString stringWithFormat:@"%d", model.zcgdds];//总订单数
     
     self.lbCarTotalOrderCount.text = [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue];//车险累计
     self.lbNoCarTotalOrderCount.text = [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue];//非车险累计
@@ -149,12 +144,6 @@
     }else{
         self.lbCertificate.text = @"未认证";
     }
-    
-//    if([AppContext sharedAppContext].isRedPack){
-//        self.lbRedLogo.hidden = NO;
-//    }else{
-//        self.lbRedLogo.hidden = YES;
-//    }
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -175,11 +164,6 @@
     }
     [self updateUserInfo];
 }
-- (void) viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
-}
 
 - (void) viewDidLayoutSubviews
 {
@@ -197,7 +181,6 @@
 
 - (IBAction)btnUserSetting:(id)sender
 {
-//    [self doBtnUserSetting:sender];
     UserInfoEditVC *vc = [IBUIFactory CreateUserInfoEditViewController];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -213,10 +196,6 @@
 //我的红包
 - (IBAction)redPachet:(id)sender
 {
-//    MyLuckyMoneyVC *vc = [IBUIFactory CreateMyLuckyMoneyViewController];
-//    vc.hidesBottomBarWhenPushed = YES;
-//    vc.title = @"我的红包";
-//    [self.navigationController pushViewController:vc animated:YES];
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     if(model.cardVerifiy == 3){
         IncomeWithdrawVC *vc = [IBUIFactory CreateIncomeWithdrawViewController];
@@ -230,14 +209,6 @@
 //收益提现
 - (IBAction)withdraw:(id)sender
 {
-//    UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-//    if(model.cardVerifiy == 3){
-//        IncomeWithdrawVC *vc = [IBUIFactory CreateIncomeWithdrawViewController];
-//        vc.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }else{
-//        [Util showAlertMessage:@"为保护您的资金安全，只有实名认证后才能收益提取"];
-//    }
     DetailAccountVC *vc = [[DetailAccountVC alloc] initWithNibName:nil bundle:nil];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -266,14 +237,9 @@
 
 - (IBAction)managerOrder:(id)sender
 {
-//    MyOrderVC *vc = [[MyOrderVC alloc] initWithNibName:nil bundle:nil];
-//    vc.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:vc animated:YES];
-    
     MyOrderVC *vc = [[MyOrderVC alloc] initWithNibName:nil bundle:nil];
     vc.title = @"我的保单列表";
     vc.hidesBottomBarWhenPushed = YES;
-//    [vc initMenus];
     
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -281,7 +247,6 @@
 //本月销售额
 - (IBAction)finish:(id)sender
 {
-    NSLog(@"finish ===============");
     SalesStatisticsVC *vc = [IBUIFactory CreateSalesStatisticsViewController];
     vc.hidesBottomBarWhenPushed = YES;
     vc.saleType = EnumSalesTypeCar;
@@ -303,7 +268,6 @@
 //本月收益
 - (IBAction)incomePrevMounth:(id)sender
 {
-    NSLog(@"incomePrevMounth --------------");
     IncomeStatisticsVC *vc = [IBUIFactory CreateIncomeStatisticsViewController];
     vc.hidesBottomBarWhenPushed = YES;
     vc.userId = [UserInfoModel shareUserInfoModel].userId;
@@ -323,42 +287,12 @@
 
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
 {
-    //    [pullDelegate pullTableViewDidTriggerRefresh:self];
     [[UserInfoModel shareUserInfoModel] loadDetail:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-//        [refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.scrollview];
         [self.scrollview stopLoading];
         [self updateUserInfo];
     }];
 }
-
-//- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view {
-//    return self.pullLastRefreshDate;
-//}
-
-//#pragma mark - UIScrollViewDelegate
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-//{
-//    
-//    [refreshView egoRefreshScrollViewDidScroll:scrollView];
-//    
-//    // Also forward the message to the real delegate
-//}
-//
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-//{
-//    
-//    [refreshView egoRefreshScrollViewDidEndDragging:scrollView];
-//    
-//    // Also forward the message to the real delegate
-//}
-//
-//- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView
-//{
-//    [refreshView egoRefreshScrollViewWillBeginDragging:scrollView];
-//    
-//    // Also forward the message to the real delegate
-//}
 
 - (UIImage *)blurryImage:(UIImage *)image withBlurLevel:(CGFloat)blur {
     //模糊度,
@@ -457,7 +391,6 @@
     
     CGImageRelease(imageRef);
     
-//    return [Util fitSmallImage:returnImage scaledToSize:CGSizeMake(ScreenWidth, 300)];
     return returnImage;
 }
 

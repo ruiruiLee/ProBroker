@@ -41,6 +41,7 @@
     model.orderOfferRatio = [[dictionary objectForKey:@"orderOfferRatio"] floatValue];
     model.orderOfferPayPrice = [[dictionary objectForKey:@"orderOfferPayPrice"] floatValue];
     model.customerName = [dictionary objectForKey:@"customerName"];
+    model.customerName1 = [dictionary objectForKey:@"customerName1"];
     model.customerPhone = [dictionary objectForKey:@"customerPhone"];
     model.carNo = [dictionary objectForKey:@"carNo"];
     model.respAddr = [dictionary objectForKey:@"respAddr"];

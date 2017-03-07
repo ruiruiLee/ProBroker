@@ -18,15 +18,12 @@
 #import "ZHPickView.h"
 #import "DictModel.h"
 #import "UIImageView+WebCache.h"
-#import "OrderWebVC.h"
 #import "SJAvatarBrowser.h"
 #import "ProgressHUD.h"
 #import "UIButton+WebCache.h"
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
 #import "NetWorkHandler+queryForProductList.h"
 #import "ProvienceSelectedView.h"
-
-#define explain @"＊优快保提供以下三种报价方式\n \n   1 续保车辆 只需填写［车牌号］(或传行驶证照片) 并选择［上年度保险］，就可精准报价。\n \n   2 上传车主［行驶证正本］清晰照片(或填写行驶证明细）可快速报价，此报价可能与真实价格存在一点偏差，成交最终以真实价格为准。\n \n   3  上传车主［行驶证正本］和［身份证正面］清晰照片(或输入身份证号码)进行精准报价。 \n \n＊ 注：客户确认投保后，应保监会规定需要补齐所有证件照片方可出单（在客户资料界面可补齐照片）。"
 
 @interface AutoInsuranceInfoAddVC ()<MenuDelegate, ZHPickViewDelegate, UITextFieldDelegate, UIScrollViewDelegate, ProvienceSelectedViewDelegate>
 
@@ -108,7 +105,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self loadInsurCompany];
+//    [self loadInsurCompany];
     
     isCertModify = NO;
     self.lbIsTransfer.text = @"否";
@@ -135,7 +132,7 @@
     self.infoHConstraint.constant = ScreenWidth;
     self.imageHConstraint.constant = ScreenWidth;
     
-    self.lbShow.attributedText = [self getInsuranceRules:explain];
+    self.lbShow.attributedText = [self getInsuranceRules:How_To_Insu_Explain];
     self.btnHowOrder.titleLabel.font = _FONT_B(13);
     
     UIView *leftBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
@@ -227,6 +224,8 @@
     [self.btnNoNo setImage:ThemeImage(@"select") forState:UIControlStateSelected];
     self.btnChange.selected = YES;
     [self doBtnInfoChange:self.btnChange];
+    
+    [self fillTheData];
 }
 
 - (void) selectNewProvience:(id)sender
@@ -248,11 +247,15 @@
     
     [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"1"];
     [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"2"];
-    [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"3"];
+//    [self setAttributes:attString attribute:NSFontAttributeName value:_FONT_B(13) substr:UnitPrice rootstr:@"3"];
     
     [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"1"];
     [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"2"];
-    [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"3"];
+//    [self setAttributes:attString attribute:NSForegroundColorAttributeName value:[UIColor blackColor] substr:UnitPrice rootstr:@"3"];
+    
+    range = [UnitPrice rangeOfString:@"3" options:NSBackwardsSearch];
+    [attString addAttribute:NSFontAttributeName value:_FONT_B(13) range:range];
+    [attString addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:range];
     
     [self addAttributes:attString substr:UnitPrice rootstr:@"［行驶证正本］"];
     [self addAttributes:attString substr:UnitPrice rootstr:@"［车牌号］"];
@@ -369,50 +372,50 @@
 {
     BOOL result = NO;
     
-    NSString *carRegTime = self.tfDate.text;//注册日期
-    NSString *carEngineNo = self.tfMotorCode.text;////发动机号
-    NSString *carShelfNo = self.tfIdenCode.text;//识别码
-    NSString *carTypeNo = self.tfModel.text;//品牌型号
+//    NSString *carRegTime = self.tfDate.text;//注册日期
+//    NSString *carEngineNo = self.tfMotorCode.text;////发动机号
+//    NSString *carShelfNo = self.tfIdenCode.text;//识别码
+//    NSString *carTypeNo = self.tfModel.text;//品牌型号
     NSString *carNo = [self getCarCertString];//车牌;
     
-    if(_perInsurCompany >= 0){
+//    if(_perInsurCompany >= 0){
         if([Util validateCarNo:carNo] || [self isHasLisence]){
             return YES;
         }else{
             return NO;
         }
-    }
+//    }
     
-    BOOL isCarInfo = NO;
-    if(self.btnReSubmit.selected || ([self isNilValue:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && (([self isNilValue:carNo] && [Util validateCarNo:carNo]) || self.btnNoNo.selected))){
-        isCarInfo = YES;
-        return YES;
-    }
-    
-    if(!self.btnReSubmit.selected){
-        if(!self.btnNoNo.selected){
-            BOOL a = [Util validateCarNo:carNo];
-            if(!a){
-                return result;
-            }
-        }
-        BOOL flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carEngineNo];
-        if(flag){
-            return result;
-        }
-        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carShelfNo];
-        if(flag){
-            return result;
-        }
-        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carTypeNo];
-        if(flag){
-            return result;
-        }
-        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carRegTime];
-        if(flag){
-            return result;
-        }
-    }
+//    BOOL isCarInfo = NO;
+//    if(self.btnReSubmit.selected || ([self isNilValue:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && (([self isNilValue:carNo] && [Util validateCarNo:carNo]) || self.btnNoNo.selected))){
+//        isCarInfo = YES;
+//        return YES;
+//    }
+//    
+//    if(!self.btnReSubmit.selected){
+//        if(!self.btnNoNo.selected){
+//            BOOL a = [Util validateCarNo:carNo];
+//            if(!a){
+//                return result;
+//            }
+//        }
+//        BOOL flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carEngineNo];
+//        if(flag){
+//            return result;
+//        }
+//        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carShelfNo];
+//        if(flag){
+//            return result;
+//        }
+//        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carTypeNo];
+//        if(flag){
+//            return result;
+//        }
+//        flag = [self showMessage:@"行驶证信息不完善（请上传行驶证照片或者填写完相关明细项）" string:carRegTime];
+//        if(flag){
+//            return result;
+//        }
+//    }
     
     return result;
 }
@@ -429,7 +432,7 @@
     BOOL flag = [Util validateIdentityCard:carOwnerCard];
     
     if([carOwnerCard length] > 0 && !flag){
-        [Util showAlertMessage:@"车主身份证号输入格式不正确"];
+        [Util showAlertMessage:@"身份证号格式不正确"];
         return NO;
     }
     
@@ -454,34 +457,75 @@
     }
 }
 
+//为清理服务端存储，设置为FIELD->NULL
+- (NSString *) nullString:(NSString *) string
+{
+    if([string length] == 0)
+        string = [Util nullString:string];
+    
+    return string;
+}
+
+//把服务端存储的FIELD->NULL置为本地的@“”
+- (NSString *) notNullString:(NSString *) string
+{
+    if([string isEqualToString:@"FIELD->NULL"])
+        string = @"";
+    
+    return string;
+}
+
+- (void) cleanCarInfo
+{
+    self.tfIdenCode.text = @"";
+    self.tfMotorCode.text = @"";
+    self.tfModel.text = @"";
+    self.tfDate.text = @"";
+}
+
 - (void) submitWithLicense:(Completion) completion
 {
     NSString *customerCarId = self.carInfo.customerCarId;
     NSString *customerId = self.customerId;
+    //身份证号码
     NSString *carOwnerCard = self.tfCert.text;
     if (![Util validateIdentityCard:carOwnerCard]) {
-        carOwnerCard = nil;
+        carOwnerCard = @"";
     }
+    carOwnerCard = [self nullString:carOwnerCard];
+    
+    //车主
     NSString *carOwnerName = self.tfName.text;
+    
+    //注册日期
     NSString *carRegTime = self.tfDate.text;
+    carRegTime = [self nullString:carRegTime];
+    
+    //发动机号
     NSString *carEngineNo = self.tfMotorCode.text;
+    carEngineNo = [self nullString:carEngineNo];
+    //车架号
     NSString *carShelfNo = self.tfIdenCode.text;
+    carShelfNo = [self nullString:carShelfNo];
+    //车型
     NSString *carTypeNo = self.tfModel.text;
+    carTypeNo = [self nullString:carTypeNo];
+    //车牌
     NSString *carNo = [self getCarCertString];
     NSString *newCarNoStatus = @"1";
     if(self.btnNoNo.selected){
-        carNo = @"";
+        carNo = [Util nullString:carNo];
         newCarNoStatus = @"0";
     }
     else{
     }
-    
+    carNo = [self nullString:carNo];
     
     NSString *carTradeStatus = @"1";
     NSString *carTradeTime = nil;
     if(_changeNameIdx == 0){
         carTradeStatus = @"1";
-        carTradeTime = @"";
+        carTradeTime = [Util nullString:carTradeTime];
     }
     else if (_changeNameIdx == 1){
         carTradeStatus = @"2";
@@ -498,6 +542,12 @@
         carInsurCompId1 = @"";
     }
     [ProgressHUD show:@"正在保存"];
+    
+    __block NSString *weakcarShelfNo = carShelfNo;
+    __block NSString *weakcarRegTime = carRegTime;
+    __block NSString *weakcarEngineNo = carEngineNo;
+    __block NSString *weakcarTypeNo = carTypeNo;
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSString *filePahe = nil;
         NSString *filePahe1 = nil;
@@ -524,7 +574,23 @@
         if(filePahe == nil)
             filePahe = _travelCard1;
         
-        [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe travelCard2:nil carOwnerCard1:filePahe1 carOwnerCard2:nil carRegTime:carRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 Completion:^(int code, id content) {
+        NSInteger labourOfferStatus = 1;
+        if(newLisence){
+            labourOfferStatus = 2;
+            weakcarShelfNo = [Util nullString:weakcarShelfNo];
+            weakcarRegTime = [Util nullString:weakcarRegTime];
+            weakcarEngineNo = [Util nullString:weakcarEngineNo];
+            weakcarTypeNo = [Util nullString:weakcarTypeNo];
+            
+            [self performSelectorOnMainThread:@selector(cleanCarInfo) withObject:nil waitUntilDone:YES];
+            
+        }else{
+            if((weakcarShelfNo != nil && [weakcarShelfNo length] == 17) || (carNo != nil && [Util validateCarNo:carNo])){
+                labourOfferStatus = 1;
+            }
+        }
+        
+        [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:weakcarTypeNo carShelfNo:weakcarShelfNo carEngineNo:weakcarEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe travelCard2:nil carOwnerCard1:filePahe1 carOwnerCard2:nil carRegTime:weakcarRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 labourOfferStatus:labourOfferStatus Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
                 isCertModify = NO;
@@ -542,13 +608,14 @@
                 
                 model.customerCarId = [content objectForKey:@"data"];
                 model.customerId = customerId;
-                model.carOwnerName = carOwnerName;
-                model.carOwnerCard = carOwnerCard;
+                model.carOwnerName = [self notNullString:carOwnerName];//carOwnerName;
+                model.carOwnerCard = [self notNullString:carOwnerCard];
                 model.carRegTime = _signDate;
-                model.carEngineNo = carEngineNo;
-                model.carShelfNo = carShelfNo;
-                model.carTypeNo = carTypeNo;
-                model.carNo = carNo;
+                model.carEngineNo = [self notNullString:weakcarEngineNo];
+                model.carShelfNo = [self notNullString:weakcarShelfNo];
+                model.carTypeNo = [self notNullString:weakcarTypeNo];
+                model.carNo = [self notNullString:carNo];
+                
                 if(carInsurStatus1 != nil)
                     model.carInsurStatus1 = [carInsurStatus1 boolValue];
                 model.carInsurCompId1 = carInsurCompId1;
@@ -744,7 +811,8 @@
 
 - (void) fillTheData
 {
-    self.tfName.text = self.customerModel.customerName;
+//    if(![Util validateCarNo:self.customerModel.customerName])
+//        self.tfName.text = self.customerModel.customerName;
     if( self.customerModel.cardNumberImg1 != nil){
         CGSize size = self.btnCert.frame.size;
         [self.btnCert sd_setBackgroundImageWithURL:[NSURL URLWithString:FormatImage(self.customerModel.cardNumberImg1, (int)size.width, (int)size.height)] forState:UIControlStateSelected];
@@ -778,30 +846,19 @@
 
 - (void) car_insur_plan:(NSString *) customerCarId
 {
-    OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
-    
-    NSString *str = @"";
-    if(self.carInfo.carInsurStatus1 && self.carInfo.carInsurCompId1 != nil){
-        str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", self.carInfo.carInsurCompId1];
-    }
-    
-    if(self.insType == enumReInsurance && self.orderId)
-    {
-        str = [NSString stringWithFormat:@"%@&orderId=%@", str, self.orderId];
-    }
-    
-    if(self.selectProModel){
-        if(self.selectProModel.productAttrId)
-            str = [NSString stringWithFormat:@"%@&productId=%@", str, self.selectProModel.productAttrId];
-        if(self.selectProModel.compCode)
-            str = [NSString stringWithFormat:@"%@&compCode=%@", str, self.selectProModel.compCode];
-    }
-    
+    QuickQuoteVC *web = [IBUIFactory CreateQuickQuoteVC];
     web.title = @"报价";
     [self.navigationController pushViewController:web animated:YES];
-    NSString *url = [NSString stringWithFormat:CAR_INSUR_PLAN, Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, self.customerModel.customerId, customerCarId, str];
+    NSString *url = [NSString stringWithFormat:CAR_INSUR_PLAN, CHE_XIAN_SUAN_JIA, customerCarId, [UserInfoModel shareUserInfoModel].uuid, @""];
+    
     [web loadHtmlFromUrl:url];
 }
+
+////判断通过车牌是否能获取到车辆信息
+//- (void) checkIsLoadedCarInfo
+//{
+//    
+//}
 
 - (IBAction)doButtonHowToWrite:(UIButton *)sender
 {
@@ -825,24 +882,24 @@
 
 - (void) loadInsurCompany
 {
-    [ProgressHUD show:nil];
-    [NetWorkHandler requestToQueryForProductList:@"1" Completion:^(int code, id content) {
-        [ProgressHUD dismiss];
-        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-        
-        if(code == 200){
-            _insurCompanyArray = [InsuranceCompanyModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
-            [self fillTheData];
-        }
-        
-    }];
+//    [ProgressHUD show:nil];
+//    [NetWorkHandler requestToQueryForProductList:@"1" Completion:^(int code, id content) {
+//        [ProgressHUD dismiss];
+//        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+//        
+//        if(code == 200){
+//            _insurCompanyArray = [InsuranceCompanyModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
+//            [self fillTheData];
+//        }
+//        
+//    }];
 }
 
 - (IBAction)menuChange:(UIButton *)sender {
     [self resignFirstResponder];
     
     if(_insurCompanyArray == nil){
-        [self loadInsurCompany];
+//        [self loadInsurCompany];
         return;
     }
     
@@ -1002,9 +1059,16 @@
     NSString *name = self.tfName.text;
 
     //姓名
-    if([self checkValueChange:self.customerModel.customerName text:name]){
-        result = YES;
-    }
+//    if([Util validateCarNo:self.customerModel.customerName]){
+        if([self checkValueChange:@"" text:name]){
+            result = YES;
+        }
+//    }
+//    else{
+//        if([self checkValueChange:self.customerModel.customerName text:name]){
+//            result = YES;
+//        }
+//    }
     
     //身份证
     NSString *cert = self.tfCert.text;
@@ -1171,7 +1235,7 @@
         self.imageShut.image = ThemeImage(@"info_zhankai");
     }
     else{
-        CGRect rect = [explain boundingRectWithSize:CGSizeMake(ScreenWidth - 32, MAXFLOAT)
+        CGRect rect = [How_To_Insu_Explain boundingRectWithSize:CGSizeMake(ScreenWidth - 32, MAXFLOAT)
                        
                                             options:NSStringDrawingUsesLineFragmentOrigin
                        
@@ -1214,13 +1278,5 @@
     self.lbProvience.text = name;
     [self isModify];
 }
-
-- (void) initWithProductId:(NSString *) product
-{
-    _productId = product;
-}
-
-
-
 
 @end

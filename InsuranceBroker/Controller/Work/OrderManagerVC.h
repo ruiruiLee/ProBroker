@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) UISearchBar *searchbar;
 @property (nonatomic, strong) NSString *filterString;
-@property(nonatomic,strong)NSString *viewTitle;
+@property (nonatomic, strong) NSString *viewTitle;
 
 @property (nonatomic, strong) NSString *insuranceType;
 

@@ -9,6 +9,7 @@
 #import "QuickQuoteVC.h"
 #import "SBJsonParser.h"
 #import "define.h"
+#import "OrderManagerVC.h"
 
 @interface QuickQuoteVC ()
 
@@ -20,14 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-//    UIButton *btnDetail = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 68, 24)];
-//    [btnDetail setTitle:@"精准报价?" forState:UIControlStateNormal];
-//    btnDetail.layer.cornerRadius = 12;
-//    btnDetail.layer.borderWidth = 0.5;
-//    btnDetail.layer.borderColor = _COLOR(0xff, 0x66, 0x19).CGColor;
-//    [btnDetail setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
-//    btnDetail.titleLabel.font = _FONT(12);
-//    [self setRightBarButtonWithButton:btnDetail];
+//    [self SetRightBarButtonWithTitle:@"分享" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,43 +29,48 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
+- (void) handleRightBarButtonClicked:(id)sender
 {
-    //    self.shareUrl = webView.request.URL.absoluteString;
-    
-    if(self.title == nil)
-        self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    
-    NSString *url = webView.request.URL.absoluteString;
-    if(![url isEqualToString:self.urlpath])
-        self.shareUrl = [NSString stringWithFormat:@"%@&appShare=1", url];
+    [self showPopView];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    // Determine if we want the system to handle it.
-    NSURL *url = request.URL;
-    NSString *uri = url.absoluteString;
-    if([uri rangeOfString:@"userId="].length > 0){
-
-    }else{
-        NSString *newUrlString =  [NSString stringWithFormat:@"%@&userId=%@", uri, [UserInfoModel shareUserInfoModel].userId];
-        url = [NSURL URLWithString:newUrlString];
-        [self.webview loadRequest:[NSURLRequest requestWithURL:url]];
-        return NO;
+- (void) loadWebString
+{
+    if(!_isLoad){
+        if(self.urlpath != nil){
+            
+            [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
+            
+            _isLoad = YES;
+        }
     }
+}
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    if(self.title == nil)
+        self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    [self performSelector:@selector(addShutButton) withObject:nil afterDelay:0.01];
+    
     return YES;
 }
 
-- (void) handleRightBarButtonClicked:(id)sender
+#pragma MyJSInterfaceDelegate
+- (void) notifyToOrderList:(NSString *) string
 {
-    WebViewController *web = [IBUIFactory CreateWebViewController];
-    web.hidesBottomBarWhenPushed = YES;
-    web.title = @"怎样精准报价?";
-    [self.navigationController pushViewController:web animated:YES];
+    OrderManagerVC *orderVC = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
+    orderVC.insuranceType = @"1";
+    [orderVC setViewTitle:@"车险"];
+    [orderVC initMapTypesForCar];
     
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-    [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", appdelegate.exactQuoteNewsId]];
+    NSMutableArray *array = [self.navigationController.viewControllers mutableCopy];
+    [array removeLastObject];
+    [array addObject:orderVC];
+    [self.navigationController setViewControllers:array animated:YES];
 }
 
 - (void) NotifyShareWindowWithPrama:(NSDictionary *)dic
@@ -86,8 +85,7 @@
     SBJsonParser *_parser = [[SBJsonParser alloc] init];
     NSDictionary *dic = [_parser objectWithString:jsonstr];
     if([dic objectForKey:@"url"]){
-        self.shareUrl = [NSString stringWithFormat:@"%@&appShare=1", [dic objectForKey:@"url"]];;
-//        self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1", [dic objectForKey:@"url"], [UserInfoModel shareUserInfoModel].userId];
+        self.shareUrl = [NSString stringWithFormat:@"%@&appShare=1", [dic objectForKey:@"url"]];
     }
     
     if([dic objectForKey:@"content"]){

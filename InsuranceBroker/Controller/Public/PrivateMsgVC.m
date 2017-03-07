@@ -26,10 +26,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-//    [self setRightBarButtonWithImage:ThemeImage(@"team_msg")];
     [self SetRightBarButtonWithTitle:@"回复" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadData:) name:Notify_Msg_Reload object:nil];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    if(self.title == nil)
+        self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    return YES;
 }
 
 - (void) reloadData:(NSNotification *) notify
@@ -41,9 +51,9 @@
     
     NSString *userId =  [userinfo objectForKey:@"p"];
     if(![userId isEqualToString:self.toUserId]){
-        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
         [CMNavBarNotificationView notifyWithText:[[userinfo objectForKey:@"aps"] objectForKey:@"category"]
-                                          detail:[[userinfo objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                          detail:[[userinfo objectForKey:@"aps"] objectForKey:@"alert"]
+                                           image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[App_Delegate appIcon]]]]
                                      andDuration:5.0
                                        msgparams:userinfo];
     }
@@ -68,23 +78,6 @@
          
          NSString *string = [NSString stringWithFormat:@"writeLetter('%@')", contentStr];
          [self.webview stringByEvaluatingJavaScriptFromString:string];
-         
-//         UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-//         NSString *senderName = [Util getUserName:model];
-//         if(!senderName)
-//             senderName = model.phone;
-//         NSString *title = [NSString stringWithFormat:@"%@给你发了一条私信", senderName];
-//         [NetWorkHandler requestToPostPrivateLetter:self.toUserId title:title content:contentStr senderId:model.userId senderName:senderName Completion:^(int code, id content) {
-//             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-//             if(code == 200){
-//                 [self performSelector:@selector(showMessageSuccess) withObject:nil afterDelay:0.5];
-//                 NSString *string = [NSString stringWithFormat:@"writeLetter('%@')", contentStr];
-//                 [self.webview stringByEvaluatingJavaScriptFromString:string];
-//             }
-//             else{
-//                 [self performSelector:@selector(showMessageFail) withObject:nil afterDelay:0.5];
-//             }
-//         }];
      }];
 }
 
@@ -97,7 +90,6 @@
 - (void) showMessageSuccess
 {
     [Util showAlertMessage:@"消息发送成功！"];
-//    [self loadHtmlFromUrl:self.urlpath];
 }
 
 - (void) showMessageFail
@@ -105,17 +97,5 @@
     [Util showAlertMessage:@"消息发送失败！"];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
-    [self performSelector:@selector(scrollWebView) withObject:nil afterDelay:0.6];
-}
-
-- (void) scrollWebView
-{
-//    CGFloat offset = self.webview.scrollView.contentSize.height;
-//    NSInteger height = [[self.webview stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight;"] intValue];
-//    NSString* javascript = [NSString stringWithFormat:@"window.scrollBy(0, %d);", height];
-//    [self.webview stringByEvaluatingJavaScriptFromString:javascript];
-}
 
 @end

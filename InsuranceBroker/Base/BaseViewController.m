@@ -104,7 +104,6 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStyleBordered target:self action:@selector(handleLeftBarButtonClicked:)];
     UIImage *image = [ThemeImage(@"arrow_left") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     backItem.image = image;
-    [backItem setTarget:self];
     
 //    self.navigationItem.backBarButtonItem=backItem;
     [[self navigationItem] setLeftBarButtonItem:backItem];

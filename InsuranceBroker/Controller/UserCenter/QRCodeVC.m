@@ -48,9 +48,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-    
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-    NewUserModel *model = appdelegate.workBanner;
+    NewUserModel *model = [App_Delegate workBanner];
     
     NSString *url = [NSString stringWithFormat:@"%@?uuid=%@&appShare=1", model.url, [UserInfoModel shareUserInfoModel].uuid];
     

@@ -42,9 +42,16 @@
         footer = [[FooterView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 50)];
         self.tableview.tableFooterView = footer;
         footer.delegate = self;
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCarOrderList) name:Notify_Refresh_OrderList1 object:nil];
     }
     
     return self;
+}
+
+- (void) refreshCarOrderList
+{
+    [self doEditButtonClicked:nil];
 }
 
 - (void) doEditButtonClicked:(UIButton *)sender
@@ -69,7 +76,7 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 110;
+    return 128;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -77,7 +84,6 @@
     NSString *deq = @"cell";
     PolicyInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
-//        cell = [[PolicyInfoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
         NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"PolicyInfoTableViewCell" owner:nil options:nil];
         cell = [nibs lastObject];
     }
@@ -89,7 +95,11 @@
         NSString *carNo = model.carNo;
         if(carNo == nil)
             carNo = @"";
-        cell.lbName.text = [NSString stringWithFormat:@"%@", model.customerName];
+        cell.lbName.text = [NSString stringWithFormat:@"%@", model.customerName1];
+        if(model.customerName1 == nil || [model.customerName1 isKindOfClass:[NSNull class]] || [model.customerName1 length] == 0)
+        {
+            cell.lbName.text = Default_Customer_Name;
+        }
         cell.lbPlate.text = carNo;
         CGFloat width = [model.carNo sizeWithAttributes:@{NSFontAttributeName:cell.lbPlate.font}].width;
         if(carNo == nil || [carNo length] == 0)
@@ -108,9 +118,16 @@
         
         cell.statusWidth.constant = 80;
         
-        cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
+        cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus orderOfferOrigPrice:model.orderOfferOrigPrice];
         [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
         
+        
+        if(model.orderOfferStatus == 3){
+            [cell.btnUnshut setTitle:@"设置费率" forState:UIControlStateNormal];
+        }
+        else{
+            [cell.btnUnshut setTitle:@"查看详情" forState:UIControlStateNormal];
+        }
         [cell.logoImgV sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:ThemeImage(@"chexian")];
         
         cell.statusImgV.hidden = YES;

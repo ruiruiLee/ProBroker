@@ -43,7 +43,6 @@ typedef enum {
 + (NSDate *) month;
 
 - (NSDate *) monthDate;
-//- (NSDate *) lastOfMonthDate;
 
 
 

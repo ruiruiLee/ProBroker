@@ -8,8 +8,6 @@
 
 #import "TagObjectModel.h"
 
-static BOOL isLoadTagList = NO;
-
 @implementation TagObjectModel
 
 + (NSMutableArray *) shareTagList
@@ -22,17 +20,6 @@ static BOOL isLoadTagList = NO;
     
     return tagList;
 }
-
-//+ (NSDictionary *)JSONKeyPathsByPropertyKey {
-//    return @{
-//             @"labelName": @"labelName",
-//             @"labelId": @"labelId",
-//             @"labelCustomerNums": @"labelCustomerNums",
-//             @"labelStatus": @"labelStatus",
-//             @"labelType": @"labelType",
-//             @"userId": @"userId"
-//             };
-//}
 
 + (NSArray *) modelArrayFromArray:(NSArray *)array
 {

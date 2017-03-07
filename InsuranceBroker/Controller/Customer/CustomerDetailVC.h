@@ -16,6 +16,8 @@
 #import "CustomerInfoModel.h"
 #import "productAttrModel.h"
 
+#import "CMNavBarNotificationView.h"
+
 @interface CustomerDetailVC : BaseViewController<CustomDetailHeaderViewDelegate>
 {
     InsuranceInfoView *_insuranceView;
@@ -53,8 +55,6 @@
 @property (nonatomic, strong) CustomerDetailModel *data;
 
 - (void) loadDetailWithCustomerId:(NSString *)customerId;
-
-- (void) initWithProductId:(NSString *) product;
 
 - (IBAction) doBtnRing:(UIButton *)sender;
 - (IBAction) doBtnEmail:(UIButton *)sender;

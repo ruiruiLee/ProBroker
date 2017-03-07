@@ -49,7 +49,7 @@
     [Util setValueForKeyWithDic:dic value:model.insuredEmail key:@"insuredEmail"];
     [Util setValueForKeyWithDic:dic value:model.insuredName key:@"insuredName"];
     [Util setValueForKeyWithDic:dic value:model.insuredPhone key:@"insuredPhone"];
-    [Util setValueForKeyWithDic:dic value:[NSNumber numberWithInt:model.insuredSex] key:@"insuredSex"];
+    [Util setValueForKeyWithDic:dic value:[NSNumber numberWithInteger:model.insuredSex] key:@"insuredSex"];
     [Util setValueForKeyWithDic:dic value:model.liveAddr key:@"liveAddr"];
     [Util setValueForKeyWithDic:dic value:model.liveAreaId key:@"liveAreaId"];
     [Util setValueForKeyWithDic:dic value:model.liveAreaName key:@"liveAreaName"];

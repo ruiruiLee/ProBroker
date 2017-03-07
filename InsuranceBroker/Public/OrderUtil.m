@@ -31,7 +31,7 @@
  desc : statusmsg
  orderOfferNums : 几分报价
  */
-+ (NSMutableAttributedString *) getAttributedString:(NSString *)desc orderOfferNums:(NSInteger) orderOfferNums orderOfferStatus:(NSInteger) orderOfferStatus orderOfferPayPrice:(float) orderOfferPayPrice orderOfferStatusStr:(NSString *) orderOfferStatusStr orderOfferGatherStatus:(BOOL) orderOfferGatherStatus
++ (NSMutableAttributedString *) getAttributedString:(NSString *)desc orderOfferNums:(NSInteger) orderOfferNums orderOfferStatus:(NSInteger) orderOfferStatus orderOfferPayPrice:(float) orderOfferPayPrice orderOfferStatusStr:(NSString *) orderOfferStatusStr orderOfferGatherStatus:(BOOL) orderOfferGatherStatus orderOfferOrigPrice:(CGFloat) orderOfferOrigPrice
 {
     NSString *string = @"";
     if(orderOfferStatus == 2){
@@ -40,8 +40,11 @@
     }
     else if (orderOfferStatus == 1){}
     else if (orderOfferStatus == 3){
-        string = [NSString stringWithFormat:@"共有%d份报价", orderOfferNums];
-        return [self attstringWithString:string range:NSMakeRange(2, 1) font:_FONT(15) color:_COLOR(0xff, 0x66, 0x19)];
+//        string = [NSString stringWithFormat:@"共有%d份报价", orderOfferNums];
+        string = [NSString stringWithFormat:@"价格：%.2f", orderOfferOrigPrice];
+        NSMutableAttributedString *att = [self attstringWithString:string range:NSMakeRange(3, string.length-3) font:_FONT(16) color:_COLOR(0xff, 0x66, 0x19)];
+        [att addAttribute:NSFontAttributeName value:_FONT(14) range:NSMakeRange(0, 3)];
+        return att;
     }
     else if (orderOfferStatus == 4){
         string = desc;//@"未付款";

@@ -20,7 +20,7 @@
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:pramas value:[NetWorkHandler getStringWithList:customerId] key:@"customerId"];
     [Util setValueForKeyWithDic:pramas value:[NetWorkHandler getStringWithList:labelId] key:@"labelId"];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:customerLabelStatus] key:@"customerLabelStatus"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:customerLabelStatus] key:@"customerLabelStatus"];
     
     [handle postWithMethod:@"/web/customer/saveOrUpdateCustomerLabel.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }

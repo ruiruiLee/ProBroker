@@ -6,6 +6,8 @@
 //  Copyright © 2016年 LiuZach. All rights reserved.
 //
 
+//众安的产品
+
 #import "WebViewController.h"
 #import "InsuredInfoModel.h"
 #import "CustomerDetailModel.h"
@@ -13,11 +15,7 @@
 
 @interface ProductDetailWebVC : WebViewController
 
-@property (nonatomic, strong) InsuredInfoModel *infoModel;//被保人信息
-@property (nonatomic, strong) CustomerDetailModel *customerDetail;
 
 @property (nonatomic, strong) productAttrModel *selectProModel;//选中的产品
-
-- (void) loadHtmlFromUrlWithUserId:(NSString *) url productId:(NSString *)productId;
 
 @end

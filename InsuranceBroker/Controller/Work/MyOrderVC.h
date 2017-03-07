@@ -10,7 +10,6 @@
 #import "HMSegmentedControl.h"
 
 #import "LMDropdownView.h"
-#import "MyPageViewController.h"
 
 
 @class OrderManagerVC;
@@ -27,11 +26,9 @@
 @property (strong, nonatomic) HMSegmentedControl *pageControl;
 @property (strong, nonatomic) UIView *contentContainer;
 
-//@property (strong, nonatomic)MyPageViewController *pageViewController;
-
 @property (strong, nonatomic) UITableView *menuTableView;
 @property (strong, nonatomic) LMDropdownView *dropdownView;
 
-- (void) initMenus;
+
 
 @end

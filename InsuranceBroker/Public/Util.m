@@ -9,6 +9,8 @@
 #import "Util.h"
 #import "define.h"
 #import <CommonCrypto/CommonDigest.h>
+#import "SRAlertView.h"
+
 @implementation Util
 
 
@@ -159,8 +161,16 @@
 
 + (void)showAlertMessage:(NSString*)msg
 {
-    UIAlertView * mAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定"  otherButtonTitles:nil, nil];
-    [mAlert show];
+//    UIAlertView * mAlert = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:@"确定"  otherButtonTitles:nil, nil];
+//    [mAlert show];
+    
+    [SRAlertView sr_showAlertViewWithTitle:@"提 示"
+                                   message:msg
+                           leftActionTitle:@"确 定"
+                          rightActionTitle:nil
+                            animationStyle:AlertViewAnimationZoom
+                              selectAction:^(AlertViewActionType actionType) {
+                              }];
 }
 
 + (NSString *) getShowingTime:(NSDate *)date
@@ -688,21 +698,21 @@
     BOOL result = NO;
     
     NSString *carNo = carInfo.carNo;
-    if(([Util validateCarNo:carNo] ||  [self isNilValue:carInfo.travelCard1]) && carInfo.carInsurStatus1 && [self isNilValue:carInfo.carInsurCompId1]){
+    if([Util validateCarNo:carNo] ||  [self isNilValue:carInfo.travelCard1]){
         return YES;
     }
     
 //    NSString *carOwnerCard = carInfo.carOwnerCard;//身份证号
-    NSDate *carRegTime = carInfo.carRegTime;//注册日期
-    NSString *carEngineNo = carInfo.carEngineNo;////发动机号
-    NSString *carShelfNo = carInfo.carShelfNo;//车架号
-    NSString *carTypeNo = carInfo.carTypeNo;//品牌型号
-    BOOL isCarInfo = NO;
-    if([self isNilValue:carInfo.travelCard1] || (carRegTime != nil && ![BaseModel dateIsNil:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && ([self isNilValue:carNo] || !carInfo.newCarNoStatus))){
-        isCarInfo = YES;
-        
-        return YES;
-    }
+//    NSDate *carRegTime = carInfo.carRegTime;//注册日期
+//    NSString *carEngineNo = carInfo.carEngineNo;////发动机号
+//    NSString *carShelfNo = carInfo.carShelfNo;//车架号
+//    NSString *carTypeNo = carInfo.carTypeNo;//品牌型号
+//    BOOL isCarInfo = NO;
+//    if([self isNilValue:carInfo.travelCard1] || (carRegTime != nil && ![BaseModel dateIsNil:carRegTime] && [self isNilValue:carEngineNo] && [self isNilValue:carShelfNo] && [self isNilValue:carTypeNo] && ([self isNilValue:carNo] || !carInfo.newCarNoStatus))){
+//        isCarInfo = YES;
+//        
+//        return YES;
+//    }
 //    if(isCarInfo && ([self isNilValue:carInfo.carOwnerCard1] || [Util validateIdentityCard:carOwnerCard])){
 //        return YES;
 //    }
@@ -746,5 +756,12 @@
 //        [Util showAlertMessage:@"支付失败"];
 //    }
 //}
+
++ (NSString *) nullString:(NSString *) input
+{
+    input = @"FIELD->NULL";
+    
+    return input;
+}
 
 @end

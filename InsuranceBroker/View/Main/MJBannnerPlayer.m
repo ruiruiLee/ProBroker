@@ -110,6 +110,7 @@
         
         UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(width, 0, self.currentRect.size.width, self.currentRect.size.height)];
         imageView.userInteractionEnabled = YES;
+        imageView.clipsToBounds = YES;
         imageView.backgroundColor = [UIColor whiteColor];
         imageView.contentMode = UIViewContentModeScaleAspectFill;
         imageView.tag = a + 1;
@@ -285,7 +286,8 @@
 //定时器事件
 -(void)timerActive:(id)sender{
     
-    [self.mainSv scrollRectToVisible:CGRectMake(self.currentRect.size.width * 2, 0, self.currentRect.size.width, self.currentRect.size.height) animated:YES];
+    CGRect rect = CGRectMake(self.currentRect.size.width * 2, 0, self.currentRect.size.width, self.currentRect.size.height);
+    [self.mainSv scrollRectToVisible:rect animated:YES];
 
 }
 
@@ -293,7 +295,7 @@
 -(void)animationDidStart:(CAAnimation *)anim{
 
     UILabel *index = (UILabel *)[self viewWithTag:99];
-    index.text = [NSString stringWithFormat:@"%ld",self.index + 1];
+    index.text = [NSNumber numberWithUnsignedInteger:self.index + 1].stringValue;
 
 }
 
@@ -415,7 +417,7 @@
 
 }
 
-- (int) getSourceCount
+- (NSInteger) getSourceCount
 {
     return [self.sourceArray count];
 }
@@ -481,7 +483,7 @@
             //页码翻页动画
             UILabel *index = (UILabel *)[self viewWithTag:99];
             CATransition *animation = [CATransition animation];
-            animation.delegate = self;
+//            animation.delegate = self;
             [animation setDuration:0.5f];
             [animation setType:@"oglFlip"];
             [animation setSubtype:kCATransitionFromRight];
@@ -542,7 +544,7 @@
             //页码翻页动画
             UILabel *index = (UILabel *)[self viewWithTag:99];
             CATransition *animation = [CATransition animation];
-            animation.delegate = self;
+//            animation.delegate = self;
             [animation setDuration:0.5f];
             [animation setType:@"oglFlip"];
             [animation setSubtype:kCATransitionFromLeft];

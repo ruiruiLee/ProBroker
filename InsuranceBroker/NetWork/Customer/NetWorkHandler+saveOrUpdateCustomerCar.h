@@ -64,6 +64,7 @@
                              carTradeTime:(NSString *) carTradeTime
                           carInsurStatus1:(NSString *) carInsurStatus1
                           carInsurCompId1:(NSString *) carInsurCompId1
+                        labourOfferStatus:(NSInteger ) labourOfferStatus
                                Completion:(Completion)completion;
 
 @end

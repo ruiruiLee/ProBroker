@@ -104,8 +104,11 @@
         TagButton *btn = [viewArray objectAtIndex:i];
         btn.tag = 100 + i;
         NSString *title = btn.titleLabel.text;
-        CGSize size = [title sizeWithFont:btn.titleLabel.font constrainedToSize:CGSizeMake(INT_MAX, 26)];
-        
+        CGRect rect = [title boundingRectWithSize:CGSizeMake(INT_MAX, 26)
+                                                  options:NSStringDrawingUsesLineFragmentOrigin
+                                               attributes:@{ NSFontAttributeName :btn.titleLabel.font }
+                                                  context:nil];
+        CGSize size = rect.size;
         CGFloat nx = ox + size.width + 20;
         if(nx > frame.size.width){
             oy += 36;
@@ -199,8 +202,8 @@
     }
 }
 
-//- (BOOL) DelPrevTag:(DashBorderTextfield *) sender
-//{
+- (BOOL) DelPrevTag:(DashBorderTextfield *) sender
+{
 //    TagButton *btn = [viewArray lastObject];
 //    if(btn != nil)
 //    {
@@ -211,8 +214,8 @@
 //            [btn removeFromSuperview];
 //        }
 //    }
-//    return YES;
-//}
+    return YES;
+}
 
 - (NSArray *) getSelectedLabelName
 {

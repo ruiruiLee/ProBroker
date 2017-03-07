@@ -106,7 +106,7 @@
     
     //算出table的CGRect
     CGRect rect = self.view.bounds;
-    int height = titleArray.count * 60;
+    NSInteger height = titleArray.count * 60;
     if(height > 264)
         height = 264;
     rect.origin.y = rect.size.height - height - 60;

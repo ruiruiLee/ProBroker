@@ -53,20 +53,11 @@ static int const kMGBadgeViewTag = 9876;
         [_badgeColor set];
         CGContextFillEllipseInRect(context, CGRectInset(rect, _outlineWidth + 1.0, _outlineWidth + 1.0));
         
-//        CGSize numberSize = [stringToDraw sizeWithAttributes:@{NSFontAttributeName: _font}];
-        
         [_textColor set];
         NSMutableParagraphStyle *paragrapStyle = [NSMutableParagraphStyle new];
         paragrapStyle.lineBreakMode = NSLineBreakByClipping;
         paragrapStyle.alignment = NSTextAlignmentCenter;
-        
-//        CGRect lblRect = CGRectMake(rect.origin.x, (rect.size.height / 2.0) - (numberSize.height / 2.0), rect.size.width, numberSize.height);
-    
-//        [stringToDraw drawInRect:lblRect withAttributes:@{
-//                                                          NSFontAttributeName : _font,
-//                                                          NSParagraphStyleAttributeName : paragrapStyle,
-//                                                          NSForegroundColorAttributeName : _textColor
-//                                                          }];
+
         
     }
 }
@@ -185,7 +176,6 @@ static int const kMGBadgeViewTag = 9876;
 
 - (void)mg_updateBadgeViewSize {
     //Calculate badge bounds
-  //  CGSize numberSize = [[NSString stringWithFormat:@"%ld", (long)_badgeValue] sizeWithAttributes:@{NSFontAttributeName: _font}];
     
     float badgeHeight = 15;//MAX(BADGE_TOTAL_OFFSET + numberSize.height, _minDiameter);
     float badgeWidth = 15;//MAX(badgeHeight, BADGE_TOTAL_OFFSET + numberSize.width);

@@ -272,7 +272,6 @@
 #pragma mark - XYPieChart Delegate
 - (void)pieChart:(XYPieChart *)pieChart didSelectSliceAtIndex:(NSUInteger)index
 {
-    NSLog(@"did select slice at index %d",index);
 //    self.selectedSliceLabel.text = [NSString stringWithFormat:@"$%@",[self.slices objectAtIndex:index]];
 }
 

@@ -38,6 +38,42 @@ static NetWorkHandler *networkmanager;
     return self;
 }
 
+- (void) getWithUrl:(NSString *) url Params:(NSMutableDictionary *) params Completion:(Completion)completion
+{
+    NSString *path = url;
+    
+    
+    self.manager.requestSerializer = [AFHTTPRequestSerializer serializer];//[AFHTTPRequest Serializerserializer];
+    
+    self.manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    NSURLSessionDataTask *req = [self.manager POST:path parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSData *doubi = responseObject;
+        
+        NSString *shabi =  [[NSString alloc]initWithData:doubi encoding:NSUTF8StringEncoding];
+        
+        if(completion){
+            completion(1, shabi);
+        }
+        
+        [_reqArray removeObject:task];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"请求URL：%@  \n请求参数：%@\n 请求结果：%@\n==================================", url, params, error);
+        
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:[NSNumber numberWithInteger:error.code] forKey:@"code"];
+        [dic setObject:error.localizedDescription forKey:@"msg"];
+        [self handleResponse:dic Completion:completion];
+        
+        [_reqArray removeObject:task];
+    }];
+    
+    [_reqArray addObject:req];
+}
+
 - (void) getWithMethod:(NSString *)method BaseUrl:(NSString *)url Params:(NSMutableDictionary *) params Completion:(Completion)completion
 {
     NSString *path = url;
@@ -179,7 +215,7 @@ static NetWorkHandler *networkmanager;
     NSMutableURLRequest *request = [self.manager.requestSerializer requestWithMethod:@"POST" URLString:path parameters:params error:nil];
     
     NSURLSessionDataTask *req = [self.manager POST:path parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-        
+
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [ProjectDefine removeRequestTag:Tag];
         NSDictionary *result = nil;
@@ -192,7 +228,7 @@ static NetWorkHandler *networkmanager;
         _urlstring= [self ConvertCachKeyString:[self getUrlAbsoluteString:request]];
         // 加缓存
         [[EGOCache globalCache] setObject:result forKey: [Util md5Hash:_urlstring]];
-        
+
         NSLog(@"请求URL：%@ \n请求方法:%@ \n请求参数：%@\n 请求结果：%@\n==================================", url, method, params, result);
         
         [self handleResponse:result Completion:completion];
@@ -203,7 +239,6 @@ static NetWorkHandler *networkmanager;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [ProjectDefine removeRequestTag:Tag];
         NSLog(@"请求URL：%@ \n请求方法:%@ \n请求参数：%@\n 请求结果：%@\n==================================", url, method, params, error);
-        
         _urlstring= [self ConvertCachKeyString:[self getUrlAbsoluteString:request]];
         id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:_urlstring]];
         if([method isEqualToString:@"/api/user/login"])
@@ -238,8 +273,6 @@ static NetWorkHandler *networkmanager;
     [Util setValueForKeyWithDic:parmas value:version key:@"appVersion"];
     NSNumber *deviceType = [NSNumber numberWithInt:2];
     [Util setValueForKeyWithDic:parmas value:deviceType key:@"deviceType"];
-//    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-//    [Util setValueForKeyWithDic:parmas value:delegate.deviceToken key:@"deviceId"];
 }
 
 - (void) addClientKey:(NSMutableDictionary *) parmas

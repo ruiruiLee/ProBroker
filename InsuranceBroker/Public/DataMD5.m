@@ -98,7 +98,7 @@
     [signParams setObject:package_key forKey:@"package"];
     [signParams setObject:partnerid_key forKey:@"partnerid"];
     [signParams setObject:prepayid_key forKey:@"prepayid"];
-    [signParams setObject:[NSString stringWithFormat:@"%u",timestamp_key] forKey:@"timestamp"];
+    [signParams setObject:[NSString stringWithFormat:@"%u",(unsigned int)timestamp_key] forKey:@"timestamp"];
     
     NSMutableString *contentString  =[NSMutableString string];
     NSArray *keys = [signParams allKeys];

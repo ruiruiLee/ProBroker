@@ -14,8 +14,6 @@
 {
     NSString *_urlPath;
     NSString *_orderId;
-    NSString *_insuranceType;
-    NSString *_planOfferId;
     NSString *selectImgName;
 }
 
@@ -23,6 +21,6 @@
 @property (nonatomic, strong) InsurInfoModel *insModel;
 @property (nonatomic, strong) HighNightBgButton *btnChat;
 
-- (void) initShareUrl:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId;
+- (void) initShareUrl:(NSString *) orderId;
 
 @end

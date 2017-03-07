@@ -22,9 +22,6 @@
 @interface OrderManagerVC () <UISearchBarDelegate>
 {
     NSArray *insurArray;
-    
-//    UISearchBar *searchbar;
-//    NSString *filterString;
 }
 
 @property (strong, nonatomic) UITableView *menuTableView;
@@ -61,7 +58,7 @@
 
 - (void) initMapTypesForCar
 {
-    self.mapTypes = @[@{@"orderOfferStatus": @"-1", @"name":@"全部保单"}, @{@"orderOfferStatus": @"1", @"name":@"等待报价"}, @{@"orderOfferStatus": @"2", @"name":@"报价失败"}, @{@"orderOfferStatus": @"3", @"name":@"报价完成"}, @{@"orderOfferStatus": @"4,6", @"name":@"核保出单", @"orderOfferEmsStatus":@"0", @"orderOfferPrintStatus":@"0,1,2"},@{@"orderOfferStatus": @"4,6", @"name":@"正在配送", @"orderOfferEmsStatus":@"1,2", @"orderOfferPrintStatus":@"2"},@{@"orderOfferStatus": @"4,6", @"name":@"客户签收", @"orderOfferEmsStatus":@"3", @"orderOfferPrintStatus":@"2"}, @{@"orderOfferStatus": @"8", @"name":@"交易完成"}];
+    self.mapTypes = @[@{@"orderOfferStatus": @"-1", @"name":@"全部保单"}, @{@"orderOfferStatus": @"1", @"name":@"等待报价"}, @{@"orderOfferStatus": @"2", @"name":@"报价失败"}, @{@"orderOfferStatus": @"3", @"name":@"报价成功"}, @{@"orderOfferStatus": @"4,6", @"name":@"核保出单", @"orderOfferEmsStatus":@"0", @"orderOfferPrintStatus":@"0,1"},  @{@"orderOfferStatus": @"4,6", @"name":@"出单完成", @"orderOfferEmsStatus":@"0,1", @"orderOfferPrintStatus":@"2"},@{@"orderOfferStatus": @"4,6", @"name":@"正在配送", @"orderOfferEmsStatus":@"2", @"orderOfferPrintStatus":@"2"},@{@"orderOfferStatus": @"4,6", @"name":@"客户签收", @"orderOfferEmsStatus":@"3", @"orderOfferPrintStatus":@"2"}, @{@"orderOfferStatus": @"8", @"name":@"交易完成"},@{@"orderOfferStatus": @"7", @"name":@"交易失败"}];
     
     self.currentMapTypeIndex = 0;
 }
@@ -86,23 +83,12 @@
     self.title = @"我的保单";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePaySuccess) name:Notify_Pay_Success object:nil];
-    
-//    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
-//    self.navigationItem.titleView = titleView;
-//    
-//    
-//    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, 160, 22)];
-//    lb.text = @"我的保单";
-//    lb.font = _FONT_B(18);
-//    lb.textAlignment = NSTextAlignmentCenter;
-//    [titleView addSubview:lb];
-//    UIImageView *image = [[UIImageView alloc] initWithImage:ThemeImage(@"xialaliebiao")];
-//    image.frame = CGRectMake(70, 24, 19, 16);
-//    [titleView addSubview:image];
-//    
-//    HighNightBgButton *btn = [[HighNightBgButton alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
-//    [titleView addSubview:btn];
-//    [btn addTarget:self action:@selector(doBtnSelectOrderStatus:) forControlEvents:UIControlEventTouchUpInside];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshCarOrderList) name:Notify_Refresh_OrderList1 object:nil];
+}
+
+- (void) refreshCarOrderList
+{
+    [self refresh2Loaddata];
 }
 
 - (void) handlePaySuccess
@@ -223,16 +209,25 @@
     if(_currentMapTypeIndex > 0){
         NSDictionary *dic = [self.mapTypes objectAtIndex:_currentMapTypeIndex];
         NSString *orderOfferStatus = [dic objectForKey:@"orderOfferStatus"];
-        [rules addObject:[self getRulesByField:@"orderOfferStatus" op:@"in" data:orderOfferStatus]];
+        if([orderOfferStatus componentsSeparatedByString:@","].count > 1)
+            [rules addObject:[self getRulesByField:@"orderOfferStatus" op:@"in" data:orderOfferStatus]];
+        else
+            [rules addObject:[self getRulesByField:@"orderOfferStatus" op:@"eq" data:orderOfferStatus]];
         NSString *orderOfferEmsStatus = [dic objectForKey:@"orderOfferEmsStatus"];
         NSString *orderOfferPrintStatus = [dic objectForKey:@"orderOfferPrintStatus"];
         gxbzStatus = [dic objectForKey:@"gxbzStatus"];
         if(orderOfferPrintStatus){
-            [rules addObject:[self getRulesByField:@"orderOfferPrintStatus" op:@"in" data:orderOfferPrintStatus]];
+            if([orderOfferPrintStatus componentsSeparatedByString:@","].count > 1)
+                [rules addObject:[self getRulesByField:@"orderOfferPrintStatus" op:@"in" data:orderOfferPrintStatus]];
+            else
+                [rules addObject:[self getRulesByField:@"orderOfferPrintStatus" op:@"eq" data:orderOfferPrintStatus]];
         }
         
         if(orderOfferEmsStatus){
-            [rules addObject:[self getRulesByField:@"orderOfferEmsStatus" op:@"in" data:orderOfferEmsStatus]];
+            if([orderOfferEmsStatus componentsSeparatedByString:@","].count > 1)
+                [rules addObject:[self getRulesByField:@"orderOfferEmsStatus" op:@"in" data:orderOfferEmsStatus]];
+            else
+                [rules addObject:[self getRulesByField:@"orderOfferEmsStatus" op:@"eq" data:orderOfferEmsStatus]];
         }
         
 //        if(gxbzStatus){
@@ -309,7 +304,7 @@
     NSInteger tag = tableView.tag;
     
     if( 100001 == tag)
-        return 110.f;
+        return 128.f;
     else
             
         return 50.f;
@@ -336,7 +331,11 @@
         cell.statusWidth.constant = 80;
         
         if(model.insuranceType == 1){
-            cell.lbName.text = model.customerName;
+            cell.lbName.text = model.customerName1;
+            if(model.customerName1 == nil || [model.customerName1 isKindOfClass:[NSNull class]] || [model.customerName1 length] == 0)
+            {
+                cell.lbName.text = Default_Customer_Name;
+            }
             cell.lbPlate.text = model.carNo;
             cell.lbPlate.font = _FONT(13);
             
@@ -354,9 +353,15 @@
                 cell.contentWidth.constant = 10;
             }
             
+            if(model.orderOfferStatus == 3){
+                [cell.btnUnfold setTitle:@"设置费率" forState:UIControlStateNormal];
+            }
+            else{
+                [cell.btnUnfold setTitle:@"查看详情" forState:UIControlStateNormal];
+            }
             
             [cell.phoneNum setTitle:model.customerPhone forState:UIControlStateNormal];
-            cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
+            cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus orderOfferOrigPrice:model.orderOfferOrigPrice];
             [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
             cell.statusImgV.hidden = YES;
             cell.btnStatus.hidden = NO;
@@ -374,8 +379,6 @@
             cell.lbContent.text = @"";
             cell.contentWidth.constant = 10;
             [cell.phoneNum setTitle:model.customerPhone forState:UIControlStateNormal];
-            //        cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus];
-            //        cell.lbStatus.text = model.orderOfferStatusMsg;
             if(model.orderOfferPayPrice > 0){
                 NSString *string = [NSString stringWithFormat:@"价格:¥%.2f", model.orderOfferPayPrice];
                 cell.lbStatus.attributedText = [OrderUtil attstringWithString:string range:NSMakeRange(3, [string length] - 3) font:_FONT(18) color:_COLOR(0xf4, 0x43, 0x36)];
@@ -386,6 +389,8 @@
             
             cell.statusImgV.hidden = NO;
             cell.btnStatus.hidden = NO;
+            
+            [cell.btnUnfold setTitle:@"查看详情" forState:UIControlStateNormal];
             
             cell.statusWidth.constant = 80;
             CGFloat statusWidth = [model.orderOfferStatusStr sizeWithAttributes:@{NSFontAttributeName:cell.btnStatus.titleLabel.font}].width;
@@ -458,31 +463,26 @@
                 web.shareTitle = [NSString stringWithFormat:@"我是%@，我是优快保自由经纪人。这是为您定制的投保方案报价，请查阅。电话%@", user.realName, user.phone];
                 [self.navigationController pushViewController:web animated:YES];
                 web.insModel = model;
-                if(model.planOfferId != nil){
-                    NSString *url = [NSString stringWithFormat:@"%@?insuranceType=%@&orderId=%@&planOfferId=%@", model.clickUrl, @"1", model.insuranceOrderUuid, model.planOfferId];
-                    [web initShareUrl:model.insuranceOrderUuid insuranceType:@"1" planOfferId:model.planOfferId];
-                    [web loadHtmlFromUrl:url];
-                }else{
-                    NSString *url = [NSString stringWithFormat:@"%@?insuranceType=%@&orderId=%@", model.clickUrl, @"1", model.insuranceOrderUuid];
-                    [web initShareUrl:model.insuranceOrderUuid insuranceType:@"1" planOfferId:model.planOfferId];
-                    [web loadHtmlFromUrl:url];
-                }
+                NSString *url = [NSString stringWithFormat:@"%@?appId=%@&orderUuId=%@&helpInsure=1", model.clickUrl, [UserInfoModel shareUserInfoModel].uuid, model.insuranceOrderUuid];
+                [web initShareUrl:model.insuranceOrderUuid];
+                [web loadHtmlFromUrl:url];
             }
             else if (orderOfferStatus == 3){
                 OfferDetailsVC *vc = [IBUIFactory CreateOfferDetailsViewController];
                 vc.orderId = model.insuranceOrderUuid;
+                vc.insurInfo = model;
                 [self.navigationController pushViewController:vc animated:YES];
             }else{
                 OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
                 web.title = @"报价详情";
                 web.insModel = model;
                 [self.navigationController pushViewController:web animated:YES];
-                NSString *url = [NSString stringWithFormat:@"%@?insuranceType=%@&orderId=%@", model.clickUrl, @"1", model.insuranceOrderUuid];
+                NSString *url = [NSString stringWithFormat:@"%@?appId=%@&orderUuId=%@&helpInsure=1", model.clickUrl, [UserInfoModel shareUserInfoModel].uuid, model.insuranceOrderUuid];
                 [web loadHtmlFromUrl:url];
             }
         }else
         {
-            ProductDetailWebVC *web = [IBUIFactory CreateProductDetailWebVC];
+            WebViewController *web = [IBUIFactory CreateWebViewController];
             web.title = @"保单详情";
             [self.navigationController pushViewController:web animated:YES];
             NSString *url = [NSString stringWithFormat:@"%@?&orderId=%@", model.clickUrl,  model.insuranceOrderUuid];
@@ -508,7 +508,7 @@
 {
     NSInteger tag = tableView.tag;
     if( 100001 == tag)
-        return 31;
+        return 21;
     else
         return 0.01;
 }
@@ -518,11 +518,11 @@
     NSInteger tag = tableView.tag;
     
     if( 100001 == tag){
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 31)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 21)];
         
-        UIImageView *imgv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 31)];
+        UIImageView *imgv = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 21)];
         [view addSubview:imgv];
-        UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, ScreenWidth, 20)];
+        UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(0, 1, ScreenWidth, 20)];
         [view addSubview:lb];
         lb.backgroundColor = [UIColor clearColor];
         lb.font = _FONT(12);

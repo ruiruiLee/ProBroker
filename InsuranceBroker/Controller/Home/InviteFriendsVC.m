@@ -38,9 +38,7 @@
     [btn setImage:Normal_Image forState:UIControlStateNormal];
     UIImageView *imagev = [[UIImageView alloc] initWithFrame:CGRectMake(0, [Util getHeightByWidth:375 height:90 nwidth:ScreenWidth], ScreenWidth, 15)];
     [header addSubview:imagev];
-//    imagev.image = ThemeImage(@"shadow");
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-    NewUserModel *model = appdelegate.inviteBanner;
+    NewUserModel *model = [App_Delegate inviteBanner];
     if(model == nil || model.imgUrl == nil){
         header.frame = CGRectMake(0, 0, ScreenWidth, 15);
         btn.frame = CGRectMake(0, 0, 0, 0);
@@ -68,8 +66,7 @@
 
 - (void) doBtnClicked:(UIButton *)sender
 {
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-    NewUserModel *model = appdelegate.inviteBanner;
+    NewUserModel *model = [App_Delegate inviteBanner];
     if(model.isRedirect){
         WebViewController *web = [IBUIFactory CreateWebViewController];
         web.title = model.title;

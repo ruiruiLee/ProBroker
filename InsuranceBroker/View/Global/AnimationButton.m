@@ -34,6 +34,8 @@
 
 - (void) awakeFromNib
 {
+    [super awakeFromNib];
+    
     self.clipsToBounds = YES;
     
     [self addTarget:self action:@selector(animationFromLarger) forControlEvents:UIControlEventTouchDown];

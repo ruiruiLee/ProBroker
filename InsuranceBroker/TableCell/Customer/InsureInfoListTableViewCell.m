@@ -14,6 +14,8 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    [super awakeFromNib];
+    
     [self.btnSelected setImage:ThemeImage(@"unselect_point") forState:UIControlStateNormal];
     [self.btnSelected setImage:ThemeImage(@"select_point") forState:UIControlStateSelected];
 }

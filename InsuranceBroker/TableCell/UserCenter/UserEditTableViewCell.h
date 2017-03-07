@@ -17,7 +17,5 @@
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *imgHConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *imgVConstraint;
 
-- (void) setDetailText:(NSString *)text;
-- (void) setImageForImgv:(UIImage *)image;
 
 @end

@@ -312,7 +312,8 @@
         [self addGestureRecognizer:longPress];
         [self setImageFrameAndContentSize];
         if (!isCached) {
-            [hud hide:YES];
+//            [hud hide:YES];
+            [hud hideAnimated:YES];
         }
     }];
 }

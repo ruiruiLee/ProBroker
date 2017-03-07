@@ -66,6 +66,7 @@
         if(code == 200){
             [self appendData:[[content objectForKey:@"data"] objectForKey:@"rows"]];
             self.total = [[[content objectForKey:@"data"] objectForKey:@"total"] integerValue];
+            self.customerModel.carNum = self.total;
         }
     }];
 }
@@ -160,7 +161,6 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-//    [self.navigationController popViewControllerAnimated:YES];
     CarInfoModel *model = [self.data objectAtIndex:indexPath.row];
     
     AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];

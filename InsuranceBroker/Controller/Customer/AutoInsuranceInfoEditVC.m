@@ -18,7 +18,6 @@
 #import "ZHPickView.h"
 #import "DictModel.h"
 #import "UIImageView+WebCache.h"
-#import "OrderWebVC.h"
 #import "SJAvatarBrowser.h"
 #import "ProgressHUD.h"
 #import "UIButton+WebCache.h"
@@ -26,34 +25,7 @@
 #import "NetWorkHandler+queryForProductList.h"
 #import "ProvienceSelectedView.h"
 
-#define explain @"＊优快保提供以下三种报价方式\n \n   1 续保车辆 只需填写［车牌号］(或传行驶证照片) 并选择［上年度保险］，就可精准报价。\n \n   2 上传车主［行驶证正本］清晰照片(或填写行驶证明细）可快速报价，此报价可能与真实价格存在一点偏差，成交最终以真实价格为准。\n \n   3  上传车主［行驶证正本］和［身份证正面］清晰照片(或输入身份证号码)进行精准报价。 \n \n＊ 注：客户确认投保后，应保监会规定需要补齐所有证件照片方可出单（在客户资料界面可补齐照片）。"
-
-@interface AutoInsuranceInfoEditVC ()//<MenuDelegate, ZHPickViewDelegate, UITextFieldDelegate, UIScrollViewDelegate, ProvienceSelectedViewDelegate>
-//{
-//    NSInteger _perInsurCompany;
-//    NSArray *_insurCompanyArray;
-//    
-//    NSInteger _changeNameIdx;
-//    NSMutableArray *_changeNameArray;
-//    
-//    NSDate *_changNameDate;
-//    NSDate *_signDate;
-//    
-//    ZHPickView *_datePicker;
-//    ZHPickView *_datePicker1;
-//    
-//    BOOL isCertModify;
-//    
-//    UIImage *newLisence;
-//    UIImage *newCert;
-//    
-//    NSString *_travelCard1;
-//    
-//    NSString *_productId;
-//}
-//
-//@property (nonatomic, strong) InsurCompanySelectVC *menuView;
-//@property (nonatomic, strong) MenuViewController *menu;
+@interface AutoInsuranceInfoEditVC ()
 
 @end
 
@@ -67,10 +39,12 @@
     
     _travelCard1 = model.travelCard1;
     
-    self.tfName.text = self.customerModel.customerName;
+//    if(![Util validateCarNo:self.customerModel.customerName])
+//        self.tfName.text = self.customerModel.customerName;
     if(model){
-        self.tfName.text = model.carOwnerName;
-        self.tfNo.text = [self getCarCertNum:model.carNo];//model.carNo;
+        if(model.carOwnerName != nil && ![model.carOwnerName isKindOfClass:[NSNull class]] && [model.carOwnerName length] > 0)
+            self.tfName.text = model.carOwnerName;
+        self.tfNo.text = [self getCarCertNum:model.carNo];
         self.lbProvience.text = [self getCarCertLocation:model.carNo];
         if(model.newCarNoStatus == 0){
             self.btnNoNo.selected = YES;
@@ -96,7 +70,7 @@
         self.tfMotorCode.text = model.carEngineNo;
         self.tfModel.text = model.carTypeNo;
         self.tfIdenCode.text = model.carShelfNo;
-        self.tfDate.text = [Util getDayString:model.carRegTime];//model.carRegTime;
+        self.tfDate.text = [Util getDayString:model.carRegTime];
         self.tfCert.text = model.carOwnerCard;
         
         if(model.travelCard1 != nil){
@@ -188,7 +162,7 @@
     
     NSString *name = self.tfName.text;
     BOOL flag1 = [self checkValueChange:name text:model.carOwnerName];
-    if(flag1 && ((![Util isNilValue:model.carOwnerName] && [self checkValueChange:self.customerModel.customerName text:name]) || [Util isNilValue:model.carOwnerName])){
+    if(flag1){
         result = flag1;
     }
     
@@ -381,8 +355,6 @@
 
 - (void) doBtnCarInsurPlan:(UIButton *) sender
 {
-    //    http://118.123.249.87:8783/UKB.AgentNew/car_insur/car_insur_plan.html?orderId=e61a2a7d41114fe7a3bf6f96c69a1d9b
-    
     [self resignFirstResponder];
     
     if([self isModify]){
@@ -400,7 +372,6 @@
             [self car_insur_plan:self.carInfo.customerCarId];
     }
 }
-
 
 - (BOOL) isHasLisence
 {

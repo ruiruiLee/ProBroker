@@ -12,20 +12,19 @@
 
 @class productAttrModel;
 
-@interface AutoInsuranceStep1VC : BaseViewController<MenuDelegate>
+@interface AutoInsuranceStep1VC : BaseViewController
 {
     NSInteger _perInsurCompany;
 }
 
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewWidth;
 @property (nonatomic, strong) IBOutlet UITextField *tfCardNum;
-@property (nonatomic, strong) IBOutlet UITextField *tfName;
-@property (nonatomic, strong) IBOutlet UITextField *tfCert;
-@property (nonatomic, strong) IBOutlet UIButton *btnCertImage;
 @property (nonatomic, strong) IBOutlet UIButton *btnSubmit;
-@property (nonatomic, strong) IBOutlet UISwitch *switchCert;
-@property (nonatomic, strong) IBOutlet NSLayoutConstraint *bannerHeight;
-@property (nonatomic, strong) IBOutlet UILabel *lbPCompany;
+@property (nonatomic, strong) IBOutlet UILabel *lbWarning;
+
+@property (nonatomic, strong) IBOutlet UIView *bgView;
+
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *bgViewWidth;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *bgViewHeight;
 
 @property (nonatomic, strong) HighNightBgButton *btnProvience;//省简称
 @property (nonatomic, strong) UILabel *lbProvience;

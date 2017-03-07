@@ -115,17 +115,12 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) NSString *orderId;
 @property (nonatomic, assign) InsuranceType insType;
 
-@property (nonatomic, strong) productAttrModel *selectProModel;//选中的产品
-
 @property (nonatomic, strong) CarInfoModel *carInfo;//车辆信息；新建的时候为空，提交服务器后有数据;修改时不为空
 
 - (IBAction)doButtonEditNo:(UIButton *)sender;
 
 //
 - (IBAction)doButtonHowToWrite:(UIButton *)sender;
-
-//传递产品id过来
-- (void) initWithProductId:(NSString *) product;
 
 //上传图片到服务器
 -(NSString *)fileupMothed:(UIImage *) image;
@@ -159,9 +154,12 @@ typedef enum : NSUInteger {
 
 - (void) btnPhotoPressed:(UIButton*)sender;
 
--(void)dismissImageAction:(UIImageView*)sender;
+- (void)dismissImageAction:(UIImageView*)sender;
 
 - (void) car_insur_plan:(NSString *) customerCarId;
+
+//判断通过车牌是否能从大库获取到车辆信息，能则直接报价，不能则需要上传行驶证或者车架号
+//- (void) checkIsLoadedCarInfo;
 
 - (void) submitWithLicense:(Completion) completion;
 

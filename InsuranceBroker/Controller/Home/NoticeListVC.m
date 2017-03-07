@@ -44,6 +44,13 @@
     [super viewDidAppear:animated];
     [self.tableview reloadData];
 }
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
 - (void) initSubViews
 {
 

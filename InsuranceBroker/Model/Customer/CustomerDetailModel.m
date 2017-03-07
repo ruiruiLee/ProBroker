@@ -66,6 +66,8 @@
     if([car count] > 0)
         model.carInfo = (CarInfoModel*)[CarInfoModel modelFromDictionary:[car objectAtIndex:0]];
     
+    model.carNum = [car count];
+    
     model.isLoadVisit = NO;
     model.visitAttay = [[NSMutableArray alloc] init];
     model.visitTotal = 0;
@@ -107,7 +109,7 @@
     [Util setValueForKeyWithDic:dic value:self.customerTel key:@"customerTel"];
     [Util setValueForKeyWithDic:dic value:self.headImg key:@"headImg"];
     [Util setValueForKeyWithDic:dic value:self.cardNumber key:@"cardNumber"];
-    [Util setValueForKeyWithDic:dic value:[NSNumber numberWithInt:self.customerSex] key:@"customerSex"];
+    [Util setValueForKeyWithDic:dic value:[NSNumber numberWithInteger:self.customerSex] key:@"customerSex"];
     [Util setValueForKeyWithDic:dic value:self.liveProvinceName key:@"liveProvinceName"];
     [Util setValueForKeyWithDic:dic value:self.liveCityName key:@"liveCityName"];
     [Util setValueForKeyWithDic:dic value:self.liveAreaName key:@"liveAreaName"];
@@ -115,6 +117,11 @@
     [Util setValueForKeyWithDic:dic value:self.customerEmail key:@"customerEmail"];
     
     return dic;
+}
+
+- (void) setCarInfo:(CarInfoModel *)carInfo
+{
+    _carInfo = carInfo;
 }
 
 @end

@@ -94,4 +94,6 @@
 
 //+ (void) weChatPay;
 
++ (NSString *) nullString:(NSString *) input;
+
 @end

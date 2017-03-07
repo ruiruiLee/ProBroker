@@ -27,7 +27,7 @@
 
 
 - (void)awakeFromNib {
-   
+    [super awakeFromNib];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DidChange:) name:UITextViewTextDidChangeNotification object:self];
     [self addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];

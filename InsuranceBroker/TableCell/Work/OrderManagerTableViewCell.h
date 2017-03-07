@@ -23,6 +23,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbContent;
 @property (nonatomic, strong) IBOutlet UILabel *lbStatus;
 @property (nonatomic, strong) IBOutlet UIImageView *statusImgV;
+@property (nonatomic, strong) IBOutlet UIButton *btnUnfold;
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *width;//车牌
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *contentWidth;//续保

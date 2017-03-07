@@ -14,7 +14,6 @@
 #import "NetWorkHandler+queryCustomerBaseInfo.h"
 #import "CarInfoModel.h"
 #import "BackGroundView.h"
-#import "OrderWebVC.h"
 
 @interface SelectCustomerForCarVC () <BackGroundViewDelegate>
 {
@@ -166,22 +165,10 @@
 
                 if([Util checkInfoFull:car]){
 
-                    NSString *str = @"";
-                    if(car.carInsurStatus1 && car.carInsurCompId1 != nil){
-                        str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", car.carInsurCompId1];
-                    }
-                    
-                    if(self.selectProModel){
-                        if(self.selectProModel.productAttrId)
-                            str = [NSString stringWithFormat:@"%@&productId=%@", str, self.selectProModel.productAttrId];
-                        if(self.selectProModel.compCode)
-                            str = [NSString stringWithFormat:@"%@&compCode=%@", str, self.selectProModel.compCode];
-                    }
-
-                    OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
+                    QuickQuoteVC *web = [IBUIFactory CreateQuickQuoteVC];
                     web.title = @"报价";
                     [self.navigationController pushViewController:web animated:YES];
-                    NSString *url = [NSString stringWithFormat:CAR_INSUR_PLAN, Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, model.customerId, car.customerCarId, str];
+                    NSString *url = [NSString stringWithFormat:CAR_INSUR_PLAN, Base_Uri, car.customerCarId, [UserInfoModel shareUserInfoModel].uuid, @""];
                     [web loadHtmlFromUrl:url];
                 }else{
                     CustomerDetailVC *detail = [IBUIFactory CreateCustomerDetailViewController];

@@ -21,6 +21,8 @@
 - (void) NotifyToPay:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId titleName:(NSString *) titleName totalFee:(NSString *) totalFee;
 - (void) NotifyWebCanReturnPrev:(BOOL) flag;
 - (void) NotifyLastUpdateTime:(long long) time  category:(NSString *) category;
+- (void) notifyWebViewLoadFinished:(NSString *) string;
+- (void) notifyToOrderList:(NSString *) string;
 
 @end
 
@@ -49,5 +51,13 @@
 - (void) canGoBack:(BOOL) flag;//是否允许返回上一节web页面
 
 - (void) updateMsgTime:(NSString *) string;
+
+//车险报价与web交互
+
+- (void) goOrderList:(NSString *) string;//跳转到订单列表
+
+//共有
+
+- (void) webViewLoadFinished:(NSString *) string;//网页每次加载完回调
 
 @end

@@ -33,11 +33,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (float)getIOSVersion
-//{
-//    return [[[UIDevice currentDevice] systemVersion] floatValue];
-//}
-
 - (void) updateOrAddLabelInfo
 {
     //更新标签

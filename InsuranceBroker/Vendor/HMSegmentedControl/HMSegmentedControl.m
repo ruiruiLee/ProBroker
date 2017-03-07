@@ -226,7 +226,7 @@
             // Text inside the CATextLayer will appear blurry unless the rect values are rounded
             CGFloat y = roundf(CGRectGetHeight(self.frame) - self.selectionIndicatorHeight)/2 - stringHeight/2 + ((self.selectionIndicatorLocation == HMSegmentedControlSelectionIndicatorLocationUp) ? self.selectionIndicatorHeight : 0);
             
-            CGRect rect,rectDiv;
+            CGRect rect = CGRectZero,rectDiv = CGRectZero;
             if (self.segmentWidthStyle == HMSegmentedControlSegmentWidthStyleFixed) {
                 rect = CGRectMake((self.segmentWidth * idx) + (self.segmentWidth - stringWidth)/2, y, stringWidth, stringHeight);
                 rectDiv = CGRectMake((self.segmentWidth * idx)-0.5, self.selectionIndicatorHeight*2, 1, self.frame.size.height-(self.selectionIndicatorHeight*4));
@@ -246,9 +246,6 @@
             }
             
             CATextLayer *titleLayer = [CATextLayer layer];
-//            titleLayer.frame = rect;
-//            titleLayer.font = (__bridge CFTypeRef)(self.font.fontName);
-//            titleLayer.fontSize = self.font.pointSize;
             titleLayer.alignmentMode = kCAAlignmentCenter;
             titleLayer.string = titleString;
             titleLayer.truncationMode = kCATruncationEnd;

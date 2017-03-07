@@ -14,7 +14,6 @@
 #import "NetWorkHandler+queryCustomerBaseInfo.h"
 #import "CarInfoModel.h"
 #import "BackGroundView.h"
-#import "OrderWebVC.h"
 
 #import "SelectInsuredVC.h"
 
@@ -170,62 +169,6 @@
             }
         }
     }];
-    
-    
-//    SelectInsuredVC *insuredVC = [[SelectInsuredVC alloc] initWithNibName:nil bundle:nil];
-//    insuredVC.title = [NSString stringWithFormat:@"%@的被保人对象", model.customerName];
-//    insuredVC.customerId = model.customerId;
-//    [self.navigationController pushViewController:insuredVC animated:YES];
-    
-//    CustomerDetailVC *detail = [IBUIFactory CreateCustomerDetailViewController];
-//    [self.navigationController pushViewController:detail animated:YES];
-//    detail.customerinfoModel = model;
-//    [self performSelector:@selector(showProgressHUD) withObject:nil afterDelay:0.2];
-//    [detail performSelector:@selector(loadDetailWithCustomerId:) withObject:model.customerId afterDelay:0.2];
-//    [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.8];
-    
-//    [self loadCarInfo:model.customerId Completion:^(int code, id content) {
-////        [ProgressHUD dismiss];
-//        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-//        if(code == 200){
-//            [ProgressHUD dismiss];
-//            NSArray *array = [CarInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
-//            if([array count] > 0){
-//                CarInfoModel *car = [array objectAtIndex:0];
-//                
-//                if([Util checkInfoFull:car]){
-//                    
-//                    NSString *str = @"";
-//                    if(car.carInsurStatus1 && car.carInsurCompId1 != nil){
-//                        str = [NSString stringWithFormat:@"&lastYearStatus=1&carInsurCompId1=%@", car.carInsurCompId1];
-//                    }
-//                    
-//                    OrderWebVC *web = [[OrderWebVC alloc] initWithNibName:@"OrderWebVC" bundle:nil];
-//                    web.title = @"报价";
-//                    [self.navigationController pushViewController:web animated:YES];
-//                    NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_plan.html?clientKey=%@&userId=%@&customerId=%@&customerCarId=%@%@", Base_Uri, [UserInfoModel shareUserInfoModel].clientKey, [UserInfoModel shareUserInfoModel].userId, model.customerId, car.customerCarId, str];
-//                    [web loadHtmlFromUrl:url];
-//                }else{
-//                    CustomerDetailVC *detail = [IBUIFactory CreateCustomerDetailViewController];
-//                    [self.navigationController pushViewController:detail animated:YES];
-//                    detail.customerinfoModel = model;
-//                    [self performSelector:@selector(showProgressHUD) withObject:nil afterDelay:0.2];
-//                    [detail performSelector:@selector(loadDetailWithCustomerId:) withObject:model.customerId afterDelay:0.2];
-//                    [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.8];
-//                }
-//            }
-//            else{
-//                CustomerDetailVC *detail = [IBUIFactory CreateCustomerDetailViewController];
-//                [self.navigationController pushViewController:detail animated:YES];
-//                detail.customerinfoModel = model;
-//                [self performSelector:@selector(showProgressHUD) withObject:nil afterDelay:0.2];
-//                [detail performSelector:@selector(loadDetailWithCustomerId:) withObject:model.customerId afterDelay:0.2];
-//                [self performSelector:@selector(shutProgressHUD) withObject:nil afterDelay:0.8];
-//            }
-//        }else{
-//            [ProgressHUD dismiss];
-//        }
-//    }];
 }
 
 - (void) showProgressHUD
@@ -237,19 +180,6 @@
 {
     [ProgressHUD dismiss];
 }
-
-
-//- (NSArray *) getItemByArray:(NSArray *) array
-//{
-//    NSMutableArray *items = [[NSMutableArray alloc] init];
-//    for (int i =0; i<[array count]; i++) {
-//        CarInfoModel *model = [array objectAtIndex:i];
-//        CTPopoutMenuItem * item = [[CTPopoutMenuItem alloc]initWithTitle:model.carNo image:[UIImage imageNamed:[NSString stringWithFormat:@"pic%d",i]]];
-//        [items addObject:item];
-//    }
-//    
-//    return items;
-//}
 
 - (NSMutableArray *) getItemsByKey:(NSString *) key
 {

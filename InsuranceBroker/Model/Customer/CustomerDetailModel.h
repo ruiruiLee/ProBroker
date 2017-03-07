@@ -47,7 +47,7 @@
 @property (nonatomic, strong) NSString *customerMemo;
 @property (nonatomic, strong) NSString *customerEmail;
 
-
+@property (nonatomic, assign) NSInteger carNum;
 @property (nonatomic, strong) CarInfoModel *carInfo;//车信息
 @property (nonatomic, assign) BOOL isLoadVisit;//是否加载过客户跟踪信息
 @property (nonatomic, assign) NSInteger visitTotal;

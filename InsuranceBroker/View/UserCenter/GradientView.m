@@ -49,7 +49,7 @@
 - (void)_drawGradientColor:(CGContextRef)p_context rect:(CGRect)p_clipRect options:(CGGradientDrawingOptions)p_options colors:(NSArray *)p_colors {
     CGContextSaveGState(p_context);// 保持住现在的context
     CGContextClipToRect(p_context, p_clipRect);// 截取对应的context
-    int colorCount = p_colors.count;
+    NSInteger colorCount = p_colors.count;
     int numOfComponents = 4;
     CGColorSpaceRef rgb = CGColorSpaceCreateDeviceRGB();
     CGFloat colorComponents[colorCount * numOfComponents];

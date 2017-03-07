@@ -33,12 +33,13 @@
 @interface HeadlineView : UIControl
 {
 //    UIView *view;
+    
+    NSInteger _selectIdx;
 }
 
-@property (nonatomic, strong) UIImageView *imgTitle;
-@property (nonatomic, strong) UILabel *lbSepLine;//分割线
 @property (nonatomic, weak) id<HeadlineViewDelegate> delegate;
 
 - (void) reloadData;
+- (NSInteger) getCurrentSelectIdx;
 
 @end

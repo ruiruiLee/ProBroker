@@ -121,9 +121,9 @@
     UserInfoModel *model = self.userinfo;
     
     self.lbMonthOrderSuccessNums.text = [Util getDecimalStyle:model.car_now_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
-    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", model.car_now_zcgdds];//车险本月单量
+    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%ld单", (long)model.car_now_zcgdds];//车险本月单量
     self.lbPersonalMonthOrderSuccessNums.text = [Util getDecimalStyle:model.nocar_now_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
-    self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", model.nocar_now_zcgdds];//个险本月单量
+    self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%ld单", (long)model.nocar_now_zcgdds];//个险本月单量
     
     self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.now_zsy];//本月收益
     self.lbOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.zsy];//累计收益
@@ -254,7 +254,7 @@
         vc.title = [NSString stringWithFormat:@"%@的团队", [Util getUserNameWithModel:self.brokerInfo]];
         vc.total = self.userinfo.ztdrs;
         vc.toptitle = @"他的队员";
-        vc.name = [Util getUserNameWithModel:self.brokerInfo];//self.brokerInfo.userName;
+        vc.name = [Util getUserNameWithModel:self.brokerInfo];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

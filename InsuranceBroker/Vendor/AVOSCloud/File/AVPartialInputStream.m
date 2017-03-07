@@ -285,7 +285,7 @@
     {
         [NSException raise: NSInvalidArgumentException
                     format: @"Unknown event (%"PRIuPTR") passed to _sendEvent:",
-         event];
+         (unsigned long)event];
     }
 }
 

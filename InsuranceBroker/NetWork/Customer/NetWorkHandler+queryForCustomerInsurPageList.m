@@ -23,8 +23,8 @@
     
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:pramas value:insuranceType key:@"insuranceType"];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:offset] key:@"offset"];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:limit] key:@"limit"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:offset] key:@"offset"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:limit] key:@"limit"];
     [Util setValueForKeyWithDic:pramas value:[NetWorkHandler objectToJson:filters] key:@"filters"];
     [Util setValueForKeyWithDic:pramas value:@"P_InsuranceOrders.updatedAt" key:@"sidx"];
     [Util setValueForKeyWithDic:pramas value:gxbzStatus key:@"gxbzStatus"];

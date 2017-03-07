@@ -14,18 +14,16 @@
 
 - (void) requestToQueryForProductAttrPageList:(NSInteger) offset
                                         limit:(NSInteger) limit
-                                         sidx:(NSString *) sidx
-                                         sord:(NSString *) sord
                                       filters:(NSDictionary *) filters
                                        userId:(NSString *) userId
+                                         uuid:(NSString *) uuid
                                 insuranceType:(NSString *) insuranceType
                                    completion:(Completion)completion
 {
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:offset] key:@"offset"];
-    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInt:limit] key:@"limit"];
-    [Util setValueForKeyWithDic:pramas value:sord key:@"sord"];
-    [Util setValueForKeyWithDic:pramas value:sidx key:@"sidx"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:offset] key:@"offset"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:limit] key:@"limit"];
+    [Util setValueForKeyWithDic:pramas value:uuid key:@"uuid"];
     [Util setValueForKeyWithDic:pramas value:userId key:@"userId"];
     [Util setValueForKeyWithDic:pramas value:insuranceType key:@"insuranceType"];
     

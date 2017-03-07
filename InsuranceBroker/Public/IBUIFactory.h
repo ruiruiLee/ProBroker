@@ -27,19 +27,17 @@
 #import "BindPhoneNumVC.h"
 #import "ModifyPhoneNumVC.h"
 #import "SalesStatisticsVC.h"
-#import "CustomerCallStatisticsVC.h"
 #import "NewCustomerVC.h"
 #import "OrderDetailWebVC.h"
 #import "UserDetailVC.h"
-#import "TeamMateIncomeStatisticsVC.h"
 #import "QuickQuoteVC.h"
 #import "InsuredUserInfoEditVC.h"
 #import "EditInsuredUserInfoVC.h"
 #import "ProductDetailWebVC.h"
 #import "PrivateMsgVC.h"
 #import "AutoInsuranceStep1VC.h"
-#import "AutoInsuranceStep2VC.h"
-#import "MotorcycleTypeSelectedVC.h"
+#import "CustomerServiceVC.h"
+#import "OurProductDetailVC.h"
 
 @interface IBUIFactory : NSObject
 
@@ -83,15 +81,11 @@
 
 + (SalesStatisticsVC *) CreateSalesStatisticsViewController;
 
-+ (CustomerCallStatisticsVC *) CreateCustomerCallStatisticsViewController;
-
 + (NewCustomerVC *) CreateNewCustomerViewController;
 
 + (OrderDetailWebVC *) CreateOrderDetailWebVC;
 
 + (UserDetailVC *) CreateUserDetailVC;
-
-+ (TeamMateIncomeStatisticsVC *) CreateTeamMateIncomeStatisticsVC;
 
 + (QuickQuoteVC *) CreateQuickQuoteVC;
 
@@ -105,8 +99,9 @@
 
 + (AutoInsuranceStep1VC *) CreateAutoInsuranceStep1VC;
 
-+ (AutoInsuranceStep2VC *) CreateAutoInsuranceStep2VC;
+//+ (MotorcycleTypeSelectedVC *) CreateMotorcycleTypeSelectedVC;
 
-+ (MotorcycleTypeSelectedVC *) CreateMotorcycleTypeSelectedVC;
+//自有非车险
++ (OurProductDetailVC *) CreateOurProductDetailVC;
 
 @end

@@ -512,7 +512,7 @@
 - (CGFloat)yAxisLabelsWidth {
     NSNumber *requiredWidth = [[self.ySteps mapWithBlock:^id(id obj) {
         NSString *label = [((NSAttributedString*)obj) string];
-        CGSize labelSize = [label sizeWithFont:self.scaleFont];
+        CGSize labelSize = [label sizeWithAttributes:@{NSFontAttributeName : self.scaleFont}];
         return @(labelSize.width); // Literal NSNumber Conversion
     }] valueForKeyPath:@"@max.self"]; // gets biggest object. Yeah, NSKeyValueCoding. Deal with it.
     return [requiredWidth floatValue] + PADDING;

@@ -12,7 +12,6 @@
 #import "EGOCache.h"
 #import "KGStatusBar.h"
 #import "IQKeyboardManager.h"
-#import "AppDelegate.h"
 #import "RootViewController.h"
 #import "SBJsonParser.h"
 #import "PayTypeSelectedVC.h"
@@ -31,9 +30,9 @@
         self.type = enumShareTypeNo;
         self.shareType = enumNeedInitShareInfoNo;
         NSMutableArray *icon = [[NSMutableArray alloc] init];
-        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-        if(appdelegate.appIcon)
-            [icon addObject:appdelegate.appIcon];
+        NSString *iconStr = [App_Delegate appIcon];
+        if(iconStr)
+            [icon addObject:iconStr];
         self.shareImgArray = icon;
         _isLoad = false;
         _isReturnPrevWeb = NO;
@@ -88,6 +87,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [_progressView removeFromSuperview];
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:NO];
+    [self loadWebString];
+}
+
 - (void) handleLeftBarButtonClicked:(id)sender
 {
     if(!_isReturnPrevWeb && [self.webview canGoBack]){
@@ -95,6 +111,11 @@
     }else{
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (void) handleCloseButtonClicked:(id) handle
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma MyJSInterfaceDelegate
@@ -105,12 +126,38 @@
 
 - (void) NotifyCloseWindow
 {
-    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void) NotifyLastUpdateTime:(long long) time category:(NSString *)category
 {
     [[AppContext sharedAppContext]UpdateNewsTipTime:time category: [category integerValue]];
+}
+
+- (void) NotifyToSelectCustomer//获取用户信息
+{}
+
+- (void) NotifyToSelectInsured;//获取被保人信息
+{}
+
+- (void) NotifyToInitCustomerInfo//初始化数据
+{}
+
+- (void) NotifyToSelectCustomerForCar:(NSString *) productAttrId
+{}
+
+- (void) NotifyWebCanReturnPrev:(BOOL)flag
+{
+    _isReturnPrevWeb = flag;
+}
+
+- (void) notifyWebViewLoadFinished:(NSString *) string
+{
+    self.title =  [self.webview stringByEvaluatingJavaScriptFromString:@"document.title"];
+}
+
+- (void) notifyToOrderList:(NSString *) string
+{
 }
 
 //支付接口
@@ -128,7 +175,6 @@
 - (void) NotifyToReSubmitCarInfo:(NSString *) orderId customerId:(NSString *) customerId customerCarId:(NSString *) customerCarId
 {
     _isLoad = YES;
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     
     AutoInsuranceInfoEditVC *vc = [IBUIFactory CreateAutoInsuranceInfoEditViewController];
     vc.insType = enumReInsurance;
@@ -143,24 +189,7 @@
     vc.customerModel = model;
     vc.carInfo = model.carInfo;
     vc.hidesBottomBarWhenPushed = YES;
-    [delegate.root.selectVC.navigationController pushViewController:vc animated:YES];
-}
-
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    
-    // Remove progress view
-    // because UINavigationBar is shared with other ViewControllers
-    [_progressView removeFromSuperview];
-    [[IQKeyboardManager sharedManager] setEnable:YES];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [[IQKeyboardManager sharedManager] setEnable:NO];
-    [self loadWebString];
+    [[App_Delegate root].selectVC.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) loadWebString
@@ -168,7 +197,6 @@
     if(!_isLoad){
         if(_urlpath != nil){
             
-//            [_webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_urlpath]]];
             id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:self.urlpath]];
             if (cacheDatas !=nil) { // 直接加在缓存
                 NSString *datastr = [[NSString alloc] initWithData:cacheDatas encoding:NSUTF8StringEncoding];
@@ -216,6 +244,8 @@
     [self.view addSubview:_progressView];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_progressView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_progressView(2)]->=0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressView)]];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
 }
 
 #pragma UIWebViewDelegate
@@ -228,6 +258,9 @@
     NSString *url = webView.request.URL.absoluteString;
     if(![url isEqualToString:self.urlpath])
         self.shareUrl = [NSString stringWithFormat:@"%@&userId=%@&appShare=1", url, [UserInfoModel shareUserInfoModel].userId];
+    
+    
+    [self performSelector:@selector(addShutButton) withObject:nil afterDelay:0.01];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -240,9 +273,39 @@
         [vc loadHtmlFromUrl:uri];
         return NO;
     }
+    
     return YES;
 }
 
+- (void) addShutButton
+{
+    if([self.webview canGoBack]){
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStyleBordered target:self action:@selector(handleLeftBarButtonClicked:)];
+        UIImage *image = [ThemeImage(@"arrow_left") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        backItem.image = image;
+        
+        
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 32)];
+        [button setTitle:@"关闭" forState:UIControlStateNormal];
+        [button setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
+        button.titleLabel.font = _FONT(16);
+        UIBarButtonItem *closeItem=[[UIBarButtonItem alloc] initWithCustomView:button];
+        [button addTarget:self action:@selector(handleCloseButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        NSArray *array = [NSArray arrayWithObjects:backItem, closeItem, nil];
+        [[self navigationItem] setLeftBarButtonItems:array];
+    }else{
+        UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStyleBordered target:self action:@selector(handleLeftBarButtonClicked:)];
+        UIImage *image = [ThemeImage(@"arrow_left") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        backItem.image = image;
+
+        UIBarButtonItem *closeItem=[[UIBarButtonItem alloc] initWithCustomView:[[UIView alloc] init]];
+        
+         NSArray *array = [NSArray arrayWithObjects:backItem, closeItem, nil];
+        
+        [[self navigationItem] setLeftBarButtonItems:array];
+    }
+}
 
 #pragma mark - NJKWebViewProgressDelegate
 -(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
@@ -335,42 +398,6 @@
 
 
 #pragma delegate
-//- (void) HandleItemSelect:(PopView *) view withTag:(NSInteger) tag
-//{
-//    if(self.type == enumShareTypeToCustomer){
-//        if(tag == 0)
-//            [self simplyShare:SSDKPlatformSubTypeWechatSession];
-//        else{
-//            [self simplyShare:SSDKPlatformTypeSMS];
-//        }
-//    }else if (self.type == enumShareTypeShare){
-//        switch (tag) {
-//            case 0:
-//            {
-//                [self simplyShare:SSDKPlatformSubTypeWechatSession];
-//            }
-//                break;
-//            case 1:
-//            {
-//                [self simplyShare:SSDKPlatformSubTypeWechatTimeline];
-//            }
-//                break;
-//            case 2:
-//            {
-//                [self simplyShare:SSDKPlatformSubTypeQQFriend];
-//            }
-//                break;
-//            case 3:
-//            {
-//                [self simplyShare:SSDKPlatformSubTypeQZone];
-//            }
-//                break;
-//            default:
-//                break;
-//        }
-//    }
-//}
-
 - (void) HandleItemSelect:(PopView *) view selectImageName:(NSString *)imageName
 {
     if([imageName isEqualToString:@"wechat"])
@@ -404,9 +431,9 @@
     if(self.shareImgArray == nil || [self.shareImgArray count] == 0)
     {
         NSMutableArray *icon = [[NSMutableArray alloc] init];
-        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
-        if(appdelegate.appIcon)
-            [icon addObject:appdelegate.appIcon];
+        NSString *iconStr = [App_Delegate appIcon];
+        if(iconStr)
+            [icon addObject:iconStr];
         self.shareImgArray = icon;
     }
     
@@ -435,12 +462,6 @@
                      [KGStatusBar showSuccessWithStatus:@"分享失败"];
                      break;
                  }
-//                 case SSDKResponseStateCancel:
-//                 {
-//                     
-//                     [KGStatusBar showSuccessWithStatus:@"分享已取消"];
-//                     break;
-//                 }
                  default:
                      break;
              }
@@ -479,10 +500,6 @@
     [self.webview stringByEvaluatingJavaScriptFromString:@"paySuccess();"];
 }
 
-- (void) NotifyWebCanReturnPrev:(BOOL)flag
-{
-    _isReturnPrevWeb = flag;
-}
 
 
 @end

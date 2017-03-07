@@ -19,7 +19,6 @@
 }
 
 @property (nonatomic, strong) NSString *orderId;
-@property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) OffersModel *insModel;
 @property (nonatomic, strong) NSString *customerName;
 @property (nonatomic, strong) NSString *carNo;

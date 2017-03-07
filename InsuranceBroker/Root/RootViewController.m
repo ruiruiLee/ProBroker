@@ -8,8 +8,6 @@
 
 #import "RootViewController.h"
 #import "define.h"
-//#import "NoticeListVC.h"
-#import "AppDelegate.h"
 #import "OrderManagerVC.h"
 #import "UITabBar+badge.h"
 #import "AVOSCloud/AVOSCloud.h"
@@ -192,17 +190,14 @@
             UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:naVC animated:NO completion:nil];
         }
-        
-        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
         [CMNavBarNotificationView notifyWithText:[[dic objectForKey:@"aps"] objectForKey:@"category"]
-                                          detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                          detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[App_Delegate appIcon]]]]
                                      andDuration:5.0
                                        msgparams:dic];
     }
     else{
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
     [CMNavBarNotificationView notifyWithText:[[dic objectForKey:@"aps"] objectForKey:@"category"]
-                                      detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                      detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[App_Delegate appIcon]]]]
                                  andDuration:5.0
                                   msgparams:dic];
     }
@@ -305,9 +300,8 @@
             [self presentViewController:naVC animated:NO completion:nil];
         }
         
-        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
         [CMNavBarNotificationView notifyWithText:[[info objectForKey:@"aps"] objectForKey:@"category"]
-                                          detail:[[info objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                          detail:[[info objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[App_Delegate appIcon]]]]
                                      andDuration:5.0
                                        msgparams:info];
     }
@@ -350,13 +344,6 @@
         [web loadHtmlFromUrlWithUserId:[NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", [info objectForKey:@"p"]]];
         
     }else if (mt == 4){  // 进入私信详情
-        
-        UINavigationController *nav =[self.viewControllers objectAtIndex:0];
-        //        if ([nav.topViewController isKindOfClass:[PrivateMsgVC class]]&&mt==4)
-        //        {
-        //            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Msg_Reload object:nil userInfo:info];
-        //
-        //        }else{
         PrivateMsgVC *web = [IBUIFactory CreatePrivateMsgVC];
         web.hidesBottomBarWhenPushed = YES;
         web.title =  [[info objectForKey:@"aps"] objectForKey:@"category"];
@@ -390,10 +377,8 @@
             UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
             [self presentViewController:naVC animated:NO completion:nil];
         }
-        
-        AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
         [CMNavBarNotificationView notifyWithText:[[info objectForKey:@"aps"] objectForKey:@"category"]
-                                          detail:[[info objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:appdelegate.appIcon]]]
+                                          detail:[[info objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[App_Delegate appIcon]]]]
                                      andDuration:5.0
                                        msgparams:info];
     }

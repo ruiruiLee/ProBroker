@@ -271,17 +271,8 @@
     }
     else{
         UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-//        if (buttonIndex == 0) {
-//            model.sex = 1;
-//            
-//        }else if (buttonIndex == 1)
-//        {
-//            model.sex = 2;
-//        }
-//        else{
-//            
-//        }
-        [NetWorkHandler requestToModifyuserInfo:model.userId realName:nil userName:nil phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:[NSString stringWithFormat:@"%ld", buttonIndex + 1] headerImg:nil Completion:^(int code, id content) {
+        NSString *userSex = [[NSNumber numberWithInteger:buttonIndex + 1] stringValue];
+        [NetWorkHandler requestToModifyuserInfo:model.userId realName:nil userName:nil phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:userSex headerImg:nil Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
                 model.sex = buttonIndex + 1;

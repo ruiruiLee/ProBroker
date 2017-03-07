@@ -156,7 +156,7 @@
     [NetWorkHandler requestToQueryForInsuranceOffersList:self.orderId insuranceType:@"1" Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
-            self.data = (InsurOffersInfoModel*)[InsurOffersInfoModel modelFromDictionary:[content objectForKey:@"data"]];//[InsurOffersInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]];
+            self.data = (InsurOffersInfoModel*)[InsurOffersInfoModel modelFromDictionary:[content objectForKey:@"data"]];
             [self initSubViews];
         }
     }];
@@ -168,19 +168,13 @@
     self.lbIdenCode.text = self.data.insuranceOrderNo;
     self.lbPlan.text = [NSString stringWithFormat:@"车险方案：%@", self.data.planTypeName];
     self.lbTime.text = [NSString stringWithFormat:@"创建时间：%@", [Util getTimeString:self.data.createdAt]];
-//    [self.btnName setTitle:self.data.customerName forState:UIControlStateNormal];
     self.lbName.text = self.data.customerName;
-//    [self.btnNo setTitle:self.data.carNo forState:UIControlStateNormal];
+    if(self.data.customerName == nil || [self.data.customerName isKindOfClass:[NSNull class]] || [self.data.customerName length] == 0){
+        self.lbName.text = Default_Customer_Name;
+    }
     self.lbNo.text = self.data.carNo;
-//    self.btnNameHConstraint.constant = [self.data.customerName sizeWithFont:self.btnName.titleLabel.font].width + 6 + 16;
-//    self.btnNoHConstraint.constant = [self.data.carNo sizeWithFont:self.btnNo.titleLabel.font].width + 6 + 16;
     
     [self.tableview reloadData];
-}
-
-- (void) awakeFromNib
-{
-    
 }
 
 - (void) resetBtnNameWidth:(NSString *) string
@@ -227,11 +221,30 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.contentView.backgroundColor = [UIColor clearColor];
     [cell.btnAdd addTarget:self action:@selector(doBtnAddPlanUBKRatio:) forControlEvents:UIControlEventTouchUpInside];
-//    [cell.btnReduce addTarget:self action:@selector(doBtnReducePlanUBKRatio:) forControlEvents:UIControlEventTouchUpInside];
     cell.btnAdd.tag = indexPath.row;
     cell.btnReduce.tag = indexPath.row;
     
     OffersModel *model = [self.data.offersVoList objectAtIndex:indexPath.row];
+    
+    model.isRatioSubmit = NO;
+    CGFloat planUkbRatio = model.planUkbRatio;
+    CGFloat max = model.productMaxRatio;
+    if(planUkbRatio > max){
+        planUkbRatio = max;
+    }
+    CGFloat min = model.productMinRatio;
+    if(planUkbRatio < min)
+        planUkbRatio = min;
+    
+    CGFloat planUkbPrice = model.businessPrice * (100 - planUkbRatio) / 100.0 + model.jqxCcsPrice;
+    CGFloat planAbonusPrice = model.businessPrice * (model.productMaxRatio - planUkbRatio) / 100.0 + model.businessPrice * model.allotBonusRatio * model.levelRatio/10000;
+    
+    model.planUkbPrice = ceil(planUkbPrice); //(int)planUkbPrice;//客户价
+    CGFloat last = planUkbPrice - model.planUkbPrice;
+    model.planUserAllot = planAbonusPrice - last;//经纪人收益
+    if(model.planUserAllot < 0)
+        model.planUserAllot = 0;
+    model.planUkbRatio = planUkbRatio;
     
     cell.lbGain.attributedText = [self getPlanUkbSavePriceAttbuteString:[NSString stringWithFormat:@"赚：%.2f", model.planUserAllot] sub:[NSString stringWithFormat:@"%.2f", model.planUserAllot]];
     cell.lbName.text = model.productName;
@@ -274,25 +287,6 @@
 
 - (void) doBtnAddPlanUBKRatio:(UIButton *)sender
 {
-//    NSInteger tag = sender.tag;
-//    OffersModel *model = [self.data.offersVoList objectAtIndex:tag];
-//    model.isRatioSubmit = NO;
-//    CGFloat planUkbRatio = model.planUkbRatio;
-//    CGFloat max = model.productMaxRatio;
-//    planUkbRatio = planUkbRatio + 1;
-//    if(planUkbRatio > max){
-//        planUkbRatio = max;
-//    }
-//    
-//    CGFloat planUkbPrice = model.businessPrice * (100 - planUkbRatio) / 100.0 + model.jqxCcsPrice;
-//    CGFloat planUkbSavePrice = model.businessPrice * (model.productMaxRatio - planUkbRatio) / 100.0;
-//    
-//    model.planUkbSavePrice = planUkbSavePrice;
-//    model.planUkbPrice = planUkbPrice;
-//    model.planUkbRatio = planUkbRatio;
-//    
-//    [self.tableview reloadData];
-
     OffersModel *model = [self.data.offersVoList objectAtIndex:sender.tag];
 //    if (!_datePicker) {
     NSMutableArray *array = [[NSMutableArray alloc] init];
@@ -320,35 +314,6 @@
 
 }
 
-//- (void) doBtnReducePlanUBKRatio:(UIButton *)sender
-//{
-//    NSInteger tag = sender.tag;
-//    OffersModel *model = [self.data.offersVoList objectAtIndex:tag];
-//    model.isRatioSubmit = NO;
-//    CGFloat planUkbRatio = model.planUkbRatio;
-//    CGFloat min = model.productMinRatio;
-//    planUkbRatio = planUkbRatio - 1;
-//    if(planUkbRatio < min){
-//        planUkbRatio = min;
-//    }
-//    
-//    CGFloat planUkbPrice = model.businessPrice * (100 - planUkbRatio) / 100.0 + model.jqxCcsPrice;
-//    CGFloat planUkbSavePrice = model.businessPrice * (model.productMaxRatio - planUkbRatio) / 100.0;
-//    
-//    model.planUkbSavePrice = planUkbSavePrice;
-//    model.planUkbPrice = planUkbPrice;
-//    model.planUkbRatio = planUkbRatio;
-//    
-//    [self.tableview reloadData];
-//    
-//    OffersModel *model = [self.data.offersVoList objectAtIndex:sender.tag];
-//    _datePicker = [[LCPickView alloc] initPickviewWithArray:@[@"男", @"女"] isHaveNavControler:NO];
-//    [_datePicker show];
-//    _datePicker.delegate = self;
-//    _datePicker.tag = sender.tag;
-//    
-//}
-
 - (void) updateInsuranceRatio:(NSString *) orderId planOfferId:(NSString *)planOfferId model:(OffersModel *) model
 {
     [_datePicker remove];
@@ -364,9 +329,11 @@
             web.shareImgArray = [NSArray arrayWithObject:model.productLogo];
         web.shareTitle = [NSString stringWithFormat:@"您好，优快保携手%@为您定制车险",model.productName];
         [self.navigationController pushViewController:web animated:YES];
-        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", orderId, planOfferId];
-        [web initShareUrl:orderId insuranceType:@"1" planOfferId:planOfferId];
+//        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", orderId, planOfferId];
+        NSString *url = [NSString stringWithFormat:@"%@?appId=%@&orderUuId=%@&helpInsure=1", self.insurInfo.clickUrl, [UserInfoModel shareUserInfoModel].uuid, self.insurInfo.insuranceOrderUuid];
+        [web initShareUrl:self.data.insuranceOrderUuid insuranceType:@"1" planOfferId:model.planOfferId];
         [web loadHtmlFromUrl:url];
+        
     }
     else{
         [NetWorkHandler requestToSaveOrUpdateInsuranceRatio:orderId insuranceType:@"1" planOfferId:planOfferId ratio:[NSString stringWithFormat:@"%d", (int)model.planUkbRatio] userId:[UserInfoModel shareUserInfoModel].userId Completion:^(int code, id content) {
@@ -383,8 +350,9 @@
                 UserInfoModel *user = [UserInfoModel shareUserInfoModel];
                 web.shareTitle = [NSString stringWithFormat:@"我是%@，我是优快保自由经纪人。这是为您定制的投保方案报价，请查阅。电话%@", user.realName, user.phone];
                 [self.navigationController pushViewController:web animated:YES];
-                NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", orderId, planOfferId];
-                [web initShareUrl:orderId insuranceType:@"1" planOfferId:planOfferId];
+                
+                NSString *url = [NSString stringWithFormat:@"%@?appId=%@&orderUuId=%@&helpInsure=1", self.insurInfo.clickUrl, [UserInfoModel shareUserInfoModel].uuid, self.insurInfo.insuranceOrderUuid];
+                [web initShareUrl:self.data.insuranceOrderUuid insuranceType:@"1" planOfferId:model.planOfferId];
                 [web loadHtmlFromUrl:url];
             }
         }];
@@ -398,12 +366,6 @@
     NSRange range = [string rangeOfString:sub];
     
     [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:range];
-//    [attstr addAttribute:NSForegroundColorAttributeName value:_COLOR(0x21, 0x21, 0x21) range:range];
-//    [attstr addAttribute:NSFontAttributeName value:_FONT(10) range:NSMakeRange([string length] - 3, 3)];
-    
-//    NSDictionary *attribtDic = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInteger:NSUnderlineStyleSingle]};
-
-//    [attstr addAttributes:attribtDic range:range];
     return attstr;
 }
 
@@ -415,7 +377,6 @@
     
     [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     [attstr addAttribute:NSForegroundColorAttributeName value:_COLOR(0xf4, 0x43, 0x36) range:range];
-//    [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:NSMakeRange([string length] - 3, 3)];
     
     return attstr;
 }
@@ -425,8 +386,6 @@
 {
     NSMutableAttributedString *attstr = [[NSMutableAttributedString alloc] initWithString:string];
     NSRange range = [string rangeOfString:sub];
-    
-//    NSRange range = NSMakeRange([string length] - 3, 3);
     [attstr addAttribute:NSFontAttributeName value:_FONT(13) range:range];
     
     return attstr;
@@ -451,7 +410,7 @@
     CGFloat planUkbPrice = model.businessPrice * (100 - planUkbRatio) / 100.0 + model.jqxCcsPrice;
     CGFloat planAbonusPrice = model.businessPrice * (model.productMaxRatio - planUkbRatio) / 100.0 + model.businessPrice * model.allotBonusRatio * model.levelRatio/10000;
     
-    model.planUkbPrice = (int)planUkbPrice;//客户价
+    model.planUkbPrice = ceil(planUkbPrice); //(int)planUkbPrice;//客户价
     CGFloat last = planUkbPrice - model.planUkbPrice;
     model.planUserAllot = planAbonusPrice - last;//经纪人收益
     if(model.planUserAllot < 0)

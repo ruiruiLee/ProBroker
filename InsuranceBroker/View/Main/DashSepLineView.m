@@ -13,6 +13,8 @@
 
 -(void) awakeFromNib
 {
+    [super awakeFromNib];
+    
     self.clipsToBounds = YES;
 }
 // Only override drawRect: if you perform custom drawing.

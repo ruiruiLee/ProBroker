@@ -10,7 +10,6 @@
 #import "define.h"
 #import "HomeVC.h"
 #import "CustomerMainVC.h"
-#import "WorkMainVC.h"
 #import "UserCenterVC.h"
 #import "CMNavBarNotificationView.h"
 
@@ -21,7 +20,6 @@
 
 @property (nonatomic, copy) HomeVC *homevc;
 //@property (nonatomic, copy) CustomerMainVC *customervc;
-//@property (nonatomic, copy) WorkMainVC *workvc;
 @property (nonatomic, copy) UserCenterVC *usercentervc;
 @property (nonatomic, strong) BaseViewController *selectVC;
 
