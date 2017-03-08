@@ -615,6 +615,7 @@
                 model.carShelfNo = [self notNullString:weakcarShelfNo];
                 model.carTypeNo = [self notNullString:weakcarTypeNo];
                 model.carNo = [self notNullString:carNo];
+                model.newCarNoStatus = [newCarNoStatus boolValue];
                 
                 if(carInsurStatus1 != nil)
                     model.carInsurStatus1 = [carInsurStatus1 boolValue];

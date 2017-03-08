@@ -34,7 +34,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"快速登录";
-    [self setLeftBarButtonWithNil];
+//    [self setLeftBarButtonWithNil];
+    [self setLeftBarButtonWithImage:ThemeImage(@"shut")];
     [self setRightBarButtonWithImage:ThemeImage(@"call_login_page")];
     self.lbAgreement.attributedText = [Util getAttributeString:@"点击“登录”，即表示您同意用户协议" substr:@"用户协议"];
     [self showLabelWithFlag:NO];
@@ -88,10 +89,7 @@
     [NetWorkHandler loginWithPhone:phone openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:[dic objectForKey:@"nickname"] privilege:[dic objectForKey:@"privilege"] unionid:@"" province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:smCode Completion:^(int code, id content) {
         //[self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         [ProgressHUD dismiss];
-        if(code == 505){ // 弹出输入团长手机号窗口
-//            BindPhoneNumVC *vc = [IBUIFactory CreateBindPhoneNumViewController];
-//            [self.navigationController pushViewController:vc animated:YES];
-//            vc.wxDic = dic;
+        if(code == 505){ //弹出输入团长手机号窗口
             SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
             view.delegate = self;
             view.tfNickname.text = [dic objectForKey:@"nickname"];

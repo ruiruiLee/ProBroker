@@ -28,7 +28,7 @@
 @property (nonatomic, strong) NSString *quoteUrl;
 
 
-
+- (void)loadAppNotifyInfo;
 
 @end
 

@@ -194,7 +194,7 @@
 //        else{
             loginViewController *vc = [IBUIFactory CreateLoginViewController];
             UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
-            [self.navigationController presentViewController:naVC animated:NO completion:nil];
+            [self.navigationController presentViewController:naVC animated:YES completion:nil];
 //        }
         return NO;
     }else{

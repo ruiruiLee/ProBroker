@@ -137,12 +137,13 @@
         };
     }
     
-    UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    if(!user.uuid){
-        loginViewController *vc = [IBUIFactory CreateLoginViewController];
-        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
-        [root presentViewController:naVC animated:NO completion:nil];
-    }
+    //登陆改为开放式
+//    UserInfoModel *user = [UserInfoModel shareUserInfoModel];
+//    if(!user.uuid){
+//        loginViewController *vc = [IBUIFactory CreateLoginViewController];
+//        UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+//        [root presentViewController:naVC animated:NO completion:nil];
+//    }
     
        //判断程序是不是由推送服务完成的
     if (launchOptions)
@@ -412,15 +413,21 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     
-    [self performSelector:@selector(openlocation) withObject:nil afterDelay:1.0f];
+    [self loadAppNotifyInfo];
 
+}
+
+- (void)loadAppNotifyInfo
+{
+    [self performSelector:@selector(openlocation) withObject:nil afterDelay:1.0f];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         [[UserInfoModel shareUserInfoModel] loadLastNewsTip];
         [[UserInfoModel shareUserInfoModel] loadCustomerCount];
     });
-
 }
--(void)openlocation{
+
+- (void)openlocation{
       [LcationInstance startUpdateLocation];
 }
 @end

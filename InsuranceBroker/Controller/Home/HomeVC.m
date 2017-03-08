@@ -107,6 +107,7 @@
 - (void) NotifyLogin:(NSNotification *) notify
 {
     [self loadDatas];
+    [App_Delegate loadAppNotifyInfo];
 }
 
 - (void)viewDidLoad
@@ -264,7 +265,7 @@
 //获取推荐数据
 - (void) loadRecommend
 {
-    if([self login]){
+//    if([self isLogin]){
         [self.handler requestToQueryForProductAttrPageList:0 limit:1000 filters:nil userId:[UserInfoModel shareUserInfoModel].userId uuid:[UserInfoModel shareUserInfoModel].uuid insuranceType:@"-1" completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             
@@ -274,9 +275,19 @@
                 [self.tableView reloadData];
             }
         }];
+//    }else{
+//        self.productArray = [[NSArray alloc] init];
+//        [self.tableView reloadData];
+//    }
+}
+
+- (BOOL) isLogin
+{
+    UserInfoModel *user = [UserInfoModel shareUserInfoModel];
+    if(!user.uuid){
+        return NO;
     }else{
-        self.productArray = [[NSArray alloc] init];
-        [self.tableView reloadData];
+        return YES;
     }
 }
 
@@ -333,9 +344,11 @@
 //个人消息
 - (void) handleRightBarButtonClicked:(id)sender
 {
-    NoticeListVC *vc = [[NoticeListVC alloc] initWithNibName:nil bundle:nil];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    if([self login]){
+        NoticeListVC *vc = [[NoticeListVC alloc] initWithNibName:nil bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 ////我的团队
@@ -400,27 +413,19 @@
     [con saveData];
 }
 
-- (void) doBtnQuote:(id) sender
-{
-    AutoInsuranceStep1VC *vc = [IBUIFactory CreateAutoInsuranceStep1VC];
-    vc.hidesBottomBarWhenPushed = YES;
-    vc.title = @"车险算价";
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (IBAction)doBtnMenuClicked:(UIButton *)sender
 {
-    if(![self login])
-        return;
     NSInteger tag = sender.tag;
     
     switch (tag) {
         case 1001:
         {//车险
-            AutoInsuranceStep1VC *vc = [IBUIFactory CreateAutoInsuranceStep1VC];
-            vc.hidesBottomBarWhenPushed = YES;
-            vc.title = @"人保车险";
-            [self.navigationController pushViewController:vc animated:YES];
+            if([self login]){
+                AutoInsuranceStep1VC *vc = [IBUIFactory CreateAutoInsuranceStep1VC];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.title = @"人保车险";
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
             break;
         case 1002:

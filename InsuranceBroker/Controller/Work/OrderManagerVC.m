@@ -482,7 +482,7 @@
             }
         }else
         {
-            WebViewController *web = [IBUIFactory CreateWebViewController];
+            OurProductDetailVC *web = [IBUIFactory CreateOurProductDetailVC];
             web.title = @"保单详情";
             [self.navigationController pushViewController:web animated:YES];
             NSString *url = [NSString stringWithFormat:@"%@?&orderId=%@", model.clickUrl,  model.insuranceOrderUuid];
