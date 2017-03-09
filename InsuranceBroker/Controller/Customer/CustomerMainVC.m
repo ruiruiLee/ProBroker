@@ -15,6 +15,7 @@
 #import "CustomerInfoModel.h"
 #import "BackGroundView.h"
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
+#import "UINavigationBar+HitTest.h"
 
 @interface CustomerMainVC ()<BackGroundViewDelegate>
 {
@@ -62,6 +63,18 @@
     self.pulltable.backgroundColor = [UIColor whiteColor];
     self.pulltable.tableFooterView = [[UIView alloc] init];
     self.pulltable.tableFooterView.backgroundColor = [UIColor whiteColor];
+    
+    if([UserInfoModel shareUserInfoModel].uuid == nil)
+        [self initNoLoginView];
+}
+
+- (void) initNoLoginView
+{
+    _noLoginView = [[CustomerPageNoLoginView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, SCREEN_HEIGHT - 49) block:^{
+        [self login];
+    }];
+//    _noLoginView.backgroundColor = [UIColor redColor];
+    [self.navigationController.navigationBar addSubview:_noLoginView];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -88,6 +101,10 @@
 - (void) notifyToRefreshCustomer:(NSNotification *) notify
 {
     [self refresh2Loaddata];
+    if(_noLoginView){
+        [_noLoginView removeFromSuperview];
+        _noLoginView = nil;
+    }
 }
 
 - (void) initSubViews
@@ -137,11 +154,6 @@
     [self.pulltable registerNib:[UINib nibWithNibName:@"CustomerTagTableCell" bundle:nil] forCellReuseIdentifier:@"cell2"];
 }
 
-//- (void) viewDidLayoutSubviews
-//{
-//    [super viewDidLayoutSubviews];
-//}
-
 - (void) handleRightBarButtonClicked:(id)sender
 {
     [searchbar resignFirstResponder];
@@ -155,6 +167,8 @@
 {
     [super viewWillAppear:animated];
     [self.pulltable reloadData];
+    if([UserInfoModel shareUserInfoModel].uuid == nil && _noLoginView == nil)
+        [self initNoLoginView];
 }
 
 #pragma UITableViewDataSource UITableViewDelegate
@@ -393,6 +407,8 @@
 
 - (void) loadDataInPages:(NSInteger)page
 {
+    if([UserInfoModel shareUserInfoModel].uuid == nil)
+        return;
     NSInteger offset = page;
     NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];

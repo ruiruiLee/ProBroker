@@ -7,8 +7,12 @@
 //
 
 #import "BasePullTableVC.h"
+#import "CustomerPageNoLoginView.h"
 
 @interface CustomerMainVC : BasePullTableVC<UISearchBarDelegate>
+{
+    CustomerPageNoLoginView *_noLoginView;
+}
 
 //@property (nonatomic, strong) IBOutlet UITableView *tableview;
 

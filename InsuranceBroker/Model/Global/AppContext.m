@@ -213,6 +213,8 @@ static AppContext *context = nil;
 
 
     [dic writeToFile:file atomically:YES];
+    
+    [self loadData];
 }
 
 - (void)removeData
@@ -228,6 +230,14 @@ static AppContext *context = nil;
     [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isZSKFHasMsg"];
     [dic setObject:[NSNumber numberWithBool:NO] forKey:@"isBDKFHasMsg"];
     [dic writeToFile:file atomically:YES];
+    
+    self.userInfoDic = [[NSMutableDictionary alloc] init];
+    self.firstLaunch = NO;
+    self.pushCustomerNum = 0;
+    self.isNewMessage = NO;
+    self.isZSKFHasMsg = NO;
+    self.isBDKFHasMsg = NO;
+    self.arrayNewsTip= [NSMutableArray new];
 }
 
 

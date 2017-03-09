@@ -21,6 +21,8 @@
 		8612F4331CEB166B0045340F /* NetWorkHandler+saveOrUpdateCustomerInsured.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4321CEB166B0045340F /* NetWorkHandler+saveOrUpdateCustomerInsured.m */; };
 		8612F4361CEB23830045340F /* InsuredUserInfoEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4351CEB23830045340F /* InsuredUserInfoEditVC.m */; };
 		8612F4381CEB23940045340F /* InsuredUserInfoEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8612F4371CEB23940045340F /* InsuredUserInfoEditVC.xib */; };
+		8615AF001E70014C00AC795F /* CustomerPageNoLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8615AEFF1E70014C00AC795F /* CustomerPageNoLoginView.m */; };
+		8615AF031E71064800AC795F /* UINavigationBar+HitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8615AF021E71064800AC795F /* UINavigationBar+HitTest.m */; };
 		8618CEAB1E5C3AB500F3F954 /* CAAnimation+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 8618CEAA1E5C3AB500F3F954 /* CAAnimation+Blocks.m */; };
 		8618CEB51E5C43BD00F3F954 /* SRAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8618CEB31E5C43BD00F3F954 /* SRAlertView.m */; };
 		8618CEBB1E5C457600F3F954 /* FXBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8618CEBA1E5C457600F3F954 /* FXBlurView.m */; };
@@ -683,6 +685,10 @@
 		8612F4341CEB23830045340F /* InsuredUserInfoEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsuredUserInfoEditVC.h; sourceTree = "<group>"; };
 		8612F4351CEB23830045340F /* InsuredUserInfoEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsuredUserInfoEditVC.m; sourceTree = "<group>"; };
 		8612F4371CEB23940045340F /* InsuredUserInfoEditVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InsuredUserInfoEditVC.xib; sourceTree = "<group>"; };
+		8615AEFE1E70014C00AC795F /* CustomerPageNoLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerPageNoLoginView.h; sourceTree = "<group>"; };
+		8615AEFF1E70014C00AC795F /* CustomerPageNoLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerPageNoLoginView.m; sourceTree = "<group>"; };
+		8615AF011E71064800AC795F /* UINavigationBar+HitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+HitTest.h"; sourceTree = "<group>"; };
+		8615AF021E71064800AC795F /* UINavigationBar+HitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+HitTest.m"; sourceTree = "<group>"; };
 		8618CEA91E5C3AB500F3F954 /* CAAnimation+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAAnimation+Blocks.h"; sourceTree = "<group>"; };
 		8618CEAA1E5C3AB500F3F954 /* CAAnimation+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAAnimation+Blocks.m"; sourceTree = "<group>"; };
 		8618CEB21E5C43BD00F3F954 /* SRAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRAlertView.h; path = SRAlertView/SRAlertView.h; sourceTree = "<group>"; };
@@ -2795,6 +2801,8 @@
 				86B279041CD8798A000E5FAA /* UITabBar+badge.m */,
 				863DF1461D17FFDF00AEB6A9 /* EditAbleTextView.h */,
 				863DF1471D17FFDF00AEB6A9 /* EditAbleTextView.m */,
+				8615AF011E71064800AC795F /* UINavigationBar+HitTest.h */,
+				8615AF021E71064800AC795F /* UINavigationBar+HitTest.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -3258,6 +3266,8 @@
 				86A26EAA1C4796700073FFFC /* PlaceholderTextView.m */,
 				86EECE011CF70FC200BBAF11 /* ProvienceSelectedView.h */,
 				86EECE021CF70FC200BBAF11 /* ProvienceSelectedView.m */,
+				8615AEFE1E70014C00AC795F /* CustomerPageNoLoginView.h */,
+				8615AEFF1E70014C00AC795F /* CustomerPageNoLoginView.m */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -4652,6 +4662,7 @@
 				865065BD1C1EB1ED00429EAE /* UINavigationBar+Awesome.m in Sources */,
 				86A26E851C4528A40073FFFC /* NetWorkHandler+announcement.m in Sources */,
 				86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */,
+				8615AF001E70014C00AC795F /* CustomerPageNoLoginView.m in Sources */,
 				86A26E881C452A5B0073FFFC /* AnnouncementModel.m in Sources */,
 				8612F4171CE4828D0045340F /* UIView+JElasticPullToRefresh.m in Sources */,
 				864EFBCE1D86919F00CEC6F8 /* CarListTableViewCell.m in Sources */,
@@ -4895,6 +4906,7 @@
 				861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */,
 				86EECD9E1CF2A6CE00BBAF11 /* MBProgressHUD.m in Sources */,
 				8612F4251CE9B6270045340F /* CustomerCitySelectVC.m in Sources */,
+				8615AF031E71064800AC795F /* UINavigationBar+HitTest.m in Sources */,
 				CFE0947F1D915C54008E2569 /* AVObject.m in Sources */,
 				86C3BC1B1C2CE0EB00F98E80 /* CustomerFollowUpInfoView.m in Sources */,
 				86769D2E1CEEE897009C7E8F /* NetWorkHandler+shareCustomerList.m in Sources */,

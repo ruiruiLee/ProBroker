@@ -96,4 +96,6 @@
 
 + (NSString *) nullString:(NSString *) input;
 
++ (void) logout;
+
 @end

@@ -10,6 +10,7 @@
 #import "define.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "SRAlertView.h"
+#import "AVOSCloud/AVOSCloud.h"
 
 @implementation Util
 
@@ -762,6 +763,21 @@
     input = @"FIELD->NULL";
     
     return input;
+}
+
+//登出
++ (void) logout
+{
+    UserInfoModel *model = [UserInfoModel shareUserInfoModel];
+    model.uuid = nil;
+    [[AppContext sharedAppContext] removeData];
+    [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
+    
+    AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+    [currentInstallation removeObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
+    [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
+    [currentInstallation saveInBackground];
+    [AVUser logOut];  //清除缓存用户对象
 }
 
 @end

@@ -139,7 +139,12 @@
     if(tag == 1001){
         selectVC = homevc;
         return YES;
-    }else{
+    }
+    else if (tag == 1002){
+        selectVC = customervc;
+        return YES;
+    }
+    else{
         BOOL result = [selectVC login];
         if(result){
             if(tag == 1002){
@@ -174,21 +179,7 @@
     }else if (504 == mt){
         NSInteger ct = [[dic objectForKey:@"ct"] integerValue];
         if (504 == ct) {
-            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            model.uuid = nil;
-            [[AppContext sharedAppContext] removeData];
-            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
-
-            [AVUser logOut];  //清除缓存用户对象
-
-            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
-            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
-            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
-            [currentInstallation saveInBackground];
-            
-            loginViewController *vc = [IBUIFactory CreateLoginViewController];
-            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
-            [self presentViewController:naVC animated:NO completion:nil];
+            [self logout];
         }
         [CMNavBarNotificationView notifyWithText:[[dic objectForKey:@"aps"] objectForKey:@"category"]
                                           detail:[[dic objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[App_Delegate appIcon]]]]
@@ -283,21 +274,7 @@
     {
         NSInteger ct = [[info objectForKey:@"ct"] integerValue];
         if (504 == ct) {
-            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            model.uuid = nil;
-            [[AppContext sharedAppContext] removeData];
-            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
-            
-            [AVUser logOut];  //清除缓存用户对象
-            
-            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
-            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
-            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
-            [currentInstallation saveInBackground];
-            
-            loginViewController *vc = [IBUIFactory CreateLoginViewController];
-            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
-            [self presentViewController:naVC animated:NO completion:nil];
+            [self logout];
         }
         
         [CMNavBarNotificationView notifyWithText:[[info objectForKey:@"aps"] objectForKey:@"category"]
@@ -361,27 +338,23 @@
     {
         NSInteger ct = [[info objectForKey:@"ct"] integerValue];
         if (504 == ct) {
-            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            model.uuid = nil;
-            [[AppContext sharedAppContext] removeData];
-            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
-            
-            [AVUser logOut];  //清除缓存用户对象
-            
-            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
-            [currentInstallation removeObject:@"ykbbrokerLoginUser" forKey:@"channels"];
-            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
-            [currentInstallation saveInBackground];
-            
-            loginViewController *vc = [IBUIFactory CreateLoginViewController];
-            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
-            [self presentViewController:naVC animated:NO completion:nil];
+            [self logout];
         }
         [CMNavBarNotificationView notifyWithText:[[info objectForKey:@"aps"] objectForKey:@"category"]
                                           detail:[[info objectForKey:@"aps"] objectForKey:@"alert"]                                       image:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[App_Delegate appIcon]]]]
                                      andDuration:5.0
                                        msgparams:info];
     }
+    
+}
+
+- (void) logout
+{
+    [Util logout];
+    
+    loginViewController *vc = [IBUIFactory CreateLoginViewController];
+    UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:naVC animated:NO completion:nil];
 }
 
 @end

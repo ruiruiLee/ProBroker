@@ -328,29 +328,6 @@
 //处理返回数据
 - (BOOL) handleResponseWithCode:(NSInteger) code msg:(NSString *)msg
 {
-//    BOOL result = YES;
-//    if(code != 200){
-//        
-//        if (code == 504){  // 不允许登录弹回到登录界面
-//            UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-//            [[AppContext sharedAppContext] removeData];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
-//            
-//            [AVUser logOut];  //清除缓存用户对象
-//            
-//            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
-//            [currentInstallation removeObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
-//            [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
-//            [currentInstallation saveInBackground];
-//            [self login];
-//        }
-//        else if(code<0){
-//        }
-//        else
-//             if(msg.length>0)
-//                [KGStatusBar showErrorWithStatus:msg];
-//        result = NO;
-//    }
     return YES;
 }
 

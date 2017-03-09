@@ -262,20 +262,11 @@
 
 - (void) logout:(UIButton *) sender
 {
-    UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-    model.uuid = nil;
-    [[AppContext sharedAppContext] removeData];
-    [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
-    
+    [Util logout];
     [self.navigationController popToRootViewControllerAnimated:NO];
     [App_Delegate root].selectedIndex = 0;
     [self login];
     
-    AVInstallation *currentInstallation = [AVInstallation currentInstallation];
-    [currentInstallation removeObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
-    [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
-    [currentInstallation saveInBackground];
-    [AVUser logOut];  //清除缓存用户对象
 }
 
 - (BOOL) login
