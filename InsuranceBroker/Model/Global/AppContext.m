@@ -232,7 +232,6 @@ static AppContext *context = nil;
     [dic writeToFile:file atomically:YES];
     
     self.userInfoDic = [[NSMutableDictionary alloc] init];
-    self.firstLaunch = NO;
     self.pushCustomerNum = 0;
     self.isNewMessage = NO;
     self.isZSKFHasMsg = NO;

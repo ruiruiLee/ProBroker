@@ -15,7 +15,7 @@
 #import "CustomerInfoModel.h"
 #import "BackGroundView.h"
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
-#import "UINavigationBar+HitTest.h"
+//#import "UINavigationBar+HitTest.h"
 
 @interface CustomerMainVC ()<BackGroundViewDelegate>
 {

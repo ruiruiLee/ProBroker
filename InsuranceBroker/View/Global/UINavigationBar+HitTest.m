@@ -13,11 +13,16 @@
 // 在自定义UITabBar中重写以下方法，其中self.button就是那个希望被触发点击事件的按钮
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIView *view = [super hitTest:point withEvent:event];
-    for (int i = 0; i < [self.subviews count]; i++) {
-        UIView *view = [self.subviews objectAtIndex:i];
-        view = [view hitTest:point withEvent:event];
-        if(view)
-            return view;
+    if(view == nil){
+        for (int i = 0; i < [self.subviews count]; i++) {
+            UIView *view = [self.subviews objectAtIndex:i];
+            if(CGRectContainsPoint(view.frame, point))
+            {
+                view = [view hitTest:point withEvent:event];
+                if(view)
+                    return view;
+            }
+        }
     }
     return view;
 }
