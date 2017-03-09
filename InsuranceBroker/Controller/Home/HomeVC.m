@@ -207,6 +207,12 @@
     [self loadDatas];
 }
 
+- (void) removeProductArray
+{
+    self.productArray = nil;
+    [self.tableView reloadData];
+}
+
 #pragma mark - EGORefreshTableHeaderDelegate
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
 {

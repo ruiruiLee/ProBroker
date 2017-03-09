@@ -11,6 +11,8 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "SRAlertView.h"
 #import "AVOSCloud/AVOSCloud.h"
+#import "AppDelegate.h"
+#import "RootViewController.h"
 
 @implementation Util
 
@@ -750,14 +752,6 @@
         
 }
 
-//+ (void) weChatPay
-//{
-//    NSString *res = [WXApiRequestHandler jumpToBizPay];
-//    if( ![@"" isEqual:res] ){
-//        [Util showAlertMessage:@"支付失败"];
-//    }
-//}
-
 + (NSString *) nullString:(NSString *) input
 {
     input = @"FIELD->NULL";
@@ -770,6 +764,7 @@
 {
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     model.uuid = nil;
+    [model removeAllContent];
     [[AppContext sharedAppContext] removeData];
     [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
     
@@ -778,6 +773,8 @@
     [currentInstallation removeObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
     [currentInstallation saveInBackground];
     [AVUser logOut];  //清除缓存用户对象
+    
+    [((AppDelegate*)App_Delegate).root.homevc removeProductArray];
 }
 
 @end

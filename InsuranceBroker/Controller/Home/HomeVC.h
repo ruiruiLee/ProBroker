@@ -38,11 +38,12 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnMyService;
 
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *viewWidth;
-//@property (nonatomic, strong) IBOutlet NSLayoutConstraint *tableHeight;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *infoHeight;
 
 @property (nonatomic, strong) IBOutlet UIView *commondView;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *commondViewHeight;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *commondViewBootomSpace;
+
+- (void) removeProductArray;
 
 @end

@@ -111,7 +111,6 @@
     NSMutableDictionary *dictionary = [self dictionaryWithObject:self];
     AppContext *context = [AppContext sharedAppContext];
     context.userInfoDic = dictionary;
-   // context.uuid = self.uuid;
     [context saveData];
 }
 
@@ -145,21 +144,16 @@
 
 - (void) setDetailContentWithDictionary:(NSDictionary *) dic
 {
-//    self.userId = [dic objectForKey:@"userId"];
     [self setDetailContentWithDictionary1:dic];
     
     NSMutableDictionary *dictionary = [self dictionaryWithObject:self];
     AppContext *context = [AppContext sharedAppContext];
     context.userInfoDic = dictionary;
-//    if([context.redBagId longLongValue] < [self.redBagId longLongValue])
-//        context.isRedPack = YES;
-//    context.redBagId = self.redBagId;
     [context saveData];
 }
 
 - (void) setDetailContentWithDictionary1:(NSDictionary *) dic
 {
-    //    self.userId = [dic objectForKey:@"userId"];
     self.uuid = [dic objectForKey:@"uuid"];
     self.realName = [dic objectForKey:@"realName"];
     self.headerImg = [dic objectForKey:@"headerImg"];
@@ -194,19 +188,8 @@
     self.createdAt = [UserInfoModel dateFromString:[dic objectForKey:@"createdAt"]];
     
     self.qrcodeAddr = [dic objectForKey:@"qrcodeAddr"];
-//    self.monthOrderSuccessNums = [[dic objectForKey:@"monthOrderSuccessNums"] integerValue];
     
     self.cardVerifiyMsg = [dic objectForKey:@"cardVerifiyMsg"];
-//    self.nowMonthOrderSuccessNums = [[dic objectForKey:@"nowMonthOrderSuccessNums"] integerValue];
-//    self.nowMonthOrderSuccessEarn = [[dic objectForKey:@"nowMonthOrderSuccessEarn"] doubleValue];
-//    self.orderTotalSuccessNums = [[dic objectForKey:@"orderTotalSuccessNums"] integerValue];
-//    self.orderTotalSuccessEarn = [[dic objectForKey:@"orderTotalSuccessEarn"] floatValue];
-//    self.orderTotalSellEarn = [[dic objectForKey:@"orderTotalSellEarn"] floatValue];
-//    self.nowMonthOrderSellEarn = [[dic objectForKey:@"nowMonthOrderSellEarn"] floatValue];
-//    self.teamInviteNums = [[dic objectForKey:@"teamInviteNums"] integerValue];
-//    self.teamTotalNums = [[dic objectForKey:@"teamTotalNums"] integerValue];
-//    self.nowUserTotalMoney = [[dic objectForKey:@"nowUserTotalMoney"] floatValue];
-//    self.userTotalMoney = [[dic objectForKey:@"userTotalMoney"] floatValue];
     self.possessTeamStatus = [[dic objectForKey:@"possessTeamStatus"] boolValue];
     self.car_now_zcgddbf = [[dic objectForKey:@"car_now_zcgddbf"] doubleValue];
     self.car_now_zcgdds = [[dic objectForKey:@"car_now_zcgdds"] integerValue];
@@ -231,6 +214,12 @@
     
     self.car_zcgdds = [[dic objectForKey:@"car_zcgdds"] longLongValue];
     self.nocar_zcgdds = [[dic objectForKey:@"nocar_zcgdds"] longLongValue];
+}
+
+- (void) removeAllContent
+{
+    [self setDetailContentWithDictionary1:nil];
+    [self setContentWithDictionary:nil];
 }
 
 - (void) queryUserInfo

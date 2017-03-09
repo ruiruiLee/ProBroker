@@ -121,4 +121,6 @@
 
 - (UserInfoModel *) initWithUserId:(NSString *) userId;
 
+- (void) removeAllContent;
+
 @end
