@@ -11,7 +11,6 @@
 #import "loginViewController.h"
 #import "CustomerDetailVC.h"
 #import "UserInfoEditVC.h"
-#import "MyLuckyMoneyVC.h"
 #import "EditTagVC.h"
 #import "TagListViewController.h"
 #import "CustomerInfoEditVC.h"
@@ -36,7 +35,6 @@
 #import "ProductDetailWebVC.h"
 #import "PrivateMsgVC.h"
 #import "AutoInsuranceStep1VC.h"
-#import "CustomerServiceVC.h"
 #import "OurProductDetailVC.h"
 
 @interface IBUIFactory : NSObject
@@ -48,8 +46,6 @@
 + (CustomerDetailVC *) CreateCustomerDetailViewController;
 
 + (UserInfoEditVC *) CreateUserInfoEditViewController;
-
-+ (MyLuckyMoneyVC *) CreateMyLuckyMoneyViewController;
 
 + (EditTagVC *) CreateEditTagViewController;
 

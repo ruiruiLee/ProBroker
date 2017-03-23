@@ -136,6 +136,10 @@
     }
     
     cell.lbName.text = model.customerName;
+    if(model.customerName == nil || [model.customerName isKindOfClass:[NSNull class]] || [model.customerName length] == 0)
+    {
+        cell.lbName.text = Default_Customer_Name;
+    }
     cell.lbStatus.text = model.visitType;
     cell.lbTimr.text = [Util getShowingTime:model.updatedAt];//@"今天 19:08";
     CGSize size = cell.photoImage.frame.size;
@@ -252,6 +256,7 @@
     [rules addObject:[self getRulesByField:@"customerPhone" op:@"cn" data:filterString]];
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
     [rules addObject:[self getRulesByField:@"userId" op:@"eq" data:user.userId]];
+    [rules addObject:[self getRulesByField:@"bindStatus" op:@"eq" data:@"1"]];
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     
     [NetWorkHandler requestQueryForPageList:offset limit:LIMIT sord:@"desc" filters:filters Completion:^(int code, id content) {

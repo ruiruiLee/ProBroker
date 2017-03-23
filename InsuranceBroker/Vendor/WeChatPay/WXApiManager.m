@@ -28,6 +28,7 @@
 
 #pragma mark - WXApiDelegate
 - (void)onResp:(BaseResp *)resp {
+//    [Util showAlertMessage:@"huidiao"];
     if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
         if (_delegate
             && [_delegate respondsToSelector:@selector(managerDidRecvMessageResponse:)]) {

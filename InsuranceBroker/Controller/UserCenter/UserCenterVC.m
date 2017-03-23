@@ -261,7 +261,7 @@
     vc.hidesBottomBarWhenPushed = YES;
     vc.saleType = EnumSalesTypeNoCar;
     vc.userId = [UserInfoModel shareUserInfoModel].userId;
-    vc.title = [NSString stringWithFormat:@"我的个险销售统计"];
+    vc.title = [NSString stringWithFormat:@"我的非车险销售统计"];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

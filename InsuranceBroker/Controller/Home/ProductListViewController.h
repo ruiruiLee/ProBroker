@@ -19,6 +19,4 @@
 
 @property (nonatomic, strong) NetWorkHandler *handler;
 
-//@property (nonatomic, assign) id<BaseStrategyViewDelegate> delegate;
-
 @end

@@ -31,7 +31,7 @@
     NJKWebViewProgress *_progressProxy;
     
     BOOL _isLoad;
-    BOOL _isReturnPrevWeb;
+//    BOOL _isReturnPrevWeb;
 }
 
 @property (nonatomic, strong) IBOutlet EasyJSWebView *webview;
@@ -48,6 +48,8 @@
 - (void) loadHtmlFromUrl:(NSString *) url;
 - (void) loadHtmlFromUrlWithUserId:(NSString *) url;
 - (void) loadHtmlFromUrlWithUuId:(NSString *) url;
+//邀请好友
+- (void) loadHtmlFromUrlWithAppId:(NSString *)url;
 - (void) simplyShare:(SSDKPlatformType) type;
 
 - (void) showPopView;
@@ -63,5 +65,7 @@
 - (void) handleCloseButtonClicked:(id) handle;//关闭按钮
 
 - (void) addShutButton;
+
+- (void) page2CarOrderList;
 
 @end

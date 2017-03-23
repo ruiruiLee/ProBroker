@@ -7,12 +7,10 @@
 //
 
 #import "BaseViewController.h"
-#import "MainFunctionButton.h"
 #import "LeftImgButton.h"
 #import "MJBannnerPlayer.h"
 #import "NewUserModel.h"
 #import "AnnouncementModel.h"
-#import "SepLineButton.h"
 
 #import "DictModel.h"
 

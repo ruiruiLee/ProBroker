@@ -9,7 +9,6 @@
 #import "HomeVC.h"
 #import "define.h"
 #import "NoticeListVC.h"
-#import "InviteFriendsVC.h"
 #import "AgentStrategyViewController.h"
 #import "NetWorkHandler+index.h"
 #import "PosterModel.h"
@@ -104,12 +103,6 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 }
 
-- (void) NotifyLogin:(NSNotification *) notify
-{
-    [self loadDatas];
-    [App_Delegate loadAppNotifyInfo];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -138,10 +131,11 @@
     
     [self.tableView registerNib:[UINib nibWithNibName:@"SalesTableViewCell" bundle:nil] forCellReuseIdentifier:@"SalesTableViewCell"];
     
-    _headleine = [[HeadlineView alloc] initWithFrame:CGRectMake((43 * ScreenWidth)/375, (37 * ScreenWidth)/375 - (40 - (40 * ScreenWidth)/375)/2, (234 * ScreenWidth)/375, 40)];
+    _headleine = [[HeadlineView alloc] initWithFrame:CGRectMake((26.0 * ScreenWidth)/375.0, (39 * ScreenWidth)/375.0 - (40 - (40 * ScreenWidth)/375)/2.0, (234 * ScreenWidth)/375, 40)];
     [self.btnBg addSubview:_headleine];
     _headleine.delegate = self;
     _headleine.userInteractionEnabled = NO;
+//    _headleine.backgroundColor = [UIColor redColor];
     
     UIImage *old = ThemeImage(@"img_home_gonggao");
     [self.btnBg setBackgroundImage:old forState:UIControlStateNormal];
@@ -202,6 +196,12 @@
     self.scrollForStudy.contentSize = CGSizeMake(240 * self.infoArray.count + 10, 110);
 }
 
+- (void) NotifyLogin:(NSNotification *) notify
+{
+    [self loadDatas];
+    [App_Delegate loadAppNotifyInfo];
+}
+
 - (void) NotifyRefreshData:(NSNotification *) notify
 {
     [self loadDatas];
@@ -209,7 +209,7 @@
 
 - (void) removeProductArray
 {
-    self.productArray = nil;
+    [self loadDatas];
     [self.tableView reloadData];
 }
 
@@ -469,20 +469,20 @@
             break;
         case 1008:
         {//邀请好友
-            NewUserModel *model = [App_Delegate workBanner];
-            if(model.isRedirect){
-                WebViewController *web = [IBUIFactory CreateWebViewController];
-                web.title = model.title;
-                web.type = enumShareTypeShare;
-                web.shareTitle = model.title;
-                web.shareContent = model.content;
-                web.hidesBottomBarWhenPushed = YES;
-                [self.navigationController pushViewController:web animated:YES];
-                if(model.url){
-                    [web loadHtmlFromUrlWithUuId:[NSString stringWithFormat:@"%@", model.url]];
-                }else{
-                    NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid];
-                    [web loadHtmlFromUrlWithUuId:[NSString stringWithFormat:@"%@",url]];
+            if([self login]){
+                NewUserModel *model = [App_Delegate workBanner];
+                if(model.isRedirect){
+                    WebViewController *web = [IBUIFactory CreateWebViewController];
+                    web.title = model.title;
+                    web.type = enumShareTypeShare;
+                    web.shareTitle = model.title;
+                    web.shareContent = model.content;
+                    if(model.imgUrl)
+                        web.shareImgArray = [NSArray arrayWithObject:model.imgUrl];
+                    web.hidesBottomBarWhenPushed = YES;
+                    [self.navigationController pushViewController:web animated:YES];
+                    NSString *url = [NSString stringWithFormat:@"%@appId=%@", model.url, [UserInfoModel shareUserInfoModel].uuid];
+                    [web loadHtmlFromUrlWithAppId:url];
                 }
             }
         }
@@ -622,6 +622,9 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if(![self login]){
+        return;
+    }
     
     productAttrModel *m = [self.productArray objectAtIndex:indexPath.row];
     if(![m.uniqueFlag isEqualToString:@"100"])

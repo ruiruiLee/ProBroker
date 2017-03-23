@@ -36,7 +36,6 @@
     self.lbName.text = model.nickname;
     self.lbAdd.text = [Util getAddrWithProvience:model.liveProvince city:model.liveCity];
     self.imgQR.backgroundColor = _COLOR(245, 245, 245);
-//    [self.imgQR sd_setImageWithURL:[NSURL URLWithString:model.qrcodeAddr]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,7 +49,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:NO];
     NewUserModel *model = [App_Delegate workBanner];
     
-    NSString *url = [NSString stringWithFormat:@"%@?uuid=%@&appShare=1", model.url, [UserInfoModel shareUserInfoModel].uuid];
+    NSString *url = [NSString stringWithFormat:@"%@appId=%@&appShare=1", model.url, [UserInfoModel shareUserInfoModel].uuid];
+//    NSString *url = [NSString stringWithFormat:@"%@?uuid=%@&appShare=1", model.url, [UserInfoModel shareUserInfoModel].uuid];
     
     self.imgQR.image = [QRCodeGenerator qrImageForString:url imageSize:self.imgQR.bounds.size.width];
 }

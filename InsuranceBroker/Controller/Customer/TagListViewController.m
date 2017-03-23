@@ -158,7 +158,7 @@
     UIImageView *view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 30)];
     view.image = ThemeImage(@"shadow");
     
-    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(20, 8, ScreenWidth - 40, 20)];
+    UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(19.4, 8, ScreenWidth - 40, 20)];
     [view addSubview:lb];
     lb.backgroundColor = [UIColor clearColor];
     lb.font = _FONT(12);

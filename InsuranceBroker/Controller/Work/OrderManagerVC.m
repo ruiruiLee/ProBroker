@@ -65,7 +65,7 @@
 
 - (void) initMapTypesForNoCar
 {
-    self.mapTypes = @[@{@"orderOfferStatus": @"-1", @"name":@"全部保单"}, @{@"orderOfferStatus": @"3", @"name":@"等待支付"}, @{@"orderOfferStatus": @"8", @"name":@"等待生效", @"gxbzStatus":@"1"}, @{@"orderOfferStatus": @"8", @"name":@"保单生效",@"gxbzStatus":@"2"}, @{@"orderOfferStatus": @"8", @"name":@"保单过期", @"gxbzStatus":@"3"}];
+    self.mapTypes = @[@{@"orderOfferStatus": @"-1", @"name":@"全部保单"}, @{@"orderOfferStatus": @"3", @"name":@"等待支付"}, @{@"orderOfferStatus": @"4,6", @"name":@"支付成功"}, @{@"orderOfferStatus": @"8", @"name":@"保单生效",@"gxbzStatus":@"2"}, @{@"orderOfferStatus": @"8", @"name":@"保单过期", @"gxbzStatus":@"3"}];
     
     self.currentMapTypeIndex = 0;
 }
@@ -162,7 +162,7 @@
     
     PullTableView *pulltable = self.pulltable;
     
-    searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 45)];
     searchbar.placeholder = @"搜索";
     searchbar.showsCancelButton = YES;
     self.pulltable.tableHeaderView = searchbar;
@@ -304,7 +304,7 @@
     NSInteger tag = tableView.tag;
     
     if( 100001 == tag)
-        return 128.f;
+        return 138.f;
     else
             
         return 50.f;

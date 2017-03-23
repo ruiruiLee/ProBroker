@@ -319,7 +319,7 @@
     [_datePicker remove];
     
     if(model.isRatioSubmit){
-        OfferDetailWebVC *web = [[OfferDetailWebVC alloc] initWithNibName:@"OfferDetailWebVC" bundle:nil];//[IBUIFactory CreateOrderDetailWebVC];
+        OfferDetailWebVC *web = [[OfferDetailWebVC alloc] initWithNibName:@"OfferDetailWebVC" bundle:nil];
         web.type = enumShareTypeToCustomer;
         web.title = @"保单详情";
         web.insModel = model;
@@ -329,7 +329,6 @@
             web.shareImgArray = [NSArray arrayWithObject:model.productLogo];
         web.shareTitle = [NSString stringWithFormat:@"您好，优快保携手%@为您定制车险",model.productName];
         [self.navigationController pushViewController:web animated:YES];
-//        NSString *url = [NSString stringWithFormat:@"%@/car_insur/car_insur_detail.html?insuranceType=%@&orderId=%@&planOfferId=%@", Base_Uri, @"1", orderId, planOfferId];
         NSString *url = [NSString stringWithFormat:@"%@?appId=%@&orderUuId=%@&helpInsure=1", self.insurInfo.clickUrl, [UserInfoModel shareUserInfoModel].uuid, self.insurInfo.insuranceOrderUuid];
         [web initShareUrl:self.data.insuranceOrderUuid insuranceType:@"1" planOfferId:model.planOfferId];
         [web loadHtmlFromUrl:url];

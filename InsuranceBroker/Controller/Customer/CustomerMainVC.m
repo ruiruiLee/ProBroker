@@ -15,7 +15,6 @@
 #import "CustomerInfoModel.h"
 #import "BackGroundView.h"
 #import "NetWorkHandler+saveOrUpdateCustomer.h"
-//#import "UINavigationBar+HitTest.h"
 
 @interface CustomerMainVC ()<BackGroundViewDelegate>
 {
@@ -73,7 +72,6 @@
     _noLoginView = [[CustomerPageNoLoginView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, SCREEN_HEIGHT - 49) block:^{
         [self login];
     }];
-//    _noLoginView.backgroundColor = [UIColor redColor];
     [self.navigationController.navigationBar addSubview:_noLoginView];
 }
 
@@ -436,8 +434,7 @@
     if(self.pageNum == 0)
         [self.data removeAllObjects];
     
-//    NSError *error = nil;
-    NSArray *array = [CustomerInfoModel modelArrayFromArray:list];//[MTLJSONAdapter modelsOfClass:CustomerInfoModel.class fromJSONArray:list error:&error];
+    NSArray *array = [CustomerInfoModel modelArrayFromArray:list];
     [self.data addObjectsFromArray:array];
     [self.pulltable reloadData];
 }

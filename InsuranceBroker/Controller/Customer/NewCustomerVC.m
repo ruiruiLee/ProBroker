@@ -266,20 +266,15 @@
     for (int i = 0; i < ABMultiValueGetCount(phoneMulti); i++)
     {
         NSString *aPhone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phoneMulti, i);
-//        NSString *aLabel = (__bridge NSString*)ABMultiValueCopyLabelAtIndex(phoneMulti, i);
-//        if([aLabel isEqualToString:@"_$!<Mobile>!$_"])
-//        {
-            [phones addObject:aPhone];
-//        }
+        [phones addObject:aPhone];
     }
     
     self.tfName.text = name;
     if([phones count] > 0)
     {
-        NSString *mobile = [self formatPhoneNum:[phones objectAtIndex:0]];//[[phones objectAtIndex:0] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+        NSString *mobile = [self formatPhoneNum:[phones objectAtIndex:0]];
         self.tfMobile.text = mobile;
     }
-//        self.tfMobile.text = [NSString stringWithFormat:@"%@", [[phones objectAtIndex:0] stringByReplacingOccurrencesOfString:@"-" withString:@""]];
     
     [peoplePicker dismissViewControllerAnimated:YES completion:nil];
     

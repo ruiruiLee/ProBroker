@@ -127,12 +127,6 @@
 }
 
 #pragma UITableViewDataSource UITableViewDelegate
-
-//- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return 1;
-//}
-//
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if([self.data count] == 0){

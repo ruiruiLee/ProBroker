@@ -87,7 +87,6 @@
     [self resignFirstResponder];
 
     [NetWorkHandler loginWithPhone:phone openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:[dic objectForKey:@"nickname"] privilege:[dic objectForKey:@"privilege"] unionid:@"" province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:smCode Completion:^(int code, id content) {
-        //[self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         [ProgressHUD dismiss];
         if(code == 505){ //弹出输入团长手机号窗口
             SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -102,11 +101,18 @@
             [userinfo queryUserInfo];
             [self handleLeftBarButtonClicked:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Login object:nil];
-              // 订阅 push 频道
+            // 订阅 push 频道
             AVInstallation *currentInstallation = [AVInstallation currentInstallation];
             [currentInstallation addUniqueObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
             [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
-            [currentInstallation saveInBackground];
+            [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                NSInteger isRegister = [[[content objectForKey:@"data"] objectForKey:@"isRegister"] integerValue];
+                if(isRegister == 1){
+                    [NetWorkHandler requestToRequestNewUser:userinfo.userId nickName:nil Completion:^(int code, id content) {
+                        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+                    }];
+                }
+            }];
             }
         else{   // 登陆失败
             if(code<0){
@@ -159,7 +165,6 @@
     
     NSDictionary *dic = self.wxDic;
     [NetWorkHandler loginWithPhone:self.tfMobile.text openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:remarkName privilege:[dic objectForKey:@"privilege"] unionid:[dic objectForKey:@"unionid"] province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:nil parentPhone:(NSString *)phoneNum Completion:^(int code, id content) {
-        //[self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 505){
             SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
             view.delegate = self;

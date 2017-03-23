@@ -35,8 +35,8 @@
     [super awakeFromNib];
     self.lbDetail.backgroundColor = [UIColor clearColor];
     self.lbDetail.textColor = _COLOR(0x21, 0x21, 0x21);
-    self.lbDetail.font = _FONT(15);
-//    self.backgroundColor = [UIColor clearColor];
+    self.lbDetail.font = _FONT(14);
+//    self.lbDetail.backgroundColor = [UIColor greenColor];
 }
 
 - (IBAction) doBtnButtonClicked:(UIButton *)sender

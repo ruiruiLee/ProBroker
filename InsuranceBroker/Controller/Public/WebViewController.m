@@ -15,6 +15,7 @@
 #import "RootViewController.h"
 #import "SBJsonParser.h"
 #import "PayTypeSelectedVC.h"
+#import "OrderManagerVC.h"
 
 @interface WebViewController ()
 
@@ -35,7 +36,7 @@
             [icon addObject:iconStr];
         self.shareImgArray = icon;
         _isLoad = false;
-        _isReturnPrevWeb = NO;
+//        _isReturnPrevWeb = NO;
     }
     
     return self;
@@ -46,11 +47,18 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void) loginAndRefresh:(NSNotification *) notify
+{
+    self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1&uuid=%@", self.urlpath, [UserInfoModel shareUserInfoModel].userId, [UserInfoModel shareUserInfoModel].uuid];
+    self.urlpath = [NSString stringWithFormat:@"%@?userId=%@&uuid=%@", self.urlpath, [UserInfoModel shareUserInfoModel].userId, [UserInfoModel shareUserInfoModel].uuid];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePaySuccess) name:Notify_Pay_Success object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginAndRefresh:) name:Notify_Login object:nil];
     
     MyJSInterface* interface = [MyJSInterface new];
     interface.delegate = self;
@@ -106,8 +114,9 @@
 
 - (void) handleLeftBarButtonClicked:(id)sender
 {
-    if(!_isReturnPrevWeb && [self.webview canGoBack]){
+    if([self.webview canGoBack]){
         [self.webview goBack];
+        [self performSelector:@selector(addShutButton) withObject:nil afterDelay:0.01];
     }else{
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -146,9 +155,10 @@
 - (void) NotifyToSelectCustomerForCar:(NSString *) productAttrId
 {}
 
+//返回上一页
 - (void) NotifyWebCanReturnPrev:(BOOL)flag
 {
-    _isReturnPrevWeb = flag;
+//    _isReturnPrevWeb = flag;
 }
 
 - (void) notifyWebViewLoadFinished:(NSString *) string
@@ -241,6 +251,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self handlePaySuccess];
     [self.view addSubview:_progressView];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[_progressView]-0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressView)]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[_progressView(2)]->=0-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_progressView)]];
@@ -249,7 +260,6 @@
 }
 
 #pragma UIWebViewDelegate
-
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     if(self.title == nil)
@@ -277,6 +287,7 @@
     return YES;
 }
 
+//web增加关闭按钮
 - (void) addShutButton
 {
     if([self.webview canGoBack]){
@@ -313,6 +324,7 @@
     [_progressView setProgress:progress animated:YES];
 }
 
+#pragma set webUrl
 - (void) loadHtmlFromUrlWithUserId:(NSString *) url
 {
     if([UserInfoModel shareUserInfoModel].userId == nil){
@@ -357,23 +369,27 @@
     }
 }
 
-- (void) loadCacheHtmlFromUrl:(NSString *)url
+- (void) loadHtmlFromUrlWithAppId:(NSString *)url
 {
     self.urlpath = url;
+    self.shareUrl = [NSString stringWithFormat:@"%@%@", url, @"&appShare=1"];
     if(self.webview){
-        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+        [self.webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlpath]]];
         _isLoad = YES;
     }
 }
 
 - (void) handleRightBarButtonClicked:(id)sender
 {
+    if(![self login])
+        return;
     if(self.type == enumShareTypeShare)
         [self showPopView];
     else if(self.type == enumShareTypeToCustomer)
         [self showPopView1];
 }
 
+//普通分享
 - (void) showPopView
 {
     if(!popview){
@@ -385,6 +401,7 @@
     [popview show];
 }
 
+//保单分享
 - (void) showPopView1
 {
     if(!popview){
@@ -495,11 +512,24 @@
     return dic;
 }
 
+//支付成功后刷新
 - (void) handlePaySuccess
 {
     [self.webview stringByEvaluatingJavaScriptFromString:@"paySuccess();"];
 }
 
-
+//提交报价成功后跳转
+- (void) page2CarOrderList
+{
+    OrderManagerVC *orderVC = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
+    orderVC.insuranceType = @"1";
+    [orderVC setViewTitle:@"车险"];
+    [orderVC initMapTypesForCar];
+    
+    NSMutableArray *array = [self.navigationController.viewControllers mutableCopy];
+    [array removeLastObject];
+    [array addObject:orderVC];
+    [self.navigationController setViewControllers:array animated:YES];
+}
 
 @end

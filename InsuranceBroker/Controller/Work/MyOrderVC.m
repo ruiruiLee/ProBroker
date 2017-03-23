@@ -34,7 +34,7 @@
     
     _secondVC = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
     _secondVC.insuranceType = @"2";
-    [_secondVC setViewTitle:@"个险"];
+    [_secondVC setViewTitle:@"非车险"];
     [_secondVC initMapTypesForNoCar];
     [pages addObject:_secondVC];
     [self addChildViewController:_secondVC];

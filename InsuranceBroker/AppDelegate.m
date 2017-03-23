@@ -165,14 +165,26 @@
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return  [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [self applicationOpenURL:url];
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [self applicationOpenURL:url];
+}
+
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary*)options
+{
+    return [self applicationOpenURL:url];
+}
+
+- (BOOL)applicationOpenURL:(NSURL *)url
+{
     if([url.absoluteString rangeOfString:@"alipayPayIBroker"].length > 0)
     {
-        if ([url.host isEqualToString:@"safepay"]) {
+        if ([url.host isEqualToString:@"safepay"]) {//支付宝支付
             [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
                 if([[resultDic objectForKey:@"resultStatus"] integerValue] == 9000){
                     [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Pay_Success object:nil];

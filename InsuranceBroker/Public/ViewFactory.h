@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "HighNightBgButton.h"
 #import "InfoTipsView.h"
-#import "SepLineButton.h"
 
 @interface ViewFactory : NSObject
 

@@ -24,6 +24,10 @@
     return self.viewTitle ? self.viewTitle : self.title;
 }
 
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 //@synthesize delegate;
 
@@ -43,12 +47,20 @@
     [super viewDidLoad];
     
     self.pulltable.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginAndRefresh:) name:Notify_Login object:nil];
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
+
+- (void) loginAndRefresh:(NSNotification *) notify
+{
+    [self refresh2Loaddata];
+    
+    [self performSelector:@selector(refreshTable) withObject:nil afterDelay:3];
 }
 
 #pragma UITableViewDataSource UITableViewDelegate
@@ -124,6 +136,11 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    if(![self login])
+    {
+        return;
+    }
+    
     productAttrModel *m = [self.data objectAtIndex:indexPath.row];
     
     if(![m.uniqueFlag isEqualToString:@"100"])
@@ -162,12 +179,6 @@
         NSString *dataString = [_writer stringWithObject:mdic];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.view.userInteractionEnabled = NO;
-        
-//        NSString *url = [NSString stringWithFormat:@"http://118.123.249.87:8783/UKB.AgentNew/web/security/encryRC4.xhtml?dataString=%@&rc4key=open20160501", dataString];
-//        
-//        //    NSString * encodedUrl = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault, (CFStringRef)url, NULL, NULL,  kCFStringEncodingUTF8 ));
-//        
-//        url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         NSString *url = [NSString stringWithFormat:@"http://118.123.249.87:8783/UKB.AgentNew/web/security/encryRC4.xhtml?"];
         
@@ -299,7 +310,7 @@
 
 - (NSString *) attstringwithRate:(NSString *) rate
 {
-    NSString *string = [NSString stringWithFormat:@"推广费:%@", rate];
+    NSString *string = [NSString stringWithFormat:@"推广费:%@%@", rate, @"%"];
     if(rate == nil || [rate length] == 0)
         return @"";
     return string;

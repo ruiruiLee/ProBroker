@@ -10,7 +10,6 @@
 #import "define.h"
 #import "NetWorkHandler+saveOrUpdateCustomerCar.h"
 #import "AVOSCloud/AVOSCloud.h"
-#import "InsurCompanySelectVC.h"
 #import "NetWorkHandler+queryForInsuranceCompanyList.h"
 #import "NetWorkHandler+queryForCustomerCarInfo.h"
 #import "InsuranceCompanyModel.h"

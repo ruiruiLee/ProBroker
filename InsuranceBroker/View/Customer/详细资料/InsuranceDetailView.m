@@ -39,7 +39,7 @@
         
         UILabel *lbTitleNoCar = [ViewFactory CreateLabelViewWithFont:_FONT_B(15) TextColor:_COLOR(0x21, 0x21, 0x21)];
         [self addSubview:lbTitleNoCar];
-        lbTitleNoCar.text = @"个险资料";
+        lbTitleNoCar.text = @"非车险资料";
         
         LeftImgButton *btnEditNoCar = [[LeftImgButton alloc] initWithFrame:CGRectZero];
         [self addSubview:btnEditNoCar];
@@ -72,7 +72,7 @@
         
         UIButton *btnApplicant = [[UIButton alloc] init];
         [self addSubview:btnApplicant];
-        [btnApplicant setTitle:@"个险\n投保" forState:UIControlStateNormal];
+        [btnApplicant setTitle:@"非车险\n投保" forState:UIControlStateNormal];
         btnApplicant.translatesAutoresizingMaskIntoConstraints = NO;
         btnApplicant.layer.cornerRadius = 27;
         btnApplicant.backgroundColor = _COLOR(0xff, 0x66, 0x19);
@@ -125,9 +125,9 @@
         self.lbTitle.text = @"车险资料";
         self.lbTitle.font = _FONT_B(15);
         [self.btnEdit setImage:ThemeImage(@"edit_profile") forState:UIControlStateNormal];
-        [self.btnEdit setTitle:@"详情" forState:UIControlStateNormal];
+        [self.btnEdit setTitle:@"车辆详情" forState:UIControlStateNormal];
         [self.btnEdit setTitleColor:_COLOR(0x75, 0x75, 0x75) forState:UIControlStateNormal];
-        self.btnHConstraint.constant = 60;
+        self.btnHConstraint.constant = 90;
         
         _footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, INTMAX_MAX)];
         _footView.backgroundColor = [UIColor clearColor];

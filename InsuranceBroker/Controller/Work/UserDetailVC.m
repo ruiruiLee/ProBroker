@@ -103,10 +103,14 @@
     self.lbName.text = [Util getUserName:self.userinfo];//self.userinfo.nickname;
     self.lbMobile.text = self.userinfo.phone;
     self.lbSubNum.text = [NSString stringWithFormat:@"%@人", [[NSNumber numberWithLongLong:self.userinfo.ztdrs] stringValue]];
-    if(self.userinfo.ztdrs > 0)
+    if(self.userinfo.ztdrs > 0){
         self.rightArraw.hidden = NO;
-    else
+        self.rightArrowWidth.constant = 16;
+    }
+    else{
         self.rightArraw.hidden = YES;
+        self.rightArrowWidth.constant = 0;
+    }
 //    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.userinfo.headerImg] placeholderImage:Normal_Image];
     
     UIImage *placeholderImage = ThemeImage(@"head_male");
@@ -127,7 +131,7 @@
     
     self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.now_zsy];//本月收益
     self.lbOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.zsy];//累计收益
-    self.lbTotalOrderCount.text = [[NSNumber numberWithLongLong:model.zcgdds] stringValue];//累计订单数
+//    self.lbTotalOrderCount.text = [[NSNumber numberWithLongLong:model.zcgdds] stringValue];//累计订单数
     self.lbTotalCarSuccessNums.text = [NSString stringWithFormat:@"%@", [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue]];
     self.lbTotalNoCarSuccessNums.text = [NSString stringWithFormat:@"%@", [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue]];
 }

@@ -45,9 +45,9 @@
     [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:offset] key:@"offset"];
     [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithInteger:limit] key:@"limit"];
     [Util setValueForKeyWithDic:pramas value:sord key:@"sord"];
-    [Util setValueForKeyWithDic:pramas value:@"1" key:@"status"];
+//    [Util setValueForKeyWithDic:pramas value:@"1" key:@"status"];
     [Util setValueForKeyWithDic:pramas value:sidx key:@"sidx"];
-    [Util setValueForKeyWithDic:pramas value:@"4" key:@"userType"];
+    [Util setValueForKeyWithDic:pramas value:Default_User_Type key:@"userType"];
     
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];
     NSString *filtersStr = [writer stringWithObject:filters];

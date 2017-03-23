@@ -377,6 +377,12 @@
                 cell.logoImage.image = ThemeImage(@"award_03");
             else
                 cell.logoImage.hidden = YES;
+            
+            if(model.status == 2){
+                cell.logoImage.hidden = NO;
+                cell.logoImage.image = ThemeImage(@"my_invited");
+            }
+            
             cell.lbName.text = [Util getUserNameWithModel:model];//model.userName;
             cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
             cell.lbStatus.font = _FONT(10);
@@ -404,8 +410,13 @@
     
     if(tableView == self.pulltable){
         if(indexPath.section == 1){
-            UserDetailVC *vc = [IBUIFactory CreateUserDetailVC];
             BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
+            if(model.status ==2){
+                [Util showAlertMessage:@"该用户还未加入经纪人，赶快联系他吧!"];
+                return;
+            }
+            UserDetailVC *vc = [IBUIFactory CreateUserDetailVC];
+            
 //            vc.userId = model.userId;
 //            vc.userHeadImg = model.headerImg;
             vc.brokerInfo = model;

@@ -280,15 +280,7 @@
 #pragma MyJSInterfaceDelegate
 - (void) notifyToOrderList:(NSString *) string
 {
-    OrderManagerVC *orderVC = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
-    orderVC.insuranceType = @"1";
-    [orderVC setViewTitle:@"车险"];
-    [orderVC initMapTypesForCar];
-    
-    NSMutableArray *array = [self.navigationController.viewControllers mutableCopy];
-    [array removeLastObject];
-    [array addObject:orderVC];
-    [self.navigationController setViewControllers:array animated:YES];
+    [self page2CarOrderList];
 }
 
 @end

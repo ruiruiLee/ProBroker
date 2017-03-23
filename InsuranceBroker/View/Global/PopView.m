@@ -42,7 +42,7 @@
         
         for (int i = 0; i < [names count]; i++) {
             
-            AppInfoView *control = [[AppInfoView alloc] initWithFrame:CGRectMake(ox, 20, 80, 80)];
+            AppInfoView *control = [[AppInfoView alloc] initWithFrame:CGRectMake(ox, 24, 80, 80)];
             [bgView addSubview:control];
             control.lbName.text = [names objectAtIndex:i];
             control.logo.image = ThemeImage([images objectAtIndex:i]);

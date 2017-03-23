@@ -43,7 +43,6 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-//    [self.webview stringByEvaluatingJavaScriptFromString:@"paySuccess();"];
 }
 
 - (void) handleRightBarButtonClicked:(id)sender
@@ -51,12 +50,18 @@
     [self showPopView];
 }
 
+#pragma UIWebViewDelegate
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    if(self.title == nil)
-        self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+//    if(self.title == nil)
+    self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     
     [self performSelector:@selector(addShutButton) withObject:nil afterDelay:0.01];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    return YES;
 }
 
 

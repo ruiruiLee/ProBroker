@@ -26,21 +26,22 @@
 
  */
 //
+/*
 #define SERVER_ADDRESS @"http://ykbtest.leanapp.cn"
 #define Base_Uri @"http://118.123.249.87:8783/UKB.AgentNew"
 #define AVOSCloudAppID  @"dwhKbFjMcY4ppGaSVvzN4577-gzGzoHsz"
 #define AVOSCloudAppKey @"6ygVI6sQEL0z4vTjSLeFXD3T"
 #define CHE_XIAN_BAO_JIA @"http://ukbserver.leanapp.cn/#/?appId=%@&carNo=%@"
 #define CHE_XIAN_SUAN_JIA  @"http://ukbserver.leanapp.cn/#/single/choice"
-
+*/
 
 //正式服地址
-//#define SERVER_ADDRESS @"http://ibroker.leanapp.cn"
-//#define Base_Uri @"http://broker.ukuaibao.com"
-//#define AVOSCloudAppID  @"0PyuKjNlBECHhEf3HxDB7NYX-gzGzoHsz"
-//#define AVOSCloudAppKey @"mOmncwQfyeroy2jcDj0ch1Q1"
-//#define CHE_XIAN_BAO_JIA @"http://ukbserver.leanapp.cn/#/?appId=%@&carNo=%@"
-//#define CHE_XIAN_SUAN_JIA  @"http://ukbserver.leanapp.cn/#/single/choice"
+#define SERVER_ADDRESS @"http://ibroker.leanapp.cn"
+#define Base_Uri @"http://broker.ukuaibao.com"
+#define AVOSCloudAppID  @"0PyuKjNlBECHhEf3HxDB7NYX-gzGzoHsz"
+#define AVOSCloudAppKey @"mOmncwQfyeroy2jcDj0ch1Q1"
+#define CHE_XIAN_BAO_JIA @"http://ibwx.leanapp.cn/ukbserver/#/?appId=%@&carNo=%@"
+#define CHE_XIAN_SUAN_JIA  @"http://ibwx.leanapp.cn/ukbserver/#/single/choice"
 
 // 在线客服
 #define APP_KEY @"f3b9c7da5044b70c7bbf1e4a83862c6b"
@@ -115,8 +116,14 @@
 
 #define Default_Customer_Name  @"匿名"
 
-#define How_To_Insu_Explain @"＊优快保提供以下三种报价方式\n \n 1 直接填写投保人［车牌号］快速报价，此报价需要自动匹配车辆续保资料，若系统不能匹配，不能报价成功。\n \n 2 直接上传投保人［行驶证正本］照片报价。由于需要工作人员进行照片审核，需在工作日时间范围（9:30-18:00）内报价，若非工作时间或是节假日，需要等待。\n \n 3  录入投保人［行驶证正本］明细信息，可立即快速报价。\n \n＊ 注：客户确认投保后，应保监会规定需要上传所有证件照片（行驶证正、副本，身份证正、反面）方可出单（在“客户资料”模块可上传照片）。。"
+#define How_To_Insu_Explain @"＊优快保提供以下三种报价方式\n \n 1 直接填写投保人［车牌号］快速报价，此报价需要自动匹配车辆续保资料，若系统不能匹配，可输入车架号等信息再提交报价。\n \n 2 直接上传投保人［行驶证正本］照片报价。由于需要工作人员进行照片审核，需在工作日时间范围（9:30-18:00）内报价，若非工作时间或是节假日，需要等待。\n \n 3  录入投保人［行驶证正本］明细信息，可立即快速报价。\n \n＊ 注：客户确认投保后，应保监会规定需要上传所有证件照片（行驶证正、副本，身份证正、反面）方可出单（在“客户资料”模块可上传照片）。。"
 
 #define App_Delegate  (AppDelegate *)[UIApplication sharedApplication].delegate
+
+#define Default_User_Type  @"4"
+
+//邀请好友
+#define IINVITE_TITLE @"相信我，只为推荐给最信任的你"
+#define INVITE_CONTENT @"没有条件，加入就送现金10元，然后继续做你爱做的事，玩儿一起来赚钱"
 
 #endif /* define_h */

@@ -52,7 +52,7 @@
         self.sex = 1;
         self.leader = 0;
         self.cardVerifiy = 1;
-        self.userType = 4;
+        self.userType = [Default_User_Type integerValue];
         self.possessTeamStatus = NO;
     }
     
@@ -72,7 +72,7 @@
         self.sex = 1;
         self.leader = 0;
         self.cardVerifiy = 1;
-        self.userType = 4;
+        self.userType = [Default_User_Type integerValue];
         self.possessTeamStatus = NO;
     }
     

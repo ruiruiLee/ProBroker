@@ -191,6 +191,9 @@
 
 - (void) NotifyItemSelectIndex:(productAttrModel*) m view:(BaseStrategyView *) view
 {
+    if(![self login]){
+        return;
+    }
     if(![m.uniqueFlag isEqualToString:@"100"])
     {
         OurProductDetailVC *web = [IBUIFactory CreateOurProductDetailVC];

@@ -20,18 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-//    [self SetRightBarButtonWithTitle:@"分享" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void) handleRightBarButtonClicked:(id)sender
-{
-    [self showPopView];
 }
 
 - (void) loadWebString
@@ -60,53 +53,15 @@
 }
 
 #pragma MyJSInterfaceDelegate
+//跳转车险列表
 - (void) notifyToOrderList:(NSString *) string
 {
-    OrderManagerVC *orderVC = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
-    orderVC.insuranceType = @"1";
-    [orderVC setViewTitle:@"车险"];
-    [orderVC initMapTypesForCar];
-    
-    NSMutableArray *array = [self.navigationController.viewControllers mutableCopy];
-    [array removeLastObject];
-    [array addObject:orderVC];
-    [self.navigationController setViewControllers:array animated:YES];
+    [self page2CarOrderList];
 }
 
 - (void) NotifyShareWindowWithPrama:(NSDictionary *)dic
 {
-    [self showPopView];
-}
-
-- (void) HandleItemSelect:(PopView *) view selectImageName:(NSString *)imageName
-{
-
-    NSString *jsonstr = [self getShareContent];
-    SBJsonParser *_parser = [[SBJsonParser alloc] init];
-    NSDictionary *dic = [_parser objectWithString:jsonstr];
-    if([dic objectForKey:@"url"]){
-        self.shareUrl = [NSString stringWithFormat:@"%@&appShare=1", [dic objectForKey:@"url"]];
-    }
-    
-    if([dic objectForKey:@"content"]){
-        self.shareContent = [dic objectForKey:@"content"];
-    }
-    
-//    if([dic objectForKey:@"image"]){
-//        self.shareImgArray = [NSArray arrayWithObject:[dic objectForKey:@"image"]];
-//    }
-    
-    if([dic objectForKey:@"title"]){
-        self.shareTitle = [dic objectForKey:@"title"];
-    }
-    
-    [super HandleItemSelect:view selectImageName:imageName];
-}
-
-- (NSString *) getShareContent
-{
-    NSString *str = [self.webview stringByEvaluatingJavaScriptFromString:@"getShareContent();"];
-    return str;
+    //这里暂不分享
 }
 
 @end

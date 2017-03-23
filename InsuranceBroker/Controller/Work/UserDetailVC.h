@@ -26,12 +26,14 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbTotalOrderSuccessNums;//车险本月单量
 @property (nonatomic, strong) IBOutlet UILabel *lbPersonalMonthOrderSuccessNums;//个险本月保费
 @property (nonatomic, strong) IBOutlet UILabel *lbPersonalTotalOrderSuccessNums;//个险本月单量
-@property (nonatomic, strong) IBOutlet UILabel *lbTotalOrderCount;//总订单数
+//@property (nonatomic, strong) IBOutlet UILabel *lbTotalOrderCount;//总订单数
 
 @property (nonatomic, strong) IBOutlet UILabel *lbMonthOrderEarn;//总订单收益;
 @property (nonatomic, strong) IBOutlet UILabel *lbOrderEarn;//总订单收益;
 @property (nonatomic, strong) IBOutlet UITableView *tableview;
 @property (nonatomic, strong) IBOutlet UIImageView *rightArraw;
+
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *rightArrowWidth;
 
 @property (nonatomic, strong) IBOutlet UILabel *lbTotalCarSuccessNums;
 @property (nonatomic, strong) IBOutlet UILabel *lbTotalNoCarSuccessNums;

@@ -43,10 +43,6 @@
 
 - (BOOL) handleResponseWithCode:(NSInteger) code msg:(NSString *)msg;
 
-- (void) startCircleLoader;
-
-- (void)stopCircleLoader;
-
 - (float)getIOSVersion;
 
 - (void) loadShortUrl:(NSString *) url;

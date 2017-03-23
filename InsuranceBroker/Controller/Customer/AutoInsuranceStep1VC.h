@@ -1,14 +1,13 @@
 //
 //  AutoInsuranceStep1VC.h
 //  InsuranceBroker
-//
+//  快速报价
 //  Created by LiuZach on 16/8/16.
 //  Copyright © 2016年 LiuZach. All rights reserved.
 //
 
 #import "BaseViewController.h"
 #import "HighNightBgButton.h"
-#import "InsurCompanySelectVC.h"
 
 @class productAttrModel;
 
@@ -30,7 +29,5 @@
 @property (nonatomic, strong) UILabel *lbProvience;
 
 @property (nonatomic, strong) productAttrModel *selectProModel;//选中的产品
-
-@property (nonatomic, strong) InsurCompanySelectVC *menuView;
 
 @end

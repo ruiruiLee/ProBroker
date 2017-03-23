@@ -11,7 +11,6 @@
 #import "SBJson.h"
 #import "SelectCustomerVC.h"
 #import "SelectInsuredVC.h"
-#import "SelectCustomerForCarVC.h"
 #import "RootViewController.h"
 #import "THSegmentedPager.h"
 #import "SBJson.h"
@@ -27,8 +26,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
-//    [self SetRightBarButtonWithTitle:@"分享" color:_COLORa(0xff, 0x66, 0x19, 1) action:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,23 +33,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) handleCloseButtonClicked:(UIButton *) sender
-{
-    NSArray *vcarray = self.navigationController.viewControllers;
-    UIViewController *vc = nil;
-    for (int i = 0; i < [vcarray count]; i++) {
-        UIViewController *temp = [vcarray objectAtIndex:i];
-        if([temp isKindOfClass:[THSegmentedPager class]]){
-            vc = temp;
-            break;
-        }
-    }
-    
-    if(vc)
-        [self.navigationController popToViewController:vc animated:YES];
-    else
-        [self.navigationController popViewControllerAnimated:YES];
-}
+//- (void) handleCloseButtonClicked:(UIButton *) sender
+//{
+//    NSArray *vcarray = self.navigationController.viewControllers;
+//    UIViewController *vc = nil;
+//    for (int i = 0; i < [vcarray count]; i++) {
+//        UIViewController *temp = [vcarray objectAtIndex:i];
+//        if([temp isKindOfClass:[THSegmentedPager class]]){
+//            vc = temp;
+//            break;
+//        }
+//    }
+//    
+//    if(vc)
+//        [self.navigationController popToViewController:vc animated:YES];
+//    else
+//        [self.navigationController popViewControllerAnimated:YES];
+//}
 
 
 - (void) loadWebString
@@ -65,12 +62,6 @@
             _isLoad = YES;
         }
     }
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.webview stringByEvaluatingJavaScriptFromString:@"paySuccess();"];
 }
 
 - (void) handleRightBarButtonClicked:(id)sender
@@ -169,12 +160,12 @@
 {
     NSString *uuid = [UserInfoModel shareUserInfoModel].uuid;
     if([UserInfoModel shareUserInfoModel].userId == nil){
-        self.urlpath = [NSString stringWithFormat:@"%@?productAttrId=%@&uuid=%@", url, productId, uuid];;
-        self.shareUrl =  [NSString stringWithFormat:@"%@?appShare=1&productAttrId=%@&uuid=%@", url,  productId, uuid];
+        self.urlpath = [NSString stringWithFormat:@"%@?productId=%@&uuid=%@", url, productId, uuid];
+        self.shareUrl =  [NSString stringWithFormat:@"%@?appShare=1&productId=%@&uuid=%@", url,  productId, uuid];
     }
     else{
-        self.urlpath = [NSString stringWithFormat:@"%@?userId=%@&productAttrId=%@&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, productId, uuid];
-        self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1&productAttrId=%@&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, productId, uuid];
+        self.urlpath = [NSString stringWithFormat:@"%@?userId=%@&productId=%@&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, productId, uuid];
+        self.shareUrl = [NSString stringWithFormat:@"%@?userId=%@&appShare=1&productId=%@&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, productId, uuid];
     }
     
     if(self.webview){
@@ -205,34 +196,34 @@
     NSURL *url = request.URL;
     NSString *uri = url.absoluteString;
     if([uri rangeOfString:@"lastpage=true"].length > 0 && ![uri isEqualToString:self.urlpath]){
-        //适应文档式说明;
-        OurProductDetailVC *vc = [IBUIFactory CreateOurProductDetailVC];
-        [self.navigationController pushViewController:vc animated:YES];
-        [vc loadHtmlFromUrl:uri];
-        [vc performSelector:@selector(initCloseButton) withObject:nil afterDelay:0.2];
-        return NO;
+//        //适应文档式说明;
+//        OurProductDetailVC *vc = [IBUIFactory CreateOurProductDetailVC];
+//        [self.navigationController pushViewController:vc animated:YES];
+//        [vc loadHtmlFromUrl:uri];
+//        [vc performSelector:@selector(initCloseButton) withObject:nil afterDelay:0.2];
+//        return NO;
     }
     return YES;
 }
 
-- (void) initCloseButton
-{
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStyleBordered target:self action:@selector(handleLeftBarButtonClicked:)];
-    UIImage *image = [ThemeImage(@"arrow_left") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    backItem.image = image;
-    [backItem setTarget:self];
-    
-    
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 32)];
-    [button setTitle:@"关闭" forState:UIControlStateNormal];
-    [button setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
-    button.titleLabel.font = _FONT(16);
-    UIBarButtonItem *closeItem=[[UIBarButtonItem alloc] initWithCustomView:button];
-    [button addTarget:self action:@selector(handleCloseButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    NSArray *array = [NSArray arrayWithObjects:backItem, closeItem, nil];
-    [[self navigationItem] setLeftBarButtonItems:array];
-}
+//- (void) initCloseButton
+//{
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithTitle:nil style:UIBarButtonItemStyleBordered target:self action:@selector(handleLeftBarButtonClicked:)];
+//    UIImage *image = [ThemeImage(@"arrow_left") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+//    backItem.image = image;
+//    [backItem setTarget:self];
+//    
+//    
+//    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 32)];
+//    [button setTitle:@"关闭" forState:UIControlStateNormal];
+//    [button setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
+//    button.titleLabel.font = _FONT(16);
+//    UIBarButtonItem *closeItem=[[UIBarButtonItem alloc] initWithCustomView:button];
+//    [button addTarget:self action:@selector(handleCloseButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    NSArray *array = [NSArray arrayWithObjects:backItem, closeItem, nil];
+//    [[self navigationItem] setLeftBarButtonItems:array];
+//}
 
 #pragma MyJSInterfaceDelegate
 //分享按钮
@@ -245,6 +236,20 @@
         NSArray *array = [shareRange componentsSeparatedByString:@","];
         if(array == nil || [array count] == 0)
             [self handleRightBarButtonClicked:nil];
+        
+        NSString *title = [dic objectForKey:@"title"];
+        if(title)
+            self.shareTitle = title;
+//        NSString *imgUrl = [dic objectForKey:@"ImgUrl"];
+        NSString *flagImg = [dic objectForKey:@"flagImg"];
+        if(flagImg)
+            self.shareImgArray = [NSArray arrayWithObject:flagImg];
+        NSString *content = [dic objectForKey:@"content"];
+        if(content)
+            self.shareContent = content;
+        NSString *url = [dic objectForKey:@"url"];
+        if(url)
+            self.shareUrl = url;
         
         NSMutableArray *imgArray = [[NSMutableArray alloc] init];
         NSMutableArray *nameArray = [[NSMutableArray alloc] init];
@@ -286,40 +291,33 @@
      **/
     //创建分享参数
     
-    NSDictionary *object = [self getShareInfo];
-    if(object == nil){
-        [super simplyShare:type];
-    }
-    else
-    {
+//    NSDictionary *object = [self getShareInfo];
+//    if(object == nil){
+//        [super simplyShare:type];
+//    }
+//    else
+//    {
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
-        NSString *url = [object objectForKey:@"url"];
+        NSString *url = self.shareUrl;
         if([url rangeOfString:@"?"].length > 0)
-            url = [NSString stringWithFormat:@"%@&userId=%@&appShare=1&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, [UserInfoModel shareUserInfoModel].uuid];
+            url = [NSString stringWithFormat:@"%@&appShare=1", url];
         else
-            url = [NSString stringWithFormat:@"%@?userId=%@&appShare=1&uuid=%@", url, [UserInfoModel shareUserInfoModel].userId, [UserInfoModel shareUserInfoModel].uuid];
-        NSMutableArray *imgArray = [[NSMutableArray alloc] init];
-        NSString *flagImg = [object objectForKey:@"flagImg"];
-        if(flagImg)
-            [imgArray addObject:flagImg];
-        
-        if(imgArray == nil || [imgArray count] == 0)
+            url = [NSString stringWithFormat:@"%@?appShare=1", url];
+    
+        if(self.shareImgArray == nil || [self.shareImgArray count] == 0)
         {
             NSString *iconStr = [App_Delegate appIcon];
             if(iconStr)
-                [imgArray addObject:iconStr];
+                self.shareImgArray = [NSArray arrayWithObject:iconStr];
         }
         
         
         if (self.shareImgArray) {
-            
-            NSString *content = [object objectForKey:@"content"];
-            NSString *title = [object objectForKey:@"title"];
             NSURL *Uri = [NSURL URLWithString:url];
-            [shareParams SSDKSetupShareParamsByText:content
-                                             images:imgArray
+            [shareParams SSDKSetupShareParamsByText:self.shareContent
+                                             images:self.shareImgArray
                                                 url:Uri
-                                              title:title
+                                              title:self.shareTitle
                                                type:SSDKContentTypeAuto];
             
             //进行分享
@@ -343,7 +341,8 @@
                  }
              }];
         }
-    }
+//    }
 }
+
 
 @end

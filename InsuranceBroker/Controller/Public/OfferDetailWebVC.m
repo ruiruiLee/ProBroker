@@ -157,14 +157,9 @@
         
         if(type == SSDKPlatformTypeSMS){
             NSString *jsonstr = [self getShareContent];
-//            SBJsonParser *_parser = [[SBJsonParser alloc] init];
-//            NSDictionary *dic = [_parser objectWithString:jsonstr];
             NSArray *array = nil;
             if(self.phone)
                 array = [NSArray arrayWithObject:self.phone];
-//            NSString *content = [dic objectForKey:@"sms"];
-//            if(content == nil)
-//                content = @"";
             [shareParams SSDKSetupSMSParamsByText:jsonstr title:nil images:nil attachments:nil recipients:array type:SSDKContentTypeAuto];
         }
         else{
@@ -207,12 +202,14 @@
 
 - (NSString *) getShareContent
 {
+    //获取短信分享的内容
     NSString *str = [self.webview stringByEvaluatingJavaScriptFromString:@"loadSmsContent();"];
     return str;
 }
 
 - (void) NotifyShareWindowWithPrama:(NSDictionary *)dic
 {
+    //分享报价结果
     [self showPopView1];
 }
 
@@ -278,15 +275,7 @@
 #pragma MyJSInterfaceDelegate
 - (void) notifyToOrderList:(NSString *) string
 {
-    OrderManagerVC *orderVC = [[OrderManagerVC alloc] initWithNibName:nil bundle:nil];
-    orderVC.insuranceType = @"1";
-    [orderVC setViewTitle:@"车险"];
-    [orderVC initMapTypesForCar];
-    
-    NSMutableArray *array = [self.navigationController.viewControllers mutableCopy];
-    [array removeLastObject];
-    [array addObject:orderVC];
-    [self.navigationController setViewControllers:array animated:YES];
+    [self page2CarOrderList];
 }
 
 @end

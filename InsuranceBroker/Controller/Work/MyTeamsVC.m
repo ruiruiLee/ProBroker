@@ -9,41 +9,25 @@
 #import "MyTeamsVC.h"
 #import "define.h"
 #import "TeamListTableViewCell.h"
-#import "PotentialPlayersVC.h"
 #import "NetWorkHandler+queryForPageList.h"
 #import "BrokerInfoModel.h"
-#import "NetWorkHandler+queryUserTaskList.h"
 #import "TasksModel.h"
-#import "InviteFriendsVC.h"
 #import "SelectCustomerVC.h"
 #import "UIImageView+WebCache.h"
 #import "SepLineLabel.h"
 #import "NetWorkHandler+queryUserTeamSellTj.h"
 
 @interface MyTeamsVC ()
-{
-    UILabel *lbAmount;
-    //renwu1
-    UILabel *lbTasks1;
-    UIButton *btnTasks1;
-    UILabel *lbtask1Title;
-    //renwu2
-    UILabel *lbTasks2;
-    UIButton *btnTasks2;
-    UILabel *lbtask2Title;
-    
-    NSArray *_taskArray;
-}
 
 @end
 
 @implementation MyTeamsVC
+@synthesize lbAmount;
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if(self){
-//        self.need = enumNotNeedIndicator;
         self.total = 0;
     }
     
@@ -80,13 +64,17 @@
         web.type = enumShareTypeShare;
         web.shareTitle = model.title;
         web.shareContent = model.content;
+        if(model.imgUrl)
+            web.shareImgArray = [NSArray arrayWithObject:model.imgUrl];
         [self.navigationController pushViewController:web animated:YES];
-        if(model.url){
-            [web loadHtmlFromUrlWithUuId:[NSString stringWithFormat:@"%@", model.url]];
-        }else{
-            NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid];
-            [web loadHtmlFromUrlWithUuId:[NSString stringWithFormat:@"%@",url]];
-        }
+        NSString *url = [NSString stringWithFormat:@"%@appId=%@", model.url, [UserInfoModel shareUserInfoModel].uuid];
+        [web loadHtmlFromUrlWithAppId:url];
+//        if(model.url){
+//            [web loadHtmlFromUrlWithUuId:[NSString stringWithFormat:@"%@", model.url]];
+//        }else{
+//            NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", model.nid];
+//            [web loadHtmlFromUrlWithUuId:[NSString stringWithFormat:@"%@",url]];
+//        }
     }
 }
 
@@ -152,18 +140,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (void) handleRightBarButtonClicked:(id)sender
-//{
-//    PotentialPlayersVC *vc = [[PotentialPlayersVC alloc] initWithNibName:nil bundle:nil];
-//    [self.navigationController pushViewController:vc animated:YES];
-//}
-
 - (void) loadDataInPages:(NSInteger)page
 {
     NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
     NSMutableArray *rules = [[NSMutableArray alloc] init];
     [rules addObject:[self getRulesByField:@"parentUserId" op:@"eq" data:self.userid]];
+    [rules addObject:[self getRulesByField:@"status" op:@"in" data:@"1,2"]];
     [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     if(page == 0)
         [self loadUserTeamSellTj];
@@ -233,7 +216,6 @@
     NSString *deq = @"cell";
     TeamListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
-//        cell = [[CustomerTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
         NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"TeamListTableViewCell" owner:nil options:nil];
         cell = [nibs lastObject];
     }
@@ -250,7 +232,6 @@
         image = ThemeImage(@"list_user_famale");
     }
 
-//    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:image];
     CGSize size = cell.photoImage.frame.size;
     [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.headerImg, (int)size.width, (int)size.height)] placeholderImage:image];
     cell.logoImage.hidden = NO;
@@ -262,6 +243,11 @@
         cell.logoImage.image = ThemeImage(@"award_03");
     else
         cell.logoImage.hidden = YES;
+    
+    if(model.status == 2){
+        cell.logoImage.hidden = NO;
+        cell.logoImage.image = ThemeImage(@"my_invited");
+    }
 
     cell.lbName.text = [Util getUserNameWithModel:model];//model.userName;
 //    cell.lbStatus.text = [NSString stringWithFormat:@"累计%d单", model.orderSuccessNums];
@@ -278,17 +264,6 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-//    if(self.need == enumNotNeedIndicator){
-//    }
-//    else{
-//        UserDetailVC *vc = [IBUIFactory CreateUserDetailVC];
-//        BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
-//        vc.userId = model.userId;
-//        vc.userHeadImg = model.headerImg;
-//        vc.title = [NSString stringWithFormat:@"%@的队员", self.name];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -300,13 +275,6 @@
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
         [cell setLayoutMargins:insets];
     }
-}
-
-- (void) doBtnShare:(UIButton *)sender
-{
-    InviteFriendsVC *vc = [[InviteFriendsVC alloc] initWithNibName:nil bundle:nil];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) doBtnOrdered:(UIButton *)sender

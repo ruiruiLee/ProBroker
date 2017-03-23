@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"个险产品目录";
+    self.title = @"非车险产品目录";
     // Do any additional setup after loading the view.
 }
 
@@ -57,6 +57,9 @@
 
 - (void) NotifyItemSelectIndex:(productAttrModel*) m view:(BaseStrategyView *) view
 {
+    if(![self login]){
+        return;
+    }
     if(![m.uniqueFlag isEqualToString:@"100"])
     {//自有产品
         OurProductDetailVC *web = [IBUIFactory CreateOurProductDetailVC];

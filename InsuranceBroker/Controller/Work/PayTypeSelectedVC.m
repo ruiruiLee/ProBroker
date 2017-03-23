@@ -24,7 +24,7 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import <Foundation/Foundation.h>
 
-@interface PayTypeSelectedVC ()\
+@interface PayTypeSelectedVC ()
 {
     NSInteger selectedIdx;
 }

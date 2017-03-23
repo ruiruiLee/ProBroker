@@ -38,13 +38,6 @@
     return edit;
 }
 
-//红包
-+ (MyLuckyMoneyVC *) CreateMyLuckyMoneyViewController
-{
-    MyLuckyMoneyVC *luck = [[MyLuckyMoneyVC alloc] initWithNibName:@"MyLuckyMoneyVC" bundle:nil];
-    return luck;
-}
-
 //编辑标签
 + (EditTagVC *) CreateEditTagViewController
 {

@@ -11,7 +11,6 @@
 #import "UINavigationBar+statusBarColor.h"
 #import <ShareSDK/ShareSDK.h>
 #import "WXApi.h"
-#import "GMDCircleLoader.h"
 #import "NetManager.h"
 #import "KGStatusBar.h"
 #import "AVOSCloud/AVOSCloud.h"
@@ -45,7 +44,6 @@
            break;
         }
         default:
-            //[KGStatusBar showWithStatus:@"Loading..."];
             [KGStatusBar dismiss];
             break;
     }
@@ -79,8 +77,6 @@
     [self performSelector:@selector(regitserSystemAsObserver) withObject:nil afterDelay:0.5f];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-//    [self.navigationController.navigationBar lt_setBackgroundColor:_COLOR(255, 255, 255)];
-    
     UIImage *image = [Util imageWithColor:[UIColor whiteColor] size:CGSizeMake(1, 1)];
     [self.navigationController.navigationBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
     self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
@@ -105,7 +101,6 @@
     UIImage *image = [ThemeImage(@"arrow_left") imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     backItem.image = image;
     
-//    self.navigationItem.backBarButtonItem=backItem;
     [[self navigationItem] setLeftBarButtonItem:backItem];
 }
 
@@ -223,17 +218,6 @@
             result = NO;
     }
     return result;
-}
-
-//show loading洁面
-- (void) startCircleLoader
-{
-    [GMDCircleLoader setOnView:self.view withTitle:@"Loading..." animated:YES];
-}
-
-- (void)stopCircleLoader
-{
-    [GMDCircleLoader hideFromView:self.view animated:YES];
 }
 
 - (float)getIOSVersion
