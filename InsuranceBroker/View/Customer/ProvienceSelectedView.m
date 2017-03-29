@@ -25,7 +25,7 @@
     if(self){
         
         //        self.backgroundColor = [UIColor blackColor];
-        titleArray = @[@"沪", @"京", @"苏", @"浙", @"粤", @"津", @"渝", @"川", @"鲁", @"冀", @"豫", @"晋", @"鄂", @"湘", @"皖", @"赣", @"闽", @"桂", @"辽", @"吉", @"黑", @"贵", @"陕", @"云", @"蒙", @"甘", @"青", @"宁", @"新", @"琼", @"藏"];
+        titleArray = @[@"沪", @"京", @"苏", @"浙", @"粤", @"津", @"渝", @"川", @"鲁", @"冀", @"豫", @"晋", @"鄂", @"湘", @"皖", @"赣", @"闽", @"桂", @"辽", @"吉", @"黑", @"贵", @"陕", @"云", @"蒙", @"甘", @"青", @"宁", @"新", @"琼", @"藏", @"暂"];
         
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, SCREEN_HEIGHT)];
         [self addSubview:view];
@@ -44,7 +44,7 @@
         for (int i = 0; i < 4; i++) {
             oy = sep + (sep + 32) * i + 8;
             for (int j = 0; j < 8; j++) {
-                if(i == 3 && j == 7)
+                if(i == 3 && j == 8)
                     break;
                 ox = sep + (step + sep) * j;
                 UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(ox, oy, step, 32)];

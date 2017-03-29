@@ -32,6 +32,7 @@
 		861DF93B1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF93A1CA4DA4300FB58B1 /* NetWorkHandler+updateUserRemarkName.m */; };
 		861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF93D1CA4E40D00FB58B1 /* RatioMapsModel.m */; };
 		861DF9411CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m in Sources */ = {isa = PBXBuildFile; fileRef = 861DF9401CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m */; };
+		8622B56A1E89050600FD69C7 /* LocationManagerObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8622B5691E89050600FD69C7 /* LocationManagerObserver.m */; };
 		86248EE11CBF7E1600F1B493 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EE01CBF7E1600F1B493 /* BaseNavigationController.m */; };
 		86248EF21CC6220E00F1B493 /* ProductListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86248EF11CC6220E00F1B493 /* ProductListVC.m */; };
 		86248EF91CC7776000F1B493 /* HomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86248EF81CC7776000F1B493 /* HomeVC.xib */; };
@@ -103,7 +104,6 @@
 		8625B03C1C3E3D0F00312B98 /* NetWorkHandler+saveOrUpdateCustomerVisits.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625B03B1C3E3D0F00312B98 /* NetWorkHandler+saveOrUpdateCustomerVisits.m */; };
 		8625B03F1C3E548500312B98 /* DictModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625B03E1C3E548500312B98 /* DictModel.m */; };
 		8625B0441C3E70BF00312B98 /* ZHPickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625B0431C3E70BF00312B98 /* ZHPickView.m */; };
-		8625B0471C3E80E400312B98 /* LocationManagerObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625B0461C3E80E400312B98 /* LocationManagerObserver.m */; };
 		8625B04D1C3F7B0E00312B98 /* EditButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625B04C1C3F7B0E00312B98 /* EditButton.m */; };
 		8625B0511C3F8E7A00312B98 /* ObjectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625B0501C3F8E7A00312B98 /* ObjectButton.m */; };
 		8625B0541C3F9B2D00312B98 /* NetWorkHandler+saveOrUpdateLabelCustomer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8625B0531C3F9B2D00312B98 /* NetWorkHandler+saveOrUpdateLabelCustomer.m */; };
@@ -694,6 +694,8 @@
 		861DF93D1CA4E40D00FB58B1 /* RatioMapsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatioMapsModel.m; sourceTree = "<group>"; };
 		861DF93F1CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+queryUserTeamSellTj.h"; sourceTree = "<group>"; };
 		861DF9401CA4E68B00FB58B1 /* NetWorkHandler+queryUserTeamSellTj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryUserTeamSellTj.m"; sourceTree = "<group>"; };
+		8622B5681E89050600FD69C7 /* LocationManagerObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManagerObserver.h; sourceTree = "<group>"; };
+		8622B5691E89050600FD69C7 /* LocationManagerObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManagerObserver.m; sourceTree = "<group>"; };
 		86248EDF1CBF7E1600F1B493 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		86248EE01CBF7E1600F1B493 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		86248EF01CC6220E00F1B493 /* ProductListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductListVC.h; sourceTree = "<group>"; };
@@ -823,8 +825,6 @@
 		8625B03E1C3E548500312B98 /* DictModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictModel.m; sourceTree = "<group>"; };
 		8625B0421C3E70BF00312B98 /* ZHPickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHPickView.h; sourceTree = "<group>"; };
 		8625B0431C3E70BF00312B98 /* ZHPickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHPickView.m; sourceTree = "<group>"; };
-		8625B0451C3E80E400312B98 /* LocationManagerObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManagerObserver.h; sourceTree = "<group>"; };
-		8625B0461C3E80E400312B98 /* LocationManagerObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManagerObserver.m; sourceTree = "<group>"; };
 		8625B04B1C3F7B0E00312B98 /* EditButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditButton.h; sourceTree = "<group>"; };
 		8625B04C1C3F7B0E00312B98 /* EditButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditButton.m; sourceTree = "<group>"; };
 		8625B04E1C3F7D5900312B98 /* enumFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = enumFile.h; sourceTree = "<group>"; };
@@ -2222,8 +2222,6 @@
 				865066231C21550500429EAE /* IBUIFactory.m */,
 				86C3BB3D1C23C27700F98E80 /* Util.h */,
 				86C3BB3E1C23C27700F98E80 /* Util.m */,
-				8625B0451C3E80E400312B98 /* LocationManagerObserver.h */,
-				8625B0461C3E80E400312B98 /* LocationManagerObserver.m */,
 				868C7CDB1C9F8E3800B7617A /* OrderUtil.h */,
 				868C7CDC1C9F8E3800B7617A /* OrderUtil.m */,
 				86F2E3411D3787F1002FCE75 /* PayUtil.h */,
@@ -2232,6 +2230,8 @@
 				86F2E3451D37887C002FCE75 /* AppMethod.m */,
 				86F2E3621D3CC594002FCE75 /* DataMD5.h */,
 				86F2E3631D3CC594002FCE75 /* DataMD5.m */,
+				8622B5681E89050600FD69C7 /* LocationManagerObserver.h */,
+				8622B5691E89050600FD69C7 /* LocationManagerObserver.m */,
 			);
 			name = Global;
 			path = Public;
@@ -4633,6 +4633,7 @@
 				CFE094651D915C54008E2569 /* AVFileHTTPRequestOperation.m in Sources */,
 				86C3BCBC1C2E933600F98E80 /* IQNSArray+Sort.m in Sources */,
 				CF608EF91C58A43D00DC10CA /* KGStatusBar.m in Sources */,
+				8622B56A1E89050600FD69C7 /* LocationManagerObserver.m in Sources */,
 				8625B02D1C3D3C6C00312B98 /* NetWorkHandler+saveOrUpdateCustomerCar.m in Sources */,
 				CFE090CC1D91525C008E2569 /* UIRefreshControl+AFNetworking.m in Sources */,
 				86A26F041C4A29CB0073FFFC /* LegendView.m in Sources */,
@@ -4853,7 +4854,6 @@
 				CFE094671D915C54008E2569 /* AVPartialInputStream.m in Sources */,
 				8625B0391C3E3B6300312B98 /* NetWorkHandler+queryForCustomerCarPageList.m in Sources */,
 				86F2E3601D38DEDF002FCE75 /* PayTypeSelectedVCTableViewCell.m in Sources */,
-				8625B0471C3E80E400312B98 /* LocationManagerObserver.m in Sources */,
 				86A504A21C4FA59D0032A901 /* PotentialPlayerModel.m in Sources */,
 				86A504E11C520E6B0032A901 /* LCPickView.m in Sources */,
 				8654CD881C312CE100411C54 /* SBJsonUTF8Stream.m in Sources */,
@@ -5114,8 +5114,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InsuranceBroker/InsuranceBroker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Q8Z5QWUAGN;
 				ENABLE_BITCODE = NO;
@@ -5171,8 +5171,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e7d3752a-de90-4fa9-b00f-56e1cf51034b";
-				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibroker;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibrokerDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 			};

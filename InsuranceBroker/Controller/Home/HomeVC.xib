@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16E175b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -69,7 +69,7 @@
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                         <button opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZn-Af-Rlt">
-                                            <state key="normal" image="img_home_lvxing_insure"/>
+                                            <state key="normal" image="img_home_child_insure"/>
                                             <connections>
                                                 <action selector="doBtnMenuClicked:" destination="-1" eventType="touchUpInside" id="ffa-xC-ckq"/>
                                             </connections>
@@ -80,7 +80,7 @@
                                         </view>
                                         <button opaque="NO" tag="1004" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JCQ-q4-n5x">
                                             <frame key="frameInset" minX="301.5" minY="20" width="52" height="52"/>
-                                            <state key="normal" image="img_home_child_insure"/>
+                                            <state key="normal" image="img_home_jiacai_insure"/>
                                             <connections>
                                                 <action selector="doBtnMenuClicked:" destination="-1" eventType="touchUpInside" id="A0A-K9-9a4"/>
                                             </connections>
@@ -97,7 +97,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" tag="1006" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQB-vw-UvW">
-                                            <state key="normal" image="img_home_jiacai_insure"/>
+                                            <state key="normal" image="img_home_more"/>
                                             <connections>
                                                 <action selector="doBtnMenuClicked:" destination="-1" eventType="touchUpInside" id="IRa-zC-9fp"/>
                                             </connections>
@@ -356,13 +356,13 @@
         </view>
     </objects>
     <resources>
-        <image name="img_home_car_insure" width="52" height="52"/>
-        <image name="img_home_child_insure" width="52" height="52"/>
-        <image name="img_home_health_insure" width="52" height="52"/>
-        <image name="img_home_jiacai_insure" width="52" height="52"/>
-        <image name="img_home_lvxing_insure" width="52" height="52"/>
-        <image name="img_home_yiwai_insure" width="52" height="52"/>
-        <image name="invite" width="52" height="52"/>
-        <image name="service" width="52" height="52"/>
+        <image name="img_home_car_insure" width="59" height="50"/>
+        <image name="img_home_child_insure" width="59" height="50"/>
+        <image name="img_home_health_insure" width="59" height="50"/>
+        <image name="img_home_jiacai_insure" width="59" height="50"/>
+        <image name="img_home_more" width="59" height="50"/>
+        <image name="img_home_yiwai_insure" width="59" height="50"/>
+        <image name="invite" width="59" height="50"/>
+        <image name="service" width="59" height="50"/>
     </resources>
 </document>

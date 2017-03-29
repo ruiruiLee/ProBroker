@@ -1,13 +1,17 @@
 //
 //  LocationManagerObserver.h
 //  SpringCare
+//  InsuranceBroker
 //
 //  Created by LiuZach on 15/4/13.
 //  Copyright (c) 2015年 cmkj. All rights reserved.
+//  Created by LiuZach on 2017/3/27.
+//  Copyright © 2017年 LiuZach. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+
 
 @interface LocationManagerObserver : NSObject<CLLocationManagerDelegate>
 {
@@ -22,5 +26,6 @@
 
 + (LocationManagerObserver *)sharedInstance;
 - (void) startUpdateLocation;
+
 
 @end

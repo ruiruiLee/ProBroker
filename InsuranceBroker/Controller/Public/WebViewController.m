@@ -37,6 +37,7 @@
         self.shareImgArray = icon;
         _isLoad = false;
 //        _isReturnPrevWeb = NO;
+        
     }
     
     return self;
@@ -207,16 +208,16 @@
     if(!_isLoad){
         if(_urlpath != nil){
             
-            id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:self.urlpath]];
-            if (cacheDatas !=nil) { // 直接加在缓存
-                NSString *datastr = [[NSString alloc] initWithData:cacheDatas encoding:NSUTF8StringEncoding];
-                [ _webview loadHTMLString:datastr baseURL:[NSURL URLWithString:self.urlpath]];
-            }
-            else{  //请求服务器资源
-                
+//            id cacheDatas =[[EGOCache globalCache] objectForKey:[Util md5Hash:self.urlpath]];
+//            if (cacheDatas !=nil) { // 直接加在缓存
+//                NSString *datastr = [[NSString alloc] initWithData:cacheDatas encoding:NSUTF8StringEncoding];
+//                [ _webview loadHTMLString:datastr baseURL:[NSURL URLWithString:self.urlpath]];
+//            }
+//            else{  //请求服务器资源
+            
                 NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.urlpath]];
                 [self addWebCache:request]; // 加缓存并加载
-            }
+//            }
             
             _isLoad = YES;
         }

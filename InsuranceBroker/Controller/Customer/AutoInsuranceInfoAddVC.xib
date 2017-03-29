@@ -23,11 +23,9 @@
                 <outlet property="lbDateTitle" destination="M4H-dN-gUu" id="MW8-9d-hZb"/>
                 <outlet property="lbExplain" destination="SVg-Pj-V5i" id="2ts-Lr-3T0"/>
                 <outlet property="lbInfo" destination="Mqd-62-w7d" id="bfh-np-y4F"/>
-                <outlet property="lbIsTransfer" destination="knC-jX-V6a" id="pHG-hG-PnV"/>
                 <outlet property="lbPName" destination="sho-HT-XOu" id="NGN-8S-8I7"/>
                 <outlet property="lbPhoto" destination="x2k-a5-SjW" id="vPM-41-Cvt"/>
                 <outlet property="lbShow" destination="cyA-q8-JTF" id="4MH-mg-zBM"/>
-                <outlet property="lbTransferDate" destination="ITX-NO-Vop" id="DGP-WW-j7l"/>
                 <outlet property="licenseView" destination="Fc4-xt-jjK" id="0tO-5L-7nW"/>
                 <outlet property="pInfoView" destination="h8N-wH-VXy" id="K9n-tU-zaR"/>
                 <outlet property="scrollview" destination="VU0-gl-SGr" id="Pzc-4k-hVU"/>
@@ -612,7 +610,7 @@
                                                 <constraint firstItem="iGs-wT-DJa" firstAttribute="leading" secondItem="Ltj-s4-CkU" secondAttribute="leading" id="gia-OK-i4B"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpN-Tj-Slg" customClass="BaseLineView">
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpN-Tj-Slg" customClass="BaseLineView">
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一年内是否过户" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Je-a5-Nr0">
                                                     <constraints>
@@ -658,7 +656,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="knC-jX-V6a" secondAttribute="trailing" constant="26" id="T0l-Mu-O08"/>
                                                 <constraint firstAttribute="trailing" secondItem="dyp-Gm-w8H" secondAttribute="trailing" id="XKd-gH-Nuk"/>
                                                 <constraint firstItem="9Je-a5-Nr0" firstAttribute="leading" secondItem="IpN-Tj-Slg" secondAttribute="leading" id="Yxq-Bc-dUo"/>
-                                                <constraint firstAttribute="height" constant="40" id="f9c-JU-NrL"/>
+                                                <constraint firstAttribute="height" id="f9c-JU-NrL"/>
                                                 <constraint firstAttribute="trailing" secondItem="VW4-hb-l8a" secondAttribute="trailing" id="mV7-7k-ztQ"/>
                                                 <constraint firstItem="knC-jX-V6a" firstAttribute="centerY" secondItem="9Je-a5-Nr0" secondAttribute="centerY" id="nHW-We-QCp"/>
                                                 <constraint firstItem="ITX-NO-Vop" firstAttribute="leading" secondItem="9Je-a5-Nr0" secondAttribute="trailing" constant="10" id="r5e-a2-moF"/>
@@ -675,7 +673,7 @@
                                         <constraint firstItem="TMc-pS-5pU" firstAttribute="leading" secondItem="67d-Ia-8hq" secondAttribute="leading" constant="16" id="EUU-9Y-eNL"/>
                                         <constraint firstItem="Ia3-H8-QjY" firstAttribute="leading" secondItem="TMc-pS-5pU" secondAttribute="trailing" constant="4" id="JL2-Vn-8H8"/>
                                         <constraint firstItem="Ltj-s4-CkU" firstAttribute="top" secondItem="67d-Ia-8hq" secondAttribute="top" id="TOM-PK-btW"/>
-                                        <constraint firstAttribute="height" constant="130" id="VqQ-kR-eFp"/>
+                                        <constraint firstAttribute="height" constant="90" id="VqQ-kR-eFp"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="IpN-Tj-Slg" secondAttribute="bottom" id="bKI-Rq-NZJ"/>
                                         <constraint firstItem="IpN-Tj-Slg" firstAttribute="leading" secondItem="67d-Ia-8hq" secondAttribute="leading" constant="16" id="dtC-pB-STy"/>
                                         <constraint firstItem="Ia3-H8-QjY" firstAttribute="bottom" secondItem="TMc-pS-5pU" secondAttribute="bottom" id="o0N-WB-cz3"/>

@@ -108,7 +108,7 @@
 //    [self loadInsurCompany];
     
     isCertModify = NO;
-    self.lbIsTransfer.text = @"否";
+//    self.lbIsTransfer.text = @"否";
     
     [self.tfName addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.tfNo addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventEditingChanged];
@@ -949,21 +949,21 @@
 {
     [menu hide];
     
-    if(menu == _menuView){//上年度投保
-        _perInsurCompany = index;
-        self.lbPName.text = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:index]).productName;
-    }else if (menu == _menu){
-        _changeNameIdx = index;
-        if(index == 1){
-            self.lbIsTransfer.text = @"是";
-            [self addDatePicker1:nil];
-        }
-        else{
-            self.lbIsTransfer.text = @"否";
-            _changNameDate = nil;
-            self.lbTransferDate.text = @"";
-        }
-    }
+//    if(menu == _menuView){//上年度投保
+//        _perInsurCompany = index;
+//        self.lbPName.text = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:index]).productName;
+//    }else if (menu == _menu){
+//        _changeNameIdx = index;
+//        if(index == 1){
+//            self.lbIsTransfer.text = @"是";
+//            [self addDatePicker1:nil];
+//        }
+//        else{
+//            self.lbIsTransfer.text = @"否";
+//            _changNameDate = nil;
+//            self.lbTransferDate.text = @"";
+//        }
+//    }
     
     [self isModify];
 }
@@ -1005,26 +1005,26 @@
 
 -(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultDate:(NSDate *)resultDate
 {
-    if(pickView == _datePicker){
-        _signDate = resultDate;
-        NSString *dateStr = [Util getDayString:resultDate];
-        self.tfDate.text = dateStr;
-    }else{
-        _changNameDate = resultDate;
-        self.lbTransferDate.text = [Util getDayString:resultDate];
-    }
+//    if(pickView == _datePicker){
+//        _signDate = resultDate;
+//        NSString *dateStr = [Util getDayString:resultDate];
+//        self.tfDate.text = dateStr;
+//    }else{
+//        _changNameDate = resultDate;
+//        self.lbTransferDate.text = [Util getDayString:resultDate];
+//    }
     
     [self isModify];
 }
 
 - (void)toobarCandelBtnHaveClick:(ZHPickView *)pickView
 {
-    if(pickView == _datePicker1){
-        _changeNameIdx = 0;
-        self.lbIsTransfer.text = @"否";
-        _changNameDate = nil;
-        self.lbTransferDate.text = @"";
-    }
+//    if(pickView == _datePicker1){
+//        _changeNameIdx = 0;
+//        self.lbIsTransfer.text = @"否";
+//        _changNameDate = nil;
+//        self.lbTransferDate.text = @"";
+//    }
 }
 
 

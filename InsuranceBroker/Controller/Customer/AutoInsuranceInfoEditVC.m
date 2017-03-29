@@ -94,22 +94,22 @@
             self.btnCert.selected = NO;
         }
         
-        if(model.carTradeStatus == 0){
-            _changNameDate = nil;
-            _changeNameIdx = -1;
-            self.lbIsTransfer.text = @"否";
-        }
-        else if (model.carTradeStatus == 1){
-            _changNameDate = nil;
-            _changeNameIdx = 0;
-            self.lbIsTransfer.text = @"否";
-        }
-        else{
-            _changNameDate = model.carTradeTime;
-            _changeNameIdx = 1;
-            self.lbTransferDate.text = [Util getDayString:_changNameDate];
-            self.lbIsTransfer.text = @"是";
-        }
+//        if(model.carTradeStatus == 0){
+//            _changNameDate = nil;
+//            _changeNameIdx = -1;
+//            self.lbIsTransfer.text = @"否";
+//        }
+//        else if (model.carTradeStatus == 1){
+//            _changNameDate = nil;
+//            _changeNameIdx = 0;
+//            self.lbIsTransfer.text = @"否";
+//        }
+//        else{
+//            _changNameDate = model.carTradeTime;
+//            _changeNameIdx = 1;
+//            self.lbTransferDate.text = [Util getDayString:_changNameDate];
+//            self.lbIsTransfer.text = @"是";
+//        }
         
         if(model.carInsurStatus1 == 1){
             _perInsurCompany = [self getSelectIdxFromArray:model.carInsurCompId1];

@@ -81,6 +81,8 @@ struct sockaddr_in; // 添加前置声明，为了解决warning
 - (BOOL) startNotifier;
 - (void) stopNotifier;
 
++(BOOL)networkAvailable;
+
 - (NetworkStatus) currentReachabilityStatus;
 //WWAN may be available, but not active until a connection has been established.
 //WiFi may require a connection for VPN on Demand.

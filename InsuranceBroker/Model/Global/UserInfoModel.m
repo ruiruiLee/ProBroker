@@ -53,6 +53,7 @@
         self.leader = 0;
         self.cardVerifiy = 1;
         self.userType = [Default_User_Type integerValue];
+        self.accountType = 1;
         self.possessTeamStatus = NO;
     }
     
@@ -72,6 +73,7 @@
         self.sex = 1;
         self.leader = 0;
         self.cardVerifiy = 1;
+        self.accountType = 1;
         self.userType = [Default_User_Type integerValue];
         self.possessTeamStatus = NO;
     }
@@ -106,6 +108,7 @@
     self.userId = [dic objectForKey:@"userId"];
     self.possessTeamStatus = [[dic objectForKey:@"possessTeamStatus"] boolValue];
     self.uuid = [dic objectForKey:@"uuid"];
+    self.accountType = [[dic objectForKey:@"accountType"] integerValue];
 
     
     NSMutableDictionary *dictionary = [self dictionaryWithObject:self];
@@ -138,6 +141,7 @@
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.userType] key:@"userType"];
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithBool:self.possessTeamStatus] key:@"possessTeamStatus"];
     [Util setValueForKeyWithDic:mDic value:self.uuid key:@"uuid"];
+    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.accountType] key:@"accountType"];
     
     return mDic;
 }
@@ -166,6 +170,7 @@
     self.leader = [[dic objectForKey:@"leader"] integerValue];
     self.cardVerifiy = [[dic objectForKey:@"cardVerifiy"] integerValue];
     self.userType = [[dic objectForKey:@"userType"] integerValue];
+    self.accountType = [[dic objectForKey:@"accountType"] integerValue];
     self.sex = [[dic objectForKey:@"userSex"] integerValue];
     
     self.cardNumber = [dic objectForKey:@"cardNumber"];

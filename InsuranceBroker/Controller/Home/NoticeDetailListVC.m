@@ -58,8 +58,6 @@
     
     //弹出下拉刷新控件刷新数据
     self.pulltable.pullTableIsRefreshing = YES;
-    
-//    dic = @{@"title":@"保单提醒", @"path":@"image", @"text":@"保单号保单号保单号保单号保单号保单号保单号保单号保单号保单号保单号保单号保单"};
 }
 
 - (void) loadDataInPages:(NSInteger)page
@@ -109,7 +107,6 @@
     NSString *deq = @"cell";
     NoticeDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
     if(!cell){
-//        cell = [[NoticeDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:deq];
         NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"NoticeDetailTableViewCell" owner:nil options:nil];
         cell = [nibs lastObject];
     }

@@ -441,12 +441,12 @@
             break;
         case 1003:
         {//旅游险
-            [self turnToARisk:@"5" riskName:@"旅游险"];
+            [self turnToARisk:@"6" riskName:@"少儿险"];
         }
             break;
         case 1004:
         {//少儿险
-            [self turnToARisk:@"6" riskName:@"少儿险"];
+            [self turnToARisk:@"2" riskName:@"家财险"];
         }
             break;
         case 1005:
@@ -456,7 +456,8 @@
             break;
         case 1006:
         {//家财险
-            [self turnToARisk:@"2" riskName:@"家财险"];
+//            [self turnToARisk:@"2" riskName:@"家财险"];
+            [self turnToARisk:@"5" riskName:@"特色"];
         }
             break;
         case 1007:

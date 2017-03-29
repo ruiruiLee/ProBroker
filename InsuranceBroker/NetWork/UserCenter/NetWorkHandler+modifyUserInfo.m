@@ -42,7 +42,7 @@
     [Util setValueForKeyWithDic:pramas value:liveAddr key:@"liveAddr"];
     [Util setValueForKeyWithDic:pramas value:userSex key:@"userSex"];
     [Util setValueForKeyWithDic:pramas value:headerImg key:@"headerImg"];
-    [Util setValueForKeyWithDic:pramas value:Default_User_Type key:@"userType"];
+//    [Util setValueForKeyWithDic:pramas value:Default_User_Type key:@"userType"];
     
     [handle postWithMethod:@"/api/broker/save" BaseUrl:SERVER_ADDRESS Params:pramas Completion:completion];
 }

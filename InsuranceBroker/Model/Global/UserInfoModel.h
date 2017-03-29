@@ -32,6 +32,8 @@
 @property (nonatomic, assign) NSInteger cardVerifiy;//实名验证状态，1未认证 ，2认证成功 3，认证失败
 @property (nonatomic, assign) NSInteger userType;////经纪人类型，1自由经纪人、2坐席经纪人、3平台管理人
 
+@property (nonatomic, assign) NSInteger accountType;
+
 
 //addinfo
 

@@ -66,7 +66,7 @@
     self.viewHConstraint.constant = ScreenWidth;
     [self loadData];
     
-    self.lbWarning.attributedText = [self getAttbuteString:[Util getWarningString:@"＊客户优惠 为您实际优惠客户的商业险点数。对于只购买强制交强险的客户不能享有优惠。特别提醒：该优惠费率只针对9座以下的非营运私家车，对于营运车辆或者货车等其他车型 ，请先咨询客服。"] sub:@"特别提醒：该优惠费率只针对9座以下的非营运私家车，对于营运车辆或者货车等其他车型 ，请先咨询客服。"];
+    self.lbWarning.attributedText = [self getAttbuteString:[Util getWarningString:@"＊客户优惠 为您实际优惠客户的商业险点数。对于只购买强制交强险的客户不能享有优惠。特别提醒：该优惠费率只针对9座以下的非营运私家车，对于1年内过户车辆，营运车辆或者货车等其他车型 ，请先咨询客服。"] sub:@"特别提醒：该优惠费率只针对9座以下的非营运私家车，对于1年内过户车辆，营运车辆或者货车等其他车型 ，请先咨询客服。"];
 }
 
 - (NSMutableAttributedString *)getAttbuteString:(NSMutableAttributedString *)string sub:(NSString *) sub
