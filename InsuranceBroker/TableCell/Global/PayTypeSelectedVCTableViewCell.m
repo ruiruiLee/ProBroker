@@ -15,8 +15,8 @@
     // Initialization code
     [super awakeFromNib];
     
-    [self.btnSelect setImage:ThemeImage(@"unselect_point") forState:UIControlStateNormal];
-    [self.btnSelect setImage:ThemeImage(@"select_point") forState:UIControlStateSelected];
+    [self.btnSelect setImage:ThemeImage(@"pay_img_normal") forState:UIControlStateNormal];
+    [self.btnSelect setImage:ThemeImage(@"Pay_img_select") forState:UIControlStateSelected];
     self.btnSelect.userInteractionEnabled = NO;
 }
 

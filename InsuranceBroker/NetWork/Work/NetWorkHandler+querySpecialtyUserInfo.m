@@ -11,12 +11,13 @@
 
 @implementation NetWorkHandler (querySpecialtyUserInfo)
 
-+ (void) requestToQuerySpecialtyUserInfo:(NSString *) userId Completion:(Completion)completion
++ (void) requestToQuerySpecialtyUserInfo:(NSString *) userId insuranceType:(NSString *) insuranceType Completion:(Completion)completion
 {
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
     
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:pramas value:userId key:@"userId"];
+    [Util setValueForKeyWithDic:pramas value:insuranceType key:@"insuranceType"];
     
     
     [handle postWithMethod:@"/web/specialty/querySpecialtyUserInfo.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];

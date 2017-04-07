@@ -16,6 +16,7 @@
 #import "SBJsonParser.h"
 #import "PayTypeSelectedVC.h"
 #import "OrderManagerVC.h"
+#import "OnlinePayVC.h"
 
 @interface WebViewController ()
 
@@ -172,15 +173,19 @@
 }
 
 //支付接口
-- (void) NotifyToPay:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId titleName:(NSString *)titleName totalFee:(NSString *)totalFee
+- (void) NotifyToPay:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId titleName:(NSString *)titleName totalFee:(NSString *)totalFee companyLogo:(NSString *)companyLogo createdAt:(NSString *)createdAt payDesc:(NSString *)payDesc
 {
-    PayTypeSelectedVC *vc = [[PayTypeSelectedVC alloc] initWithNibName:nil bundle:nil];
+//    PayTypeSelectedVC *vc = [[PayTypeSelectedVC alloc] initWithNibName:nil bundle:nil];
+    OnlinePayVC *vc = [[OnlinePayVC alloc] initWithNibName:@"OnlinePayVC" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
     vc.orderId = orderId;
     vc.insuranceType = insuranceType;
     vc.planOfferId = planOfferId;
     vc.totalFee = totalFee;
     vc.titleName = titleName;
+    vc.payDesc = payDesc;
+    vc.createdAt = createdAt;
+    vc.companyLogo = companyLogo;
 }
 
 - (void) NotifyToReSubmitCarInfo:(NSString *) orderId customerId:(NSString *) customerId customerCarId:(NSString *) customerCarId

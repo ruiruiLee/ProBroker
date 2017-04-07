@@ -150,7 +150,7 @@
 
 - (void) loadCommissionInfo
 {
-    [NetWorkHandler requestToQuerySpecialtyUserInfo:self.brokerInfo.userId Completion:^(int code, id content) {
+    [NetWorkHandler requestToQuerySpecialtyUserInfo:self.brokerInfo.userId insuranceType:@"1" Completion:^(int code, id content) {
         [self  handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(code == 200){
             self.productList = [ProductInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"ratioMaps"]];

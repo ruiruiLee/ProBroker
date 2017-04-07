@@ -26,14 +26,14 @@
 
  */
 //
-/*
-#define SERVER_ADDRESS @"http://ykbtest.leanapp.cn"
-#define Base_Uri @"http://118.123.249.87:8783/UKB.AgentNew"
-#define AVOSCloudAppID  @"dwhKbFjMcY4ppGaSVvzN4577-gzGzoHsz"
-#define AVOSCloudAppKey @"6ygVI6sQEL0z4vTjSLeFXD3T"
-#define CHE_XIAN_BAO_JIA @"http://ukbserver.leanapp.cn/#/?appId=%@&carNo=%@"
-#define CHE_XIAN_SUAN_JIA  @"http://ukbserver.leanapp.cn/#/single/choice"
-*/
+
+//#define SERVER_ADDRESS @"http://ykbtest.leanapp.cn"
+//#define Base_Uri @"http://118.123.249.87:8783/UKB.AgentNew"
+//#define AVOSCloudAppID  @"dwhKbFjMcY4ppGaSVvzN4577-gzGzoHsz"
+//#define AVOSCloudAppKey @"6ygVI6sQEL0z4vTjSLeFXD3T"
+//#define CHE_XIAN_BAO_JIA @"http://ukbserver.leanapp.cn/#/?appId=%@&carNo=%@"
+//#define CHE_XIAN_SUAN_JIA  @"http://ukbserver.leanapp.cn/#/single/choice"
+
 
 //正式服地址
 #define SERVER_ADDRESS @"http://ibroker.leanapp.cn"
@@ -105,6 +105,7 @@
 #define Notify_Msg_Reload @"Notify_Msg_Reload"
 #define Notify_Pay_Success @"Notify_Pay_Success"
 #define Notify_Refresh_Home @"Notify_Refresh_Home"
+#define Notify_PushCustomer_Got @"Notify_PushCustomer_Got"
 
 #define QR_ADDRESS @"http://ukb.weixin.car517.com/app_download/specialty_agent_app_download.html"
 #define ServicePhone @"4000803939"

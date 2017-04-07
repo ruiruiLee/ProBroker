@@ -401,6 +401,8 @@
         AppContext *context = [AppContext sharedAppContext];
         context.pushCustomerNum = [[userInfo objectForKey:@"hk"] integerValue];
         [context saveData];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notify_PushCustomer_Got object:nil];
     }
     
     else if(mt == 1){

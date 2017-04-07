@@ -93,9 +93,12 @@
         NSString *insuranceType = [result objectForKey:@"insuranceType"];
         NSString *titleName = [result objectForKey:@"productName"];
         NSString *totalFee = [result objectForKey:@"amount"];
+        NSString *payDesc = [result objectForKey:@"payDesc"];
+        NSString *createdAt = [result objectForKey:@"createdAt"];
+        NSString *companyLogo = [result objectForKey:@"companyLogo"];
         
-        if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToPay:insuranceType:planOfferId:titleName:totalFee:)]){
-            [self.delegate NotifyToPay:orderId insuranceType:insuranceType planOfferId:planOfferId titleName:titleName totalFee:totalFee];
+        if(self.delegate && [self.delegate respondsToSelector:@selector(NotifyToPay:insuranceType:planOfferId:titleName:totalFee:companyLogo:createdAt:payDesc:)]){
+            [self.delegate NotifyToPay:orderId insuranceType:insuranceType planOfferId:planOfferId titleName:titleName totalFee:totalFee companyLogo:companyLogo createdAt:createdAt payDesc:payDesc];
         }
     }
 }

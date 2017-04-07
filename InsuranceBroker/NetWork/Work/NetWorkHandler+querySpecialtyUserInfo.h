@@ -10,6 +10,6 @@
 
 @interface NetWorkHandler (querySpecialtyUserInfo)
 
-+ (void) requestToQuerySpecialtyUserInfo:(NSString *) userId Completion:(Completion)completion;
++ (void) requestToQuerySpecialtyUserInfo:(NSString *) userId insuranceType:(NSString *) insuranceType Completion:(Completion)completion;
 
 @end

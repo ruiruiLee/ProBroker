@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8603C3581E8E34F600241200 /* OnlinePayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8603C3561E8E34F600241200 /* OnlinePayVC.m */; };
+		8603C3591E8E34F600241200 /* OnlinePayVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8603C3571E8E34F600241200 /* OnlinePayVC.xib */; };
+		8603C35D1E8F9F1000241200 /* RateSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8603C35B1E8F9F1000241200 /* RateSettingVC.m */; };
+		8603C35E1E8F9F1000241200 /* RateSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8603C35C1E8F9F1000241200 /* RateSettingVC.xib */; };
 		8612F4131CE4828D0045340F /* JElasticPullToRefreshLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40A1CE4828D0045340F /* JElasticPullToRefreshLoadingView.m */; };
 		8612F4141CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40C1CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.m */; };
 		8612F4151CE4828D0045340F /* JElasticPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40E1CE4828D0045340F /* JElasticPullToRefreshView.m */; };
@@ -646,6 +650,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8603C3551E8E34F600241200 /* OnlinePayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlinePayVC.h; sourceTree = "<group>"; };
+		8603C3561E8E34F600241200 /* OnlinePayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlinePayVC.m; sourceTree = "<group>"; };
+		8603C3571E8E34F600241200 /* OnlinePayVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnlinePayVC.xib; sourceTree = "<group>"; };
+		8603C35A1E8F9F1000241200 /* RateSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateSettingVC.h; sourceTree = "<group>"; };
+		8603C35B1E8F9F1000241200 /* RateSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateSettingVC.m; sourceTree = "<group>"; };
+		8603C35C1E8F9F1000241200 /* RateSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RateSettingVC.xib; sourceTree = "<group>"; };
 		8612F4081CE4828D0045340F /* JElasticPullToRefreshConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JElasticPullToRefreshConstants.h; sourceTree = "<group>"; };
 		8612F4091CE4828D0045340F /* JElasticPullToRefreshLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JElasticPullToRefreshLoadingView.h; sourceTree = "<group>"; };
 		8612F40A1CE4828D0045340F /* JElasticPullToRefreshLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JElasticPullToRefreshLoadingView.m; sourceTree = "<group>"; };
@@ -2938,6 +2948,12 @@
 				86A26F161C4B5E900073FFFC /* SalesStatisticsVC.xib */,
 				86F2E3501D38CAE3002FCE75 /* PayTypeSelectedVC.h */,
 				86F2E3511D38CAE3002FCE75 /* PayTypeSelectedVC.m */,
+				8603C3551E8E34F600241200 /* OnlinePayVC.h */,
+				8603C3561E8E34F600241200 /* OnlinePayVC.m */,
+				8603C3571E8E34F600241200 /* OnlinePayVC.xib */,
+				8603C35A1E8F9F1000241200 /* RateSettingVC.h */,
+				8603C35B1E8F9F1000241200 /* RateSettingVC.m */,
+				8603C35C1E8F9F1000241200 /* RateSettingVC.xib */,
 			);
 			path = Work;
 			sourceTree = "<group>";
@@ -4295,6 +4311,7 @@
 				86C3BBD01C2A602000F98E80 /* TagListViewController.xib in Resources */,
 				86F2DA9E1C7FE81D0088B783 /* ProductSettingTableViewCell.xib in Resources */,
 				8625AF961C32864200312B98 /* QRCodeVC.xib in Resources */,
+				8603C35E1E8F9F1000241200 /* RateSettingVC.xib in Resources */,
 				861A1D911E287CC3003AB904 /* SalesTableViewCell.xib in Resources */,
 				8625AFF01C38FF9E00312B98 /* IncomeWithdrawVC.xib in Resources */,
 				864EFBD41D86A0B000CEC6F8 /* AutoInsuranceInfoAddVC.xib in Resources */,
@@ -4340,6 +4357,7 @@
 				86F2DA7F1C75F25B0088B783 /* UserDetailVC.xib in Resources */,
 				86EECDF71CF5827C00BBAF11 /* ProductDetailWebVC.xib in Resources */,
 				86A26EE11C48F1F20073FFFC /* ModifyPhoneNumVC.xib in Resources */,
+				8603C3591E8E34F600241200 /* OnlinePayVC.xib in Resources */,
 				8625AFA11C32A59600312B98 /* NoticeListTableViewCell.xib in Resources */,
 				86A504EC1C524E9F0032A901 /* OrderDetailWebVC.xib in Resources */,
 				86A26EEB1C4905210073FFFC /* CustomerTagTableCell.xib in Resources */,
@@ -4554,6 +4572,7 @@
 				8618CEBB1E5C457600F3F954 /* FXBlurView.m in Sources */,
 				865065C01C1EB36E00429EAE /* BaseViewController.m in Sources */,
 				86F973E61D717F3F00A36359 /* HMSegmentedControl.m in Sources */,
+				8603C35D1E8F9F1000241200 /* RateSettingVC.m in Sources */,
 				8625AF821C321E5B00312B98 /* OrderManagerTableViewCell.m in Sources */,
 				CFE090FA1D915628008E2569 /* UIImage+GIF.m in Sources */,
 				8625AF7E1C3164A700312B98 /* OrderManagerVC.m in Sources */,
@@ -4869,6 +4888,7 @@
 				CFE0949C1D915C54008E2569 /* LCDatabasePool.m in Sources */,
 				CFE094701D915C54008E2569 /* AVSession.m in Sources */,
 				CFE090F11D915628008E2569 /* NSData+ImageContentType.m in Sources */,
+				8603C3581E8E34F600241200 /* OnlinePayVC.m in Sources */,
 				86B2791B1CE06576000E5FAA /* ServiceSelectView.m in Sources */,
 				CFE0949E1D915C54008E2569 /* LCResultSet.m in Sources */,
 				CFE090CA1D91525C008E2569 /* UIImageView+AFNetworking.m in Sources */,
@@ -5042,8 +5062,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InsuranceBroker/InsuranceBroker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q8Z5QWUAGN;
 				ENABLE_BITCODE = NO;
@@ -5100,7 +5120,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibroker;
+				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibrokerDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";

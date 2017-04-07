@@ -1005,26 +1005,26 @@
 
 -(void)toobarDonBtnHaveClick:(ZHPickView *)pickView resultDate:(NSDate *)resultDate
 {
-//    if(pickView == _datePicker){
-//        _signDate = resultDate;
-//        NSString *dateStr = [Util getDayString:resultDate];
-//        self.tfDate.text = dateStr;
-//    }else{
+    if(pickView == _datePicker){
+        _signDate = resultDate;
+        NSString *dateStr = [Util getDayString:resultDate];
+        self.tfDate.text = dateStr;
+    }else{
 //        _changNameDate = resultDate;
 //        self.lbTransferDate.text = [Util getDayString:resultDate];
-//    }
+    }
     
     [self isModify];
 }
 
 - (void)toobarCandelBtnHaveClick:(ZHPickView *)pickView
 {
-//    if(pickView == _datePicker1){
+    if(pickView == _datePicker1){
 //        _changeNameIdx = 0;
 //        self.lbIsTransfer.text = @"否";
 //        _changNameDate = nil;
 //        self.lbTransferDate.text = @"";
-//    }
+    }
 }
 
 

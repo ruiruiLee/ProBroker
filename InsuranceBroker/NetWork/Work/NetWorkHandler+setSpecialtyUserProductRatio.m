@@ -24,4 +24,18 @@
     [handle postWithMethod:@"/web/specialty/setSpecialtyUserProductRatio.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }
 
++ (void) requestToSetSpecialtyUserProductRatio:(NSString *) userId productId:(NSString *) productId productRatio:(CGFloat) productRatio selfDefault:(NSString *) selfDefault Completion:(Completion)completion
+{
+    NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
+    
+    NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
+    [Util setValueForKeyWithDic:pramas value:userId key:@"userId"];
+    [Util setValueForKeyWithDic:pramas value:productId key:@"productId"];
+    [Util setValueForKeyWithDic:pramas value:[NSNumber numberWithFloat:productRatio] key:@"productRatio"];
+    [Util setValueForKeyWithDic:pramas value:selfDefault key:@"selfDefault"];
+    
+    
+    [handle postWithMethod:@"/web/specialty/setSpecialtyUserProductRatio.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
+}
+
 @end

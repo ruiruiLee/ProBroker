@@ -25,22 +25,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InsuranceBroker/NetWork/NetWorkHandler.m"
-            timestampString = "511757721.976004"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-getWithMethod:BaseUrl:Params:Completion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "InsuranceBroker/Controller/Work/PayTypeSelectedVC.m"
             timestampString = "511775903.842165"
             startingColumnNumber = "9223372036854775807"
@@ -63,22 +47,6 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
             endingLineNumber = "96"
-            landmarkName = "-handlePaySuccess"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "InsuranceBroker/Controller/Work/PayTypeSelectedVC.m"
-            timestampString = "511780274.186803"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
             landmarkName = "-handlePaySuccess"
             landmarkType = "7">
          </BreakpointContent>
@@ -249,13 +217,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InsuranceBroker/Controller/Customer/AutoInsuranceInfoAddVC.m"
-            timestampString = "512301384.796486"
+            filePath = "InsuranceBroker/NetWork/Login/NetWorkHandler+login.m"
+            timestampString = "512384129.211294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "440"
-            endingLineNumber = "440"
-            landmarkName = "-checkInfoRight"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "+loginWithPhone:openId:sex:nickname:privilege:unionid:province:language:headimgurl:city:country:smCode:parentPhone:Completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -265,13 +233,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "InsuranceBroker/NetWork/Login/NetWorkHandler+login.m"
-            timestampString = "512384129.211294"
+            filePath = "InsuranceBroker/Controller/Work/PayTypeSelectedVC.m"
+            timestampString = "513071744.306018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "+loginWithPhone:openId:sex:nickname:privilege:unionid:province:language:headimgurl:city:country:smCode:parentPhone:Completion:"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "-doBtnPay:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

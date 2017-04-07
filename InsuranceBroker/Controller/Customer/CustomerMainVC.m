@@ -50,6 +50,8 @@
     [super viewDidLoad];
     AppContext *context = [AppContext sharedAppContext];
     [context addObserver:self forKeyPath:@"pushCustomerNum" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyToInsertPushCustomer:) name:Notify_PushCustomer_Got object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyToInsertPushCustomer:) name:Notify_Refresh_OrderList1 object:nil];
     
     self.title = @"客 户";
     

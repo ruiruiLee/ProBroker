@@ -10,6 +10,15 @@
 
 @interface NetWorkHandler (setSpecialtyUserProductRatio)
 
-+ (void) requestToSetSpecialtyUserProductRatio:(NSString *) userId productId:(NSString *) productId productRatio:(CGFloat) productRatio Completion:(Completion)completion;
++ (void) requestToSetSpecialtyUserProductRatio:(NSString *) userId
+                                     productId:(NSString *) productId
+                                  productRatio:(CGFloat) productRatio
+                                    Completion:(Completion)completion;
+
++ (void) requestToSetSpecialtyUserProductRatio:(NSString *) userId
+                                     productId:(NSString *) productId
+                                  productRatio:(CGFloat) productRatio
+                                   selfDefault:(NSString *) selfDefault
+                                    Completion:(Completion)completion;
 
 @end

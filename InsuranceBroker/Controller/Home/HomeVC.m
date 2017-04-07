@@ -436,7 +436,7 @@
             break;
         case 1002:
         {//意外险
-            [self turnToARisk:@"3" riskName:@"意外险"];
+            [self turnToARisk:@"3" riskName:@"意外.旅游"];
         }
             break;
         case 1003:
