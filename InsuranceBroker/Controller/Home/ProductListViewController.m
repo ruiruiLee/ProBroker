@@ -172,7 +172,7 @@
         
         
         NSMutableDictionary *mdic = [[NSMutableDictionary alloc] init];
-        [mdic setObject:@{@"userId": [UserInfoModel shareUserInfoModel].userId} forKey:@"extraInfo"];
+        [mdic setObject:@{@"appId": [UserInfoModel shareUserInfoModel].userId, @"productId": m.productId} forKey:@"extraInfo"];
         
         
         SBJsonWriter *_writer = [[SBJsonWriter alloc] init];

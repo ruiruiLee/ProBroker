@@ -20,13 +20,13 @@
 #import "AppContext.h"
 #import "LocationManagerObserver.h"
 
-
+//设置费率
+//rateSet
 /*
  测试服务器地址信息ß
 
  */
 //
-
 //#define SERVER_ADDRESS @"http://ykbtest.leanapp.cn"
 //#define Base_Uri @"http://118.123.249.87:8783/UKB.AgentNew"
 //#define AVOSCloudAppID  @"dwhKbFjMcY4ppGaSVvzN4577-gzGzoHsz"

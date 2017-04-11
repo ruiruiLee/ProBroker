@@ -16,6 +16,7 @@
 #import "NetWorkHandler+setSpecialtyUserProductRatio.h"
 #import "MyTeamsVC.h"
 #import <MessageUI/MessageUI.h>
+#import "BaseLineView.h"
 
 @interface RateSettingVC ()<PickViewDelegate>
 {
@@ -32,11 +33,30 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    self.title = @"调整佣金";
+    self.title = @"设置推广费";
     
     [self loadCommissionInfo];
     
-    self.tableView.tableFooterView = [[UIView alloc] init];
+    self.tableView.tableFooterView = [self newFootView];
+//    self.tableView.backgroundColor = _COLOR(0xe9, 0xe9, 0xe9);
+}
+
+- (UIView *) newFootView
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+//    view.backgroundColor = _COLOR(0xe9, 0xe9, 0xe9);
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 5)];
+    [view addSubview:line];
+    line.backgroundColor = _COLOR(0xe9, 0xe9, 0xe9);
+    
+    UIImageView *imagev = [[UIImageView alloc] initWithFrame:CGRectMake(0, 5, ScreenWidth, 445*ScreenWidth / 375)];
+    [view addSubview:imagev];
+    imagev.image = ThemeImage(@"img_Explain");
+    
+    view.frame = CGRectMake(0, 0, ScreenWidth, 5 + 445*ScreenWidth / 375);
+    
+    return view;
 }
 
 - (void)didReceiveMemoryWarning {

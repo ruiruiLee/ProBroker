@@ -63,7 +63,7 @@
     
     _perInsurCompany = -1;
     
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"行驶证报价，可直接点击［立即报价］"];
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"上传行驶证，可直接点击［立即报价］"];
     [attributedString addAttribute:NSForegroundColorAttributeName value:_COLOR(0xff, 0x66, 0x19) range:NSMakeRange(12, 4)];
     
     self.lbWarning.attributedText = attributedString;

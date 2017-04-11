@@ -82,7 +82,7 @@
 - (void) getRc4String:(SSDKPlatformType) type
 {
     NSMutableDictionary *mdic = [[NSMutableDictionary alloc] init];
-    [mdic setObject:@{@"userId": [UserInfoModel shareUserInfoModel].userId} forKey:@"extraInfo"];
+    [mdic setObject:@{@"appId": [UserInfoModel shareUserInfoModel].userId, @"productId": self.selectProModel.productId} forKey:@"extraInfo"];
     
     SBJsonWriter *_writer = [[SBJsonWriter alloc] init];
     NSString *dataString = [_writer stringWithObject:mdic];

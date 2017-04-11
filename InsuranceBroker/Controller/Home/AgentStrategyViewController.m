@@ -97,20 +97,22 @@
 
 - (void) doButtonClicked:(UIButton *)sender
 {
-    if(totalModel.isRedirect){
-        if([totalModel.url rangeOfString:@"rateSet"].length > 0){
-            RateSettingVC *vc = [[RateSettingVC alloc] initWithNibName:@"RateSettingVC" bundle:nil];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-        else{
-            WebViewController *web = [IBUIFactory CreateWebViewController];
-            web.title = totalModel.title;
-            web.type = enumShareTypeShare;
-            web.shareTitle = totalModel.title;
-            if(totalModel.imgUrl != nil)
-                web.shareImgArray = [NSArray arrayWithObject:totalModel.imgUrl];
-            [self.navigationController pushViewController:web animated:YES];
-            [web loadHtmlFromUrlWithUserId:totalModel.url];
+    if([self login]){
+        if(totalModel.isRedirect){
+            if([totalModel.url rangeOfString:@"rateSet"].length > 0){
+                RateSettingVC *vc = [[RateSettingVC alloc] initWithNibName:@"RateSettingVC" bundle:nil];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else{
+                WebViewController *web = [IBUIFactory CreateWebViewController];
+                web.title = totalModel.title;
+                web.type = enumShareTypeShare;
+                web.shareTitle = totalModel.title;
+                if(totalModel.imgUrl != nil)
+                    web.shareImgArray = [NSArray arrayWithObject:totalModel.imgUrl];
+                [self.navigationController pushViewController:web animated:YES];
+                [web loadHtmlFromUrlWithUserId:totalModel.url];
+            }
         }
     }
 }

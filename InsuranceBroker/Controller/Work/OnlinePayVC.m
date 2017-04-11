@@ -27,6 +27,11 @@
 #import "BaseLineView.h"
 #import "SepLineLabel.h"
 
+//#import "MyOrderVC.h"
+//#import "CustomerDetailVC.h"
+
+#import "OfferDetailsVC.h"
+
 @interface OnlinePayVC ()
 {
     NSInteger _selectIdx;
@@ -120,6 +125,22 @@
 
 - (void) handlePaySuccess
 {
+    NSMutableArray *vcarray = [[NSMutableArray alloc] initWithArray:self.navigationController.viewControllers];
+    UIViewController *vc = nil;
+    for (int i = 0; i < [vcarray count]; i++) {
+        UIViewController *temp = [vcarray objectAtIndex:i];
+        if([temp isKindOfClass:[OfferDetailsVC class]]){
+            vc = temp;
+            break;
+        }
+    }
+    
+    if(vc){
+        [vcarray removeObject:vc];
+    }
+    
+    self.navigationController.viewControllers = vcarray;
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -194,6 +215,8 @@
         [NetWorkHandler requestToInsurancePay:self.orderId insuranceType:self.insuranceType planOfferId:self.planOfferId payType:model.payValue helpInsure:@"1" Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 99999 ){
+//                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePaySuccess) name:Notify_Pay_Success object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Pay_Success object:nil];
                 [self.navigationController popViewControllerAnimated:YES];
             }
             if(code == 200){
@@ -204,7 +227,6 @@
                 NSString *baseUrl = [[content objectForKey:@"data"] objectForKey:@"unifyPayInitUrl"];
                 
                 [NetWorkHandler requestToInitWechatConfig:@"appPay" payOrderType:payOrderType outTradeNo:outTradeNo openId:nil totalFee:totalFee body:body baseUrl:baseUrl payType:model.payValue Completion:^(int code, id content) {
-                    //                        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
                     if([[content objectForKey:@"state"] integerValue] == 1){
                         // 添加调起数据
                         NSDictionary *dict = [content objectForKey:@"data"];
