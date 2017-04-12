@@ -267,7 +267,7 @@
             [selectVC.navigationController pushViewController:web animated:YES];
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
             
-            [web loadHtmlFromUrl:[NSString stringWithFormat:Peivate_Msg_Url, model.userId, [info objectForKey:@"p"]]];
+            [web loadHtmlFromUrl:[NSString stringWithFormat:Peivate_Msg_Url, SERVER_ADDRESS, model.userId, [info objectForKey:@"p"]]];
           }
        }
     else if( 504 == mt)
@@ -331,7 +331,7 @@
         [selectVC.navigationController pushViewController:web animated:YES];
         UserInfoModel *model = [UserInfoModel shareUserInfoModel];
         
-        [web loadHtmlFromUrl:[NSString stringWithFormat:Peivate_Msg_Url, model.userId, [info objectForKey:@"p"]]];
+        [web loadHtmlFromUrl:[NSString stringWithFormat:Peivate_Msg_Url,SERVER_ADDRESS, model.userId, [info objectForKey:@"p"]]];
         //          }
     }
     else if( 504 == mt)

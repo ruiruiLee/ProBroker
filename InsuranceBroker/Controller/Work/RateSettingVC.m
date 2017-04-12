@@ -46,15 +46,15 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
 //    view.backgroundColor = _COLOR(0xe9, 0xe9, 0xe9);
     
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 5)];
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 15)];
     [view addSubview:line];
     line.backgroundColor = _COLOR(0xe9, 0xe9, 0xe9);
     
-    UIImageView *imagev = [[UIImageView alloc] initWithFrame:CGRectMake(0, 5, ScreenWidth, 445*ScreenWidth / 375)];
+    UIImageView *imagev = [[UIImageView alloc] initWithFrame:CGRectMake(0, 15, ScreenWidth, 445*ScreenWidth / 375)];
     [view addSubview:imagev];
     imagev.image = ThemeImage(@"img_Explain");
     
-    view.frame = CGRectMake(0, 0, ScreenWidth, 5 + 445*ScreenWidth / 375);
+    view.frame = CGRectMake(0, 0, ScreenWidth, 15 + 445*ScreenWidth / 375);
     
     return view;
 }
