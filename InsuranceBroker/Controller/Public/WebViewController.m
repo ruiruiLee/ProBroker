@@ -14,7 +14,6 @@
 #import "IQKeyboardManager.h"
 #import "RootViewController.h"
 #import "SBJsonParser.h"
-#import "PayTypeSelectedVC.h"
 #import "OrderManagerVC.h"
 #import "OnlinePayVC.h"
 
@@ -37,7 +36,6 @@
             [icon addObject:iconStr];
         self.shareImgArray = icon;
         _isLoad = false;
-//        _isReturnPrevWeb = NO;
         
     }
     
@@ -175,7 +173,6 @@
 //支付接口
 - (void) NotifyToPay:(NSString *) orderId insuranceType:(NSString *) insuranceType planOfferId:(NSString *) planOfferId titleName:(NSString *)titleName totalFee:(NSString *)totalFee companyLogo:(NSString *)companyLogo createdAt:(NSString *)createdAt payDesc:(NSString *)payDesc
 {
-//    PayTypeSelectedVC *vc = [[PayTypeSelectedVC alloc] initWithNibName:nil bundle:nil];
     OnlinePayVC *vc = [[OnlinePayVC alloc] initWithNibName:@"OnlinePayVC" bundle:nil];
     [self.navigationController pushViewController:vc animated:YES];
     vc.orderId = orderId;

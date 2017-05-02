@@ -106,10 +106,7 @@
 - (void) setDataFromSub
 {
     NSArray *title = @[@"收益信息", @"经纪人",@"成交时间", @"成交金额", @"推广费比例", @"客户优惠"];
-//    NSArray *content = @[self.billInfo.memo, [Util getTimeString:self.billInfo.createdAt]];
     NSMutableArray *content = [[NSMutableArray alloc] init];
-//    [self addObjectToArray:content object:self.billInfo.memo];
-//    [self addObjectToArray:content object:[Util getTimeString:self.billInfo.createdAt]];
     
     [self addObjectToArray:content object:self.billInfo.memo];
     [self addObjectToArray:content object:self.billInfo.userName];

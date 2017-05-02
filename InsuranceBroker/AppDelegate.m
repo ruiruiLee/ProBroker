@@ -25,6 +25,9 @@
 #import "WXApiManager.h"
 #import <AlipaySDK/AlipaySDK.h>
 
+
+#import "Pingpp.h"
+
 @interface AppDelegate (WXApiDelegate)
 
 
@@ -118,6 +121,9 @@
     
     [self.window makeKeyAndVisible];
     
+    //ping+设置为测试模式
+    [Pingpp setDebugMode:YES];
+    
 
     BOOL firsetLaunch = [AppContext sharedAppContext].firstLaunch;
     if(!firsetLaunch){
@@ -165,38 +171,52 @@
     return YES;
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    return [self applicationOpenURL:url];
+
+// iOS 8 及以下请用这个
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    [Pingpp handleOpenURL:url withCompletion:^(NSString *result, PingppError *error) {
+        // result : success, fail, cancel, invalid
+        [self handlePayResult:result error:error];
+        
+    }];
+    return  YES;
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    return [self applicationOpenURL:url];
+// iOS 9 以上请用这个
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary *)options {
+    [Pingpp handleOpenURL:url withCompletion:^(NSString *result, PingppError *error) {
+        // result : success, fail, cancel, invalid
+        
+        [self handlePayResult:result error:error];
+        
+    }];
+    return  YES;
 }
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary*)options
+- (void) handlePayResult:(NSString *) result error:(PingppError *) error
 {
-    return [self applicationOpenURL:url];
-}
-
-- (BOOL)applicationOpenURL:(NSURL *)url
-{
-    if([url.absoluteString rangeOfString:@"alipayPayIBroker"].length > 0)
-    {
-        if ([url.host isEqualToString:@"safepay"]) {//支付宝支付
-            [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-                if([[resultDic objectForKey:@"resultStatus"] integerValue] == 9000){
-                    [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Pay_Success object:nil];
-                    [Util showAlertMessage:@"支付结果：成功！"];
-                }
-                else
-                    [Util showAlertMessage:[resultDic objectForKey:@"memo"]];
-            }];
-        }
-        return YES;
-    }else
-        return [WXApi handleOpenURL:url delegate:[WXApiManager sharedManager]];
+    NSString *msg;
+    // if (error == nil) {
+    if ([result isEqual:@"success"]) {
+        msg = @"支付成功！";
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Pay_Success object:nil];
+    }
+    else if([result isEqual:@"cancel"]) {
+        msg = @"支付已经取消！";
+    }
+    else if([result isEqual:@"fail"]) {
+        msg = @"支付失败，请稍后再试！";
+    }
+    else if([result isEqual:@"invalid"]) {
+        msg = @"支付无效，请稍后再试！";
+    }
+    else{
+        msg = result;
+    }
+    
+    if (error != nil)
+        NSLog(@"PingppError: code=%lu msg=%@", (unsigned long)error.code, msg);
+    [Util showAlertMessage:msg];
 }
 
 // 在线客服

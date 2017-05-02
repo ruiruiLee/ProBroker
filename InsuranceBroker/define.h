@@ -127,4 +127,6 @@
 #define IINVITE_TITLE @"相信我，只为推荐给最信任的你"
 #define INVITE_CONTENT @"没有条件，加入就送现金10元，然后继续做你爱做的事，玩儿一起来赚钱"
 
+#define kErrorNet         @"网络错误"
+
 #endif /* define_h */

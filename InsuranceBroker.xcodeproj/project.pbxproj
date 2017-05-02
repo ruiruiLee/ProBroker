@@ -162,6 +162,16 @@
 		8654CD881C312CE100411C54 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CD7B1C312CE100411C54 /* SBJsonUTF8Stream.m */; };
 		8654CD891C312CE100411C54 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CD7D1C312CE100411C54 /* SBJsonWriter.m */; };
 		8654CD8C1C31350D00411C54 /* ProjectDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CD8B1C31350D00411C54 /* ProjectDefine.m */; };
+		865768201EA857C100C7F1AE /* libpingppcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8657681A1EA857C100C7F1AE /* libpingppcore.a */; };
+		865768221EA857C100C7F1AE /* Pingpp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8657681C1EA857C100C7F1AE /* Pingpp.bundle */; };
+		865768261EA8588900C7F1AE /* libpingpp+one.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 865768241EA8588900C7F1AE /* libpingpp+one.a */; };
+		8657682B1EA858F200C7F1AE /* libpingpp+network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 865768291EA858F200C7F1AE /* libpingpp+network.a */; };
+		8657682E1EA8591000C7F1AE /* libpingpp+webview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8657682D1EA8591000C7F1AE /* libpingpp+webview.a */; };
+		865768341EA8594800C7F1AE /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 865768311EA8594800C7F1AE /* AlipaySDK.bundle */; };
+		865768351EA8594800C7F1AE /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 865768321EA8594800C7F1AE /* AlipaySDK.framework */; };
+		865768361EA8594800C7F1AE /* libpingpp+alipay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 865768331EA8594800C7F1AE /* libpingpp+alipay.a */; };
+		865768391EA8597A00C7F1AE /* libpingpp+qqwallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 865768381EA8597A00C7F1AE /* libpingpp+qqwallet.a */; };
+		865768411EADA73400C7F1AE /* NetWorkHandler+getCharge.m in Sources */ = {isa = PBXBuildFile; fileRef = 865768401EADA73400C7F1AE /* NetWorkHandler+getCharge.m */; };
 		86769D1E1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D1D1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.m */; };
 		86769D211CEC106B009C7E8F /* EditInsuredUserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D201CEC106B009C7E8F /* EditInsuredUserInfoVC.m */; };
 		86769D231CEC1085009C7E8F /* EditInsuredUserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86769D221CEC1085009C7E8F /* EditInsuredUserInfoVC.xib */; };
@@ -480,7 +490,6 @@
 		86F2E3491D388BDF002FCE75 /* NetWorkHandler+InitWechatConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2E3481D388BDF002FCE75 /* NetWorkHandler+InitWechatConfig.m */; };
 		86F2E34C1D388D2F002FCE75 /* NetWorkHandler+queryPayConfList.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2E34B1D388D2F002FCE75 /* NetWorkHandler+queryPayConfList.m */; };
 		86F2E34F1D388F70002FCE75 /* NetWorkHandler+insurancePay.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2E34E1D388F70002FCE75 /* NetWorkHandler+insurancePay.m */; };
-		86F2E3521D38CAE3002FCE75 /* PayTypeSelectedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2E3511D38CAE3002FCE75 /* PayTypeSelectedVC.m */; };
 		86F2E3571D38D52C002FCE75 /* PayConfDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2E3561D38D52C002FCE75 /* PayConfDataModel.m */; };
 		86F2E3601D38DEDF002FCE75 /* PayTypeSelectedVCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86F2E35E1D38DEDF002FCE75 /* PayTypeSelectedVCTableViewCell.m */; };
 		86F2E3611D38DEDF002FCE75 /* PayTypeSelectedVCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86F2E35F1D38DEDF002FCE75 /* PayTypeSelectedVCTableViewCell.xib */; };
@@ -942,6 +951,20 @@
 		8654CD7D1C312CE100411C54 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		8654CD8A1C31350D00411C54 /* ProjectDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDefine.h; sourceTree = "<group>"; };
 		8654CD8B1C31350D00411C54 /* ProjectDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDefine.m; sourceTree = "<group>"; };
+		8657681A1EA857C100C7F1AE /* libpingppcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpingppcore.a; path = Pingpp/libpingppcore.a; sourceTree = "<group>"; };
+		8657681C1EA857C100C7F1AE /* Pingpp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Pingpp.bundle; path = Pingpp/Pingpp.bundle; sourceTree = "<group>"; };
+		8657681D1EA857C100C7F1AE /* Pingpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pingpp.h; path = Pingpp/Pingpp.h; sourceTree = "<group>"; };
+		865768241EA8588900C7F1AE /* libpingpp+one.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpingpp+one.a"; path = "Pingpp/One/libpingpp+one.a"; sourceTree = "<group>"; };
+		865768251EA8588900C7F1AE /* Pingpp+One.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Pingpp+One.h"; path = "Pingpp/One/Pingpp+One.h"; sourceTree = "<group>"; };
+		865768291EA858F200C7F1AE /* libpingpp+network.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpingpp+network.a"; path = "Pingpp/Dependencies/Network/libpingpp+network.a"; sourceTree = "<group>"; };
+		8657682A1EA858F200C7F1AE /* PingppURLResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PingppURLResponse.h; path = Pingpp/Dependencies/Network/PingppURLResponse.h; sourceTree = "<group>"; };
+		8657682D1EA8591000C7F1AE /* libpingpp+webview.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpingpp+webview.a"; path = "Pingpp/Dependencies/WebView/libpingpp+webview.a"; sourceTree = "<group>"; };
+		865768311EA8594800C7F1AE /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AlipaySDK.bundle; path = Pingpp/Channels/Alipay/AlipaySDK.bundle; sourceTree = "<group>"; };
+		865768321EA8594800C7F1AE /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlipaySDK.framework; path = Pingpp/Channels/Alipay/AlipaySDK.framework; sourceTree = "<group>"; };
+		865768331EA8594800C7F1AE /* libpingpp+alipay.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpingpp+alipay.a"; path = "Pingpp/Channels/Alipay/libpingpp+alipay.a"; sourceTree = "<group>"; };
+		865768381EA8597A00C7F1AE /* libpingpp+qqwallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpingpp+qqwallet.a"; path = "Pingpp/Channels/QQWallet/libpingpp+qqwallet.a"; sourceTree = "<group>"; };
+		8657683F1EADA73400C7F1AE /* NetWorkHandler+getCharge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+getCharge.h"; sourceTree = "<group>"; };
+		865768401EADA73400C7F1AE /* NetWorkHandler+getCharge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+getCharge.m"; sourceTree = "<group>"; };
 		86769D1C1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+queryCustomerInsuredInfo.h"; sourceTree = "<group>"; };
 		86769D1D1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryCustomerInsuredInfo.m"; sourceTree = "<group>"; };
 		86769D1F1CEC106B009C7E8F /* EditInsuredUserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInsuredUserInfoVC.h; sourceTree = "<group>"; };
@@ -1590,8 +1613,6 @@
 		86F2E34B1D388D2F002FCE75 /* NetWorkHandler+queryPayConfList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryPayConfList.m"; sourceTree = "<group>"; };
 		86F2E34D1D388F70002FCE75 /* NetWorkHandler+insurancePay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+insurancePay.h"; sourceTree = "<group>"; };
 		86F2E34E1D388F70002FCE75 /* NetWorkHandler+insurancePay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+insurancePay.m"; sourceTree = "<group>"; };
-		86F2E3501D38CAE3002FCE75 /* PayTypeSelectedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayTypeSelectedVC.h; sourceTree = "<group>"; };
-		86F2E3511D38CAE3002FCE75 /* PayTypeSelectedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayTypeSelectedVC.m; sourceTree = "<group>"; };
 		86F2E3551D38D52C002FCE75 /* PayConfDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayConfDataModel.h; sourceTree = "<group>"; };
 		86F2E3561D38D52C002FCE75 /* PayConfDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayConfDataModel.m; sourceTree = "<group>"; };
 		86F2E35D1D38DEDF002FCE75 /* PayTypeSelectedVCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayTypeSelectedVCTableViewCell.h; sourceTree = "<group>"; };
@@ -1938,12 +1959,19 @@
 				86A5049C1C4F78B10032A901 /* libiconv.tbd in Frameworks */,
 				86A5049B1C4F76760032A901 /* ContactsUI.framework in Frameworks */,
 				86F2E3251D37773C002FCE75 /* AlipaySDK.framework in Frameworks */,
+				8657682B1EA858F200C7F1AE /* libpingpp+network.a in Frameworks */,
+				865768351EA8594800C7F1AE /* AlipaySDK.framework in Frameworks */,
 				86A5043A1C4E37E30032A901 /* MOBFoundation.framework in Frameworks */,
 				86A504381C4E37E30032A901 /* libWeChatSDK.a in Frameworks */,
+				865768361EA8594800C7F1AE /* libpingpp+alipay.a in Frameworks */,
 				86A26E611C44DAB10073FFFC /* MessageUI.framework in Frameworks */,
 				86A504361C4E37E30032A901 /* TencentOpenAPI.framework in Frameworks */,
+				865768391EA8597A00C7F1AE /* libpingpp+qqwallet.a in Frameworks */,
 				865066071C1FB36E00429EAE /* AdSupport.framework in Frameworks */,
+				8657682E1EA8591000C7F1AE /* libpingpp+webview.a in Frameworks */,
+				865768261EA8588900C7F1AE /* libpingpp+one.a in Frameworks */,
 				86F2E3261D37773C002FCE75 /* libcrypto.a in Frameworks */,
+				865768201EA857C100C7F1AE /* libpingppcore.a in Frameworks */,
 				865066051C1FB35E00429EAE /* libz.1.2.5.tbd in Frameworks */,
 				86A5043C1C4E37E30032A901 /* ShareSDK.framework in Frameworks */,
 				86A5043D1C4E37E30032A901 /* ShareSDKConnector.framework in Frameworks */,
@@ -2119,6 +2147,7 @@
 		865065B51C1EA29900429EAE /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				865768171EA8578800C7F1AE /* Pingpp */,
 				CFE093551D915C53008E2569 /* AVOSCloud */,
 				CFE090CE1D915628008E2569 /* SDWebImage */,
 				CFE090B01D91525C008E2569 /* UIKit+AFNetworking */,
@@ -2342,6 +2371,8 @@
 				86F2E34B1D388D2F002FCE75 /* NetWorkHandler+queryPayConfList.m */,
 				86F2E34D1D388F70002FCE75 /* NetWorkHandler+insurancePay.h */,
 				86F2E34E1D388F70002FCE75 /* NetWorkHandler+insurancePay.m */,
+				8657683F1EADA73400C7F1AE /* NetWorkHandler+getCharge.h */,
+				865768401EADA73400C7F1AE /* NetWorkHandler+getCharge.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -2499,6 +2530,81 @@
 				86EECDF91CF583DB00BBAF11 /* NetWorkHandler+privateLetter.m */,
 			);
 			path = Work;
+			sourceTree = "<group>";
+		};
+		865768171EA8578800C7F1AE /* Pingpp */ = {
+			isa = PBXGroup;
+			children = (
+				8657682F1EA8592700C7F1AE /* Channels */,
+				865768271EA858BA00C7F1AE /* Dependencies */,
+				865768231EA8587000C7F1AE /* One */,
+				8657681A1EA857C100C7F1AE /* libpingppcore.a */,
+				8657681C1EA857C100C7F1AE /* Pingpp.bundle */,
+				8657681D1EA857C100C7F1AE /* Pingpp.h */,
+			);
+			name = Pingpp;
+			sourceTree = "<group>";
+		};
+		865768231EA8587000C7F1AE /* One */ = {
+			isa = PBXGroup;
+			children = (
+				865768241EA8588900C7F1AE /* libpingpp+one.a */,
+				865768251EA8588900C7F1AE /* Pingpp+One.h */,
+			);
+			name = One;
+			sourceTree = "<group>";
+		};
+		865768271EA858BA00C7F1AE /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				8657682C1EA8590000C7F1AE /* WebView */,
+				865768281EA858DF00C7F1AE /* Network */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		865768281EA858DF00C7F1AE /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				865768291EA858F200C7F1AE /* libpingpp+network.a */,
+				8657682A1EA858F200C7F1AE /* PingppURLResponse.h */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		8657682C1EA8590000C7F1AE /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				8657682D1EA8591000C7F1AE /* libpingpp+webview.a */,
+			);
+			name = WebView;
+			sourceTree = "<group>";
+		};
+		8657682F1EA8592700C7F1AE /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				865768371EA8596300C7F1AE /* QQWallet */,
+				865768301EA8593900C7F1AE /* Alipay */,
+			);
+			name = Channels;
+			sourceTree = "<group>";
+		};
+		865768301EA8593900C7F1AE /* Alipay */ = {
+			isa = PBXGroup;
+			children = (
+				865768311EA8594800C7F1AE /* AlipaySDK.bundle */,
+				865768321EA8594800C7F1AE /* AlipaySDK.framework */,
+				865768331EA8594800C7F1AE /* libpingpp+alipay.a */,
+			);
+			name = Alipay;
+			sourceTree = "<group>";
+		};
+		865768371EA8596300C7F1AE /* QQWallet */ = {
+			isa = PBXGroup;
+			children = (
+				865768381EA8597A00C7F1AE /* libpingpp+qqwallet.a */,
+			);
+			name = QQWallet;
 			sourceTree = "<group>";
 		};
 		868C7CB51C969AC600B7617A /* ImageBroswer */ = {
@@ -2946,8 +3052,6 @@
 				86A26F141C4B5E900073FFFC /* SalesStatisticsVC.h */,
 				86A26F151C4B5E900073FFFC /* SalesStatisticsVC.m */,
 				86A26F161C4B5E900073FFFC /* SalesStatisticsVC.xib */,
-				86F2E3501D38CAE3002FCE75 /* PayTypeSelectedVC.h */,
-				86F2E3511D38CAE3002FCE75 /* PayTypeSelectedVC.m */,
 				8603C3551E8E34F600241200 /* OnlinePayVC.h */,
 				8603C3561E8E34F600241200 /* OnlinePayVC.m */,
 				8603C3571E8E34F600241200 /* OnlinePayVC.xib */,
@@ -4353,6 +4457,7 @@
 				86248F211CCDFA6A00F1B493 /* ProductListTableViewCell.xib in Resources */,
 				86F2E3611D38DEDF002FCE75 /* PayTypeSelectedVCTableViewCell.xib in Resources */,
 				86C3BC201C2CE1B700F98E80 /* CustomerFollowUpTableCell.xib in Resources */,
+				865768221EA857C100C7F1AE /* Pingpp.bundle in Resources */,
 				8612F42D1CE9C5C20045340F /* InsureInfoListTableViewCell.xib in Resources */,
 				86F2DA7F1C75F25B0088B783 /* UserDetailVC.xib in Resources */,
 				86EECDF71CF5827C00BBAF11 /* ProductDetailWebVC.xib in Resources */,
@@ -4373,6 +4478,7 @@
 				8654CA531C30CFEB00411C54 /* BindPhoneNumVC.xib in Resources */,
 				86C3BC3D1C2D73E100F98E80 /* MenuCell.xib in Resources */,
 				86B279021CD31537000E5FAA /* QuickQuoteVC.xib in Resources */,
+				865768341EA8594800C7F1AE /* AlipaySDK.bundle in Resources */,
 				86C3BB151C228D6F00F98E80 /* blackArrow.png in Resources */,
 				86C3BB9D1C27F95E00F98E80 /* CustomDetailHeaderView.xib in Resources */,
 				86C3BCC71C2E933600F98E80 /* IQKeyboardManager.bundle in Resources */,
@@ -4707,6 +4813,7 @@
 				86C3BBE91C2AD05700F98E80 /* TagObjectModel.m in Sources */,
 				86F2E33D1D3779AA002FCE75 /* XMLDictionary.m in Sources */,
 				86A504CF1C51CB870032A901 /* NetWorkHandler+queryStatistics.m in Sources */,
+				865768411EADA73400C7F1AE /* NetWorkHandler+getCharge.m in Sources */,
 				86C3BC241C2CE6BA00F98E80 /* InsuranceTableViewCell.m in Sources */,
 				86A26F021C4A29CB0073FFFC /* InfoView.m in Sources */,
 				86F2DA7E1C75F25B0088B783 /* UserDetailVC.m in Sources */,
@@ -4838,7 +4945,6 @@
 				86769D311CEEEEBE009C7E8F /* SharedCustomerModel.m in Sources */,
 				86A26E3B1C4356620073FFFC /* CityModel.m in Sources */,
 				CFE094931D915C54008E2569 /* AVImageRequestOperation.m in Sources */,
-				86F2E3521D38CAE3002FCE75 /* PayTypeSelectedVC.m in Sources */,
 				86F974001D7FC6E200A36359 /* MyOrderVC.m in Sources */,
 				86C3BCC31C2E933600F98E80 /* IQBarButtonItem.m in Sources */,
 				8625B0151C3BC9BC00312B98 /* NetWorkHandler+saveOrUpdateLabel.m in Sources */,
@@ -5062,8 +5168,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InsuranceBroker/InsuranceBroker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q8Z5QWUAGN;
 				ENABLE_BITCODE = NO;
@@ -5072,6 +5178,7 @@
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/ShareSDK/libraries",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/ShareSDK/libraries/extends/QQSDK",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/AlipaySDK",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp/Channels/Alipay",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5086,6 +5193,12 @@
 					"$(PROJECT_DIR)/InsuranceBroker/View/Global/QRCode/ZBarSDK",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/AppKeFuLib",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/AlipaySDK",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp/One",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp/Dependencies/Network",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp/Dependencies/WebView",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp/Channels/Alipay",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp/Channels/QQWallet",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -5119,8 +5232,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibrokerDev;
+				PROVISIONING_PROFILE = "e7d3752a-de90-4fa9-b00f-56e1cf51034b";
+				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibroker;
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
@@ -5144,6 +5257,7 @@
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/ShareSDK/libraries",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/ShareSDK/libraries/extends/QQSDK",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/AlipaySDK",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp/Channels/Alipay",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5158,6 +5272,12 @@
 					"$(PROJECT_DIR)/InsuranceBroker/View/Global/QRCode/ZBarSDK",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/AppKeFuLib",
 					"$(PROJECT_DIR)/InsuranceBroker/Vendor/AlipaySDK",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp/One",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp/Dependencies/Network",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp/Dependencies/WebView",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp/Channels/Alipay",
+					"$(PROJECT_DIR)/InsuranceBroker/Vendor/Pingpp/Channels/QQWallet",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
