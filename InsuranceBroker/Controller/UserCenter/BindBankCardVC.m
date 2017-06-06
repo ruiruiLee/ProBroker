@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"绑定银行卡";
+    self.title = @"绑定账户";
     _selectBankIdx = -1;
 }
 
@@ -60,7 +60,7 @@
     [header addSubview:lb];
     lb.font = _FONT(11);
     lb.textColor = _COLOR(0x75, 0x75, 0x75);
-    lb.attributedText = [Util getWarningString:@"＊请绑定您本人的银行卡"];
+    lb.attributedText = [Util getWarningString:@"＊请绑定您本人的账户"];
     
     self.tableview.tableFooterView = [[UIView alloc] init];
     self.tableview.tableHeaderView = header;
@@ -97,13 +97,13 @@
     _tfName = [[UITextField alloc] initWithFrame:CGRectMake(0, 10, ScreenWidth - 120, 30)];
     _tfName.font = _FONT(15);
     _tfName.textColor = _COLOR(0x21, 0x21, 0x21);
-    _tfName.placeholder = @"持卡人姓名";
+    _tfName.placeholder = @"账户所有人姓名";
     
     _tfCardNum = [[UITextField alloc] initWithFrame:CGRectMake(0, 10, ScreenWidth - 120, 30)];
     _tfCardNum.font = _FONT(15);
     _tfCardNum.textColor = _COLOR(0x21, 0x21, 0x21);
-    _tfCardNum.placeholder = @"银行卡号";
-    _tfCardNum.keyboardType = UIKeyboardTypeNumberPad;
+    _tfCardNum.placeholder = @"银行卡号／支付宝账户／微信账户";
+//    _tfCardNum.keyboardType = UIKeyboardTypeNumberPad;
     
     _lbBankName = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, ScreenWidth - 120, 30)];
     _lbBankName.font = _FONT(15);
@@ -194,15 +194,15 @@
     }
     
     if(indexPath.row == 0){
-        cell.textLabel.text = @"持卡人";
+        cell.textLabel.text = @"所有人姓名";
         cell.accessoryView = _tfName;
     }
     else if (indexPath.row == 1){
-        cell.textLabel.text = @"卡号";
+        cell.textLabel.text = @"卡号／账户";
         cell.accessoryView = _tfCardNum;
     }
     else{
-        cell.textLabel.text = @"所属银行";
+        cell.textLabel.text = @"所属机构";
         cell.accessoryView = _lbBankName;
         if(_selectBankIdx >= 0){
             _lbBankName.text = ((BankInfoModel*)[self.data objectAtIndex:_selectBankIdx]).backShortName;
@@ -224,9 +224,11 @@
 {
     [self resignFirstResponder];
     
+    BankInfoModel *model = [self.data objectAtIndex:_selectBankIdx];
+    
     if(_selectBankIdx < 0)
     {
-        [Util showAlertMessage:@"请选择银行卡所属银行"];
+        [Util showAlertMessage:@"请选择所属机构"];
         return;
     }
     
@@ -236,14 +238,20 @@
         return;
     }
 
-    
-    if(![self checkCardNo:_tfCardNum.text])
-    {
-        [Util showAlertMessage:@"请填写正确的银行卡卡号"];
-        return;
+    NSString *bankName = model.backName;
+    if([bankName rangeOfString:@"支付宝"].length > 0 || [bankName rangeOfString:@"微信"].length > 0){
+        if(_tfCardNum.text == 0){
+            [Util showAlertMessage:@"请填写正确账户信息"];
+            return;
+        }
     }
-
-    BankInfoModel *model = [self.data objectAtIndex:_selectBankIdx];
+    else{
+        if(![self checkCardNo:_tfCardNum.text])
+        {
+            [Util showAlertMessage:@"请填写正确的银行卡卡号"];
+            return;
+        }
+    }
     
     [NetWorkHandler requestToSaveOrUpdateUserBackCard:nil backId:model.backId userId:[UserInfoModel shareUserInfoModel].userId defaultStatus:@"1" backCardNo:_tfCardNum.text moneyStatus:@"1" cardholder:_tfName.text openBackName:model.backName Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
@@ -271,7 +279,7 @@
     }
     
     _menu.titleArray = self.data;
-    _menu.title = @"银行卡所属银行";
+    _menu.title = @"账户所属机构";
     _menu.selectIdx = _selectBankIdx;
     
     [_menu show:self.view];

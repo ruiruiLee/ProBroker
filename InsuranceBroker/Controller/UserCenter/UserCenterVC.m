@@ -18,6 +18,9 @@
 #import <Accelerate/Accelerate.h>
 
 #import "MyOrderVC.h"
+#import "ProductRadioListCell.h"
+
+#define cell_height 52
 
 @implementation UserCenterVC
 
@@ -57,12 +60,6 @@
     
     self.headHConstraint.constant = ScreenWidth;
     
-    CGFloat h = SCREEN_HEIGHT - 626 - 49 + 1;
-    if(h > 0)
-        self.footVConstraint.constant = h;
-    else
-        self.footVConstraint.constant = 0;
-    
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     AppContext *context = [AppContext sharedAppContext];
     [model addObserver:self forKeyPath:@"headerImg" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
@@ -91,6 +88,9 @@
     [self.scrollview setJElasticPullToRefreshFillColor:_COLORa(0xff, 0x66, 0x19, 0.4)];
     [self.scrollview setJElasticPullToRefreshBackgroundColor:[UIColor clearColor]];
     
+    [self.productRadioTableview registerNib:[UINib nibWithNibName:@"ProductRadioListCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+    self.productRadioTableview.scrollEnabled = NO;
+    
     [self updateUserInfo];
 }
 
@@ -107,6 +107,9 @@
     
     self.lbCarTotalOrderCount.text = [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue];//车险累计
     self.lbNoCarTotalOrderCount.text = [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue];//非车险累计
+    
+    self.lbAmountTotalCarOrderCount.text = [NSString stringWithFormat:@"累计单量：%@单", [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue]];
+    self.lbAmountTotalNoCarOrderCount.text = [NSString stringWithFormat:@"累计单量：%@单", [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue]];
     
     [self.btNameEdit setTitle:model.nickname forState:UIControlStateNormal];
     UIImage *placeholderImage = ThemeImage(@"head_male");
@@ -144,6 +147,16 @@
     }else{
         self.lbCertificate.text = @"未认证";
     }
+    
+    self.tableHConstraint.constant = model.productRadios.count * cell_height;
+    
+    CGFloat h = self.scrollview.frame.size.height - 515 + 1 - self.tableHConstraint.constant;
+    if(h > 0)
+        self.footVConstraint.constant = h;
+    else
+        self.footVConstraint.constant = 0;
+    
+    [self.productRadioTableview reloadData];
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -162,6 +175,12 @@
     {
         [model queryUserInfo];
     }
+//    [self updateUserInfo];
+}
+
+- (void) viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self updateUserInfo];
 }
 
@@ -392,6 +411,44 @@
     CGImageRelease(imageRef);
     
     return returnImage;
+}
+
+#pragma UITableViewDelegate, UITableViewDataSource
+- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [UserInfoModel shareUserInfoModel].productRadios.count;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return cell_height;
+}
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *deq = @"cell";
+    ProductRadioListCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+    if(!cell){
+        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"ProductRadioListCell" owner:nil options:nil];
+        cell = [nibs lastObject];
+    }
+    
+    ProductRadioModel *model = [[UserInfoModel shareUserInfoModel].productRadios objectAtIndex:indexPath.row];
+    [cell.productLogo sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:nil];
+    cell.productName.text = model.productName;
+    cell.productRadio.text = [NSString stringWithFormat:@"%@%@", model.productMaxRatio, @"%"];
+    
+    return cell;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 @end

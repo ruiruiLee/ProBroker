@@ -234,6 +234,7 @@
     [NetWorkHandler requestToQueryUserInfo:self.userId Completion:^(int code, id content) {
         if(code == 200){
             [self setDetailContentWithDictionary:[content objectForKey:@"data"]];
+            self.productRadios = [ProductRadioModel modelArrayFromArray:[content objectForKey:@"ratios"]];
         }else if (code == 504){
             [self logout];
         }
@@ -336,6 +337,7 @@
     [NetWorkHandler requestToQueryUserInfo:self.userId Completion:^(int code, id content) {
         if(code == 200){
             [self setDetailContentWithDictionary:[content objectForKey:@"data"]];
+            self.productRadios = [ProductRadioModel modelArrayFromArray:[content objectForKey:@"ratios"]];
         }
         if(self.storeCompletion)
             self.storeCompletion(code, content);

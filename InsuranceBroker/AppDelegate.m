@@ -168,6 +168,7 @@
     }
 
 
+    [[UserInfoModel shareUserInfoModel] queryUserInfo];
     return YES;
 }
 

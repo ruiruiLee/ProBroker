@@ -19,7 +19,7 @@
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, SepLineColor.CGColor);
-    CGContextFillRect(context, CGRectMake(0, CGRectGetHeight(self.frame) / 2, CGRectGetWidth(self.frame), 0.6));
+//    CGContextFillRect(context, CGRectMake(0, CGRectGetHeight(self.frame) / 2, CGRectGetWidth(self.frame), 0.6));
     CGContextFillRect(context, CGRectMake(CGRectGetWidth(self.frame)/2, 10, 0.6, CGRectGetHeight(self.frame) - 20));
 }
 

@@ -172,6 +172,9 @@
 		865768361EA8594800C7F1AE /* libpingpp+alipay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 865768331EA8594800C7F1AE /* libpingpp+alipay.a */; };
 		865768391EA8597A00C7F1AE /* libpingpp+qqwallet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 865768381EA8597A00C7F1AE /* libpingpp+qqwallet.a */; };
 		865768411EADA73400C7F1AE /* NetWorkHandler+getCharge.m in Sources */ = {isa = PBXBuildFile; fileRef = 865768401EADA73400C7F1AE /* NetWorkHandler+getCharge.m */; };
+		86764C981EE53CF800ED8765 /* ProductRadioModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86764C971EE53CF800ED8765 /* ProductRadioModel.m */; };
+		86764C9F1EE54C3B00ED8765 /* ProductRadioListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86764C9D1EE54C3B00ED8765 /* ProductRadioListCell.m */; };
+		86764CA01EE54C3B00ED8765 /* ProductRadioListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86764C9E1EE54C3B00ED8765 /* ProductRadioListCell.xib */; };
 		86769D1E1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D1D1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.m */; };
 		86769D211CEC106B009C7E8F /* EditInsuredUserInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86769D201CEC106B009C7E8F /* EditInsuredUserInfoVC.m */; };
 		86769D231CEC1085009C7E8F /* EditInsuredUserInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86769D221CEC1085009C7E8F /* EditInsuredUserInfoVC.xib */; };
@@ -965,6 +968,11 @@
 		865768381EA8597A00C7F1AE /* libpingpp+qqwallet.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpingpp+qqwallet.a"; path = "Pingpp/Channels/QQWallet/libpingpp+qqwallet.a"; sourceTree = "<group>"; };
 		8657683F1EADA73400C7F1AE /* NetWorkHandler+getCharge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+getCharge.h"; sourceTree = "<group>"; };
 		865768401EADA73400C7F1AE /* NetWorkHandler+getCharge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+getCharge.m"; sourceTree = "<group>"; };
+		86764C961EE53CF800ED8765 /* ProductRadioModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductRadioModel.h; sourceTree = "<group>"; };
+		86764C971EE53CF800ED8765 /* ProductRadioModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductRadioModel.m; sourceTree = "<group>"; };
+		86764C9C1EE54C3B00ED8765 /* ProductRadioListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductRadioListCell.h; sourceTree = "<group>"; };
+		86764C9D1EE54C3B00ED8765 /* ProductRadioListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductRadioListCell.m; sourceTree = "<group>"; };
+		86764C9E1EE54C3B00ED8765 /* ProductRadioListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductRadioListCell.xib; sourceTree = "<group>"; };
 		86769D1C1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+queryCustomerInsuredInfo.h"; sourceTree = "<group>"; };
 		86769D1D1CEC0CDC009C7E8F /* NetWorkHandler+queryCustomerInsuredInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+queryCustomerInsuredInfo.m"; sourceTree = "<group>"; };
 		86769D1F1CEC106B009C7E8F /* EditInsuredUserInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditInsuredUserInfoVC.h; sourceTree = "<group>"; };
@@ -3102,6 +3110,8 @@
 				8625AFFF1C3A901E00312B98 /* AppContext.m */,
 				8654CA541C310E7F00411C54 /* UserInfoModel.h */,
 				8654CA551C310E7F00411C54 /* UserInfoModel.m */,
+				86764C961EE53CF800ED8765 /* ProductRadioModel.h */,
+				86764C971EE53CF800ED8765 /* ProductRadioModel.m */,
 				8625B01F1C3BF92B00312B98 /* BaseModel.h */,
 				8625B0201C3BF92B00312B98 /* BaseModel.m */,
 				8625B03D1C3E548500312B98 /* DictModel.h */,
@@ -3268,6 +3278,9 @@
 				8625AF8D1C32761A00312B98 /* UserEditTableViewCell.h */,
 				8625AF8E1C32761A00312B98 /* UserEditTableViewCell.m */,
 				8625AF8F1C32761A00312B98 /* UserEditTableViewCell.xib */,
+				86764C9C1EE54C3B00ED8765 /* ProductRadioListCell.h */,
+				86764C9D1EE54C3B00ED8765 /* ProductRadioListCell.m */,
+				86764C9E1EE54C3B00ED8765 /* ProductRadioListCell.xib */,
 			);
 			path = UserCenter;
 			sourceTree = "<group>";
@@ -4415,6 +4428,7 @@
 				86C3BBD01C2A602000F98E80 /* TagListViewController.xib in Resources */,
 				86F2DA9E1C7FE81D0088B783 /* ProductSettingTableViewCell.xib in Resources */,
 				8625AF961C32864200312B98 /* QRCodeVC.xib in Resources */,
+				86764CA01EE54C3B00ED8765 /* ProductRadioListCell.xib in Resources */,
 				8603C35E1E8F9F1000241200 /* RateSettingVC.xib in Resources */,
 				861A1D911E287CC3003AB904 /* SalesTableViewCell.xib in Resources */,
 				8625AFF01C38FF9E00312B98 /* IncomeWithdrawVC.xib in Resources */,
@@ -4674,6 +4688,7 @@
 				8625AFFC1C3A19ED00312B98 /* WXLoginVC.m in Sources */,
 				CFE094AA1D915C54008E2569 /* AVLogger.m in Sources */,
 				86C3BCC21C2E933600F98E80 /* IQTextView.m in Sources */,
+				86764C9F1EE54C3B00ED8765 /* ProductRadioListCell.m in Sources */,
 				CFE090F01D915628008E2569 /* MKAnnotationView+WebCache.m in Sources */,
 				8618CEBB1E5C457600F3F954 /* FXBlurView.m in Sources */,
 				865065C01C1EB36E00429EAE /* BaseViewController.m in Sources */,
@@ -4834,6 +4849,7 @@
 				86F2E34C1D388D2F002FCE75 /* NetWorkHandler+queryPayConfList.m in Sources */,
 				CFE090F71D915628008E2569 /* SDWebImageManager.m in Sources */,
 				869C93581D080B76009CF369 /* PrivateMsgVC.m in Sources */,
+				86764C981EE53CF800ED8765 /* ProductRadioModel.m in Sources */,
 				8654CD871C312CE100411C54 /* SBJsonTokeniser.m in Sources */,
 				8612F4151CE4828D0045340F /* JElasticPullToRefreshView.m in Sources */,
 				CFE094B21D915C54008E2569 /* NSDictionary+LCHash.m in Sources */,
@@ -5168,8 +5184,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InsuranceBroker/InsuranceBroker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q8Z5QWUAGN;
 				ENABLE_BITCODE = NO;
@@ -5232,8 +5248,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e7d3752a-de90-4fa9-b00f-56e1cf51034b";
-				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibroker;
+				PROVISIONING_PROFILE = "08eeb0b3-8cd3-4d89-88a1-53a6450b7abc";
+				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibrokerDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
@@ -5247,8 +5263,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InsuranceBroker/InsuranceBroker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Q8Z5QWUAGN;
 				ENABLE_BITCODE = NO;
@@ -5311,8 +5327,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e7d3752a-de90-4fa9-b00f-56e1cf51034b";
-				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibroker;
+				PROVISIONING_PROFILE = "08eeb0b3-8cd3-4d89-88a1-53a6450b7abc";
+				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibrokerDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 			};

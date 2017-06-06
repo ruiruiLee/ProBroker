@@ -429,7 +429,7 @@
             if([self login]){
                 AutoInsuranceStep1VC *vc = [IBUIFactory CreateAutoInsuranceStep1VC];
                 vc.hidesBottomBarWhenPushed = YES;
-                vc.title = @"人保车险";
+                vc.title = @"车险算价";
                 [self.navigationController pushViewController:vc animated:YES];
             }
         }

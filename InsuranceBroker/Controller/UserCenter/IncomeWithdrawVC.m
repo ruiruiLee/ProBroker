@@ -300,7 +300,7 @@
                 cell.contentView.backgroundColor = _COLOR(245, 245, 245);
             }
             
-            cell.textLabel.text = @"添加银行卡";
+            cell.textLabel.text = @"添加提现账户";
             cell.imageView.image = ThemeImage(@"add_card");
             
             return cell;

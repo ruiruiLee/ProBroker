@@ -43,6 +43,10 @@
 {
     if(self.title == nil)
         self.title =  [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    
+    if([self.title isEqualToString:@"提交成功"]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Add_NewCustomer object:nil];
+    }
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType

@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseModel.h"
 #import "NetWorkHandler.h"
+#import "ProductRadioModel.h"
 
 @interface UserInfoModel : BaseModel
 
@@ -57,31 +58,8 @@
 @property (nonatomic, strong) NSString *liveAddr;//":"四川省成都市青羊区京城小区" //居住地址
 
 @property (nonatomic, strong) NSString *qrcodeAddr;//":""//二维码地址
-//@property (nonatomic, assign) NSInteger monthOrderSuccessNums;//":0//上月成功订单
-//@property (nonatomic, assign) NSInteger orderSuccessNums;//":0//总订单数总订单数
-//@property (nonatomic, assign) CGFloat monthOrderEarn;//":0//上月成功订单收益
-//@property (nonatomic, assign) CGFloat orderEarn;//":0//总订单收益
-//@property (nonatomic, strong) NSString *redBagId;//":0//红包最新ID
-//@property (nonatomic, assign) NSInteger userInviteNums;//":0//自己邀请人数
-//@property (nonatomic, assign) NSInteger userTeamInviteNums;//":0//团队总人数
 
 @property (nonatomic, strong) NSString *cardVerifiyMsg;//认证失败信息
-//@property (nonatomic, assign) NSInteger nowMonthOrderSuccessNums;
-//@property (nonatomic, assign) CGFloat nowMonthOrderSuccessEarn;
-
-//@property (nonatomic, assign) NSInteger orderTotalSuccessNums;//总成功订单数
-//@property (nonatomic, assign) CGFloat orderTotalSuccessEarn;//总成功订单收益
-//@property (nonatomic, assign) CGFloat orderTotalSellEarn;//总成功订单销售额
-
-//@property (nonatomic, assign) NSInteger nowMonthOrderSuccessNums;//月成功订单数
-//@property (nonatomic, assign) double nowMonthOrderSuccessEarn;//月成功订单收益
-//@property (nonatomic, assign) CGFloat nowMonthOrderSellEarn;//月成功订单销售额
-//@property (nonatomic, assign) CGFloat nowUserTotalMoney;//当前月收益 +直接收益+提层+管理津贴+红包
-//
-//@property (nonatomic, assign) CGFloat userTotalMoney;//总收益；+直接收益+提层+管理津贴+红包
-
-//@property (nonatomic, assign) NSInteger teamInviteNums;//自己邀请人数
-//@property (nonatomic, assign) NSInteger teamTotalNums;//团队总人数
 
 @property (nonatomic, assign) BOOL possessTeamStatus;// 具备团队长状态；0没有，1有
 
@@ -112,6 +90,9 @@
 @property (nonatomic, assign) long long ztdrs;//": "0"//总团队人数
 @property (nonatomic, assign) long long car_zcgdds;////总车险成功订单数
 @property (nonatomic, assign) long long nocar_zcgdds;//总非车险成功订单数
+
+
+@property (nonatomic, strong) NSArray *productRadios;
 
 + (UserInfoModel *) shareUserInfoModel;
 - (void) setContentWithDictionary:(NSDictionary *) dic;

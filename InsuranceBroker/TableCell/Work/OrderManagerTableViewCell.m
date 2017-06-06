@@ -17,6 +17,7 @@
     
     self.logoImgV.layer.borderWidth = 0.5;
     self.logoImgV.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
+    [self.hud startAnimating];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

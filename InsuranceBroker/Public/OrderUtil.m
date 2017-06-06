@@ -16,12 +16,26 @@
 
 + (void) setPolicyStatusWithTableCell:(PolicyInfoTableViewCell *) cell orderOfferStatusStr:(NSString*) orderOfferStatusStr orderImgType:(NSInteger) orderImgType
 {
+    if(orderImgType == 1){
+        cell.hud.hidden = NO;
+        [cell.hud startAnimating];
+    }
+    else{
+        cell.hud.hidden = YES;
+    }
     LeftImgButtonLeft *btn = cell.btnStatus;
     [self checkOrderOfferStatusStr:orderOfferStatusStr btn:btn orderImgType:orderImgType];
 }
 
 + (void) setPolicyStatusWithCell:(OrderManagerTableViewCell *) cell orderOfferStatusStr:(NSString *) orderOfferStatusStr orderImgType:(NSInteger) orderImgType
 {
+    if(orderImgType == 1){
+        cell.hud.hidden = NO;
+        [cell.hud startAnimating];
+    }
+    else{
+        cell.hud.hidden = YES;
+    }
     LeftImgButtonLeft *btn = cell.btnStatus;
     [self checkOrderOfferStatusStr:orderOfferStatusStr btn:btn orderImgType:orderImgType];
 }
@@ -40,7 +54,6 @@
     }
     else if (orderOfferStatus == 1){}
     else if (orderOfferStatus == 3){
-//        string = [NSString stringWithFormat:@"共有%d份报价", orderOfferNums];
         string = [NSString stringWithFormat:@"价格：%.2f", orderOfferOrigPrice];
         NSMutableAttributedString *att = [self attstringWithString:string range:NSMakeRange(3, string.length-3) font:_FONT(16) color:_COLOR(0xff, 0x66, 0x19)];
         [att addAttribute:NSFontAttributeName value:_FONT(14) range:NSMakeRange(0, 3)];
@@ -90,7 +103,7 @@
     NSString *title = @"";
     UIImage *image = nil;
     if(orderImgType == 1){
-        image = ThemeImage(@"price_loading");
+        image = ThemeImage(@"");
     }
     else if (orderImgType == 2){
         image = ThemeImage(@"error");

@@ -13,7 +13,7 @@
 #import "UIScrollView+JElasticPullToRefresh.h"
 #import "UserCenterHeaderBgView.h"
 
-@interface UserCenterVC : BaseViewController <UIScrollViewDelegate>
+@interface UserCenterVC : BaseViewController <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollview;
 @property (nonatomic, strong) IBOutlet UIImageView *photoImgV;
@@ -36,13 +36,19 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbNoCarTotalOrderCount;//总订单数
 @property (nonatomic, strong) IBOutlet UILabel *lbNowMonthOrderCount;
 
+@property (nonatomic, strong) IBOutlet UILabel *lbAmountTotalCarOrderCount;
+@property (nonatomic, strong) IBOutlet UILabel *lbAmountTotalNoCarOrderCount;
+
 //约束
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *headHConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *footVConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *tableHConstraint;
 
 @property (nonatomic, strong) IBOutlet UIButton *btnEditPhoto;
 
 @property (nonatomic, strong) IBOutlet UIView *contentView;
+
+@property (nonatomic, strong) IBOutlet UITableView *productRadioTableview;
 
 //修改用户资料
 - (IBAction)EditUserInfo:(id)sender;
