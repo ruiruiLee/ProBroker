@@ -37,6 +37,7 @@
                            limit:(NSInteger) limit
                             sord:(NSString *) sord
                             sidx:(NSString *) sidx
+                        keyValue:(NSString *) keyValue
                          filters:(NSDictionary *) filters
                       Completion:(Completion)completion
 {
@@ -47,6 +48,7 @@
     [Util setValueForKeyWithDic:pramas value:sord key:@"sord"];
 //    [Util setValueForKeyWithDic:pramas value:@"1" key:@"status"];
     [Util setValueForKeyWithDic:pramas value:sidx key:@"sidx"];
+    [Util setValueForKeyWithDic:pramas value:keyValue key:@"keyValue"];
 //    [Util setValueForKeyWithDic:pramas value:Default_User_Type key:@"userType"];
     
     SBJsonWriter *writer = [[SBJsonWriter alloc] init];

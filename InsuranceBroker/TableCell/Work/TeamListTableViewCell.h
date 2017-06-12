@@ -17,5 +17,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbStatus;
 @property (nonatomic, strong) IBOutlet UILabel *lbSubStatus;
 @property (nonatomic, strong) IBOutlet UIButton *btnRemark;
+@property (nonatomic, strong) IBOutlet UILabel *lbSource;
+@property (nonatomic, strong) IBOutlet UILabel *lbPhone;
 
 @end

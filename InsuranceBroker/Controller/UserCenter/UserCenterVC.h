@@ -12,6 +12,7 @@
 #import "UserNameEditButton.h"
 #import "UIScrollView+JElasticPullToRefresh.h"
 #import "UserCenterHeaderBgView.h"
+#import "LeftMargenButton.h"
 
 @interface UserCenterVC : BaseViewController <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
@@ -36,8 +37,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *lbNoCarTotalOrderCount;//总订单数
 @property (nonatomic, strong) IBOutlet UILabel *lbNowMonthOrderCount;
 
-@property (nonatomic, strong) IBOutlet UILabel *lbAmountTotalCarOrderCount;
-@property (nonatomic, strong) IBOutlet UILabel *lbAmountTotalNoCarOrderCount;
+//@property (nonatomic, strong) IBOutlet UILabel *lbAmountTotalCarOrderCount;
+//@property (nonatomic, strong) IBOutlet UILabel *lbAmountTotalNoCarOrderCount;
 
 //约束
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *headHConstraint;
@@ -49,6 +50,10 @@
 @property (nonatomic, strong) IBOutlet UIView *contentView;
 
 @property (nonatomic, strong) IBOutlet UITableView *productRadioTableview;
+
+@property (nonatomic, strong) IBOutlet LeftMargenButton *btnMyTeamName;
+
+@property (nonatomic, strong) IBOutlet UILabel *lbRedPackageCount;
 
 //修改用户资料
 - (IBAction)EditUserInfo:(id)sender;

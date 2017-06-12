@@ -54,6 +54,8 @@
 @property (nonatomic, assign) NSInteger userDoType;//": "0",
 @property (nonatomic, assign) NSInteger userLevel;//": "0",
 
+@property (nonatomic, strong) NSString *yqrRealName;
+
 
 
 @end

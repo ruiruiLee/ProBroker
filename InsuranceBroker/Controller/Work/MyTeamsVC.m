@@ -23,6 +23,7 @@
 
 @implementation MyTeamsVC
 @synthesize lbAmount;
+@synthesize filterString;
 
 - (id) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -151,7 +152,7 @@
     if(page == 0)
         [self loadUserTeamSellTj];
     
-    [NetWorkHandler requestUserQueryForPageList:page limit:LIMIT sord:@"desc" sidx:@"U_UserDataStatisticsNow.nowMonthOrderSuccessNums" filters:filters Completion:^(int code, id content) {
+    [NetWorkHandler requestUserQueryForPageList:page limit:LIMIT sord:@"desc" sidx:@"U_UserDataStatisticsNow.nowMonthOrderSuccessNums" keyValue:self.filterString filters:filters Completion:^(int code, id content) {
         [self refreshTable];
         [self loadMoreDataToTable];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
@@ -169,18 +170,18 @@
 
 - (void) loadUserTeamSellTj
 {
-    [NetWorkHandler requestToQueryUserTeamSellTj:self.userid Completion:^(int code, id content) {
-        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-        if(code == 200){
-            self.teamInfo = (RatioMapsModel*)[RatioMapsModel modelFromDictionary:[content objectForKey:@"data"]];
-            
-            self.lbMonth.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员本月累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.month_zcgddbf floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.month_zcgddbf floatValue]]];
-            self.lbDay.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员今日累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.day_zcgddbf floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.day_zcgddbf floatValue]]];
-            self.lbUpdateTime.text =  self.teamInfo.tjTime;
-            
-            [self.pulltable reloadData];
-        }
-    }];
+//    [NetWorkHandler requestToQueryUserTeamSellTj:self.userid Completion:^(int code, id content) {
+//        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+//        if(code == 200){
+//            self.teamInfo = (RatioMapsModel*)[RatioMapsModel modelFromDictionary:[content objectForKey:@"data"]];
+//            
+//            self.lbMonth.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员本月累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.month_zcgddbf floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.month_zcgddbf floatValue]]];
+//            self.lbDay.attributedText = [Util getAttributeString:[NSString stringWithFormat:@"团队成员今日累计销售 %@元", [Util getDecimalStyle:[self.teamInfo.day_zcgddbf floatValue]]] substr:[Util getDecimalStyle:[self.teamInfo.day_zcgddbf floatValue]]];
+//            self.lbUpdateTime.text =  self.teamInfo.tjTime;
+//            
+//            [self.pulltable reloadData];
+//        }
+//    }];
 }
 
 - (NSDictionary *) getRulesByField:(NSString *) field op:(NSString *) op data:(NSString *) data

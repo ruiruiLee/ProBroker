@@ -7,7 +7,12 @@
 //
 
 #import "MyTeamsVC.h"
+#import "BackGroundView.h"
 
-@interface MyTeamInfoVC : MyTeamsVC
+@interface MyTeamInfoVC : MyTeamsVC<BackGroundViewDelegate, UISearchBarDelegate>
+
+@property (nonatomic, strong)  BackGroundView *addview;
+
+@property (nonatomic, strong)  UISearchBar *searchbar;
 
 @end

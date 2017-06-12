@@ -20,6 +20,7 @@
                                limit:(NSInteger) limit
                                 sord:(NSString *) sord
                                 sidx:(NSString *) sidx
+                            keyValue:(NSString *) keyValue
                              filters:(NSDictionary *) filters
                           Completion:(Completion)completion;
 

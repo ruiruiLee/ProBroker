@@ -50,7 +50,7 @@
         self.mobileFlag = YES;
         self.webFlag = NO;
         self.sex = 1;
-        self.leader = 0;
+        self.isTeamLeader = 0;
         self.cardVerifiy = 1;
         self.userType = [Default_User_Type integerValue];
         self.accountType = 1;
@@ -71,7 +71,7 @@
         self.mobileFlag = YES;
         self.webFlag = NO;
         self.sex = 1;
-        self.leader = 0;
+        self.isTeamLeader = 0;
         self.cardVerifiy = 1;
         self.accountType = 1;
         self.userType = [Default_User_Type integerValue];
@@ -102,7 +102,7 @@
     self.liveCityId = [dic objectForKey:@"liveCityId"];
     self.liveProvince = [dic objectForKey:@"liveProvince"];
     self.liveCity = [dic objectForKey:@"liveCity"];
-    self.leader = [[dic objectForKey:@"leader"] integerValue];
+    self.isTeamLeader = [[dic objectForKey:@"isTeamLeader"] integerValue];
     self.cardVerifiy = [[dic objectForKey:@"cardVerifiy"] integerValue];
     self.userType = [[dic objectForKey:@"userType"] integerValue];
     self.userId = [dic objectForKey:@"userId"];
@@ -136,7 +136,7 @@
     [Util setValueForKeyWithDic:mDic value:self.liveCityId key:@"liveCityId"];
     [Util setValueForKeyWithDic:mDic value:self.liveProvince key:@"liveProvince"];
     [Util setValueForKeyWithDic:mDic value:self.liveCity key:@"liveCity"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInt:self.leader] key:@"leader"];
+    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInt:self.isTeamLeader] key:@"isTeamLeader"];
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.cardVerifiy] key:@"cardVerifiy"];
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.userType] key:@"userType"];
     [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithBool:self.possessTeamStatus] key:@"possessTeamStatus"];
@@ -167,7 +167,7 @@
     self.liveProvince = [dic objectForKey:@"liveProvince"];
     self.liveCity = [dic objectForKey:@"liveCity"];
     self.liveCityId = [dic objectForKey:@"liveCityId"];
-    self.leader = [[dic objectForKey:@"leader"] integerValue];
+    self.isTeamLeader = [[dic objectForKey:@"isTeamLeader"] integerValue];
     self.cardVerifiy = [[dic objectForKey:@"cardVerifiy"] integerValue];
     self.userType = [[dic objectForKey:@"userType"] integerValue];
     self.accountType = [[dic objectForKey:@"accountType"] integerValue];
@@ -219,6 +219,10 @@
     
     self.car_zcgdds = [[dic objectForKey:@"car_zcgdds"] longLongValue];
     self.nocar_zcgdds = [[dic objectForKey:@"nocar_zcgdds"] longLongValue];
+    self.nocar_zcgddbf = [[dic objectForKey:@"nocar_zcgddbf"] doubleValue];
+    self.car_zcgddbf = [[dic objectForKey:@"car_zcgddbf"] doubleValue];
+    
+    self.redMoney = [dic objectForKey:@"redMoney"];
 }
 
 - (void) removeAllContent

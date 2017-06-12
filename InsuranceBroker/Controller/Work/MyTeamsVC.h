@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) UILabel *lbAmount;
 
+@property (nonatomic, strong) NSString *filterString;
+
 @property (nonatomic, strong) RatioMapsModel *teamInfo;
 
 - (NSDictionary *) getRulesByField:(NSString *) field op:(NSString *) op data:(NSString *) data;

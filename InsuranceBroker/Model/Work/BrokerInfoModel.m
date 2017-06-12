@@ -69,6 +69,8 @@
     model.userDoType = [[dictionary objectForKey:@"userDoType"] integerValue];
     model.userLevel = [[dictionary objectForKey:@"userLevel"] integerValue];
     
+    model.yqrRealName = [dictionary objectForKey:@"yqrRealName"];
+    
     return model;
 }
 

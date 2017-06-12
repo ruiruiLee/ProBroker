@@ -74,6 +74,12 @@
     self.bgViewHeight.constant = SCREEN_HEIGHT - 64;
     self.bgViewWidth.constant = ScreenWidth;
     
+    
+    self.img_RB.image = [Util fitSmallImage:ThemeImage(@"ic_rb") scaledToSize:CGSizeMake(2000, 14.5)];
+    self.img_PA.image = [Util fitSmallImage:ThemeImage(@"ic_pa") scaledToSize:CGSizeMake(2000, 15)];
+    self.img_TP.image = [Util fitSmallImage:ThemeImage(@"ic_tp") scaledToSize:CGSizeMake(2000, 16)];
+    self.img_DD.image = [Util fitSmallImage:ThemeImage(@"ic_dd") scaledToSize:CGSizeMake(2000, 17)];
+    self.img_RS.image = [Util fitSmallImage:ThemeImage(@"ic_rs") scaledToSize:CGSizeMake(2000, 17)];
 }
 
 - (void) loadInsurCompany

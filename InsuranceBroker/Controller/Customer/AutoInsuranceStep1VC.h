@@ -30,4 +30,10 @@
 
 @property (nonatomic, strong) productAttrModel *selectProModel;//选中的产品
 
+@property (nonatomic, strong) IBOutlet UIImageView *img_RB;
+@property (nonatomic, strong) IBOutlet UIImageView *img_PA;
+@property (nonatomic, strong) IBOutlet UIImageView *img_TP;
+@property (nonatomic, strong) IBOutlet UIImageView *img_RS;
+@property (nonatomic, strong) IBOutlet UIImageView *img_DD;
+
 @end

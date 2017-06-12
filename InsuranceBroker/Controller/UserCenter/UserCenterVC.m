@@ -19,6 +19,7 @@
 
 #import "MyOrderVC.h"
 #import "ProductRadioListCell.h"
+#import "MyInviteVC.h"
 
 #define cell_height 52
 
@@ -33,6 +34,8 @@
     [model removeObserver:self forKeyPath:@"nickname"];
     [model removeObserver:self forKeyPath:@"car_now_zcgddbf"];
     [model removeObserver:self forKeyPath:@"nocar_now_zcgddbf"];
+    [model removeObserver:self forKeyPath:@"car_zcgddbf"];
+    [model removeObserver:self forKeyPath:@"nocar_zcgddbf"];
     
     [model removeObserver:self forKeyPath:@"car_now_zcgdds"];
     [model removeObserver:self forKeyPath:@"nocar_now_zcgdds"];
@@ -68,8 +71,9 @@
     [model addObserver:self forKeyPath:@"nickname" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [context addObserver:self forKeyPath:@"isRedPack" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [model addObserver:self forKeyPath:@"car_now_zcgddbf" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+    [model addObserver:self forKeyPath:@"car_zcgddbf" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
-    
+    [model addObserver:self forKeyPath:@"nocar_zcgddbf" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [model addObserver:self forKeyPath:@"nocar_now_zcgddbf" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [model addObserver:self forKeyPath:@"car_now_zcgdds" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     [model addObserver:self forKeyPath:@"nocar_now_zcgdds" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
@@ -98,18 +102,18 @@
 {
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     
-    self.lbMonthOrderSuccessNums.text = [Util getDecimalStyle:model.car_now_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
-    self.lbPersonalMonthOrderSuccessNums.text = [Util getDecimalStyle:model.nocar_now_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
-    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", (int)model.car_now_zcgdds];//车险本月单量
-    self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%d单", (int)model.nocar_now_zcgdds];//个险本月单量
+    self.lbMonthOrderSuccessNums.text = [Util getDecimalStyle:model.car_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
+    self.lbPersonalMonthOrderSuccessNums.text = [Util getDecimalStyle:model.nocar_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
+    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计单量：%d单", (int)model.car_zcgdds];//车险本月单量
+    self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计单量：%d单", (int)model.nocar_zcgdds];//个险本月单量
     self.lbMonthOrderEarn.text = [Util getDecimalStyle:model.now_zsy];//[NSString stringWithFormat:@"%.2f", model.now_zsy];
     self.lbOrderEarn.text = [Util getDecimalStyle:model.zsy];//[NSString stringWithFormat:@"%.2f", model.zsy];//累计收益;
     
     self.lbCarTotalOrderCount.text = [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue];//车险累计
     self.lbNoCarTotalOrderCount.text = [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue];//非车险累计
     
-    self.lbAmountTotalCarOrderCount.text = [NSString stringWithFormat:@"累计单量：%@单", [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue]];
-    self.lbAmountTotalNoCarOrderCount.text = [NSString stringWithFormat:@"累计单量：%@单", [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue]];
+//    self.lbAmountTotalCarOrderCount.text = [NSString stringWithFormat:@"累计单量：%@单", [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue]];
+//    self.lbAmountTotalNoCarOrderCount.text = [NSString stringWithFormat:@"累计单量：%@单", [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue]];
     
     [self.btNameEdit setTitle:model.nickname forState:UIControlStateNormal];
     UIImage *placeholderImage = ThemeImage(@"head_male");
@@ -124,13 +128,16 @@
             [self.gradientView setimage:[self blurryImage:image withBlurLevel:0.4]];
     }];
     
-    if(model.leader == 1){
+    if(model.isTeamLeader == 1){
         self.lbRole.text = @"团长";
         self.logoImgv.image = ThemeImage(@"leader");
+//        self.lbMyTeamName.text = @"我的团队";
+        [self.btnMyTeamName setTitle:@"我的团队" forState:UIControlStateNormal];
     }else
     {
-        self.logoImgv.image = ThemeImage(@"member");
-        self.lbRole.text = @"个人";
+        self.logoImgv.image = nil;//ThemeImage(@"member");
+        self.lbRole.text = @"";
+        [self.btnMyTeamName setTitle:@"我的邀请" forState:UIControlStateNormal];
     }
     
     self.lbCertificate.textColor = _COLOR(0xf4, 0x43, 0x36);
@@ -150,11 +157,13 @@
     
     self.tableHConstraint.constant = model.productRadios.count * cell_height;
     
-    CGFloat h = self.scrollview.frame.size.height - 515 + 1 - self.tableHConstraint.constant;
+    CGFloat h = self.scrollview.frame.size.height - 545 + 1 - self.tableHConstraint.constant;
     if(h > 0)
         self.footVConstraint.constant = h;
     else
         self.footVConstraint.constant = 0;
+    
+    self.lbRedPackageCount.text = [NSString stringWithFormat:@"%@元", model.redMoney];
     
     [self.productRadioTableview reloadData];
 }
@@ -236,14 +245,24 @@
 //我的邀请
 - (IBAction)invite:(id)sender
 {
-    MyTeamInfoVC *vc = [[MyTeamInfoVC alloc] initWithNibName:nil bundle:nil];
-    vc.hidesBottomBarWhenPushed = YES;
-    vc.userid = [UserInfoModel shareUserInfoModel].userId;
-    vc.title = @"我的团队";
-    vc.toptitle = @"我的队员";
-    vc.name = @"我";
-    //                vc.need = enumNeedIndicator;
-    [self.navigationController pushViewController:vc animated:YES];
+    if([UserInfoModel shareUserInfoModel].isTeamLeader){
+        MyTeamInfoVC *vc = [[MyTeamInfoVC alloc] initWithNibName:nil bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.userid = [UserInfoModel shareUserInfoModel].userId;
+        vc.title = @"我的团队";
+        vc.toptitle = @"我的队员";
+        vc.name = @"我";
+        //                vc.need = enumNeedIndicator;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        MyInviteVC *vc = [[MyInviteVC alloc] initWithNibName:nil bundle:nil];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.userid = [UserInfoModel shareUserInfoModel].userId;
+        vc.title = @"我的团队";
+        vc.toptitle = @"我的队员";
+        vc.name = @"我";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 //整体规模

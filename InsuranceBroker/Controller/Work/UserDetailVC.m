@@ -124,10 +124,10 @@
     
     UserInfoModel *model = self.userinfo;
     
-    self.lbMonthOrderSuccessNums.text = [Util getDecimalStyle:model.car_now_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
-    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%ld单", (long)model.car_now_zcgdds];//车险本月单量
-    self.lbPersonalMonthOrderSuccessNums.text = [Util getDecimalStyle:model.nocar_now_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
-    self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"本月单量：%ld单", (long)model.nocar_now_zcgdds];//个险本月单量
+    self.lbMonthOrderSuccessNums.text = [Util getDecimalStyle:model.car_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
+    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计单量：%ld单", (long)model.car_zcgdds];//车险本月单量
+    self.lbPersonalMonthOrderSuccessNums.text = [Util getDecimalStyle:model.nocar_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
+    self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计单量：%ld单", (long)model.nocar_zcgdds];//个险本月单量
     
     self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.now_zsy];//本月收益
     self.lbOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.zsy];//累计收益

@@ -18,100 +18,47 @@
 #import "ProductSettingTableViewCell.h"
 #import "NetWorkHandler+updateUserRemarkName.h"
 #import "HMPopUpView.h"
-#import "BackGroundView.h"
 #import "UUInputAccessoryView.h"
 #import "NetWorkHandler+privateLetter.h"
 #import "IQKeyboardManager.h"
 #import "LeftImgButton.h"
 
-@interface MyTeamInfoVC () <HMPopUpViewDelegate, BackGroundViewDelegate>
+@interface MyTeamInfoVC () <HMPopUpViewDelegate>
 {
     UIImageView *iconview;
     HMPopUpView *hmPopUp;
-    
-    BackGroundView *_addview;
 }
 
 @property (nonatomic, strong) ParentInfoModel *parentModel;
-@property (nonatomic, strong) NSArray *productList;
-@property (nonatomic, strong) UITableView *productTable;
 @property (nonatomic, strong) NSLayoutConstraint *headerTableVConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *footTableVConstraint;
 
 @end
 
 @implementation MyTeamInfoVC
-@synthesize productTable;
+@synthesize filterString;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.inviteUser
-    [self.pulltable registerNib:[UINib nibWithNibName:@"TeamItemTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
-    [self.pulltable registerNib:[UINib nibWithNibName:@"TeamListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+//    [self.pulltable registerNib:[UINib nibWithNibName:@"TeamItemTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell1"];
     
     UIButton *btnDetail = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 24)];
-    [btnDetail setTitle:@"关于团队" forState:UIControlStateNormal];
+    [btnDetail setTitle:@"了解更多" forState:UIControlStateNormal];
     btnDetail.layer.cornerRadius = 12;
     btnDetail.layer.borderWidth = 0.5;
     btnDetail.layer.borderColor = _COLOR(0xff, 0x66, 0x19).CGColor;
     [btnDetail setTitleColor:_COLOR(0xff, 0x66, 0x19) forState:UIControlStateNormal];
     btnDetail.titleLabel.font = _FONT(12);
-    //        btnDetail.backgroundColor = _COLOR(0xff, 0x66, 0x1a);
     [self setRightBarButtonWithButton:btnDetail];
-//    [btnDetail addTarget:self action:@selector(doAboutTeam:) forControlEvents:UIControlEventTouchUpInside];
+    
+    filterString = nil;
 }
 
+//此函数不能删
 - (void) initHeaderView
 {
-//    CGFloat bannerHeight = [Util getHeightByWidth:375 height:60 nwidth:ScreenWidth];
-//    UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, bannerHeight)];
-//    UIImageView *banner = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, bannerHeight)];
-//    banner.image  = ThemeImage(@"refund_banner");
-//    banner.userInteractionEnabled = YES;
-//    [header addSubview:banner];
-//    banner.translatesAutoresizingMaskIntoConstraints = NO;
-//    
-//    iconview = [[UIImageView alloc] initWithFrame:CGRectZero];
-//    [banner addSubview:iconview];
-//    iconview.translatesAutoresizingMaskIntoConstraints = NO;
-//    iconview.image = ThemeImage(@"zhankai");
-//    
-//    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectZero];
-//    btn.translatesAutoresizingMaskIntoConstraints = NO;
-//    [banner addSubview:btn];
-//    [btn addTarget:self action:@selector(doBtnShowProductInfo:) forControlEvents:UIControlEventTouchUpInside];
-//    btn.selected = NO;
-//    
-//    self.productTable = [[UITableView alloc] initWithFrame:CGRectZero];
-//    [header addSubview:self.productTable];
-//    self.productTable.scrollEnabled = NO;
-//    self.productTable.translatesAutoresizingMaskIntoConstraints = NO;
-//    [self.productTable registerNib:[UINib nibWithNibName:@"ProductSettingTableViewCell" bundle:nil] forCellReuseIdentifier:@"productcell"];
-//    self.productTable.delegate = self;
-//    self.productTable.dataSource = self;
-//    
-//    UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 2)];
-//    foot.backgroundColor = _COLOR(0xff, 0xaa, 0x7f);
-//    foot.translatesAutoresizingMaskIntoConstraints = NO;
-//    [header addSubview:foot];
-//    
-//    NSDictionary *views = NSDictionaryOfVariableBindings(banner, btn, productTable, foot, iconview);
-//    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[banner]-0-|" options:0 metrics:nil views:views]];
-//    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[productTable]-0-|" options:0 metrics:nil views:views]];
-//    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[foot]-0-|" options:0 metrics:nil views:views]];
-//    [banner addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[btn]-0-|" options:0 metrics:nil views:views]];
-//    [banner addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|->=0-[iconview]-22-|" options:0 metrics:nil views:views]];
-//    [banner addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[btn]-0-|" options:0 metrics:nil views:views]];
-//    [header addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[banner]-0-[productTable]-0-[foot]-0-|" options:0 metrics:nil views:views]];
-//    
-//    self.headerTableVConstraint = [NSLayoutConstraint constraintWithItem:self.productTable attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
-//    [header addConstraint:self.headerTableVConstraint];
-//    self.footTableVConstraint = [NSLayoutConstraint constraintWithItem:foot attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:0];
-//    [header addConstraint:self.footTableVConstraint];
-//    
-//    [banner addConstraint:[NSLayoutConstraint constraintWithItem:iconview attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:banner attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
-//    
-//    self.pulltable.tableHeaderView = header;
+    
 }
 
 - (void) initSubViews
@@ -148,6 +95,15 @@
     
     self.hConstraints = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[pulltable]-0-|" options:0 metrics:nil views:views];
     [self.view addConstraints:self.hConstraints];
+    
+    self.searchbar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
+    self.searchbar.placeholder = @"搜索";
+    self.searchbar.showsCancelButton = YES;
+    self.searchbar.returnKeyType = UIReturnKeySearch;
+    self.searchbar.delegate = self;
+    self.pulltable.tableHeaderView = self.searchbar;
+    
+    [self.pulltable registerNib:[UINib nibWithNibName:@"TeamListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
 }
 
 - (BOOL) resignFirstResponder
@@ -169,7 +125,7 @@
     [self resignFirstResponder];
 //    [super handleRightBarButtonClicked:sender];
     WebViewController *web = [IBUIFactory CreateWebViewController];
-    web.title = @"关于团队";
+    web.title = @"了解更多";
     NSString *url = [NSString stringWithFormat:@"%@%@%@", SERVER_ADDRESS, @"/news/view/", ABOUT_TEAM];
     [web loadHtmlFromUrl:url];
     [self.navigationController pushViewController:web animated:YES];
@@ -193,237 +149,112 @@
     [[IQKeyboardManager sharedManager] setEnable:YES];
 }
 
-- (void) doBtnShowProductInfo:(UIButton *)sender
-{
-    if(self.productList == nil){
-        [Util showAlertMessage:@"正在获取产品信息，请稍后再试！"];
-    }
-    else{
-        BOOL selected = sender.selected;
-        CGFloat bannerHeight = [Util getHeightByWidth:375 height:60 nwidth:ScreenWidth];
-        UIView *header = self.pulltable.tableHeaderView;
-        if(!selected){
-            self.headerTableVConstraint.constant = [self.productList count] * 60;
-            self.footTableVConstraint.constant = 2;
-            sender.selected = YES;
-            iconview.image = ThemeImage(@"shouqi");
-        }else{
-            self.headerTableVConstraint.constant = 0;
-            self.footTableVConstraint.constant = 0;
-            sender.selected = NO;
-            iconview.image = ThemeImage(@"zhankai");
-        }
-        
-        header.frame = CGRectMake(0, 0, ScreenWidth, self.headerTableVConstraint.constant + self.footTableVConstraint.constant + bannerHeight);
-        self.pulltable.tableHeaderView = header;
-    }
-}
-
 #pragma UITableViewDataSource
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if(tableView == self.productTable)
-        return 1;
-    else{
-//        if([UserInfoModel shareUserInfoModel].possessTeamStatus){
-            return 2;
-//        }
-//        else
-//            return 1;
-    }
+    return 1;
+
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(tableView == self.productTable)
-    {
-        return [self.productList count];
+    if([self.data count] == 0){
+        if(!self.addview){
+            self.addview = [[BackGroundView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 2 / 5, ScreenWidth, 100)];
+            self.addview.delegate = self;
+            self.addview.lbTitle.text = @"暂无队员，邀请好友组建你的团队吧";
+            [self.addview.btnAdd setTitle:@"立即邀请" forState:UIControlStateNormal];
+        }else{
+            [self.addview removeFromSuperview];
+        }
+        [self.pulltable addSubview:self.addview];
     }
     else{
-        if(section == 1){
-            
-            if([self.data count] == 0){
-                if(!_addview){
-                    _addview = [[BackGroundView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 2 / 5, ScreenWidth, 100)];
-                    _addview.delegate = self;
-                    _addview.lbTitle.text = @"暂无队员，邀请好友组建你的团队吧";
-                    [_addview.btnAdd setTitle:@"立即邀请" forState:UIControlStateNormal];
-                }else{
-                    [_addview removeFromSuperview];
-                }
-                [self.pulltable addSubview:_addview];
-            }
-            else{
-                [_addview removeFromSuperview];
-            }
-            
-            return [self.data count];
-        }
-        else
-            return 1;
+        [self.addview removeFromSuperview];
     }
+    
+    return [self.data count];
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(tableView == self.productTable){
-        return 60.f;
-    }
-    else{
-        if(indexPath.section == 0)
-            return 68;
-        else
-            return 88;
-    }
+    return 88;
 }
 
 - (UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(tableView == self.productTable){
-        NSString *deq = @"productcell";
-        ProductSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
-        if(!cell){
-            NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"ProductSettingTableViewCell" owner:nil options:nil];
-            cell = [nibs lastObject];
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        ProductInfoModel *model = [self.productList objectAtIndex:indexPath.row];
-        [cell.logo sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:Normal_Image];
-        cell.lbAccount.text = model.productName;
-        if (model.productMaxRatioStr == nil ){
-            cell.lbDetail.text = @"未设置";
-        }
-        else{
-            cell.lbDetail.text = [NSString stringWithFormat:@"%d%@", (int)model.productMaxRatio, @"%"];
-        }
-        return cell;
+    NSString *deq = @"cell";
+    TeamListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
+    if(!cell){
+        NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"TeamListTableViewCell" owner:nil options:nil];
+        cell = [nibs lastObject];
     }
-    else{
-        if(indexPath.section == 0){
-            NSString *deq = @"cell1";
-            TeamItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
-            if(!cell){
-                NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"TeamItemTableViewCell" owner:nil options:nil];
-                cell = [nibs lastObject];
-            }
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            UIView *bgview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 82, 40)];
-            
-            UIButton *btnRing = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-            [btnRing setImage:ThemeImage(@"call") forState:UIControlStateNormal];
-            [bgview addSubview:btnRing];
-            [btnRing addTarget:self action:@selector(doBtnRing:) forControlEvents:UIControlEventTouchUpInside];
-            
-            UIButton *btnChat = [[UIButton alloc] initWithFrame:CGRectMake(42, 0, 40, 40)];
-            [btnChat setImage:ThemeImage(@"team_msg") forState:UIControlStateNormal];
-            [bgview addSubview:btnChat];
-            [btnChat addTarget:self action:@selector(doBtnChat:) forControlEvents:UIControlEventTouchUpInside];\
-            
-            cell.accessoryView = bgview;
-            
-            ParentInfoModel *model = self.parentModel;
-            if(model == nil)
-                cell.accessoryView.hidden = YES;
-            else
-                cell.accessoryView.hidden = NO;
-            
-            UIImage *image = ThemeImage(@"list_user_head");
-            if(model.parentUserSex == 2)
-            {
-                image = ThemeImage(@"list_user_famale");
-            }
-//            [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.parentHeaderImg] placeholderImage:image];
-            CGSize size = cell.photoImage.frame.size;
-            [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.parentHeaderImg, (int)size.width, (int)size.height)] placeholderImage:image];
-            cell.logoImage.hidden = NO;
-            cell.logoImage.image = ThemeImage(@"leader");
-            cell.lbName.text = [Util getUserNameWithPresentModel:model];//model.parentUserName;
-            cell.lbStatus.text = model.parentPhone;
-            cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
-            cell.lbStatus.font = _FONT(12);
-            
-            return cell;
-        }
-        else{
-            NSString *deq = @"cell";
-            TeamListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:deq];
-            if(!cell){
-                NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"TeamListTableViewCell" owner:nil options:nil];
-                cell = [nibs lastObject];
-            }
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-            
-            BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
-            
-            UIImage *image = ThemeImage(@"list_user_head");
-            if(model.userSex == 2)
-            {
-                image = ThemeImage(@"list_user_famale");
-            }
-//            [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:model.headerImg] placeholderImage:image];
-            CGSize size = cell.photoImage.frame.size;
-            [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.headerImg, (int)size.width, (int)size.height)] placeholderImage:image];
-            cell.logoImage.hidden = NO;
-            if(indexPath.row == 0)
-                cell.logoImage.image = ThemeImage(@"award_1");
-            else if(indexPath.row == 1)
-                cell.logoImage.image = ThemeImage(@"award_02");
-            else if (indexPath.row == 2)
-                cell.logoImage.image = ThemeImage(@"award_03");
-            else
-                cell.logoImage.hidden = YES;
-            
-            if(model.status == 2){
-                cell.logoImage.hidden = NO;
-                cell.logoImage.image = ThemeImage(@"my_invited");
-            }
-            
-            cell.lbName.text = [Util getUserNameWithModel:model];//model.userName;
-            cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
-            cell.lbStatus.font = _FONT(10);
-            cell.lbStatus.attributedText = [self getOrderDetailString:model.month_zcgddbf orderValue:model.day_zcgddbf];
-            cell.lbSubStatus.textColor = _COLOR(0x75, 0x75, 0x75);
-            cell.lbSubStatus.font = _FONT(10);
-            cell.lbSubStatus.attributedText = [self getOrderAmount:model.month_zbjcs offer:model.day_zbjcs];
-            cell.btnRemark.hidden = NO;
-            cell.btnRemark.tag = 100 + indexPath.row;
-            cell.lbSubStatus.hidden = NO;
-            if(model.remarkName != nil && [model.remarkName length] > 0)
-                [cell.btnRemark setTitle:[NSString stringWithFormat:@"（%@）", model.remarkName] forState:UIControlStateNormal];
-            else
-                [cell.btnRemark setTitle:@"（备注）" forState:UIControlStateNormal];
-            
-            [cell.btnRemark addTarget:self action:@selector(doBtnModifyRemarkName:) forControlEvents:UIControlEventTouchUpInside];
-            return cell;
-        }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    
+    BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
+    
+    UIImage *image = ThemeImage(@"list_user_head");
+    if(model.userSex == 2)
+    {
+        image = ThemeImage(@"list_user_famale");
     }
+    CGSize size = cell.photoImage.frame.size;
+    [cell.photoImage sd_setImageWithURL:[NSURL URLWithString:FormatImage(model.headerImg, (int)size.width, (int)size.height)] placeholderImage:image];
+    cell.logoImage.hidden = NO;
+    if(indexPath.row == 0)
+        cell.logoImage.image = ThemeImage(@"award_1");
+    else if(indexPath.row == 1)
+        cell.logoImage.image = ThemeImage(@"award_02");
+    else if (indexPath.row == 2)
+        cell.logoImage.image = ThemeImage(@"award_03");
+    else
+        cell.logoImage.hidden = YES;
+    
+    if(model.status == 2){
+        cell.logoImage.hidden = NO;
+        cell.logoImage.image = ThemeImage(@"my_invited");
+    }
+    
+    cell.lbPhone.text = model.phone;
+    cell.lbName.text = [Util getUserNameWithModel:model];//model.userName;
+    cell.lbStatus.textColor = _COLOR(0x75, 0x75, 0x75);
+    cell.lbStatus.font = _FONT(10);
+    cell.lbStatus.attributedText = [self getOrderDetailString:model.month_zcgddbf orderValue:model.day_zcgddbf];
+    cell.lbSubStatus.textColor = _COLOR(0x75, 0x75, 0x75);
+    cell.lbSubStatus.font = _FONT(10);
+    cell.lbSubStatus.attributedText = [self getOrderAmount:model.month_zbjcs offer:model.day_zbjcs];
+//    cell.btnRemark.hidden = NO;
+    cell.btnRemark.tag = 100 + indexPath.row;
+//    cell.lbSubStatus.hidden = NO;
+    if(model.remarkName != nil && [model.remarkName length] > 0)
+        [cell.btnRemark setTitle:[NSString stringWithFormat:@"（%@）", model.remarkName] forState:UIControlStateNormal];
+    else
+        [cell.btnRemark setTitle:@"（备注）" forState:UIControlStateNormal];
+    
+    cell.lbSource.text = [NSString stringWithFormat:@"来源：%@", model.yqrRealName];
+    
+    [cell.btnRemark addTarget:self action:@selector(doBtnModifyRemarkName:) forControlEvents:UIControlEventTouchUpInside];
+    return cell;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    if(tableView == self.pulltable){
-        if(indexPath.section == 1){
-            BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
-            if(model.status ==2){
-                [Util showAlertMessage:@"该用户还未加入经纪人，赶快联系他吧!"];
-                return;
-            }
-            UserDetailVC *vc = [IBUIFactory CreateUserDetailVC];
-            
+    BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
+    if(model.status ==2){
+        [Util showAlertMessage:@"该用户还未加入经纪人，赶快联系他吧!"];
+        return;
+    }
+    UserDetailVC *vc = [IBUIFactory CreateUserDetailVC];
+    
 //            vc.userId = model.userId;
 //            vc.userHeadImg = model.headerImg;
-            vc.brokerInfo = model;
-            vc.title = [NSString stringWithFormat:@"%@的队员", self.name];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    }
+    vc.brokerInfo = model;
+    vc.title = [NSString stringWithFormat:@"%@的队员", self.name];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -433,26 +264,11 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(tableView == self.productTable){
-        return 0.01;
-    }
-    else{
-        if(section == 0)
-            return 40.f;
-        else{
-            if([self.data count] > 0)
-                return 118.f;
-            else
-                return 40;
-        }
-    }
+    return 40;
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    if(tableView == self.productTable){
-        return nil;
-    }
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 40)];
     view.backgroundColor = _COLOR(0xf5, 0xf5, 0xf5);
@@ -478,18 +294,9 @@
     [view addSubview:button];
     [button addTarget:self action:@selector(doBtnInvite:) forControlEvents:UIControlEventTouchUpInside];
     
-    if(section == 0){
-        lbTitle.text = @"邀请人";
-        imgV.image = ThemeImage(@"wodetuanzhang");
-        lbAmount.text = @"";
-        button.hidden = YES;
-    }
-    else{
-        lbTitle.text = @"我的队员";
-        imgV.image = ThemeImage(@"my_team");
-        lbAmount.text = [NSString stringWithFormat:@"(共%ld人)", (long)self.total];
-        button.hidden = NO;
-    }
+    lbTitle.text = @"人员数量";
+    imgV.image = ThemeImage(@"my_team");
+    lbAmount.text = [NSString stringWithFormat:@"(共%ld人)", (long)self.total];
     
     NSDictionary *views = NSDictionaryOfVariableBindings(lbTitle, lbAmount, imgV, button);
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20-[imgV(25)]-4-[lbTitle]-6-[lbAmount]->=10-[button(56)]-20-|" options:0 metrics:nil views:views]];
@@ -498,11 +305,6 @@
     [view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|->=0-[imgV(18)]->=0-|" options:0 metrics:nil views:views]];
     [view addConstraint:[NSLayoutConstraint constraintWithItem:lbAmount attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
     [view addConstraint:[NSLayoutConstraint constraintWithItem:imgV attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:lbTitle attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]];
-    
-    if(section == 1 && [self.data count] > 0){
-        UIView *teamview = [self createTeamTotalInfo];
-        [view addSubview:teamview];
-    }
     
     return view;
 }
@@ -529,22 +331,6 @@
     NSLog(@"refresh2Loaddata");
     self.pageNum = 0;
     [self loadDataInPages:self.pageNum];
-    [self loadUserTeamInfo];
-}
-
-- (void) loadUserTeamInfo
-{
-    [NetWorkHandler requestToQueryUserTeamInfo:self.userid Completion:^(int code, id content) {
-        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
-        if(code == 200){
-            ParentInfoModel *model = (ParentInfoModel*)[ParentInfoModel modelFromDictionary:[content objectForKey:@"data"]];
-            self.parentModel = model;
-            NSArray *array = [ProductInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"ratioMaps"]];
-            self.productList = array;
-            [self.pulltable reloadData];
-            [self.productTable reloadData];
-        }
-    }];
 }
 
 - (void) doBtnRing:(id) sender
@@ -647,6 +433,25 @@
 - (void) notifyToAddNewCustomer:(BackGroundView *) view
 {
     [self doBtnInvite:nil];
+}
+
+#pragma UISearchBarDelegate
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchbar resignFirstResponder];
+    filterString = self.searchbar.text;
+    self.pageNum = 0;
+    [self loadDataInPages:self.pageNum];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    [self.searchbar resignFirstResponder];
+    self.searchbar.text = @"";
+    filterString = @"";
+    self.pageNum = 0;
+    [self loadDataInPages:self.pageNum];
 }
 
 @end

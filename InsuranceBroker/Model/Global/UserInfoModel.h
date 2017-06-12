@@ -29,7 +29,7 @@
 @property (nonatomic, strong) NSString *liveCityId;//,//居住城市id
 @property (nonatomic, strong) NSString *liveProvince;//
 @property (nonatomic, strong) NSString *liveCity;
-@property (nonatomic, assign) BOOL leader;//0个人 1 团长
+@property (nonatomic, assign) BOOL isTeamLeader;//0个人 1 团长
 @property (nonatomic, assign) NSInteger cardVerifiy;//实名验证状态，1未认证 ，2认证成功 3，认证失败
 @property (nonatomic, assign) NSInteger userType;////经纪人类型，1自由经纪人、2坐席经纪人、3平台管理人
 
@@ -69,11 +69,13 @@
 @property (nonatomic, assign) NSInteger car_now_zcgdds;//": "0",//车险当前月总成功订单数
 @property (nonatomic, assign) double car_now_zcgddsy;//": "0",//车险当前月总成功订单收益
 @property (nonatomic, assign) double car_now_zcgddxse;//": "0",//车险当前月总成功订单销售额
+@property (nonatomic, assign) double car_zcgddbf;//车险总成功订单保费
 
 @property (nonatomic, assign) double nocar_now_zcgddbf;//": "0",//非车险当前月总成功订单保费
 @property (nonatomic, assign) NSInteger nocar_now_zcgdds;//": "0",//非车险当前月总成功订单数
 @property (nonatomic, assign) double nocar_now_zcgddsy;//": "0",//非车险当前月总成功订单收益
 @property (nonatomic, assign) double nocar_now_zcgddxse;//": "0",//非车险当前月总成功订单销售额
+@property (nonatomic, assign) double nocar_zcgddbf;//车险总成功订单保费
 
 @property (nonatomic, assign) double now_zcgddbf;//": "0",//当前月总成功订单保费
 @property (nonatomic, assign) long long now_zcgdds;//": "0",//当前月总成功订单数
@@ -90,6 +92,8 @@
 @property (nonatomic, assign) long long ztdrs;//": "0"//总团队人数
 @property (nonatomic, assign) long long car_zcgdds;////总车险成功订单数
 @property (nonatomic, assign) long long nocar_zcgdds;//总非车险成功订单数
+
+@property (nonatomic, strong) NSString *redMoney;
 
 
 @property (nonatomic, strong) NSArray *productRadios;
