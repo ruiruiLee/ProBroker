@@ -35,4 +35,6 @@
 
 @property (nonatomic, strong) HighNightBgButton *btnChat;
 
+@property (nonatomic, strong) IBOutlet UIButton *btnModifyPlain;
+
 @end

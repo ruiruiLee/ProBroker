@@ -19,8 +19,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="549" height="189"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G6I-aU-t68">
-                        <rect key="frame" x="20" y="13" width="520" height="161"/>
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G6I-aU-t68">
+                        <rect key="frame" x="10" y="13" width="529" height="161"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEi-6m-X1T" customClass="SepLineLabel">
                                 <rect key="frame" x="10" y="30" width="514" height="1"/>
@@ -197,13 +197,23 @@
                                     <constraint firstAttribute="height" constant="16" id="OUx-rB-JI4"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6je-nd-f2d">
-                                <rect key="frame" x="384" y="123" width="46" height="30"/>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6je-nd-f2d">
+                                <rect key="frame" x="437" y="123" width="70" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="rW8-1a-RXF"/>
                                 </constraints>
                                 <state key="normal" title="设置费率">
                                     <color key="titleColor" red="0.45882352939999999" green="0.45882352939999999" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkf-wG-tlA">
+                                <rect key="frame" x="10" y="122" width="82" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dTR-PA-KO7"/>
+                                    <constraint firstAttribute="width" constant="82" id="sxQ-SG-wwH"/>
+                                </constraints>
+                                <state key="normal" title="修改方案">
+                                    <color key="titleColor" red="1" green="0.40000000000000002" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
                         </subviews>
@@ -218,6 +228,7 @@
                             <constraint firstItem="hDL-Td-Ljh" firstAttribute="leading" secondItem="G6I-aU-t68" secondAttribute="leading" id="NQt-Ie-l5G"/>
                             <constraint firstItem="hDL-Td-Ljh" firstAttribute="top" secondItem="G6I-aU-t68" secondAttribute="top" id="TI4-he-IIg"/>
                             <constraint firstItem="yhe-dQ-RaA" firstAttribute="top" secondItem="GiV-Ho-hcm" secondAttribute="bottom" id="VZP-p8-dBa"/>
+                            <constraint firstItem="6je-nd-f2d" firstAttribute="centerY" secondItem="bkf-wG-tlA" secondAttribute="centerY" id="ZzU-D4-spd"/>
                             <constraint firstItem="HEi-6m-X1T" firstAttribute="top" secondItem="hDL-Td-Ljh" secondAttribute="bottom" id="e3c-Yj-4e8"/>
                             <constraint firstItem="Aqu-OC-6n0" firstAttribute="top" secondItem="G6I-aU-t68" secondAttribute="topMargin" constant="24" id="hgd-SP-Ii5"/>
                             <constraint firstItem="GiV-Ho-hcm" firstAttribute="leading" secondItem="G6I-aU-t68" secondAttribute="leading" id="i1c-0k-cnZ"/>
@@ -225,6 +236,7 @@
                             <constraint firstItem="rea-RA-d6Q" firstAttribute="centerY" secondItem="6je-nd-f2d" secondAttribute="centerY" id="lv5-73-uX6"/>
                             <constraint firstAttribute="bottom" secondItem="rea-RA-d6Q" secondAttribute="bottom" constant="10" id="noh-gj-eJF"/>
                             <constraint firstItem="GiV-Ho-hcm" firstAttribute="top" secondItem="hDL-Td-Ljh" secondAttribute="bottom" constant="1" id="of4-zH-HMQ"/>
+                            <constraint firstItem="bkf-wG-tlA" firstAttribute="leading" secondItem="GiV-Ho-hcm" secondAttribute="leading" constant="10" id="pfO-eb-XfX"/>
                             <constraint firstAttribute="trailing" secondItem="GiV-Ho-hcm" secondAttribute="trailing" id="sFy-kR-MP7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Aqu-OC-6n0" secondAttribute="trailing" id="tn6-Ct-frd"/>
                             <constraint firstItem="rea-RA-d6Q" firstAttribute="leading" secondItem="6je-nd-f2d" secondAttribute="trailing" id="vwv-f0-c3R"/>
@@ -244,6 +256,7 @@
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0"/>
             <connections>
+                <outlet property="btnModifyPlain" destination="bkf-wG-tlA" id="iqf-WI-77Z"/>
                 <outlet property="btnStatus" destination="XyM-bh-Zep" id="4ZM-EU-Kcr"/>
                 <outlet property="btnUnfold" destination="6je-nd-f2d" id="Neb-dF-Zl5"/>
                 <outlet property="contentBg" destination="GiV-Ho-hcm" id="qV4-J8-Swu"/>

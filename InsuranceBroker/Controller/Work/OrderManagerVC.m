@@ -355,9 +355,11 @@
             
             if(model.orderOfferStatus == 3){
                 [cell.btnUnfold setTitle:@"设置费率" forState:UIControlStateNormal];
+                cell.btnModifyPlain.hidden = YES;
             }
             else{
                 [cell.btnUnfold setTitle:@"查看详情" forState:UIControlStateNormal];
+                cell.btnModifyPlain.hidden = YES;
             }
             
             [cell.phoneNum setTitle:model.customerPhone forState:UIControlStateNormal];
@@ -365,6 +367,8 @@
             [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
             cell.statusImgV.hidden = YES;
             cell.btnStatus.hidden = NO;
+            cell.btnModifyPlain.tag = indexPath.row;
+            
         }else{
             cell.lbName.attributedText = [self getAttributeString:[NSString stringWithFormat:@"投保人:%@", model.customerName] subString:@"投保人:"];
             cell.lbPlate.font = _FONT(13);
@@ -389,6 +393,7 @@
             
             cell.statusImgV.hidden = NO;
             cell.btnStatus.hidden = NO;
+            cell.btnModifyPlain.hidden = YES;
             
             [cell.btnUnfold setTitle:@"查看详情" forState:UIControlStateNormal];
             

@@ -9,21 +9,24 @@
 #import "DetailAccountVC.h"
 #import "define.h"
 #import "DetailAccountTableViewCell.h"
-#import "NetWorkHandler+queryUserBillPageList.h"
-#import "BillInfoModel.h"
+//#import "NetWorkHandler+queryUserBillPageList.h"
+//#import "BillInfoModel.h"
+//
+//#import "BillDetailInfoVC.h"
+//#import "BillDetailInfoFromLuckyVC.h"
+//#import "BillDetailInfoFromOrderVC.h"
+//#import "BillDetailInfoFromSubVC.h"
+//#import "BillDetailInfoWithdrawVC.h"
 
-#import "BillDetailInfoVC.h"
-#import "BillDetailInfoFromLuckyVC.h"
-#import "BillDetailInfoFromOrderVC.h"
-#import "BillDetailInfoFromSubVC.h"
-#import "BillDetailInfoWithdrawVC.h"
+#import "RedMoneyModel.h"
+#import "NetWorkHandler+redMoneyList.h"
 
 @implementation DetailAccountVC
 
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"我的账单";
+    self.title = @"我的红包";
     
     UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 15)];
     self.pulltable.tableHeaderView = header;
@@ -43,15 +46,10 @@
 
 - (void) loadDataInPages:(NSInteger)page
 {
-    NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
-    [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
-    NSMutableArray *rules = [[NSMutableArray alloc] init];
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    [rules addObject:[self getRulesByField:@"userId" op:@"eq" data:user.userId]];
-//    [rules addObject:[self getRulesByField:@"billStatus" op:@"eq" data:@"1"]];
-    [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     
-    [NetWorkHandler requestToQueryUserBillPageList:page limit:LIMIT sidx:@"createdAt" sord:@"desc" filters:filters Completion:^(int code, id content) {
+    [NetWorkHandler requestToRedMoneyList:user.userId isManager:0 offset:page limit:LIMIT keyValue:nil memo:nil orderUuId:nil orderNo:nil carNo:nil orderBy:@"createdAt desc" Completion:^(int code, id content) {
+        
         [self refreshTable];
         [self loadMoreDataToTable];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
@@ -60,21 +58,13 @@
                 [self.data removeAllObjects];
             }
             
-            [self.data addObjectsFromArray:[BillInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
+            [self.data addObjectsFromArray:[RedMoneyModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
             self.total = [[[content objectForKey:@"data"] objectForKey:@"total"] integerValue];
             [self.pulltable reloadData];
         }
-    }];
-}
 
-- (NSDictionary *) getRulesByField:(NSString *) field op:(NSString *) op data:(NSString *) data
-{
-    NSMutableDictionary *rule = [[NSMutableDictionary alloc] init];
-    [Util setValueForKeyWithDic:rule value:field key:@"field"];
-    [Util setValueForKeyWithDic:rule value:op key:@"op"];
-    [Util setValueForKeyWithDic:rule value:data key:@"data"];
-    
-    return rule;
+        
+    }];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -114,17 +104,17 @@
         NSArray *nibs = [[NSBundle mainBundle]loadNibNamed:@"DetailAccountTableViewCell" owner:nil options:nil];
         cell = [nibs lastObject];
     }
-    BillInfoModel *model = [self.data objectAtIndex:indexPath.row];
-    if(model.billDoType == 1){
+    RedMoneyModel *model = [self.data objectAtIndex:indexPath.row];
+    if([model.money integerValue] > 0){
         cell.logo.image = ThemeImage(@"logo_income");
-        cell.lbAccount.text = [NSString stringWithFormat:@"+%@",model.billMoney];
+        cell.lbAccount.text = [NSString stringWithFormat:@"+%@",model.money];
     }
     else{
         cell.logo.image = ThemeImage(@"logo_outcome");
-        cell.lbAccount.text = [NSString stringWithFormat:@"%@",model.billMoney];
+        cell.lbAccount.text = [NSString stringWithFormat:@"%@",model.money];
     }
-    
-    cell.lbTypeName.text = model.billTypeName;
+
+    cell.lbTypeName.text = model.money;
     cell.lbDetail.text = model.memo;
     cell.lbDate.text = [self getdate:model.createdAt];
     cell.lbTime.text = [self gettime:model.createdAt];
@@ -135,26 +125,26 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    BillInfoModel *model = [self.data objectAtIndex:indexPath.row];
-    BillDetailInfoVC *vc = nil;
-    ////类型 1自己的保单直接收益，2下线提成，3团队长管理津贴，4红包，5收益提现
-    if (model.billType == 1) {
-        vc = [[BillDetailInfoFromOrderVC alloc] initWithNibName:nil bundle:nil];
-    }
-    else if (model.billType == 2){
-        vc = [[BillDetailInfoFromSubVC alloc] initWithNibName:nil bundle:nil];
-    }
-    else if (model.billType == 5){
-        vc = [[BillDetailInfoWithdrawVC alloc] initWithNibName:nil bundle:nil];
-    }
-    else if (model.billType == 4){
-        vc = [[BillDetailInfoFromLuckyVC alloc] initWithNibName:nil bundle:nil];
-    }
-    else {
-        
-    }
-    vc.billInfo = model;
-    [self.navigationController pushViewController:vc animated:YES];
+//    BillInfoModel *model = [self.data objectAtIndex:indexPath.row];
+//    BillDetailInfoVC *vc = nil;
+//    ////类型 1自己的保单直接收益，2下线提成，3团队长管理津贴，4红包，5收益提现
+//    if (model.billType == 1) {
+//        vc = [[BillDetailInfoFromOrderVC alloc] initWithNibName:nil bundle:nil];
+//    }
+//    else if (model.billType == 2){
+//        vc = [[BillDetailInfoFromSubVC alloc] initWithNibName:nil bundle:nil];
+//    }
+//    else if (model.billType == 5){
+//        vc = [[BillDetailInfoWithdrawVC alloc] initWithNibName:nil bundle:nil];
+//    }
+//    else if (model.billType == 4){
+//        vc = [[BillDetailInfoFromLuckyVC alloc] initWithNibName:nil bundle:nil];
+//    }
+//    else {
+//        
+//    }
+//    vc.billInfo = model;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

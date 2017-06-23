@@ -23,6 +23,7 @@
 - (void) NotifyLastUpdateTime:(long long) time  category:(NSString *) category;
 - (void) notifyWebViewLoadFinished:(NSString *) string;
 - (void) notifyToOrderList:(NSString *) string;
+- (void) notifyOpenMap:(NSDictionary *) coordinate;
 
 @end
 
@@ -58,5 +59,7 @@
 
 //共有
 - (void) webViewLoadFinished:(NSString *) string;//网页每次加载完回调
+
+- (void) openLocation:(NSString *) string;//打开地图
 
 @end

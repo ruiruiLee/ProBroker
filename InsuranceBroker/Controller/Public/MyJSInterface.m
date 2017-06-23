@@ -136,4 +136,13 @@
     }
 }
 
+- (void) openLocation:(NSString *)string
+{
+    SBJsonParser *_parser = [[SBJsonParser alloc] init];
+    NSDictionary *coordinate = [_parser objectWithString:string];
+    if(self.delegate && [self.delegate respondsToSelector:@selector(notifyOpenMap:)]){
+        [self.delegate notifyOpenMap:coordinate];
+    }
+}
+
 @end

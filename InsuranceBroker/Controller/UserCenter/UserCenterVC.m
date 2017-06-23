@@ -164,6 +164,9 @@
         self.footVConstraint.constant = 0;
     
     self.lbRedPackageCount.text = [NSString stringWithFormat:@"%@元", model.redMoney];
+    if(model.redMoney == nil){
+        self.lbRedPackageCount.text = [NSString stringWithFormat:@"%@元", @"0"];
+    }
     
     [self.productRadioTableview reloadData];
 }
@@ -180,10 +183,10 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-    if(model.cardVerifiy == 1)
-    {
-        [model queryUserInfo];
-    }
+//    if(model.cardVerifiy == 1)
+//    {
+    [model queryUserInfo];
+//    }
 //    [self updateUserInfo];
 }
 

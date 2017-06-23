@@ -36,6 +36,7 @@
     model.carNo = [dictionary objectForKey:@"carNo"];
     model.offersVoList = [OffersModel modelArrayFromArray:[dictionary objectForKey:@"offersVoList"]];
     model.planTypeName = [dictionary objectForKey:@"planTypeName"];
+    model.customerCarId = [dictionary objectForKey:@"customerCarId"];
     
     return model;
 }

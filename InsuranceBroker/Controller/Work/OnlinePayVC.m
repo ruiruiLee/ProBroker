@@ -82,16 +82,16 @@
     
     self.lbAmount.font = _FONT(30);
     
-    PayConfDataModel *model = [[PayConfDataModel alloc] init];
-    model.payLogo = @"Pay_img_wechat";
-    model.payName = @"微信支付";
-    model.payValue = @"2";
+//    PayConfDataModel *model = [[PayConfDataModel alloc] init];
+//    model.payLogo = @"Pay_img_wechat";
+//    model.payName = @"微信支付";
+//    model.payValue = @"2";
     
     PayConfDataModel *model1 = [[PayConfDataModel alloc] init];
     model1.payLogo = @"Pay_img_alipay";
     model1.payName = @"支付宝支付";
     model1.payValue = @"3";
-    self.data = @[model, model1];
+    self.data = @[model1];
     
     [self initData];
 }
@@ -216,8 +216,6 @@
 {
     if(_selectIdx < [self.data count]){
         if (_selectIdx == 0) {
-            self.channel = @"wx";
-        } else if (_selectIdx == 1) {
             self.channel = @"alipay";
         } else {
             return;

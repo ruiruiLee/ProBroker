@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"我的邀请人";
+    self.title = @"我的邀请";
     
     [self.pulltable registerNib:[UINib nibWithNibName:@"InviteListsTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
     

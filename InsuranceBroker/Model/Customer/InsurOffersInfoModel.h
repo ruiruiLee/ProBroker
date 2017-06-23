@@ -38,5 +38,7 @@
 @property (nonatomic, strong) NSArray *offersVoList;//":保单对应产品报价列表
 @property (nonatomic, strong) NSString *planTypeName;
 
+@property (nonatomic, strong) NSString *customerCarId;
+
 
 @end

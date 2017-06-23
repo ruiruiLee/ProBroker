@@ -16,6 +16,7 @@
 #import "SBJsonParser.h"
 #import "OrderManagerVC.h"
 #import "OnlinePayVC.h"
+#import <MapKit/MapKit.h>
 
 @interface WebViewController ()
 
@@ -204,6 +205,26 @@
     vc.carInfo = model.carInfo;
     vc.hidesBottomBarWhenPushed = YES;
     [[App_Delegate root].selectVC.navigationController pushViewController:vc animated:YES];
+}
+
+- (void) notifyOpenMap:(NSDictionary *)coordinate
+{
+    NSString *address = [coordinate objectForKey:@"address"];
+    NSString *name = [coordinate objectForKey:@"name"];
+    CGFloat scale = [[coordinate objectForKey:@"scale"] floatValue];
+    double latitude = [[coordinate objectForKey:@"latitude"] doubleValue];
+    double longitude = [[coordinate objectForKey:@"longitude"] doubleValue];
+    
+    CLLocationCoordinate2D coords1 = CLLocationCoordinate2DMake(latitude, longitude);
+    MKMapItem *currentLocation = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:coords1 addressDictionary:nil]];
+    currentLocation.name =address;
+    
+    NSDictionary *options = @{ MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsMapTypeKey: [NSNumber numberWithInteger:MKMapTypeStandard], MKLaunchOptionsShowsTrafficKey:@YES };
+    
+    NSArray *items = [NSArray arrayWithObjects:currentLocation, nil];
+    //打开苹果自身地图应用，并呈现特定的item
+    
+    [MKMapItem openMapsWithItems:items launchOptions:options];
 }
 
 - (void) loadWebString

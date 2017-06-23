@@ -11,7 +11,7 @@
 
 @implementation NetWorkHandler (queryBeiYaoQingRen)
 
-+ (void) requestToQueryBeiYaoQingRen:(NSString *) uuid offset:(NSInteger) offset limit:(NSInteger) limit keyValue:keyValue Completion:(Completion)completion
++ (void) requestToQueryBeiYaoQingRen:(NSString *) uuid offset:(NSInteger) offset limit:(NSInteger) limit keyValue:(NSString *)keyValue Completion:(Completion)completion
 {
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];

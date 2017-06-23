@@ -18,6 +18,10 @@
     self.logoImgV.layer.borderWidth = 0.5;
     self.logoImgV.layer.borderColor = _COLOR(0xe6, 0xe6, 0xe6).CGColor;
     [self.hud startAnimating];
+    
+    self.btnModifyPlain.layer.cornerRadius = 15;
+    self.btnModifyPlain.layer.borderWidth = 1;
+    self.btnModifyPlain.layer.borderColor = _COLOR(0xff, 0x66, 0x19).CGColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -25,5 +29,6 @@
 
     // Configure the view for the selected state
 }
+
 
 @end
