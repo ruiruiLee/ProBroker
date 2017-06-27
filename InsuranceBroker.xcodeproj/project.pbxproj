@@ -25,6 +25,8 @@
 		8612F4331CEB166B0045340F /* NetWorkHandler+saveOrUpdateCustomerInsured.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4321CEB166B0045340F /* NetWorkHandler+saveOrUpdateCustomerInsured.m */; };
 		8612F4361CEB23830045340F /* InsuredUserInfoEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F4351CEB23830045340F /* InsuredUserInfoEditVC.m */; };
 		8612F4381CEB23940045340F /* InsuredUserInfoEditVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8612F4371CEB23940045340F /* InsuredUserInfoEditVC.xib */; };
+		86134D6F1F022C66001DD450 /* NetWorkHandler+SMSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 86134D6E1F022C66001DD450 /* NetWorkHandler+SMSRequest.m */; };
+		86134D721F0246DF001DD450 /* NetWorkHandler+VerifySMSCode.m in Sources */ = {isa = PBXBuildFile; fileRef = 86134D711F0246DF001DD450 /* NetWorkHandler+VerifySMSCode.m */; };
 		8615AF001E70014C00AC795F /* CustomerPageNoLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8615AEFF1E70014C00AC795F /* CustomerPageNoLoginView.m */; };
 		8615AF031E71064800AC795F /* UINavigationBar+HitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8615AF021E71064800AC795F /* UINavigationBar+HitTest.m */; };
 		8618CEAB1E5C3AB500F3F954 /* CAAnimation+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 8618CEAA1E5C3AB500F3F954 /* CAAnimation+Blocks.m */; };
@@ -702,6 +704,10 @@
 		8612F4341CEB23830045340F /* InsuredUserInfoEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsuredUserInfoEditVC.h; sourceTree = "<group>"; };
 		8612F4351CEB23830045340F /* InsuredUserInfoEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsuredUserInfoEditVC.m; sourceTree = "<group>"; };
 		8612F4371CEB23940045340F /* InsuredUserInfoEditVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InsuredUserInfoEditVC.xib; sourceTree = "<group>"; };
+		86134D6D1F022C66001DD450 /* NetWorkHandler+SMSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+SMSRequest.h"; sourceTree = "<group>"; };
+		86134D6E1F022C66001DD450 /* NetWorkHandler+SMSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+SMSRequest.m"; sourceTree = "<group>"; };
+		86134D701F0246DF001DD450 /* NetWorkHandler+VerifySMSCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+VerifySMSCode.h"; sourceTree = "<group>"; };
+		86134D711F0246DF001DD450 /* NetWorkHandler+VerifySMSCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+VerifySMSCode.m"; sourceTree = "<group>"; };
 		8615AEFE1E70014C00AC795F /* CustomerPageNoLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerPageNoLoginView.h; sourceTree = "<group>"; };
 		8615AEFF1E70014C00AC795F /* CustomerPageNoLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerPageNoLoginView.m; sourceTree = "<group>"; };
 		8615AF011E71064800AC795F /* UINavigationBar+HitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+HitTest.h"; sourceTree = "<group>"; };
@@ -2477,6 +2483,10 @@
 				8625B0231C3D0BF700312B98 /* NetWorkHandler+queryUserInfo.m */,
 				863DF13E1D1011FF00AEB6A9 /* NetWorkHandler+newUser.h */,
 				863DF13F1D1011FF00AEB6A9 /* NetWorkHandler+newUser.m */,
+				86134D6D1F022C66001DD450 /* NetWorkHandler+SMSRequest.h */,
+				86134D6E1F022C66001DD450 /* NetWorkHandler+SMSRequest.m */,
+				86134D701F0246DF001DD450 /* NetWorkHandler+VerifySMSCode.h */,
+				86134D711F0246DF001DD450 /* NetWorkHandler+VerifySMSCode.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -4780,6 +4790,7 @@
 				865065BD1C1EB1ED00429EAE /* UINavigationBar+Awesome.m in Sources */,
 				86A26E851C4528A40073FFFC /* NetWorkHandler+announcement.m in Sources */,
 				86F014271C8682A000A3C68E /* BillDetailInfoWithdrawVC.m in Sources */,
+				86134D6F1F022C66001DD450 /* NetWorkHandler+SMSRequest.m in Sources */,
 				8615AF001E70014C00AC795F /* CustomerPageNoLoginView.m in Sources */,
 				86A26E881C452A5B0073FFFC /* AnnouncementModel.m in Sources */,
 				8612F4171CE4828D0045340F /* UIView+JElasticPullToRefresh.m in Sources */,
@@ -5075,6 +5086,7 @@
 				86A504471C4E5A790032A901 /* AppInfoView.m in Sources */,
 				86EECDEF1CF543C300BBAF11 /* UUInputAccessoryView.m in Sources */,
 				CFE094881D915C54008E2569 /* AVQuery.m in Sources */,
+				86134D721F0246DF001DD450 /* NetWorkHandler+VerifySMSCode.m in Sources */,
 				8654CD7E1C312CE100411C54 /* NSObject+SBJson.m in Sources */,
 				86F2DA9D1C7FE81D0088B783 /* ProductSettingTableViewCell.m in Sources */,
 				CFE090CD1D91525C008E2569 /* UIWebView+AFNetworking.m in Sources */,

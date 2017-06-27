@@ -14,6 +14,7 @@
 #import "SetTeamLeaderPhoneView.h"
 #import "IQKeyboardManager.h"
 #import "NetWorkHandler+newUser.h"
+#import "NetWorkHandler+SMSRequest.h"
 
 
 @interface loginViewController ()<SetTeamLeaderPhoneViewDelegate>
@@ -134,18 +135,33 @@
     self.btnGetCaptcha.enabled = NO;
     self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 0.5);
     NSString *phone = self.tfMobile.text;
-    [AVOSCloud requestSmsCodeWithPhoneNumber:phone callback:^(BOOL succeeded, NSError *error) {
-        if(succeeded){
+    [ProgressHUD show:@"正在获取验证码"];
+    [NetWorkHandler requestToShortMsg:phone template:@"ykbConfirm" sign:@"优快保" other:nil Completion:^(int code, id content) {
+        [ProgressHUD dismiss];
+        if(code == 200){
             [self timerOutTimer];
             [KGStatusBar showSuccessWithStatus:@"验证码已发送,请及时查收！"];
-        }else{
-           if([error localizedDescription].length>0)
-            [KGStatusBar showErrorWithStatus:[error localizedDescription]];
+        }else
+        {
+            [KGStatusBar showErrorWithStatus:[content objectForKey:@"msg"]];
             [self.btnGetCaptcha setTitle:@"重取验证码" forState:UIControlStateNormal];
             self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
             self.btnGetCaptcha.enabled = YES;
+
         }
     }];
+//    [AVOSCloud requestSmsCodeWithPhoneNumber:phone callback:^(BOOL succeeded, NSError *error) {
+//        if(succeeded){
+//            [self timerOutTimer];
+//            [KGStatusBar showSuccessWithStatus:@"验证码已发送,请及时查收！"];
+//        }else{
+//           if([error localizedDescription].length>0)
+//            [KGStatusBar showErrorWithStatus:[error localizedDescription]];
+//            [self.btnGetCaptcha setTitle:@"重取验证码" forState:UIControlStateNormal];
+//            self.btnGetCaptcha.backgroundColor = _COLORa(0xff, 0x66, 0x19, 1);
+//            self.btnGetCaptcha.enabled = YES;
+//        }
+//    }];
 }
 
 - (IBAction)doBtnAgreementInfo:(id)sender

@@ -40,7 +40,7 @@
     [Util setValueForKeyWithDic:params value:city key:@"city"];
     [Util setValueForKeyWithDic:params value:country key:@"country"];
     [Util setValueForKeyWithDic:params value:smCode key:@"smsCode"];
-//    [Util setValueForKeyWithDic:params value:Default_User_Type key:@"userType"];
+    [Util setValueForKeyWithDic:params value:@"H5" key:@"codeDemo"];
     
     [handle postWithMethod:@"/api/user/login" BaseUrl:SERVER_ADDRESS Params:params Completion:completion];
 }
@@ -77,6 +77,7 @@
     [Util setValueForKeyWithDic:params value:smCode key:@"smsCode"];
 //    [Util setValueForKeyWithDic:params value:Default_User_Type key:@"userType"];
     [Util setValueForKeyWithDic:params value:parentPhone key:@"parentPhone"];
+    [Util setValueForKeyWithDic:params value:@"H5" key:@"codeDemo"];
     
     [handle postWithMethod:@"/api/user/login" BaseUrl:SERVER_ADDRESS Params:params Completion:completion];
 }
