@@ -29,4 +29,5 @@
 @property (nonatomic, strong) NSString *createdAt;
 @property (nonatomic, strong) NSString *payDesc;
 
+
 @end

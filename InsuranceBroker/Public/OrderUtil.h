@@ -13,12 +13,27 @@
 
 @interface OrderUtil : NSObject
 
-+ (void) setPolicyStatusWithTableCell:(PolicyInfoTableViewCell *) cell orderOfferStatusStr:(NSString*) orderOfferStatusStr orderImgType:(NSInteger) orderImgType;
++ (void) setPolicyStatusWithTableCell:(PolicyInfoTableViewCell *) cell
+                  orderOfferStatusStr:(NSString*) orderOfferStatusStr
+                         orderImgType:(NSInteger) orderImgType
+                    orderClientStatus:(NSInteger) orderClientStatus;
 
-+ (void) setPolicyStatusWithCell:(OrderManagerTableViewCell *) cell orderOfferStatusStr:(NSString *) orderOfferStatusStr orderImgType:(NSInteger) orderImgType;
++ (void) setPolicyStatusWithCell:(OrderManagerTableViewCell *) cell
+             orderOfferStatusStr:(NSString *) orderOfferStatusStr
+                    orderImgType:(NSInteger) orderImgType
+               orderClientStatus:(NSInteger) orderClientStatus;
 
-+ (NSMutableAttributedString *) getAttributedString:(NSString *)desc orderOfferNums:(NSInteger) orderOfferNums orderOfferStatus:(NSInteger) orderOfferStatus orderOfferPayPrice:(float) orderOfferPayPrice orderOfferStatusStr:(NSString *) orderOfferStatusStr orderOfferGatherStatus:(BOOL) orderOfferGatherStatus orderOfferOrigPrice:(CGFloat) orderOfferOrigPrice;
++ (NSMutableAttributedString *) getAttributedString:(NSString *)desc
+                                     orderOfferNums:(NSInteger) orderOfferNums
+                                   orderOfferStatus:(NSInteger) orderOfferStatus
+                                 orderOfferPayPrice:(float) orderOfferPayPrice
+                                orderOfferStatusStr:(NSString *) orderOfferStatusStr
+                             orderOfferGatherStatus:(BOOL) orderOfferGatherStatus
+                                orderOfferOrigPrice:(CGFloat) orderOfferOrigPrice;
 
-+ (NSMutableAttributedString *) attstringWithString:(NSString *) string range:(NSRange) range font:(UIFont *) font color:(UIColor *)color;
++ (NSMutableAttributedString *) attstringWithString:(NSString *) string
+                                              range:(NSRange) range
+                                               font:(UIFont *) font
+                                              color:(UIColor *)color;
 
 @end

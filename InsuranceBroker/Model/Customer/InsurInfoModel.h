@@ -57,4 +57,6 @@
 
 @property (nonatomic, assign) NSInteger gxbzStatus;//个险保障状态；1等待生效，2保单生效，3保单过期
 
+@property (nonatomic, assign) NSInteger orderClientStatus;
+
 @end

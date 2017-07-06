@@ -60,6 +60,8 @@
     model.clickUrl = [dictionary objectForKey:@"clickUrl"];
     model.gxbzStatus = [[dictionary objectForKey:@"gxbzStatus"] integerValue];
     
+    model.orderClientStatus = [[dictionary objectForKey:@"orderClientStatus"] integerValue];
+    
     return model;
 }
 

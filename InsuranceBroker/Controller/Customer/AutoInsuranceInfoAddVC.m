@@ -108,7 +108,9 @@
 //    [self loadInsurCompany];
     
     isCertModify = NO;
-//    self.lbIsTransfer.text = @"否";
+    self.lbIsTransfer.text = @"否";
+    _changNameDate = nil;
+    _changeNameIdx = 0;
     
     [self.tfName addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.tfNo addTarget:self action:@selector(valueChanged:) forControlEvents:UIControlEventEditingChanged];
@@ -481,6 +483,8 @@
     self.tfMotorCode.text = @"";
     self.tfModel.text = @"";
     self.tfDate.text = @"";
+    self.lbTransferDate.text = @"";
+    self.lbIsTransfer.text = @"否";
 }
 
 - (void) submitWithLicense:(Completion) completion
@@ -547,6 +551,8 @@
     __block NSString *weakcarRegTime = carRegTime;
     __block NSString *weakcarEngineNo = carEngineNo;
     __block NSString *weakcarTypeNo = carTypeNo;
+    __block NSString *weakcarTradeStatus = carTradeStatus;
+    __block NSString *weakcarTradeTime = carTradeTime;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0),^{
         NSString *filePahe = nil;
@@ -581,6 +587,9 @@
             weakcarRegTime = [Util nullString:weakcarRegTime];
             weakcarEngineNo = [Util nullString:weakcarEngineNo];
             weakcarTypeNo = [Util nullString:weakcarTypeNo];
+            weakcarTradeStatus = @"1";
+            weakcarTradeTime = [Util nullString:weakcarTradeTime];
+            _changNameDate = nil;
             
             [self performSelectorOnMainThread:@selector(cleanCarInfo) withObject:nil waitUntilDone:YES];
             
@@ -590,7 +599,7 @@
             }
         }
         
-        [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:weakcarTypeNo carShelfNo:weakcarShelfNo carEngineNo:weakcarEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe travelCard2:nil carOwnerCard1:filePahe1 carOwnerCard2:nil carRegTime:weakcarRegTime newCarNoStatus:newCarNoStatus carTradeStatus:carTradeStatus carTradeTime:carTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 labourOfferStatus:labourOfferStatus Completion:^(int code, id content) {
+        [NetWorkHandler requestToSaveOrUpdateCustomerCar:customerCarId customerId:customerId carNo:carNo carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:weakcarTypeNo carShelfNo:weakcarShelfNo carEngineNo:weakcarEngineNo carOwnerName:carOwnerName carOwnerCard:carOwnerCard carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe travelCard2:nil carOwnerCard1:filePahe1 carOwnerCard2:nil carRegTime:weakcarRegTime newCarNoStatus:newCarNoStatus carTradeStatus:weakcarTradeStatus carTradeTime:weakcarTradeTime carInsurStatus1:carInsurStatus1 carInsurCompId1:carInsurCompId1 labourOfferStatus:labourOfferStatus Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
                 isCertModify = NO;
@@ -616,6 +625,9 @@
                 model.carTypeNo = [self notNullString:weakcarTypeNo];
                 model.carNo = [self notNullString:carNo];
                 model.newCarNoStatus = [newCarNoStatus boolValue];
+                
+                model.carTradeTime = _changNameDate;
+                model.carTradeStatus = [weakcarTradeStatus integerValue];
                 
                 if(carInsurStatus1 != nil)
                     model.carInsurStatus1 = [carInsurStatus1 boolValue];
@@ -934,7 +946,6 @@
     if (!_menu) {
         _menu = [[MenuViewController alloc]initWithTitles:_changeNameArray];
         _menu.menuDelegate = self;
-        
     }
     
     _menu.selectIdx = _changeNameIdx;
@@ -949,21 +960,21 @@
 {
     [menu hide];
     
-//    if(menu == _menuView){//上年度投保
-//        _perInsurCompany = index;
-//        self.lbPName.text = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:index]).productName;
-//    }else if (menu == _menu){
-//        _changeNameIdx = index;
-//        if(index == 1){
-//            self.lbIsTransfer.text = @"是";
-//            [self addDatePicker1:nil];
-//        }
-//        else{
-//            self.lbIsTransfer.text = @"否";
-//            _changNameDate = nil;
-//            self.lbTransferDate.text = @"";
-//        }
-//    }
+    if(menu == _menuView){//上年度投保
+        _perInsurCompany = index;
+        self.lbPName.text = ((InsuranceCompanyModel*)[_insurCompanyArray objectAtIndex:index]).productName;
+    }else if (menu == _menu){
+        _changeNameIdx = index;
+        if(index == 1){
+            self.lbIsTransfer.text = @"是";
+            [self addDatePicker1:nil];
+        }
+        else{
+            self.lbIsTransfer.text = @"否";
+            _changNameDate = nil;
+            self.lbTransferDate.text = @"";
+        }
+    }
     
     [self isModify];
 }
@@ -1010,8 +1021,8 @@
         NSString *dateStr = [Util getDayString:resultDate];
         self.tfDate.text = dateStr;
     }else{
-//        _changNameDate = resultDate;
-//        self.lbTransferDate.text = [Util getDayString:resultDate];
+        _changNameDate = resultDate;
+        self.lbTransferDate.text = [Util getDayString:resultDate];
     }
     
     [self isModify];
@@ -1020,10 +1031,10 @@
 - (void)toobarCandelBtnHaveClick:(ZHPickView *)pickView
 {
     if(pickView == _datePicker1){
-//        _changeNameIdx = 0;
-//        self.lbIsTransfer.text = @"否";
-//        _changNameDate = nil;
-//        self.lbTransferDate.text = @"";
+        _changeNameIdx = 0;
+        self.lbIsTransfer.text = @"否";
+        _changNameDate = nil;
+        self.lbTransferDate.text = @"";
     }
 }
 

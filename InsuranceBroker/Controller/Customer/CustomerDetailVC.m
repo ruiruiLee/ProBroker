@@ -855,15 +855,17 @@
         NSString *carShelfNo = self.data.carInfo.carShelfNo;
         NSString *carEngineNo = self.data.carInfo.carEngineNo;
         NSString *carRegTime = [Util getDayString:self.data.carInfo.carRegTime];
+        NSString *carTradeTime = @"";
         if(filePahe1){
             labourOfferStatus = 2;
             carTypeNo = [Util nullString:carTypeNo];
             carShelfNo = [Util nullString:carShelfNo];
             carEngineNo = [Util nullString:carEngineNo];
             carRegTime = [Util nullString:carRegTime];
+            carTradeTime = [Util nullString:@""];
         }
         
-        [NetWorkHandler requestToSaveOrUpdateCustomerCar:self.data.carInfo.customerCarId customerId:self.data.customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe1 travelCard2:filePahe2 carOwnerCard1:filePahe3 carOwnerCard2:filePahe4 carRegTime:carRegTime newCarNoStatus:nil carTradeStatus:nil carTradeTime:nil carInsurStatus1:nil carInsurCompId1:nil labourOfferStatus:labourOfferStatus Completion:^(int code, id content) {
+        [NetWorkHandler requestToSaveOrUpdateCustomerCar:self.data.carInfo.customerCarId customerId:self.data.customerId carNo:nil carProvinceId:nil carCityId:nil driveProvinceId:nil driveCityId:nil carTypeNo:carTypeNo carShelfNo:carShelfNo carEngineNo:carEngineNo carOwnerName:nil carOwnerCard:nil carOwnerPhone:nil carOwnerTel:nil carOwnerAddr:nil travelCard1:filePahe1 travelCard2:filePahe2 carOwnerCard1:filePahe3 carOwnerCard2:filePahe4 carRegTime:carRegTime newCarNoStatus:nil carTradeStatus:@"1" carTradeTime:carTradeTime carInsurStatus1:nil carInsurCompId1:nil labourOfferStatus:labourOfferStatus Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             dispatch_async(dispatch_get_main_queue(),^{
                 if(code == 200){
@@ -887,6 +889,8 @@
                     model.carShelfNo = [self notNullString:carShelfNo];
                     model.carEngineNo = [self notNullString:carEngineNo];
                     model.carRegTime = nil;
+                    model.carTradeStatus = 1;
+                    model.carTradeTime = nil;
                     
                     [_insuranceDetailView.tableview reloadData];
                     [ProgressHUD showSuccess:@"上传成功"];

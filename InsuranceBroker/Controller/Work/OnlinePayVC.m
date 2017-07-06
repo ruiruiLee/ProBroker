@@ -227,7 +227,11 @@
         
         [ProgressHUD show:nil];
         OnlinePayVC * __weak weakSelf = self;
-        [NetWorkHandler requestToGetCharge:self.channel amount:self.totalFee orderNo:self.orderId productDesc:self.payDesc productName:self.titleName systemName:@"ibrokerInsurance" Completion:^(int code, id content) {
+        NSString *systemName = @"ibrokerInsurance";
+        if([self.insuranceType integerValue] > 1){
+            systemName = @"personInsurance";
+        }
+        [NetWorkHandler requestToGetCharge:self.channel amount:self.totalFee orderNo:self.orderId productDesc:self.payDesc productName:self.titleName systemName:systemName Completion:^(int code, id content) {
             [ProgressHUD dismiss];
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){

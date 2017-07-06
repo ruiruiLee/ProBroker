@@ -78,8 +78,8 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) IBOutlet UIButton *btnReSubmit;//重新上传
 @property (nonatomic, strong) IBOutlet UIView *contenView;//基本信息
 @property (nonatomic, strong) IBOutlet UILabel *lbPName;//上年度保险厂家
-//@property (nonatomic, strong) IBOutlet UILabel *lbIsTransfer;//是否过户
-//@property (nonatomic, strong) IBOutlet UILabel *lbTransferDate;//过户时间
+@property (nonatomic, strong) IBOutlet UILabel *lbIsTransfer;//是否过户
+@property (nonatomic, strong) IBOutlet UILabel *lbTransferDate;//过户时间
 
 @property (nonatomic, strong) IBOutlet UILabel *lbShow;
 

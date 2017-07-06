@@ -364,7 +364,7 @@
             
             [cell.phoneNum setTitle:model.customerPhone forState:UIControlStateNormal];
             cell.lbStatus.attributedText = [OrderUtil getAttributedString:model.orderOfferStatusMsg orderOfferNums:model.orderOfferNums orderOfferStatus:model.orderOfferStatus orderOfferPayPrice:model.orderOfferPayPrice orderOfferStatusStr:(NSString *) model.orderOfferStatusMsg orderOfferGatherStatus:model.orderOfferGatherStatus orderOfferOrigPrice:model.orderOfferOrigPrice];
-            [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
+            [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType orderClientStatus:model.orderClientStatus];
             cell.statusImgV.hidden = YES;
             cell.btnStatus.hidden = NO;
             cell.btnModifyPlain.tag = indexPath.row;
@@ -389,7 +389,7 @@
             }
             else
                 cell.lbStatus.text = @"";
-            [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType];
+            [OrderUtil setPolicyStatusWithCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType orderClientStatus:model.orderClientStatus];
             
             cell.statusImgV.hidden = NO;
             cell.btnStatus.hidden = NO;

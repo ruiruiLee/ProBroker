@@ -14,30 +14,40 @@
 
 @implementation OrderUtil
 
-+ (void) setPolicyStatusWithTableCell:(PolicyInfoTableViewCell *) cell orderOfferStatusStr:(NSString*) orderOfferStatusStr orderImgType:(NSInteger) orderImgType
++ (void) setPolicyStatusWithTableCell:(PolicyInfoTableViewCell *) cell orderOfferStatusStr:(NSString*) orderOfferStatusStr orderImgType:(NSInteger) orderImgType orderClientStatus:(NSInteger) orderClientStatus
 {
     if(orderImgType == 1){
-        cell.hud.hidden = NO;
-        [cell.hud startAnimating];
+        if(orderClientStatus == 110){
+            cell.hud.hidden = YES;
+        }else
+        {
+            cell.hud.hidden = NO;
+            [cell.hud startAnimating];
+        }
     }
     else{
         cell.hud.hidden = YES;
     }
     LeftImgButtonLeft *btn = cell.btnStatus;
-    [self checkOrderOfferStatusStr:orderOfferStatusStr btn:btn orderImgType:orderImgType];
+    [self checkOrderOfferStatusStr:orderOfferStatusStr btn:btn orderImgType:orderImgType orderClientStatus:orderClientStatus];
 }
 
-+ (void) setPolicyStatusWithCell:(OrderManagerTableViewCell *) cell orderOfferStatusStr:(NSString *) orderOfferStatusStr orderImgType:(NSInteger) orderImgType
++ (void) setPolicyStatusWithCell:(OrderManagerTableViewCell *) cell orderOfferStatusStr:(NSString *) orderOfferStatusStr orderImgType:(NSInteger) orderImgType orderClientStatus:(NSInteger) orderClientStatus
 {
     if(orderImgType == 1){
-        cell.hud.hidden = NO;
-        [cell.hud startAnimating];
+        if(orderClientStatus == 110)
+        {
+            cell.hud.hidden = YES;
+        }else{
+            cell.hud.hidden = NO;
+            [cell.hud startAnimating];
+        }
     }
     else{
         cell.hud.hidden = YES;
     }
     LeftImgButtonLeft *btn = cell.btnStatus;
-    [self checkOrderOfferStatusStr:orderOfferStatusStr btn:btn orderImgType:orderImgType];
+    [self checkOrderOfferStatusStr:orderOfferStatusStr btn:btn orderImgType:orderImgType orderClientStatus:orderClientStatus];
 }
 
 //":"1"; //订单报价状态；1等待报价，2报价失败(读取失败原因,StatusId,StatusMsg），3报价完成，4出单配送-未付款（货到付款），5出单配送-付款中，6出单配送-已付款，7付款失败，8交易成功，9已过期，10禁止流程操作当扫表状态为1或2的时候，进行报价
@@ -98,12 +108,15 @@
     return nil;
 }
 
-+ (void) checkOrderOfferStatusStr:(NSString *) orderOfferStatusStr btn:(LeftImgButtonLeft *) btn  orderImgType:(NSInteger) orderImgType
++ (void) checkOrderOfferStatusStr:(NSString *) orderOfferStatusStr btn:(LeftImgButtonLeft *) btn  orderImgType:(NSInteger) orderImgType  orderClientStatus:(NSInteger) orderClientStatus
 {
     NSString *title = @"";
     UIImage *image = nil;
     if(orderImgType == 1){
-        image = ThemeImage(@"");
+        if(orderClientStatus == 110){
+            image = ThemeImage(@"price_loading");
+        }else
+            image = ThemeImage(@"");
     }
     else if (orderImgType == 2){
         image = ThemeImage(@"error");
