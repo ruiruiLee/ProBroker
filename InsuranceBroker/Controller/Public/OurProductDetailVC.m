@@ -299,6 +299,9 @@
 //    {
         NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
         NSString *url = self.shareUrl;
+    if([url rangeOfString:@"https"] .length == 0){
+        url = [NSString stringWithFormat:@"%@&appShare=1", url];
+    }
 //        if([url rangeOfString:@"?"].length > 0)
 //            url = [NSString stringWithFormat:@"%@&appShare=1", url];
 //        else
