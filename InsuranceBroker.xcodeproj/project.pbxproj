@@ -11,6 +11,10 @@
 		8603C3591E8E34F600241200 /* OnlinePayVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8603C3571E8E34F600241200 /* OnlinePayVC.xib */; };
 		8603C35D1E8F9F1000241200 /* RateSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8603C35B1E8F9F1000241200 /* RateSettingVC.m */; };
 		8603C35E1E8F9F1000241200 /* RateSettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8603C35C1E8F9F1000241200 /* RateSettingVC.xib */; };
+		86129DA21F69154700B1B034 /* RegisterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 86129DA01F69154700B1B034 /* RegisterVC.m */; };
+		86129DA31F69154700B1B034 /* RegisterVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86129DA11F69154700B1B034 /* RegisterVC.xib */; };
+		86129DA61F6937DE00B1B034 /* HyperlinksButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 86129DA51F6937DE00B1B034 /* HyperlinksButton.m */; };
+		86129DA91F693CE200B1B034 /* NetWorkHandler+register.m in Sources */ = {isa = PBXBuildFile; fileRef = 86129DA81F693CE200B1B034 /* NetWorkHandler+register.m */; };
 		8612F4131CE4828D0045340F /* JElasticPullToRefreshLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40A1CE4828D0045340F /* JElasticPullToRefreshLoadingView.m */; };
 		8612F4141CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40C1CE4828D0045340F /* JElasticPullToRefreshLoadingViewCircle.m */; };
 		8612F4151CE4828D0045340F /* JElasticPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8612F40E1CE4828D0045340F /* JElasticPullToRefreshView.m */; };
@@ -677,6 +681,13 @@
 		8603C35A1E8F9F1000241200 /* RateSettingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RateSettingVC.h; sourceTree = "<group>"; };
 		8603C35B1E8F9F1000241200 /* RateSettingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RateSettingVC.m; sourceTree = "<group>"; };
 		8603C35C1E8F9F1000241200 /* RateSettingVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RateSettingVC.xib; sourceTree = "<group>"; };
+		86129D9F1F69154700B1B034 /* RegisterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterVC.h; sourceTree = "<group>"; };
+		86129DA01F69154700B1B034 /* RegisterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterVC.m; sourceTree = "<group>"; };
+		86129DA11F69154700B1B034 /* RegisterVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterVC.xib; sourceTree = "<group>"; };
+		86129DA41F6937DE00B1B034 /* HyperlinksButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HyperlinksButton.h; sourceTree = "<group>"; };
+		86129DA51F6937DE00B1B034 /* HyperlinksButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HyperlinksButton.m; sourceTree = "<group>"; };
+		86129DA71F693CE200B1B034 /* NetWorkHandler+register.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NetWorkHandler+register.h"; sourceTree = "<group>"; };
+		86129DA81F693CE200B1B034 /* NetWorkHandler+register.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NetWorkHandler+register.m"; sourceTree = "<group>"; };
 		8612F4081CE4828D0045340F /* JElasticPullToRefreshConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JElasticPullToRefreshConstants.h; sourceTree = "<group>"; };
 		8612F4091CE4828D0045340F /* JElasticPullToRefreshLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JElasticPullToRefreshLoadingView.h; sourceTree = "<group>"; };
 		8612F40A1CE4828D0045340F /* JElasticPullToRefreshLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JElasticPullToRefreshLoadingView.m; sourceTree = "<group>"; };
@@ -2240,6 +2251,9 @@
 			children = (
 				865065C41C1EB66D00429EAE /* RootViewController.h */,
 				865065C51C1EB66D00429EAE /* RootViewController.m */,
+				86129D9F1F69154700B1B034 /* RegisterVC.h */,
+				86129DA01F69154700B1B034 /* RegisterVC.m */,
+				86129DA11F69154700B1B034 /* RegisterVC.xib */,
 				86C3BCC81C2E999300F98E80 /* loginViewController.h */,
 				86C3BCC91C2E999300F98E80 /* loginViewController.m */,
 				86C3BCCA1C2E999300F98E80 /* loginViewController.xib */,
@@ -2487,6 +2501,8 @@
 				86134D6E1F022C66001DD450 /* NetWorkHandler+SMSRequest.m */,
 				86134D701F0246DF001DD450 /* NetWorkHandler+VerifySMSCode.h */,
 				86134D711F0246DF001DD450 /* NetWorkHandler+VerifySMSCode.m */,
+				86129DA71F693CE200B1B034 /* NetWorkHandler+register.h */,
+				86129DA81F693CE200B1B034 /* NetWorkHandler+register.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2925,6 +2941,8 @@
 				863DF1471D17FFDF00AEB6A9 /* EditAbleTextView.m */,
 				8615AF011E71064800AC795F /* UINavigationBar+HitTest.h */,
 				8615AF021E71064800AC795F /* UINavigationBar+HitTest.m */,
+				86129DA41F6937DE00B1B034 /* HyperlinksButton.h */,
+				86129DA51F6937DE00B1B034 /* HyperlinksButton.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -4549,6 +4567,7 @@
 				86C3BBB41C291CDE00F98E80 /* LucyMoneyTableCell.xib in Resources */,
 				8625AFA61C32B15000312B98 /* RealNameAuthenticationVC.xib in Resources */,
 				CFE0945F1D915C54008E2569 /* AVOSCloud_Art.txt in Resources */,
+				86129DA31F69154700B1B034 /* RegisterVC.xib in Resources */,
 				86C3BC251C2CE6BA00F98E80 /* InsuranceTableViewCell.xib in Resources */,
 				86A26ED61C47DC200073FFFC /* CarAddInfoTableCell.xib in Resources */,
 			);
@@ -4675,6 +4694,7 @@
 				86F2E34F1D388F70002FCE75 /* NetWorkHandler+insurancePay.m in Sources */,
 				86C3BB2F1C22C42D00F98E80 /* UIView+MGBadgeView.m in Sources */,
 				868C7CA91C92CFAD00B7617A /* SepLineLabel.m in Sources */,
+				86129DA61F6937DE00B1B034 /* HyperlinksButton.m in Sources */,
 				86A26E8E1C4531290073FFFC /* NewsModel.m in Sources */,
 				86CAC5671D62F1670045AF37 /* AutoInsuranceStep1VC.m in Sources */,
 				86A26EDC1C48E2C90073FFFC /* NetWorkHandler+modifyUserInfo.m in Sources */,
@@ -4777,6 +4797,7 @@
 				86764CAA1EEE34CA00ED8765 /* BeiYaoQingRenModel.m in Sources */,
 				86248F0F1CCDF67C00F1B493 /* productAttrModel.m in Sources */,
 				86C3BCC01C2E933600F98E80 /* IQKeyboardReturnKeyHandler.m in Sources */,
+				86129DA91F693CE200B1B034 /* NetWorkHandler+register.m in Sources */,
 				86A26ED11C47D6840073FFFC /* InsurCompanySelectTableViewCell.m in Sources */,
 				86C3BCC61C2E933600F98E80 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				86F0142D1C86831800A3C68E /* BillDetailInfoFromLuckyVC.m in Sources */,
@@ -4941,6 +4962,7 @@
 				86A26E711C44F5E10073FFFC /* AgentStrategyViewController.m in Sources */,
 				CFE094811D915C54008E2569 /* AVRelation.m in Sources */,
 				86F2DA991C7EF6030088B783 /* ParentInfoModel.m in Sources */,
+				86129DA21F69154700B1B034 /* RegisterVC.m in Sources */,
 				8612F4221CE9B5F90045340F /* ProvienceSelectVC.m in Sources */,
 				86A504BD1C50820B0032A901 /* NetWorkHandler+getRedPack.m in Sources */,
 				CFE094A31D915C54008E2569 /* LCURLResponseSerialization.m in Sources */,
@@ -5236,8 +5258,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InsuranceBroker/InsuranceBroker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q8Z5QWUAGN;
 				ENABLE_BITCODE = NO;
@@ -5300,8 +5322,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ce10df9d-c60c-44da-b916-7ad4ae0e25cb";
-				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibroker;
+				PROVISIONING_PROFILE = "08eeb0b3-8cd3-4d89-88a1-53a6450b7abc";
+				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibrokerDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
@@ -5315,8 +5337,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InsuranceBroker/InsuranceBroker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Q8Z5QWUAGN;
 				ENABLE_BITCODE = NO;
@@ -5379,8 +5401,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ce10df9d-c60c-44da-b916-7ad4ae0e25cb";
-				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibroker;
+				PROVISIONING_PROFILE = "08eeb0b3-8cd3-4d89-88a1-53a6450b7abc";
+				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibrokerDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 			};

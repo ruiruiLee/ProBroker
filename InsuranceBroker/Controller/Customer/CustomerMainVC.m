@@ -65,7 +65,7 @@
     self.pulltable.tableFooterView = [[UIView alloc] init];
     self.pulltable.tableFooterView.backgroundColor = [UIColor whiteColor];
     
-    if([UserInfoModel shareUserInfoModel].uuid == nil)
+    if([UserInfoModel shareUserInfoModel].uuid == nil || [[UserInfoModel shareUserInfoModel].uuid isEqualToString:youKeUUId])
         [self initNoLoginView];
 }
 
@@ -96,6 +96,7 @@
 {
     [self.data removeAllObjects];
     self.total = 0;
+    [self.pulltable reloadData];
 }
 
 - (void) notifyToRefreshCustomer:(NSNotification *) notify

@@ -122,7 +122,7 @@
         [OrderUtil setPolicyStatusWithTableCell:cell orderOfferStatusStr:model.orderOfferStatusStr orderImgType:model.orderImgType orderClientStatus:model.orderClientStatus];
         
         
-        if(model.orderOfferStatus == 3){
+        if(model.orderOfferStatus == 3 && !kShenHeBeiAn){
             [cell.btnUnshut setTitle:@"设置费率" forState:UIControlStateNormal];
         }
         else{

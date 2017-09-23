@@ -121,13 +121,13 @@
             [self.delegate NotifyLastUpdateTime:t category:[result objectForKey:@"category"]];
     }
 }
-
+/*
 - (void) goOrderList:(NSString *) string//跳转到订单列表
 {
     if(self.delegate && [self.delegate respondsToSelector:@selector(notifyToOrderList:)]){
         [self.delegate notifyToOrderList:string];
     }
-}
+}*/
 
 - (void) webViewLoadFinished:(NSString *) string
 {

@@ -64,7 +64,7 @@
     NSDictionary *views = NSDictionaryOfVariableBindings(pageControl, contentContainer);
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[pageControl]-0-|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[contentContainer]-0-|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[pageControl(50)]-0-[contentContainer]-0-|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[pageControl(48)]-0-[contentContainer]-0-|" options:0 metrics:nil views:views]];
 
     
     [self.pageControl addTarget:self

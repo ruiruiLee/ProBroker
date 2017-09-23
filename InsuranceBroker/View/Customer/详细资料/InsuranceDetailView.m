@@ -31,7 +31,7 @@
         
         _selectIdx = 0;
         //非车险部分
-        
+        //ShenHeBeiAn-01
         UIView *sepView = [[UIView alloc] initWithFrame:CGRectZero];
         sepView.translatesAutoresizingMaskIntoConstraints = NO;
         sepView.backgroundColor = SepLine_color;
@@ -320,6 +320,9 @@
 
 - (CGFloat) resetSubviewsFrame
 {
+    
+    //ShenHeBeiAn-01
+    
     CGFloat tableheight = 0;
     NSInteger section = [self.tableview numberOfSections];
     for (int i = 0; i < section; i++) {

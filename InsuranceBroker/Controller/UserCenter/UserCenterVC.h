@@ -24,6 +24,7 @@
 @property (nonatomic, strong) IBOutlet UserNameEditButton *btNameEdit;
 @property (nonatomic, strong) IBOutlet UserCenterHeaderBgView *gradientView;
 @property (nonatomic, strong) IBOutlet UILabel *lbCertificate;
+@property (nonatomic, strong) IBOutlet UIButton *btnSetting;
 
 //
 @property (nonatomic, strong) IBOutlet UILabel *lbMonthOrderSuccessNums;//车险本月保费
@@ -44,6 +45,11 @@
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *headHConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *footVConstraint;
 @property (nonatomic, strong) IBOutlet NSLayoutConstraint *tableHConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *zhenceVConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *renzhengVConstraint;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *hongbaoVConstraint;
+
+@property (nonatomic, strong) IBOutlet UILabel *lbZuiXinZhenCe;
 
 @property (nonatomic, strong) IBOutlet UIButton *btnEditPhoto;
 

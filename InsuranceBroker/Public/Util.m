@@ -769,9 +769,12 @@
     [AVUser logOut];  //清除缓存用户对象
     
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-    model.uuid = nil;
     [model removeAllContent];
     [[AppContext sharedAppContext] removeData];
+    model.uuid = youKeUUId;
+    model.userId = youKeUserId;
+    
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Logout object:nil];
     
     [((AppDelegate*)App_Delegate).root.homevc removeProductArray];

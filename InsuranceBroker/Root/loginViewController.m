@@ -15,6 +15,8 @@
 #import "IQKeyboardManager.h"
 #import "NetWorkHandler+newUser.h"
 #import "NetWorkHandler+SMSRequest.h"
+#import "RegisterVC.h"
+#import "NetWorkHandler+register.h"
 
 
 @interface loginViewController ()<SetTeamLeaderPhoneViewDelegate>
@@ -42,6 +44,8 @@
     [self showLabelWithFlag:NO];
     
     [self.btnGetCaptcha setTitle:@"获取验证码" forState:UIControlStateNormal];
+    
+    [self.btnRegister setColor:_COLOR(0xff, 0x66, 0x19)];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -86,8 +90,8 @@
 - (void) loginWithDictionary:(NSDictionary *)dic phone:(NSString *) phone smCode:(NSString *)smCode
 {
     [self resignFirstResponder];
-
-    [NetWorkHandler loginWithPhone:phone openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:[dic objectForKey:@"nickname"] privilege:[dic objectForKey:@"privilege"] unionid:@"" province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:smCode Completion:^(int code, id content) {
+    
+    [NetWorkHandler requestToRegister:nil phone:phone smsCode:smCode userName:nil action:@"login" Completion:^(int code, id content) {
         [ProgressHUD dismiss];
         if(code == 505){ //弹出输入团长手机号窗口
             SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -114,7 +118,7 @@
                     }];
                 }
             }];
-            }
+        }
         else{   // 登陆失败
             if(code<0){
                 [KGStatusBar showErrorWithStatus:@"无法连接网络，请检查网络设置！"];
@@ -122,8 +126,46 @@
             else{
                 [Util showAlertMessage:[content objectForKey:@"msg"]];
             }
-          }
+        }
     }];
+
+//    [NetWorkHandler loginWithPhone:phone openId:[dic objectForKey:@"openid"] sex:[[dic objectForKey:@"sex"] integerValue] nickname:[dic objectForKey:@"nickname"] privilege:[dic objectForKey:@"privilege"] unionid:@"" province:[dic objectForKey:@"province"] language:[dic objectForKey:@"language"] headimgurl:[dic objectForKey:@"headimgurl"] city:[dic objectForKey:@"city"] country:[dic objectForKey:@"country"] smCode:smCode Completion:^(int code, id content) {
+//        [ProgressHUD dismiss];
+//        if(code == 505){ //弹出输入团长手机号窗口
+//            SetTeamLeaderPhoneView *view = [[SetTeamLeaderPhoneView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//            view.delegate = self;
+//            view.tfNickname.text = [dic objectForKey:@"nickname"];
+//            [[UIApplication sharedApplication].keyWindow addSubview:view];
+//            
+//        }else if (code == 200){ // 直接登陆成功
+//            NSDictionary *data = [content objectForKey:@"data"];
+//            UserInfoModel *userinfo = [UserInfoModel shareUserInfoModel];
+//            [userinfo setContentWithDictionary:data];
+//            [userinfo queryUserInfo];
+//            [self handleLeftBarButtonClicked:nil];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:Notify_Login object:nil];
+//            // 订阅 push 频道
+//            AVInstallation *currentInstallation = [AVInstallation currentInstallation];
+//            [currentInstallation addUniqueObject:@"ykbbrokerLoginUser4" forKey:@"channels"];
+//            [currentInstallation addUniqueObject:[UserInfoModel shareUserInfoModel].userId forKey:@"channels"];
+//            [currentInstallation saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                NSInteger isRegister = [[[content objectForKey:@"data"] objectForKey:@"isRegister"] integerValue];
+//                if(isRegister == 1){
+//                    [NetWorkHandler requestToRequestNewUser:userinfo.userId nickName:nil Completion:^(int code, id content) {
+//                        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+//                    }];
+//                }
+//            }];
+//            }
+//        else{   // 登陆失败
+//            if(code<0){
+//                [KGStatusBar showErrorWithStatus:@"无法连接网络，请检查网络设置！"];
+//            }
+//            else{
+//                [Util showAlertMessage:[content objectForKey:@"msg"]];
+//            }
+//          }
+//    }];
 }
 
 #pragma action
@@ -218,6 +260,12 @@
 - (IBAction)doBtnShowTips:(id)sender
 {
     [self showLabelWithFlag:YES];
+}
+
+- (IBAction)doBtnRegister:(id)sender
+{
+    RegisterVC *vc = [[RegisterVC alloc] initWithNibName:nil bundle:nil];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void) showLabelWithFlag:(BOOL) flag

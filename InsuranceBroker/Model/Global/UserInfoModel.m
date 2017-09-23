@@ -29,6 +29,11 @@
     dispatch_once(&once, ^{
         userModel = [[UserInfoModel alloc] init];
         [userModel loadUserinfoFromStore];
+        
+        if(userModel.userId == nil){
+            userModel.userId = youKeUserId;
+            userModel.uuid = youKeUUId;
+        }
     });
 
     return userModel;
@@ -46,15 +51,11 @@
         self.userId = userId;
         [self addObserver:self forKeyPath:@"userId" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
         
-        self.isRegister = NO;
         self.mobileFlag = YES;
         self.webFlag = NO;
         self.sex = 1;
-        self.isTeamLeader = 0;
+        self.isWxTeamLeader = 0;
         self.cardVerifiy = 1;
-        self.userType = [Default_User_Type integerValue];
-        self.accountType = 1;
-        self.possessTeamStatus = NO;
     }
     
     return self;
@@ -64,18 +65,13 @@
 {
     self = [super init];
     if(self){
-        
         [self addObserver:self forKeyPath:@"userId" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-        
-        self.isRegister = NO;
+
         self.mobileFlag = YES;
         self.webFlag = NO;
         self.sex = 1;
-        self.isTeamLeader = 0;
+        self.isWxTeamLeader = 0;
         self.cardVerifiy = 1;
-        self.accountType = 1;
-        self.userType = [Default_User_Type integerValue];
-        self.possessTeamStatus = NO;
     }
     
     return self;
@@ -89,26 +85,23 @@
 
 - (void) setContentWithDictionary:(NSDictionary *) dic
 {
-    self.isRegister = [[dic objectForKey:@"isRegister"] integerValue];
-    self.realName = [dic objectForKey:@"realName"];
-    self.headerImg = [dic objectForKey:@"headerImg"];
-    self.clientKey = [dic objectForKey:@"clientKey"];
-    self.mobileFlag = [[dic objectForKey:@"mobileFlag"]boolValue];
-    self.webFlag = [[dic objectForKey:@"webFlag"] boolValue];
-    self.phone = [dic objectForKey:@"phone"];
-    self.nickname = [dic objectForKey:@"userName"];
-    self.sex = [[dic objectForKey:@"sex"] integerValue];
-    self.liveProvinceId = [dic objectForKey:@"liveProvinceId"];
-    self.liveCityId = [dic objectForKey:@"liveCityId"];
-    self.liveProvince = [dic objectForKey:@"liveProvince"];
-    self.liveCity = [dic objectForKey:@"liveCity"];
-    self.isTeamLeader = [[dic objectForKey:@"isTeamLeader"] integerValue];
-    self.cardVerifiy = [[dic objectForKey:@"cardVerifiy"] integerValue];
-    self.userType = [[dic objectForKey:@"userType"] integerValue];
+//    self.realName = [dic objectForKey:@"realName"];
+//    self.clientKey = [dic objectForKey:@"clientKey"];
+//    self.isTeamLeader = [[dic objectForKey:@"isTeamLeader"] integerValue];
     self.userId = [dic objectForKey:@"userId"];
-    self.possessTeamStatus = [[dic objectForKey:@"possessTeamStatus"] boolValue];
     self.uuid = [dic objectForKey:@"uuid"];
-    self.accountType = [[dic objectForKey:@"accountType"] integerValue];
+    
+//    self.mobileFlag = [[dic objectForKey:@"mobileFlag"]boolValue];
+//    self.webFlag = [[dic objectForKey:@"webFlag"] boolValue];
+//    self.phone = [dic objectForKey:@"phone"];
+//    self.nickname = [dic objectForKey:@"userName"];
+//    self.sex = [[dic objectForKey:@"sex"] integerValue];
+//    self.liveProvinceId = [dic objectForKey:@"liveProvinceId"];
+//    self.liveCityId = [dic objectForKey:@"liveCityId"];
+//    self.liveProvince = [dic objectForKey:@"liveProvince"];
+//    self.liveCity = [dic objectForKey:@"liveCity"];
+//    self.cardVerifiy = [[dic objectForKey:@"cardVerifiy"] integerValue];
+//    self.headerImg = [dic objectForKey:@"headerImg"];
 
     
     NSMutableDictionary *dictionary = [self dictionaryWithObject:self];
@@ -123,25 +116,22 @@
     NSMutableDictionary *mDic = [[NSMutableDictionary alloc] init];
     
     [Util setValueForKeyWithDic:mDic value:self.userId key:@"userId"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInt:self.isRegister] key:@"isRegister"];
-    [Util setValueForKeyWithDic:mDic value:self.realName key:@"realName"];
-    [Util setValueForKeyWithDic:mDic value:self.headerImg key:@"headerImg"];
-    [Util setValueForKeyWithDic:mDic value:self.clientKey key:@"clientKey"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithBool:self.mobileFlag] key:@"mobileFlag"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithBool:self.webFlag] key:@"webFlag"];
-    [Util setValueForKeyWithDic:mDic value:self.phone key:@"phone"];
-    [Util setValueForKeyWithDic:mDic value:self.nickname key:@"userName"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.sex] key:@"sex"];
-    [Util setValueForKeyWithDic:mDic value:self.liveProvinceId key:@"liveProvinceId"];
-    [Util setValueForKeyWithDic:mDic value:self.liveCityId key:@"liveCityId"];
-    [Util setValueForKeyWithDic:mDic value:self.liveProvince key:@"liveProvince"];
-    [Util setValueForKeyWithDic:mDic value:self.liveCity key:@"liveCity"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInt:self.isTeamLeader] key:@"isTeamLeader"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.cardVerifiy] key:@"cardVerifiy"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.userType] key:@"userType"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithBool:self.possessTeamStatus] key:@"possessTeamStatus"];
+//    [Util setValueForKeyWithDic:mDic value:self.realName key:@"realName"];
+//    [Util setValueForKeyWithDic:mDic value:self.clientKey key:@"clientKey"];
+//    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInt:self.isTeamLeader] key:@"isTeamLeader"];
     [Util setValueForKeyWithDic:mDic value:self.uuid key:@"uuid"];
-    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.accountType] key:@"accountType"];
+    
+//    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithBool:self.mobileFlag] key:@"mobileFlag"];
+//    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithBool:self.webFlag] key:@"webFlag"];
+//    [Util setValueForKeyWithDic:mDic value:self.phone key:@"phone"];
+//    [Util setValueForKeyWithDic:mDic value:self.nickname key:@"userName"];
+//    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.sex] key:@"sex"];
+//    [Util setValueForKeyWithDic:mDic value:self.liveProvinceId key:@"liveProvinceId"];
+//    [Util setValueForKeyWithDic:mDic value:self.liveCityId key:@"liveCityId"];
+//    [Util setValueForKeyWithDic:mDic value:self.liveProvince key:@"liveProvince"];
+//    [Util setValueForKeyWithDic:mDic value:self.liveCity key:@"liveCity"];
+//    [Util setValueForKeyWithDic:mDic value:[NSNumber numberWithInteger:self.cardVerifiy] key:@"cardVerifiy"];
+//    [Util setValueForKeyWithDic:mDic value:self.headerImg key:@"headerImg"];
     
     return mDic;
 }
@@ -167,10 +157,8 @@
     self.liveProvince = [dic objectForKey:@"liveProvince"];
     self.liveCity = [dic objectForKey:@"liveCity"];
     self.liveCityId = [dic objectForKey:@"liveCityId"];
-    self.isTeamLeader = [[dic objectForKey:@"isTeamLeader"] integerValue];
+    self.isWxTeamLeader = [[dic objectForKey:@"isWxTeamLeader"] integerValue];
     self.cardVerifiy = [[dic objectForKey:@"cardVerifiy"] integerValue];
-    self.userType = [[dic objectForKey:@"userType"] integerValue];
-    self.accountType = [[dic objectForKey:@"accountType"] integerValue];
     self.sex = [[dic objectForKey:@"userSex"] integerValue];
     
     self.cardNumber = [dic objectForKey:@"cardNumber"];
@@ -195,7 +183,6 @@
     self.qrcodeAddr = [dic objectForKey:@"qrcodeAddr"];
     
     self.cardVerifiyMsg = [dic objectForKey:@"cardVerifiyMsg"];
-    self.possessTeamStatus = [[dic objectForKey:@"possessTeamStatus"] boolValue];
     self.car_now_zcgddbf = [[dic objectForKey:@"car_now_zcgddbf"] doubleValue];
     self.car_now_zcgdds = [[dic objectForKey:@"car_now_zcgdds"] integerValue];
     self.car_now_zcgddsy = [[dic objectForKey:@"car_now_zcgddsy"] doubleValue];

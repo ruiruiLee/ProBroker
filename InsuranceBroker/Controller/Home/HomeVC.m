@@ -69,21 +69,30 @@
 }
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    AppContext *con= [AppContext sharedAppContext];
-    if(con.isNewMessage)
-    {
-        self.btnMessage.imageView.badgeView.badgeValue = 1;
-        [self.tabBarController.tabBar showBadgeOnItemIndex:0];
-    }else{
+    UserInfoModel *user = [UserInfoModel shareUserInfoModel];
+    if([user.uuid isEqualToString:youKeUUId]){
         self.btnMessage.imageView.badgeView.badgeValue = 0;
         [self.tabBarController.tabBar hideBadgeOnItemIndex:0];
-    }
-    
-    if(con.isZSKFHasMsg){
-        [self showServiceBadge:YES];
+        
+        [self showServiceBadge:NO];
     }
     else{
-        [self showServiceBadge:NO];
+        AppContext *con= [AppContext sharedAppContext];
+        if(con.isNewMessage)
+        {
+            self.btnMessage.imageView.badgeView.badgeValue = 1;
+            [self.tabBarController.tabBar showBadgeOnItemIndex:0];
+        }else{
+            self.btnMessage.imageView.badgeView.badgeValue = 0;
+            [self.tabBarController.tabBar hideBadgeOnItemIndex:0];
+        }
+        
+        if(con.isZSKFHasMsg){
+            [self showServiceBadge:YES];
+        }
+        else{
+            [self showServiceBadge:NO];
+        }
     }
 }
 
@@ -426,12 +435,10 @@
     switch (tag) {
         case 1001:
         {//车险
-            if([self login]){
-                AutoInsuranceStep1VC *vc = [IBUIFactory CreateAutoInsuranceStep1VC];
-                vc.hidesBottomBarWhenPushed = YES;
-                vc.title = @"车险算价";
-                [self.navigationController pushViewController:vc animated:YES];
-            }
+            AutoInsuranceStep1VC *vc = [IBUIFactory CreateAutoInsuranceStep1VC];
+            vc.hidesBottomBarWhenPushed = YES;
+            vc.title = @"车险算价";
+            [self.navigationController pushViewController:vc animated:YES];
         }
             break;
         case 1002:

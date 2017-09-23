@@ -55,7 +55,7 @@
 
 //车险报价与web交互
 
-- (void) goOrderList:(NSString *) string;//跳转到订单列表
+//- (void) goOrderList:(NSString *) string;//跳转到订单列表
 
 //共有
 - (void) webViewLoadFinished:(NSString *) string;//网页每次加载完回调

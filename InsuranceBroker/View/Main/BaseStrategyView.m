@@ -162,6 +162,10 @@
     else
         cell.sepHeight.constant = 0;
     
+    if(kShenHeBeiAn){
+        cell.lbRate.hidden = YES;
+    }
+    
     return cell;
 }
 

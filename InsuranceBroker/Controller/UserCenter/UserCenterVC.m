@@ -128,7 +128,7 @@
             [self.gradientView setimage:[self blurryImage:image withBlurLevel:0.4]];
     }];
     
-    if(model.isTeamLeader == 1){
+    if(model.isWxTeamLeader == 1){
         self.lbRole.text = @"团长";
         self.logoImgv.image = ThemeImage(@"leader");
 //        self.lbMyTeamName.text = @"我的团队";
@@ -155,9 +155,23 @@
         self.lbCertificate.text = @"未认证";
     }
     
-    self.tableHConstraint.constant = model.productRadios.count * cell_height;
     
-    CGFloat h = self.scrollview.frame.size.height - 545 + 1 - self.tableHConstraint.constant;
+    NSInteger count = model.productRadios.count;
+
+    self.tableHConstraint.constant = count * cell_height;
+    //header 225, shimingrenzheng  50, hongbao 50, zuixin zhence 30 10 , 100, 10, 60;
+    
+    CGFloat vHeight = 405 + self.tableHConstraint.constant;
+    if(count > 0)
+        vHeight += 30;
+    
+    if([[UserInfoModel shareUserInfoModel] .userId isEqualToString:youKeUserId])
+    {}
+    else{
+        vHeight += 100;
+    }
+    
+    CGFloat h = self.scrollview.frame.size.height + 1 - vHeight;
     if(h > 0)
         self.footVConstraint.constant = h;
     else
@@ -169,6 +183,25 @@
     }
     
     [self.productRadioTableview reloadData];
+    
+    if(kShenHeBeiAn){
+        self.lbZuiXinZhenCe.text = @"保险产品";
+    }
+    
+    //add by ShenHeBeiAn-01
+    if([[UserInfoModel shareUserInfoModel] .userId isEqualToString:youKeUserId]){
+        self.btnEditPhoto.userInteractionEnabled = NO;
+        self.btNameEdit.userInteractionEnabled = YES;
+        self.btnSetting.hidden = YES;
+        self.renzhengVConstraint.constant = 0;
+        self.hongbaoVConstraint.constant = 0;
+    }else{
+        self.btnEditPhoto.userInteractionEnabled = YES;
+        self.btNameEdit.userInteractionEnabled = YES;
+        self.btnSetting.hidden = NO;
+        self.renzhengVConstraint.constant = 50;
+        self.hongbaoVConstraint.constant = 50;
+    }
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -205,9 +238,11 @@
 //修改用户资料
 - (IBAction)EditUserInfo:(id)sender
 {
-    QRCodeVC *vc = [IBUIFactory CreateQRCodeViewController];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    if([self login]){
+        QRCodeVC *vc = [IBUIFactory CreateQRCodeViewController];
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (IBAction)btnUserSetting:(id)sender
@@ -248,23 +283,25 @@
 //我的邀请
 - (IBAction)invite:(id)sender
 {
-    if([UserInfoModel shareUserInfoModel].isTeamLeader){
-        MyTeamInfoVC *vc = [[MyTeamInfoVC alloc] initWithNibName:nil bundle:nil];
-        vc.hidesBottomBarWhenPushed = YES;
-        vc.userid = [UserInfoModel shareUserInfoModel].userId;
-        vc.title = @"我的团队";
-        vc.toptitle = @"我的队员";
-        vc.name = @"我";
-        //                vc.need = enumNeedIndicator;
-        [self.navigationController pushViewController:vc animated:YES];
-    }else{
-        MyInviteVC *vc = [[MyInviteVC alloc] initWithNibName:nil bundle:nil];
-        vc.hidesBottomBarWhenPushed = YES;
-        vc.userid = [UserInfoModel shareUserInfoModel].userId;
-        vc.title = @"我的团队";
-        vc.toptitle = @"我的队员";
-        vc.name = @"我";
-        [self.navigationController pushViewController:vc animated:YES];
+    if([self login]){
+        if([UserInfoModel shareUserInfoModel].isWxTeamLeader){
+            MyTeamInfoVC *vc = [[MyTeamInfoVC alloc] initWithNibName:nil bundle:nil];
+            vc.hidesBottomBarWhenPushed = YES;
+            vc.userid = [UserInfoModel shareUserInfoModel].userId;
+            vc.title = @"我的团队";
+            vc.toptitle = @"我的队员";
+            vc.name = @"我";
+            //                vc.need = enumNeedIndicator;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else{
+            MyInviteVC *vc = [[MyInviteVC alloc] initWithNibName:nil bundle:nil];
+            vc.hidesBottomBarWhenPushed = YES;
+            vc.userid = [UserInfoModel shareUserInfoModel].userId;
+            vc.title = @"我的团队";
+            vc.toptitle = @"我的队员";
+            vc.name = @"我";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
 }
 
@@ -278,11 +315,13 @@
 
 - (IBAction)managerOrder:(id)sender
 {
-    MyOrderVC *vc = [[MyOrderVC alloc] initWithNibName:nil bundle:nil];
-    vc.title = @"我的保单列表";
-    vc.hidesBottomBarWhenPushed = YES;
-    
-    [self.navigationController pushViewController:vc animated:YES];
+    if([self login]){
+        MyOrderVC *vc = [[MyOrderVC alloc] initWithNibName:nil bundle:nil];
+        vc.title = @"我的保单列表";
+        vc.hidesBottomBarWhenPushed = YES;
+        
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 //本月销售额
@@ -443,7 +482,17 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [UserInfoModel shareUserInfoModel].productRadios.count;
+    NSInteger count = [UserInfoModel shareUserInfoModel].productRadios.count;
+
+    if(count == 0){
+        self.productRadioTableview.hidden = YES;
+        self.zhenceVConstraint.constant = 0;
+    }
+    else{
+        self.productRadioTableview.hidden = NO;
+        self.zhenceVConstraint.constant = 30;
+    }
+    return count;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -460,10 +509,19 @@
         cell = [nibs lastObject];
     }
     
-    ProductRadioModel *model = [[UserInfoModel shareUserInfoModel].productRadios objectAtIndex:indexPath.row];
-    [cell.productLogo sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:nil];
-    cell.productName.text = model.productName;
-    cell.productRadio.text = [NSString stringWithFormat:@"%@%@", model.productMaxRatio, @"%"];
+    NSArray *array = [UserInfoModel shareUserInfoModel].productRadios;
+    if(indexPath.row < [array count]){
+        ProductRadioModel *model = [array objectAtIndex:indexPath.row];
+        [cell.productLogo sd_setImageWithURL:[NSURL URLWithString:model.productLogo] placeholderImage:nil];
+        cell.productName.text = model.productName;
+        cell.productRadio.text = [NSString stringWithFormat:@"%@%@", model.productMaxRatio, @"%"];
+        
+        if(youKeMoShi){
+            cell.productRadio.hidden = YES;
+        }else{
+            cell.productRadio.hidden = NO;
+        }
+    }
     
     return cell;
 }

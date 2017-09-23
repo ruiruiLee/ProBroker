@@ -145,7 +145,11 @@
         return YES;
     }
     else{
-        BOOL result = [selectVC login];
+        selectVC = usercentervc;
+        
+        return YES;
+        
+/*        BOOL result = [selectVC login];
         if(result){
             if(tag == 1002){
                 selectVC = customervc;
@@ -158,7 +162,7 @@
                 selectVC = usercentervc;
             }
         }
-        return result;
+        return result;*/
     }
 }
 

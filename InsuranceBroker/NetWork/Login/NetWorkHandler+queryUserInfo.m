@@ -16,6 +16,9 @@
     NetWorkHandler *handle = [NetWorkHandler shareNetWorkHandler];
     NSMutableDictionary *pramas = [[NSMutableDictionary alloc] init];
     [Util setValueForKeyWithDic:pramas value:userId key:@"userId"];
+    [Util setValueForKeyWithDic:pramas value:@"1" key:@"isLoadRatio"];
+    [Util setValueForKeyWithDic:pramas value:@"1" key:@"isLoadTeamInfo"];
+    [Util setValueForKeyWithDic:pramas value:@"1" key:@"isLoadSellInfo"];
     
     [handle postWithMethod:@"/web/user/queryUserInfo.xhtml" BaseUrl:Base_Uri Params:pramas Completion:completion];
 }

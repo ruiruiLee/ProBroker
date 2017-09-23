@@ -39,7 +39,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    if([UserInfoModel shareUserInfoModel].possessTeamStatus)
     [self setRightBarButtonWithImage:ThemeImage(@"inviteUser")];
 
     [self.pulltable registerNib:[UINib nibWithNibName:@"TeamListTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];

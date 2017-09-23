@@ -353,7 +353,7 @@
                 cell.contentWidth.constant = 10;
             }
             
-            if(model.orderOfferStatus == 3){
+            if(model.orderOfferStatus == 3 && !kShenHeBeiAn){
                 [cell.btnUnfold setTitle:@"设置费率" forState:UIControlStateNormal];
                 cell.btnModifyPlain.hidden = YES;
             }
@@ -473,10 +473,20 @@
                 [web loadHtmlFromUrl:url];
             }
             else if (orderOfferStatus == 3){
-                OfferDetailsVC *vc = [IBUIFactory CreateOfferDetailsViewController];
-                vc.orderId = model.insuranceOrderUuid;
-                vc.insurInfo = model;
-                [self.navigationController pushViewController:vc animated:YES];
+                if(kShenHeBeiAn){
+                    OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
+                    web.title = @"报价详情";
+                    web.insModel = model;
+                    [self.navigationController pushViewController:web animated:YES];
+                    NSString *url = [NSString stringWithFormat:@"%@?appId=%@&orderUuId=%@&helpInsure=1", model.clickUrl, [UserInfoModel shareUserInfoModel].uuid, model.insuranceOrderUuid];
+                    [web loadHtmlFromUrl:url];
+                }
+                else{
+                    OfferDetailsVC *vc = [IBUIFactory CreateOfferDetailsViewController];
+                    vc.orderId = model.insuranceOrderUuid;
+                    vc.insurInfo = model;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
             }else{
                 OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
                 web.title = @"报价详情";

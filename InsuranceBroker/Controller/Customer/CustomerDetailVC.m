@@ -650,10 +650,22 @@
                 [web loadHtmlFromUrl:url];
             }
             else if (orderOfferStatus == 3){
-                OfferDetailsVC *vc = [IBUIFactory CreateOfferDetailsViewController];
-                vc.orderId = model.insuranceOrderUuid;
-                vc.insurInfo = model;
-                [self.navigationController pushViewController:vc animated:YES];
+                if(kShenHeBeiAn){
+                    OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
+                    web.insModel = model;
+                    web.title = @"报价详情";
+                    [self.navigationController pushViewController:web animated:YES];
+                    
+                    NSString *url = [NSString stringWithFormat:@"%@?appId=%@&orderUuId=%@&helpInsure=1", model.clickUrl, [UserInfoModel shareUserInfoModel].uuid, model.insuranceOrderUuid];
+                    [web initShareUrl:model.insuranceOrderUuid];
+                    [web loadHtmlFromUrl:url];
+                }
+                else{
+                    OfferDetailsVC *vc = [IBUIFactory CreateOfferDetailsViewController];
+                    vc.orderId = model.insuranceOrderUuid;
+                    vc.insurInfo = model;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
             }else{
                 OrderDetailWebVC *web = [IBUIFactory CreateOrderDetailWebVC];
                 web.insModel = model;

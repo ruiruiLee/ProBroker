@@ -129,6 +129,13 @@
     else
         cell.sepHeight.constant = 0;
     
+    if(youKeMoShi){
+        cell.lbRate.hidden = YES;
+    }else
+    {
+        cell.lbRate.hidden = NO;
+    }
+    
     return cell;
 }
 

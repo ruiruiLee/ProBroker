@@ -38,4 +38,5 @@
                  smCode:(NSString *)smCode
             parentPhone:(NSString *)parentPhone
              Completion:(Completion)completion;
+
 @end

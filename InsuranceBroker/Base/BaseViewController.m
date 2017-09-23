@@ -180,7 +180,7 @@
 - (BOOL) login
 {
     UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-    if(!user.uuid){
+    if(!user.uuid || [user.uuid isEqualToString:youKeUUId]){
 //        if([WXApi isWXAppInstalled]){
 //            WXLoginVC *vc  = [IBUIFactory CreateWXLoginViewController];
 //            UINavigationController *naVC = [[UINavigationController alloc] initWithRootViewController:vc];

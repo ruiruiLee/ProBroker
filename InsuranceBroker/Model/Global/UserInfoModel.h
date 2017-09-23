@@ -16,7 +16,6 @@
 
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *uuid;
-@property (nonatomic, assign) BOOL isRegister;//如果是第一次登录，则该字段为true
 @property (nonatomic, strong) NSString *realName;//通过微信获取,如果没有则返回””
 @property (nonatomic, strong) NSString *headerImg;//通过微信获取,如果没有则返回””
 @property (nonatomic, strong) NSString *clientKey;//
@@ -29,11 +28,9 @@
 @property (nonatomic, strong) NSString *liveCityId;//,//居住城市id
 @property (nonatomic, strong) NSString *liveProvince;//
 @property (nonatomic, strong) NSString *liveCity;
-@property (nonatomic, assign) BOOL isTeamLeader;//0个人 1 团长
+@property (nonatomic, assign) BOOL isWxTeamLeader;//0个人 1 团长
 @property (nonatomic, assign) NSInteger cardVerifiy;//实名验证状态，1未认证 ，2认证成功 3，认证失败
-@property (nonatomic, assign) NSInteger userType;////经纪人类型，1自由经纪人、2坐席经纪人、3平台管理人
-
-@property (nonatomic, assign) NSInteger accountType;
+//@property (nonatomic, assign) NSInteger userType;////经纪人类型，1自由经纪人、2坐席经纪人、3平台管理人
 
 
 //addinfo
@@ -60,8 +57,6 @@
 @property (nonatomic, strong) NSString *qrcodeAddr;//":""//二维码地址
 
 @property (nonatomic, strong) NSString *cardVerifiyMsg;//认证失败信息
-
-@property (nonatomic, assign) BOOL possessTeamStatus;// 具备团队长状态；0没有，1有
 
 
 ///add 2016-8-19
@@ -109,5 +104,7 @@
 - (UserInfoModel *) initWithUserId:(NSString *) userId;
 
 - (void) removeAllContent;
+
+- (BOOL) login;
 
 @end
