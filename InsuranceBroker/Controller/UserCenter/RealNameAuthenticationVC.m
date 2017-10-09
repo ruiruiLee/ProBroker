@@ -172,7 +172,7 @@
         dispatch_group_notify(group, dispatch_get_global_queue(0,0), ^{
             // 汇总结果
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-            [NetWorkHandler requestToModifyuserInfo:model.userId realName:realName userName:nil phone:nil cardNumber:cardNumber cardNumberImg1:cert1path cardNumberImg2:cert2path liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:nil Completion:^(int code, id content) {
+            [NetWorkHandler requestToModifySaveUser:model.userId realName:realName userName:nil phone:nil cardNumber:cardNumber cardNumberImg1:cert1path cardNumberImg2:cert2path liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:nil cardVerifiy:@"1" Completion:^(int code, id content) {
                 
                // [ProgressHUD dismiss];
 //                imgCer1=nil;

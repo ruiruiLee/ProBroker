@@ -102,8 +102,8 @@
 {
     self.lbName.text = [Util getUserName:self.userinfo];//self.userinfo.nickname;
     self.lbMobile.text = self.userinfo.phone;
-    self.lbSubNum.text = [NSString stringWithFormat:@"%@人", [[NSNumber numberWithLongLong:self.userinfo.ztdrs] stringValue]];
-    if(self.userinfo.ztdrs > 0){
+    self.lbSubNum.text = [NSString stringWithFormat:@"%@人", [[NSNumber numberWithLongLong:self.userinfo.teamInfo.memberCount] stringValue]];
+    if(self.userinfo.teamInfo.memberCount > 0){
         self.rightArraw.hidden = NO;
         self.rightArrowWidth.constant = 16;
     }
@@ -111,7 +111,7 @@
         self.rightArraw.hidden = YES;
         self.rightArrowWidth.constant = 0;
     }
-//    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.userinfo.headerImg] placeholderImage:Normal_Image];
+    [self.photo sd_setImageWithURL:[NSURL URLWithString:self.userinfo.headerImg] placeholderImage:Normal_Image];
     
     UIImage *placeholderImage = ThemeImage(@"head_male");
     if(self.userinfo.sex == 2)
@@ -124,16 +124,16 @@
     
     UserInfoModel *model = self.userinfo;
     
-    self.lbMonthOrderSuccessNums.text = [Util getDecimalStyle:model.car_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
-    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计单量：%ld单", (long)model.car_zcgdds];//车险本月单量
-    self.lbPersonalMonthOrderSuccessNums.text = [Util getDecimalStyle:model.nocar_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
-    self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计单量：%ld单", (long)model.nocar_zcgdds];//个险本月单量
-    
-    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.now_zsy];//本月收益
-    self.lbOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.zsy];//累计收益
-//    self.lbTotalOrderCount.text = [[NSNumber numberWithLongLong:model.zcgdds] stringValue];//累计订单数
-    self.lbTotalCarSuccessNums.text = [NSString stringWithFormat:@"%@", [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue]];
-    self.lbTotalNoCarSuccessNums.text = [NSString stringWithFormat:@"%@", [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue]];
+    self.lbMonthOrderSuccessNums.text = model.sellInfo.zongBaoFei;//[NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
+    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计单量：%ld单", (long)model.sellInfo.cheXianCount];//车险本月单量
+    self.lbPersonalMonthOrderSuccessNums.text = model.sellInfo.geXianBaoFei;//[NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
+    self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计单量：%ld单", (long)model.sellInfo.geXianCount];//个险本月单量
+//
+//    self.lbMonthOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.now_zsy];//本月收益
+//    self.lbOrderEarn.text = [NSString stringWithFormat:@"%.2f", model.zsy];//累计收益
+////    self.lbTotalOrderCount.text = [[NSNumber numberWithLongLong:model.zcgdds] stringValue];//累计订单数
+//    self.lbTotalCarSuccessNums.text = [NSString stringWithFormat:@"%@", [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue]];
+//    self.lbTotalNoCarSuccessNums.text = [NSString stringWithFormat:@"%@", [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue]];
 }
 
 - (void) loadData
@@ -251,16 +251,16 @@
 #pragma ACTION
 - (IBAction)doBtnTeams:(id)sender
 {
-    if(self.userinfo.ztdrs > 0){
-        MyTeamsVC *vc = [[MyTeamsVC alloc] initWithNibName:nil bundle:nil];
-        vc.hidesBottomBarWhenPushed = YES;
-        vc.userid = self.brokerInfo.userId;
-        vc.title = [NSString stringWithFormat:@"%@的团队", [Util getUserNameWithModel:self.brokerInfo]];
-        vc.total = self.userinfo.ztdrs;
-        vc.toptitle = @"他的队员";
-        vc.name = [Util getUserNameWithModel:self.brokerInfo];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+//    if(self.userinfo.ztdrs > 0){
+//        MyTeamsVC *vc = [[MyTeamsVC alloc] initWithNibName:nil bundle:nil];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        vc.userid = self.brokerInfo.userId;
+//        vc.title = [NSString stringWithFormat:@"%@的团队", [Util getUserNameWithModel:self.brokerInfo]];
+//        vc.total = self.userinfo.ztdrs;
+//        vc.toptitle = @"他的队员";
+//        vc.name = [Util getUserNameWithModel:self.brokerInfo];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
 }
 
 //拨打电话

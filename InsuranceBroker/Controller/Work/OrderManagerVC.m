@@ -465,7 +465,7 @@
                     web.shareImgArray = [NSArray arrayWithObject:model.productLogo];
                 }
                 UserInfoModel *user = [UserInfoModel shareUserInfoModel];
-                web.shareTitle = [NSString stringWithFormat:@"我是%@，我是优快保自由经纪人。这是为您定制的投保方案报价，请查阅。电话%@", user.realName, user.phone];
+                web.shareTitle = [NSString stringWithFormat:@"我是%@，我是优快保代理。这是为您定制的投保方案报价，请查阅。电话%@", user.realName, user.phone];
                 [self.navigationController pushViewController:web animated:YES];
                 web.insModel = model;
                 NSString *url = [NSString stringWithFormat:@"%@?appId=%@&orderUuId=%@&helpInsure=1", model.clickUrl, [UserInfoModel shareUserInfoModel].uuid, model.insuranceOrderUuid];

@@ -102,15 +102,15 @@
 {
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     
-    self.lbMonthOrderSuccessNums.text = [Util getDecimalStyle:model.car_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
-    self.lbPersonalMonthOrderSuccessNums.text = [Util getDecimalStyle:model.nocar_zcgddbf];//[NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
-    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计单量：%d单", (int)model.car_zcgdds];//车险本月单量
-    self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计单量：%d单", (int)model.nocar_zcgdds];//个险本月单量
-    self.lbMonthOrderEarn.text = [Util getDecimalStyle:model.now_zsy];//[NSString stringWithFormat:@"%.2f", model.now_zsy];
-    self.lbOrderEarn.text = [Util getDecimalStyle:model.zsy];//[NSString stringWithFormat:@"%.2f", model.zsy];//累计收益;
+    self.lbMonthOrderSuccessNums.text = model.sellInfo.zongBaoFei;//[NSString stringWithFormat:@"%.2f", model.car_now_zcgddbf];//车险本月保费
+    self.lbPersonalMonthOrderSuccessNums.text = model.sellInfo.geXianBaoFei;//[NSString stringWithFormat:@"%.2f", model.nocar_now_zcgddbf];//个险本月保费
+    self.lbTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计单量：%d单", (int)model.sellInfo.cheXianCount];//车险本月单量
+    self.lbPersonalTotalOrderSuccessNums.text = [NSString stringWithFormat:@"累计单量：%d单", (int)model.sellInfo.geXianCount];//个险本月单量
+//    self.lbMonthOrderEarn.text = [Util getDecimalStyle:model.now_zsy];//[NSString stringWithFormat:@"%.2f", model.now_zsy];
+//    self.lbOrderEarn.text = [Util getDecimalStyle:model.zsy];//[NSString stringWithFormat:@"%.2f", model.zsy];//累计收益;
     
-    self.lbCarTotalOrderCount.text = [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue];//车险累计
-    self.lbNoCarTotalOrderCount.text = [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue];//非车险累计
+//    self.lbCarTotalOrderCount.text = [[NSNumber numberWithLongLong:model.sellInfo.cheXianCount] stringValue];//车险累计
+//    self.lbNoCarTotalOrderCount.text = [[NSNumber numberWithLongLong:model.sellInfo.geXianCount] stringValue];//非车险累计
     
 //    self.lbAmountTotalCarOrderCount.text = [NSString stringWithFormat:@"累计单量：%@单", [[NSNumber numberWithLongLong:model.car_zcgdds] stringValue]];
 //    self.lbAmountTotalNoCarOrderCount.text = [NSString stringWithFormat:@"累计单量：%@单", [[NSNumber numberWithLongLong:model.nocar_zcgdds] stringValue]];

@@ -244,7 +244,7 @@
     
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
     if(text != nil && [text length] > 0)
-        [NetWorkHandler requestToModifyuserInfo:model.userId realName:nil userName:text phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:nil Completion:^(int code, id content) {
+        [NetWorkHandler requestToModifySaveUser:model.userId realName:nil userName:text phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:nil cardVerifiy:nil Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
                 [UserInfoModel shareUserInfoModel].nickname = text;
@@ -272,7 +272,7 @@
     else{
         UserInfoModel *model = [UserInfoModel shareUserInfoModel];
         NSString *userSex = [[NSNumber numberWithInteger:buttonIndex + 1] stringValue];
-        [NetWorkHandler requestToModifyuserInfo:model.userId realName:nil userName:nil phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:userSex headerImg:nil Completion:^(int code, id content) {
+        [NetWorkHandler requestToModifySaveUser:model.userId realName:nil userName:nil phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:userSex headerImg:nil cardVerifiy:nil Completion:^(int code, id content) {
             [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
             if(code == 200){
                 model.sex = buttonIndex + 1;
@@ -308,7 +308,7 @@
         [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [file saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-                [NetWorkHandler requestToModifyuserInfo:model.userId realName:nil userName:nil phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:file.url Completion:^(int code, id content) {
+                [NetWorkHandler requestToModifySaveUser:model.userId realName:nil userName:nil phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:file.url cardVerifiy:nil Completion:^(int code, id content) {
                    
                     [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
                     if(code == 200){

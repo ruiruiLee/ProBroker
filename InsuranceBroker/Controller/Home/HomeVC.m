@@ -260,7 +260,7 @@
 //                _jiHuaShu = [self.infoArray objectAtIndex:1];
                 for (int i = 0; i < [self.infoArray count] ; i++) {
                     AnnouncementModel *model = [self.infoArray objectAtIndex:i];
-                    if([model.title isEqualToString:@"推广"]){
+                    if([model.category isEqualToString:@"7"]){
                         _jiHuaShu = model;
                         break;
                     }

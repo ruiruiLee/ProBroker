@@ -198,7 +198,7 @@
 - (void) modifyAddress:(CityModel *)citymodel
 {
     UserInfoModel *model = [UserInfoModel shareUserInfoModel];
-    [NetWorkHandler requestToModifyuserInfo:model.userId realName:nil userName:nil phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:self.proviendemodel.provinceId liveCityId:citymodel.cityId liveAreaId:nil liveAddr:nil userSex:nil headerImg:nil Completion:^(int code, id content) {
+    [NetWorkHandler requestToModifySaveUser:model.userId realName:nil userName:nil phone:nil cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:self.proviendemodel.provinceId liveCityId:citymodel.cityId liveAreaId:nil liveAddr:nil userSex:nil headerImg:nil cardVerifiy:nil Completion:^(int code, id content) {
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
         if(self){
             UserInfoModel *model = [UserInfoModel shareUserInfoModel];

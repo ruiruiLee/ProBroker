@@ -16,12 +16,20 @@
                          filters:(NSDictionary *) filters
                       Completion:(Completion)completion;
 
-+ (void) requestUserQueryForPageList:(NSInteger) offset
-                               limit:(NSInteger) limit
-                                sord:(NSString *) sord
-                                sidx:(NSString *) sidx
-                            keyValue:(NSString *) keyValue
-                             filters:(NSDictionary *) filters
-                          Completion:(Completion)completion;
+//+ (void) requestUserQueryForPageList:(NSInteger) offset
+//                               limit:(NSInteger) limit
+//                                sord:(NSString *) sord
+//                                sidx:(NSString *) sidx
+//                            keyValue:(NSString *) keyValue
+//                             filters:(NSDictionary *) filters
+//                          Completion:(Completion)completion;
+
++ (void) requestQueryUserPageList:(NSString *) teamLeaderId
+                         keyValue:(NSString *) keyValue
+                            limit:(NSInteger) limit
+                           offset:(NSInteger) offset
+                      isSearchAll:(NSString *) isSearchAll
+                 isShowTeamLeader:(NSString *) isShowTeamLeader
+                       Completion:(Completion)completion;
 
 @end

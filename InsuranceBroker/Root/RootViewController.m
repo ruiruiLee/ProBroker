@@ -97,7 +97,7 @@
     [context addObserver:self forKeyPath:@"pushCustomerNum" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
     
     homevc = [[HomeVC alloc] initWithNibName:@"HomeVC" bundle:nil];
-    [self setUpChildControllerWith:homevc norImage:ThemeImage(@"home") selImage:ThemeImage(@"home_fill") title:@"经纪人"];
+    [self setUpChildControllerWith:homevc norImage:ThemeImage(@"home") selImage:ThemeImage(@"home_fill") title:@"代理"];
     homevc.tabBarItem.tag = 1001;
     
     customervc = [[CustomerMainVC alloc] initWithNibName:nil bundle:nil];

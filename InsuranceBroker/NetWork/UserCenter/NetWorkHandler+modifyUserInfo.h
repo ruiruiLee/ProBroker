@@ -24,7 +24,23 @@
  "liveAddr":"四川省成都市青羊区京城小区" //居住地址
  */
 
-+ (void) requestToModifyuserInfo:(NSString *) userId
+//+ (void) requestToModifyuserInfo:(NSString *) userId
+//                        realName:(NSString *) realName
+//                        userName:(NSString *) userName
+//                           phone:(NSString *) phone
+//                      cardNumber:(NSString *) cardNumber
+//                  cardNumberImg1:(NSString *) cardNumberImg1
+//                  cardNumberImg2:(NSString *) cardNumberImg2
+//                  liveProvinceId:(NSString *) liveProvinceId
+//                      liveCityId:(NSString *) liveCityId
+//                      liveAreaId:(NSString *) liveAreaId
+//                        liveAddr:(NSString *) liveAddr
+//                         userSex:(NSString *) userSex
+//                       headerImg:(NSString *) headerImg
+//                     cardVerifiy:(NSString *) cardVerifiy
+//                      Completion:(Completion) completion;
+
++ (void) requestToModifySaveUser:(NSString *) userId
                         realName:(NSString *) realName
                         userName:(NSString *) userName
                            phone:(NSString *) phone
@@ -37,6 +53,7 @@
                         liveAddr:(NSString *) liveAddr
                          userSex:(NSString *) userSex
                        headerImg:(NSString *) headerImg
+                     cardVerifiy:(NSString *) cardVerifiy
                       Completion:(Completion) completion;
 
 @end

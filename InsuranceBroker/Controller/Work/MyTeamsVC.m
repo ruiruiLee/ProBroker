@@ -142,16 +142,16 @@
 
 - (void) loadDataInPages:(NSInteger)page
 {
-    NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
-    [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
-    NSMutableArray *rules = [[NSMutableArray alloc] init];
-    [rules addObject:[self getRulesByField:@"parentUserId" op:@"eq" data:self.userid]];
-    [rules addObject:[self getRulesByField:@"status" op:@"in" data:@"1,2"]];
-    [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
+//    NSMutableDictionary *filters = [[NSMutableDictionary alloc] init];
+//    [Util setValueForKeyWithDic:filters value:@"and" key:@"groupOp"];
+//    NSMutableArray *rules = [[NSMutableArray alloc] init];
+//    [rules addObject:[self getRulesByField:@"parentUserId" op:@"eq" data:self.userid]];
+//    [rules addObject:[self getRulesByField:@"status" op:@"in" data:@"1,2"]];
+//    [Util setValueForKeyWithDic:filters value:rules key:@"rules"];
     if(page == 0)
         [self loadUserTeamSellTj];
     
-    [NetWorkHandler requestUserQueryForPageList:page limit:LIMIT sord:@"desc" sidx:@"U_UserDataStatisticsNow.nowMonthOrderSuccessNums" keyValue:self.filterString filters:filters Completion:^(int code, id content) {
+    [NetWorkHandler requestQueryUserPageList:self.userid keyValue:self.filterString limit:LIMIT offset:page isSearchAll:@"0" isShowTeamLeader:@"1" Completion:^(int code, id content) {
         [self refreshTable];
         [self loadMoreDataToTable];
         [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
@@ -164,7 +164,23 @@
             lbAmount.text = [NSString stringWithFormat:@"共%ld人", (long)self.total];
             [self.pulltable reloadData];
         }
+
     }];
+    
+//    [NetWorkHandler requestUserQueryForPageList:page limit:LIMIT sord:@"desc" sidx:nil keyValue:self.filterString filters:filters Completion:^(int code, id content) {
+//        [self refreshTable];
+//        [self loadMoreDataToTable];
+//        [self handleResponseWithCode:code msg:[content objectForKey:@"msg"]];
+//        if(code == 200){
+//            if(page == 0){
+//                [self.data removeAllObjects];
+//            }
+//            [self.data addObjectsFromArray:[BrokerInfoModel modelArrayFromArray:[[content objectForKey:@"data"] objectForKey:@"rows"]]];
+//            self.total = [[[content objectForKey:@"data"] objectForKey:@"total"] integerValue];
+//            lbAmount.text = [NSString stringWithFormat:@"共%ld人", (long)self.total];
+//            [self.pulltable reloadData];
+//        }
+//    }];
 }
 
 - (void) loadUserTeamSellTj

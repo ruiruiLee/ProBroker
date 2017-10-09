@@ -170,6 +170,8 @@
 		8654CD881C312CE100411C54 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CD7B1C312CE100411C54 /* SBJsonUTF8Stream.m */; };
 		8654CD891C312CE100411C54 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CD7D1C312CE100411C54 /* SBJsonWriter.m */; };
 		8654CD8C1C31350D00411C54 /* ProjectDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 8654CD8B1C31350D00411C54 /* ProjectDefine.m */; };
+		8656746C1F7CC9F700237A55 /* SellInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8656746B1F7CC9F700237A55 /* SellInfoModel.m */; };
+		8656746F1F7CCA0D00237A55 /* TeamInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8656746E1F7CCA0D00237A55 /* TeamInfoModel.m */; };
 		865768201EA857C100C7F1AE /* libpingppcore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8657681A1EA857C100C7F1AE /* libpingppcore.a */; };
 		865768221EA857C100C7F1AE /* Pingpp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8657681C1EA857C100C7F1AE /* Pingpp.bundle */; };
 		865768261EA8588900C7F1AE /* libpingpp+one.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 865768241EA8588900C7F1AE /* libpingpp+one.a */; };
@@ -982,6 +984,10 @@
 		8654CD7D1C312CE100411C54 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		8654CD8A1C31350D00411C54 /* ProjectDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectDefine.h; sourceTree = "<group>"; };
 		8654CD8B1C31350D00411C54 /* ProjectDefine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectDefine.m; sourceTree = "<group>"; };
+		8656746A1F7CC9F600237A55 /* SellInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SellInfoModel.h; sourceTree = "<group>"; };
+		8656746B1F7CC9F700237A55 /* SellInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SellInfoModel.m; sourceTree = "<group>"; };
+		8656746D1F7CCA0D00237A55 /* TeamInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TeamInfoModel.h; sourceTree = "<group>"; };
+		8656746E1F7CCA0D00237A55 /* TeamInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TeamInfoModel.m; sourceTree = "<group>"; };
 		8657681A1EA857C100C7F1AE /* libpingppcore.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpingppcore.a; path = Pingpp/libpingppcore.a; sourceTree = "<group>"; };
 		8657681C1EA857C100C7F1AE /* Pingpp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Pingpp.bundle; path = Pingpp/Pingpp.bundle; sourceTree = "<group>"; };
 		8657681D1EA857C100C7F1AE /* Pingpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Pingpp.h; path = Pingpp/Pingpp.h; sourceTree = "<group>"; };
@@ -3182,6 +3188,10 @@
 				861A1D9B1E2DFE78003AB904 /* NSString+URL.m */,
 				86764CA81EEE34CA00ED8765 /* BeiYaoQingRenModel.h */,
 				86764CA91EEE34CA00ED8765 /* BeiYaoQingRenModel.m */,
+				8656746A1F7CC9F600237A55 /* SellInfoModel.h */,
+				8656746B1F7CC9F700237A55 /* SellInfoModel.m */,
+				8656746D1F7CCA0D00237A55 /* TeamInfoModel.h */,
+				8656746E1F7CCA0D00237A55 /* TeamInfoModel.m */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -4937,6 +4947,7 @@
 				8654CA5D1C31256A00411C54 /* NetWorkHandler.m in Sources */,
 				86A504CC1C51C7B00032A901 /* NetWorkHandler+applyForEarn.m in Sources */,
 				86F014331C86CB9B00A3C68E /* NetWorkHandler+deleteInsuranceOrder.m in Sources */,
+				8656746C1F7CC9F700237A55 /* SellInfoModel.m in Sources */,
 				868C7CDD1C9F8E3800B7617A /* OrderUtil.m in Sources */,
 				86C3BB741C242E3E00F98E80 /* CustomerMainVC.m in Sources */,
 				865066241C21550500429EAE /* IBUIFactory.m in Sources */,
@@ -5052,6 +5063,7 @@
 				86F2E2B61D3776EE002FCE75 /* GetMessageFromWXResp+responseWithTextOrMediaMessage.m in Sources */,
 				861DF93E1CA4E40D00FB58B1 /* RatioMapsModel.m in Sources */,
 				86EECD9E1CF2A6CE00BBAF11 /* MBProgressHUD.m in Sources */,
+				8656746F1F7CCA0D00237A55 /* TeamInfoModel.m in Sources */,
 				8612F4251CE9B6270045340F /* CustomerCitySelectVC.m in Sources */,
 				8615AF031E71064800AC795F /* UINavigationBar+HitTest.m in Sources */,
 				CFE0947F1D915C54008E2569 /* AVObject.m in Sources */,
@@ -5258,8 +5270,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InsuranceBroker/InsuranceBroker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q8Z5QWUAGN;
 				ENABLE_BITCODE = NO;
@@ -5322,8 +5334,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "08eeb0b3-8cd3-4d89-88a1-53a6450b7abc";
-				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibrokerDev;
+				PROVISIONING_PROFILE = "ce10df9d-c60c-44da-b916-7ad4ae0e25cb";
+				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibroker;
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
@@ -5337,8 +5349,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = InsuranceBroker/InsuranceBroker.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Alex Zhu (6NN7QK522Y)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chengdu You Kuai Bao Network Technology Co., Ltd. (Q8Z5QWUAGN)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Q8Z5QWUAGN;
 				ENABLE_BITCODE = NO;
@@ -5401,8 +5413,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cmkj.ibroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "08eeb0b3-8cd3-4d89-88a1-53a6450b7abc";
-				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibrokerDev;
+				PROVISIONING_PROFILE = "ce10df9d-c60c-44da-b916-7ad4ae0e25cb";
+				PROVISIONING_PROFILE_SPECIFIER = com.cmkj.ibroker;
 				SWIFT_OBJC_BRIDGING_HEADER = "InsuranceBroker/View/Global/DGElasticPullToRefresh/InsuranceBroker-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "\"${SRCROOT}\"/**";
 			};

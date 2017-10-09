@@ -47,7 +47,7 @@
     [ProgressHUD show:@"正在证码"];
     [NetWorkHandler requestToVerifySMSCode:phone smsCode:smCode Completion:^(int code, id content) {
         if(code == 200){
-            [NetWorkHandler requestToModifyuserInfo:user.userId realName:nil userName:nil phone:phone cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:nil Completion:^(int code, id content) {
+            [NetWorkHandler requestToModifySaveUser:user.userId realName:nil userName:nil phone:phone cardNumber:nil cardNumberImg1:nil cardNumberImg2:nil liveProvinceId:nil liveCityId:nil liveAreaId:nil liveAddr:nil userSex:nil headerImg:nil cardVerifiy:nil Completion:^(int code, id content) {
                 [ProgressHUD dismiss];
                 if(code == 200){
                     user.phone = phone;

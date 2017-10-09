@@ -245,7 +245,7 @@
     
     BrokerInfoModel *model = [self.data objectAtIndex:indexPath.row];
     if(model.status ==2){
-        [Util showAlertMessage:@"该用户还未加入经纪人，赶快联系他吧!"];
+        [Util showAlertMessage:@"该用户还未加入优快保，赶快联系他吧!"];
         return;
     }
     UserDetailVC *vc = [IBUIFactory CreateUserDetailVC];
